@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141AD1E458BA800A51775 /* AppDelegate.swift */; };
-		BB4141B01E458BA800A51775 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141AF1E458BA800A51775 /* ViewController.swift */; };
 		BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B11E458BA800A51775 /* Assets.xcassets */; };
 		BB4141B51E458BA900A51775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B31E458BA900A51775 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -16,7 +15,6 @@
 /* Begin PBXFileReference section */
 		BB4141AA1E458BA800A51775 /* LyricsX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4141AD1E458BA800A51775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BB4141AF1E458BA800A51775 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BB4141B11E458BA800A51775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB4141B41E458BA900A51775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB4141B61E458BA900A51775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,12 +51,19 @@
 			isa = PBXGroup;
 			children = (
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
-				BB4141AF1E458BA800A51775 /* ViewController.swift */,
-				BB4141B11E458BA800A51775 /* Assets.xcassets */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
-				BB4141B61E458BA900A51775 /* Info.plist */,
+				BB4141BC1E45B26800A51775 /* Support Files */,
 			);
 			path = LyricsX;
+			sourceTree = "<group>";
+		};
+		BB4141BC1E45B26800A51775 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB4141B11E458BA800A51775 /* Assets.xcassets */,
+				BB4141B61E458BA900A51775 /* Info.plist */,
+			);
+			name = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,7 +138,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB4141B01E458BA800A51775 /* ViewController.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +293,7 @@
 				BB4141BB1E458BA900A51775 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
