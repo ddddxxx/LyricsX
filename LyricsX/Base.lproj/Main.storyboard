@@ -14,7 +14,21 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LyricsX" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LyricsX" customModuleProvider="target">
+                    <connections>
+                        <outlet property="statusBarMenu" destination="OCV-Y8-x1C" id="zHx-WQ-Hu4"/>
+                    </connections>
+                </customObject>
+                <menu id="OCV-Y8-x1C">
+                    <items>
+                        <menuItem title="Quit LyricsX" id="RPR-IV-34T">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="terminate:" target="Ady-hI-5gd" id="ww5-hx-ROk"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>

@@ -10,11 +10,16 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
 
-
+    @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        statusItem.button?.image = #imageLiteral(resourceName: "status_bar_icon")
+        statusItem.menu = statusBarMenu
         
         DesktopLyricsController.shared.showWindow(nil)
         
