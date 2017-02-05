@@ -40,9 +40,10 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
         backgroundView.layer?.backgroundColor = CGColor(gray: 0, alpha: 0.5)
         backgroundView.layer?.cornerRadius = 10
         
-        textView = NSTextField(wrappingLabelWithString: "LyricsX")
         textView.textColor = NSColor.white
         textView.font = NSFont.systemFont(ofSize: 28)
+        textView = NSTextField(wrappingLabelWithString: "LyricsX\ntest")
+        textView.alignment = .center
         
         backgroundView.addSubview(textView)
         superView.addSubview(backgroundView)
