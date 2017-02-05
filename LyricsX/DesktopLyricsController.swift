@@ -18,7 +18,7 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
     
     convenience init() {
         let lyricsWindow = NSWindow(contentRect: NSZeroRect, styleMask: [.borderless, .fullSizeContentView, .texturedBackground], backing: .buffered, defer: false)
-        lyricsWindow.backgroundColor = NSColor.clear
+        lyricsWindow.backgroundColor = .clear
         lyricsWindow.isOpaque = false
         lyricsWindow.hasShadow = false
         lyricsWindow.ignoresMouseEvents = true
@@ -40,9 +40,9 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
         backgroundView.layer?.backgroundColor = CGColor(gray: 0, alpha: 0.5)
         backgroundView.layer?.cornerRadius = 10
         
-        textView.textColor = NSColor.white
-        textView.font = NSFont.systemFont(ofSize: 28)
         textView = NSTextField(wrappingLabelWithString: "LyricsX\ntest")
+        textView.textColor = .white
+        textView.font = .systemFont(ofSize: 28)
         textView.alignment = .center
         
         backgroundView.addSubview(textView)
