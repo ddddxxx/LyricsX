@@ -15,6 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        DesktopLyricsController.shared.showWindow(nil)
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
