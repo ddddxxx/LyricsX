@@ -11,9 +11,10 @@
 		BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B11E458BA800A51775 /* Assets.xcassets */; };
 		BB4141B51E458BA900A51775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B31E458BA900A51775 /* Main.storyboard */; };
 		BB4141C01E45B67800A51775 /* DesktopLyricsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141BF1E45B67800A51775 /* DesktopLyricsController.swift */; };
-		BB4141C71E46CDD200A51775 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; };
 		BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; };
 		BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BB4141CE1E4745EA00A51775 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */; };
+		BB4141D01E47461800A51775 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,6 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BB4141D01E47461800A51775 /* SwiftyJSON.framework in Embed Frameworks */,
 				BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -38,6 +40,7 @@
 		BB4141B61E458BA900A51775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB4141BF1E45B67800A51775 /* DesktopLyricsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesktopLyricsController.swift; sourceTree = "<group>"; };
 		BB4141C61E46CDD200A51775 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/Mac/SnapKit.framework; sourceTree = "<group>"; };
+		BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,8 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB4141C71E46CDD200A51775 /* SnapKit.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
+				BB4141CE1E4745EA00A51775 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +59,7 @@
 		BB4141A11E458BA800A51775 = {
 			isa = PBXGroup;
 			children = (
+				BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
 				BB4141AC1E458BA800A51775 /* LyricsX */,
 				BB4141AB1E458BA800A51775 /* Products */,
