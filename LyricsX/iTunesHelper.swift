@@ -76,15 +76,17 @@ class iTunesHelper {
         }
         
         var currentLrcSentence = ""
+        var nextLrcSentence = ""
         
         for (index, line) in lyrics.lyrics.enumerated() {
             if line.position > position {
                 let previous = index==0 ? 0 : index-1
                 currentLrcSentence = lyrics.lyrics[previous].sentence
+                nextLrcSentence = lyrics.lyrics[index].sentence
                 break
             }
         }
-        let info = ["lrc": currentLrcSentence]
+        let info = ["lrc": currentLrcSentence, "next": nextLrcSentence]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
     

@@ -40,7 +40,7 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
         backgroundView.layer?.backgroundColor = CGColor(gray: 0, alpha: 0.5)
         backgroundView.layer?.cornerRadius = 10
         
-        textView = NSTextField(wrappingLabelWithString: "LyricsX\ntest")
+        textView = NSTextField(wrappingLabelWithString: "LyricsX")
         textView.textColor = .white
         textView.font = .systemFont(ofSize: 28)
         textView.alignment = .center
@@ -58,11 +58,13 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
         }
         
         NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
-            guard let lrc = n.userInfo?["lrc"] as? String else {
-                return
-            }
+            let lrc = n.userInfo?["lrc"] as? String ?? ""
             self.backgroundView.isHidden = lrc == ""
-            self.textView.stringValue = lrc
+            if let next = n.userInfo?["next"] as? String {
+                self.textView.stringValue = lrc + "\n" + next
+            } else {
+                self.textView.stringValue = lrc
+            }
         }
     }
     
