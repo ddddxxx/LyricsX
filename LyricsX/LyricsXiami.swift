@@ -48,29 +48,21 @@ class LyricsXiami {
 
 private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     
-    var XMLContent = String()
+    var XMLContent: String?
     
-    var lrcResult = String()
+    var lrcResult: String?
     
     func parseLrcURL(data: Data) -> String? {
         let parser = XMLParser(data: data)
         parser.delegate = self
         let success = parser.parse()
-        if success {
-            return lrcResult
-        } else {
-            return nil
-        }
+        return success ? lrcResult : nil
     }
     
     // MARK: XMLParserDelegate
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "lyric" {
-            lrcResult = XMLContent
-        } else {
-            XMLContent = String()
-        }
+        lrcResult = elementName == "lyric" ? XMLContent : nil
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
