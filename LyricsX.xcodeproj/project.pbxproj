@@ -19,6 +19,7 @@
 		BB4141D81E475DD100A51775 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D71E475DD100A51775 /* iTunes.swift */; };
 		BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D91E4761F900A51775 /* LXLyrics.swift */; };
 		BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */; };
+		BBC1D35F1E499A6D002538A2 /* GlobalConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,7 @@
 		BB4141D71E475DD100A51775 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 		BB4141D91E4761F900A51775 /* LXLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXLyrics.swift; sourceTree = "<group>"; };
 		BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesHelper.swift; sourceTree = "<group>"; };
+		BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConst.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */,
 				BB4141CB1E47444200A51775 /* LyricsXiami.swift */,
 				BB4141D71E475DD100A51775 /* iTunes.swift */,
+				BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
 				BB4141BC1E45B26800A51775 /* Support Files */,
 			);
@@ -182,6 +185,7 @@
 				BB4141C01E45B67800A51775 /* DesktopLyricsController.swift in Sources */,
 				BB4141CC1E47444200A51775 /* LyricsXiami.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
+				BBC1D35F1E499A6D002538A2 /* GlobalConst.swift in Sources */,
 				BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunes.swift in Sources */,
 				BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */,

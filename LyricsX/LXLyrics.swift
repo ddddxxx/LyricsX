@@ -112,3 +112,21 @@ struct LXLyrics {
     }
     
 }
+
+extension LXLyricsLine: CustomStringConvertible {
+    public var description: String {
+        get {
+            return "[\(position)]\(sentence)"
+        }
+    }
+}
+
+extension LXLyrics: CustomStringConvertible {
+    public var description: String {
+        get {
+            let tag = idTags.reduce("") { $0 + "[\($1.key): \($1.value)]\n" }
+            let lrc = lyrics.reduce("") { $0 + "\($1.description)\n" }
+            return tag + lrc
+        }
+    }
+}

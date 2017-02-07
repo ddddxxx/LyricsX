@@ -56,5 +56,14 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-20)
         }
+        
+        NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
+            guard let lrc = n.userInfo?["lrc"] as? String else {
+                return
+            }
+            self.backgroundView.isHidden = lrc == ""
+            self.textView.stringValue = lrc
+        }
     }
+    
 }

@@ -11,17 +11,27 @@ import SwiftyJSON
 
 class LyricsXiami {
     
-    func searchLrcFor(title: String, artist: String, using: @escaping (URL?) -> Swift.Void) {
-        self.searchXiamiIDFor(title: title, artist: artist) {
-            guard let xiamiID = $0 else {
-                using(nil)
+    func searchLrcFor(title: String, artist: String, iTunesID: Int) {
+        self.searchXiamiIDFor(title: title, artist: artist) { (id, serial) in
+            guard let xiamiID = id else {
                 return
             }
-            self.searchLrcFor(xiamiID: xiamiID) { using($0) }
+            
+            var songInfo = [String: Any]()
+            songInfo["source"] = "xiami"
+            songInfo["title"] = title
+            songInfo["artist"] = artist
+            songInfo["iTunesID"] = iTunesID
+            songInfo["serial"] = serial
+            
+            self.searchLrcFor(xiamiID: xiamiID) { lrcURL in
+                songInfo["lrcURL"] = lrcURL
+                NotificationCenter.default.post(name: .lyricsLoaded, object: nil, userInfo: songInfo)
+            }
         }
     }
     
-    private func searchXiamiIDFor(title: String, artist: String, using: @escaping (Int?) -> Swift.Void) {
+    private func searchXiamiIDFor(title: String, artist: String, using: @escaping (_ id: Int?, _ serial: Int?) -> Swift.Void) {
         let urlStr = "http://www.xiami.com/web/search-songs?key=\(title) \(artist)"
         let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
@@ -32,25 +42,29 @@ class LyricsXiami {
         let task = URLSession.shared.dataTask(with: req as URLRequest) { (data, response, error) in
             guard error == nil else {
                 print("search xiami ID error: \(error!)")
-                using(nil)
+                using(nil, nil)
                 return
             }
             guard data != nil else {
-                using(nil)
+                using(nil, nil)
                 return
             }
             
-            let json = JSON(data!)
-            if let xiamiIDString = json[0]["id"].string, let xiamiID = Int(xiamiIDString) {
-                using(xiamiID)
-            } else {
-                using(nil)
+            guard let json = JSON(data!).array else {
+                return
+            }
+            for (index, songItem) in json.enumerated() {
+                if let xiamiIDString = songItem["id"].string, let xiamiID = Int(xiamiIDString) {
+                    using(xiamiID, index)
+                } else {
+                    using(nil, nil)
+                }
             }
         }
         task.resume()
     }
     
-    private func searchLrcFor(xiamiID: Int, using: @escaping (URL?) -> Swift.Void) {
+    private func searchLrcFor(xiamiID: Int, using: @escaping (_ lrcURL: URL?) -> Swift.Void) {
         let urlStr = "http://www.xiami.com/song/playlist/id/\(xiamiID)"
         let url = URL(string: urlStr)!
         
@@ -111,8 +125,3 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     }
     
 }
-
-
-
-
-

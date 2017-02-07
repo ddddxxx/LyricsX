@@ -12,6 +12,8 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    
+    let helper = iTunesHelper.shared
 
     @IBOutlet weak var statusBarMenu: NSMenu!
 
