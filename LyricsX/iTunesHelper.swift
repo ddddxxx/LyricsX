@@ -27,8 +27,6 @@ class iTunesHelper {
         
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in self.handlePositionChange() }
         
-        NotificationCenter.default.addObserver(forName: .lyricsLoaded, object: nil, queue: nil) { self.handleLyricsLoad($0) }
-        
         DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.iTunes.playerInfo"), object: nil, queue: nil) { notification in self.handlePlayerInfoChange() }
         
         handlePlayerInfoChange()
@@ -63,11 +61,18 @@ class iTunesHelper {
         
         print("song changed: \(currentSongName)")
         
-        guard let id = currentSongID, let name = currentSongName, let artist = currentArtist else {
+        guard let name = currentSongName, let artist = currentArtist else {
             return
         }
         
-        LyricsXiami().searchLrcFor(title: name, artist: artist, iTunesID: id)
+        let lrcURLs = LyricsXiami().searchLrcFor(title: name, artist: artist)
+        
+        for lrcURL in lrcURLs {
+            if let lrcStr = try? String(contentsOf: lrcURL) {
+                currentLyrics = LXLyrics(lrcStr)
+                break
+            }
+        }
     }
     
     func handlePositionChange() {
@@ -88,23 +93,6 @@ class iTunesHelper {
         }
         let info = ["lrc": currentLrcSentence, "next": nextLrcSentence]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
-    }
-    
-    func handleLyricsLoad(_ n:Notification) {
-        guard currentLyrics == nil else {
-            return
-        }
-        guard let info = n.userInfo, let lrcURL = info["lrcURL"] as? URL else {
-            return
-        }
-        
-        if let lrcContent = try? String(contentsOf: lrcURL) {
-            guard let lrc = LXLyrics(lrcContent) else {
-                return
-            }
-            currentLyrics = lrc
-            print(lrc)
-        }
     }
     
 }

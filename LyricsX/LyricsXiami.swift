@@ -11,82 +11,35 @@ import SwiftyJSON
 
 class LyricsXiami {
     
-    func searchLrcFor(title: String, artist: String, iTunesID: Int) {
-        self.searchXiamiIDFor(title: title, artist: artist) { (id, serial) in
-            guard let xiamiID = id else {
-                return
-            }
-            
-            var songInfo = [String: Any]()
-            songInfo["source"] = "xiami"
-            songInfo["title"] = title
-            songInfo["artist"] = artist
-            songInfo["iTunesID"] = iTunesID
-            songInfo["serial"] = serial
-            
-            self.searchLrcFor(xiamiID: xiamiID) { lrcURL in
-                songInfo["lrcURL"] = lrcURL
-                NotificationCenter.default.post(name: .lyricsLoaded, object: nil, userInfo: songInfo)
-            }
-        }
+    func searchLrcFor(title: String, artist: String) -> [URL] {
+        let ids = searchXiamiIDFor(title: title, artist: artist)
+        
+        return ids.flatMap() { searchLrcFor(xiamiID: $0) }
     }
     
-    private func searchXiamiIDFor(title: String, artist: String, using: @escaping (_ id: Int?, _ serial: Int?) -> Swift.Void) {
+    private func searchXiamiIDFor(title: String, artist: String) -> [Int] {
         let urlStr = "http://www.xiami.com/web/search-songs?key=\(title) \(artist)"
         let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
         
-        let req = NSMutableURLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        req.addValue("text/xml", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: req as URLRequest) { (data, response, error) in
-            guard error == nil else {
-                print("search xiami ID error: \(error!)")
-                using(nil, nil)
-                return
-            }
-            guard data != nil else {
-                using(nil, nil)
-                return
-            }
-            
-            guard let json = JSON(data!).array else {
-                return
-            }
-            for (index, songItem) in json.enumerated() {
-                if let xiamiIDString = songItem["id"].string, let xiamiID = Int(xiamiIDString) {
-                    using(xiamiID, index)
-                } else {
-                    using(nil, nil)
-                }
-            }
+        guard let data = try? Data(contentsOf: url), let array = JSON(data).array else {
+            return []
         }
-        task.resume()
+        
+        return array.flatMap() { item in
+            return item["id"].string.flatMap() {Int($0)}
+        }
     }
     
-    private func searchLrcFor(xiamiID: Int, using: @escaping (_ lrcURL: URL?) -> Swift.Void) {
-        let urlStr = "http://www.xiami.com/song/playlist/id/\(xiamiID)"
-        let url = URL(string: urlStr)!
-        
-        let req = NSMutableURLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        req.addValue("text/xml", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: req as URLRequest) { (data, response, error) in
-            guard error == nil else {
-                print("search xiami lyrics error: \(error!)")
-                using(nil)
-                return
-            }
-            guard data != nil else {
-                using(nil)
-                return
-            }
-            
-            let parser = LyricsXiamiXMLParser()
-            let lrcURL = parser.parseLrcURL(data: data!).flatMap({ URL(string: $0) })
-            using(lrcURL)
+    private func searchLrcFor(xiamiID: Int) -> URL? {
+        let parser = LyricsXiamiXMLParser()
+        guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(xiamiID)"),
+            let data = try? Data(contentsOf: url),
+            let urlStr = parser.parseLrcURL(data: data) else {
+            return nil
         }
-        task.resume()
+        
+        return URL(string: urlStr)
     }
     
 }

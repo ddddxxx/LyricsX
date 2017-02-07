@@ -9,10 +9,8 @@
 import Foundation
 
 // Notification
-let LyricsLoadedNotification = "LyricsLoaded"
 let LyricsShouldDisplayNotification = "LyricsShouldDisplay"
 
 extension Notification.Name {
-    static var lyricsLoaded = Notification.Name(LyricsLoadedNotification)
     static var lyricsShouldDisplay = Notification.Name(LyricsShouldDisplayNotification)
 }
