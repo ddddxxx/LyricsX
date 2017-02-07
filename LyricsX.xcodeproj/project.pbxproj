@@ -18,6 +18,7 @@
 		BB4141D01E47461800A51775 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB4141D81E475DD100A51775 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D71E475DD100A51775 /* iTunes.swift */; };
 		BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D91E4761F900A51775 /* LXLyrics.swift */; };
+		BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +48,7 @@
 		BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BB4141D71E475DD100A51775 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 		BB4141D91E4761F900A51775 /* LXLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXLyrics.swift; sourceTree = "<group>"; };
+		BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +87,9 @@
 			children = (
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
 				BB4141BF1E45B67800A51775 /* DesktopLyricsController.swift */,
-				BB4141CB1E47444200A51775 /* LyricsXiami.swift */,
 				BB4141D91E4761F900A51775 /* LXLyrics.swift */,
+				BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */,
+				BB4141CB1E47444200A51775 /* LyricsXiami.swift */,
 				BB4141D71E475DD100A51775 /* iTunes.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
 				BB4141BC1E45B26800A51775 /* Support Files */,
@@ -181,6 +184,7 @@
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 				BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunes.swift in Sources */,
+				BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
