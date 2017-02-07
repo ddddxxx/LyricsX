@@ -60,7 +60,7 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
         NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
             let lrc = n.userInfo?["lrc"] as? String ?? ""
             self.backgroundView.isHidden = lrc == ""
-            if let next = n.userInfo?["next"] as? String {
+            if let next = n.userInfo?["next"] as? String, next != "" {
                 self.textView.stringValue = lrc + "\n" + next
             } else {
                 self.textView.stringValue = lrc
