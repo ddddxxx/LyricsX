@@ -51,6 +51,7 @@ struct LXLyrics {
     
     var lyrics: [LXLyricsLine]
     var idTags: [String: String]
+    var metaData: [String: Any]
     
     var offset: Int {
         get {
@@ -70,8 +71,9 @@ struct LXLyrics {
     }
     
     init?(_ lrcContents: String) {
-        lyrics = [LXLyricsLine]()
-        idTags = [String: String]()
+        lyrics = []
+        idTags = [:]
+        metaData = [:]
         
         guard let regexForIDTag = try? NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]") else {
             return
