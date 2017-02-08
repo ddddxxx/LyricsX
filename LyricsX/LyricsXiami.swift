@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class LyricsXiami {
+class LyricsXiami: LyricsSource {
     
     func fetchLyrics(title: String, artist: String) -> [LXLyrics] {
         return searchLrcFor(title: title, artist: artist).flatMap() { url in

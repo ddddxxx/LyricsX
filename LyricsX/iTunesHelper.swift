@@ -14,6 +14,7 @@ class iTunesHelper {
     static let shared = iTunesHelper()
     
     var iTunes: iTunesApplication!
+    var lyricsSource: [LyricsSource]
     
     var positionChangeTimer: Timer!
     
@@ -24,6 +25,7 @@ class iTunesHelper {
     
     private init() {
         iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
+        lyricsSource = [LyricsXiami()]
         
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in self.handlePositionChange() }
         
@@ -65,7 +67,9 @@ class iTunesHelper {
             return
         }
         
-        currentLyrics = LyricsXiami().fetchLyrics(title: name, artist: artist).first
+        // TODO: fetch all source and sort
+        currentLyrics = lyricsSource.first?.fetchLyrics(title: name, artist: artist).first
+        
         print(currentLyrics ?? "no lrc")
     }
     
@@ -82,5 +86,11 @@ class iTunesHelper {
         let info = ["lrc": currentLrcSentence, "next": nextLrcSentence]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
+    
+}
+
+protocol LyricsSource {
+    
+    func fetchLyrics(title: String, artist: String) -> [LXLyrics]
     
 }
