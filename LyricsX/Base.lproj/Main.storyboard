@@ -22,6 +22,27 @@
                 </customObject>
                 <menu id="OCV-Y8-x1C">
                     <items>
+                        <menuItem title="Enable Desktop Lyrics" id="GGU-uz-d9h">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <binding destination="YC0-xP-lPo" name="value" keyPath="values.DesktopLyricsEnabled" id="duP-0I-KVe">
+                                    <dictionary key="options">
+                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Enable Menu Bar Lyrics" id="Z7d-yp-uRx">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <binding destination="YC0-xP-lPo" name="value" keyPath="values.MenuBarLyricsEnabled" id="5Nx-Xy-p8O">
+                                    <dictionary key="options">
+                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
                         <menuItem title="Preference..." id="CWo-Qx-2Ut">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
@@ -38,6 +59,7 @@
                     </items>
                 </menu>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="YC0-xP-lPo"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>

@@ -14,6 +14,8 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
     var backgroundView: NSView!
     var textView: NSTextField!
     
+    var enabled = UserDefaults.standard.bool(forKey: DesktopLyricsEnabled)
+    
     convenience init() {
         let lyricsWindow = NSWindow(contentRect: NSZeroRect, styleMask: [.borderless, .fullSizeContentView, .texturedBackground], backing: .buffered, defer: false)
         lyricsWindow.backgroundColor = .clear
@@ -56,6 +58,10 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
         }
         
         NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
+            guard self.enabled else {
+                return
+            }
+            
             let lrc = n.userInfo?["lrc"] as? String ?? ""
             self.backgroundView.isHidden = lrc == ""
             if let next = n.userInfo?["next"] as? String, next != "" {
@@ -63,6 +69,11 @@ class DesktopLyricsController: NSWindowController, NSWindowDelegate {
             } else {
                 self.textView.stringValue = lrc
             }
+        }
+        
+        NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { n in
+            self.enabled = UserDefaults.standard.bool(forKey: DesktopLyricsEnabled)
+            self.backgroundView.isHidden = !self.enabled
         }
     }
     

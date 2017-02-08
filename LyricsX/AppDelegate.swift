@@ -20,6 +20,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let registerDefaults: [String:AnyObject] = [
+            //Menu
+            DesktopLyricsEnabled : NSNumber(value: true),
+            MenuBarLyricsEnabled : NSNumber(value: false)
+        ]
+        UserDefaults.standard.register(defaults: registerDefaults)
+        
         helper = iTunesHelper()
         
         statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)

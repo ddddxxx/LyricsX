@@ -10,17 +10,25 @@ import Cocoa
 
 class MenuBarLyrics {
     
+    var enabled = UserDefaults.standard.bool(forKey: MenuBarLyricsEnabled)
+    
     var statusItem: NSStatusItem?
     
     init() {
         NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
-            if let lrc = n.userInfo?["lrc"] as? String, lrc != "" {
-                self.statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-                self.statusItem?.highlightMode = false
-                self.statusItem?.button?.title = lrc
-            } else {
+            guard self.enabled,
+                let lrc = n.userInfo?["lrc"] as? String, lrc != ""else {
                 self.statusItem = nil
+                return
             }
+            
+            self.statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+            self.statusItem?.highlightMode = false
+            self.statusItem?.button?.title = lrc
+        }
+        
+        NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { n in
+            self.enabled = UserDefaults.standard.bool(forKey: MenuBarLyricsEnabled)
         }
     }
     

@@ -8,9 +8,16 @@
 
 import Foundation
 
-// Notification
+// MARK: - Notification Name
+
 let LyricsShouldDisplayNotification = "LyricsShouldDisplay"
 
 extension Notification.Name {
     static var lyricsShouldDisplay = Notification.Name(LyricsShouldDisplayNotification)
 }
+
+// MARK: - User Defaults
+
+// Menu
+let DesktopLyricsEnabled = "DesktopLyricsEnabled"
+let MenuBarLyricsEnabled = "MenuBarLyricsEnabled"
