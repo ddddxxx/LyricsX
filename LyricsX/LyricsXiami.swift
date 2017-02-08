@@ -11,6 +11,15 @@ import SwiftyJSON
 
 class LyricsXiami {
     
+    func fetchLyrics(title: String, artist: String) -> [LXLyrics] {
+        return searchLrcFor(title: title, artist: artist).flatMap() { url in
+            var metadata: [LXLyrics.metadataKey: Any] = [:]
+            metadata[.source] = "Xiami"
+            metadata[.lyricsURL] = url
+            return LXLyrics(metadata: metadata)
+        }
+    }
+    
     func searchLrcFor(title: String, artist: String) -> [URL] {
         let ids = searchXiamiIDFor(title: title, artist: artist)
         

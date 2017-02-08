@@ -65,14 +65,7 @@ class iTunesHelper {
             return
         }
         
-        let lrcURLs = LyricsXiami().searchLrcFor(title: name, artist: artist)
-        
-        for lrcURL in lrcURLs {
-            if let lrcStr = try? String(contentsOf: lrcURL) {
-                currentLyrics = LXLyrics(lrcStr)
-                break
-            }
-        }
+        currentLyrics = LyricsXiami().fetchLyrics(title: name, artist: artist).first
     }
     
     func handlePositionChange() {
