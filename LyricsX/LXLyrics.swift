@@ -171,6 +171,18 @@ struct LXLyrics {
     
 }
 
+// MARK: - Debug Print Support
+
+extension LXLyrics.idTagKey: CustomStringConvertible {
+    
+    public var description: String {
+        get {
+            return rawValue
+        }
+    }
+    
+}
+
 extension LXLyricsLine: CustomStringConvertible {
     
     public var description: String {
@@ -185,9 +197,10 @@ extension LXLyrics: CustomStringConvertible {
     
     public var description: String {
         get {
+            let meta = metadata.reduce("") { $0 + "[[\($1.key): \($1.value)]]\n"}
             let tag = idTags.reduce("") { $0 + "[\($1.key): \($1.value)]\n" }
             let lrc = lyrics.reduce("") { $0 + "\($1.description)\n" }
-            return tag + lrc
+            return meta + tag + lrc
         }
     }
     

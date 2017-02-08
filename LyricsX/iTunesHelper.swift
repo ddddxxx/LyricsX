@@ -66,6 +66,7 @@ class iTunesHelper {
         }
         
         currentLyrics = LyricsXiami().fetchLyrics(title: name, artist: artist).first
+        print(currentLyrics ?? "no lrc")
     }
     
     func handlePositionChange() {
