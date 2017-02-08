@@ -29,6 +29,9 @@ class MenuBarLyrics {
         
         NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { n in
             self.enabled = UserDefaults.standard.bool(forKey: MenuBarLyricsEnabled)
+            if !self.enabled {
+                self.statusItem = nil
+            }
         }
     }
     
