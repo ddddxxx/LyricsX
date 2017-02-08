@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -14,10 +15,162 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LyricsX" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LyricsX" customModuleProvider="target">
+                    <connections>
+                        <outlet property="statusBarMenu" destination="OCV-Y8-x1C" id="zHx-WQ-Hu4"/>
+                    </connections>
+                </customObject>
+                <menu id="OCV-Y8-x1C">
+                    <items>
+                        <menuItem title="Enable Desktop Lyrics" id="GGU-uz-d9h">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <binding destination="YC0-xP-lPo" name="value" keyPath="values.DesktopLyricsEnabled" id="duP-0I-KVe">
+                                    <dictionary key="options">
+                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Enable Menu Bar Lyrics" id="Z7d-yp-uRx">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <binding destination="YC0-xP-lPo" name="value" keyPath="values.MenuBarLyricsEnabled" id="5Nx-Xy-p8O">
+                                    <dictionary key="options">
+                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
+                        <menuItem title="Preference..." id="CWo-Qx-2Ut">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="dJj-XH-edl" kind="show" id="2ag-1Z-r0K"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="eB1-fb-ptE"/>
+                        <menuItem title="Quit LyricsX" id="RPR-IV-34T">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="terminate:" target="Ady-hI-5gd" id="ww5-hx-ROk"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="YC0-xP-lPo"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="TDf-75-7l1">
+            <objects>
+                <windowController id="dJj-XH-edl" sceneMemberID="viewController">
+                    <window key="window" title="Preference" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="aMb-zX-bzP">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="208" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                    </window>
+                    <connections>
+                        <segue destination="sV3-nO-PkZ" kind="relationship" relationship="window.shadowedContentViewController" id="6Ig-Z8-Jlk"/>
+                    </connections>
+                </windowController>
+                <customObject id="Ic5-SA-jl1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="6Fg-Wr-2O1"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="953"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="DwI-HE-QiS">
+            <objects>
+                <tabViewController tabStyle="toolbar" id="sV3-nO-PkZ" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG"/>
+                        <tabViewItem label="Advanced" identifier="" image="NSAdvanced" id="8VI-6O-0Rn"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="ufX-Bl-B8D">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="d5d-dC-DK4" kind="relationship" relationship="tabItems" id="kfu-5b-Mm3"/>
+                        <segue destination="8JF-Og-z6E" kind="relationship" relationship="tabItems" id="ybT-iY-287"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="n2u-iM-pje" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="1363"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="mkJ-2y-SA4">
+            <objects>
+                <viewController id="d5d-dC-DK4" userLabel="General" sceneMemberID="viewController">
+                    <view key="view" id="Ium-Ya-ZzT">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="217"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5p-z2-5NZ">
+                                <rect key="frame" x="98" y="100" width="104" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Gjt-JA-6eE"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="test" id="PSs-J1-1ne">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="C5p-z2-5NZ" firstAttribute="top" secondItem="Ium-Ya-ZzT" secondAttribute="top" constant="100" id="AZB-VD-M90"/>
+                            <constraint firstItem="C5p-z2-5NZ" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="100" id="NgI-KZ-p94"/>
+                            <constraint firstAttribute="bottom" secondItem="C5p-z2-5NZ" secondAttribute="bottom" constant="100" id="b3V-0d-kQF"/>
+                            <constraint firstAttribute="trailing" secondItem="C5p-z2-5NZ" secondAttribute="trailing" constant="100" id="bkc-z1-cCn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="678" y="1199"/>
+        </scene>
+        <!--Advanced-->
+        <scene sceneID="CdB-uN-rfE">
+            <objects>
+                <viewController id="8JF-Og-z6E" userLabel="Advanced" sceneMemberID="viewController">
+                    <view key="view" id="Y71-zj-nPg">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="121"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-ej-Yo3">
+                                <rect key="frame" x="194" y="43" width="112" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="8mR-Hd-agN"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="test" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c9E-5k-pOd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="WLJ-ej-Yo3" firstAttribute="leading" secondItem="Y71-zj-nPg" secondAttribute="leading" constant="200" id="MmG-8u-dyd"/>
+                            <constraint firstItem="WLJ-ej-Yo3" firstAttribute="top" secondItem="Y71-zj-nPg" secondAttribute="top" constant="50" id="S7X-o2-gM4"/>
+                            <constraint firstAttribute="trailing" secondItem="WLJ-ej-Yo3" secondAttribute="trailing" constant="200" id="mey-9l-cRY"/>
+                            <constraint firstAttribute="bottom" secondItem="WLJ-ej-Yo3" secondAttribute="bottom" constant="50" id="qoc-cF-uMN"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="mRF-Ay-vJP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="778" y="1527"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="NSAdvanced" width="32" height="32"/>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+    </resources>
 </document>
