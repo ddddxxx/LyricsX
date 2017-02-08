@@ -54,11 +54,7 @@ struct LXLyrics {
     
     var offset: Int {
         get {
-            if let str = idTags["offset"], let offset = Int(str) {
-                return offset
-            } else {
-                return 0
-            }
+            return idTags["offset"].flatMap() { Int($0) } ?? 0
         }
         set {
             idTags["offset"] = "\(offset)"
