@@ -111,6 +111,16 @@ struct LXLyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
+    subscript(at position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
+        for (index, line) in lyrics.enumerated() {
+            if line.position > position {
+                let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
+                return (previous, line)
+            }
+        }
+        return (lyrics.last, nil)
+    }
+    
 }
 
 extension LXLyricsLine: CustomStringConvertible {
