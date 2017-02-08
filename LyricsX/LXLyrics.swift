@@ -49,18 +49,59 @@ struct LXLyricsLine {
 
 struct LXLyrics {
     
+    struct idTagKey: RawRepresentable, Hashable {
+        
+        var rawValue: String
+        
+        init(_ rawValue: String) {
+            self.rawValue = rawValue
+        }
+        
+        init(rawValue: String) {
+            self.rawValue = rawValue
+        }
+        
+        var hashValue: Int {
+            get {
+                return rawValue.hash
+            }
+        }
+        
+        static let Title: idTagKey = .init("ti")
+        
+        static let Album: idTagKey = .init("al")
+        
+        static let Artist: idTagKey = .init("ar")
+        
+        static let Author: idTagKey = .init("au")
+        
+        static let LrcBy: idTagKey = .init("by")
+        
+        static let Offset: idTagKey = .init("offset")
+        
+    }
+    
+    enum metadataKey {
+        
+        case source
+        
+        case lyricsURL
+        
+    }
+    
     var lyrics: [LXLyricsLine]
-    var idTags: [String: String]
-    var metaData: [String: Any]
+    var idTags: [idTagKey: String]
+    var metaData: [metadataKey: Any]
     
     var offset: Int {
         get {
-            return idTags["offset"].flatMap() { Int($0) } ?? 0
+            return idTags[.Offset].flatMap() { Int($0) } ?? 0
         }
         set {
-            idTags["offset"] = "\(offset)"
+            idTags[.Offset] = "\(offset)"
         }
     }
+    
     var timeDelay: Double {
         get {
             return Double(offset) / 1000
@@ -94,7 +135,7 @@ struct LXLyrics {
                     tagStr.remove(at: tagStr.index(before: tagStr.endIndex))
                     let components = tagStr.components(separatedBy: ":")
                     if components.count == 2 {
-                        let key = components[0]
+                        let key = idTagKey(components[0])
                         let value = components[1]
                         idTags[key] = value
                     }
@@ -122,14 +163,17 @@ struct LXLyrics {
 }
 
 extension LXLyricsLine: CustomStringConvertible {
+    
     public var description: String {
         get {
             return "[\(position)]\(sentence)"
         }
     }
+    
 }
 
 extension LXLyrics: CustomStringConvertible {
+    
     public var description: String {
         get {
             let tag = idTags.reduce("") { $0 + "[\($1.key): \($1.value)]\n" }
@@ -137,4 +181,5 @@ extension LXLyrics: CustomStringConvertible {
             return tag + lrc
         }
     }
+    
 }
