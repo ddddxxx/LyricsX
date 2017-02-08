@@ -11,23 +11,25 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    var helper: iTunesHelper!
     
-    let helper = iTunesHelper.shared
-    
+    var statusItem: NSStatusItem!
+    var desktopLyrics: DesktopLyricsController!
     var menuBarLyrics: MenuBarLyrics!
 
     @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        helper = iTunesHelper()
+        
+        statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+        desktopLyrics = DesktopLyricsController()
+        menuBarLyrics = MenuBarLyrics()
         
         statusItem.button?.image = #imageLiteral(resourceName: "status_bar_icon")
         statusItem.menu = statusBarMenu
         
-        DesktopLyricsController.shared.showWindow(nil)
-        
-        menuBarLyrics = MenuBarLyrics()
+        desktopLyrics.showWindow(nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

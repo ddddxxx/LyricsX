@@ -11,8 +11,6 @@ import ScriptingBridge
 
 class iTunesHelper {
     
-    static let shared = iTunesHelper()
-    
     var iTunes: iTunesApplication!
     var lyricsSource: [LyricsSource]
     
@@ -23,7 +21,7 @@ class iTunesHelper {
     var currentArtist: String?
     var currentLyrics: LXLyrics?
     
-    private init() {
+    init() {
         iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
         lyricsSource = [LyricsXiami()]
         

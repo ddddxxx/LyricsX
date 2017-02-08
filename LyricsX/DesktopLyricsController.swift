@@ -11,8 +11,6 @@ import SnapKit
 
 class DesktopLyricsController: NSWindowController, NSWindowDelegate {
     
-    static let shared = DesktopLyricsController()
-    
     var backgroundView: NSView!
     var textView: NSTextField!
     
