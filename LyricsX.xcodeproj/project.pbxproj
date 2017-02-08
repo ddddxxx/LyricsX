@@ -20,6 +20,7 @@
 		BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D91E4761F900A51775 /* LXLyrics.swift */; };
 		BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */; };
 		BBC1D35F1E499A6D002538A2 /* GlobalConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */; };
+		BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,7 @@
 		BB4141D91E4761F900A51775 /* LXLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXLyrics.swift; sourceTree = "<group>"; };
 		BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesHelper.swift; sourceTree = "<group>"; };
 		BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConst.swift; sourceTree = "<group>"; };
+		BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarLyrics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			children = (
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
 				BB4141BF1E45B67800A51775 /* DesktopLyricsController.swift */,
+				BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */,
 				BB4141D91E4761F900A51775 /* LXLyrics.swift */,
 				BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */,
 				BB4141CB1E47444200A51775 /* LyricsXiami.swift */,
@@ -188,6 +191,7 @@
 				BBC1D35F1E499A6D002538A2 /* GlobalConst.swift in Sources */,
 				BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunes.swift in Sources */,
+				BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */,
 				BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

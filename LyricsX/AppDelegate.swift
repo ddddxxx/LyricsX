@@ -14,6 +14,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     
     let helper = iTunesHelper.shared
+    
+    var menuBarLyrics: MenuBarLyrics!
 
     @IBOutlet weak var statusBarMenu: NSMenu!
 
@@ -25,6 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         DesktopLyricsController.shared.showWindow(nil)
         
+        menuBarLyrics = MenuBarLyrics()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
