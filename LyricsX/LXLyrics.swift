@@ -154,8 +154,9 @@ struct LXLyrics {
         if let lrcURL = metadata[.lyricsURL] as? URL, let lrcContent = try? String(contentsOf: lrcURL) {
             self.init(lrcContent)
             self.metadata = metadata
+        } else {
+            return nil
         }
-        return nil
     }
     
     subscript(at position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
