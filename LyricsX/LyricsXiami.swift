@@ -62,7 +62,9 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     // MARK: XMLParserDelegate
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        lrcResult = elementName == "lyric" ? XMLContent : nil
+        if elementName == "lyric" {
+            lrcResult = XMLContent
+        }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
