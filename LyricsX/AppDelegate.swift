@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var helper: iTunesHelper!
     
     var statusItem: NSStatusItem!
-    var desktopLyrics: DesktopLyricsController!
+    var desktopLyrics: DesktopLyrics!
     var menuBarLyrics: MenuBarLyrics!
 
     @IBOutlet weak var statusBarMenu: NSMenu!
@@ -30,13 +30,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         helper = iTunesHelper()
         
         statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-        desktopLyrics = DesktopLyricsController()
+        desktopLyrics = DesktopLyrics()
         menuBarLyrics = MenuBarLyrics()
         
         statusItem.button?.image = #imageLiteral(resourceName: "status_bar_icon")
         statusItem.menu = statusBarMenu
-        
-        desktopLyrics.showWindow(nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
