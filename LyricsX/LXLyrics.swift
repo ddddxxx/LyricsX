@@ -91,7 +91,7 @@ struct LXLyrics {
     
     var lyrics: [LXLyricsLine]
     var idTags: [idTagKey: String]
-    var metaData: [metadataKey: Any]
+    var metadata: [metadataKey: Any]
     
     var offset: Int {
         get {
@@ -114,7 +114,7 @@ struct LXLyrics {
     init?(_ lrcContents: String) {
         lyrics = []
         idTags = [:]
-        metaData = [:]
+        metadata = [:]
         
         guard let regexForIDTag = try? NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]") else {
             return
@@ -148,6 +148,14 @@ struct LXLyrics {
         }
         
         lyrics.sort() { $0.position < $1.position }
+    }
+    
+    init?(metadata: [metadataKey: Any]) {
+        if let lrcURL = metadata[.lyricsURL] as? URL, let lrcContent = try? String(contentsOf: lrcURL) {
+            self.init(lrcContent)
+            self.metadata = metadata
+        }
+        return nil
     }
     
     subscript(at position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
