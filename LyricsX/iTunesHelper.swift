@@ -21,6 +21,8 @@ class iTunesHelper {
     var currentArtist: String?
     var currentLyrics: LXLyrics?
     
+    var fetchLrcQueue = OperationQueue()
+    
     init() {
         iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
         lyricsSource = [LyricsXiami()]
@@ -65,10 +67,13 @@ class iTunesHelper {
             return
         }
         
-        // TODO: fetch all source and sort
-        currentLyrics = lyricsSource.first?.fetchLyrics(title: name, artist: artist).first
+        fetchLrcQueue.cancelAllOperations()
         
-        print(currentLyrics ?? "no lrc")
+        // TODO: fetch all source and sort
+        fetchLrcQueue.addOperation {
+            self.currentLyrics = self.lyricsSource.first?.fetchLyrics(title: name, artist: artist).first
+            print(self.currentLyrics ?? "no lrc")
+        }
     }
     
     func handlePositionChange() {
