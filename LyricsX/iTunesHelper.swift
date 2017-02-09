@@ -63,6 +63,9 @@ class iTunesHelper {
         
         print("song changed: \(currentSongName)")
         
+        let info = ["lrc": "", "next": ""]
+        NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
+        
         guard let name = currentSongName, let artist = currentArtist else {
             return
         }
