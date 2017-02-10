@@ -29,25 +29,9 @@ class DesktopLyrics {
             updateFontName()
         }
     }
-    var fontSize = 28 {
+    var fontSize = UserDefaults.standard.integer(forKey: DesktopLyricsFontSize) {
         didSet {
             updateFontSize()
-        }
-    }
-    
-    var insetX: Int {
-        get {
-            return fontSize
-        }
-    }
-    var insetY: Int {
-        get {
-            return fontSize / 3
-        }
-    }
-    var leading: Int {
-        get {
-            return fontSize * 3 / 2
         }
     }
     
@@ -129,6 +113,77 @@ class DesktopLyrics {
             self.heightFromDock = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock)
             self.fontSize = UserDefaults.standard.integer(forKey: DesktopLyricsFontSize)
             self.fontName = UserDefaults.standard.string(forKey: DesktopLyricsFontName)!
+        }
+    }
+    
+    func updateFontSize() {
+        topInsetConstraint.forEach() { $0.update(offset: insetY) }
+        bottomInsetConstraint.forEach() { $0.update(offset: -insetY) }
+        leftInsetConstraint.forEach() { $0.update(offset: insetX) }
+        rightInsetConstraint.forEach() { $0.update(offset: -insetX) }
+        leadingConstraint.forEach() { $0.update(offset: -leading) }
+        
+        let font = NSFont(name: fontName, size: CGFloat(fontSize))
+        
+        firstLineLrcView.font = font
+        secondLineLrcView.font = font
+        waitingLrcView.font = font
+        
+        backgroundView.layer?.cornerRadius = CGFloat(fontSize / 2)
+    }
+    
+    func updateFontName() {
+        let font = NSFont(name: fontName, size: CGFloat(fontSize))
+        
+        firstLineLrcView.font = font
+        secondLineLrcView.font = font
+        waitingLrcView.font = font
+    }
+    
+    func displayLrc(_ firstLine: String, secondLine: String) {
+        guard enabled else {
+            return
+        }
+        
+        if self.firseLine == firstLine, self.secondLine == secondLine {
+            return
+        }
+        
+        self.firseLine = firstLine
+        self.secondLine = secondLine
+        
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0.2
+            context.allowsImplicitAnimation = true
+            self.secondLineLrcView.stringValue = firstLine
+            self.waitingLrcView.stringValue = secondLine
+            self.updateConstraints(animated: true)
+            self.updateVisibility(animated: true)
+            self.backgroundView.layoutSubtreeIfNeeded()
+        }, completionHandler: {
+            self.firstLineLrcView.stringValue = firstLine
+            self.secondLineLrcView.stringValue = secondLine
+            self.updateConstraints(animated: false)
+            self.updateVisibility(animated: false)
+            self.backgroundView.layoutSubtreeIfNeeded()
+        })
+    }
+    
+    // MARK: Layout
+    
+    var insetX: Int {
+        get {
+            return fontSize
+        }
+    }
+    var insetY: Int {
+        get {
+            return fontSize / 3
+        }
+    }
+    var leading: Int {
+        get {
+            return fontSize * 3 / 2
         }
     }
     
@@ -272,59 +327,6 @@ class DesktopLyrics {
             }
             secondLineLrcView.isHidden = false
         }
-    }
-    
-    func updateFontSize() {
-        topInsetConstraint.forEach() { $0.update(offset: insetY) }
-        bottomInsetConstraint.forEach() { $0.update(offset: -insetY) }
-        leftInsetConstraint.forEach() { $0.update(offset: insetX) }
-        rightInsetConstraint.forEach() { $0.update(offset: -insetX) }
-        leadingConstraint.forEach() { $0.update(offset: -leading) }
-        
-        let font = NSFont(name: fontName, size: CGFloat(fontSize))
-        
-        firstLineLrcView.font = font
-        secondLineLrcView.font = font
-        waitingLrcView.font = font
-        
-        backgroundView.layer?.cornerRadius = CGFloat(fontSize / 2)
-    }
-    
-    func updateFontName() {
-        let font = NSFont(name: fontName, size: CGFloat(fontSize))
-        
-        firstLineLrcView.font = font
-        secondLineLrcView.font = font
-        waitingLrcView.font = font
-    }
-    
-    func displayLrc(_ firstLine: String, secondLine: String) {
-        guard enabled else {
-            return
-        }
-        
-        if self.firseLine == firstLine, self.secondLine == secondLine {
-            return
-        }
-        
-        self.firseLine = firstLine
-        self.secondLine = secondLine
-        
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 0.2
-            context.allowsImplicitAnimation = true
-            self.secondLineLrcView.stringValue = firstLine
-            self.waitingLrcView.stringValue = secondLine
-            self.updateConstraints(animated: true)
-            self.updateVisibility(animated: true)
-            self.backgroundView.layoutSubtreeIfNeeded()
-        }, completionHandler: {
-            self.firstLineLrcView.stringValue = firstLine
-            self.secondLineLrcView.stringValue = secondLine
-            self.updateConstraints(animated: false)
-            self.updateVisibility(animated: false)
-            self.backgroundView.layoutSubtreeIfNeeded()
-        })
     }
     
 }

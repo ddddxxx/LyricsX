@@ -77,7 +77,6 @@
                     </connections>
                 </windowController>
                 <customObject id="Ic5-SA-jl1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController representsSharedInstance="YES" id="6Fg-Wr-2O1"/>
             </objects>
             <point key="canvasLocation" x="75" y="953"/>
         </scene>
@@ -114,7 +113,6 @@
                     </view>
                 </viewController>
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="Xce-y4-64U"/>
             </objects>
             <point key="canvasLocation" x="678" y="1198.5"/>
         </scene>
@@ -283,9 +281,6 @@
                     </connections>
                 </viewController>
                 <customObject id="mRF-Ay-vJP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="Luj-P0-0bJ"/>
-                <userDefaultsController id="sJB-mj-yBk"/>
-                <userDefaultsController id="8od-4K-6YR"/>
             </objects>
             <point key="canvasLocation" x="763.5" y="1485"/>
         </scene>

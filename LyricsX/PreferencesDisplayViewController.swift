@@ -12,8 +12,8 @@ class PreferencesDisplayViewController: NSViewController {
     
     @IBOutlet weak var fontDisplay: NSTextField!
     
-    var fontName: String!
-    var fontSize: Int!
+    var fontName = UserDefaults.standard.string(forKey: DesktopLyricsFontName)!
+    var fontSize = UserDefaults.standard.integer(forKey: DesktopLyricsFontSize)
     var font: NSFont!
     var height = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock) {
         didSet {
@@ -22,8 +22,6 @@ class PreferencesDisplayViewController: NSViewController {
     }
     
     override func viewDidLoad() {
-        fontName = UserDefaults.standard.string(forKey: DesktopLyricsFontName)
-        fontSize = UserDefaults.standard.integer(forKey: DesktopLyricsFontSize)
         font = NSFont(name: fontName, size: CGFloat(fontSize))
         
         updateFontDisplay()
@@ -52,7 +50,7 @@ class PreferencesDisplayViewController: NSViewController {
     }
     
     func updateFontDisplay() {
-        fontDisplay.stringValue = "\(fontName!) - \(fontSize!)"
+        fontDisplay.stringValue = "\(fontName) - \(fontSize)"
     }
     
     @IBAction func showFontPanel(_ sender: NSButton) {
