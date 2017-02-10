@@ -24,7 +24,32 @@ class DesktopLyrics {
     
     var enabled = UserDefaults.standard.bool(forKey: DesktopLyricsEnabled)
     
-    let fontSize = 28.0
+    var fontName = UserDefaults.standard.string(forKey: DesktopLyricsFontName)! {
+        didSet {
+            updateFontName()
+        }
+    }
+    var fontSize = 28 {
+        didSet {
+            updateFontSize()
+        }
+    }
+    
+    var insetX: Int {
+        get {
+            return fontSize
+        }
+    }
+    var insetY: Int {
+        get {
+            return fontSize / 3
+        }
+    }
+    var leading: Int {
+        get {
+            return fontSize * 3 / 2
+        }
+    }
     
     var heightFromDock = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock) {
         didSet {
@@ -45,27 +70,29 @@ class DesktopLyrics {
         lyricsWindowController = NSWindowController(window: window)
         lyricsWindowController?.showWindow(nil)
         
+        let font = NSFont(name: fontName, size: CGFloat(fontSize))
+        
         backgroundView = NSView()
         backgroundView.wantsLayer = true
-        backgroundView.layer?.backgroundColor = CGColor(gray: 0, alpha: 0.5)
-        backgroundView.layer?.cornerRadius = 10
+        backgroundView.layer?.backgroundColor = CGColor(gray: 0, alpha: 0.6)
+        backgroundView.layer?.cornerRadius = CGFloat(fontSize / 2)
         window.contentView?.addSubview(backgroundView)
         
         firstLineLrcView = NSTextField(labelWithString: "")
         firstLineLrcView.textColor = .white
-        firstLineLrcView.font = .systemFont(ofSize: CGFloat(fontSize))
+        firstLineLrcView.font = font
         firstLineLrcView.alignment = .center
         backgroundView.addSubview(firstLineLrcView)
         
         secondLineLrcView = NSTextField(labelWithString: "")
         secondLineLrcView.textColor = .white
-        secondLineLrcView.font = .systemFont(ofSize: CGFloat(fontSize))
+        secondLineLrcView.font = font
         secondLineLrcView.alignment = .center
         backgroundView.addSubview(secondLineLrcView)
         
         waitingLrcView = NSTextField(labelWithString: "")
         waitingLrcView.textColor = .white
-        waitingLrcView.font = .systemFont(ofSize: CGFloat(fontSize))
+        waitingLrcView.font = font
         waitingLrcView.alignment = .center
         backgroundView.addSubview(waitingLrcView)
         
@@ -74,8 +101,8 @@ class DesktopLyrics {
         displayLrc("LyricsX", secondLine: "")
         
         let shadow = NSShadow()
-        shadow.shadowBlurRadius = 2
-        shadow.shadowColor = NSColor(calibratedHue: 0.47, saturation: 1, brightness: 1, alpha: 1)
+        shadow.shadowBlurRadius = 3
+        shadow.shadowColor = NSColor.cyan
         shadow.shadowOffset = .zero
         
         firstLineLrcView.shadow = shadow
@@ -83,8 +110,14 @@ class DesktopLyrics {
         waitingLrcView.shadow = shadow
         
         NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
-            let lrc = n.userInfo?["lrc"] as? String ?? ""
-            let next = n.userInfo?["next"] as? String ?? ""
+            var lrc = n.userInfo?["lrc"] as? String ?? ""
+            var next = n.userInfo?["next"] as? String ?? ""
+            if lrc.replacingOccurrences(of: " ", with: "") == "" {
+                lrc = ""
+            }
+            if next.replacingOccurrences(of: " ", with: "") == "" {
+                next = ""
+            }
             
             self.displayLrc(lrc, secondLine: next)
         }
@@ -94,6 +127,8 @@ class DesktopLyrics {
             self.backgroundView.isHidden = !self.enabled
             
             self.heightFromDock = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock)
+            self.fontSize = UserDefaults.standard.integer(forKey: DesktopLyricsFontSize)
+            self.fontName = UserDefaults.standard.string(forKey: DesktopLyricsFontName)!
         }
     }
     
@@ -106,51 +141,71 @@ class DesktopLyrics {
     
     var lyricsHeightConstraint: SnapKit.Constraint?
     
+    var topInsetConstraint: [SnapKit.Constraint] = []
+    var bottomInsetConstraint: [SnapKit.Constraint] = []
+    var leftInsetConstraint: [SnapKit.Constraint] = []
+    var rightInsetConstraint: [SnapKit.Constraint] = []
+    
+    var leadingConstraint: [SnapKit.Constraint] = []
+    
     func makeConstraints() {
         firstLineLrcView.snp.makeConstraints() { make in
             make.centerX.equalToSuperview()
             
-            make.lastBaseline.equalTo(secondLineLrcView).offset(-fontSize * 1.5)
+            leadingConstraint += [make.lastBaseline.equalTo(secondLineLrcView).offset(-leading).constraint]
             
-            let cons1 = make.left.greaterThanOrEqualToSuperview().offset(20).constraint
-            let cons2 = make.right.lessThanOrEqualToSuperview().offset(-20).constraint
+            let cons1 = make.left.greaterThanOrEqualToSuperview().offset(insetX).constraint
+            let cons2 = make.right.lessThanOrEqualToSuperview().offset(-insetX).constraint
             
-            let cons3 = make.top.equalToSuperview().offset(10).priority(750).constraint
-            let cons4 = make.bottom.equalToSuperview().offset(-10).priority(500).constraint
+            let cons3 = make.top.equalToSuperview().offset(insetY).priority(750).constraint
+            let cons4 = make.bottom.equalToSuperview().offset(-insetY).priority(500).constraint
             normalConstraint += [cons1, cons2, cons3, cons4]
             
             firstLineConstraint += [cons3]
+            
+            topInsetConstraint += [cons3]
+            bottomInsetConstraint += [cons4]
+            leftInsetConstraint += [cons1]
+            rightInsetConstraint += [cons2]
         }
         
         secondLineLrcView.snp.makeConstraints() { make in
             make.centerX.equalToSuperview()
-            make.left.greaterThanOrEqualToSuperview().offset(20)
-            make.right.lessThanOrEqualToSuperview().offset(-20)
+            leftInsetConstraint += [make.left.greaterThanOrEqualToSuperview().offset(insetX).constraint]
+            rightInsetConstraint += [make.right.lessThanOrEqualToSuperview().offset(-insetX).constraint]
             
-            make.lastBaseline.equalTo(waitingLrcView).offset(-fontSize * 1.5)
+            leadingConstraint += [make.lastBaseline.equalTo(waitingLrcView).offset(-leading).constraint]
             
-            let cons1 = make.top.equalToSuperview().offset(10).priority(500).constraint
-            let cons2 = make.bottom.equalToSuperview().offset(-10).priority(750).constraint
+            let cons1 = make.top.equalToSuperview().offset(insetY).priority(500).constraint
+            let cons2 = make.bottom.equalToSuperview().offset(-insetY).priority(750).constraint
             normalConstraint += [cons1, cons2]
             
-            let cons3 = make.top.equalToSuperview().offset(10).priority(750).constraint
-            let cons4 = make.bottom.equalToSuperview().offset(-10).priority(500).constraint
+            let cons3 = make.top.equalToSuperview().offset(insetY).priority(750).constraint
+            let cons4 = make.bottom.equalToSuperview().offset(-insetY).priority(500).constraint
             animatedConstraint += [cons3, cons4]
             
             secondLineConstraint += [cons2, cons3]
+            
+            topInsetConstraint += [cons1, cons3]
+            bottomInsetConstraint += [cons2, cons4]
         }
         
         waitingLrcView.snp.makeConstraints() { make in
             make.centerX.equalToSuperview()
             
-            let cons1 = make.left.greaterThanOrEqualToSuperview().offset(20).constraint
-            let cons2 = make.right.lessThanOrEqualToSuperview().offset(-20).constraint
+            let cons1 = make.left.greaterThanOrEqualToSuperview().offset(insetX).constraint
+            let cons2 = make.right.lessThanOrEqualToSuperview().offset(-insetX).constraint
             
-            let cons3 = make.top.equalToSuperview().offset(10).priority(500).constraint
-            let cons4 = make.bottom.equalToSuperview().offset(-10).priority(750).constraint
+            let cons3 = make.top.equalToSuperview().offset(insetY).priority(500).constraint
+            let cons4 = make.bottom.equalToSuperview().offset(-insetY).priority(750).constraint
             animatedConstraint += [cons1, cons2, cons3, cons4]
             
             waitingLineConstraint += [cons4]
+            
+            topInsetConstraint += [cons3]
+            bottomInsetConstraint += [cons4]
+            leftInsetConstraint += [cons1]
+            rightInsetConstraint += [cons2]
         }
         
         updateConstraints(animated: false)
@@ -217,6 +272,30 @@ class DesktopLyrics {
             }
             secondLineLrcView.isHidden = false
         }
+    }
+    
+    func updateFontSize() {
+        topInsetConstraint.forEach() { $0.update(offset: insetY) }
+        bottomInsetConstraint.forEach() { $0.update(offset: -insetY) }
+        leftInsetConstraint.forEach() { $0.update(offset: insetX) }
+        rightInsetConstraint.forEach() { $0.update(offset: -insetX) }
+        leadingConstraint.forEach() { $0.update(offset: -leading) }
+        
+        let font = NSFont(name: fontName, size: CGFloat(fontSize))
+        
+        firstLineLrcView.font = font
+        secondLineLrcView.font = font
+        waitingLrcView.font = font
+        
+        backgroundView.layer?.cornerRadius = CGFloat(fontSize / 2)
+    }
+    
+    func updateFontName() {
+        let font = NSFont(name: fontName, size: CGFloat(fontSize))
+        
+        firstLineLrcView.font = font
+        secondLineLrcView.font = font
+        waitingLrcView.font = font
     }
     
     func displayLrc(_ firstLine: String, secondLine: String) {

@@ -25,7 +25,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             DesktopLyricsEnabled : NSNumber(value: true),
             MenuBarLyricsEnabled : NSNumber(value: false),
             // Display
-            DesktopLyricsHeighFromDock : NSNumber(value: 20)
+            DesktopLyricsHeighFromDock : NSNumber(value: 20),
+            DesktopLyricsFontName: "Helvetica Light" as AnyObject,
+            DesktopLyricsFontSize: NSNumber(value: 28),
         ]
         UserDefaults.standard.register(defaults: registerDefaults)
         

@@ -174,9 +174,9 @@
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BE1-9G-oVL">
                                 <rect key="frame" x="135" y="83" width="194" height="19"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="20" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="yam-dc-MYO"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="yam-dc-MYO"/>
                                 <connections>
-                                    <binding destination="Luj-P0-0bJ" name="value" keyPath="values.DesktopLyricsHeighFromDock" id="DnG-uH-POh"/>
+                                    <binding destination="8JF-Og-z6E" name="value" keyPath="self.height" id="HFv-Sz-zg9"/>
                                 </connections>
                             </slider>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eia-K1-Vu9">
@@ -190,7 +190,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="Luj-P0-0bJ" name="value" keyPath="values.DesktopLyricsHeighFromDock" id="5hJ-VN-m3U"/>
+                                    <binding destination="8JF-Og-z6E" name="value" keyPath="self.height" id="bwd-vM-7us"/>
                                 </connections>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="UmX-Zf-IW4">
@@ -284,6 +284,8 @@
                 </viewController>
                 <customObject id="mRF-Ay-vJP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="Luj-P0-0bJ"/>
+                <userDefaultsController id="sJB-mj-yBk"/>
+                <userDefaultsController id="8od-4K-6YR"/>
             </objects>
             <point key="canvasLocation" x="763.5" y="1485"/>
         </scene>
