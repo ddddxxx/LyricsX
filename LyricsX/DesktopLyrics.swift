@@ -26,6 +26,12 @@ class DesktopLyrics {
     
     let fontSize = 28.0
     
+    var heightFromDock = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock) {
+        didSet {
+            lyricsHeightConstraint?.update(offset: -heightFromDock)
+        }
+    }
+    
     init() {
         let visibleFrame = NSScreen.main()!.visibleFrame
         let window = NSWindow(contentRect: visibleFrame, styleMask: [.borderless, .fullSizeContentView, .texturedBackground], backing: .buffered, defer: false)
@@ -67,6 +73,15 @@ class DesktopLyrics {
         
         displayLrc("LyricsX", secondLine: "")
         
+        let shadow = NSShadow()
+        shadow.shadowBlurRadius = 2
+        shadow.shadowColor = NSColor(calibratedHue: 0.47, saturation: 1, brightness: 1, alpha: 1)
+        shadow.shadowOffset = .zero
+        
+        firstLineLrcView.shadow = shadow
+        secondLineLrcView.shadow = shadow
+        waitingLrcView.shadow = shadow
+        
         NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
             let lrc = n.userInfo?["lrc"] as? String ?? ""
             let next = n.userInfo?["next"] as? String ?? ""
@@ -77,6 +92,8 @@ class DesktopLyrics {
         NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { n in
             self.enabled = UserDefaults.standard.bool(forKey: DesktopLyricsEnabled)
             self.backgroundView.isHidden = !self.enabled
+            
+            self.heightFromDock = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock)
         }
     }
     
@@ -86,6 +103,8 @@ class DesktopLyrics {
     var firstLineConstraint: [SnapKit.Constraint] = []
     var secondLineConstraint: [SnapKit.Constraint] = []
     var waitingLineConstraint: [SnapKit.Constraint] = []
+    
+    var lyricsHeightConstraint: SnapKit.Constraint?
     
     func makeConstraints() {
         firstLineLrcView.snp.makeConstraints() { make in
@@ -138,7 +157,7 @@ class DesktopLyrics {
         
         backgroundView.snp.makeConstraints() { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-20)
+            lyricsHeightConstraint = make.bottom.equalToSuperview().offset(-heightFromDock).constraint
         }
     }
     

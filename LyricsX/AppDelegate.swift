@@ -21,9 +21,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let registerDefaults: [String:AnyObject] = [
-            //Menu
+            // Menu
             DesktopLyricsEnabled : NSNumber(value: true),
-            MenuBarLyricsEnabled : NSNumber(value: false)
+            MenuBarLyricsEnabled : NSNumber(value: false),
+            // Display
+            DesktopLyricsHeighFromDock : NSNumber(value: 20)
         ]
         UserDefaults.standard.register(defaults: registerDefaults)
         

@@ -21,3 +21,6 @@ extension Notification.Name {
 // Menu
 let DesktopLyricsEnabled = "DesktopLyricsEnabled"
 let MenuBarLyricsEnabled = "MenuBarLyricsEnabled"
+
+let DesktopLyricsHeighFromDock = "DesktopLyricsHeighFromDock"
+let DesktopLyricsFontName = "DesktopLyricsFontName"
