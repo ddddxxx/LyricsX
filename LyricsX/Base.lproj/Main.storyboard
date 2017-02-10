@@ -43,6 +43,13 @@
                                 </binding>
                             </connections>
                         </menuItem>
+                        <menuItem isSeparatorItem="YES" id="yWX-1z-WqD"/>
+                        <menuItem title="Show Lyrics" id="kyJ-kV-2Du">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="fpK-JT-GVp" kind="show" id="HOu-m8-UdM"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
                         <menuItem title="Preference..." keyEquivalent="," id="CWo-Qx-2Ut">
                             <connections>
@@ -102,6 +109,75 @@
                 <customObject id="n2u-iM-pje" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="1363"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="Bwn-Z7-ydj">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="fpK-JT-GVp" sceneMemberID="viewController">
+                    <window key="window" title="Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="6aU-M0-0Jh" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="862" y="135" width="400" height="500"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                    </window>
+                    <connections>
+                        <segue destination="j0j-xF-gds" kind="relationship" relationship="window.shadowedContentViewController" id="NRw-Z5-G7i"/>
+                    </connections>
+                </windowController>
+                <customObject id="wzV-4m-AQ9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="667" y="669"/>
+        </scene>
+        <!--LyricsHUD View Controller-->
+        <scene sceneID="7oT-qx-38j">
+            <objects>
+                <viewController id="j0j-xF-gds" customClass="LyricsHUDViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="kbP-ZG-vEe">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHV-g3-mmK">
+                                <rect key="frame" x="20" y="20" width="360" height="460"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="eC6-ID-KgZ">
+                                    <rect key="frame" x="1" y="1" width="358" height="458"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" drawsBackground="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="ySk-sX-AuE">
+                                            <rect key="frame" x="0.0" y="-0.5" width="358" height="458"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="358" height="458"/>
+                                            <size key="maxSize" width="478" height="10000000"/>
+                                            <color key="insertionPointColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="hx5-Li-aRp">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="xKw-Ac-zBs">
+                                    <rect key="frame" x="343" y="1" width="16" height="458"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tHV-g3-mmK" firstAttribute="top" secondItem="kbP-ZG-vEe" secondAttribute="top" constant="20" id="0jz-jB-LZF"/>
+                            <constraint firstAttribute="trailing" secondItem="tHV-g3-mmK" secondAttribute="trailing" constant="20" id="hhl-jb-EaD"/>
+                            <constraint firstAttribute="bottom" secondItem="tHV-g3-mmK" secondAttribute="bottom" constant="20" id="hvn-4t-Ve0"/>
+                            <constraint firstItem="tHV-g3-mmK" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="20" id="yXT-YN-gDf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lyricsTextView" destination="ySk-sX-AuE" id="mfH-YY-VHc"/>
+                    </connections>
+                </viewController>
+                <customObject id="50J-qv-I61" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1223" y="669"/>
         </scene>
         <!--General-->
         <scene sceneID="mkJ-2y-SA4">
