@@ -26,11 +26,14 @@ class LyricsXTests: XCTestCase {
     }
     
     func testLyricsLoad() {
-        let source = LyricsXiami()
-        
-        self.measure {
-            let result = source.fetchLyrics(title: self.testSong, artist: self.testArtist)
-            XCTAssert(result.count > 0)
+        measure {
+            let fetchReturnedExpectation = self.expectation(description: "fetch lrc")
+            LyricsSourceHelper().fetchLyrics(title: self.testSong, artist: self.testArtist) {
+                fetchReturnedExpectation.fulfill()
+            }
+            self.waitForExpectations(timeout: 5) { _ in
+                self.stopMeasuring()
+            }
         }
     }
     
