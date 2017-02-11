@@ -32,6 +32,7 @@ class LyricsSourceHelper {
     
     /// if last request has not completed, last completionBlock will not execute
     func fetchLyrics(title: String, artist: String, completionBlock: @escaping () -> Void) {
+        lyrics = []
         cancelFetching()
         
         let fetchOps = lyricsSource.map() { src in

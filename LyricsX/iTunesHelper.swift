@@ -72,6 +72,7 @@ class iTunesHelper {
         
         lyricsHelper.fetchLyrics(title: title, artist: artist) {
             self.currentLyrics = self.lyricsHelper.lyrics.first
+            print(self.currentLyrics ?? "no lrc")
         }
     }
     

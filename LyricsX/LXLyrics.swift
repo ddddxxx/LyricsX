@@ -103,7 +103,7 @@ struct LXLyrics {
             }
         }
         
-        if lyricsLines.count == 0 {
+        if lyrics.count == 0 {
             return nil
         }
         
@@ -178,9 +178,7 @@ extension LXLyrics {
 extension LXLyrics.idTagKey: CustomStringConvertible {
     
     public var description: String {
-        get {
-            return rawValue
-        }
+        return rawValue
     }
     
 }
@@ -188,9 +186,7 @@ extension LXLyrics.idTagKey: CustomStringConvertible {
 extension LXLyricsLine: CustomStringConvertible {
     
     public var description: String {
-        get {
-            return "[\(position)]\(sentence)"
-        }
+        return "[\(position)]\(sentence)"
     }
     
 }
