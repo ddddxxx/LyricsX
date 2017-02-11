@@ -96,8 +96,7 @@
 		BB4141A11E458BA800A51775 = {
 			isa = PBXGroup;
 			children = (
-				BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */,
-				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
+				BB7EC7B31E4ECFC400A0AC3F /* Frameworks */,
 				BB4141AC1E458BA800A51775 /* LyricsX */,
 				BBC1D5871E4B1C44008869EC /* LyricsXTests */,
 				BB4141AB1E458BA800A51775 /* Products */,
@@ -117,16 +116,11 @@
 			isa = PBXGroup;
 			children = (
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
-				BB4141BF1E45B67800A51775 /* DesktopLyrics.swift */,
-				BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */,
-				BBC1D5901E4C80FC008869EC /* PreferencesDisplayViewController.swift */,
-				BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */,
-				BB4141D91E4761F900A51775 /* LXLyrics.swift */,
 				BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */,
-				BB4141CB1E47444200A51775 /* LyricsXiami.swift */,
-				BB4141D71E475DD100A51775 /* iTunes.swift */,
-				BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
+				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
+				BB7EC7B51E4ED02000A0AC3F /* Lyrics */,
+				BB7EC7B61E4ED03900A0AC3F /* Others */,
 				BB4141BC1E45B26800A51775 /* Support Files */,
 			);
 			path = LyricsX;
@@ -139,6 +133,44 @@
 				BB4141B61E458BA900A51775 /* Info.plist */,
 			);
 			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		BB7EC7B31E4ECFC400A0AC3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */,
+				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB7EC7B41E4ECFFB00A0AC3F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BB4141BF1E45B67800A51775 /* DesktopLyrics.swift */,
+				BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */,
+				BBC1D5901E4C80FC008869EC /* PreferencesDisplayViewController.swift */,
+				BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BB7EC7B51E4ED02000A0AC3F /* Lyrics */ = {
+			isa = PBXGroup;
+			children = (
+				BB4141D91E4761F900A51775 /* LXLyrics.swift */,
+				BB4141CB1E47444200A51775 /* LyricsXiami.swift */,
+			);
+			name = Lyrics;
+			sourceTree = "<group>";
+		};
+		BB7EC7B61E4ED03900A0AC3F /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				BB4141D71E475DD100A51775 /* iTunes.swift */,
+				BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */,
+			);
+			name = Others;
 			sourceTree = "<group>";
 		};
 		BBC1D5871E4B1C44008869EC /* LyricsXTests */ = {
