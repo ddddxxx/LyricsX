@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class LyricsGecimi: LyricsSource {
     
-    let queue: OperationQueue
+    private let queue: OperationQueue
     
     init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue

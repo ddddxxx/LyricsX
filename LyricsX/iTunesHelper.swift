@@ -12,7 +12,7 @@ import ScriptingBridge
 class iTunesHelper {
     
     var iTunes: iTunesApplication!
-    var lyricsSource: [LyricsSource]
+    var lyricsHelper: LyricsSourceHelper
     
     var positionChangeTimer: Timer!
     
@@ -25,7 +25,7 @@ class iTunesHelper {
     
     init() {
         iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
-        lyricsSource = [LyricsXiami()]
+        lyricsHelper = LyricsSourceHelper()
         
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in self.handlePositionChange() }
         
@@ -70,12 +70,8 @@ class iTunesHelper {
             return
         }
         
-        fetchLrcQueue.cancelAllOperations()
-        
-        // TODO: fetch all source and sort
-        fetchLrcQueue.addOperation {
-            self.currentLyrics = self.lyricsSource.first?.fetchLyrics(title: name, artist: artist).first
-            print(self.currentLyrics ?? "no lrc")
+        lyricsHelper.fetchLyrics(title: name, artist: artist) {
+            self.currentLyrics = self.lyricsHelper.lyrics.first
         }
     }
     
@@ -92,11 +88,5 @@ class iTunesHelper {
         let info = ["lrc": currentLrcSentence, "next": nextLrcSentence]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
-    
-}
-
-protocol LyricsSource {
-    
-    func fetchLyrics(title: String, artist: String) -> [LXLyrics]
     
 }
