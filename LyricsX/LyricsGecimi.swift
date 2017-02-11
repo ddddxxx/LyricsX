@@ -39,7 +39,7 @@ class LyricsGecimi: LyricsSource {
         let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
         
-        guard let data = try? Data(contentsOf: url), let array = JSON(data).array else {
+        guard let data = try? Data(contentsOf: url), let array = JSON(data)["result"].array else {
             return []
         }
         
