@@ -12,9 +12,6 @@ import XCTest
 
 class LyricsXTests: XCTestCase {
     
-    let testSong = "Lovesong"
-    let testArtist = "Adele"
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,15 +22,36 @@ class LyricsXTests: XCTestCase {
         super.tearDown()
     }
     
-    func testLyricsLoad() {
+    func testFetchLyrics() {
+        let testSong = "Rolling in the Deep"
+        let testArtist = "Adele"
         measure {
             let fetchReturnedExpectation = self.expectation(description: "fetch lrc")
-            LyricsSourceHelper().fetchLyrics(title: self.testSong, artist: self.testArtist) {
+            LyricsSourceHelper().fetchLyrics(title: testSong, artist: testArtist) {
                 fetchReturnedExpectation.fulfill()
             }
             self.waitForExpectations(timeout: 5) { _ in
                 self.stopMeasuring()
             }
+        }
+    }
+    
+    func testLyricsSourceAvailability() {
+        let testCase = [
+            ("Rolling in the Deep", "Adele"),
+            ("海阔天空", "Beyond")
+        ]
+        
+        let lyricsSources: [LyricsSource] = [
+            LyricsXiami(),
+            LyricsGecimi()
+        ]
+        
+        lyricsSources.forEach() { src in
+            let fetchResule = testCase.flatMap() { song in
+                return src.fetchLyrics(title: song.0, artist: song.1)
+            }
+            XCTAssert(fetchResule.count > 0)
         }
     }
     
