@@ -17,7 +17,7 @@ class iTunesHelper {
     var positionChangeTimer: Timer!
     
     var currentSongID: Int?
-    var currentSongName: String?
+    var currentSongTitle: String?
     var currentArtist: String?
     var currentLyrics: LXLyrics?
     
@@ -57,20 +57,20 @@ class iTunesHelper {
     func handleSongChange() {
         let track = iTunes.currentTrack
         currentSongID = track?.id?()
-        currentSongName = track?.name as String?
+        currentSongTitle = track?.name as String?
         currentArtist = track?.artist as String?
         currentLyrics = nil
         
-        print("song changed: \(currentSongName)")
+        print("song changed: \(currentSongTitle)")
         
         let info = ["lrc": "", "next": ""]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
         
-        guard let name = currentSongName, let artist = currentArtist else {
+        guard let title = currentSongTitle, let artist = currentArtist else {
             return
         }
         
-        lyricsHelper.fetchLyrics(title: name, artist: artist) {
+        lyricsHelper.fetchLyrics(title: title, artist: artist) {
             self.currentLyrics = self.lyricsHelper.lyrics.first
         }
     }
@@ -80,7 +80,7 @@ class iTunesHelper {
             return
         }
         
-        let lrc = lyrics[at: position]
+        let lrc = lyrics[position]
         
         let currentLrcSentence = lrc.current?.sentence ?? ""
         let nextLrcSentence = lrc.next?.sentence ?? ""

@@ -49,46 +49,6 @@ struct LXLyricsLine {
 
 struct LXLyrics {
     
-    struct idTagKey: RawRepresentable, Hashable {
-        
-        var rawValue: String
-        
-        init(_ rawValue: String) {
-            self.rawValue = rawValue
-        }
-        
-        init(rawValue: String) {
-            self.rawValue = rawValue
-        }
-        
-        var hashValue: Int {
-            get {
-                return rawValue.hash
-            }
-        }
-        
-        static let Title: idTagKey = .init("ti")
-        
-        static let Album: idTagKey = .init("al")
-        
-        static let Artist: idTagKey = .init("ar")
-        
-        static let Author: idTagKey = .init("au")
-        
-        static let LrcBy: idTagKey = .init("by")
-        
-        static let Offset: idTagKey = .init("offset")
-        
-    }
-    
-    enum metadataKey {
-        
-        case source
-        
-        case lyricsURL
-        
-    }
-    
     var lyrics: [LXLyricsLine]
     var idTags: [idTagKey: String]
     var metadata: [metadataKey: Any]
@@ -159,7 +119,7 @@ struct LXLyrics {
         }
     }
     
-    subscript(at position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
+    subscript(_ position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
         for (index, line) in lyrics.enumerated() {
             if line.position - timeDelay > position {
                 let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
@@ -167,6 +127,48 @@ struct LXLyrics {
             }
         }
         return (lyrics.last, nil)
+    }
+    
+}
+
+extension LXLyrics {
+    
+    struct idTagKey: RawRepresentable, Hashable {
+        
+        var rawValue: String
+        
+        init(_ rawValue: String) {
+            self.rawValue = rawValue
+        }
+        
+        init(rawValue: String) {
+            self.rawValue = rawValue
+        }
+        
+        var hashValue: Int {
+            return rawValue.hash
+        }
+        
+        static let Title: idTagKey = .init("ti")
+        
+        static let Album: idTagKey = .init("al")
+        
+        static let Artist: idTagKey = .init("ar")
+        
+        static let Author: idTagKey = .init("au")
+        
+        static let LrcBy: idTagKey = .init("by")
+        
+        static let Offset: idTagKey = .init("offset")
+        
+    }
+    
+    enum metadataKey {
+        
+        case source
+        
+        case lyricsURL
+        
     }
     
 }
