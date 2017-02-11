@@ -18,6 +18,7 @@
 		BB4141D01E47461800A51775 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB4141D81E475DD100A51775 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D71E475DD100A51775 /* iTunes.swift */; };
 		BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D91E4761F900A51775 /* LXLyrics.swift */; };
+		BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */; };
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
 		BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */; };
 		BBC1D35F1E499A6D002538A2 /* GlobalConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */; };
@@ -63,6 +64,7 @@
 		BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BB4141D71E475DD100A51775 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 		BB4141D91E4761F900A51775 /* LXLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXLyrics.swift; sourceTree = "<group>"; };
+		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsGecimi.swift; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
 		BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesHelper.swift; sourceTree = "<group>"; };
 		BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConst.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				BB4141D91E4761F900A51775 /* LXLyrics.swift */,
 				BB4141CB1E47444200A51775 /* LyricsXiami.swift */,
+				BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */,
 			);
 			name = Lyrics;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunes.swift in Sources */,
 				BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */,
+				BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */,
 				BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
