@@ -161,7 +161,7 @@ struct LXLyrics {
     
     subscript(at position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
         for (index, line) in lyrics.enumerated() {
-            if line.position > position {
+            if line.position - timeDelay > position {
                 let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
                 return (previous, line)
             }
