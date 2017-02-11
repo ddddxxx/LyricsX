@@ -172,19 +172,13 @@ class DesktopLyrics {
     // MARK: Layout
     
     var insetX: Int {
-        get {
-            return fontSize
-        }
+        return fontSize
     }
     var insetY: Int {
-        get {
-            return fontSize / 3
-        }
+        return fontSize / 3
     }
     var leading: Int {
-        get {
-            return fontSize * 3 / 2
-        }
+        return fontSize * 3 / 2
     }
     
     var normalConstraint: [SnapKit.Constraint] = []
