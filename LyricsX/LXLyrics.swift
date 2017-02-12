@@ -13,6 +13,12 @@ struct LXLyricsLine {
     var sentence: String
     var position: Double
     
+    var timeTag: String {
+        let min = Int(position / 60)
+        let sec = position - Double(min * 60)
+        return String(format: "%02d:%06.3f", min, sec)
+    }
+    
     init(sentence: String, position: Double) {
         self.sentence = sentence
         self.position = position
@@ -186,7 +192,7 @@ extension LXLyrics.idTagKey: CustomStringConvertible {
 extension LXLyricsLine: CustomStringConvertible {
     
     public var description: String {
-        return "[\(position)]\(sentence)"
+        return "[\(timeTag)]\(sentence)"
     }
     
 }
