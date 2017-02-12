@@ -21,3 +21,13 @@ extension Notification.Name {
 // Menu
 let DesktopLyricsEnabled = "DesktopLyricsEnabled"
 let MenuBarLyricsEnabled = "MenuBarLyricsEnabled"
+
+// Display
+let DesktopLyricsHeighFromDock = "DesktopLyricsHeighFromDock"
+let DesktopLyricsFontName = "DesktopLyricsFontName"
+let DesktopLyricsFontSize = "DesktopLyricsFontSize"
+
+let DesktopLyricsColor = "DesktopLyricsColor"
+let DesktopLyricsShadowColor = "DesktopLyricsShadowColor"
+let DesktopLyricsBackgroundColor = "DesktopLyricsBackgroundColor"
+

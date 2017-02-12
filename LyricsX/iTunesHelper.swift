@@ -12,18 +12,20 @@ import ScriptingBridge
 class iTunesHelper {
     
     var iTunes: iTunesApplication!
-    var lyricsSource: [LyricsSource]
+    var lyricsHelper: LyricsSourceHelper
     
     var positionChangeTimer: Timer!
     
     var currentSongID: Int?
-    var currentSongName: String?
+    var currentSongTitle: String?
     var currentArtist: String?
     var currentLyrics: LXLyrics?
     
+    var fetchLrcQueue = OperationQueue()
+    
     init() {
         iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
-        lyricsSource = [LyricsXiami()]
+        lyricsHelper = LyricsSourceHelper()
         
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in self.handlePositionChange() }
         
@@ -55,20 +57,23 @@ class iTunesHelper {
     func handleSongChange() {
         let track = iTunes.currentTrack
         currentSongID = track?.id?()
-        currentSongName = track?.name as String?
+        currentSongTitle = track?.name as String?
         currentArtist = track?.artist as String?
         currentLyrics = nil
         
-        print("song changed: \(currentSongName)")
+        print("song changed: \(currentSongTitle)")
         
-        guard let name = currentSongName, let artist = currentArtist else {
+        let info = ["lrc": "", "next": ""]
+        NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
+        
+        guard let title = currentSongTitle, let artist = currentArtist else {
             return
         }
         
-        // TODO: fetch all source and sort
-        currentLyrics = lyricsSource.first?.fetchLyrics(title: name, artist: artist).first
-        
-        print(currentLyrics ?? "no lrc")
+        lyricsHelper.fetchLyrics(title: title, artist: artist) {
+            self.currentLyrics = self.lyricsHelper.lyrics.first
+            print(self.currentLyrics ?? "no lrc")
+        }
     }
     
     func handlePositionChange() {
@@ -76,7 +81,7 @@ class iTunesHelper {
             return
         }
         
-        let lrc = lyrics[at: position]
+        let lrc = lyrics[position]
         
         let currentLrcSentence = lrc.current?.sentence ?? ""
         let nextLrcSentence = lrc.next?.sentence ?? ""
@@ -84,11 +89,5 @@ class iTunesHelper {
         let info = ["lrc": currentLrcSentence, "next": nextLrcSentence]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
-    
-}
-
-protocol LyricsSource {
-    
-    func fetchLyrics(title: String, artist: String) -> [LXLyrics]
     
 }

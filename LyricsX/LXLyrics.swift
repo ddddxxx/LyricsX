@@ -13,6 +13,12 @@ struct LXLyricsLine {
     var sentence: String
     var position: Double
     
+    var timeTag: String {
+        let min = Int(position / 60)
+        let sec = position - Double(min * 60)
+        return String(format: "%02d:%06.3f", min, sec)
+    }
+    
     init(sentence: String, position: Double) {
         self.sentence = sentence
         self.position = position
@@ -48,46 +54,6 @@ struct LXLyricsLine {
 }
 
 struct LXLyrics {
-    
-    struct idTagKey: RawRepresentable, Hashable {
-        
-        var rawValue: String
-        
-        init(_ rawValue: String) {
-            self.rawValue = rawValue
-        }
-        
-        init(rawValue: String) {
-            self.rawValue = rawValue
-        }
-        
-        var hashValue: Int {
-            get {
-                return rawValue.hash
-            }
-        }
-        
-        static let Title: idTagKey = .init("ti")
-        
-        static let Album: idTagKey = .init("al")
-        
-        static let Artist: idTagKey = .init("ar")
-        
-        static let Author: idTagKey = .init("au")
-        
-        static let LrcBy: idTagKey = .init("by")
-        
-        static let Offset: idTagKey = .init("offset")
-        
-    }
-    
-    enum metadataKey {
-        
-        case source
-        
-        case lyricsURL
-        
-    }
     
     var lyrics: [LXLyricsLine]
     var idTags: [idTagKey: String]
@@ -143,7 +109,7 @@ struct LXLyrics {
             }
         }
         
-        if lyricsLines.count == 0 {
+        if lyrics.count == 0 {
             return nil
         }
         
@@ -159,9 +125,9 @@ struct LXLyrics {
         }
     }
     
-    subscript(at position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
+    subscript(_ position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
         for (index, line) in lyrics.enumerated() {
-            if line.position > position {
+            if line.position - timeDelay > position {
                 let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
                 return (previous, line)
             }
@@ -171,14 +137,54 @@ struct LXLyrics {
     
 }
 
+extension LXLyrics {
+    
+    struct idTagKey: RawRepresentable, Hashable {
+        
+        var rawValue: String
+        
+        init(_ rawValue: String) {
+            self.rawValue = rawValue
+        }
+        
+        init(rawValue: String) {
+            self.rawValue = rawValue
+        }
+        
+        var hashValue: Int {
+            return rawValue.hash
+        }
+        
+        static let Title: idTagKey = .init("ti")
+        
+        static let Album: idTagKey = .init("al")
+        
+        static let Artist: idTagKey = .init("ar")
+        
+        static let Author: idTagKey = .init("au")
+        
+        static let LrcBy: idTagKey = .init("by")
+        
+        static let Offset: idTagKey = .init("offset")
+        
+    }
+    
+    enum metadataKey {
+        
+        case source
+        
+        case lyricsURL
+        
+    }
+    
+}
+
 // MARK: - Debug Print Support
 
 extension LXLyrics.idTagKey: CustomStringConvertible {
     
     public var description: String {
-        get {
-            return rawValue
-        }
+        return rawValue
     }
     
 }
@@ -186,9 +192,7 @@ extension LXLyrics.idTagKey: CustomStringConvertible {
 extension LXLyricsLine: CustomStringConvertible {
     
     public var description: String {
-        get {
-            return "[\(position)]\(sentence)"
-        }
+        return "[\(timeTag)]\(sentence)"
     }
     
 }

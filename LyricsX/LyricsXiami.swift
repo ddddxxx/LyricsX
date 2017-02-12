@@ -11,19 +11,29 @@ import SwiftyJSON
 
 class LyricsXiami: LyricsSource {
     
-    func fetchLyrics(title: String, artist: String) -> [LXLyrics] {
-        return searchLrcFor(title: title, artist: artist).flatMap() { url in
-            var metadata: [LXLyrics.metadataKey: Any] = [:]
-            metadata[.source] = "Xiami"
-            metadata[.lyricsURL] = url
-            return LXLyrics(metadata: metadata)
-        }
+    private let queue: OperationQueue
+    
+    init(queue: OperationQueue = OperationQueue()) {
+        self.queue = queue
     }
     
-    func searchLrcFor(title: String, artist: String) -> [URL] {
-        let ids = searchXiamiIDFor(title: title, artist: artist)
-        
-        return ids.flatMap() { searchLrcFor(xiamiID: $0) }
+    func fetchLyrics(title: String, artist: String) -> [LXLyrics] {
+        var result = [LXLyrics]()
+        let xiamiIDs = searchXiamiIDFor(title: title, artist: artist)
+        let fetchOps = xiamiIDs.map() { id in
+            return BlockOperation() {
+                if let url = self.searchLrcFor(xiamiID: id) {
+                    var metadata: [LXLyrics.metadataKey: Any] = [:]
+                    metadata[.source] = "Xiami"
+                    metadata[.lyricsURL] = url
+                    if let lrc = LXLyrics(metadata: metadata) {
+                        result += [lrc]
+                    }
+                }
+            }
+        }
+        queue.addOperations(fetchOps, waitUntilFinished: true)
+        return result
     }
     
     private func searchXiamiIDFor(title: String, artist: String) -> [Int] {
