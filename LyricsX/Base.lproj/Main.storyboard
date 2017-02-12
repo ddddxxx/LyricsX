@@ -267,13 +267,16 @@
                                     <binding destination="8JF-Og-z6E" name="value" keyPath="self.height" id="bwd-vM-7us"/>
                                 </connections>
                             </textField>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="UmX-Zf-IW4">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="UmX-Zf-IW4" customClass="AlphaColorWell" customModule="LyricsX" customModuleProvider="target">
                                 <rect key="frame" x="110" y="45" width="44" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="7cO-iK-9Gc"/>
                                     <constraint firstAttribute="height" constant="23" id="chG-6R-Z5S"/>
                                 </constraints>
-                                <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="changeColorAction:" target="8JF-Og-z6E" id="Vwn-i6-fjl"/>
+                                </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGr-gm-cw0">
                                 <rect key="frame" x="94" y="24" width="77" height="17"/>
@@ -290,6 +293,9 @@
                                     <constraint firstAttribute="width" constant="44" id="UaC-IT-rDc"/>
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="changeColorAction:" target="8JF-Og-z6E" id="zAJ-Zh-I9j"/>
+                                </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn1-Pb-VCw">
                                 <rect key="frame" x="216" y="24" width="40" height="17"/>
@@ -306,6 +312,9 @@
                                     <constraint firstAttribute="width" constant="44" id="x8l-nc-rXQ"/>
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="changeColorAction:" target="8JF-Og-z6E" id="3z6-zA-6VD"/>
+                                </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUo-ma-3JR">
                                 <rect key="frame" x="314" y="24" width="53" height="17"/>
@@ -353,7 +362,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundColorWell" destination="UmX-Zf-IW4" id="jaf-MS-ruJ"/>
                         <outlet property="fontDisplay" destination="oHc-gj-4JF" id="0Jd-ew-B7z"/>
+                        <outlet property="lyricsColorWell" destination="Jji-JX-Etj" id="mGu-7z-luZ"/>
+                        <outlet property="shadowColorWell" destination="9of-o0-c02" id="by6-RF-xoT"/>
                     </connections>
                 </viewController>
                 <customObject id="mRF-Ay-vJP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

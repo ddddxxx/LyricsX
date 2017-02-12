@@ -9,9 +9,7 @@
 import Cocoa
 import SnapKit
 
-class DesktopLyrics {
-    
-    var lyricsWindowController: NSWindowController!
+class DesktopLyricsController: NSWindowController {
     
     var backgroundView: NSView!
     var firstLineLrcView: NSTextField!
@@ -22,22 +20,52 @@ class DesktopLyrics {
     var firseLine = ""
     var secondLine = ""
     
-    var enabled = UserDefaults.standard.bool(forKey: DesktopLyricsEnabled)
+    var enabled: Bool! {
+        didSet {
+            backgroundView.isHidden = !enabled
+        }
+    }
     
-    var fontName = UserDefaults.standard.string(forKey: DesktopLyricsFontName)! {
+    var fontName: String! {
         didSet {
             updateFontName()
         }
     }
-    var fontSize = UserDefaults.standard.integer(forKey: DesktopLyricsFontSize) {
+    var fontSize: Int! {
         didSet {
             updateFontSize()
         }
     }
     
-    var heightFromDock = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock) {
+    var heightFromDock: Int! {
         didSet {
             lyricsHeightConstraint?.update(offset: -heightFromDock)
+        }
+    }
+    
+    var backgroundColor: NSColor! {
+        didSet {
+            backgroundView.layer?.backgroundColor = backgroundColor.cgColor
+        }
+    }
+    
+    var lyricsColor: NSColor! {
+        didSet {
+            firstLineLrcView.textColor = lyricsColor
+            secondLineLrcView.textColor = lyricsColor
+            waitingLrcView.textColor = lyricsColor
+        }
+    }
+    
+    var shadowColor: NSColor! {
+        didSet {
+            let shadow = NSShadow()
+            shadow.shadowBlurRadius = 3
+            shadow.shadowColor = shadowColor
+            shadow.shadowOffset = .zero
+            firstLineLrcView.shadow = shadow
+            secondLineLrcView.shadow = shadow
+            waitingLrcView.shadow = shadow
         }
     }
     
@@ -51,15 +79,24 @@ class DesktopLyrics {
         window.level = Int(CGWindowLevelForKey(.floatingWindow))
         window.collectionBehavior = .canJoinAllSpaces
         window.contentView?.wantsLayer=true
-        lyricsWindowController = NSWindowController(window: window)
-        lyricsWindowController?.showWindow(nil)
+        super.init(window: window)
+        
+        let userDefaults = UserDefaults.standard
+        enabled = userDefaults.bool(forKey: DesktopLyricsEnabled)
+        fontName = userDefaults.string(forKey: DesktopLyricsFontName)
+        fontSize = userDefaults.integer(forKey: DesktopLyricsFontSize)
+        heightFromDock = userDefaults.integer(forKey: DesktopLyricsHeighFromDock)
+        backgroundColor = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsBackgroundColor)!)! as! NSColor
+        lyricsColor = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsColor)!)! as! NSColor
+        shadowColor = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsShadowColor)!)! as! NSColor
         
         let font = NSFont(name: fontName, size: CGFloat(fontSize))
         
         backgroundView = NSView()
         backgroundView.wantsLayer = true
-        backgroundView.layer?.backgroundColor = CGColor(gray: 0, alpha: 0.6)
+        backgroundView.layer?.backgroundColor = backgroundColor.cgColor
         backgroundView.layer?.cornerRadius = CGFloat(fontSize / 2)
+        backgroundView.isHidden = !enabled
         window.contentView?.addSubview(backgroundView)
         
         firstLineLrcView = NSTextField(labelWithString: "")
@@ -80,18 +117,17 @@ class DesktopLyrics {
         waitingLrcView.alignment = .center
         backgroundView.addSubview(waitingLrcView)
         
-        makeConstraints()
-        
-        displayLrc("LyricsX", secondLine: "")
-        
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 3
-        shadow.shadowColor = NSColor.cyan
+        shadow.shadowColor = shadowColor
         shadow.shadowOffset = .zero
-        
         firstLineLrcView.shadow = shadow
         secondLineLrcView.shadow = shadow
         waitingLrcView.shadow = shadow
+        
+        makeConstraints()
+        
+        displayLrc("LyricsX", secondLine: "")
         
         NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
             var lrc = n.userInfo?["lrc"] as? String ?? ""
@@ -106,13 +142,41 @@ class DesktopLyrics {
             self.displayLrc(lrc, secondLine: next)
         }
         
-        NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { n in
-            self.enabled = UserDefaults.standard.bool(forKey: DesktopLyricsEnabled)
-            self.backgroundView.isHidden = !self.enabled
-            
-            self.heightFromDock = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock)
-            self.fontSize = UserDefaults.standard.integer(forKey: DesktopLyricsFontSize)
-            self.fontName = UserDefaults.standard.string(forKey: DesktopLyricsFontName)!
+        UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsEnabled, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsHeighFromDock, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsFontSize, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsFontName, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsBackgroundColor, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsColor, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsShadowColor, options: .new, context: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let key = keyPath else {
+            return
+        }
+        
+        switch key {
+        case DesktopLyricsEnabled:
+            enabled = change?[.newKey] as? Bool
+        case DesktopLyricsHeighFromDock:
+            heightFromDock = change?[.newKey] as? Int
+        case DesktopLyricsFontSize:
+            fontSize = change?[.newKey] as? Int
+        case DesktopLyricsFontName:
+            fontName = change?[.newKey] as? String
+        case DesktopLyricsBackgroundColor:
+            backgroundColor = NSKeyedUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsBackgroundColor)!)! as! NSColor
+        case DesktopLyricsColor:
+            lyricsColor = NSKeyedUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsColor)!)! as! NSColor
+        case DesktopLyricsShadowColor:
+            shadowColor = NSKeyedUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsShadowColor)!)! as! NSColor
+        default:
+            break
         }
     }
     
@@ -141,7 +205,7 @@ class DesktopLyrics {
     }
     
     func displayLrc(_ firstLine: String, secondLine: String) {
-        guard enabled else {
+        guard enabled == true else {
             return
         }
         
@@ -276,7 +340,7 @@ class DesktopLyrics {
     }
     
     func updateVisibility(animated: Bool) {
-        guard enabled else {
+        guard enabled == true else {
             backgroundView.isHidden = true
             return
         }
