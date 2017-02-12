@@ -39,18 +39,6 @@ struct LXLyricsLine {
         }
     }
     
-    init?(line: String) {
-        guard let regexForTimeTag = try? NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]") else {
-            return nil
-        }
-        guard let matched = regexForTimeTag.firstMatch(in: line, range: NSMakeRange(0, line.characters.count)) else {
-            return nil
-        }
-        let timeTag = (line as NSString).substring(with: matched.range)
-        let sentence = (line as NSString).substring(from: matched.range.location + matched.range.length)
-        self.init(sentence: sentence, timeTag: timeTag)
-    }
-    
 }
 
 struct LXLyrics {
@@ -82,14 +70,22 @@ struct LXLyrics {
         idTags = [:]
         metadata = [:]
         
-        guard let regexForIDTag = try? NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]") else {
+        guard let regexForIDTag = try? NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]"),
+            let regexForTimeTag = try? NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]") else {
             return
         }
         
         let lyricsLines = lrcContents.components(separatedBy: .newlines)
         for line in lyricsLines {
-            if let lyric = LXLyricsLine(line: line) {
-                lyrics += [lyric]
+            let timeTagsMatched: [NSTextCheckingResult] = regexForTimeTag.matches(in: line, options: [], range: NSMakeRange(0, line.characters.count))
+            if timeTagsMatched.count > 0 {
+                let index: Int = timeTagsMatched.last!.range.location + timeTagsMatched.last!.range.length
+                let lyricsSentence: String = line.substring(from: line.characters.index(line.startIndex, offsetBy: index))
+                let lyrics = timeTagsMatched.flatMap() { result -> LXLyricsLine? in
+                    let timeTagStr = (line as NSString).substring(with: result.range) as String
+                    return LXLyricsLine(sentence: lyricsSentence, timeTag: timeTagStr)
+                }
+                self.lyrics += lyrics
             } else {
                 let idTagsMatched = regexForIDTag.matches(in: line, range: NSMakeRange(0, line.characters.count))
                 guard idTagsMatched.count > 0 else {
