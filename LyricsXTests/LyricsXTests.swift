@@ -44,7 +44,8 @@ class LyricsXTests: XCTestCase {
         
         let lyricsSources: [LyricsSource] = [
             LyricsXiami(),
-            LyricsGecimi()
+            LyricsGecimi(),
+            LyricsTTPod()
         ]
         
         lyricsSources.forEach() { src in
