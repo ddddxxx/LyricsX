@@ -25,7 +25,8 @@ class LyricsSourceHelper {
         queue = OperationQueue()
         lyricsSource = [
             LyricsXiami(),
-            LyricsGecimi()
+            LyricsGecimi(),
+            LyricsTTPod()
         ]
         lyrics = []
     }
