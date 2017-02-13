@@ -131,6 +131,12 @@ struct LXLyrics {
         return (lyrics.last, nil)
     }
     
+    struct source {
+        
+        static let unknow = "unknow"
+        
+    }
+    
 }
 
 extension LXLyrics {

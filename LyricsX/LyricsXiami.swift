@@ -24,7 +24,7 @@ class LyricsXiami: LyricsSource {
             return BlockOperation() {
                 if let url = self.searchLrcFor(xiamiID: id) {
                     var metadata: [LXLyrics.metadataKey: Any] = [:]
-                    metadata[.source] = "Xiami"
+                    metadata[.source] = LXLyrics.source.Xiami
                     metadata[.lyricsURL] = url
                     if let lrc = LXLyrics(metadata: metadata) {
                         result += [lrc]
@@ -60,6 +60,12 @@ class LyricsXiami: LyricsSource {
         
         return URL(string: urlStr)
     }
+    
+}
+
+extension LXLyrics.source {
+    
+    static let Xiami = "Xiami"
     
 }
 

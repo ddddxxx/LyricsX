@@ -18,11 +18,22 @@ class LyricsTTPod: LyricsSource {
         
         guard let data = try? Data(contentsOf: url),
             let lrcContent = JSON(data)["data"]["lrc"].string,
-            let lrc = LXLyrics(lrcContent)else {
+            var lrc = LXLyrics(lrcContent)else {
             return []
         }
         
+        var metadata: [LXLyrics.metadataKey: Any] = [:]
+        metadata[.source] = LXLyrics.source.TTPod
+        
+        lrc.metadata = metadata
+        
         return [lrc]
     }
+    
+}
+
+extension LXLyrics.source {
+    
+    static let TTPod = "TTPod"
     
 }

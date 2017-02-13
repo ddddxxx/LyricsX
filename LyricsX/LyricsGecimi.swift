@@ -23,7 +23,7 @@ class LyricsGecimi: LyricsSource {
         let fetchOps = lrcs.map() { url in
             return BlockOperation() {
                 var metadata: [LXLyrics.metadataKey: Any] = [:]
-                metadata[.source] = "Gecimi"
+                metadata[.source] = LXLyrics.source.Gecimi
                 metadata[.lyricsURL] = url
                 if let lrc = LXLyrics(metadata: metadata) {
                     result += [lrc]
@@ -48,4 +48,10 @@ class LyricsGecimi: LyricsSource {
         }
     }
 
+}
+
+extension LXLyrics.source {
+    
+    static let Gecimi = "Gecimi"
+    
 }
