@@ -22,8 +22,8 @@ class LyricsGecimi: LyricsSource {
         let lrcs = searchLrcFor(title: title, artist: artist)
         let fetchOps = lrcs.map() { url in
             return BlockOperation() {
-                var metadata: [LXLyrics.metadataKey: Any] = [:]
-                metadata[.source] = LXLyrics.source.Gecimi
+                var metadata: [LXLyrics.MetadataKey: Any] = [:]
+                metadata[.source] = LXLyrics.Source.Gecimi
                 metadata[.lyricsURL] = url
                 metadata[.searchTitle] = title
                 metadata[.searchArtise] = artist
@@ -52,7 +52,7 @@ class LyricsGecimi: LyricsSource {
 
 }
 
-extension LXLyrics.source {
+extension LXLyrics.Source {
     
     static let Gecimi = "Gecimi"
     

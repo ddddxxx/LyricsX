@@ -23,8 +23,8 @@ class LyricsXiami: LyricsSource {
         let fetchOps = xiamiIDs.map() { id in
             return BlockOperation() {
                 if let url = self.searchLrcFor(xiamiID: id) {
-                    var metadata: [LXLyrics.metadataKey: Any] = [:]
-                    metadata[.source] = LXLyrics.source.Xiami
+                    var metadata: [LXLyrics.MetadataKey: Any] = [:]
+                    metadata[.source] = LXLyrics.Source.Xiami
                     metadata[.lyricsURL] = url
                     metadata[.searchTitle] = title
                     metadata[.searchArtise] = artist
@@ -65,7 +65,7 @@ class LyricsXiami: LyricsSource {
     
 }
 
-extension LXLyrics.source {
+extension LXLyrics.Source {
     
     static let Xiami = "Xiami"
     

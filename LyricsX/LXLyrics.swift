@@ -44,8 +44,8 @@ struct LXLyricsLine {
 struct LXLyrics {
     
     var lyrics: [LXLyricsLine]
-    var idTags: [idTagKey: String]
-    var metadata: [metadataKey: Any]
+    var idTags: [IDTagKey: String]
+    var metadata: [MetadataKey: Any]
     
     var offset: Int {
         get {
@@ -97,7 +97,7 @@ struct LXLyrics {
                     tagStr.remove(at: tagStr.index(before: tagStr.endIndex))
                     let components = tagStr.components(separatedBy: ":")
                     if components.count == 2 {
-                        let key = idTagKey(components[0])
+                        let key = IDTagKey(components[0])
                         let value = components[1]
                         idTags[key] = value
                     }
@@ -112,7 +112,7 @@ struct LXLyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
-    init?(metadata: [metadataKey: Any]) {
+    init?(metadata: [MetadataKey: Any]) {
         if let lrcURL = metadata[.lyricsURL] as? URL, let lrcContent = try? String(contentsOf: lrcURL) {
             self.init(lrcContent)
             self.metadata = metadata
@@ -131,7 +131,7 @@ struct LXLyrics {
         return (lyrics.last, nil)
     }
     
-    struct source {
+    struct Source {
         
         static let unknow = "unknow"
         
@@ -141,7 +141,7 @@ struct LXLyrics {
 
 extension LXLyrics {
     
-    struct idTagKey: RawRepresentable, Hashable {
+    struct IDTagKey: RawRepresentable, Hashable {
         
         var rawValue: String
         
@@ -157,21 +157,21 @@ extension LXLyrics {
             return rawValue.hash
         }
         
-        static let Title: idTagKey = .init("ti")
+        static let Title: IDTagKey = .init("ti")
         
-        static let Album: idTagKey = .init("al")
+        static let Album: IDTagKey = .init("al")
         
-        static let Artist: idTagKey = .init("ar")
+        static let Artist: IDTagKey = .init("ar")
         
-        static let Author: idTagKey = .init("au")
+        static let Author: IDTagKey = .init("au")
         
-        static let LrcBy: idTagKey = .init("by")
+        static let LrcBy: IDTagKey = .init("by")
         
-        static let Offset: idTagKey = .init("offset")
+        static let Offset: IDTagKey = .init("offset")
         
     }
     
-    enum metadataKey {
+    enum MetadataKey {
         
         case source
         
@@ -187,7 +187,7 @@ extension LXLyrics {
 
 // MARK: - Debug Print Support
 
-extension LXLyrics.idTagKey: CustomStringConvertible {
+extension LXLyrics.IDTagKey: CustomStringConvertible {
     
     public var description: String {
         return rawValue
