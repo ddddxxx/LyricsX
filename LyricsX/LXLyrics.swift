@@ -177,6 +177,10 @@ extension LXLyrics {
         
         case lyricsURL
         
+        case searchTitle
+        
+        case searchArtise
+        
     }
     
 }
