@@ -41,6 +41,20 @@ struct LXLyricsLine {
     
 }
 
+extension LXLyricsLine: Equatable, Hashable {
+    
+    var hashValue: Int {
+        return sentence.hashValue ^ position.hashValue
+    }
+    
+    static func ==(lhs: LXLyricsLine, rhs: LXLyricsLine) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+}
+
+// MARK: -
+
 struct LXLyrics {
     
     var lyrics: [LXLyricsLine]

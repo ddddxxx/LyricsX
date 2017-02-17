@@ -21,6 +21,9 @@ class iTunesHelper {
     var currentArtist: String?
     var currentLyrics: LXLyrics?
     
+    var currentLyricsLine: LXLyricsLine?
+    var nextLyricsLine: LXLyricsLine?
+    
     var fetchLrcQueue = OperationQueue()
     
     init() {
@@ -83,10 +86,17 @@ class iTunesHelper {
         
         let lrc = lyrics[position]
         
-        let currentLrcSentence = lrc.current?.sentence ?? ""
-        let nextLrcSentence = lrc.next?.sentence ?? ""
+        if currentLyricsLine == lrc.current {
+            return
+        }
         
-        let info = ["lrc": currentLrcSentence, "next": nextLrcSentence]
+        currentLyricsLine = lrc.current
+        nextLyricsLine = lrc.next
+        
+        let info = [
+            "lrc": currentLyricsLine?.sentence as Any,
+            "next": nextLyricsLine?.sentence as Any
+        ]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
     
