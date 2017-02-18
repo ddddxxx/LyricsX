@@ -27,7 +27,7 @@ class LyricsXiami: LyricsSource {
                     metadata[.source] = LXLyrics.Source.Xiami
                     metadata[.lyricsURL] = url
                     metadata[.searchTitle] = title
-                    metadata[.searchArtise] = artist
+                    metadata[.searchArtist] = artist
                     if let lrc = LXLyrics(metadata: metadata) {
                         result += [lrc]
                     }

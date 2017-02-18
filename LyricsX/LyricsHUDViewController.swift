@@ -12,13 +12,19 @@ class LyricsHUDViewController: NSViewController {
     
     @IBOutlet var lyricsTextView: NSTextView!
     
+    var lyrics: LXLyrics? {
+        didSet {
+            lyricsTextView.string = lyrics?.description
+        }
+    }
+    
     override func viewDidLoad() {
         lyricsTextView.font = .systemFont(ofSize: 13)
         lyricsTextView.textColor = NSColor(white: 0.9, alpha: 1)
     }
     
     override func viewWillAppear() {
-        lyricsTextView.string = (NSApplication.shared().delegate as? AppDelegate)?.helper.currentLyrics?.description
+        lyrics = (NSApplication.shared().delegate as? AppDelegate)?.helper.currentLyrics
     }
     
 }

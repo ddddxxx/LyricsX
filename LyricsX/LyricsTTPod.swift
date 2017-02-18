@@ -25,7 +25,7 @@ class LyricsTTPod: LyricsSource {
         var metadata: [LXLyrics.MetadataKey: Any] = [:]
         metadata[.source] = LXLyrics.Source.TTPod
         metadata[.searchTitle] = title
-        metadata[.searchArtise] = artist
+        metadata[.searchArtist] = artist
         
         lrc.metadata = metadata
         

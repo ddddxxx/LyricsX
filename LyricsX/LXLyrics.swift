@@ -193,7 +193,7 @@ extension LXLyrics {
         
         case searchTitle
         
-        case searchArtise
+        case searchArtist
         
     }
     

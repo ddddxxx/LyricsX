@@ -26,7 +26,7 @@ class LyricsGecimi: LyricsSource {
                 metadata[.source] = LXLyrics.Source.Gecimi
                 metadata[.lyricsURL] = url
                 metadata[.searchTitle] = title
-                metadata[.searchArtise] = artist
+                metadata[.searchArtist] = artist
                 if let lrc = LXLyrics(metadata: metadata) {
                     result += [lrc]
                 }
