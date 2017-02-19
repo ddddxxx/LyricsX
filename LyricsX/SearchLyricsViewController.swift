@@ -12,8 +12,11 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     var searchResult = [LXLyrics]()
     
+    var hudWindow: NSWindowController!
+    
     override func viewDidLoad() {
         searchResult = (NSApplication.shared().delegate as? AppDelegate)?.helper.lyricsHelper.lyrics ?? []
+        hudWindow = NSStoryboard(name: "Main", bundle: .main).instantiateController(withIdentifier: "LyricsHUD") as? NSWindowController
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -35,6 +38,19 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         default:
             return nil
         }
+    }
+    
+    func tableView(_ tableView: NSTableView, selectionIndexesForProposedSelection proposedSelectionIndexes: IndexSet) -> IndexSet {
+        if proposedSelectionIndexes.count == 1,
+            let index = proposedSelectionIndexes.first {
+            let hudView = hudWindow.contentViewController as? LyricsHUDViewController
+            hudView?.lyrics = searchResult[index]
+            hudWindow.showWindow(nil)
+            self.view.window?.becomeKey()
+            tableView.becomeFirstResponder()
+        }
+        
+        return proposedSelectionIndexes;
     }
     
 }
