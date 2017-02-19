@@ -17,9 +17,6 @@ class DesktopLyricsController: NSWindowController {
     var waitingLrcView: NSTextField!
     var reversed = false
     
-    var firseLine = ""
-    var secondLine = ""
-    
     var enabled: Bool! {
         didSet {
             backgroundView.isHidden = !enabled
@@ -208,13 +205,6 @@ class DesktopLyricsController: NSWindowController {
         guard enabled == true else {
             return
         }
-        
-        if self.firseLine == firstLine, self.secondLine == secondLine {
-            return
-        }
-        
-        self.firseLine = firstLine
-        self.secondLine = secondLine
         
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.2
