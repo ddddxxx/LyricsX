@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class PreferencesDisplayViewController: NSViewController {
+class PreferenceDisplayViewController: NSViewController {
     
     @IBOutlet weak var fontDisplay: NSTextField!
     

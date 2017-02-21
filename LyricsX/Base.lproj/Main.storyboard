@@ -133,7 +133,7 @@
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
             <objects>
-                <viewController id="8JF-Og-z6E" userLabel="Display" customClass="PreferencesDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
                         <rect key="frame" x="0.0" y="0.0" width="471" height="158"/>
                         <autoresizingMask key="autoresizingMask"/>
