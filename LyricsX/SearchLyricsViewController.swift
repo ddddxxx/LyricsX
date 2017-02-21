@@ -14,6 +14,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     var hudWindow: NSWindowController!
     
+    @IBOutlet weak var artworkView: NSImageView!
+    
     override func viewDidLoad() {
         searchResult = (NSApplication.shared().delegate as? AppDelegate)?.helper.lyricsHelper.lyrics ?? []
         hudWindow = NSStoryboard(name: "Main", bundle: .main).instantiateController(withIdentifier: "LyricsHUD") as? NSWindowController
@@ -46,6 +48,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             let hudView = hudWindow.contentViewController as? LyricsHUDViewController
             hudView?.lyrics = searchResult[index]
             hudWindow.showWindow(nil)
+            artworkView.image = searchResult[index].metadata[.artworkURL].flatMap({URL(string: $0)}).flatMap({NSImage(contentsOf: $0)}) ?? #imageLiteral(resourceName: "no_artwork")
             self.view.window?.becomeKey()
             tableView.becomeFirstResponder()
         }

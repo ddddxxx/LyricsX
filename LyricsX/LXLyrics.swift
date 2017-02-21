@@ -59,7 +59,7 @@ struct LXLyrics {
     
     var lyrics: [LXLyricsLine]
     var idTags: [IDTagKey: String]
-    var metadata: [MetadataKey: Any]
+    var metadata: [MetadataKey: String]
     
     var offset: Int {
         get {

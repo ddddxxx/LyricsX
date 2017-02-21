@@ -548,7 +548,7 @@
                                     <constraint firstAttribute="width" constant="150" id="KTe-L1-GLM"/>
                                     <constraint firstAttribute="width" secondItem="N4M-lF-IAL" secondAttribute="height" id="pY8-pl-uO1"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="no_artwork" id="s5v-xd-W4E"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" image="no_artwork" id="s5v-xd-W4E"/>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Np2-88-ohs">
                                 <rect key="frame" x="423" y="251" width="83" height="32"/>
@@ -580,6 +580,9 @@
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="N4M-lF-IAL" secondAttribute="bottom" constant="20" id="wWI-Cx-xBA"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="artworkView" destination="N4M-lF-IAL" id="4WI-Zu-ksO"/>
+                    </connections>
                 </viewController>
                 <customObject id="VAB-OA-vI2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
