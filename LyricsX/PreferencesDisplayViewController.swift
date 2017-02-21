@@ -19,11 +19,6 @@ class PreferencesDisplayViewController: NSViewController {
     var fontName = UserDefaults.standard.string(forKey: DesktopLyricsFontName)!
     var fontSize = UserDefaults.standard.integer(forKey: DesktopLyricsFontSize)
     var font: NSFont!
-    var height = UserDefaults.standard.integer(forKey: DesktopLyricsHeighFromDock) {
-        didSet {
-            UserDefaults.standard.set(height, forKey: DesktopLyricsHeighFromDock)
-        }
-    }
     
     override func viewDidLoad() {
         font = NSFont(name: fontName, size: CGFloat(fontSize))
