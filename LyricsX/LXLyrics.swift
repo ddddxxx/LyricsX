@@ -126,13 +126,15 @@ struct LXLyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
-    init?(metadata: [MetadataKey: Any]) {
-        if let lrcURL = metadata[.lyricsURL] as? URL, let lrcContent = try? String(contentsOf: lrcURL) {
-            self.init(lrcContent)
-            self.metadata = metadata
-        } else {
+    init?(metadata: [MetadataKey: String]) {
+        guard let lrcURLStr = metadata[.lyricsURL],
+            let lrcURL = URL(string: lrcURLStr),
+            let lrcContent = try? String(contentsOf: lrcURL) else {
             return nil
         }
+        
+        self.init(lrcContent)
+        self.metadata = metadata
     }
     
     subscript(_ position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
@@ -143,12 +145,6 @@ struct LXLyrics {
             }
         }
         return (lyrics.last, nil)
-    }
-    
-    struct Source {
-        
-        static let unknow = "unknow"
-        
     }
     
 }
@@ -194,6 +190,8 @@ extension LXLyrics {
         case searchTitle
         
         case searchArtist
+        
+        case artworkURL
         
     }
     

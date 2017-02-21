@@ -22,8 +22,8 @@ class LyricsTTPod: LyricsSource {
             return []
         }
         
-        var metadata: [LXLyrics.MetadataKey: Any] = [:]
-        metadata[.source] = LXLyrics.Source.TTPod
+        var metadata: [LXLyrics.MetadataKey: String] = [:]
+        metadata[.source] = "TTPod"
         metadata[.searchTitle] = title
         metadata[.searchArtist] = artist
         
@@ -31,11 +31,5 @@ class LyricsTTPod: LyricsSource {
         
         return [lrc]
     }
-    
-}
-
-extension LXLyrics.Source {
-    
-    static let TTPod = "TTPod"
     
 }

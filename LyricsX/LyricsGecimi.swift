@@ -20,11 +20,11 @@ class LyricsGecimi: LyricsSource {
     func fetchLyrics(title: String, artist: String) -> [LXLyrics] {
         var result = [LXLyrics]()
         let lrcs = searchLrcFor(title: title, artist: artist)
-        let fetchOps = lrcs.map() { url in
+        let fetchOps = lrcs.map() { lrcUrlStr in
             return BlockOperation() {
-                var metadata: [LXLyrics.MetadataKey: Any] = [:]
-                metadata[.source] = LXLyrics.Source.Gecimi
-                metadata[.lyricsURL] = url
+                var metadata: [LXLyrics.MetadataKey: String] = [:]
+                metadata[.source] = "Gecimi"
+                metadata[.lyricsURL] = lrcUrlStr
                 metadata[.searchTitle] = title
                 metadata[.searchArtist] = artist
                 if let lrc = LXLyrics(metadata: metadata) {
@@ -36,7 +36,7 @@ class LyricsGecimi: LyricsSource {
         return result
     }
     
-    private func searchLrcFor(title: String, artist: String) -> [URL] {
+    private func searchLrcFor(title: String, artist: String) -> [String] {
         let urlStr = "http://gecimi.com/api/lyric/\(title)/\(artist)"
         let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
@@ -46,14 +46,8 @@ class LyricsGecimi: LyricsSource {
         }
         
         return array.flatMap() { item in
-            return item["lrc"].string.flatMap() {URL(string: $0)}
+            return item["lrc"].string
         }
     }
 
-}
-
-extension LXLyrics.Source {
-    
-    static let Gecimi = "Gecimi"
-    
 }

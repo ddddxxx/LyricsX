@@ -22,15 +22,17 @@ class LyricsXiami: LyricsSource {
         let xiamiIDs = searchXiamiIDFor(title: title, artist: artist)
         let fetchOps = xiamiIDs.map() { id in
             return BlockOperation() {
-                if let url = self.searchLrcFor(xiamiID: id) {
-                    var metadata: [LXLyrics.MetadataKey: Any] = [:]
-                    metadata[.source] = LXLyrics.Source.Xiami
-                    metadata[.lyricsURL] = url
-                    metadata[.searchTitle] = title
-                    metadata[.searchArtist] = artist
-                    if let lrc = LXLyrics(metadata: metadata) {
-                        result += [lrc]
-                    }
+                let parser = LyricsXiamiXMLParser()
+                guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(id)"),
+                    let data = try? Data(contentsOf: url),
+                    var metadata = parser.parseLrcURL(data: data) else {
+                        return
+                }
+                metadata[.source] = "Xiami"
+                metadata[.searchTitle] = title
+                metadata[.searchArtist] = artist
+                if let lrc = LXLyrics(metadata: metadata) {
+                    result += [lrc]
                 }
             }
         }
@@ -52,23 +54,6 @@ class LyricsXiami: LyricsSource {
         }
     }
     
-    private func searchLrcFor(xiamiID: Int) -> URL? {
-        let parser = LyricsXiamiXMLParser()
-        guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(xiamiID)"),
-            let data = try? Data(contentsOf: url),
-            let urlStr = parser.parseLrcURL(data: data) else {
-            return nil
-        }
-        
-        return URL(string: urlStr)
-    }
-    
-}
-
-extension LXLyrics.Source {
-    
-    static let Xiami = "Xiami"
-    
 }
 
 // MARK: - XMLParser
@@ -77,20 +62,25 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     
     var XMLContent: String?
     
-    var lrcResult: String?
+    var result: [LXLyrics.MetadataKey: String] = [:]
     
-    func parseLrcURL(data: Data) -> String? {
+    func parseLrcURL(data: Data) -> [LXLyrics.MetadataKey: String]? {
         let parser = XMLParser(data: data)
         parser.delegate = self
         let success = parser.parse()
-        return success ? lrcResult : nil
+        return success ? result : nil
     }
     
     // MARK: XMLParserDelegate
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "lyric" {
-            lrcResult = XMLContent
+        switch elementName {
+        case "lyric":
+            result[.lyricsURL] = XMLContent
+        case "pic":
+            result[.artworkURL] = XMLContent
+        default:
+            return
         }
     }
     
