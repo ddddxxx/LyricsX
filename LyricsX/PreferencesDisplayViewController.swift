@@ -28,11 +28,6 @@ class PreferencesDisplayViewController: NSViewController {
     override func viewDidLoad() {
         font = NSFont(name: fontName, size: CGFloat(fontSize))
         
-        let userDefaults = UserDefaults.standard
-        backgroundColorWell.color = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsBackgroundColor)!)! as! NSColor
-        lyricsColorWell.color = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsColor)!)! as! NSColor
-        shadowColorWell.color = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsShadowColor)!)! as! NSColor
-        
         updateFontDisplay()
         
         super.viewDidLoad()
@@ -68,12 +63,6 @@ class PreferencesDisplayViewController: NSViewController {
         fontManger.target = self
         fontManger.setSelectedFont(font, isMultiple: false)
         fontPanel.makeKeyAndOrderFront(self)
-    }
-    
-    @IBAction func changeColorAction(_ sender: NSColorWell) {
-        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: lyricsColorWell.color) as AnyObject, forKey: DesktopLyricsColor)
-        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: shadowColorWell.color) as AnyObject, forKey: DesktopLyricsShadowColor)
-        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: backgroundColorWell.color) as AnyObject, forKey: DesktopLyricsBackgroundColor)
     }
     
 }
