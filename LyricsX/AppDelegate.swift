@@ -28,9 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             DesktopLyricsHeighFromDock : NSNumber(value: 20),
             DesktopLyricsFontName: "Helvetica Light" as AnyObject,
             DesktopLyricsFontSize: NSNumber(value: 28),
-            DesktopLyricsColor: NSKeyedArchiver.archivedData(withRootObject: NSColor.white) as AnyObject,
-            DesktopLyricsShadowColor: NSKeyedArchiver.archivedData(withRootObject: NSColor.cyan) as AnyObject,
-            DesktopLyricsBackgroundColor: NSKeyedArchiver.archivedData(withRootObject: NSColor(white: 0, alpha: 0.6)) as AnyObject,
+            DesktopLyricsColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) as AnyObject,
+            DesktopLyricsShadowColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject,
+            DesktopLyricsBackgroundColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject,
         ]
         UserDefaults.standard.register(defaults: registerDefaults)
         
