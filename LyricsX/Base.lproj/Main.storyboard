@@ -525,6 +525,9 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="hFt-BA-jFS" name="value" keyPath="self.searchTitle" id="ZZn-fm-flm"/>
+                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVe-a1-Feu">
                                 <rect key="frame" x="210" y="260" width="41" height="17"/>
@@ -541,6 +544,9 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="hFt-BA-jFS" name="value" keyPath="self.searchArtist" id="auR-sT-yE6"/>
+                                </connections>
                             </textField>
                             <imageView horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N4M-lF-IAL">
                                 <rect key="frame" x="347" y="89" width="156" height="156"/>
@@ -556,6 +562,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="searchAction:" target="hFt-BA-jFS" id="LsO-O6-hwU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -582,6 +591,7 @@
                     </view>
                     <connections>
                         <outlet property="artworkView" destination="N4M-lF-IAL" id="4WI-Zu-ksO"/>
+                        <outlet property="tableView" destination="gfB-qN-IQm" id="KZv-Xv-tSs"/>
                     </connections>
                 </viewController>
                 <customObject id="VAB-OA-vI2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
