@@ -11,10 +11,12 @@ import Cocoa
 class LyricsHUDViewController: NSViewController {
     
     @IBOutlet var lyricsTextView: NSTextView!
+    @IBOutlet weak var useLrcButton: NSButton!
     
     var lyrics: LXLyrics? {
         didSet {
             lyricsTextView.string = lyrics?.description
+            useLrcButton.isEnabled = true
         }
     }
     
@@ -25,6 +27,11 @@ class LyricsHUDViewController: NSViewController {
     
     override func viewWillAppear() {
         lyrics = (NSApplication.shared().delegate as? AppDelegate)?.helper.currentLyrics
+    }
+    
+    @IBAction func useLrc(_ sender: Any) {
+        (NSApplication.shared().delegate as? AppDelegate)?.helper.currentLyrics = lyrics
+        useLrcButton.isEnabled = false
     }
     
 }

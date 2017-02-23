@@ -83,9 +83,9 @@ class DesktopLyricsController: NSWindowController {
         fontName = userDefaults.string(forKey: DesktopLyricsFontName)
         fontSize = userDefaults.integer(forKey: DesktopLyricsFontSize)
         heightFromDock = userDefaults.integer(forKey: DesktopLyricsHeighFromDock)
-        backgroundColor = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsBackgroundColor)!)! as! NSColor
-        lyricsColor = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsColor)!)! as! NSColor
-        shadowColor = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsShadowColor)!)! as! NSColor
+        backgroundColor = NSUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsBackgroundColor)!)! as! NSColor
+        lyricsColor = NSUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsColor)!)! as! NSColor
+        shadowColor = NSUnarchiver.unarchiveObject(with: userDefaults.data(forKey: DesktopLyricsShadowColor)!)! as! NSColor
         
         let font = NSFont(name: fontName, size: CGFloat(fontSize))
         
@@ -167,11 +167,11 @@ class DesktopLyricsController: NSWindowController {
         case DesktopLyricsFontName:
             fontName = change?[.newKey] as? String
         case DesktopLyricsBackgroundColor:
-            backgroundColor = NSKeyedUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsBackgroundColor)!)! as! NSColor
+            backgroundColor = NSUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsBackgroundColor)!)! as! NSColor
         case DesktopLyricsColor:
-            lyricsColor = NSKeyedUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsColor)!)! as! NSColor
+            lyricsColor = NSUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsColor)!)! as! NSColor
         case DesktopLyricsShadowColor:
-            shadowColor = NSKeyedUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsShadowColor)!)! as! NSColor
+            shadowColor = NSUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: DesktopLyricsShadowColor)!)! as! NSColor
         default:
             break
         }
