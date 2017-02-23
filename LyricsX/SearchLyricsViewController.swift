@@ -28,6 +28,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         searchTitle = helper?.currentSongTitle ?? ""
         searchResult = helper?.lyricsHelper.lyrics ?? []
         hudWindow = NSStoryboard(name: "Main", bundle: .main).instantiateController(withIdentifier: "LyricsHUD") as? NSWindowController
+        super.viewDidLoad()
     }
     
     @IBAction func searchAction(_ sender: NSButton) {

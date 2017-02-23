@@ -23,10 +23,12 @@ class LyricsHUDViewController: NSViewController {
     override func viewDidLoad() {
         lyricsTextView.font = .systemFont(ofSize: 13)
         lyricsTextView.textColor = NSColor(white: 0.9, alpha: 1)
+        super.viewDidLoad()
     }
     
     override func viewWillAppear() {
         lyrics = (NSApplication.shared().delegate as? AppDelegate)?.helper.currentLyrics
+        super.viewDidLoad()
     }
     
     @IBAction func useLrc(_ sender: Any) {
