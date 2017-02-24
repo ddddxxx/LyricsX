@@ -591,6 +591,7 @@
                     </view>
                     <connections>
                         <outlet property="artworkView" destination="N4M-lF-IAL" id="4WI-Zu-ksO"/>
+                        <outlet property="searchButton" destination="Np2-88-ohs" id="JBE-xM-6xb"/>
                         <outlet property="tableView" destination="gfB-qN-IQm" id="KZv-Xv-tSs"/>
                     </connections>
                 </viewController>

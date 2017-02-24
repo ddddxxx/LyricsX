@@ -13,7 +13,11 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     var searchResult = [LXLyrics]()
     
     dynamic var searchArtist = ""
-    dynamic var searchTitle = ""
+    dynamic var searchTitle = "" {
+        didSet {
+            searchButton.isEnabled = searchTitle.characters.count > 0
+        }
+    }
     
     let lyricsHelper = LyricsSourceHelper()
     
@@ -21,6 +25,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     @IBOutlet weak var artworkView: NSImageView!
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var searchButton: NSButton!
     
     override func viewDidLoad() {
         let helper = (NSApplication.shared().delegate as? AppDelegate)?.helper
@@ -34,11 +39,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func searchAction(_ sender: NSButton) {
         searchResult = []
         tableView.reloadData()
-        guard searchTitle.characters.count > 0,
-            searchArtist.characters.count > 0 else {
-            // TODO: alert
-            return
-        }
         lyricsHelper.fetchLyrics(title: searchTitle, artist: searchArtist) {
             self.searchResult = self.lyricsHelper.lyrics
             DispatchQueue.main.async {
