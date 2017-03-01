@@ -218,12 +218,9 @@ extension LXLyricsLine: CustomStringConvertible {
 extension LXLyrics: CustomStringConvertible {
     
     public var description: String {
-        get {
-            let meta = metadata.reduce("") { $0 + "[[\($1.key): \($1.value)]]\n"}
-            let tag = idTags.reduce("") { $0 + "[\($1.key): \($1.value)]\n" }
-            let lrc = lyrics.reduce("") { $0 + "\($1.description)\n" }
-            return meta + tag + lrc
-        }
+        let tag = idTags.map({"[\($0.key):\($0.value)]"}).joined(separator: "\n")
+        let lrc = lyrics.map({$0.description}).joined(separator: "\n")
+        return tag + "\n" + lrc
     }
     
 }
