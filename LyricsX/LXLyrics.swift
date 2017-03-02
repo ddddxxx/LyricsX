@@ -147,6 +147,34 @@ struct LXLyrics {
         return (lyrics.last, nil)
     }
     
+    func saveToLocal() {
+        let savingPath = NSSearchPathForDirectoriesInDomains(.musicDirectory, [.userDomainMask], true).first! + "/LyricsX"
+        let fileManager = FileManager.default
+        
+        do {
+            var isDir = ObjCBool(false)
+            if fileManager.fileExists(atPath: savingPath, isDirectory: &isDir) {
+                if !isDir.boolValue {
+                    return
+                }
+            } else {
+                try fileManager.createDirectory(atPath: savingPath, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
+            let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
+            let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
+            
+            if fileManager.fileExists(atPath: lrcFilePath) {
+                try fileManager.removeItem(atPath: lrcFilePath)
+            }
+            try description.write(toFile: lrcFilePath, atomically: false, encoding: String.Encoding.utf8)
+        } catch let error as NSError{
+            print(error)
+            return
+        }
+    }
+    
 }
 
 extension LXLyrics {
