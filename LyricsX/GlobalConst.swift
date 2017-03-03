@@ -31,3 +31,7 @@ let DesktopLyricsColor = "DesktopLyricsColor"
 let DesktopLyricsShadowColor = "DesktopLyricsShadowColor"
 let DesktopLyricsBackgroundColor = "DesktopLyricsBackgroundColor"
 
+// File
+let LyricsSavingPath = "LyricsSavingPath"
+let LyricsDefaultSavingPath = NSSearchPathForDirectoriesInDomains(.musicDirectory, [.userDomainMask], true).first! + "/LyricsX"
+

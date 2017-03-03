@@ -148,7 +148,7 @@ struct LXLyrics {
     }
     
     func saveToLocal() {
-        let savingPath = NSSearchPathForDirectoriesInDomains(.musicDirectory, [.userDomainMask], true).first! + "/LyricsX"
+        let savingPath = UserDefaults.standard.string(forKey: LyricsSavingPath)!
         let fileManager = FileManager.default
         
         do {
