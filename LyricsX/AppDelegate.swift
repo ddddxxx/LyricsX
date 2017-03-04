@@ -32,7 +32,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             DesktopLyricsShadowColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject,
             DesktopLyricsBackgroundColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject,
             // File
-            LyricsSavingPath: LyricsDefaultSavingPath as AnyObject
+            LyricsSavingPathPopUpIndex: NSNumber(value: 0 as Int),
+            LyricsCustomSavingPath: LyricsSavingPathDefault as AnyObject
         ]
         UserDefaults.standard.register(defaults: registerDefaults)
         

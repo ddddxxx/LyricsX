@@ -28,6 +28,7 @@
 		BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */; };
 		BBC1D5891E4B1C44008869EC /* LyricsXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5881E4B1C44008869EC /* LyricsXTests.swift */; };
 		BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */; };
+		BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		BBC1D5881E4B1C44008869EC /* LyricsXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsXTests.swift; sourceTree = "<group>"; };
 		BBC1D58A1E4B1C44008869EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceDisplayViewController.swift; sourceTree = "<group>"; };
+		BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceGeneralViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,9 +157,9 @@
 		BB7EC7B41E4ECFFB00A0AC3F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BBC7C5561E6AEA4500E3EC4F /* Preferences */,
 				BB4141BF1E45B67800A51775 /* DesktopLyricsController.swift */,
 				BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */,
-				BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */,
 				BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */,
 				BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */,
 			);
@@ -192,6 +194,15 @@
 				BBC1D58A1E4B1C44008869EC /* Info.plist */,
 			);
 			path = LyricsXTests;
+			sourceTree = "<group>";
+		};
+		BBC7C5561E6AEA4500E3EC4F /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */,
+				BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				BB4141CC1E47444200A51775 /* LyricsXiami.swift in Sources */,
 				BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
+				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
 				BB9C6C981E51DACD00771424 /* LyricsTTPod.swift in Sources */,
 				BBC1D35F1E499A6D002538A2 /* GlobalConst.swift in Sources */,
 				BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */,
