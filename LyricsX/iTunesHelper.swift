@@ -73,8 +73,13 @@ class iTunesHelper {
             return
         }
         
-        lyricsHelper.fetchLyrics(title: title, artist: artist) {
-            self.currentLyrics = self.lyricsHelper.lyrics.first
+        if let localLyrics = lyricsHelper.readLocalLyrics(title: title, artist: artist) {
+            currentLyrics = localLyrics
+        } else {
+            lyricsHelper.fetchLyrics(title: title, artist: artist) {
+                self.currentLyrics = self.lyricsHelper.lyrics.first
+                self.currentLyrics?.saveToLocal()
+            }
         }
     }
     
