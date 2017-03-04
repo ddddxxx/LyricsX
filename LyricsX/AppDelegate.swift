@@ -22,10 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let registerDefaults: [String:AnyObject] = [
             // Menu
-            DesktopLyricsEnabled : NSNumber(value: true),
-            MenuBarLyricsEnabled : NSNumber(value: false),
+            DesktopLyricsEnabled: NSNumber(value: true),
+            MenuBarLyricsEnabled: NSNumber(value: false),
             // Display
-            DesktopLyricsHeighFromDock : NSNumber(value: 20),
+            DesktopLyricsHeighFromDock: NSNumber(value: 20),
             DesktopLyricsFontName: "Helvetica Light" as AnyObject,
             DesktopLyricsFontSize: NSNumber(value: 28),
             DesktopLyricsColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) as AnyObject,
