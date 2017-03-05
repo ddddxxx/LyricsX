@@ -66,7 +66,7 @@ struct LXLyrics {
             return idTags[.Offset].flatMap() { Int($0) } ?? 0
         }
         set {
-            idTags[.Offset] = "\(offset)"
+            idTags[.Offset] = "\(newValue)"
         }
     }
     
@@ -75,7 +75,7 @@ struct LXLyrics {
             return Double(offset) / 1000
         }
         set {
-            offset = Int(timeDelay * 1000)
+            offset = Int(newValue * 1000)
         }
     }
     
