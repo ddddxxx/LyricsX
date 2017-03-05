@@ -65,10 +65,10 @@ struct LXLyrics {
     
     var offset: Int {
         get {
-            return idTags[.Offset].flatMap() { Int($0) } ?? 0
+            return idTags[.offset].flatMap() { Int($0) } ?? 0
         }
         set {
-            idTags[.Offset] = "\(newValue)"
+            idTags[.offset] = "\(newValue)"
         }
     }
     
@@ -213,8 +213,8 @@ extension LXLyrics {
     mutating func smartFiltrate() {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence
-            if let idTagTitle = idTags[.Title],
-                let idTagArtist = idTags[.Artist],
+            if let idTagTitle = idTags[.title],
+                let idTagArtist = idTags[.artist],
                 sentence.contains(idTagTitle),
                 sentence.contains(idTagArtist) {
                 lyrics[index].enabled = false
@@ -247,17 +247,17 @@ extension LXLyrics {
             return rawValue.hash
         }
         
-        static let Title: IDTagKey = .init("ti")
+        static let title: IDTagKey = .init("ti")
         
-        static let Album: IDTagKey = .init("al")
+        static let album: IDTagKey = .init("al")
         
-        static let Artist: IDTagKey = .init("ar")
+        static let artist: IDTagKey = .init("ar")
         
-        static let Author: IDTagKey = .init("au")
+        static let author: IDTagKey = .init("au")
         
-        static let LrcBy: IDTagKey = .init("by")
+        static let lrcBy: IDTagKey = .init("by")
         
-        static let Offset: IDTagKey = .init("offset")
+        static let offset: IDTagKey = .init("offset")
         
     }
     
