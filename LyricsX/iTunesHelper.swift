@@ -19,7 +19,11 @@ class iTunesHelper {
     var currentSongID: Int?
     var currentSongTitle: String?
     var currentArtist: String?
-    var currentLyrics: LXLyrics?
+    var currentLyrics: LXLyrics? {
+        didSet {
+            appDelegate.currentOffset = currentLyrics?.offset ?? 0
+        }
+    }
     
     var currentLyricsLine: LXLyricsLine?
     var nextLyricsLine: LXLyricsLine?

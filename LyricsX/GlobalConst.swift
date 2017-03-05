@@ -6,7 +6,9 @@
 //  Copyright © 2017年 ddddxxx. All rights reserved.
 //
 
-import Foundation
+import Cocoa
+
+let appDelegate = NSApplication.shared().delegate as! AppDelegate
 
 // MARK: - Notification Name
 

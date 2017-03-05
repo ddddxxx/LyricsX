@@ -27,7 +27,7 @@ class LyricsHUDViewController: NSViewController {
     }
     
     override func viewWillAppear() {
-        lyrics = (NSApplication.shared().delegate as? AppDelegate)?.helper.currentLyrics
+        lyrics = appDelegate.helper.currentLyrics
         super.viewDidLoad()
     }
     

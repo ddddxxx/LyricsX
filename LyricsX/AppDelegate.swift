@@ -17,6 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var desktopLyrics: DesktopLyricsController!
     var menuBarLyrics: MenuBarLyrics!
 
+    dynamic var currentOffset = 0
+    
     @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -53,6 +55,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-
+    @IBAction func lyricsOffsetStepAction(_ sender: Any) {
+        helper?.currentLyrics?.offset = currentOffset
+    }
+    
 }
 
