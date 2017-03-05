@@ -32,7 +32,8 @@ class LyricsHUDViewController: NSViewController {
     }
     
     @IBAction func useLrc(_ sender: Any) {
-        (NSApplication.shared().delegate as? AppDelegate)?.helper.currentLyrics = lyrics
+        appDelegate.helper.currentLyrics = lyrics
+        lyrics?.saveToLocal()
         useLrcButton.isEnabled = false
     }
     

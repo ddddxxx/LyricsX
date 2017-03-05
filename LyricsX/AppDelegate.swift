@@ -57,6 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func lyricsOffsetStepAction(_ sender: Any) {
         helper?.currentLyrics?.offset = currentOffset
+        helper?.currentLyrics?.saveToLocal()
     }
     
 }
