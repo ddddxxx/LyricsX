@@ -12,6 +12,7 @@ struct LXLyricsLine {
     
     var sentence: String
     var position: Double
+    var enabled: Bool
     
     var timeTag: String {
         let min = Int(position / 60)
@@ -22,6 +23,7 @@ struct LXLyricsLine {
     init(sentence: String, position: Double) {
         self.sentence = sentence
         self.position = position
+        enabled = true
     }
     
     init?(sentence: String, timeTag: String) {
@@ -79,19 +81,17 @@ struct LXLyrics {
         }
     }
     
+    static let regexForIDTag = try! NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]")
+    static let regexForTimeTag = try! NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]")
+    
     init?(_ lrcContents: String) {
         lyrics = []
         idTags = [:]
         metadata = [:]
         
-        guard let regexForIDTag = try? NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]"),
-            let regexForTimeTag = try? NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]") else {
-            return
-        }
-        
         let lyricsLines = lrcContents.components(separatedBy: .newlines)
         for line in lyricsLines {
-            let timeTagsMatched: [NSTextCheckingResult] = regexForTimeTag.matches(in: line, options: [], range: NSMakeRange(0, line.characters.count))
+            let timeTagsMatched = LXLyrics.regexForTimeTag.matches(in: line, options: [], range: NSMakeRange(0, line.characters.count))
             if timeTagsMatched.count > 0 {
                 let index: Int = timeTagsMatched.last!.range.location + timeTagsMatched.last!.range.length
                 let lyricsSentence: String = line.substring(from: line.characters.index(line.startIndex, offsetBy: index))
@@ -101,7 +101,7 @@ struct LXLyrics {
                 }
                 self.lyrics += lyrics
             } else {
-                let idTagsMatched = regexForIDTag.matches(in: line, range: NSMakeRange(0, line.characters.count))
+                let idTagsMatched = LXLyrics.regexForIDTag.matches(in: line, range: NSMakeRange(0, line.characters.count))
                 guard idTagsMatched.count > 0 else {
                     continue
                 }
@@ -138,7 +138,7 @@ struct LXLyrics {
     }
     
     subscript(_ position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
-        for (index, line) in lyrics.enumerated() {
+        for (index, line) in lyrics.filter({$0.enabled}).enumerated() {
             if line.position - timeDelay > position {
                 let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
                 return (previous, line)
@@ -177,6 +177,53 @@ struct LXLyrics {
         } catch let error as NSError{
             print(error)
             return
+        }
+    }
+    
+}
+
+extension LXLyrics {
+    
+    static let directFilter = ["作詞", "作词", "作曲", "編曲", "编曲", "収録", "收录", "演唱", "歌手", "歌曲", "制作", "製作", "歌词", "歌詞", "翻譯", "翻译", "插曲", "插入歌", "主题歌", "主題歌", "片頭曲", "片头曲", "片尾曲", "Lrc", "QQ", "アニメ", "LyricsBy", "ComposedBy", "CharacterSong", "InsertSong", "SoundTrack", "www.", ".com", ".net"]
+    static let colonFilter = ["by", "歌", "唄", "曲", "作", "唱", "詞", "词", "編", "编"]
+    static let colons = [":", "：", "∶"]
+    
+    static let regexForFilter: NSRegularExpression? = {
+        let directFilterPattern = directFilter.joined(separator: "|")
+        let colonFilterPattern = colonFilter.joined(separator: "|")
+        let colonsPattern = colons.joined(separator: "|")
+        let pattern = "\(directFilterPattern)|((\(colonFilterPattern))(\(colonsPattern)))"
+        return try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
+    }()
+    
+    mutating func filtrate() {
+        guard let regexForFilter = LXLyrics.regexForFilter else {
+            return
+        }
+        for (index, lyric) in lyrics.enumerated() {
+            let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
+            let numberOfMatches = regexForFilter.numberOfMatches(in: sentence, options: [], range: NSMakeRange(0, sentence.characters.count))
+            if numberOfMatches > 0 {
+                lyrics[index].enabled = false
+                continue
+            }
+        }
+    }
+    
+    mutating func smartFiltrate() {
+        for (index, lyric) in lyrics.enumerated() {
+            let sentence = lyric.sentence
+            if let idTagTitle = idTags[.Title],
+                let idTagArtist = idTags[.Artist],
+                sentence.contains(idTagTitle),
+                sentence.contains(idTagArtist) {
+                lyrics[index].enabled = false
+            } else if let iTunesTitle = metadata[.searchTitle],
+                let iTunesArtist = metadata[.searchArtist],
+                sentence.contains(iTunesTitle),
+                sentence.contains(iTunesArtist) {
+                lyrics[index].enabled = false
+            }
         }
     }
     

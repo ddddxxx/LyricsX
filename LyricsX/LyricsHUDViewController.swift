@@ -32,6 +32,8 @@ class LyricsHUDViewController: NSViewController {
     }
     
     @IBAction func useLrc(_ sender: Any) {
+        lyrics?.filtrate()
+        lyrics?.smartFiltrate()
         appDelegate.helper.currentLyrics = lyrics
         lyrics?.saveToLocal()
         useLrcButton.isEnabled = false
