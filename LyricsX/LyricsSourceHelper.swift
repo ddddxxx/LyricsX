@@ -56,6 +56,29 @@ class LyricsSourceHelper {
         queue.cancelAllOperations()
     }
     
+    func readLocalLyrics(title: String, artist: String) -> LXLyrics? {
+        let savingPath: String
+        if UserDefaults.standard.integer(forKey: LyricsSavingPathPopUpIndex) == 0 {
+            savingPath = LyricsSavingPathDefault
+        } else {
+            savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
+        }
+        let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
+        let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
+        let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
+        if let lrcContents = try? String(contentsOfFile: lrcFilePath, encoding: String.Encoding.utf8) {
+            var lrc = LXLyrics(lrcContents)
+            let metadata: [LXLyrics.MetadataKey: String] = [
+                .searchTitle: title,
+                .searchArtist: artist,
+                .source: "Local"
+            ]
+            lrc?.metadata = metadata
+            return lrc
+        }
+        return nil
+    }
+    
 //    func sortLrcs() {
 //        lyrics.sort() { lhs, rhs in
 //            

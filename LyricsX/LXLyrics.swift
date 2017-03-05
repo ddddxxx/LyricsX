@@ -66,7 +66,7 @@ struct LXLyrics {
             return idTags[.Offset].flatMap() { Int($0) } ?? 0
         }
         set {
-            idTags[.Offset] = "\(offset)"
+            idTags[.Offset] = "\(newValue)"
         }
     }
     
@@ -75,7 +75,7 @@ struct LXLyrics {
             return Double(offset) / 1000
         }
         set {
-            offset = Int(timeDelay * 1000)
+            offset = Int(newValue * 1000)
         }
     }
     
@@ -145,6 +145,39 @@ struct LXLyrics {
             }
         }
         return (lyrics.last, nil)
+    }
+    
+    func saveToLocal() {
+        let savingPath: String
+        if UserDefaults.standard.integer(forKey: LyricsSavingPathPopUpIndex) == 0 {
+            savingPath = LyricsSavingPathDefault
+        } else {
+            savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
+        }
+        let fileManager = FileManager.default
+        
+        do {
+            var isDir = ObjCBool(false)
+            if fileManager.fileExists(atPath: savingPath, isDirectory: &isDir) {
+                if !isDir.boolValue {
+                    return
+                }
+            } else {
+                try fileManager.createDirectory(atPath: savingPath, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
+            let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
+            let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
+            
+            if fileManager.fileExists(atPath: lrcFilePath) {
+                try fileManager.removeItem(atPath: lrcFilePath)
+            }
+            try description.write(toFile: lrcFilePath, atomically: false, encoding: String.Encoding.utf8)
+        } catch let error as NSError{
+            print(error)
+            return
+        }
     }
     
 }
@@ -218,12 +251,9 @@ extension LXLyricsLine: CustomStringConvertible {
 extension LXLyrics: CustomStringConvertible {
     
     public var description: String {
-        get {
-            let meta = metadata.reduce("") { $0 + "[[\($1.key): \($1.value)]]\n"}
-            let tag = idTags.reduce("") { $0 + "[\($1.key): \($1.value)]\n" }
-            let lrc = lyrics.reduce("") { $0 + "\($1.description)\n" }
-            return meta + tag + lrc
-        }
+        let tag = idTags.map({"[\($0.key):\($0.value)]"}).joined(separator: "\n")
+        let lrc = lyrics.map({$0.description}).joined(separator: "\n")
+        return tag + "\n" + lrc
     }
     
 }

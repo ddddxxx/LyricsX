@@ -1,5 +1,5 @@
 //
-//  PreferencesDisplayViewController.swift
+//  PreferenceDisplayViewController.swift
 //  LyricsX
 //
 //  Created by 邓翔 on 2017/2/9.

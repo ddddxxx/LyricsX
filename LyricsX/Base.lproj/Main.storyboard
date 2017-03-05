@@ -45,6 +45,12 @@
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="yWX-1z-WqD"/>
+                        <menuItem title="Lyrics Delay Setter" id="SDr-c6-5JC">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <outlet property="view" destination="LV9-pp-2tz" id="HgV-KT-3h0"/>
+                            </connections>
+                        </menuItem>
                         <menuItem title="Show Lyrics..." id="kyJ-kV-2Du">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
@@ -71,8 +77,68 @@
                         </menuItem>
                     </items>
                 </menu>
+                <customView id="LV9-pp-2tz" userLabel="Lyrics Offset View">
+                    <rect key="frame" x="0.0" y="0.0" width="234" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DG2-8b-vTy">
+                            <rect key="frame" x="18" y="6" width="85" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics Offset:" id="IFz-XQ-DHf">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BE8-Ux-QD2">
+                            <rect key="frame" x="106" y="6" width="72" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="s38-xY-35C"/>
+                            </constraints>
+                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="0" drawsBackground="YES" id="wvJ-8O-0Hq">
+                                <numberFormatter key="formatter" formatterBehavior="custom10_4" usesGroupingSeparator="NO" lenient="YES" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" nilSymbol="nil" id="OwS-Jw-DIA">
+                                    <real key="minimum" value="-10000"/>
+                                    <real key="maximum" value="10000"/>
+                                </numberFormatter>
+                                <font key="font" metaFont="smallSystem"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="Voe-Tx-rLC" name="value" keyPath="self.currentOffset" id="46X-dT-CHX"/>
+                            </connections>
+                        </textField>
+                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FwA-Sj-odc">
+                            <rect key="frame" x="180" y="1" width="19" height="27"/>
+                            <stepperCell key="cell" continuous="YES" alignment="left" increment="100" minValue="-10000" maxValue="10000" id="Cnt-sc-zit"/>
+                            <connections>
+                                <action selector="lyricsOffsetStepAction:" target="Voe-Tx-rLC" id="V63-rC-IAb"/>
+                                <binding destination="Voe-Tx-rLC" name="value" keyPath="self.currentOffset" id="Mwx-Ko-1Xn"/>
+                            </connections>
+                        </stepper>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-PC-ZCl">
+                            <rect key="frame" x="199" y="6" width="22" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="VQG-Pf-NsG">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="DG2-8b-vTy" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="5gA-e2-0RM"/>
+                        <constraint firstItem="BE8-Ux-QD2" firstAttribute="leading" secondItem="DG2-8b-vTy" secondAttribute="trailing" constant="5" id="66I-Ch-hG0"/>
+                        <constraint firstItem="DG2-8b-vTy" firstAttribute="leading" secondItem="LV9-pp-2tz" secondAttribute="leading" constant="20" id="826-cy-w1T"/>
+                        <constraint firstItem="FwA-Sj-odc" firstAttribute="leading" secondItem="BE8-Ux-QD2" secondAttribute="trailing" constant="5" id="9G1-eA-c8X"/>
+                        <constraint firstItem="0ii-PC-ZCl" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="Yhp-74-yJR"/>
+                        <constraint firstItem="BE8-Ux-QD2" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="dzq-HW-L2Y"/>
+                        <constraint firstAttribute="trailing" secondItem="0ii-PC-ZCl" secondAttribute="trailing" constant="15" id="pnw-Le-Ihj"/>
+                        <constraint firstItem="0ii-PC-ZCl" firstAttribute="leading" secondItem="FwA-Sj-odc" secondAttribute="trailing" constant="5" id="rbZ-oR-lp1"/>
+                        <constraint firstItem="FwA-Sj-odc" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="wCe-8m-cvA"/>
+                    </constraints>
+                </customView>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="YC0-xP-lPo"/>
+                <userDefaultsController id="J12-VO-LSh"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
@@ -120,15 +186,64 @@
         <!--General-->
         <scene sceneID="mkJ-2y-SA4">
             <objects>
-                <viewController id="d5d-dC-DK4" userLabel="General" sceneMemberID="viewController">
+                <viewController id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="217"/>
+                        <rect key="frame" x="0.0" y="0.0" width="471" height="65"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
+                                <rect key="frame" x="91" y="24" width="117" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics saving path:" id="0M7-ao-0jb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fV0-Y6-6iT">
+                                <rect key="frame" x="220" y="19" width="165" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="BsO-3u-Sdq"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="qTT-VT-8sA" id="Ugx-hf-i3V">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="hzo-2U-bdH">
+                                        <items>
+                                            <menuItem title="Default" state="on" id="qTT-VT-8sA"/>
+                                            <menuItem title="Custom" id="HNa-rw-Yoc"/>
+                                            <menuItem isSeparatorItem="YES" id="QVV-tC-dw4"/>
+                                            <menuItem title="Choose" id="ysj-qo-5zE">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="chooseSavingPathAction:" target="d5d-dC-DK4" id="laY-y6-Io1"/>
+                                                </connections>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="duh-oL-tzb" name="selectedIndex" keyPath="values.LyricsSavingPathPopUpIndex" id="SGe-WZ-S4c"/>
+                                </connections>
+                            </popUpButton>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="fV0-Y6-6iT" firstAttribute="leading" secondItem="you-yu-77c" secondAttribute="trailing" constant="16" id="DiW-FA-1TX"/>
+                            <constraint firstItem="you-yu-77c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="40" id="LoW-h0-G1D"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fV0-Y6-6iT" secondAttribute="trailing" constant="40" id="N3p-X7-EKD"/>
+                            <constraint firstItem="fV0-Y6-6iT" firstAttribute="centerY" secondItem="you-yu-77c" secondAttribute="centerY" id="NHs-VD-a6h"/>
+                            <constraint firstItem="you-yu-77c" firstAttribute="trailing" secondItem="Ium-Ya-ZzT" secondAttribute="centerX" constant="-30" id="OMR-7Z-L5p"/>
+                            <constraint firstItem="you-yu-77c" firstAttribute="top" secondItem="Ium-Ya-ZzT" secondAttribute="top" constant="24" id="cyR-Pt-SST"/>
+                            <constraint firstAttribute="bottom" secondItem="you-yu-77c" secondAttribute="bottom" constant="24" id="xmN-MQ-6O1"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="savingPathPopUp" destination="fV0-Y6-6iT" id="vRA-ep-mHD"/>
+                    </connections>
                 </viewController>
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="duh-oL-tzb"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="-238"/>
+            <point key="canvasLocation" x="1970" y="-146"/>
         </scene>
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
@@ -591,6 +706,7 @@
                     </view>
                     <connections>
                         <outlet property="artworkView" destination="N4M-lF-IAL" id="4WI-Zu-ksO"/>
+                        <outlet property="searchButton" destination="Np2-88-ohs" id="JBE-xM-6xb"/>
                         <outlet property="tableView" destination="gfB-qN-IQm" id="KZv-Xv-tSs"/>
                     </connections>
                 </viewController>

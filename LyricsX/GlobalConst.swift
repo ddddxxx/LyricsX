@@ -6,7 +6,9 @@
 //  Copyright © 2017年 ddddxxx. All rights reserved.
 //
 
-import Foundation
+import Cocoa
+
+let appDelegate = NSApplication.shared().delegate as! AppDelegate
 
 // MARK: - Notification Name
 
@@ -30,4 +32,9 @@ let DesktopLyricsFontSize = "DesktopLyricsFontSize"
 let DesktopLyricsColor = "DesktopLyricsColor"
 let DesktopLyricsShadowColor = "DesktopLyricsShadowColor"
 let DesktopLyricsBackgroundColor = "DesktopLyricsBackgroundColor"
+
+// File
+let LyricsSavingPathPopUpIndex = "LyricsSavingPathPopUpIndex"
+let LyricsCustomSavingPath = "LyricsCustomSavingPath"
+let LyricsSavingPathDefault = NSSearchPathForDirectoriesInDomains(.musicDirectory, [.userDomainMask], true).first! + "/LyricsX"
 

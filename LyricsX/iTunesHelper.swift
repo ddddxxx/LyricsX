@@ -19,7 +19,11 @@ class iTunesHelper {
     var currentSongID: Int?
     var currentSongTitle: String?
     var currentArtist: String?
-    var currentLyrics: LXLyrics?
+    var currentLyrics: LXLyrics? {
+        didSet {
+            appDelegate.currentOffset = currentLyrics?.offset ?? 0
+        }
+    }
     
     var currentLyricsLine: LXLyricsLine?
     var nextLyricsLine: LXLyricsLine?
@@ -73,8 +77,13 @@ class iTunesHelper {
             return
         }
         
-        lyricsHelper.fetchLyrics(title: title, artist: artist) {
-            self.currentLyrics = self.lyricsHelper.lyrics.first
+        if let localLyrics = lyricsHelper.readLocalLyrics(title: title, artist: artist) {
+            currentLyrics = localLyrics
+        } else {
+            lyricsHelper.fetchLyrics(title: title, artist: artist) {
+                self.currentLyrics = self.lyricsHelper.lyrics.first
+                self.currentLyrics?.saveToLocal()
+            }
         }
     }
     
