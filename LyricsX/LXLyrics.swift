@@ -185,7 +185,7 @@ struct LXLyrics {
 
 extension LXLyrics {
     
-    static let directFilter = ["作詞", "作词", "作曲", "編曲", "编曲", "収録", "收录", "演唱", "歌手", "歌曲", "制作", "製作", "歌词", "歌詞", "翻譯", "翻译", "插曲", "插入歌", "主题歌", "主題歌", "片頭曲", "片头曲", "片尾曲", "Lrc", "QQ", "アニメ", "LyricsBy", "ComposedBy", "CharacterSong", "InsertSong", "SoundTrack", "www.", ".com", ".net"]
+    static let directFilter = ["作詞", "作词", "作曲", "編曲", "编曲", "収録", "收录", "演唱", "歌手", "歌曲", "制作", "製作", "歌词", "歌詞", "翻譯", "翻译", "插曲", "插入歌", "主题歌", "主題歌", "片頭曲", "片头曲", "片尾曲", "Lrc", "QQ", "アニメ", "LyricsBy", "ComposedBy", "CharacterSong", "InsertSong", "SoundTrack", "www\\.", "\\.com", "\\.net"]
     static let colonFilter = ["by", "歌", "唄", "曲", "作", "唱", "詞", "词", "編", "编"]
     static let colons = [":", "：", "∶"]
     
