@@ -543,6 +543,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="remove:" target="0dY-rB-aBJ" id="g1c-Sh-0mi"/>
+                                            </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0h-px-hUc">
                                             <rect key="frame" x="280" y="246" width="74" height="17"/>
@@ -611,6 +614,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="remove:" target="8Cy-1N-3Ha" id="4OE-H1-b4U"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
