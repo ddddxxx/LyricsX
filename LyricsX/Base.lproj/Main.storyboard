@@ -277,6 +277,18 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="displayPatternValue1" keyPath="values.DesktopLyricsFontName" id="2XJ-b1-6M9">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayPattern">%{value1}@ - %{value2}@</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="Nm6-oq-wpY" name="displayPatternValue2" keyPath="values.DesktopLyricsFontSize" previousBinding="2XJ-b1-6M9" id="9vQ-yD-Q3V">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayPattern">%{value1}@ - %{value2}@</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="peK-p0-cOB">
                                 <rect key="frame" x="363" y="115" width="24" height="22"/>
@@ -434,7 +446,6 @@
                     </view>
                     <connections>
                         <outlet property="backgroundColorWell" destination="UmX-Zf-IW4" id="jaf-MS-ruJ"/>
-                        <outlet property="fontDisplay" destination="oHc-gj-4JF" id="0Jd-ew-B7z"/>
                         <outlet property="lyricsColorWell" destination="Jji-JX-Etj" id="mGu-7z-luZ"/>
                         <outlet property="shadowColorWell" destination="9of-o0-c02" id="by6-RF-xoT"/>
                     </connections>
