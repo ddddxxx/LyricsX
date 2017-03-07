@@ -115,13 +115,15 @@ class iTunesHelper: LyricsSourceDelegate {
             return
         }
         
-        if currentLyrics == nil {   // TODO: replacement
-            var lyrics = lyrics
-            lyrics.filtrate()
-            lyrics.smartFiltrate()
-            currentLyrics = lyrics
-            lyrics.saveToLocal()
+        if let current = currentLyrics, current.grade >= lyrics.grade {
+            return
         }
+        
+        var lyrics = lyrics
+        lyrics.filtrate()
+        lyrics.smartFiltrate()
+        currentLyrics = lyrics
+        lyrics.saveToLocal()
     }
     
 }

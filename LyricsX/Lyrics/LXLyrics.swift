@@ -184,6 +184,21 @@ extension LXLyrics {
 
 extension LXLyrics {
     
+    var grade: Int {
+        var grade = 0
+        if idTags[.artist] == metadata[.searchArtist] {
+            grade += 1 << 10
+        }
+        if idTags[.title] == metadata[.searchTitle] {
+            grade += 1 << 8
+        }
+        return grade
+    }
+    
+}
+
+extension LXLyrics {
+    
     struct IDTagKey: RawRepresentable, Hashable {
         
         var rawValue: String
