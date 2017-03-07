@@ -17,27 +17,30 @@ class LyricsXiami: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String) -> [LXLyrics] {
-        var result = [LXLyrics]()
-        let xiamiIDs = searchXiamiIDFor(title: title, artist: artist)
-        let fetchOps = xiamiIDs.map() { id in
-            return BlockOperation() {
-                let parser = LyricsXiamiXMLParser()
-                guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(id)"),
-                    let data = try? Data(contentsOf: url),
-                    var metadata = parser.parseLrcURL(data: data) else {
-                        return
-                }
-                metadata[.source] = "Xiami"
-                metadata[.searchTitle] = title
-                metadata[.searchArtist] = artist
-                if let lrc = LXLyrics(metadata: metadata) {
-                    result += [lrc]
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void) {
+        queue.addOperation {
+            let xiamiIDs = self.searchXiamiIDFor(title: title, artist: artist)
+            xiamiIDs.forEach() { xiamiID in
+                self.queue.addOperation {
+                    let parser = LyricsXiamiXMLParser()
+                    guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(xiamiID)"),
+                        let data = try? Data(contentsOf: url),
+                        var metadata = parser.parseLrcURL(data: data) else {
+                            return
+                    }
+                    metadata[.source] = "Xiami"
+                    metadata[.searchTitle] = title
+                    metadata[.searchArtist] = artist
+                    if let lrc = LXLyrics(metadata: metadata) {
+                        completionBlock(lrc)
+                    }
                 }
             }
         }
-        queue.addOperations(fetchOps, waitUntilFinished: true)
-        return result
+    }
+    
+    func cancelFetching() {
+        queue.cancelAllOperations()
     }
     
     private func searchXiamiIDFor(title: String, artist: String) -> [Int] {

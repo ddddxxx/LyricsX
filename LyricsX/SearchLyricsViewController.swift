@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsSourceDelegate {
     
     var searchResult = [LXLyrics]()
     
@@ -28,6 +28,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBOutlet weak var searchButton: NSButton!
     
     override func viewDidLoad() {
+        lyricsHelper.delegate = self
         let helper = (NSApplication.shared().delegate as? AppDelegate)?.helper
         searchArtist = helper?.currentArtist ?? ""
         searchTitle = helper?.currentSongTitle ?? ""
@@ -39,11 +40,15 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func searchAction(_ sender: NSButton) {
         searchResult = []
         tableView.reloadData()
-        lyricsHelper.fetchLyrics(title: searchTitle, artist: searchArtist) {
-            self.searchResult = self.lyricsHelper.lyrics
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        lyricsHelper.fetchLyrics(title: searchTitle, artist: searchArtist)
+    }
+    
+    // MARK: - LyricsSourceDelegate
+    
+    func lyricsReceived(lyrics: LXLyrics) {
+        searchResult += [lyrics]
+        OperationQueue.main.addOperation {
+            self.tableView.reloadData()
         }
     }
     

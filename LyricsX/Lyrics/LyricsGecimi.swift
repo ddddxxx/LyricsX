@@ -17,22 +17,23 @@ class LyricsGecimi: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String) -> [LXLyrics] {
-        var result = [LXLyrics]()
-        let lrcs = searchLrcFor(title: title, artist: artist)
-        let fetchOps = lrcs.map() { lrc in
-            return BlockOperation() {
-                var metadata = lrc
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void) {
+        queue.addOperation {
+            let lrcDatas = self.searchLrcFor(title: title, artist: artist)
+            lrcDatas.forEach() { lrcData in
+                var metadata = lrcData
                 metadata[.source] = "Gecimi"
                 metadata[.searchTitle] = title
                 metadata[.searchArtist] = artist
                 if let lrc = LXLyrics(metadata: metadata) {
-                    result += [lrc]
+                    completionBlock(lrc)
                 }
             }
         }
-        queue.addOperations(fetchOps, waitUntilFinished: true)
-        return result
+    }
+    
+    func cancelFetching() {
+        queue.cancelAllOperations()
     }
     
     private func searchLrcFor(title: String, artist: String) -> [[LXLyrics.MetadataKey: String]] {

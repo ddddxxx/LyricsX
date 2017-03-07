@@ -148,64 +148,14 @@ struct LXLyrics {
         return (lyrics.last, nil)
     }
     
-    func saveToLocal() {
-        let savingPath: String
-        if UserDefaults.standard.integer(forKey: LyricsSavingPathPopUpIndex) == 0 {
-            savingPath = LyricsSavingPathDefault
-        } else {
-            savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
-        }
-        let fileManager = FileManager.default
-        
-        do {
-            var isDir = ObjCBool(false)
-            if fileManager.fileExists(atPath: savingPath, isDirectory: &isDir) {
-                if !isDir.boolValue {
-                    return
-                }
-            } else {
-                try fileManager.createDirectory(atPath: savingPath, withIntermediateDirectories: true, attributes: nil)
-            }
-            
-            let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
-            let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
-            let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
-            
-            if fileManager.fileExists(atPath: lrcFilePath) {
-                try fileManager.removeItem(atPath: lrcFilePath)
-            }
-            try description.write(toFile: lrcFilePath, atomically: false, encoding: String.Encoding.utf8)
-        } catch let error as NSError{
-            print(error)
-            return
-        }
-    }
-    
 }
 
 extension LXLyrics {
     
-    static var regexForFilter: NSRegularExpression? {
-        let userDefaults = UserDefaults.standard
-        guard let directFilter = userDefaults.array(forKey: LyricsDirectFilterKey) as? [String],
-            let colonFilter = userDefaults.array(forKey: LyricsColonFilterKey) as? [String] else {
-                return nil
-        }
-        let colons = [":", "：", "∶"]
-        let directFilterPattern = directFilter.joined(separator: "|")
-        let colonFilterPattern = colonFilter.joined(separator: "|")
-        let colonsPattern = colons.joined(separator: "|")
-        let pattern = "\(directFilterPattern)|((\(colonFilterPattern))(\(colonsPattern)))"
-        return try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
-    }
-    
-    mutating func filtrate() {
-        guard let regexForFilter = LXLyrics.regexForFilter else {
-            return
-        }
+    mutating func filtrate(using regex: NSRegularExpression) {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
-            let numberOfMatches = regexForFilter.numberOfMatches(in: sentence, options: [], range: NSMakeRange(0, sentence.characters.count))
+            let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: NSMakeRange(0, sentence.characters.count))
             if numberOfMatches > 0 {
                 lyrics[index].enabled = false
                 continue
