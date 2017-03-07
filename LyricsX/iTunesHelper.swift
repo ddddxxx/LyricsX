@@ -9,7 +9,7 @@
 import Foundation
 import ScriptingBridge
 
-class iTunesHelper {
+class iTunesHelper: LyricsSourceDelegate {
     
     var iTunes: iTunesApplication!
     var lyricsHelper: LyricsSourceHelper
@@ -33,6 +33,7 @@ class iTunesHelper {
     init() {
         iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
         lyricsHelper = LyricsSourceHelper()
+        lyricsHelper.delegate = self
         
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in self.handlePositionChange() }
         
@@ -79,11 +80,10 @@ class iTunesHelper {
         
         if let localLyrics = lyricsHelper.readLocalLyrics(title: title, artist: artist) {
             currentLyrics = localLyrics
+            currentLyrics?.filtrate()
+            currentLyrics?.smartFiltrate()
         } else {
-            lyricsHelper.fetchLyrics(title: title, artist: artist) {
-                self.currentLyrics = self.lyricsHelper.lyrics.first
-                self.currentLyrics?.saveToLocal()
-            }
+            lyricsHelper.fetchLyrics(title: title, artist: artist)
         }
     }
     
@@ -106,6 +106,75 @@ class iTunesHelper {
             "next": nextLyricsLine?.sentence as Any
         ]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
+    }
+    
+    // MARK: LyricsSourceDelegate
+    
+    func lyricsReceived(lyrics: LXLyrics) {
+        guard lyrics.metadata[.searchTitle] == currentSongTitle, lyrics.metadata[.searchArtist] == currentArtist else {
+            return
+        }
+        
+        if currentLyrics == nil {   // TODO: replacement
+            var lyrics = lyrics
+            lyrics.filtrate()
+            lyrics.smartFiltrate()
+            currentLyrics = lyrics
+            lyrics.saveToLocal()
+        }
+    }
+    
+}
+
+extension LXLyrics {
+    
+    func saveToLocal() {
+        let savingPath: String
+        if UserDefaults.standard.integer(forKey: LyricsSavingPathPopUpIndex) == 0 {
+            savingPath = LyricsSavingPathDefault
+        } else {
+            savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
+        }
+        let fileManager = FileManager.default
+        
+        do {
+            var isDir = ObjCBool(false)
+            if fileManager.fileExists(atPath: savingPath, isDirectory: &isDir) {
+                if !isDir.boolValue {
+                    return
+                }
+            } else {
+                try fileManager.createDirectory(atPath: savingPath, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
+            let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
+            let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
+            
+            if fileManager.fileExists(atPath: lrcFilePath) {
+                try fileManager.removeItem(atPath: lrcFilePath)
+            }
+            try description.write(toFile: lrcFilePath, atomically: false, encoding: String.Encoding.utf8)
+        } catch let error as NSError{
+            print(error)
+            return
+        }
+    }
+    
+    mutating func filtrate() {
+        let userDefaults = UserDefaults.standard
+        guard let directFilter = userDefaults.array(forKey: LyricsDirectFilterKey) as? [String],
+            let colonFilter = userDefaults.array(forKey: LyricsColonFilterKey) as? [String] else {
+                return
+        }
+        let colons = [":", "：", "∶"]
+        let directFilterPattern = directFilter.joined(separator: "|")
+        let colonFilterPattern = colonFilter.joined(separator: "|")
+        let colonsPattern = colons.joined(separator: "|")
+        let pattern = "\(directFilterPattern)|((\(colonFilterPattern))(\(colonsPattern)))"
+        if let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) {
+            filtrate(using: regex)
+        }
     }
     
 }

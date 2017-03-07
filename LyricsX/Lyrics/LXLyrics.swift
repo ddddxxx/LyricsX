@@ -12,6 +12,7 @@ struct LXLyricsLine {
     
     var sentence: String
     var position: Double
+    var enabled: Bool
     
     var timeTag: String {
         let min = Int(position / 60)
@@ -22,6 +23,7 @@ struct LXLyricsLine {
     init(sentence: String, position: Double) {
         self.sentence = sentence
         self.position = position
+        enabled = true
     }
     
     init?(sentence: String, timeTag: String) {
@@ -63,10 +65,10 @@ struct LXLyrics {
     
     var offset: Int {
         get {
-            return idTags[.Offset].flatMap() { Int($0) } ?? 0
+            return idTags[.offset].flatMap() { Int($0) } ?? 0
         }
         set {
-            idTags[.Offset] = "\(newValue)"
+            idTags[.offset] = "\(newValue)"
         }
     }
     
@@ -79,19 +81,17 @@ struct LXLyrics {
         }
     }
     
+    static let regexForIDTag = try! NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]")
+    static let regexForTimeTag = try! NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]")
+    
     init?(_ lrcContents: String) {
         lyrics = []
         idTags = [:]
         metadata = [:]
         
-        guard let regexForIDTag = try? NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]"),
-            let regexForTimeTag = try? NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]") else {
-            return
-        }
-        
         let lyricsLines = lrcContents.components(separatedBy: .newlines)
         for line in lyricsLines {
-            let timeTagsMatched: [NSTextCheckingResult] = regexForTimeTag.matches(in: line, options: [], range: NSMakeRange(0, line.characters.count))
+            let timeTagsMatched = LXLyrics.regexForTimeTag.matches(in: line, options: [], range: NSMakeRange(0, line.characters.count))
             if timeTagsMatched.count > 0 {
                 let index: Int = timeTagsMatched.last!.range.location + timeTagsMatched.last!.range.length
                 let lyricsSentence: String = line.substring(from: line.characters.index(line.startIndex, offsetBy: index))
@@ -101,7 +101,7 @@ struct LXLyrics {
                 }
                 self.lyrics += lyrics
             } else {
-                let idTagsMatched = regexForIDTag.matches(in: line, range: NSMakeRange(0, line.characters.count))
+                let idTagsMatched = LXLyrics.regexForIDTag.matches(in: line, range: NSMakeRange(0, line.characters.count))
                 guard idTagsMatched.count > 0 else {
                     continue
                 }
@@ -138,6 +138,7 @@ struct LXLyrics {
     }
     
     subscript(_ position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
+        let lyrics = self.lyrics.filter() { $0.enabled }
         for (index, line) in lyrics.enumerated() {
             if line.position - timeDelay > position {
                 let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
@@ -147,36 +148,35 @@ struct LXLyrics {
         return (lyrics.last, nil)
     }
     
-    func saveToLocal() {
-        let savingPath: String
-        if UserDefaults.standard.integer(forKey: LyricsSavingPathPopUpIndex) == 0 {
-            savingPath = LyricsSavingPathDefault
-        } else {
-            savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
+}
+
+extension LXLyrics {
+    
+    mutating func filtrate(using regex: NSRegularExpression) {
+        for (index, lyric) in lyrics.enumerated() {
+            let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
+            let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: NSMakeRange(0, sentence.characters.count))
+            if numberOfMatches > 0 {
+                lyrics[index].enabled = false
+                continue
+            }
         }
-        let fileManager = FileManager.default
-        
-        do {
-            var isDir = ObjCBool(false)
-            if fileManager.fileExists(atPath: savingPath, isDirectory: &isDir) {
-                if !isDir.boolValue {
-                    return
-                }
-            } else {
-                try fileManager.createDirectory(atPath: savingPath, withIntermediateDirectories: true, attributes: nil)
+    }
+    
+    mutating func smartFiltrate() {
+        for (index, lyric) in lyrics.enumerated() {
+            let sentence = lyric.sentence
+            if let idTagTitle = idTags[.title],
+                let idTagArtist = idTags[.artist],
+                sentence.contains(idTagTitle),
+                sentence.contains(idTagArtist) {
+                lyrics[index].enabled = false
+            } else if let iTunesTitle = metadata[.searchTitle],
+                let iTunesArtist = metadata[.searchArtist],
+                sentence.contains(iTunesTitle),
+                sentence.contains(iTunesArtist) {
+                lyrics[index].enabled = false
             }
-            
-            let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
-            let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
-            let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
-            
-            if fileManager.fileExists(atPath: lrcFilePath) {
-                try fileManager.removeItem(atPath: lrcFilePath)
-            }
-            try description.write(toFile: lrcFilePath, atomically: false, encoding: String.Encoding.utf8)
-        } catch let error as NSError{
-            print(error)
-            return
         }
     }
     
@@ -200,17 +200,17 @@ extension LXLyrics {
             return rawValue.hash
         }
         
-        static let Title: IDTagKey = .init("ti")
+        static let title: IDTagKey = .init("ti")
         
-        static let Album: IDTagKey = .init("al")
+        static let album: IDTagKey = .init("al")
         
-        static let Artist: IDTagKey = .init("ar")
+        static let artist: IDTagKey = .init("ar")
         
-        static let Author: IDTagKey = .init("au")
+        static let author: IDTagKey = .init("au")
         
-        static let LrcBy: IDTagKey = .init("by")
+        static let lrcBy: IDTagKey = .init("by")
         
-        static let Offset: IDTagKey = .init("offset")
+        static let offset: IDTagKey = .init("offset")
         
     }
     

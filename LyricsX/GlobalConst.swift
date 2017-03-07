@@ -38,3 +38,6 @@ let LyricsSavingPathPopUpIndex = "LyricsSavingPathPopUpIndex"
 let LyricsCustomSavingPath = "LyricsCustomSavingPath"
 let LyricsSavingPathDefault = NSSearchPathForDirectoriesInDomains(.musicDirectory, [.userDomainMask], true).first! + "/LyricsX"
 
+// Filter
+let LyricsDirectFilterKey = "LyricsDirectFilterKey"
+let LyricsColonFilterKey = "LyricsColonFilterKey"

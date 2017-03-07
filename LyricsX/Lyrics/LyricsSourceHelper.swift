@@ -8,13 +8,23 @@
 
 import Foundation
 
+protocol LyricsSourceDelegate {
+    
+    func lyricsReceived(lyrics: LXLyrics)
+    
+}
+
 protocol LyricsSource {
     
-    func fetchLyrics(title: String, artist: String) -> [LXLyrics]
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void)
+    
+    func cancelFetching()
     
 }
 
 class LyricsSourceHelper {
+    
+    var delegate: LyricsSourceDelegate?
     
     private let lyricsSource: [LyricsSource]
     private let queue: OperationQueue
@@ -31,25 +41,15 @@ class LyricsSourceHelper {
         lyrics = []
     }
     
-    /// if last request has not completed, last completionBlock will not execute
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping () -> Void) {
+    func fetchLyrics(title: String, artist: String) {
         lyrics = []
-        cancelFetching()
-        
-        let fetchOps = lyricsSource.map() { src in
-            return BlockOperation() {
-                self.lyrics += src.fetchLyrics(title: title, artist: artist)
+        lyricsSource.forEach() { source in
+            source.cancelFetching()
+            source.fetchLyrics(title: title, artist: artist) { lrc in
+                self.lyrics += [lrc]
+                self.delegate?.lyricsReceived(lyrics: lrc)
             }
         }
-        
-        let completionOp = BlockOperation() {
-            // TODO: sort
-            completionBlock()
-        }
-        fetchOps.forEach() { completionOp.addDependency($0) }
-        
-        queue.addOperations(fetchOps, waitUntilFinished: false)
-        queue.addOperation(completionOp)
     }
     
     func cancelFetching() {
@@ -78,11 +78,5 @@ class LyricsSourceHelper {
         }
         return nil
     }
-    
-//    func sortLrcs() {
-//        lyrics.sort() { lhs, rhs in
-//            
-//        }
-//    }
     
 }
