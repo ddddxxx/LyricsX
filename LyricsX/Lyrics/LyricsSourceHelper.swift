@@ -28,6 +28,9 @@ class LyricsSourceHelper {
     
     private let lyricsSource: [LyricsSource]
     
+    var searchTitle: String?
+    var searchArtist: String?
+    
     var lyrics: [LXLyrics]
     
     init() {
@@ -40,10 +43,15 @@ class LyricsSourceHelper {
     }
     
     func fetchLyrics(title: String, artist: String) {
+        searchTitle = title
+        searchArtist = artist
         lyrics = []
         lyricsSource.forEach() { source in
             source.cancelFetching()
             source.fetchLyrics(title: title, artist: artist) { lrc in
+                guard self.searchTitle == title, self.searchArtist == artist else {
+                    return
+                }
                 self.lyrics += [lrc]
                 self.delegate?.lyricsReceived(lyrics: lrc)
             }
