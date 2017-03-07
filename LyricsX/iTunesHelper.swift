@@ -126,6 +126,10 @@ class iTunesHelper: LyricsSourceDelegate {
         lyrics.saveToLocal()
     }
     
+    func fetchCompleted(result: [LXLyrics]) {
+        
+    }
+    
 }
 
 extension LXLyrics {

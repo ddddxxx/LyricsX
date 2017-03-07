@@ -52,6 +52,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
     }
     
+    func fetchCompleted(result: [LXLyrics]) {
+        
+    }
+    
     // MARK: - TableViewDelegate
     
     func numberOfRows(in tableView: NSTableView) -> Int {

@@ -12,6 +12,8 @@ protocol LyricsSourceDelegate {
     
     func lyricsReceived(lyrics: LXLyrics)
     
+    func fetchCompleted(result: [LXLyrics])
+    
 }
 
 protocol LyricsSource {
@@ -27,6 +29,7 @@ class LyricsSourceHelper {
     var delegate: LyricsSourceDelegate?
     
     private let lyricsSource: [LyricsSource]
+    private let queue: OperationQueue
     
     var searchTitle: String?
     var searchArtist: String?
@@ -34,10 +37,11 @@ class LyricsSourceHelper {
     var lyrics: [LXLyrics]
     
     init() {
+        queue = OperationQueue()
         lyricsSource = [
-            LyricsXiami(),
-            LyricsGecimi(),
-            LyricsTTPod()
+            LyricsXiami(queue: queue),
+            LyricsGecimi(queue: queue),
+            LyricsTTPod(queue: queue)
         ]
         lyrics = []
     }
@@ -54,6 +58,10 @@ class LyricsSourceHelper {
                 }
                 self.lyrics += [lrc]
                 self.delegate?.lyricsReceived(lyrics: lrc)
+            }
+            DispatchQueue.global(qos: .background).async {
+                self.queue.waitUntilAllOperationsAreFinished()
+                self.delegate?.fetchCompleted(result: self.lyrics)
             }
         }
     }
