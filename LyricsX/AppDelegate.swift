@@ -24,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let directFilter = ["作詞", "作词", "作曲", "編曲", "编曲", "収録", "收录", "演唱", "歌手", "歌曲", "制作", "製作", "歌词", "歌詞", "翻譯", "翻译", "插曲", "插入歌", "主题歌", "主題歌", "片頭曲", "片头曲", "片尾曲", "Lrc", "QQ", "アニメ", "LyricsBy", "ComposedBy", "CharacterSong", "InsertSong", "SoundTrack", "www\\.", "\\.com", "\\.net"]
         let colonFilter = ["by", "歌", "唄", "曲", "作", "唱", "詞", "词", "編", "编"]
+        let defaultSavingPath = NSSearchPathForDirectoriesInDomains(.musicDirectory, [.userDomainMask], true).first! + "/LyricsX"
         let registerDefaults: [String:AnyObject] = [
             // Menu
             DesktopLyricsEnabled: NSNumber(value: true),
@@ -36,8 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             DesktopLyricsShadowColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject,
             DesktopLyricsBackgroundColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject,
             // File
-            LyricsSavingPathPopUpIndex: NSNumber(value: 0 as Int),
-            LyricsCustomSavingPath: LyricsSavingPathDefault as AnyObject,
+            LyricsCustomSavingPath: defaultSavingPath as AnyObject,
             // Filter
             LyricsDirectFilterKey: directFilter as AnyObject,
             LyricsColonFilterKey: colonFilter as AnyObject,

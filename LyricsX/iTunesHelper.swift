@@ -135,12 +135,7 @@ class iTunesHelper: LyricsSourceDelegate {
 extension LXLyrics {
     
     func saveToLocal() {
-        let savingPath: String
-        if UserDefaults.standard.integer(forKey: LyricsSavingPathPopUpIndex) == 0 {
-            savingPath = LyricsSavingPathDefault
-        } else {
-            savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
-        }
+        let savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
         let fileManager = FileManager.default
         
         do {

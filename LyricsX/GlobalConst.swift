@@ -34,9 +34,7 @@ let DesktopLyricsShadowColor = "DesktopLyricsShadowColor"
 let DesktopLyricsBackgroundColor = "DesktopLyricsBackgroundColor"
 
 // File
-let LyricsSavingPathPopUpIndex = "LyricsSavingPathPopUpIndex"
 let LyricsCustomSavingPath = "LyricsCustomSavingPath"
-let LyricsSavingPathDefault = NSSearchPathForDirectoriesInDomains(.musicDirectory, [.userDomainMask], true).first! + "/LyricsX"
 
 // Filter
 let LyricsDirectFilterKey = "LyricsDirectFilterKey"

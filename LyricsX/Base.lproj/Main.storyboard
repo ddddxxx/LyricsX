@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.automator.AutomatorPalette" version="11762"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -202,49 +203,35 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fV0-Y6-6iT">
+                            <amPathPopUpButton verticalHuggingPriority="750" imageHugsTitle="YES" canChooseDirectories="YES" canChooseNewPaths="YES" canChooseExistingPaths="YES" placeholder="Default" translatesAutoresizingMaskIntoConstraints="NO" id="78X-XQ-NFv">
                                 <rect key="frame" x="220" y="19" width="165" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="BsO-3u-Sdq"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Bjo-cp-Ehb"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="qTT-VT-8sA" id="Ugx-hf-i3V">
+                                <amVariablePopUpButtonCell key="cell" type="push" title="New…" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1003" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="KN5-DY-Vr7">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="hzo-2U-bdH">
-                                        <items>
-                                            <menuItem title="Default" state="on" id="qTT-VT-8sA"/>
-                                            <menuItem title="Custom" id="HNa-rw-Yoc"/>
-                                            <menuItem isSeparatorItem="YES" id="QVV-tC-dw4"/>
-                                            <menuItem title="Choose" id="ysj-qo-5zE">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="chooseSavingPathAction:" target="d5d-dC-DK4" id="laY-y6-Io1"/>
-                                                </connections>
-                                            </menuItem>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
+                                    <font key="font" metaFont="system"/>
+                                    <menu key="menu" title="OtherViews" id="pTD-2u-xgT"/>
+                                </amVariablePopUpButtonCell>
                                 <connections>
-                                    <binding destination="duh-oL-tzb" name="selectedIndex" keyPath="values.LyricsSavingPathPopUpIndex" id="SGe-WZ-S4c"/>
+                                    <binding destination="Apb-jp-QE9" name="path" keyPath="values.LyricsCustomSavingPath" id="XSP-hE-wS4"/>
                                 </connections>
-                            </popUpButton>
+                            </amPathPopUpButton>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="fV0-Y6-6iT" firstAttribute="leading" secondItem="you-yu-77c" secondAttribute="trailing" constant="16" id="DiW-FA-1TX"/>
                             <constraint firstItem="you-yu-77c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="40" id="LoW-h0-G1D"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fV0-Y6-6iT" secondAttribute="trailing" constant="40" id="N3p-X7-EKD"/>
-                            <constraint firstItem="fV0-Y6-6iT" firstAttribute="centerY" secondItem="you-yu-77c" secondAttribute="centerY" id="NHs-VD-a6h"/>
                             <constraint firstItem="you-yu-77c" firstAttribute="trailing" secondItem="Ium-Ya-ZzT" secondAttribute="centerX" constant="-30" id="OMR-7Z-L5p"/>
+                            <constraint firstItem="78X-XQ-NFv" firstAttribute="leading" secondItem="you-yu-77c" secondAttribute="trailing" constant="16" id="Tpt-CG-NoC"/>
                             <constraint firstItem="you-yu-77c" firstAttribute="top" secondItem="Ium-Ya-ZzT" secondAttribute="top" constant="24" id="cyR-Pt-SST"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="78X-XQ-NFv" secondAttribute="trailing" constant="40" id="h2M-bH-X95"/>
+                            <constraint firstItem="78X-XQ-NFv" firstAttribute="centerY" secondItem="you-yu-77c" secondAttribute="centerY" id="viM-iE-Egq"/>
                             <constraint firstAttribute="bottom" secondItem="you-yu-77c" secondAttribute="bottom" constant="24" id="xmN-MQ-6O1"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="savingPathPopUp" destination="fV0-Y6-6iT" id="vRA-ep-mHD"/>
-                    </connections>
                 </viewController>
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="duh-oL-tzb"/>
+                <userDefaultsController id="Apb-jp-QE9"/>
             </objects>
             <point key="canvasLocation" x="1970" y="-146"/>
         </scene>
@@ -504,7 +491,7 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="182.5" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
+                                                            <tableColumn width="183" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Keyword">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

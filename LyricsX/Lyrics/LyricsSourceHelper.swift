@@ -67,12 +67,7 @@ class LyricsSourceHelper {
     }
     
     func readLocalLyrics(title: String, artist: String) -> LXLyrics? {
-        let savingPath: String
-        if UserDefaults.standard.integer(forKey: LyricsSavingPathPopUpIndex) == 0 {
-            savingPath = LyricsSavingPathDefault
-        } else {
-            savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
-        }
+        let savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
         let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
         let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
         let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
