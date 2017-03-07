@@ -27,12 +27,10 @@ class LyricsSourceHelper {
     var delegate: LyricsSourceDelegate?
     
     private let lyricsSource: [LyricsSource]
-    private let queue: OperationQueue
     
     var lyrics: [LXLyrics]
     
     init() {
-        queue = OperationQueue()
         lyricsSource = [
             LyricsXiami(),
             LyricsGecimi(),
@@ -50,10 +48,6 @@ class LyricsSourceHelper {
                 self.delegate?.lyricsReceived(lyrics: lrc)
             }
         }
-    }
-    
-    func cancelFetching() {
-        queue.cancelAllOperations()
     }
     
     func readLocalLyrics(title: String, artist: String) -> LXLyrics? {

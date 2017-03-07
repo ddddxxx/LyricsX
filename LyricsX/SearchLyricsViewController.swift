@@ -47,7 +47,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     func lyricsReceived(lyrics: LXLyrics) {
         searchResult += [lyrics]
-        OperationQueue.main.addOperation {
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
