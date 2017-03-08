@@ -169,7 +169,7 @@
                     <tabViewItems>
                         <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG"/>
                         <tabViewItem label="Display" identifier="" image="NSFontPanel" id="8VI-6O-0Rn"/>
-                        <tabViewItem label="Filter" image="NSNetwork" id="xcA-tm-q8A" userLabel="Filter"/>
+                        <tabViewItem label="Filter" image="toolbar_filter" id="xcA-tm-q8A" userLabel="Filter"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="ufX-Bl-B8D">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -208,9 +208,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Bjo-cp-Ehb"/>
                                 </constraints>
-                                <amVariablePopUpButtonCell key="cell" type="push" title="New…" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1003" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="KN5-DY-Vr7">
+                                <amVariablePopUpButtonCell key="cell" type="push" title="Desktop" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1004" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="KN5-DY-Vr7">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="pTD-2u-xgT"/>
                                 </amVariablePopUpButtonCell>
                                 <connections>
@@ -920,12 +920,12 @@
                                 </connections>
                             </textField>
                             <imageView horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N4M-lF-IAL">
-                                <rect key="frame" x="347" y="89" width="156" height="156"/>
+                                <rect key="frame" x="350" y="92" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="KTe-L1-GLM"/>
                                     <constraint firstAttribute="width" secondItem="N4M-lF-IAL" secondAttribute="height" id="pY8-pl-uO1"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" image="no_artwork" id="s5v-xd-W4E"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="missing_artwork" id="s5v-xd-W4E"/>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Np2-88-ohs">
                                 <rect key="frame" x="423" y="251" width="83" height="32"/>
@@ -973,9 +973,9 @@
     </scenes>
     <resources>
         <image name="NSFontPanel" width="32" height="32"/>
-        <image name="NSNetwork" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="font_panel" width="22" height="20"/>
-        <image name="no_artwork" width="600" height="600"/>
+        <image name="missing_artwork" width="800" height="800"/>
+        <image name="toolbar_filter" width="32" height="32"/>
     </resources>
 </document>

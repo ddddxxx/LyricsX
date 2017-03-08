@@ -85,7 +85,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             let hudView = hudWindow.contentViewController as? LyricsHUDViewController
             hudView?.lyrics = searchResult[index]
             hudWindow.showWindow(nil)
-            artworkView.image = searchResult[index].metadata[.artworkURL].flatMap({URL(string: $0)}).flatMap({NSImage(contentsOf: $0)}) ?? #imageLiteral(resourceName: "no_artwork")
+            artworkView.image = searchResult[index].metadata[.artworkURL].flatMap({URL(string: $0)}).flatMap({NSImage(contentsOf: $0)}) ?? #imageLiteral(resourceName: "missing_artwork")
             self.view.window?.makeKeyAndOrderFront(nil)
             tableView.becomeFirstResponder()
         }
