@@ -41,7 +41,8 @@ class LyricsSourceHelper {
         lyricsSource = [
             LyricsXiami(queue: queue),
             LyricsGecimi(queue: queue),
-            LyricsTTPod(queue: queue)
+            LyricsTTPod(queue: queue),
+            Lyrics163(queue: queue)
         ]
         lyrics = []
     }
