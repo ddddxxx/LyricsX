@@ -80,9 +80,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         switch title {
         case "Title":
-            return searchResult[row].metadata[.searchTitle]
+            return searchResult[row].idTags[.title]
         case "Artist":
-            return searchResult[row].metadata[.searchArtist]
+            return searchResult[row].idTags[.artist]
         case "Source":
             return searchResult[row].metadata[.source]
         default:
