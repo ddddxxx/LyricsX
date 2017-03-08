@@ -18,6 +18,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             searchButton.isEnabled = searchTitle.characters.count > 0
         }
     }
+    dynamic var selectedIndex = NSIndexSet()
     
     let lyricsHelper = LyricsSourceHelper()
     
@@ -41,6 +42,16 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         searchResult = []
         tableView.reloadData()
         lyricsHelper.fetchLyrics(title: searchTitle, artist: searchArtist)
+    }
+    
+    
+    @IBAction func useLyricsAction(_ sender: NSButton) {
+        let index = selectedIndex.firstIndex
+        var lrc = searchResult[index]
+        lrc.filtrate()
+        lrc.smartFiltrate()
+        appDelegate.helper.currentLyrics = lrc
+        lrc.saveToLocal()
     }
     
     // MARK: - LyricsSourceDelegate

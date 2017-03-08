@@ -729,7 +729,7 @@
                                     <rect key="frame" x="1" y="1" width="358" height="428"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="yrx-pH-R1e">
+                                        <textView editable="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="yrx-pH-R1e">
                                             <rect key="frame" x="0.0" y="-0.5" width="358" height="428"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -867,6 +867,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <binding destination="hFt-BA-jFS" name="selectionIndexes" keyPath="self.selectedIndex" id="IOL-ou-uDd"/>
                                                 <outlet property="dataSource" destination="hFt-BA-jFS" id="g7Z-z3-ykK"/>
                                                 <outlet property="delegate" destination="hFt-BA-jFS" id="sFU-O1-o4s"/>
                                             </connections>
@@ -937,6 +938,16 @@
                                     <action selector="searchAction:" target="hFt-BA-jFS" id="LsO-O6-hwU"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QUt-vg-f7A">
+                                <rect key="frame" x="388" y="13" width="75" height="32"/>
+                                <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zz6-Xe-2zu">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="useLyricsAction:" target="hFt-BA-jFS" id="x9x-3l-5mW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="YDN-9W-lUU" secondAttribute="bottom" constant="20" id="9o2-zB-6JS"/>
@@ -951,12 +962,15 @@
                             <constraint firstAttribute="trailing" secondItem="Np2-88-ohs" secondAttribute="trailing" constant="20" id="RG3-Wp-x8z"/>
                             <constraint firstItem="ViJ-II-hW8" firstAttribute="top" secondItem="icq-QQ-RTZ" secondAttribute="top" constant="20" id="Smz-al-O7S"/>
                             <constraint firstItem="N4M-lF-IAL" firstAttribute="top" secondItem="YDN-9W-lUU" secondAttribute="top" id="Sv0-h4-dcy"/>
+                            <constraint firstItem="QUt-vg-f7A" firstAttribute="centerX" secondItem="N4M-lF-IAL" secondAttribute="centerX" id="Ti4-3T-ZhD"/>
                             <constraint firstItem="GVe-a1-Feu" firstAttribute="centerY" secondItem="AYj-Hi-KJT" secondAttribute="centerY" id="V4v-qv-nRS"/>
                             <constraint firstItem="1eb-gg-tTU" firstAttribute="width" secondItem="ViJ-II-hW8" secondAttribute="width" id="XZ3-x3-NJu"/>
                             <constraint firstItem="Np2-88-ohs" firstAttribute="leading" secondItem="1eb-gg-tTU" secondAttribute="trailing" constant="40" id="aXV-fw-8v0"/>
                             <constraint firstItem="ViJ-II-hW8" firstAttribute="leading" secondItem="AYj-Hi-KJT" secondAttribute="trailing" constant="8" id="ab1-16-Pob"/>
                             <constraint firstItem="Np2-88-ohs" firstAttribute="centerY" secondItem="AYj-Hi-KJT" secondAttribute="centerY" id="byi-qf-UDl"/>
                             <constraint firstItem="YDN-9W-lUU" firstAttribute="top" secondItem="ViJ-II-hW8" secondAttribute="bottom" constant="16" id="gAb-ei-WFP"/>
+                            <constraint firstItem="QUt-vg-f7A" firstAttribute="bottom" secondItem="YDN-9W-lUU" secondAttribute="bottom" id="jmP-4k-QDf"/>
+                            <constraint firstItem="QUt-vg-f7A" firstAttribute="top" relation="greaterThanOrEqual" secondItem="N4M-lF-IAL" secondAttribute="bottom" constant="20" id="rXR-5X-Iuk"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="N4M-lF-IAL" secondAttribute="bottom" constant="20" id="wWI-Cx-xBA"/>
                         </constraints>
                     </view>
