@@ -17,8 +17,6 @@ class iTunesHelper: LyricsSourceDelegate {
     var positionChangeTimer: Timer!
     
     var currentSongID: Int?
-    var currentSongTitle: String?
-    var currentArtist: String?
     var currentLyrics: LXLyrics? {
         didSet {
             appDelegate.currentOffset = currentLyrics?.offset ?? 0
@@ -65,16 +63,15 @@ class iTunesHelper: LyricsSourceDelegate {
     func handleSongChange() {
         let track = iTunes.currentTrack
         currentSongID = track?.id?()
-        currentSongTitle = track?.name as String?
-        currentArtist = track?.artist as String?
         currentLyrics = nil
         
-        print("song changed: \(currentSongTitle)")
+        print("song changed: \(iTunes.currentTrack?.name)")
         
         let info = ["lrc": "", "next": ""]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
         
-        guard let title = currentSongTitle, let artist = currentArtist else {
+        guard let title = iTunes.currentTrack?.name as String?,
+            let artist = iTunes.currentTrack?.artist as String? else {
             return
         }
         
@@ -111,7 +108,8 @@ class iTunesHelper: LyricsSourceDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: LXLyrics) {
-        guard lyrics.metadata[.searchTitle] == currentSongTitle, lyrics.metadata[.searchArtist] == currentArtist else {
+        guard lyrics.metadata[.searchTitle] == iTunes.currentTrack?.name as String?,
+            lyrics.metadata[.searchArtist] == iTunes.currentTrack?.artist as String? else {
             return
         }
         
