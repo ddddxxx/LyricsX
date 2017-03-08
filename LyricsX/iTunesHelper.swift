@@ -115,13 +115,19 @@ class iTunesHelper: LyricsSourceDelegate {
             return
         }
         
-        if currentLyrics == nil {   // TODO: replacement
-            var lyrics = lyrics
-            lyrics.filtrate()
-            lyrics.smartFiltrate()
-            currentLyrics = lyrics
-            lyrics.saveToLocal()
+        if let current = currentLyrics, current.grade >= lyrics.grade {
+            return
         }
+        
+        var lyrics = lyrics
+        lyrics.filtrate()
+        lyrics.smartFiltrate()
+        currentLyrics = lyrics
+        lyrics.saveToLocal()
+    }
+    
+    func fetchCompleted(result: [LXLyrics]) {
+        
     }
     
 }
@@ -129,12 +135,7 @@ class iTunesHelper: LyricsSourceDelegate {
 extension LXLyrics {
     
     func saveToLocal() {
-        let savingPath: String
-        if UserDefaults.standard.integer(forKey: LyricsSavingPathPopUpIndex) == 0 {
-            savingPath = LyricsSavingPathDefault
-        } else {
-            savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
-        }
+        let savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
         let fileManager = FileManager.default
         
         do {

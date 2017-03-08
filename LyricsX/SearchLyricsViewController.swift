@@ -18,6 +18,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             searchButton.isEnabled = searchTitle.characters.count > 0
         }
     }
+    dynamic var selectedIndex = NSIndexSet()
     
     let lyricsHelper = LyricsSourceHelper()
     
@@ -43,13 +44,27 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         lyricsHelper.fetchLyrics(title: searchTitle, artist: searchArtist)
     }
     
+    
+    @IBAction func useLyricsAction(_ sender: NSButton) {
+        let index = selectedIndex.firstIndex
+        var lrc = searchResult[index]
+        lrc.filtrate()
+        lrc.smartFiltrate()
+        appDelegate.helper.currentLyrics = lrc
+        lrc.saveToLocal()
+    }
+    
     // MARK: - LyricsSourceDelegate
     
     func lyricsReceived(lyrics: LXLyrics) {
         searchResult += [lyrics]
-        OperationQueue.main.addOperation {
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func fetchCompleted(result: [LXLyrics]) {
+        
     }
     
     // MARK: - TableViewDelegate
@@ -65,9 +80,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         switch title {
         case "Title":
-            return searchResult[row].metadata[.searchTitle]
+            return searchResult[row].idTags[.title]
         case "Artist":
-            return searchResult[row].metadata[.searchArtist]
+            return searchResult[row].idTags[.artist]
         case "Source":
             return searchResult[row].metadata[.source]
         default:
@@ -81,7 +96,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             let hudView = hudWindow.contentViewController as? LyricsHUDViewController
             hudView?.lyrics = searchResult[index]
             hudWindow.showWindow(nil)
-            artworkView.image = searchResult[index].metadata[.artworkURL].flatMap({URL(string: $0)}).flatMap({NSImage(contentsOf: $0)}) ?? #imageLiteral(resourceName: "no_artwork")
+            artworkView.image = searchResult[index].metadata[.artworkURL].flatMap({URL(string: $0)}).flatMap({NSImage(contentsOf: $0)}) ?? #imageLiteral(resourceName: "missing_artwork")
             self.view.window?.makeKeyAndOrderFront(nil)
             tableView.becomeFirstResponder()
         }
