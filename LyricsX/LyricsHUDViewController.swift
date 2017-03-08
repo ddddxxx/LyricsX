@@ -11,18 +11,15 @@ import Cocoa
 class LyricsHUDViewController: NSViewController {
     
     @IBOutlet var lyricsTextView: NSTextView!
-    @IBOutlet weak var useLrcButton: NSButton!
     
     var lyrics: LXLyrics? {
         didSet {
-            lyricsTextView.string = lyrics?.description
-            useLrcButton.isEnabled = true
+            updateTextView(nil)
         }
     }
     
     override func viewDidLoad() {
-        lyricsTextView.font = .systemFont(ofSize: 13)
-        lyricsTextView.textColor = NSColor(white: 0.9, alpha: 1)
+        UserDefaults.standard.addObserver(self, forKeyPath: DisplayLyricsWithTag, options: .new, context: nil)
         super.viewDidLoad()
     }
     
@@ -31,12 +28,22 @@ class LyricsHUDViewController: NSViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func useLrc(_ sender: Any) {
-        lyrics?.filtrate()
-        lyrics?.smartFiltrate()
-        appDelegate.helper.currentLyrics = lyrics
-        lyrics?.saveToLocal()
-        useLrcButton.isEnabled = false
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        switch keyPath {
+        case .some(DisplayLyricsWithTag):
+            updateTextView(nil)
+        default:
+            break
+        }
+    }
+    
+    @IBAction func updateTextView(_ sender: Any?) {
+        let withTag = UserDefaults.standard.bool(forKey: DisplayLyricsWithTag)
+        if withTag {
+            lyricsTextView.string = lyrics?.description
+        } else {
+            lyricsTextView.string = lyrics?.lyrics.map({$0.sentence}).joined(separator: "\n")
+        }
     }
     
 }

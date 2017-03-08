@@ -33,6 +33,8 @@ let DesktopLyricsColor = "DesktopLyricsColor"
 let DesktopLyricsShadowColor = "DesktopLyricsShadowColor"
 let DesktopLyricsBackgroundColor = "DesktopLyricsBackgroundColor"
 
+let DisplayLyricsWithTag = "DisplayLyricsWithTag"
+
 // File
 let LyricsCustomSavingPath = "LyricsCustomSavingPath"
 

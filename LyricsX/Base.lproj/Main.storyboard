@@ -165,7 +165,7 @@
         <!--Preference View Controller-->
         <scene sceneID="DwI-HE-QiS">
             <objects>
-                <tabViewController tabStyle="toolbar" id="sV3-nO-PkZ" userLabel="Preference View Controller" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" tabStyle="toolbar" id="sV3-nO-PkZ" userLabel="Preference View Controller" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG"/>
                         <tabViewItem label="Display" identifier="" image="NSFontPanel" id="8VI-6O-0Rn"/>
@@ -702,7 +702,7 @@
             <objects>
                 <windowController storyboardIdentifier="LyricsHUD" showSeguePresentationStyle="single" id="fpK-JT-GVp" userLabel="Lyrics HUD Window Controller" sceneMemberID="viewController">
                     <window key="window" title="Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="6aU-M0-0Jh" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="862" y="135" width="400" height="500"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
@@ -718,71 +718,71 @@
         <!--Lyrics HUD View Controller-->
         <scene sceneID="7oT-qx-38j">
             <objects>
-                <viewController id="j0j-xF-gds" userLabel="Lyrics HUD View Controller" customClass="LyricsHUDViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="j0j-xF-gds" userLabel="Lyrics HUD View Controller" customClass="LyricsHUDViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="kbP-ZG-vEe">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHV-g3-mmK">
-                                <rect key="frame" x="20" y="53" width="360" height="427"/>
-                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="eC6-ID-KgZ">
-                                    <rect key="frame" x="1" y="1" width="358" height="425"/>
+                            <scrollView wantsLayer="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-WB-V2o">
+                                <rect key="frame" x="20" y="50" width="360" height="430"/>
+                                <clipView key="contentView" id="lTs-ol-c97">
+                                    <rect key="frame" x="1" y="1" width="358" height="428"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView editable="NO" drawsBackground="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="ySk-sX-AuE">
-                                            <rect key="frame" x="0.0" y="-0.5" width="358" height="425"/>
+                                        <textView importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="yrx-pH-R1e">
+                                            <rect key="frame" x="0.0" y="-0.5" width="358" height="428"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="358" height="425"/>
-                                            <size key="maxSize" width="478" height="10000000"/>
-                                            <color key="insertionPointColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="358" height="428"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="hx5-Li-aRp">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="I0t-r3-nYK">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="xKw-Ac-zBs">
-                                    <rect key="frame" x="343" y="1" width="16" height="425"/>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="BuP-Au-Ruu">
+                                    <rect key="frame" x="343" y="1" width="16" height="428"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dsc-vU-eXW">
-                                <rect key="frame" x="311" y="9" width="75" height="32"/>
-                                <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="19d-Lz-Inh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="RDM-TH-6JB">
+                                <rect key="frame" x="18" y="18" width="76" height="18"/>
+                                <buttonCell key="cell" type="check" title="With Tag" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LHz-0E-uo2">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="useLrc:" target="j0j-xF-gds" id="Hdx-ym-shu"/>
+                                    <action selector="updateTextView:" target="j0j-xF-gds" id="YCq-XL-KMq"/>
+                                    <binding destination="2Ed-ZD-PSO" name="value" keyPath="values.DisplayLyricsWithTag" id="vH9-Tx-O5U"/>
                                 </connections>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="tHV-g3-mmK" firstAttribute="top" secondItem="kbP-ZG-vEe" secondAttribute="top" constant="20" id="0jz-jB-LZF"/>
-                            <constraint firstItem="Dsc-vU-eXW" firstAttribute="top" secondItem="tHV-g3-mmK" secondAttribute="bottom" constant="16" id="Bw4-dz-mXi"/>
-                            <constraint firstAttribute="trailing" secondItem="Dsc-vU-eXW" secondAttribute="trailing" constant="20" id="GGC-Vp-wXE"/>
-                            <constraint firstAttribute="bottom" secondItem="Dsc-vU-eXW" secondAttribute="bottom" constant="16" id="d39-4l-Xyj"/>
-                            <constraint firstAttribute="trailing" secondItem="tHV-g3-mmK" secondAttribute="trailing" constant="20" id="hhl-jb-EaD"/>
-                            <constraint firstItem="tHV-g3-mmK" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="20" id="yXT-YN-gDf"/>
+                            <constraint firstAttribute="bottom" secondItem="RDM-TH-6JB" secondAttribute="bottom" constant="20" id="2bk-A1-rqq"/>
+                            <constraint firstAttribute="trailing" secondItem="IdM-WB-V2o" secondAttribute="trailing" constant="20" id="2nm-0G-wba"/>
+                            <constraint firstItem="IdM-WB-V2o" firstAttribute="top" secondItem="kbP-ZG-vEe" secondAttribute="top" constant="20" id="VG9-vR-76i"/>
+                            <constraint firstItem="IdM-WB-V2o" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="20" id="VnR-Dw-Ta3"/>
+                            <constraint firstItem="RDM-TH-6JB" firstAttribute="top" secondItem="IdM-WB-V2o" secondAttribute="bottom" constant="16" id="ls6-qz-l3E"/>
+                            <constraint firstItem="RDM-TH-6JB" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="20" id="qpk-eF-DF9"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="lyricsTextView" destination="ySk-sX-AuE" id="mfH-YY-VHc"/>
-                        <outlet property="useLrcButton" destination="Dsc-vU-eXW" id="uF5-zP-1xt"/>
+                        <outlet property="lyricsTextView" destination="yrx-pH-R1e" id="3kk-LC-zpd"/>
                     </connections>
                 </viewController>
                 <customObject id="50J-qv-I61" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="2Ed-ZD-PSO"/>
             </objects>
             <point key="canvasLocation" x="1281" y="654"/>
         </scene>
         <!--Search Lyrics Window Controller-->
         <scene sceneID="Ihc-TO-az9">
             <objects>
-                <windowController id="Fyy-jy-wIT" userLabel="Search Lyrics Window Controller" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="Fyy-jy-wIT" userLabel="Search Lyrics Window Controller" sceneMemberID="viewController">
                     <window key="window" title="Search Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="y4a-GW-tEh">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -800,7 +800,7 @@
         <!--Search Lyrics View Controller-->
         <scene sceneID="uyG-Ma-t9Z">
             <objects>
-                <viewController id="hFt-BA-jFS" userLabel="Search Lyrics View Controller" customClass="SearchLyricsViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="hFt-BA-jFS" userLabel="Search Lyrics View Controller" customClass="SearchLyricsViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="icq-QQ-RTZ">
                         <rect key="frame" x="0.0" y="0.0" width="520" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
