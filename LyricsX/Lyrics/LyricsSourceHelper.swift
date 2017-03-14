@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol LyricsSourceDelegate {
+protocol LyricsSourceDelegate: class {
     
     func lyricsReceived(lyrics: LXLyrics)
     
@@ -26,7 +26,7 @@ protocol LyricsSource {
 
 class LyricsSourceHelper {
     
-    var delegate: LyricsSourceDelegate?
+    weak var delegate: LyricsSourceDelegate?
     
     private let lyricsSource: [LyricsSource]
     private let queue: OperationQueue
