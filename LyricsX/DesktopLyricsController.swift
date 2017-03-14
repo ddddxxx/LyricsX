@@ -66,6 +66,8 @@ class DesktopLyricsController: NSWindowController {
         }
     }
     
+    var observerTokens = [NSObjectProtocol]()
+    
     init() {
         let visibleFrame = NSScreen.main()!.visibleFrame
         let window = NSWindow(contentRect: visibleFrame, styleMask: [.borderless, .fullSizeContentView, .texturedBackground], backing: .buffered, defer: false)
@@ -126,7 +128,7 @@ class DesktopLyricsController: NSWindowController {
         
         displayLrc("LyricsX", secondLine: "")
         
-        NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
+        observerTokens += [NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
             var lrc = n.userInfo?["lrc"] as? String ?? ""
             var next = n.userInfo?["next"] as? String ?? ""
             if lrc.replacingOccurrences(of: " ", with: "") == "" {
@@ -137,7 +139,7 @@ class DesktopLyricsController: NSWindowController {
             }
             
             self.displayLrc(lrc, secondLine: next)
-        }
+        }]
         
         UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsEnabled, options: .new, context: nil)
         UserDefaults.standard.addObserver(self, forKeyPath: DesktopLyricsHeighFromDock, options: .new, context: nil)
@@ -150,6 +152,12 @@ class DesktopLyricsController: NSWindowController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        observerTokens.forEach() { token in
+            NotificationCenter.default.removeObserver(token)
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

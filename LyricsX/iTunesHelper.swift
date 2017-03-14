@@ -28,6 +28,8 @@ class iTunesHelper: LyricsSourceDelegate {
     
     var fetchLrcQueue = OperationQueue()
     
+    var observerTokens = [NSObjectProtocol]()
+    
     init() {
         iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
         lyricsHelper = LyricsSourceHelper()
@@ -35,9 +37,17 @@ class iTunesHelper: LyricsSourceDelegate {
         
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in self.handlePositionChange() }
         
-        DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.iTunes.playerInfo"), object: nil, queue: nil) { notification in self.handlePlayerInfoChange() }
+        observerTokens += [DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.iTunes.playerInfo"), object: nil, queue: nil) { notification in
+            self.handlePlayerInfoChange()
+        }]
         
         handlePlayerInfoChange()
+    }
+    
+    deinit {
+        observerTokens.forEach() { token in
+            NotificationCenter.default.removeObserver(token)
+        }
     }
     
     func handlePlayerInfoChange () {
