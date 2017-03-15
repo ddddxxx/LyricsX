@@ -11,6 +11,7 @@ import Foundation
 struct LXLyricsLine {
     
     var sentence: String
+    var translation: String?
     var position: Double
     var enabled: Bool
     
@@ -20,13 +21,14 @@ struct LXLyricsLine {
         return String(format: "%02d:%06.3f", min, sec)
     }
     
-    init(sentence: String, position: Double) {
+    init(sentence: String, translation: String? = nil, position: Double) {
         self.sentence = sentence
+        self.translation = translation
         self.position = position
         enabled = true
     }
     
-    init?(sentence: String, timeTag: String) {
+    init?(sentence: String, translation: String? = nil, timeTag: String) {
         var tagContent = timeTag
         tagContent.remove(at: tagContent.startIndex)
         tagContent.remove(at: tagContent.index(before: tagContent.endIndex))
@@ -35,7 +37,7 @@ struct LXLyricsLine {
             let min = Double(components[0]),
             let sec = Double(components[1]) {
             let position = sec + min * 60
-            self.init(sentence: sentence, position: position)
+            self.init(sentence: sentence, translation: translation, position: position)
         } else {
             return nil
         }
@@ -46,7 +48,7 @@ struct LXLyricsLine {
 extension LXLyricsLine: Equatable, Hashable {
     
     var hashValue: Int {
-        return sentence.hashValue ^ position.hashValue
+        return sentence.hashValue ^ position.hashValue ^ (translation?.hash ?? 0)
     }
     
     static func ==(lhs: LXLyricsLine, rhs: LXLyricsLine) -> Bool {
@@ -95,9 +97,19 @@ struct LXLyrics {
             if timeTagsMatched.count > 0 {
                 let index: Int = timeTagsMatched.last!.range.location + timeTagsMatched.last!.range.length
                 let lyricsSentence: String = line.substring(from: line.characters.index(line.startIndex, offsetBy: index))
+                let components = lyricsSentence.components(separatedBy: "【")
+                let lyricsStr: String
+                let translation: String?
+                if components.count == 2, components[1].characters.last == "】" {
+                    lyricsStr = components[0]
+                    translation = String(components[1].characters.dropLast())
+                } else {
+                    lyricsStr = lyricsSentence
+                    translation = nil
+                }
                 let lyrics = timeTagsMatched.flatMap() { result -> LXLyricsLine? in
                     let timeTagStr = (line as NSString).substring(with: result.range) as String
-                    return LXLyricsLine(sentence: lyricsSentence, timeTag: timeTagStr)
+                    return LXLyricsLine(sentence: lyricsStr, translation: translation, timeTag: timeTagStr)
                 }
                 self.lyrics += lyrics
             } else {
@@ -139,13 +151,11 @@ struct LXLyrics {
     
     subscript(_ position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
         let lyrics = self.lyrics.filter() { $0.enabled }
-        for (index, line) in lyrics.enumerated() {
-            if line.position - timeDelay > position {
-                let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
-                return (previous, line)
-            }
+        guard let index = lyrics.index(where: { $0.position - timeDelay > position }) else {
+            return (lyrics.last, nil)
         }
-        return (lyrics.last, nil)
+        let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
+        return (previous, lyrics[index])
     }
     
 }
@@ -191,6 +201,9 @@ extension LXLyrics {
         }
         if idTags[.title] == metadata[.searchTitle] {
             grade += 1 << 8
+        }
+        if metadata[.includeTranslation] == "true" {
+            grade += 1 << 2
         }
         return grade
     }
@@ -241,6 +254,31 @@ extension LXLyrics {
         
         case artworkURL
         
+        case includeTranslation
+        
+    }
+    
+}
+
+extension LXLyrics {
+    
+    mutating func merge(translation: LXLyrics) {
+        var index = lyrics.startIndex
+        var transIndex = translation.lyrics.startIndex
+        while index < lyrics.endIndex, transIndex < translation.lyrics.endIndex {
+            if lyrics[index].position - translation.lyrics[transIndex].position < 0.1 {
+                let transStr = translation.lyrics[transIndex].sentence
+                if transStr.replacingOccurrences(of: " ", with: "").characters.count > 0 {
+                    lyrics[index].translation = transStr
+                }
+                lyrics.formIndex(after: &index)
+                translation.lyrics.formIndex(after: &transIndex)
+            } else if lyrics[index].position > translation.lyrics[transIndex].position {
+                translation.lyrics.formIndex(after: &transIndex)
+            } else {
+                lyrics.formIndex(after: &index)
+            }
+        }
     }
     
 }
@@ -258,7 +296,11 @@ extension LXLyrics.IDTagKey: CustomStringConvertible {
 extension LXLyricsLine: CustomStringConvertible {
     
     public var description: String {
-        return "[\(timeTag)]\(sentence)"
+        var description = "[\(timeTag)]" + sentence
+        if let trans = translation {
+            description += "【\(trans)】"
+        }
+        return description
     }
     
 }

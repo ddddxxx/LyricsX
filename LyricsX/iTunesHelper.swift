@@ -110,7 +110,7 @@ class iTunesHelper: LyricsSourceDelegate {
         
         let info = [
             "lrc": currentLyricsLine?.sentence as Any,
-            "next": nextLyricsLine?.sentence as Any
+            "next": currentLyricsLine?.translation ?? nextLyricsLine?.sentence as Any
         ]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
@@ -163,7 +163,7 @@ extension LXLyrics {
             if fileManager.fileExists(atPath: lrcFilePath) {
                 try fileManager.removeItem(atPath: lrcFilePath)
             }
-            try description.write(toFile: lrcFilePath, atomically: false, encoding: String.Encoding.utf8)
+            try description.write(toFile: lrcFilePath, atomically: false, encoding: .utf8)
         } catch let error as NSError{
             print(error)
             return
