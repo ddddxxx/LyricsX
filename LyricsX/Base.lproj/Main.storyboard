@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="N3z-4I-Oeu">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -143,6 +143,120 @@
                 <userDefaultsController id="J12-VO-LSh"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
+        </scene>
+        <!--Desktop Lyrics Window Controller-->
+        <scene sceneID="nf6-bn-z8A">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="N3z-4I-Oeu" userLabel="Desktop Lyrics Window Controller" customClass="DesktopLyricsWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="fhu-ba-Lnu">
+                        <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="208" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                    </window>
+                    <connections>
+                        <segue destination="Mpu-mB-dfa" kind="relationship" relationship="window.shadowedContentViewController" id="N2j-su-VUi"/>
+                    </connections>
+                </windowController>
+                <customObject id="y9u-wo-y4M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="90" y="1800"/>
+        </scene>
+        <!--Desktop Lyrics View Controller-->
+        <scene sceneID="aqq-eh-K59">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="Mpu-mB-dfa" userLabel="Desktop Lyrics View Controller" customClass="DesktopLyricsViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="Jim-N9-wko">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="DKt-ce-wX8">
+                                <rect key="frame" x="118" y="20" width="245" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" ambiguous="YES" id="Z6w-NG-DTp">
+                                    <rect key="frame" x="0.0" y="0.0" width="245" height="88"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ty-Fn-vpw">
+                                            <rect key="frame" x="18" y="49" width="209" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <shadow key="shadow" blurRadius="3">
+                                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </shadow>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="LyricsX" id="riB-ZI-myj">
+                                                <font key="font" metaFont="system" size="24"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="pRC-hv-j8h"/>
+                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="pRC-hv-j8h" id="TZe-PA-Egw"/>
+                                                <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="10D-ta-JWM">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wua-9w-SyS">
+                                            <rect key="frame" x="119" y="10" width="8" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <shadow key="shadow" blurRadius="3">
+                                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </shadow>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="1JT-sp-3Ci">
+                                                <font key="font" metaFont="system" size="24"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="Ps2-cv-Zb6"/>
+                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="Ps2-cv-Zb6" id="G4H-bX-Mzd"/>
+                                                <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="ulk-hk-wGN">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxd-qE-sgm">
+                                            <rect key="frame" x="18" y="-29" width="209" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <shadow key="shadow" blurRadius="3">
+                                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </shadow>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="MRM-nL-ymX">
+                                                <font key="font" metaFont="system" size="24"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="ebk-r7-uRx"/>
+                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="ebk-r7-uRx" id="bYb-xA-IVq"/>
+                                                <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="WLj-ff-qCr">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            </box>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="DKt-ce-wX8" id="l4M-FK-kqI"/>
+                        <outlet property="firstLineLrcView" destination="5ty-Fn-vpw" id="ugd-E5-NQK"/>
+                        <outlet property="secondLineLrcView" destination="wua-9w-SyS" id="5O2-es-wWG"/>
+                        <outlet property="waitingLrcView" destination="cxd-qE-sgm" id="YMq-mT-h0v"/>
+                    </connections>
+                </viewController>
+                <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="AB5-cL-Rpb"/>
+            </objects>
+            <point key="canvasLocation" x="661" y="1800"/>
         </scene>
         <!--Preference Window Controller-->
         <scene sceneID="TDf-75-7l1">
