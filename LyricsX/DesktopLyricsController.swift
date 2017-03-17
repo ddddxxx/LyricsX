@@ -52,16 +52,18 @@ class DesktopLyricsViewController: NSViewController {
         
         makeConstraints()
         
+        displayLrc("LyricsX")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.displayLrc("")
+            self.addObserver()
+        }
+    }
+    
+    func addObserver() {
         NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
-            var lrc = n.userInfo?["lrc"] as? String ?? ""
-            var next = n.userInfo?["next"] as? String ?? ""
-            if lrc.replacingOccurrences(of: " ", with: "") == "" {
-                lrc = ""
-            }
-            if next.replacingOccurrences(of: " ", with: "") == "" {
-                next = ""
-            }
-            
+            let lrc = n.userInfo?["lrc"] as? String
+            let next = n.userInfo?["next"] as? String
             self.displayLrc(lrc, secondLine: next)
         }
         
@@ -111,7 +113,7 @@ class DesktopLyricsViewController: NSViewController {
         view.layoutSubtreeIfNeeded()
     }
     
-    func displayLrc(_ firstLine: String, secondLine: String) {
+    func displayLrc(_ firstLine: String?, secondLine: String? = nil) {
         guard enabled else {
             return
         }
@@ -119,12 +121,12 @@ class DesktopLyricsViewController: NSViewController {
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.2
             context.allowsImplicitAnimation = true
-            self.secondLineLrcView.stringValue = firstLine
-            self.waitingLrcView.stringValue = secondLine
+            self.secondLineLrcView.stringValue = firstLine ?? ""
+            self.waitingLrcView.stringValue = secondLine ?? ""
             self.onAnimation = true
         }, completionHandler: {
-            self.firstLineLrcView.stringValue = firstLine
-            self.secondLineLrcView.stringValue = secondLine
+            self.firstLineLrcView.stringValue = firstLine ?? ""
+            self.secondLineLrcView.stringValue = secondLine ?? ""
             self.onAnimation = false
         })
     }

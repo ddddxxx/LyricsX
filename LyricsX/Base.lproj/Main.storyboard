@@ -183,40 +183,19 @@
                                             <shadow key="shadow" blurRadius="3">
                                                 <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </shadow>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="LyricsX" id="riB-ZI-myj">
-                                                <font key="font" metaFont="system" size="24"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="First Line Lyrics" id="riB-ZI-myj">
+                                                <font key="font" size="24" name="HelveticaNeue-Light"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="pRC-hv-j8h"/>
-                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="pRC-hv-j8h" id="TZe-PA-Egw"/>
                                                 <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="10D-ta-JWM">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
                                                     </dictionary>
                                                 </binding>
-                                            </connections>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wua-9w-SyS">
-                                            <rect key="frame" x="119" y="10" width="8" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <shadow key="shadow" blurRadius="3">
-                                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </shadow>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="1JT-sp-3Ci">
-                                                <font key="font" metaFont="system" size="24"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                            <connections>
-                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="Ps2-cv-Zb6"/>
-                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="Ps2-cv-Zb6" id="G4H-bX-Mzd"/>
-                                                <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="ulk-hk-wGN">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                    </dictionary>
-                                                </binding>
+                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="pRC-hv-j8h"/>
+                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="pRC-hv-j8h" id="TZe-PA-Egw"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxd-qE-sgm">
@@ -225,19 +204,40 @@
                                             <shadow key="shadow" blurRadius="3">
                                                 <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </shadow>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="MRM-nL-ymX">
-                                                <font key="font" metaFont="system" size="24"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Waiting Lyrics" id="MRM-nL-ymX">
+                                                <font key="font" size="24" name="HelveticaNeue-Light"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="ebk-r7-uRx"/>
-                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="ebk-r7-uRx" id="bYb-xA-IVq"/>
                                                 <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="WLj-ff-qCr">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="ebk-r7-uRx"/>
+                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="ebk-r7-uRx" id="bYb-xA-IVq"/>
+                                            </connections>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wua-9w-SyS">
+                                            <rect key="frame" x="18" y="12" width="209" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <shadow key="shadow" blurRadius="3">
+                                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </shadow>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Second Line Lyrics" id="1JT-sp-3Ci">
+                                                <font key="font" size="24" name="HelveticaNeue-Light"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="ulk-hk-wGN">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="Ps2-cv-Zb6"/>
+                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="Ps2-cv-Zb6" id="G4H-bX-Mzd"/>
                                             </connections>
                                         </textField>
                                     </subviews>
