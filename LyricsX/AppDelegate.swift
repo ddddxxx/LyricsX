@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import EasyPreference
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -46,20 +47,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let defaultSavingPath = NSSearchPathForDirectoriesInDomains(.musicDirectory, [.userDomainMask], true).first! + "/LyricsX"
         let registerDefaults: [String:AnyObject] = [
             // Menu
-            DesktopLyricsEnabled: NSNumber(value: true),
-            MenuBarLyricsEnabled: NSNumber(value: false),
+            "DesktopLyricsEnabled": NSNumber(value: true),
+            "MenuBarLyricsEnabled": NSNumber(value: false),
             // Display
-            DesktopLyricsHeighFromDock: NSNumber(value: 20),
-            DesktopLyricsFontName: "Helvetica Light" as AnyObject,
-            DesktopLyricsFontSize: NSNumber(value: 28),
-            DesktopLyricsColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) as AnyObject,
-            DesktopLyricsShadowColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject,
-            DesktopLyricsBackgroundColor: NSArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject,
+            "DesktopLyricsHeighFromDock": NSNumber(value: 20),
+            "DesktopLyricsFontName": "Helvetica Light" as AnyObject,
+            "DesktopLyricsFontSize": NSNumber(value: 28),
+            "DesktopLyricsColor": NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) as AnyObject,
+            "DesktopLyricsShadowColor": NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject,
+            "DesktopLyricsBackgroundColor": NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject,
             // File
-            LyricsCustomSavingPath: defaultSavingPath as AnyObject,
+            "LyricsCustomSavingPath": defaultSavingPath as AnyObject,
             // Filter
-            LyricsDirectFilterKey: directFilter as AnyObject,
-            LyricsColonFilterKey: colonFilter as AnyObject,
+            "LyricsDirectFilterKey": directFilter as AnyObject,
+            "LyricsColonFilterKey": colonFilter as AnyObject,
             ]
         UserDefaults.standard.register(defaults: registerDefaults)
     }

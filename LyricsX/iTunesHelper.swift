@@ -143,7 +143,7 @@ class iTunesHelper: LyricsSourceDelegate {
 extension LXLyrics {
     
     func saveToLocal() {
-        let savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
+        let savingPath = Preference[LyricsCustomSavingPath]!
         let fileManager = FileManager.default
         
         do {
@@ -171,9 +171,8 @@ extension LXLyrics {
     }
     
     mutating func filtrate() {
-        let userDefaults = UserDefaults.standard
-        guard let directFilter = userDefaults.array(forKey: LyricsDirectFilterKey) as? [String],
-            let colonFilter = userDefaults.array(forKey: LyricsColonFilterKey) as? [String] else {
+        guard let directFilter = Preference[LyricsDirectFilterKey],
+            let colonFilter = Preference[LyricsColonFilterKey] else {
                 return
         }
         let colons = [":", "：", "∶"]

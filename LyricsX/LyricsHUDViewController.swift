@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import EasyPreference
 
 class LyricsHUDViewController: NSViewController {
     
@@ -14,12 +15,20 @@ class LyricsHUDViewController: NSViewController {
     
     var lyrics: LXLyrics? {
         didSet {
-            updateTextView(nil)
+            updateTextView()
+        }
+    }
+    
+    var withTag = Preference[DisplayLyricsWithTag] {
+        didSet {
+            updateTextView()
         }
     }
     
     override func viewDidLoad() {
-        UserDefaults.standard.addObserver(self, forKeyPath: DisplayLyricsWithTag, options: .new, context: nil)
+        Preference.subscribe(key: DisplayLyricsWithTag) { [weak self] (change) in
+            self?.withTag = change.newValue
+        }
         super.viewDidLoad()
     }
     
@@ -28,17 +37,7 @@ class LyricsHUDViewController: NSViewController {
         super.viewDidLoad()
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        switch keyPath {
-        case .some(DisplayLyricsWithTag):
-            updateTextView(nil)
-        default:
-            break
-        }
-    }
-    
-    @IBAction func updateTextView(_ sender: Any?) {
-        let withTag = UserDefaults.standard.bool(forKey: DisplayLyricsWithTag)
+    func updateTextView() {
         if withTag {
             lyricsTextView.string = lyrics?.description
         } else {

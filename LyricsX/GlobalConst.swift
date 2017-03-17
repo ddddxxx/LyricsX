@@ -7,8 +7,10 @@
 //
 
 import Cocoa
+import EasyPreference
 
 let appDelegate = NSApplication.shared().delegate as! AppDelegate
+let Preference = EasyPreference(defaults: .standard)
 
 // MARK: - Notification Name
 
@@ -21,23 +23,23 @@ extension Notification.Name {
 // MARK: - User Defaults
 
 // Menu
-let DesktopLyricsEnabled = "DesktopLyricsEnabled"
-let MenuBarLyricsEnabled = "MenuBarLyricsEnabled"
+let DesktopLyricsEnabled: PreferenceKey<Bool>   = "DesktopLyricsEnabled"
+let MenuBarLyricsEnabled: PreferenceKey<Bool>   = "MenuBarLyricsEnabled"
 
 // Display
-let DesktopLyricsHeighFromDock = "DesktopLyricsHeighFromDock"
-let DesktopLyricsFontName = "DesktopLyricsFontName"
-let DesktopLyricsFontSize = "DesktopLyricsFontSize"
+let DesktopLyricsHeighFromDock: PreferenceKey<Int>  = "DesktopLyricsHeighFromDock"
+let DesktopLyricsFontName: PreferenceKey<String>    = "DesktopLyricsFontName"
+let DesktopLyricsFontSize: PreferenceKey<Int>       = "DesktopLyricsFontSize"
 
-let DesktopLyricsColor = "DesktopLyricsColor"
-let DesktopLyricsShadowColor = "DesktopLyricsShadowColor"
-let DesktopLyricsBackgroundColor = "DesktopLyricsBackgroundColor"
+let DesktopLyricsColor: PreferenceKey<NSColor>              = "DesktopLyricsColor"
+let DesktopLyricsShadowColor: PreferenceKey<NSColor>        = "DesktopLyricsShadowColor"
+let DesktopLyricsBackgroundColor: PreferenceKey<NSColor>    = "DesktopLyricsBackgroundColor"
 
-let DisplayLyricsWithTag = "DisplayLyricsWithTag"
+let DisplayLyricsWithTag: PreferenceKey<Bool>   = "DisplayLyricsWithTag"
 
 // File
-let LyricsCustomSavingPath = "LyricsCustomSavingPath"
+let LyricsCustomSavingPath: PreferenceKey<String>   = "LyricsCustomSavingPath"
 
 // Filter
-let LyricsDirectFilterKey = "LyricsDirectFilterKey"
-let LyricsColonFilterKey = "LyricsColonFilterKey"
+let LyricsDirectFilterKey: PreferenceKey<[String]>  = "LyricsDirectFilterKey"
+let LyricsColonFilterKey: PreferenceKey<[String]>   = "LyricsColonFilterKey"

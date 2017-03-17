@@ -7,10 +7,11 @@
 //
 
 import Cocoa
+import EasyPreference
 
 class MenuBarLyrics {
     
-    var enabled = UserDefaults.standard.bool(forKey: MenuBarLyricsEnabled)
+    var enabled = Preference[MenuBarLyricsEnabled]
     
     var statusItem: NSStatusItem?
     
@@ -29,12 +30,12 @@ class MenuBarLyrics {
             self.statusItem?.button?.title = lrc
         }]
         
-        observerTokens += [NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { n in
-            self.enabled = UserDefaults.standard.bool(forKey: MenuBarLyricsEnabled)
+        Preference.subscribe(key: MenuBarLyricsEnabled) { change in
+            self.enabled = Preference[MenuBarLyricsEnabled]
             if !self.enabled {
                 self.statusItem = nil
             }
-        }]
+        }
     }
     
     deinit {

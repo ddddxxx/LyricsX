@@ -333,9 +333,9 @@
                                 </constraints>
                                 <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsBackgroundColor" id="oX5-5b-x8I">
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsBackgroundColor" id="jsB-V5-Kpy">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -356,9 +356,9 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsColor" id="TXE-VK-SxG">
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsColor" id="4j3-XC-g9Q">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -379,9 +379,9 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsShadowColor" id="7sC-fc-0Kw">
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsShadowColor" id="RMb-tR-oEG">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -764,7 +764,6 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="updateTextView:" target="j0j-xF-gds" id="YCq-XL-KMq"/>
                                     <binding destination="2Ed-ZD-PSO" name="value" keyPath="values.DisplayLyricsWithTag" id="vH9-Tx-O5U"/>
                                 </connections>
                             </button>
