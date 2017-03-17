@@ -31,8 +31,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     override func viewDidLoad() {
         lyricsHelper.delegate = self
         let helper = (NSApplication.shared().delegate as? AppDelegate)?.helper
-        searchArtist = helper?.currentArtist ?? ""
-        searchTitle = helper?.currentSongTitle ?? ""
+        searchArtist = helper?.iTunes.currentTrack?.artist as String? ?? ""
+        searchTitle = helper?.iTunes.currentTrack?.name as String? ?? ""
         searchResult = helper?.lyricsHelper.lyrics ?? []
         hudWindow = NSStoryboard(name: "Main", bundle: .main).instantiateController(withIdentifier: "LyricsHUD") as? NSWindowController
         super.viewDidLoad()

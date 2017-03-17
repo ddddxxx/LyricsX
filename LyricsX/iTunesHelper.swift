@@ -17,8 +17,6 @@ class iTunesHelper: LyricsSourceDelegate {
     var positionChangeTimer: Timer!
     
     var currentSongID: Int?
-    var currentSongTitle: String?
-    var currentArtist: String?
     var currentLyrics: LXLyrics? {
         didSet {
             appDelegate.currentOffset = currentLyrics?.offset ?? 0
@@ -30,6 +28,8 @@ class iTunesHelper: LyricsSourceDelegate {
     
     var fetchLrcQueue = OperationQueue()
     
+    var observerTokens = [NSObjectProtocol]()
+    
     init() {
         iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
         lyricsHelper = LyricsSourceHelper()
@@ -37,9 +37,17 @@ class iTunesHelper: LyricsSourceDelegate {
         
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in self.handlePositionChange() }
         
-        DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.iTunes.playerInfo"), object: nil, queue: nil) { notification in self.handlePlayerInfoChange() }
+        observerTokens += [DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.iTunes.playerInfo"), object: nil, queue: nil) { notification in
+            self.handlePlayerInfoChange()
+        }]
         
         handlePlayerInfoChange()
+    }
+    
+    deinit {
+        observerTokens.forEach() { token in
+            NotificationCenter.default.removeObserver(token)
+        }
     }
     
     func handlePlayerInfoChange () {
@@ -65,16 +73,15 @@ class iTunesHelper: LyricsSourceDelegate {
     func handleSongChange() {
         let track = iTunes.currentTrack
         currentSongID = track?.id?()
-        currentSongTitle = track?.name as String?
-        currentArtist = track?.artist as String?
         currentLyrics = nil
         
-        print("song changed: \(currentSongTitle)")
+        print("song changed: \(iTunes.currentTrack?.name)")
         
         let info = ["lrc": "", "next": ""]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
         
-        guard let title = currentSongTitle, let artist = currentArtist else {
+        guard let title = iTunes.currentTrack?.name as String?,
+            let artist = iTunes.currentTrack?.artist as String? else {
             return
         }
         
@@ -103,7 +110,7 @@ class iTunesHelper: LyricsSourceDelegate {
         
         let info = [
             "lrc": currentLyricsLine?.sentence as Any,
-            "next": nextLyricsLine?.sentence as Any
+            "next": currentLyricsLine?.translation ?? nextLyricsLine?.sentence as Any
         ]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
@@ -111,7 +118,8 @@ class iTunesHelper: LyricsSourceDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: LXLyrics) {
-        guard lyrics.metadata[.searchTitle] == currentSongTitle, lyrics.metadata[.searchArtist] == currentArtist else {
+        guard lyrics.metadata[.searchTitle] == iTunes.currentTrack?.name as String?,
+            lyrics.metadata[.searchArtist] == iTunes.currentTrack?.artist as String? else {
             return
         }
         
@@ -135,7 +143,7 @@ class iTunesHelper: LyricsSourceDelegate {
 extension LXLyrics {
     
     func saveToLocal() {
-        let savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
+        let savingPath = Preference[LyricsCustomSavingPath]!
         let fileManager = FileManager.default
         
         do {
@@ -155,7 +163,7 @@ extension LXLyrics {
             if fileManager.fileExists(atPath: lrcFilePath) {
                 try fileManager.removeItem(atPath: lrcFilePath)
             }
-            try description.write(toFile: lrcFilePath, atomically: false, encoding: String.Encoding.utf8)
+            try description.write(toFile: lrcFilePath, atomically: false, encoding: .utf8)
         } catch let error as NSError{
             print(error)
             return
@@ -163,9 +171,8 @@ extension LXLyrics {
     }
     
     mutating func filtrate() {
-        let userDefaults = UserDefaults.standard
-        guard let directFilter = userDefaults.array(forKey: LyricsDirectFilterKey) as? [String],
-            let colonFilter = userDefaults.array(forKey: LyricsColonFilterKey) as? [String] else {
+        guard let directFilter = Preference[LyricsDirectFilterKey],
+            let colonFilter = Preference[LyricsColonFilterKey] else {
                 return
         }
         let colons = [":", "：", "∶"]

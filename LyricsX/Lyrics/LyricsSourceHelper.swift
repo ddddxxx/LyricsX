@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol LyricsSourceDelegate {
+protocol LyricsSourceDelegate: class {
     
     func lyricsReceived(lyrics: LXLyrics)
     
@@ -26,7 +26,7 @@ protocol LyricsSource {
 
 class LyricsSourceHelper {
     
-    var delegate: LyricsSourceDelegate?
+    weak var delegate: LyricsSourceDelegate?
     
     private let lyricsSource: [LyricsSource]
     private let queue: OperationQueue
@@ -68,7 +68,7 @@ class LyricsSourceHelper {
     }
     
     func readLocalLyrics(title: String, artist: String) -> LXLyrics? {
-        let savingPath = UserDefaults.standard.string(forKey: LyricsCustomSavingPath)!
+        let savingPath = Preference[LyricsCustomSavingPath]!
         let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
         let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
         let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")

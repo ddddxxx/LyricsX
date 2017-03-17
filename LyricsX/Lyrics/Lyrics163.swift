@@ -74,14 +74,18 @@ class Lyrics163: LyricsSource {
         }
         
         let json = JSON(data: data)
-        guard let lrcContent = json["lrc"]["lyric"].string else {
+        guard let lrcContent = json["lrc"]["lyric"].string,
+            var lrc = LXLyrics(lrcContent) else {
             return nil
         }
         
-        // TODO: translated lyrics
-        // let transLrc = json["tlyric"]["lyric"]
+        if let transLrcContent = json["tlyric"]["lyric"].string,
+            let transLrc = LXLyrics(transLrcContent) {
+            lrc.merge(translation: transLrc)
+            lrc.metadata[.includeTranslation] = "true"
+        }
         
-        return LXLyrics(lrcContent)
+        return lrc
     }
     
 }
