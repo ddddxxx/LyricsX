@@ -559,7 +559,7 @@
         <!--Filter-->
         <scene sceneID="I5E-Nt-3Jp">
             <objects>
-                <viewController id="lN1-gG-AVq" userLabel="Filter" sceneMemberID="viewController">
+                <viewController id="lN1-gG-AVq" userLabel="Filter" customClass="PreferenceFilterViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jcL-Yv-YP6">
                         <rect key="frame" x="0.0" y="0.0" width="471" height="408"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -605,7 +605,7 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="183" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
+                                                            <tableColumn width="182" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Keyword">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -778,6 +778,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="resetFilterKey:" target="lN1-gG-AVq" id="JlI-1U-9qq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
