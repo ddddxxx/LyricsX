@@ -31,11 +31,10 @@ class LyricsHUDViewController: NSViewController {
     }
     
     func updateTextView() {
-        if withTag {
-            lyricsTextView.string = lyrics?.description
-        } else {
-            lyricsTextView.string = lyrics?.lyrics.map({$0.sentence}).joined(separator: "\n")
-        }
+        lyricsTextView.string = lyrics?.contentString(withMetadata: false,
+                                                      ID3: withTag,
+                                                      timeTag: withTag,
+                                                      translation: true)
     }
     
 }

@@ -57,6 +57,22 @@ extension LXLyricsLine: Equatable, Hashable {
     
 }
 
+extension LXLyricsLine {
+    
+    func contentString(withTimeTag: Bool, translation: Bool) -> String {
+        var content = ""
+        if withTimeTag {
+            content += "[" + timeTag + "]"
+        }
+        content += sentence
+        if translation, let transStr = self.translation {
+            content += "【" + transStr + "】"
+        }
+        return content
+    }
+    
+}
+
 // MARK: -
 
 struct LXLyrics {
@@ -162,6 +178,30 @@ struct LXLyrics {
 
 extension LXLyrics {
     
+    func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
+        var content = ""
+        if withMetadata {
+            content += metadata.map {
+                return "[\($0.key):\($0.value)]\n"
+            }.joined()
+        }
+        if ID3 {
+            content += idTags.map() {
+                return "[\($0.key.rawValue):\($0.value)]\n"
+            }.joined()
+        }
+        
+        content += lyrics.map() {
+            return $0.contentString(withTimeTag: timeTag, translation: translation) + "\n"
+        }.joined()
+        
+        return content
+    }
+    
+}
+
+extension LXLyrics {
+    
     mutating func filtrate(using regex: NSRegularExpression) {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
@@ -242,19 +282,19 @@ extension LXLyrics {
         
     }
     
-    enum MetadataKey {
+    enum MetadataKey: String {
         
-        case source
+        case source             = "source"
         
-        case lyricsURL
+        case lyricsURL          = "lyricsURL"
         
-        case searchTitle
+        case searchTitle        = "searchTitle"
         
-        case searchArtist
+        case searchArtist       = "searchArtist"
         
-        case artworkURL
+        case artworkURL         = "artworkURL"
         
-        case includeTranslation
+        case includeTranslation = "includeTranslation"
         
     }
     
@@ -296,11 +336,7 @@ extension LXLyrics.IDTagKey: CustomStringConvertible {
 extension LXLyricsLine: CustomStringConvertible {
     
     public var description: String {
-        var description = "[\(timeTag)]" + sentence
-        if let trans = translation {
-            description += "【\(trans)】"
-        }
-        return description
+        return contentString(withTimeTag: true, translation: true)
     }
     
 }
@@ -308,9 +344,7 @@ extension LXLyricsLine: CustomStringConvertible {
 extension LXLyrics: CustomStringConvertible {
     
     public var description: String {
-        let tag = idTags.map({"[\($0.key):\($0.value)]"}).joined(separator: "\n")
-        let lrc = lyrics.map({$0.description}).joined(separator: "\n")
-        return tag + "\n" + lrc
+        return contentString(withMetadata: true, ID3: true, timeTag: true, translation: true)
     }
     
 }
