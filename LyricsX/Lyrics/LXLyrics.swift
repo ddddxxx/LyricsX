@@ -236,15 +236,30 @@ extension LXLyrics {
     
     var grade: Int {
         var grade = 0
-        if idTags[.artist] == metadata[.searchArtist] {
-            grade += 1 << 10
-        }
-        if idTags[.title] == metadata[.searchTitle] {
+        if let searchArtist = metadata[.searchArtist], let artist = idTags[.artist] {
+            if searchArtist == artist {
+                grade += 1 << 10
+            } else if searchArtist.contains(artist) || artist.contains(searchArtist) {
+                grade += 1 << 9
+            }
+        } else {
             grade += 1 << 8
         }
+        
+        if let searchTitle = metadata[.searchTitle], let title = idTags[.title] {
+            if searchTitle == title {
+                grade += 1 << 10
+            } else if searchTitle.contains(title) || title.contains(searchTitle) {
+                grade += 1 << 9
+            }
+        } else {
+            grade += 1 << 8
+        }
+        
         if metadata[.includeTranslation] == "true" {
             grade += 1 << 2
         }
+        
         return grade
     }
     
