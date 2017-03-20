@@ -306,9 +306,9 @@ extension LXLyrics {
         var index = lyrics.startIndex
         var transIndex = translation.lyrics.startIndex
         while index < lyrics.endIndex, transIndex < translation.lyrics.endIndex {
-            if lyrics[index].position - translation.lyrics[transIndex].position < 0.1 {
+            if lyrics[index].position == translation.lyrics[transIndex].position {
                 let transStr = translation.lyrics[transIndex].sentence
-                if transStr.replacingOccurrences(of: " ", with: "").characters.count > 0 {
+                if transStr.characters.count > 0 {
                     lyrics[index].translation = transStr
                 }
                 lyrics.formIndex(after: &index)
