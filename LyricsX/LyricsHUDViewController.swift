@@ -19,21 +19,14 @@ class LyricsHUDViewController: NSViewController {
         }
     }
     
-    var withTag = Preference[DisplayLyricsWithTag] {
-        didSet {
-            updateTextView()
-        }
-    }
+    var withTag = Preference[DisplayLyricsWithTag]
     
     override func viewDidLoad() {
+        lyrics = appDelegate.helper.currentLyrics
         Preference.subscribe(key: DisplayLyricsWithTag) { [weak self] (change) in
             self?.withTag = change.newValue
+            self?.updateTextView()
         }
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear() {
-        lyrics = appDelegate.helper.currentLyrics
         super.viewDidLoad()
     }
     
