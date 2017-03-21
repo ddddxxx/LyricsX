@@ -71,6 +71,13 @@
                                 <segue destination="dJj-XH-edl" kind="show" id="2ag-1Z-r0K"/>
                             </connections>
                         </menuItem>
+                        <menuItem isSeparatorItem="YES" id="Lhf-nJ-oOF"/>
+                        <menuItem title="About LyricsX..." id="PdE-VG-JUC">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="eB1-fb-ptE"/>
                         <menuItem title="Quit LyricsX" keyEquivalent="q" id="RPR-IV-34T">
                             <connections>
@@ -160,7 +167,7 @@
                 </windowController>
                 <customObject id="y9u-wo-y4M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="90" y="1800"/>
+            <point key="canvasLocation" x="667" y="-352"/>
         </scene>
         <!--Desktop Lyrics View Controller-->
         <scene sceneID="aqq-eh-K59">
@@ -256,7 +263,7 @@
                 <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="AB5-cL-Rpb"/>
             </objects>
-            <point key="canvasLocation" x="661" y="1800"/>
+            <point key="canvasLocation" x="1281" y="-352"/>
         </scene>
         <!--Preference Window Controller-->
         <scene sceneID="TDf-75-7l1">
@@ -1108,8 +1115,89 @@
             </objects>
             <point key="canvasLocation" x="1281" y="1261"/>
         </scene>
+        <!--About Window Controller-->
+        <scene sceneID="Hdl-QT-VuU">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="UhY-od-Efn" userLabel="About Window Controller" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="eoF-WG-hma">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="540" y="400" width="300" height="169"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                    </window>
+                    <connections>
+                        <segue destination="O7l-PK-pmn" kind="relationship" relationship="window.shadowedContentViewController" id="yhu-XA-I4F"/>
+                    </connections>
+                </windowController>
+                <customObject id="IIS-Wj-YKx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-363" y="999"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="gP2-Kp-Zmc">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="O7l-PK-pmn" userLabel="About View Controller" customClass="AboutViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="2sC-HC-E3f">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="169"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jrv-2U-Mj2">
+                                <rect key="frame" x="118" y="93" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="fMu-rP-Qra"/>
+                                    <constraint firstAttribute="height" constant="64" id="uVm-FO-Rhf"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="m3j-Wq-MJb"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p25-E0-ITV">
+                                <rect key="frame" x="116" y="64" width="68" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="AppName" id="m4c-y5-n5Z">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfW-sb-oUW">
+                                <rect key="frame" x="128" y="42" width="44" height="14"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version" id="tMS-HS-dqi">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYn-MG-f7p">
+                                <rect key="frame" x="64" y="20" width="172" height="14"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright © 2017 Xander Deng." id="0X5-3L-Uzo">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="bfW-sb-oUW" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="3c2-en-3UP"/>
+                            <constraint firstItem="nYn-MG-f7p" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="4YD-Do-apd"/>
+                            <constraint firstItem="p25-E0-ITV" firstAttribute="top" secondItem="jrv-2U-Mj2" secondAttribute="bottom" constant="12" id="NIt-bR-VQ1"/>
+                            <constraint firstItem="jrv-2U-Mj2" firstAttribute="top" secondItem="2sC-HC-E3f" secondAttribute="top" constant="12" id="SYZ-ME-WZD"/>
+                            <constraint firstItem="jrv-2U-Mj2" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="Wer-o3-WNB"/>
+                            <constraint firstItem="p25-E0-ITV" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="gAw-ro-cJt"/>
+                            <constraint firstItem="bfW-sb-oUW" firstAttribute="top" secondItem="p25-E0-ITV" secondAttribute="bottom" constant="8" id="wEv-vu-Ov6"/>
+                            <constraint firstItem="nYn-MG-f7p" firstAttribute="top" secondItem="bfW-sb-oUW" secondAttribute="bottom" constant="8" id="x1G-dq-Oug"/>
+                            <constraint firstAttribute="bottom" secondItem="nYn-MG-f7p" secondAttribute="bottom" constant="20" id="ybC-3u-UGU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appName" destination="p25-E0-ITV" id="xl8-oD-AQ0"/>
+                        <outlet property="appVersion" destination="bfW-sb-oUW" id="feN-Ke-oNm"/>
+                    </connections>
+                </viewController>
+                <customObject id="PnP-sS-v9c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="999"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="font_panel" width="22" height="20"/>
