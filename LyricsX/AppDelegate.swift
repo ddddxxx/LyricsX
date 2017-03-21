@@ -40,5 +40,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         helper?.currentLyrics?.saveToLocal()
     }
     
+    @IBAction func checkUpdateAction(_ sender: Any) {
+        let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
+        NSWorkspace.shared().open(url)
+    }
+    
 }
 

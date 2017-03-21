@@ -78,6 +78,12 @@
                                 <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Check For Update..." id="CkK-tr-Bqn">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="checkUpdateAction:" target="Voe-Tx-rLC" id="L25-7q-sbM"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="eB1-fb-ptE"/>
                         <menuItem title="Quit LyricsX" keyEquivalent="q" id="RPR-IV-34T">
                             <connections>
