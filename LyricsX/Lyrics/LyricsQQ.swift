@@ -75,11 +75,28 @@ private class LyricsQQXMLParser: NSObject, XMLParserDelegate {
         if !success {
             return nil
         }
-        return lrcContents
+        return lrcContents?.htmlDecoded()
     }
     
     func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
         lrcContents = String(data: CDATABlock, encoding: .utf8)
     }
     
+}
+
+extension String {
+    
+    static let entities = [
+        "&quot;"    : "\"",
+        "&amp;"     : "&",
+        "&apos;"    : "'",
+        "&lt;"      : "<",
+        "&gt;"      : ">",
+    ]
+    
+    func htmlDecoded()->String {
+        return String.entities.reduce(self) { str, entitie in
+            str.replacingOccurrences(of: entitie.key, with: entitie.value)
+        }
+    }
 }
