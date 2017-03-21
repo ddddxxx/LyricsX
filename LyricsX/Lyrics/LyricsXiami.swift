@@ -11,9 +11,9 @@ import SwiftyJSON
 
 class LyricsXiami: LyricsSource {
     
-    private let queue: OperationQueue
+    let queue: OperationQueue
     
-    init(queue: OperationQueue = OperationQueue()) {
+    required init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
     }
     
@@ -37,10 +37,6 @@ class LyricsXiami: LyricsSource {
                 }
             }
         }
-    }
-    
-    func cancelFetching() {
-        queue.cancelAllOperations()
     }
     
     private func searchXiamiIDFor(title: String, artist: String) -> [Int] {

@@ -18,9 +18,11 @@ protocol LyricsSourceDelegate: class {
 
 protocol LyricsSource {
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void)
+    var queue: OperationQueue { get }
     
-    func cancelFetching()
+    init(queue: OperationQueue);
+    
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void)
     
 }
 
@@ -42,7 +44,8 @@ class LyricsSourceHelper {
             LyricsXiami(queue: queue),
             LyricsGecimi(queue: queue),
             LyricsTTPod(queue: queue),
-            Lyrics163(queue: queue)
+            Lyrics163(queue: queue),
+            LyricsQQ(queue: queue),
         ]
         lyrics = []
     }
@@ -51,8 +54,8 @@ class LyricsSourceHelper {
         searchTitle = title
         searchArtist = artist
         lyrics = []
+        queue.cancelAllOperations()
         lyricsSource.forEach() { source in
-            source.cancelFetching()
             source.fetchLyrics(title: title, artist: artist) { lrc in
                 guard self.searchTitle == title, self.searchArtist == artist else {
                     return
