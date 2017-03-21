@@ -22,7 +22,12 @@ struct LXLyricsLine {
     }
     
     init(sentence: String, translation: String? = nil, position: Double) {
-        self.sentence = sentence
+        let str = sentence.replacingOccurrences(of: " ", with: "")
+        if str == "" || str == "." {
+            self.sentence = ""
+        } else {
+            self.sentence = sentence
+        }
         self.translation = translation
         self.position = position
         enabled = true
