@@ -64,6 +64,11 @@ class iTunesHelper: LyricsSourceDelegate {
             case .iTunesEPlSPaused, .iTunesEPlSStopped:
                 positionChangeTimer.fireDate = .distantFuture
                 print("Paused")
+                if Preference[DisableLyricsWhenPaused] {
+                    currentLyricsLine = nil
+                    nextLyricsLine = nil
+                    NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+                }
             default:
                 break
             }
