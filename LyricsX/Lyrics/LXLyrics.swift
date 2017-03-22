@@ -22,15 +22,11 @@ struct LXLyricsLine {
     }
     
     init(sentence: String, translation: String? = nil, position: Double) {
-        let str = sentence.replacingOccurrences(of: " ", with: "")
-        if str == "" || str == "." {
-            self.sentence = ""
-        } else {
-            self.sentence = sentence
-        }
+        self.sentence = sentence
         self.translation = translation
         self.position = position
         enabled = true
+        normalization()
     }
     
     init?(sentence: String, translation: String? = nil, timeTag: String) {
@@ -45,6 +41,16 @@ struct LXLyricsLine {
             self.init(sentence: sentence, translation: translation, position: position)
         } else {
             return nil
+        }
+    }
+    
+    private static let serialWhiteSpacesRegex = try! NSRegularExpression(pattern: "( )+")
+    
+    private mutating func normalization() {
+        sentence = sentence.trimmingCharacters(in: .whitespaces)
+        sentence = LXLyricsLine.serialWhiteSpacesRegex.stringByReplacingMatches(in: sentence, options: [], range: NSRangeFromString(sentence), withTemplate: " ")
+        if sentence == "." {
+            sentence = ""
         }
     }
     
@@ -104,8 +110,8 @@ struct LXLyrics {
         }
     }
     
-    static let regexForIDTag = try! NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]")
-    static let regexForTimeTag = try! NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]")
+    private static let idTagRegex = try! NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]")
+    private static let timeTagRegex = try! NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]")
     
     init?(_ lrcContents: String) {
         lyrics = []
@@ -114,7 +120,7 @@ struct LXLyrics {
         
         let lyricsLines = lrcContents.components(separatedBy: .newlines)
         for line in lyricsLines {
-            let timeTagsMatched = LXLyrics.regexForTimeTag.matches(in: line, options: [], range: NSMakeRange(0, line.characters.count))
+            let timeTagsMatched = LXLyrics.timeTagRegex.matches(in: line, options: [], range: NSRangeFromString(line))
             if timeTagsMatched.count > 0 {
                 let index: Int = timeTagsMatched.last!.range.location + timeTagsMatched.last!.range.length
                 let lyricsSentence: String = line.substring(from: line.characters.index(line.startIndex, offsetBy: index))
@@ -134,7 +140,7 @@ struct LXLyrics {
                 }
                 self.lyrics += lyrics
             } else {
-                let idTagsMatched = LXLyrics.regexForIDTag.matches(in: line, range: NSMakeRange(0, line.characters.count))
+                let idTagsMatched = LXLyrics.idTagRegex.matches(in: line, range: NSRangeFromString(line))
                 guard idTagsMatched.count > 0 else {
                     continue
                 }
@@ -210,7 +216,7 @@ extension LXLyrics {
     mutating func filtrate(using regex: NSRegularExpression) {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
-            let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: NSMakeRange(0, sentence.characters.count))
+            let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: NSRangeFromString(sentence))
             if numberOfMatches > 0 {
                 lyrics[index].enabled = false
                 continue
