@@ -33,6 +33,7 @@ let MenuBarLyricsEnabled: PreferenceKey<Bool>   = "MenuBarLyricsEnabled"
 let LyricsCustomSavingPath: PreferenceKey<String>   = "LyricsCustomSavingPath"
 
 let PreferBilingualLyrics: PreferenceKey<Bool>      = "PreferBilingualLyrics"
+let ChineseConversionIndex: PreferenceKey<Int>      = "ChineseConversionIndex"
 
 let DisableLyricsWhenPaused: PreferenceKey<Bool>    = "DisableLyricsWhenPaused"
 let DisableLyricsWhenSreenShot: PreferenceKey<Bool> = "DisableLyricsWhenSreenShot"

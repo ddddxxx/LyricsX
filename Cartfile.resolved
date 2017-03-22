@@ -1,3 +1,4 @@
 github "SnapKit/SnapKit" "3.2.0"
 github "SwiftyJSON/SwiftyJSON" "3.1.4"
 github "XQS6LB3A/EasyPreference" "v0.1.0"
+github "XQS6LB3A/SwiftyOpenCC" "v0.2.1"

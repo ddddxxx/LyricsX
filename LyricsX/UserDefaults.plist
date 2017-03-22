@@ -10,6 +10,8 @@
 	<string>~/Music/LyricsX</string>
 	<key>PreferBilingualLyrics</key>
 	<true/>
+	<key>ChineseConversionIndex</key>
+	<integer>0</integer>
 	<key>DisableLyricsWhenPaused</key>
 	<true/>
 	<key>DisableLyricsWhenSreenShot</key>

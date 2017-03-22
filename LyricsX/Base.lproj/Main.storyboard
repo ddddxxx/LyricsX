@@ -378,6 +378,9 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <binding destination="wXG-fo-UFt" name="selectedIndex" keyPath="values.ChineseConversionIndex" id="Ia9-Tl-tyP"/>
+                                </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Nfb-pu-NGK">
                                 <rect key="frame" x="20" y="68" width="431" height="5"/>
@@ -443,6 +446,7 @@
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="Apb-jp-QE9"/>
                 <userDefaultsController id="hHn-Lo-CwP"/>
+                <userDefaultsController id="wXG-fo-UFt"/>
             </objects>
             <point key="canvasLocation" x="1969.5" y="-194"/>
         </scene>
