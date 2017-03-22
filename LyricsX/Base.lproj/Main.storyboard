@@ -274,7 +274,7 @@
         <!--Preference Window Controller-->
         <scene sceneID="TDf-75-7l1">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="dJj-XH-edl" userLabel="Preference Window Controller" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="dJj-XH-edl" userLabel="Preference Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Preference" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="aMb-zX-bzP">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -905,7 +905,7 @@
         <!--Lyrics HUD Window Controller-->
         <scene sceneID="Bwn-Z7-ydj">
             <objects>
-                <windowController storyboardIdentifier="LyricsHUD" showSeguePresentationStyle="single" id="fpK-JT-GVp" userLabel="Lyrics HUD Window Controller" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="LyricsHUD" showSeguePresentationStyle="single" id="fpK-JT-GVp" userLabel="Lyrics HUD Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="6aU-M0-0Jh" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -994,7 +994,7 @@
         <!--Search Lyrics Window Controller-->
         <scene sceneID="Ihc-TO-az9">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="Fyy-jy-wIT" userLabel="Search Lyrics Window Controller" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="Fyy-jy-wIT" userLabel="Search Lyrics Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Search Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="y4a-GW-tEh">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1199,7 +1199,7 @@
         <!--About Window Controller-->
         <scene sceneID="Hdl-QT-VuU">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="UhY-od-Efn" userLabel="About Window Controller" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="UhY-od-Efn" userLabel="About Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="eoF-WG-hma">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
