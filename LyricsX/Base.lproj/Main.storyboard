@@ -353,6 +353,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.PreferBilingualLyrics" id="z5d-4T-XY8"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpE-cM-ds1">
                                 <rect key="frame" x="60" y="89" width="138" height="17"/>
@@ -393,6 +396,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.DisableLyricsWhenPaused" id="23Z-LD-4b3"/>
+                                </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="xa7-h7-OHj">
                                 <rect key="frame" x="210" y="14" width="137" height="18"/>
@@ -400,6 +406,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.DisableLyricsWhenSreenShot" id="O5h-wv-Lku"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -433,6 +442,7 @@
                 </viewController>
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="Apb-jp-QE9"/>
+                <userDefaultsController id="hHn-Lo-CwP"/>
             </objects>
             <point key="canvasLocation" x="1969.5" y="-194"/>
         </scene>

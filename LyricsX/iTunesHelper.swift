@@ -103,19 +103,24 @@ class iTunesHelper: LyricsSourceDelegate {
         guard let lyrics = currentLyrics, let position = iTunes.playerPosition else {
             return
         }
-        
         let lrc = lyrics[position]
         
         if currentLyricsLine == lrc.current {
             return
         }
-        
         currentLyricsLine = lrc.current
         nextLyricsLine = lrc.next
         
+        let nextLyricsSentence: String?
+        if Preference[PreferBilingualLyrics] {
+            nextLyricsSentence = currentLyricsLine?.translation ?? nextLyricsLine?.sentence
+        } else {
+            nextLyricsSentence = nextLyricsLine?.sentence
+        }
+        
         let info = [
             "lrc": currentLyricsLine?.sentence as Any,
-            "next": currentLyricsLine?.translation ?? nextLyricsLine?.sentence as Any
+            "next": nextLyricsSentence as Any
         ]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }

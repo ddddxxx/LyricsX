@@ -32,8 +32,10 @@ let MenuBarLyricsEnabled: PreferenceKey<Bool>   = "MenuBarLyricsEnabled"
 // General
 let LyricsCustomSavingPath: PreferenceKey<String>   = "LyricsCustomSavingPath"
 
-let DisableLyricsWhenSreenShot: PreferenceKey<Bool> = "DisableLyricsWhenSreenShot"
+let PreferBilingualLyrics: PreferenceKey<Bool>      = "PreferBilingualLyrics"
+
 let DisableLyricsWhenPaused: PreferenceKey<Bool>    = "DisableLyricsWhenPaused"
+let DisableLyricsWhenSreenShot: PreferenceKey<Bool> = "DisableLyricsWhenSreenShot"
 
 // Display
 let DesktopLyricsHeighFromDock: PreferenceKey<Int>  = "DesktopLyricsHeighFromDock"

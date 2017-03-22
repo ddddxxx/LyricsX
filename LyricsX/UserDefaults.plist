@@ -8,9 +8,11 @@
 	<false/>
 	<key>LyricsCustomSavingPath</key>
 	<string>~/Music/LyricsX</string>
-	<key>DisableLyricsWhenSreenShot</key>
+	<key>PreferBilingualLyrics</key>
 	<true/>
 	<key>DisableLyricsWhenPaused</key>
+	<true/>
+	<key>DisableLyricsWhenSreenShot</key>
 	<true/>
 	<key>DesktopLyricsHeighFromDock</key>
 	<integer>20</integer>
