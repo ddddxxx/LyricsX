@@ -25,6 +25,7 @@
 		BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */; };
 		BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */; };
 		BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */; };
+		BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0811E82971400598D4F /* UserDefaults.plist */; };
 		BB6004281E6F0BB100170CB4 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6004271E6F0BB100170CB4 /* Automator.framework */; };
 		BB6294E31E7A97420027B2A0 /* EasyPreference.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6294E21E7A97420027B2A0 /* EasyPreference.framework */; };
 		BB6294E41E7A97420027B2A0 /* EasyPreference.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB6294E21E7A97420027B2A0 /* EasyPreference.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -84,6 +85,7 @@
 		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsGecimi.swift; path = Lyrics/LyricsGecimi.swift; sourceTree = "<group>"; };
 		BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceHelper.swift; path = Lyrics/LyricsSourceHelper.swift; sourceTree = "<group>"; };
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoActivateWindowController.swift; sourceTree = "<group>"; };
+		BB58B0811E82971400598D4F /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		BB6004271E6F0BB100170CB4 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = System/Library/Frameworks/Automator.framework; sourceTree = SDKROOT; };
 		BB6294E21E7A97420027B2A0 /* EasyPreference.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyPreference.framework; path = Carthage/Build/Mac/EasyPreference.framework; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				BB4141B11E458BA800A51775 /* Assets.xcassets */,
 				BB4141B61E458BA900A51775 /* Info.plist */,
+				BB58B0811E82971400598D4F /* UserDefaults.plist */,
 			);
 			name = "Support Files";
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */,
+				BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */,
 				BB4141B51E458BA900A51775 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
