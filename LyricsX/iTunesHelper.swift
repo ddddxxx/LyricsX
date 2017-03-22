@@ -17,14 +17,14 @@ class iTunesHelper: LyricsSourceDelegate {
     var positionChangeTimer: Timer!
     
     var currentSongID: Int?
-    var currentLyrics: LXLyrics? {
+    var currentLyrics: Lyrics? {
         didSet {
             appDelegate.currentOffset = currentLyrics?.offset ?? 0
         }
     }
     
-    var currentLyricsLine: LXLyricsLine?
-    var nextLyricsLine: LXLyricsLine?
+    var currentLyricsLine: LyricsLine?
+    var nextLyricsLine: LyricsLine?
     
     var fetchLrcQueue = OperationQueue()
     
@@ -127,7 +127,7 @@ class iTunesHelper: LyricsSourceDelegate {
     
     // MARK: LyricsSourceDelegate
     
-    func lyricsReceived(lyrics: LXLyrics) {
+    func lyricsReceived(lyrics: Lyrics) {
         guard lyrics.metadata[.searchTitle] == iTunes.currentTrack?.name as String?,
             lyrics.metadata[.searchArtist] == iTunes.currentTrack?.artist as String? else {
             return
@@ -144,13 +144,13 @@ class iTunesHelper: LyricsSourceDelegate {
         lyrics.saveToLocal()
     }
     
-    func fetchCompleted(result: [LXLyrics]) {
+    func fetchCompleted(result: [Lyrics]) {
         
     }
     
 }
 
-extension LXLyrics {
+extension Lyrics {
     
     func saveToLocal() {
         let savingPath = Preference[LyricsCustomSavingPath]!

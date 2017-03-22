@@ -10,9 +10,9 @@ import Foundation
 
 protocol LyricsSourceDelegate: class {
     
-    func lyricsReceived(lyrics: LXLyrics)
+    func lyricsReceived(lyrics: Lyrics)
     
-    func fetchCompleted(result: [LXLyrics])
+    func fetchCompleted(result: [Lyrics])
     
 }
 
@@ -22,7 +22,7 @@ protocol LyricsSource {
     
     init(queue: OperationQueue);
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void)
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void)
     
 }
 
@@ -36,7 +36,7 @@ class LyricsSourceHelper {
     var searchTitle: String?
     var searchArtist: String?
     
-    var lyrics: [LXLyrics]
+    var lyrics: [Lyrics]
     
     init() {
         queue = OperationQueue()
@@ -70,14 +70,14 @@ class LyricsSourceHelper {
         }
     }
     
-    func readLocalLyrics(title: String, artist: String) -> LXLyrics? {
+    func readLocalLyrics(title: String, artist: String) -> Lyrics? {
         let savingPath = Preference[LyricsCustomSavingPath]!
         let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
         let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
         let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
         if let lrcContents = try? String(contentsOfFile: lrcFilePath, encoding: String.Encoding.utf8) {
-            var lrc = LXLyrics(lrcContents)
-            let metadata: [LXLyrics.MetadataKey: String] = [
+            var lrc = Lyrics(lrcContents)
+            let metadata: [Lyrics.MetadataKey: String] = [
                 .searchTitle: title,
                 .searchArtist: artist,
                 .source: "Local"

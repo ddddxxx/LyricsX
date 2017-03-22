@@ -13,7 +13,7 @@ class LyricsHUDViewController: NSViewController {
     
     @IBOutlet var lyricsTextView: NSTextView!
     
-    var lyrics: LXLyrics? {
+    var lyrics: Lyrics? {
         didSet {
             updateTextView()
         }

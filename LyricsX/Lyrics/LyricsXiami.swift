@@ -17,7 +17,7 @@ class LyricsXiami: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         queue.addOperation {
             let xiamiIDs = self.searchXiamiIDFor(title: title, artist: artist)
             xiamiIDs.forEach() { xiamiID in
@@ -31,7 +31,7 @@ class LyricsXiami: LyricsSource {
                     metadata[.source] = "Xiami"
                     metadata[.searchTitle] = title
                     metadata[.searchArtist] = artist
-                    if let lrc = LXLyrics(metadata: metadata) {
+                    if let lrc = Lyrics(metadata: metadata) {
                         completionBlock(lrc)
                     }
                 }
@@ -61,9 +61,9 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     
     var XMLContent: String?
     
-    var result: [LXLyrics.MetadataKey: String] = [:]
+    var result: [Lyrics.MetadataKey: String] = [:]
     
-    func parseLrcURL(data: Data) -> [LXLyrics.MetadataKey: String]? {
+    func parseLrcURL(data: Data) -> [Lyrics.MetadataKey: String]? {
         let parser = XMLParser(data: data)
         parser.delegate = self
         let success = parser.parse()

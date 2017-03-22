@@ -10,7 +10,7 @@ import Cocoa
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsSourceDelegate {
     
-    var searchResult = [LXLyrics]()
+    var searchResult = [Lyrics]()
     
     dynamic var searchArtist = ""
     dynamic var searchTitle = "" {
@@ -56,14 +56,14 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     // MARK: - LyricsSourceDelegate
     
-    func lyricsReceived(lyrics: LXLyrics) {
+    func lyricsReceived(lyrics: Lyrics) {
         searchResult += [lyrics]
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
-    func fetchCompleted(result: [LXLyrics]) {
+    func fetchCompleted(result: [Lyrics]) {
         
     }
     

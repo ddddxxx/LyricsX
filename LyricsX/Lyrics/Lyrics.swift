@@ -1,5 +1,5 @@
 //
-//  LXLyrics.swift
+//  Lyrics.swift
 //  LyricsX
 //
 //  Created by 邓翔 on 2017/2/5.
@@ -8,87 +8,9 @@
 
 import Foundation
 
-struct LXLyricsLine {
+struct Lyrics {
     
-    var sentence: String
-    var translation: String?
-    var position: Double
-    var enabled: Bool
-    
-    var timeTag: String {
-        let min = Int(position / 60)
-        let sec = position - Double(min * 60)
-        return String(format: "%02d:%06.3f", min, sec)
-    }
-    
-    init(sentence: String, translation: String? = nil, position: Double) {
-        self.sentence = sentence
-        self.translation = translation
-        self.position = position
-        enabled = true
-        normalization()
-    }
-    
-    init?(sentence: String, translation: String? = nil, timeTag: String) {
-        var tagContent = timeTag
-        tagContent.remove(at: tagContent.startIndex)
-        tagContent.remove(at: tagContent.index(before: tagContent.endIndex))
-        let components = tagContent.components(separatedBy: ":")
-        if components.count == 2,
-            let min = Double(components[0]),
-            let sec = Double(components[1]) {
-            let position = sec + min * 60
-            self.init(sentence: sentence, translation: translation, position: position)
-        } else {
-            return nil
-        }
-    }
-    
-    private static let serialWhiteSpacesRegex = try! NSRegularExpression(pattern: "( )+")
-    
-    private mutating func normalization() {
-        sentence = sentence.trimmingCharacters(in: .whitespaces)
-        sentence = LXLyricsLine.serialWhiteSpacesRegex.stringByReplacingMatches(in: sentence, options: [], range: NSRangeFromString(sentence), withTemplate: " ")
-        if sentence == "." {
-            sentence = ""
-        }
-    }
-    
-}
-
-extension LXLyricsLine: Equatable, Hashable {
-    
-    var hashValue: Int {
-        return sentence.hashValue ^ position.hashValue ^ (translation?.hash ?? 0)
-    }
-    
-    static func ==(lhs: LXLyricsLine, rhs: LXLyricsLine) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-    
-}
-
-extension LXLyricsLine {
-    
-    func contentString(withTimeTag: Bool, translation: Bool) -> String {
-        var content = ""
-        if withTimeTag {
-            content += "[" + timeTag + "]"
-        }
-        content += sentence
-        if translation, let transStr = self.translation {
-            content += "【" + transStr + "】"
-        }
-        return content
-    }
-    
-}
-
-// MARK: -
-
-struct LXLyrics {
-    
-    var lyrics: [LXLyricsLine]
+    var lyrics: [LyricsLine]
     var idTags: [IDTagKey: String]
     var metadata: [MetadataKey: String]
     
@@ -120,7 +42,7 @@ struct LXLyrics {
         
         let lyricsLines = lrcContents.components(separatedBy: .newlines)
         for line in lyricsLines {
-            let timeTagsMatched = LXLyrics.timeTagRegex.matches(in: line, options: [], range: NSRangeFromString(line))
+            let timeTagsMatched = Lyrics.timeTagRegex.matches(in: line, options: [], range: line.range)
             if timeTagsMatched.count > 0 {
                 let index: Int = timeTagsMatched.last!.range.location + timeTagsMatched.last!.range.length
                 let lyricsSentence: String = line.substring(from: line.characters.index(line.startIndex, offsetBy: index))
@@ -134,13 +56,13 @@ struct LXLyrics {
                     lyricsStr = lyricsSentence
                     translation = nil
                 }
-                let lyrics = timeTagsMatched.flatMap() { result -> LXLyricsLine? in
+                let lyrics = timeTagsMatched.flatMap() { result -> LyricsLine? in
                     let timeTagStr = (line as NSString).substring(with: result.range) as String
-                    return LXLyricsLine(sentence: lyricsStr, translation: translation, timeTag: timeTagStr)
+                    return LyricsLine(sentence: lyricsStr, translation: translation, timeTag: timeTagStr)
                 }
                 self.lyrics += lyrics
             } else {
-                let idTagsMatched = LXLyrics.idTagRegex.matches(in: line, range: NSRangeFromString(line))
+                let idTagsMatched = Lyrics.idTagRegex.matches(in: line, range: line.range)
                 guard idTagsMatched.count > 0 else {
                     continue
                 }
@@ -176,7 +98,7 @@ struct LXLyrics {
         self.metadata = metadata
     }
     
-    subscript(_ position: Double) -> (current:LXLyricsLine?, next:LXLyricsLine?) {
+    subscript(_ position: Double) -> (current:LyricsLine?, next:LyricsLine?) {
         let lyrics = self.lyrics.filter() { $0.enabled }
         guard let index = lyrics.index(where: { $0.position - timeDelay > position }) else {
             return (lyrics.last, nil)
@@ -187,96 +109,7 @@ struct LXLyrics {
     
 }
 
-extension LXLyrics {
-    
-    func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
-        var content = ""
-        if withMetadata {
-            content += metadata.map {
-                return "[\($0.key):\($0.value)]\n"
-            }.joined()
-        }
-        if ID3 {
-            content += idTags.map() {
-                return "[\($0.key.rawValue):\($0.value)]\n"
-            }.joined()
-        }
-        
-        content += lyrics.map() {
-            return $0.contentString(withTimeTag: timeTag, translation: translation) + "\n"
-        }.joined()
-        
-        return content
-    }
-    
-}
-
-extension LXLyrics {
-    
-    mutating func filtrate(using regex: NSRegularExpression) {
-        for (index, lyric) in lyrics.enumerated() {
-            let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
-            let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: NSRangeFromString(sentence))
-            if numberOfMatches > 0 {
-                lyrics[index].enabled = false
-                continue
-            }
-        }
-    }
-    
-    mutating func smartFiltrate() {
-        for (index, lyric) in lyrics.enumerated() {
-            let sentence = lyric.sentence
-            if let idTagTitle = idTags[.title],
-                let idTagArtist = idTags[.artist],
-                sentence.contains(idTagTitle),
-                sentence.contains(idTagArtist) {
-                lyrics[index].enabled = false
-            } else if let iTunesTitle = metadata[.searchTitle],
-                let iTunesArtist = metadata[.searchArtist],
-                sentence.contains(iTunesTitle),
-                sentence.contains(iTunesArtist) {
-                lyrics[index].enabled = false
-            }
-        }
-    }
-    
-}
-
-extension LXLyrics {
-    
-    var grade: Int {
-        var grade = 0
-        if let searchArtist = metadata[.searchArtist], let artist = idTags[.artist] {
-            if searchArtist == artist {
-                grade += 1 << 10
-            } else if searchArtist.contains(artist) || artist.contains(searchArtist) {
-                grade += 1 << 9
-            }
-        } else {
-            grade += 1 << 8
-        }
-        
-        if let searchTitle = metadata[.searchTitle], let title = idTags[.title] {
-            if searchTitle == title {
-                grade += 1 << 10
-            } else if searchTitle.contains(title) || title.contains(searchTitle) {
-                grade += 1 << 9
-            }
-        } else {
-            grade += 1 << 8
-        }
-        
-        if metadata[.includeTranslation] == "true" {
-            grade += 1 << 2
-        }
-        
-        return grade
-    }
-    
-}
-
-extension LXLyrics {
+extension Lyrics {
     
     struct IDTagKey: RawRepresentable, Hashable {
         
@@ -326,32 +159,96 @@ extension LXLyrics {
     
 }
 
-extension LXLyrics {
+extension Lyrics {
     
-    mutating func merge(translation: LXLyrics) {
-        var index = lyrics.startIndex
-        var transIndex = translation.lyrics.startIndex
-        while index < lyrics.endIndex, transIndex < translation.lyrics.endIndex {
-            if lyrics[index].position == translation.lyrics[transIndex].position {
-                let transStr = translation.lyrics[transIndex].sentence
-                if transStr.characters.count > 0 {
-                    lyrics[index].translation = transStr
-                }
-                lyrics.formIndex(after: &index)
-                translation.lyrics.formIndex(after: &transIndex)
-            } else if lyrics[index].position > translation.lyrics[transIndex].position {
-                translation.lyrics.formIndex(after: &transIndex)
-            } else {
-                lyrics.formIndex(after: &index)
+    func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
+        var content = ""
+        if withMetadata {
+            content += metadata.map {
+                return "[\($0.key):\($0.value)]\n"
+            }.joined()
+        }
+        if ID3 {
+            content += idTags.map() {
+                return "[\($0.key.rawValue):\($0.value)]\n"
+            }.joined()
+        }
+        
+        content += lyrics.map() {
+            return $0.contentString(withTimeTag: timeTag, translation: translation) + "\n"
+        }.joined()
+        
+        return content
+    }
+    
+}
+
+extension Lyrics {
+    
+    mutating func filtrate(using regex: NSRegularExpression) {
+        for (index, lyric) in lyrics.enumerated() {
+            let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
+            let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: sentence.range)
+            if numberOfMatches > 0 {
+                lyrics[index].enabled = false
+                continue
+            }
+        }
+    }
+    
+    mutating func smartFiltrate() {
+        for (index, lyric) in lyrics.enumerated() {
+            let sentence = lyric.sentence
+            if let idTagTitle = idTags[.title],
+                let idTagArtist = idTags[.artist],
+                sentence.contains(idTagTitle),
+                sentence.contains(idTagArtist) {
+                lyrics[index].enabled = false
+            } else if let iTunesTitle = metadata[.searchTitle],
+                let iTunesArtist = metadata[.searchArtist],
+                sentence.contains(iTunesTitle),
+                sentence.contains(iTunesArtist) {
+                lyrics[index].enabled = false
             }
         }
     }
     
 }
 
-// MARK: - Debug Print Support
+extension Lyrics {
+    
+    var grade: Int {
+        var grade = 0
+        if let searchArtist = metadata[.searchArtist], let artist = idTags[.artist] {
+            if searchArtist == artist {
+                grade += 1 << 10
+            } else if searchArtist.contains(artist) || artist.contains(searchArtist) {
+                grade += 1 << 9
+            }
+        } else {
+            grade += 1 << 8
+        }
+        
+        if let searchTitle = metadata[.searchTitle], let title = idTags[.title] {
+            if searchTitle == title {
+                grade += 1 << 10
+            } else if searchTitle.contains(title) || title.contains(searchTitle) {
+                grade += 1 << 9
+            }
+        } else {
+            grade += 1 << 8
+        }
+        
+        if metadata[.includeTranslation] == "true" {
+            grade += 1 << 2
+        }
+        
+        return grade
+    }
+    
+}
 
-extension LXLyrics.IDTagKey: CustomStringConvertible {
+extension Lyrics.IDTagKey: CustomStringConvertible {
     
     public var description: String {
         return rawValue
@@ -359,15 +256,7 @@ extension LXLyrics.IDTagKey: CustomStringConvertible {
     
 }
 
-extension LXLyricsLine: CustomStringConvertible {
-    
-    public var description: String {
-        return contentString(withTimeTag: true, translation: true)
-    }
-    
-}
-
-extension LXLyrics: CustomStringConvertible {
+extension Lyrics: CustomStringConvertible {
     
     public var description: String {
         return contentString(withMetadata: true, ID3: true, timeTag: true, translation: true)

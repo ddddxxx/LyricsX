@@ -19,7 +19,7 @@ class Lyrics163: LyricsSource {
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         let url = URL(string: "http://music.163.com/api/search/pc")!
         let body = "s=\(title) \(artist)&offset=0&limit=10&type=1".data(using: .utf8)!
         
@@ -43,7 +43,7 @@ class Lyrics163: LyricsSource {
                         var lyrics = self.lyricsFor(id: id) else {
                             return
                     }
-                    var metadata: [LXLyrics.MetadataKey: String] = [
+                    var metadata: [Lyrics.MetadataKey: String] = [
                         .searchTitle: title,
                         .searchArtist: artist,
                         .source: "163",
@@ -63,7 +63,7 @@ class Lyrics163: LyricsSource {
         task.resume()
     }
     
-    private func lyricsFor(id: Int) -> LXLyrics? {
+    private func lyricsFor(id: Int) -> Lyrics? {
         let url = URL(string: "http://music.163.com/api/song/lyric?id=\(id)&lv=1&kv=1&tv=-1")!
         guard let data = try? Data(contentsOf: url) else {
             return nil
@@ -71,17 +71,40 @@ class Lyrics163: LyricsSource {
         
         let json = JSON(data: data)
         guard let lrcContent = json["lrc"]["lyric"].string,
-            var lrc = LXLyrics(lrcContent) else {
+            var lrc = Lyrics(lrcContent) else {
             return nil
         }
         
         if let transLrcContent = json["tlyric"]["lyric"].string,
-            let transLrc = LXLyrics(transLrcContent) {
+            let transLrc = Lyrics(transLrcContent) {
             lrc.merge(translation: transLrc)
             lrc.metadata[.includeTranslation] = "true"
         }
         
         return lrc
+    }
+    
+}
+
+extension Lyrics {
+    
+    mutating func merge(translation: Lyrics) {
+        var index = lyrics.startIndex
+        var transIndex = translation.lyrics.startIndex
+        while index < lyrics.endIndex, transIndex < translation.lyrics.endIndex {
+            if lyrics[index].position == translation.lyrics[transIndex].position {
+                let transStr = translation.lyrics[transIndex].sentence
+                if transStr.characters.count > 0 {
+                    lyrics[index].translation = transStr
+                }
+                lyrics.formIndex(after: &index)
+                translation.lyrics.formIndex(after: &transIndex)
+            } else if lyrics[index].position > translation.lyrics[transIndex].position {
+                translation.lyrics.formIndex(after: &transIndex)
+            } else {
+                lyrics.formIndex(after: &index)
+            }
+        }
     }
     
 }
