@@ -11,9 +11,9 @@ import SwiftyJSON
 
 class LyricsGecimi: LyricsSource {
     
-    private let queue: OperationQueue
+    let queue: OperationQueue
     
-    init(queue: OperationQueue = OperationQueue()) {
+    required init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
     }
     
@@ -30,10 +30,6 @@ class LyricsGecimi: LyricsSource {
                 }
             }
         }
-    }
-    
-    func cancelFetching() {
-        queue.cancelAllOperations()
     }
     
     private func searchLrcFor(title: String, artist: String) -> [[LXLyrics.MetadataKey: String]] {

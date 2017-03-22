@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DesktopLyricsEnabled</key>
+	<true/>
+	<key>MenuBarLyricsEnabled</key>
+	<false/>
+	<key>LyricsCustomSavingPath</key>
+	<string>~/Music/LyricsX</string>
+	<key>PreferBilingualLyrics</key>
+	<true/>
+	<key>DisableLyricsWhenPaused</key>
+	<true/>
+	<key>DisableLyricsWhenSreenShot</key>
+	<true/>
+	<key>DesktopLyricsHeighFromDock</key>
+	<integer>20</integer>
+	<key>DesktopLyricsFontName</key>
+	<string>Helvetica Light</string>
+	<key>DesktopLyricsFontSize</key>
+	<integer>28</integer>
+	<key>LyricsDirectFilterKey</key>
+	<array>
+		<string>作詞</string>
+		<string>作词</string>
+		<string>作曲</string>
+		<string>編曲</string>
+		<string>编曲</string>
+		<string>収録</string>
+		<string>收录</string>
+		<string>演唱</string>
+		<string>歌手</string>
+		<string>歌曲</string>
+		<string>制作</string>
+		<string>製作</string>
+		<string>歌词</string>
+		<string>歌詞</string>
+		<string>翻譯</string>
+		<string>翻译</string>
+		<string>插曲</string>
+		<string>插入歌</string>
+		<string>主题歌</string>
+		<string>主題歌</string>
+		<string>片頭曲</string>
+		<string>片头曲</string>
+		<string>片尾曲</string>
+		<string>Lrc</string>
+		<string>QQ</string>
+		<string>アニメ</string>
+		<string>LyricsBy</string>
+		<string>ComposedBy</string>
+		<string>CharacterSong</string>
+		<string>InsertSong</string>
+		<string>SoundTrack</string>
+		<string>www\.</string>
+		<string>\.com</string>
+		<string>\.net</string>
+	</array>
+	<key>LyricsColonFilterKey</key>
+	<array>
+		<string>by</string>
+		<string>title</string>
+		<string>artist</string>
+		<string>lyrics</string>
+		<string>歌</string>
+		<string>唄</string>
+		<string>曲</string>
+		<string>作</string>
+		<string>唱</string>
+		<string>詞</string>
+		<string>词</string>
+		<string>編</string>
+		<string>编</string>
+	</array>
+</dict>
+</plist>

@@ -11,10 +11,10 @@ import SwiftyJSON
 
 class Lyrics163: LyricsSource {
     
-    private let queue: OperationQueue
+    let queue: OperationQueue
     private let session: URLSession
     
-    init(queue: OperationQueue = OperationQueue()) {
+    required init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
@@ -61,10 +61,6 @@ class Lyrics163: LyricsSource {
             }
         }
         task.resume()
-    }
-    
-    func cancelFetching() {
-        queue.cancelAllOperations()
     }
     
     private func lyricsFor(id: Int) -> LXLyrics? {

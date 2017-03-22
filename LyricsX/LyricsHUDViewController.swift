@@ -19,30 +19,22 @@ class LyricsHUDViewController: NSViewController {
         }
     }
     
-    var withTag = Preference[DisplayLyricsWithTag] {
-        didSet {
-            updateTextView()
-        }
-    }
+    var withTag = Preference[DisplayLyricsWithTag]
     
     override func viewDidLoad() {
+        lyrics = appDelegate.helper.currentLyrics
         Preference.subscribe(key: DisplayLyricsWithTag) { [weak self] (change) in
             self?.withTag = change.newValue
+            self?.updateTextView()
         }
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear() {
-        lyrics = appDelegate.helper.currentLyrics
         super.viewDidLoad()
     }
     
     func updateTextView() {
-        if withTag {
-            lyricsTextView.string = lyrics?.description
-        } else {
-            lyricsTextView.string = lyrics?.lyrics.map({$0.sentence}).joined(separator: "\n")
-        }
+        lyricsTextView.string = lyrics?.contentString(withMetadata: false,
+                                                      ID3: withTag,
+                                                      timeTag: withTag,
+                                                      translation: true)
     }
     
 }

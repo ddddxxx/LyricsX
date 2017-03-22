@@ -11,9 +11,9 @@ import SwiftyJSON
 
 class LyricsTTPod: LyricsSource {
     
-    private let queue: OperationQueue
+    let queue: OperationQueue
     
-    init(queue: OperationQueue = OperationQueue()) {
+    required init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
     }
     
@@ -38,10 +38,6 @@ class LyricsTTPod: LyricsSource {
             
             completionBlock(lrc)
         }
-    }
-    
-    func cancelFetching() {
-        queue.cancelAllOperations()
     }
     
 }

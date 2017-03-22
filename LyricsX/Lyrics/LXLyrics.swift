@@ -22,7 +22,12 @@ struct LXLyricsLine {
     }
     
     init(sentence: String, translation: String? = nil, position: Double) {
-        self.sentence = sentence
+        let str = sentence.replacingOccurrences(of: " ", with: "")
+        if str == "" || str == "." {
+            self.sentence = ""
+        } else {
+            self.sentence = sentence
+        }
         self.translation = translation
         self.position = position
         enabled = true
@@ -53,6 +58,22 @@ extension LXLyricsLine: Equatable, Hashable {
     
     static func ==(lhs: LXLyricsLine, rhs: LXLyricsLine) -> Bool {
         return lhs.hashValue == rhs.hashValue
+    }
+    
+}
+
+extension LXLyricsLine {
+    
+    func contentString(withTimeTag: Bool, translation: Bool) -> String {
+        var content = ""
+        if withTimeTag {
+            content += "[" + timeTag + "]"
+        }
+        content += sentence
+        if translation, let transStr = self.translation {
+            content += "【" + transStr + "】"
+        }
+        return content
     }
     
 }
@@ -162,6 +183,30 @@ struct LXLyrics {
 
 extension LXLyrics {
     
+    func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
+        var content = ""
+        if withMetadata {
+            content += metadata.map {
+                return "[\($0.key):\($0.value)]\n"
+            }.joined()
+        }
+        if ID3 {
+            content += idTags.map() {
+                return "[\($0.key.rawValue):\($0.value)]\n"
+            }.joined()
+        }
+        
+        content += lyrics.map() {
+            return $0.contentString(withTimeTag: timeTag, translation: translation) + "\n"
+        }.joined()
+        
+        return content
+    }
+    
+}
+
+extension LXLyrics {
+    
     mutating func filtrate(using regex: NSRegularExpression) {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
@@ -196,15 +241,30 @@ extension LXLyrics {
     
     var grade: Int {
         var grade = 0
-        if idTags[.artist] == metadata[.searchArtist] {
-            grade += 1 << 10
-        }
-        if idTags[.title] == metadata[.searchTitle] {
+        if let searchArtist = metadata[.searchArtist], let artist = idTags[.artist] {
+            if searchArtist == artist {
+                grade += 1 << 10
+            } else if searchArtist.contains(artist) || artist.contains(searchArtist) {
+                grade += 1 << 9
+            }
+        } else {
             grade += 1 << 8
         }
+        
+        if let searchTitle = metadata[.searchTitle], let title = idTags[.title] {
+            if searchTitle == title {
+                grade += 1 << 10
+            } else if searchTitle.contains(title) || title.contains(searchTitle) {
+                grade += 1 << 9
+            }
+        } else {
+            grade += 1 << 8
+        }
+        
         if metadata[.includeTranslation] == "true" {
             grade += 1 << 2
         }
+        
         return grade
     }
     
@@ -242,19 +302,19 @@ extension LXLyrics {
         
     }
     
-    enum MetadataKey {
+    enum MetadataKey: String {
         
-        case source
+        case source             = "source"
         
-        case lyricsURL
+        case lyricsURL          = "lyricsURL"
         
-        case searchTitle
+        case searchTitle        = "searchTitle"
         
-        case searchArtist
+        case searchArtist       = "searchArtist"
         
-        case artworkURL
+        case artworkURL         = "artworkURL"
         
-        case includeTranslation
+        case includeTranslation = "includeTranslation"
         
     }
     
@@ -266,9 +326,9 @@ extension LXLyrics {
         var index = lyrics.startIndex
         var transIndex = translation.lyrics.startIndex
         while index < lyrics.endIndex, transIndex < translation.lyrics.endIndex {
-            if lyrics[index].position - translation.lyrics[transIndex].position < 0.1 {
+            if lyrics[index].position == translation.lyrics[transIndex].position {
                 let transStr = translation.lyrics[transIndex].sentence
-                if transStr.replacingOccurrences(of: " ", with: "").characters.count > 0 {
+                if transStr.characters.count > 0 {
                     lyrics[index].translation = transStr
                 }
                 lyrics.formIndex(after: &index)
@@ -296,11 +356,7 @@ extension LXLyrics.IDTagKey: CustomStringConvertible {
 extension LXLyricsLine: CustomStringConvertible {
     
     public var description: String {
-        var description = "[\(timeTag)]" + sentence
-        if let trans = translation {
-            description += "【\(trans)】"
-        }
-        return description
+        return contentString(withTimeTag: true, translation: true)
     }
     
 }
@@ -308,9 +364,7 @@ extension LXLyricsLine: CustomStringConvertible {
 extension LXLyrics: CustomStringConvertible {
     
     public var description: String {
-        let tag = idTags.map({"[\($0.key):\($0.value)]"}).joined(separator: "\n")
-        let lrc = lyrics.map({$0.description}).joined(separator: "\n")
-        return tag + "\n" + lrc
+        return contentString(withMetadata: true, ID3: true, timeTag: true, translation: true)
     }
     
 }

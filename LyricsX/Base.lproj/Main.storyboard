@@ -71,6 +71,19 @@
                                 <segue destination="dJj-XH-edl" kind="show" id="2ag-1Z-r0K"/>
                             </connections>
                         </menuItem>
+                        <menuItem isSeparatorItem="YES" id="Lhf-nJ-oOF"/>
+                        <menuItem title="About LyricsX..." id="PdE-VG-JUC">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Check For Update..." id="CkK-tr-Bqn">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="checkUpdateAction:" target="Voe-Tx-rLC" id="L25-7q-sbM"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="eB1-fb-ptE"/>
                         <menuItem title="Quit LyricsX" keyEquivalent="q" id="RPR-IV-34T">
                             <connections>
@@ -160,7 +173,7 @@
                 </windowController>
                 <customObject id="y9u-wo-y4M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="90" y="1800"/>
+            <point key="canvasLocation" x="667" y="-352"/>
         </scene>
         <!--Desktop Lyrics View Controller-->
         <scene sceneID="aqq-eh-K59">
@@ -256,12 +269,12 @@
                 <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="AB5-cL-Rpb"/>
             </objects>
-            <point key="canvasLocation" x="661" y="1800"/>
+            <point key="canvasLocation" x="1281" y="-352"/>
         </scene>
         <!--Preference Window Controller-->
         <scene sceneID="TDf-75-7l1">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="dJj-XH-edl" userLabel="Preference Window Controller" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="dJj-XH-edl" userLabel="Preference Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Preference" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="aMb-zX-bzP">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -306,19 +319,19 @@
             <objects>
                 <viewController id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
-                        <rect key="frame" x="0.0" y="0.0" width="471" height="65"/>
+                        <rect key="frame" x="0.0" y="0.0" width="471" height="214"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
-                                <rect key="frame" x="91" y="24" width="117" height="17"/>
+                                <rect key="frame" x="81" y="173" width="117" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics saving path:" id="0M7-ao-0jb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <amPathPopUpButton verticalHuggingPriority="750" imageHugsTitle="YES" canChooseDirectories="YES" canChooseNewPaths="YES" canChooseExistingPaths="YES" placeholder="Default" translatesAutoresizingMaskIntoConstraints="NO" id="78X-XQ-NFv">
-                                <rect key="frame" x="220" y="19" width="165" height="26"/>
+                            <amPathPopUpButton verticalHuggingPriority="750" imageHugsTitle="YES" canChooseDirectories="YES" canChooseExistingPaths="YES" placeholder="Default" translatesAutoresizingMaskIntoConstraints="NO" id="78X-XQ-NFv">
+                                <rect key="frame" x="210" y="168" width="165" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Bjo-cp-Ehb"/>
                                 </constraints>
@@ -331,34 +344,118 @@
                                     <binding destination="Apb-jp-QE9" name="path" keyPath="values.LyricsCustomSavingPath" id="XSP-hE-wS4"/>
                                 </connections>
                             </amPathPopUpButton>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="UQR-mH-y4R">
+                                <rect key="frame" x="20" y="152" width="431" height="5"/>
+                            </box>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="wwb-0H-xk7">
+                                <rect key="frame" x="210" y="122" width="149" height="18"/>
+                                <buttonCell key="cell" type="check" title="Prefer bilingual lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cBB-zn-Hdh">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.PreferBilingualLyrics" id="z5d-4T-XY8"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpE-cM-ds1">
+                                <rect key="frame" x="60" y="89" width="138" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Auto Chinese convert:" id="JPB-ag-MN7">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uoA-YU-YZk" userLabel="Convert">
+                                <rect key="frame" x="210" y="84" width="154" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="No Conversion" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="zhB-kd-WWG" id="MrM-UH-h3N" userLabel="Convert">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="0ad-TI-hal">
+                                        <items>
+                                            <menuItem title="No Conversion" state="on" id="zhB-kd-WWG"/>
+                                            <menuItem title="Simplified Chinese" id="AiM-vg-FvQ"/>
+                                            <menuItem title="Traditional Chinese" id="6FU-j0-FTV"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Nfb-pu-NGK">
+                                <rect key="frame" x="20" y="68" width="431" height="5"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSf-5H-P7U">
+                                <rect key="frame" x="73" y="37" width="125" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Disable lyrics when:" id="bDS-Lb-m34">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="KcA-ys-XDa">
+                                <rect key="frame" x="210" y="36" width="146" height="18"/>
+                                <buttonCell key="cell" type="check" title="iTunes is not playing" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="NLl-9L-0gZ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.DisableLyricsWhenPaused" id="23Z-LD-4b3"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="xa7-h7-OHj">
+                                <rect key="frame" x="210" y="14" width="137" height="18"/>
+                                <buttonCell key="cell" type="check" title="Taking screen shot" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iMD-Wy-Bm7">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.DisableLyricsWhenSreenShot" id="O5h-wv-Lku"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="JSf-5H-P7U" firstAttribute="top" secondItem="Nfb-pu-NGK" secondAttribute="bottom" constant="16" id="0jv-7k-7bF"/>
+                            <constraint firstAttribute="trailing" secondItem="UQR-mH-y4R" secondAttribute="trailing" constant="20" id="AqF-h8-heh"/>
+                            <constraint firstItem="uoA-YU-YZk" firstAttribute="centerY" secondItem="wpE-cM-ds1" secondAttribute="centerY" id="DAB-hw-Kr5"/>
+                            <constraint firstItem="KcA-ys-XDa" firstAttribute="centerY" secondItem="JSf-5H-P7U" secondAttribute="centerY" id="Ehl-kj-ylX"/>
+                            <constraint firstItem="KcA-ys-XDa" firstAttribute="leading" secondItem="78X-XQ-NFv" secondAttribute="leading" id="Jqp-cH-PC0"/>
+                            <constraint firstItem="JSf-5H-P7U" firstAttribute="trailing" secondItem="you-yu-77c" secondAttribute="trailing" id="KSQ-2k-tAA"/>
                             <constraint firstItem="you-yu-77c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="40" id="LoW-h0-G1D"/>
-                            <constraint firstItem="you-yu-77c" firstAttribute="trailing" secondItem="Ium-Ya-ZzT" secondAttribute="centerX" constant="-30" id="OMR-7Z-L5p"/>
+                            <constraint firstItem="xa7-h7-OHj" firstAttribute="top" secondItem="KcA-ys-XDa" secondAttribute="bottom" constant="8" id="O7Z-dW-eMV"/>
+                            <constraint firstItem="you-yu-77c" firstAttribute="trailing" secondItem="Ium-Ya-ZzT" secondAttribute="centerX" constant="-40" id="OMR-7Z-L5p"/>
+                            <constraint firstItem="wpE-cM-ds1" firstAttribute="trailing" secondItem="you-yu-77c" secondAttribute="trailing" id="Rlx-Pc-urP"/>
+                            <constraint firstItem="uoA-YU-YZk" firstAttribute="top" secondItem="wwb-0H-xk7" secondAttribute="bottom" constant="16" id="T1x-UF-AbZ"/>
+                            <constraint firstItem="uoA-YU-YZk" firstAttribute="leading" secondItem="78X-XQ-NFv" secondAttribute="leading" id="TC5-Iw-oUc"/>
                             <constraint firstItem="78X-XQ-NFv" firstAttribute="leading" secondItem="you-yu-77c" secondAttribute="trailing" constant="16" id="Tpt-CG-NoC"/>
+                            <constraint firstItem="Nfb-pu-NGK" firstAttribute="top" secondItem="uoA-YU-YZk" secondAttribute="bottom" constant="16" id="Ul5-Mv-utJ"/>
+                            <constraint firstAttribute="bottom" secondItem="xa7-h7-OHj" secondAttribute="bottom" constant="16" id="bin-Ye-5tK"/>
                             <constraint firstItem="you-yu-77c" firstAttribute="top" secondItem="Ium-Ya-ZzT" secondAttribute="top" constant="24" id="cyR-Pt-SST"/>
+                            <constraint firstItem="UQR-mH-y4R" firstAttribute="top" secondItem="78X-XQ-NFv" secondAttribute="bottom" constant="16" id="eJY-w2-DCS"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="78X-XQ-NFv" secondAttribute="trailing" constant="40" id="h2M-bH-X95"/>
+                            <constraint firstItem="wwb-0H-xk7" firstAttribute="top" secondItem="UQR-mH-y4R" secondAttribute="bottom" constant="16" id="h9u-Tw-Nme"/>
+                            <constraint firstItem="wwb-0H-xk7" firstAttribute="leading" secondItem="78X-XQ-NFv" secondAttribute="leading" id="j6N-PL-V8c"/>
+                            <constraint firstItem="UQR-mH-y4R" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="mJn-RT-EXL"/>
+                            <constraint firstItem="Nfb-pu-NGK" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="no0-rJ-DSh"/>
+                            <constraint firstItem="xa7-h7-OHj" firstAttribute="leading" secondItem="78X-XQ-NFv" secondAttribute="leading" id="t8H-8f-kvQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Nfb-pu-NGK" secondAttribute="trailing" constant="20" id="teZ-bz-MVN"/>
                             <constraint firstItem="78X-XQ-NFv" firstAttribute="centerY" secondItem="you-yu-77c" secondAttribute="centerY" id="viM-iE-Egq"/>
-                            <constraint firstAttribute="bottom" secondItem="you-yu-77c" secondAttribute="bottom" constant="24" id="xmN-MQ-6O1"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="duh-oL-tzb"/>
                 <userDefaultsController id="Apb-jp-QE9"/>
+                <userDefaultsController id="hHn-Lo-CwP"/>
             </objects>
-            <point key="canvasLocation" x="1970" y="-146"/>
+            <point key="canvasLocation" x="1969.5" y="-194"/>
         </scene>
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
             <objects>
                 <viewController id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
-                        <rect key="frame" x="0.0" y="0.0" width="471" height="158"/>
+                        <rect key="frame" x="0.0" y="0.0" width="471" height="162"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbH-Ph-PYg">
-                                <rect key="frame" x="83" y="117" width="40" height="17"/>
+                                <rect key="frame" x="83" y="117" width="40" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="9NT-Kb-10b"/>
                                 </constraints>
@@ -369,7 +466,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHc-gj-4JF">
-                                <rect key="frame" x="137" y="115" width="250" height="22"/>
+                                <rect key="frame" x="137" y="118" width="250" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="co2-Ou-lic"/>
                                 </constraints>
@@ -392,7 +489,7 @@
                                 </connections>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="peK-p0-cOB">
-                                <rect key="frame" x="363" y="115" width="24" height="22"/>
+                                <rect key="frame" x="363" y="118" width="24" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="GNN-su-fP4"/>
                                 </constraints>
@@ -527,6 +624,7 @@
                             <constraint firstItem="l5v-ad-QQh" firstAttribute="leading" secondItem="BE1-9G-oVL" secondAttribute="trailing" constant="8" id="WmJ-cb-vMC"/>
                             <constraint firstItem="YbH-Ph-PYg" firstAttribute="trailing" secondItem="Y71-zj-nPg" secondAttribute="centerX" constant="-115" id="ZIJ-cg-4j1"/>
                             <constraint firstItem="oHc-gj-4JF" firstAttribute="leading" secondItem="YbH-Ph-PYg" secondAttribute="trailing" constant="16" id="aeG-yk-bYd"/>
+                            <constraint firstItem="oHc-gj-4JF" firstAttribute="top" secondItem="Y71-zj-nPg" secondAttribute="top" constant="24" id="bWf-Rx-gbo"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oHc-gj-4JF" secondAttribute="trailing" constant="40" id="beZ-UQ-pc7"/>
                             <constraint firstItem="l5v-ad-QQh" firstAttribute="trailing" secondItem="oHc-gj-4JF" secondAttribute="trailing" id="c0I-oF-KKN"/>
                             <constraint firstItem="BE1-9G-oVL" firstAttribute="leading" secondItem="oHc-gj-4JF" secondAttribute="leading" id="lDt-4O-yx5"/>
@@ -559,7 +657,7 @@
         <!--Filter-->
         <scene sceneID="I5E-Nt-3Jp">
             <objects>
-                <viewController id="lN1-gG-AVq" userLabel="Filter" sceneMemberID="viewController">
+                <viewController id="lN1-gG-AVq" userLabel="Filter" customClass="PreferenceFilterViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jcL-Yv-YP6">
                         <rect key="frame" x="0.0" y="0.0" width="471" height="408"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -605,7 +703,7 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="183" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
+                                                            <tableColumn width="182" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Keyword">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -701,7 +799,7 @@
                                                 </subviews>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="7Q9-hp-ZuL">
-                                                <rect key="frame" x="1" y="183" width="158" height="16"/>
+                                                <rect key="frame" x="1" y="184" width="185" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Zsk-74-cbi">
@@ -778,6 +876,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="resetFilterKey:" target="lN1-gG-AVq" id="JlI-1U-9qq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -814,7 +915,7 @@
         <!--Lyrics HUD Window Controller-->
         <scene sceneID="Bwn-Z7-ydj">
             <objects>
-                <windowController storyboardIdentifier="LyricsHUD" showSeguePresentationStyle="single" id="fpK-JT-GVp" userLabel="Lyrics HUD Window Controller" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="LyricsHUD" showSeguePresentationStyle="single" id="fpK-JT-GVp" userLabel="Lyrics HUD Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="6aU-M0-0Jh" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -903,7 +1004,7 @@
         <!--Search Lyrics Window Controller-->
         <scene sceneID="Ihc-TO-az9">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="Fyy-jy-wIT" userLabel="Search Lyrics Window Controller" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="Fyy-jy-wIT" userLabel="Search Lyrics Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Search Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="y4a-GW-tEh">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1105,8 +1206,89 @@
             </objects>
             <point key="canvasLocation" x="1281" y="1261"/>
         </scene>
+        <!--About Window Controller-->
+        <scene sceneID="Hdl-QT-VuU">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="UhY-od-Efn" userLabel="About Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="eoF-WG-hma">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="540" y="400" width="300" height="169"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                    </window>
+                    <connections>
+                        <segue destination="O7l-PK-pmn" kind="relationship" relationship="window.shadowedContentViewController" id="yhu-XA-I4F"/>
+                    </connections>
+                </windowController>
+                <customObject id="IIS-Wj-YKx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-363" y="999"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="gP2-Kp-Zmc">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="O7l-PK-pmn" userLabel="About View Controller" customClass="AboutViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="2sC-HC-E3f">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="169"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jrv-2U-Mj2">
+                                <rect key="frame" x="118" y="93" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="fMu-rP-Qra"/>
+                                    <constraint firstAttribute="height" constant="64" id="uVm-FO-Rhf"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="m3j-Wq-MJb"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p25-E0-ITV">
+                                <rect key="frame" x="116" y="64" width="68" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="AppName" id="m4c-y5-n5Z">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfW-sb-oUW">
+                                <rect key="frame" x="128" y="42" width="44" height="14"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version" id="tMS-HS-dqi">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYn-MG-f7p">
+                                <rect key="frame" x="64" y="20" width="172" height="14"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright © 2017 Xander Deng." id="0X5-3L-Uzo">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="bfW-sb-oUW" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="3c2-en-3UP"/>
+                            <constraint firstItem="nYn-MG-f7p" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="4YD-Do-apd"/>
+                            <constraint firstItem="p25-E0-ITV" firstAttribute="top" secondItem="jrv-2U-Mj2" secondAttribute="bottom" constant="12" id="NIt-bR-VQ1"/>
+                            <constraint firstItem="jrv-2U-Mj2" firstAttribute="top" secondItem="2sC-HC-E3f" secondAttribute="top" constant="12" id="SYZ-ME-WZD"/>
+                            <constraint firstItem="jrv-2U-Mj2" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="Wer-o3-WNB"/>
+                            <constraint firstItem="p25-E0-ITV" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="gAw-ro-cJt"/>
+                            <constraint firstItem="bfW-sb-oUW" firstAttribute="top" secondItem="p25-E0-ITV" secondAttribute="bottom" constant="8" id="wEv-vu-Ov6"/>
+                            <constraint firstItem="nYn-MG-f7p" firstAttribute="top" secondItem="bfW-sb-oUW" secondAttribute="bottom" constant="8" id="x1G-dq-Oug"/>
+                            <constraint firstAttribute="bottom" secondItem="nYn-MG-f7p" secondAttribute="bottom" constant="20" id="ybC-3u-UGU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appName" destination="p25-E0-ITV" id="xl8-oD-AQ0"/>
+                        <outlet property="appVersion" destination="bfW-sb-oUW" id="feN-Ke-oNm"/>
+                    </connections>
+                </viewController>
+                <customObject id="PnP-sS-v9c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="999"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="font_panel" width="22" height="20"/>

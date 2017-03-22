@@ -19,6 +19,9 @@ class DesktopLyricsWindowController: NSWindowController {
         window?.isOpaque = false
         window?.ignoresMouseEvents = true
         window?.level = Int(CGWindowLevelForKey(.floatingWindow))
+        if Preference[DisableLyricsWhenSreenShot] {
+            window?.sharingType = .none
+        }
     }
     
 }

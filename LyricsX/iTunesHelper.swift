@@ -64,6 +64,11 @@ class iTunesHelper: LyricsSourceDelegate {
             case .iTunesEPlSPaused, .iTunesEPlSStopped:
                 positionChangeTimer.fireDate = .distantFuture
                 print("Paused")
+                if Preference[DisableLyricsWhenPaused] {
+                    currentLyricsLine = nil
+                    nextLyricsLine = nil
+                    NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+                }
             default:
                 break
             }
@@ -98,19 +103,24 @@ class iTunesHelper: LyricsSourceDelegate {
         guard let lyrics = currentLyrics, let position = iTunes.playerPosition else {
             return
         }
-        
         let lrc = lyrics[position]
         
         if currentLyricsLine == lrc.current {
             return
         }
-        
         currentLyricsLine = lrc.current
         nextLyricsLine = lrc.next
         
+        let nextLyricsSentence: String?
+        if Preference[PreferBilingualLyrics] {
+            nextLyricsSentence = currentLyricsLine?.translation ?? nextLyricsLine?.sentence
+        } else {
+            nextLyricsSentence = nextLyricsLine?.sentence
+        }
+        
         let info = [
             "lrc": currentLyricsLine?.sentence as Any,
-            "next": currentLyricsLine?.translation ?? nextLyricsLine?.sentence as Any
+            "next": nextLyricsSentence as Any
         ]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
@@ -163,7 +173,11 @@ extension LXLyrics {
             if fileManager.fileExists(atPath: lrcFilePath) {
                 try fileManager.removeItem(atPath: lrcFilePath)
             }
-            try description.write(toFile: lrcFilePath, atomically: false, encoding: .utf8)
+            let content = contentString(withMetadata: false,
+                                        ID3: true,
+                                        timeTag: true,
+                                        translation: true)
+            try content.write(toFile: lrcFilePath, atomically: false, encoding: .utf8)
         } catch let error as NSError{
             print(error)
             return
