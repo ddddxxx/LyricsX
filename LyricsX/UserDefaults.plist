@@ -51,14 +51,14 @@
 		<string>片頭曲</string>
 		<string>片头曲</string>
 		<string>片尾曲</string>
-		<string>Lrc</string>
 		<string>QQ</string>
-		<string>アニメ</string>
+		<string>Lrc</string>
 		<string>LyricsBy</string>
 		<string>ComposedBy</string>
 		<string>CharacterSong</string>
 		<string>InsertSong</string>
 		<string>SoundTrack</string>
+		<string>アニメ</string>
 		<string>www\.</string>
 		<string>\.com</string>
 		<string>\.net</string>
@@ -67,7 +67,10 @@
 	<array>
 		<string>by</string>
 		<string>title</string>
+		<string>song</string>
+		<string>album</string>
 		<string>artist</string>
+		<string>singer</string>
 		<string>lyrics</string>
 		<string>歌</string>
 		<string>唄</string>
