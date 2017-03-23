@@ -672,6 +672,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="QTW-Rd-aiV" name="value" keyPath="values.LyricsFilterEnabled" id="d3X-0d-gr8"/>
+                                </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="7iB-wm-8Oe">
                                 <rect key="frame" x="18" y="346" width="93" height="18"/>
@@ -679,6 +682,10 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="QTW-Rd-aiV" name="enabled" keyPath="values.LyricsFilterEnabled" id="Sfb-Il-qXn"/>
+                                    <binding destination="QTW-Rd-aiV" name="value" keyPath="values.LyricsSmartFilterEnabled" id="bvo-ap-PtE"/>
+                                </connections>
                             </button>
                             <box boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="5Bt-74-pXu">
                                 <rect key="frame" x="20" y="61" width="431" height="271"/>
@@ -697,11 +704,11 @@
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vz7-Vi-Uvh" userLabel="Direct Keyword">
                                             <rect key="frame" x="16" y="37" width="188" height="201"/>
                                             <clipView key="contentView" id="GTL-P9-DNY">
-                                                <rect key="frame" x="1" y="0.0" width="186" height="200"/>
+                                                <rect key="frame" x="1" y="1" width="186" height="199"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="0qs-qM-kUP" id="TWq-TW-A8d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="186" height="177"/>
+                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="TWq-TW-A8d">
+                                                        <rect key="frame" x="0.0" y="0.0" width="186" height="199"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -739,10 +746,6 @@
                                                 <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <tableHeaderView key="headerView" id="0qs-qM-kUP">
-                                                <rect key="frame" x="0.0" y="0.0" width="186" height="23"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K5Z-h7-BAg">
                                             <rect key="frame" x="10" y="1" width="49" height="32"/>
@@ -772,11 +775,11 @@
                                         <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a23-iW-CTt" userLabel="Colon Filter">
                                             <rect key="frame" x="224" y="37" width="187" height="201"/>
                                             <clipView key="contentView" id="jSb-6d-GDA">
-                                                <rect key="frame" x="1" y="0.0" width="185" height="200"/>
+                                                <rect key="frame" x="1" y="1" width="185" height="199"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="LEf-s4-dvs" id="LSF-bb-bLK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="185" height="177"/>
+                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="LSF-bb-bLK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="185" height="199"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -806,14 +809,10 @@
                                                 <rect key="frame" x="1" y="184" width="185" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Zsk-74-cbi">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Zsk-74-cbi">
                                                 <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <tableHeaderView key="headerView" id="LEf-s4-dvs">
-                                                <rect key="frame" x="0.0" y="0.0" width="185" height="23"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sb2-ep-waS">
                                             <rect key="frame" x="218" y="1" width="49" height="32"/>
@@ -949,10 +948,10 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="yrx-pH-R1e">
-                                            <rect key="frame" x="0.0" y="-0.5" width="358" height="358"/>
+                                            <rect key="frame" x="0.0" y="-0.5" width="358" height="428"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="358" height="358"/>
+                                            <size key="minSize" width="358" height="428"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment content="Lyrics">

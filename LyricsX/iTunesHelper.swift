@@ -93,7 +93,6 @@ class iTunesHelper: LyricsSourceDelegate {
         if let localLyrics = lyricsHelper.readLocalLyrics(title: title, artist: artist) {
             currentLyrics = localLyrics
             currentLyrics?.filtrate()
-            currentLyrics?.smartFiltrate()
         } else {
             lyricsHelper.fetchLyrics(title: title, artist: artist)
         }
@@ -139,7 +138,6 @@ class iTunesHelper: LyricsSourceDelegate {
         
         var lyrics = lyrics
         lyrics.filtrate()
-        lyrics.smartFiltrate()
         currentLyrics = lyrics
         lyrics.saveToLocal()
     }
@@ -185,6 +183,10 @@ extension Lyrics {
     }
     
     mutating func filtrate() {
+        guard Preference[LyricsFilterEnabled] else {
+            return
+        }
+        
         guard let directFilter = Preference[LyricsDirectFilterKey],
             let colonFilter = Preference[LyricsColonFilterKey] else {
                 return
@@ -196,6 +198,10 @@ extension Lyrics {
         let pattern = "\(directFilterPattern)|((\(colonFilterPattern))(\(colonsPattern)))"
         if let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) {
             filtrate(using: regex)
+        }
+        
+        if Preference[LyricsSmartFilterEnabled] {
+            smartFiltrate()
         }
     }
     

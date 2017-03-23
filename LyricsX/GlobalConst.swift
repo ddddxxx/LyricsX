@@ -47,9 +47,11 @@ let DesktopLyricsColor: PreferenceKey<NSColor>              = "DesktopLyricsColo
 let DesktopLyricsShadowColor: PreferenceKey<NSColor>        = "DesktopLyricsShadowColor"
 let DesktopLyricsBackgroundColor: PreferenceKey<NSColor>    = "DesktopLyricsBackgroundColor"
 
-let DisplayLyricsWithTag: PreferenceKey<Bool>   = "DisplayLyricsWithTag"
+let DisplayLyricsWithTag: PreferenceKey<Bool>       = "DisplayLyricsWithTag"
 
 // Filter
+let LyricsFilterEnabled: PreferenceKey<Bool>        = "LyricsFilterEnabled"
+let LyricsSmartFilterEnabled: PreferenceKey<Bool>   = "LyricsSmartFilterEnabled"
 let LyricsDirectFilterKey: PreferenceKey<[String]>  = "LyricsDirectFilterKey"
 let LyricsColonFilterKey: PreferenceKey<[String]>   = "LyricsColonFilterKey"
 

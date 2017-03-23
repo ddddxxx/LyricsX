@@ -22,6 +22,10 @@
 	<string>Helvetica Light</string>
 	<key>DesktopLyricsFontSize</key>
 	<integer>28</integer>
+	<key>LyricsFilterEnabled</key>
+	<true/>
+	<key>LyricsSmartFilterEnabled</key>
+	<true/>
 	<key>LyricsDirectFilterKey</key>
 	<array>
 		<string>作詞</string>

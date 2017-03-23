@@ -49,7 +49,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         let index = selectedIndex.firstIndex
         var lrc = searchResult[index]
         lrc.filtrate()
-        lrc.smartFiltrate()
         appDelegate.helper.currentLyrics = lrc
         lrc.saveToLocal()
     }
