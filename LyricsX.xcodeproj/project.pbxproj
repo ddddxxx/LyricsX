@@ -157,7 +157,6 @@
 		BB4141AC1E458BA800A51775 /* LyricsX */ = {
 			isa = PBXGroup;
 			children = (
-				BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */,
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
 				BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
@@ -173,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				BB4141B11E458BA800A51775 /* Assets.xcassets */,
+				BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */,
 				BB4141B61E458BA900A51775 /* Info.plist */,
 				BB58B0811E82971400598D4F /* UserDefaults.plist */,
 				BB58B0881E82CA9B00598D4F /* Credits.rtf */,
