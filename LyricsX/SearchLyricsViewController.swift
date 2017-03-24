@@ -22,11 +22,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     let lyricsHelper = LyricsSourceHelper()
     
-    var hudWindow: NSWindowController!
-    
     @IBOutlet weak var artworkView: NSImageView!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var searchButton: NSButton!
+    @IBOutlet weak var lyricsPreviewTextView: NSTextView!
     
     override func viewDidLoad() {
         lyricsHelper.delegate = self
@@ -34,7 +33,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         searchArtist = helper?.iTunes.currentTrack?.artist as String? ?? ""
         searchTitle = helper?.iTunes.currentTrack?.name as String? ?? ""
         searchResult = helper?.lyricsHelper.lyrics ?? []
-        hudWindow = NSStoryboard(name: "Main", bundle: .main).instantiateController(withIdentifier: "LyricsHUD") as? NSWindowController
         super.viewDidLoad()
     }
     
@@ -46,7 +44,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     
     @IBAction func useLyricsAction(_ sender: NSButton) {
-        let index = selectedIndex.firstIndex
+        guard let index = tableView.selectedRowIndexes.first else {
+            return
+        }
         var lrc = searchResult[index]
         lrc.filtrate()
         appDelegate.helper.currentLyrics = lrc
@@ -92,12 +92,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     func tableView(_ tableView: NSTableView, selectionIndexesForProposedSelection proposedSelectionIndexes: IndexSet) -> IndexSet {
         if proposedSelectionIndexes.count == 1,
             let index = proposedSelectionIndexes.first {
-            let hudView = hudWindow.contentViewController as? LyricsHUDViewController
-            hudView?.lyrics = searchResult[index]
-            hudWindow.showWindow(nil)
+            lyricsPreviewTextView.string = searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
             artworkView.image = searchResult[index].metadata[.artworkURL].flatMap({URL(string: $0)}).flatMap({NSImage(contentsOf: $0)}) ?? #imageLiteral(resourceName: "missing_artwork")
-            self.view.window?.makeKeyAndOrderFront(nil)
-            tableView.becomeFirstResponder()
         }
         
         return proposedSelectionIndexes;
