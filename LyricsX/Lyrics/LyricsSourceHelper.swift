@@ -70,22 +70,4 @@ class LyricsSourceHelper {
         }
     }
     
-    func readLocalLyrics(title: String, artist: String) -> Lyrics? {
-        let savingPath = Preference[LyricsCustomSavingPath]!
-        let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
-        let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
-        let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
-        if let lrcContents = try? String(contentsOfFile: lrcFilePath, encoding: String.Encoding.utf8) {
-            var lrc = Lyrics(lrcContents)
-            let metadata: [Lyrics.MetadataKey: String] = [
-                .searchTitle: title,
-                .searchArtist: artist,
-                .source: "Local"
-            ]
-            lrc?.metadata = metadata
-            return lrc
-        }
-        return nil
-    }
-    
 }

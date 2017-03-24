@@ -148,34 +148,68 @@ class iTunesHelper: LyricsSourceDelegate {
     
 }
 
+extension LyricsSourceHelper {
+    
+    func readLocalLyrics(title: String, artist: String) -> Lyrics? {
+        guard let url = Preference.lyricsSavingPath,
+            url.startAccessingSecurityScopedResource() else {
+            return nil
+        }
+        defer {
+            url.stopAccessingSecurityScopedResource()
+        }
+        let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
+        let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
+        let lrcFileURL = url.appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
+        if let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8) {
+            var lrc = Lyrics(lrcContents)
+            let metadata: [Lyrics.MetadataKey: String] = [
+                .searchTitle: title,
+                .searchArtist: artist,
+                .source: "Local"
+            ]
+            lrc?.metadata = metadata
+            return lrc
+        }
+        return nil
+    }
+    
+}
+
 extension Lyrics {
     
     func saveToLocal() {
-        let savingPath = Preference[LyricsCustomSavingPath]!
+        guard let url = Preference.lyricsSavingPath,
+            url.startAccessingSecurityScopedResource() else {
+            return
+        }
+        defer {
+            url.stopAccessingSecurityScopedResource()
+        }
         let fileManager = FileManager.default
         
         do {
             var isDir = ObjCBool(false)
-            if fileManager.fileExists(atPath: savingPath, isDirectory: &isDir) {
+            if fileManager.fileExists(atPath: url.path, isDirectory: &isDir) {
                 if !isDir.boolValue {
                     return
                 }
             } else {
-                try fileManager.createDirectory(atPath: savingPath, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             }
             
             let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
             let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
-            let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
+            let lrcFileURL = url.appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
             
-            if fileManager.fileExists(atPath: lrcFilePath) {
-                try fileManager.removeItem(atPath: lrcFilePath)
+            if fileManager.fileExists(atPath: lrcFileURL.path) {
+                try fileManager.removeItem(at: lrcFileURL)
             }
             let content = contentString(withMetadata: false,
                                         ID3: true,
                                         timeTag: true,
                                         translation: true)
-            try content.write(toFile: lrcFilePath, atomically: false, encoding: .utf8)
+            try content.write(to: lrcFileURL, atomically: false, encoding: .utf8)
         } catch let error as NSError{
             print(error)
             return
