@@ -30,7 +30,9 @@ let DesktopLyricsEnabled: PreferenceKey<Bool>   = "DesktopLyricsEnabled"
 let MenuBarLyricsEnabled: PreferenceKey<Bool>   = "MenuBarLyricsEnabled"
 
 // General
-let LyricsCustomSavingPath: PreferenceKey<String>   = "LyricsCustomSavingPath"
+let LyricsSavingPathPopUpIndex: PreferenceKey<Int>  = "LyricsSavingPathPopUpIndex"
+let LyricsDefaultSavingPath: PreferenceKey<String>  = "LyricsDefaultSavingPath"
+let LyricsCustomSavingPathBookmark: PreferenceKey<Data>     = "LyricsCustomSavingPathBookmark"
 
 let PreferBilingualLyrics: PreferenceKey<Bool>      = "PreferBilingualLyrics"
 let ChineseConversionIndex: PreferenceKey<Int>      = "ChineseConversionIndex"

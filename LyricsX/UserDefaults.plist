@@ -6,7 +6,9 @@
 	<true/>
 	<key>MenuBarLyricsEnabled</key>
 	<false/>
-	<key>LyricsCustomSavingPath</key>
+	<key>LyricsSavingPathPopUpIndex</key>
+	<integer>0</integer>
+	<key>LyricsDefaultSavingPath</key>
 	<string>~/Music/LyricsX</string>
 	<key>PreferBilingualLyrics</key>
 	<true/>
@@ -21,7 +23,7 @@
 	<key>DesktopLyricsFontName</key>
 	<string>Helvetica Light</string>
 	<key>DesktopLyricsFontSize</key>
-	<integer>28</integer>
+	<integer>24</integer>
 	<key>LyricsFilterEnabled</key>
 	<true/>
 	<key>LyricsSmartFilterEnabled</key>
