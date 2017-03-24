@@ -13,7 +13,94 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6"/>
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                        <items>
+                            <menuItem title="Application" id="vHn-zU-YCm">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Application" id="L37-wq-P3U">
+                                    <items>
+                                        <menuItem title="Quit Application" keyEquivalent="q" id="2jf-zU-489">
+                                            <connections>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="nBp-Ow-hy7"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Edit" id="CDj-ot-3DR">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Edit" id="hin-8a-QBn">
+                                    <items>
+                                        <menuItem title="Undo" keyEquivalent="z" id="X70-gA-VCs">
+                                            <connections>
+                                                <action selector="undo:" target="Ady-hI-5gd" id="zde-Pt-xTo"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Redo" keyEquivalent="Z" id="Jbz-xE-Ntb">
+                                            <connections>
+                                                <action selector="redo:" target="Ady-hI-5gd" id="aPp-M2-030"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="wCz-1A-lma"/>
+                                        <menuItem title="Cut" keyEquivalent="x" id="uP6-6j-RSc">
+                                            <connections>
+                                                <action selector="cut:" target="Ady-hI-5gd" id="XYr-j0-IFu"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy" keyEquivalent="c" id="PHb-rX-39I">
+                                            <connections>
+                                                <action selector="copy:" target="Ady-hI-5gd" id="WoE-79-kfI"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste" keyEquivalent="v" id="VUf-dC-81X">
+                                            <connections>
+                                                <action selector="paste:" target="Ady-hI-5gd" id="4jy-wC-FKp"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste and Match Style" keyEquivalent="V" id="YFT-fb-xcH">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="pasteAsPlainText:" target="Ady-hI-5gd" id="v19-Kz-pzT"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select All" keyEquivalent="a" id="gPf-oY-cYP">
+                                            <connections>
+                                                <action selector="selectAll:" target="Ady-hI-5gd" id="L38-7B-oxM"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="cda-cm-Apk">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="Ubz-IV-XOU">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="Nxv-i6-pWj">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="z4n-xu-fkg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Application" keyEquivalent="h" id="csd-w7-kJw">
+                                            <connections>
+                                                <action selector="hide:" target="Ady-hI-5gd" id="Qp0-jg-1DF"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="XQC-Z5-ZbS">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="6iN-wp-p8A"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Close" keyEquivalent="w" id="1fM-ec-bJX">
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="UKQ-7f-OTF"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
@@ -152,7 +239,6 @@
                 </customView>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="YC0-xP-lPo"/>
-                <userDefaultsController id="J12-VO-LSh"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
