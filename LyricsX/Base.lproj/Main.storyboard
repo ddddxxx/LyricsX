@@ -341,6 +341,13 @@
                                     </subviews>
                                 </view>
                                 <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <binding destination="AB5-cL-Rpb" name="hidden" keyPath="values.DesktopLyricsEnabled" id="yTu-zL-Elu">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </box>
                         </subviews>
                     </view>
@@ -426,7 +433,15 @@
                                     <menu key="menu" id="5gc-ov-0H5">
                                         <items>
                                             <menuItem title="LyricsX (Default)" state="on" id="IE7-IT-oPk"/>
-                                            <menuItem title="User Path" id="hXE-OF-DFz"/>
+                                            <menuItem title="User Path" id="hXE-OF-DFz">
+                                                <connections>
+                                                    <binding destination="hHn-Lo-CwP" name="hidden" keyPath="values.LyricsCustomSavingPathBookmark" id="p7q-40-Bn6">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </menuItem>
                                             <menuItem isSeparatorItem="YES" id="iSc-zy-02K"/>
                                             <menuItem title="Other..." id="HvN-Ou-h1t">
                                                 <connections>

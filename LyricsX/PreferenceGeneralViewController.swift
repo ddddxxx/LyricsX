@@ -15,7 +15,6 @@ class PreferenceGeneralViewController: NSViewController {
     
     override func viewDidLoad() {
         guard let url = Preference.lyricsCustomSavingPath else {
-            userPathMenuItem.isHidden = true
             return
         }
         savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
@@ -32,7 +31,6 @@ class PreferenceGeneralViewController: NSViewController {
                 Preference.lyricsCustomSavingPath = url
                 self.savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
                 self.savingPathPopUp.item(at: 1)?.toolTip = url.path
-                self.userPathMenuItem.isHidden = false
                 self.savingPathPopUp.selectItem(at: 1)
             } else {
                 self.savingPathPopUp.selectItem(at: 0)
