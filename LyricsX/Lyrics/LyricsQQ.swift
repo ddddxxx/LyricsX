@@ -17,7 +17,7 @@ class LyricsQQ: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         let urlString: String = "http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n=10&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w=\(title) \(artist)"
         let convertedURLStr = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
@@ -35,7 +35,7 @@ class LyricsQQ: LyricsSource {
                     return
                 }
                 
-                var metadata: [LXLyrics.MetadataKey: String] = [:]
+                var metadata: [Lyrics.MetadataKey: String] = [:]
                 metadata[.source] = "QQMusic"
                 metadata[.searchTitle] = title
                 metadata[.searchArtist] = artist
@@ -48,14 +48,14 @@ class LyricsQQ: LyricsSource {
         }
     }
     
-    private func lyricsFor(id: Int) -> LXLyrics? {
+    private func lyricsFor(id: Int) -> Lyrics? {
         let url = URL(string: "http://music.qq.com/miniportal/static/lyric/\(id%100)/\(id).xml")!
         let parser = LyricsQQXMLParser()
         guard let lrcData = try? Data(contentsOf: url),
             let lrcContent = parser.parseLrcContents(data: lrcData) else {
             return nil
         }
-        return LXLyrics(lrcContent)
+        return Lyrics(lrcContent)
     }
     
 }

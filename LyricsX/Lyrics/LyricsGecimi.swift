@@ -17,7 +17,7 @@ class LyricsGecimi: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         queue.addOperation {
             let lrcDatas = self.searchLrcFor(title: title, artist: artist)
             lrcDatas.forEach() { lrcData in
@@ -25,14 +25,14 @@ class LyricsGecimi: LyricsSource {
                 metadata[.source] = "Gecimi"
                 metadata[.searchTitle] = title
                 metadata[.searchArtist] = artist
-                if let lrc = LXLyrics(metadata: metadata) {
+                if let lrc = Lyrics(metadata: metadata) {
                     completionBlock(lrc)
                 }
             }
         }
     }
     
-    private func searchLrcFor(title: String, artist: String) -> [[LXLyrics.MetadataKey: String]] {
+    private func searchLrcFor(title: String, artist: String) -> [[Lyrics.MetadataKey: String]] {
         let urlStr = "http://gecimi.com/api/lyric/\(title)/\(artist)"
         let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
@@ -42,7 +42,7 @@ class LyricsGecimi: LyricsSource {
         }
         
         return array.flatMap() { item in
-            var result: [LXLyrics.MetadataKey: String] = [:]
+            var result: [Lyrics.MetadataKey: String] = [:]
             result[.lyricsURL] = item["lrc"].string
             
             if let aid = item["aid"].string,

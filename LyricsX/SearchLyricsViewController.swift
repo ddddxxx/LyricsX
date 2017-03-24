@@ -10,7 +10,7 @@ import Cocoa
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsSourceDelegate {
     
-    var searchResult = [LXLyrics]()
+    var searchResult = [Lyrics]()
     
     dynamic var searchArtist = ""
     dynamic var searchTitle = "" {
@@ -49,21 +49,20 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         let index = selectedIndex.firstIndex
         var lrc = searchResult[index]
         lrc.filtrate()
-        lrc.smartFiltrate()
         appDelegate.helper.currentLyrics = lrc
         lrc.saveToLocal()
     }
     
     // MARK: - LyricsSourceDelegate
     
-    func lyricsReceived(lyrics: LXLyrics) {
+    func lyricsReceived(lyrics: Lyrics) {
         searchResult += [lyrics]
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
-    func fetchCompleted(result: [LXLyrics]) {
+    func fetchCompleted(result: [Lyrics]) {
         
     }
     

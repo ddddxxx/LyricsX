@@ -9,6 +9,7 @@
 import Cocoa
 import SnapKit
 import EasyPreference
+import OpenCC
 
 class DesktopLyricsWindowController: NSWindowController {
     
@@ -33,6 +34,8 @@ class DesktopLyricsViewController: NSViewController {
     @IBOutlet weak var secondLineLrcView: NSTextField!
     @IBOutlet weak var waitingLrcView: NSTextField!
     
+    var chineseConverter: ChineseConverter?
+    
     var enabled = Preference[DesktopLyricsEnabled] {
         didSet {
             backgroundView.isHidden = !enabled
@@ -52,6 +55,15 @@ class DesktopLyricsViewController: NSViewController {
         
         let shadowColor = Preference.object(for: DesktopLyricsShadowColor)!
         updateShadow(color: shadowColor)
+        
+        switch Preference[ChineseConversionIndex] {
+        case 1:
+            chineseConverter = ChineseConverter(option: [.simplify])
+        case 2:
+            chineseConverter = ChineseConverter(option: [.traditionalize])
+        default:
+            chineseConverter = nil
+        }
         
         makeConstraints()
         
@@ -89,6 +101,17 @@ class DesktopLyricsViewController: NSViewController {
         Preference.subscribe(key: DesktopLyricsShadowColor) { change in
             self.updateShadow(color: change.newValue)
         }
+        
+        Preference.subscribe(key: ChineseConversionIndex) { change in
+            switch change.newValue {
+            case 1:
+                self.chineseConverter = ChineseConverter(option: [.simplify])
+            case 2:
+                self.chineseConverter = ChineseConverter(option: [.traditionalize])
+            default:
+                self.chineseConverter = nil
+            }
+        }
     }
     
     func updateShadow(color: NSColor) {
@@ -121,15 +144,22 @@ class DesktopLyricsViewController: NSViewController {
             return
         }
         
+        var firstLine = firstLine ?? ""
+        var secondLine = secondLine ?? ""
+        if let converter = chineseConverter {
+            firstLine = converter.convert(firstLine)
+            secondLine = converter.convert(secondLine)
+        }
+        
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.2
             context.allowsImplicitAnimation = true
-            self.secondLineLrcView.stringValue = firstLine ?? ""
-            self.waitingLrcView.stringValue = secondLine ?? ""
+            self.secondLineLrcView.stringValue = firstLine
+            self.waitingLrcView.stringValue = secondLine
             self.onAnimation = true
         }, completionHandler: {
-            self.firstLineLrcView.stringValue = firstLine ?? ""
-            self.secondLineLrcView.stringValue = secondLine ?? ""
+            self.firstLineLrcView.stringValue = firstLine
+            self.secondLineLrcView.stringValue = secondLine
             self.onAnimation = false
         })
     }

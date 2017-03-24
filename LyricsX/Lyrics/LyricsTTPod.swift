@@ -17,7 +17,7 @@ class LyricsTTPod: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (LXLyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         queue.addOperation {
             let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(artist)&title=\(title)"
             let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
@@ -25,11 +25,11 @@ class LyricsTTPod: LyricsSource {
             
             guard let data = try? Data(contentsOf: url),
                 let lrcContent = JSON(data)["data"]["lrc"].string,
-                var lrc = LXLyrics(lrcContent)else {
+                var lrc = Lyrics(lrcContent)else {
                     return
             }
             
-            var metadata: [LXLyrics.MetadataKey: String] = [:]
+            var metadata: [Lyrics.MetadataKey: String] = [:]
             metadata[.source] = "TTPod"
             metadata[.searchTitle] = title
             metadata[.searchArtist] = artist

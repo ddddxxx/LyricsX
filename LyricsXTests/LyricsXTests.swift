@@ -14,22 +14,25 @@ class LyricsXTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testFetchLyrics() {
+    func testFetchLyricsPerformance() {
         let testSong = "Rolling in the Deep"
         let testArtist = "Adele"
+        let helper = LyricsSourceHelper()
+        
         measure {
-            let fetchReturnedExpectation = self.expectation(description: "fetch lrc")
-            LyricsSourceHelper().fetchLyrics(title: testSong, artist: testArtist) {
-                fetchReturnedExpectation.fulfill()
-            }
+            var fetchReturnedEx: XCTestExpectation? = self.expectation(description: "fetch lrc")
+            let delegate = TextSrc(receivedHandle: {
+                fetchReturnedEx?.fulfill()
+                fetchReturnedEx = nil
+            })
+            helper.delegate = delegate
+            helper.fetchLyrics(title: testSong, artist: testArtist)
             self.waitForExpectations(timeout: 5) { _ in
                 self.stopMeasuring()
             }
@@ -39,21 +42,46 @@ class LyricsXTests: XCTestCase {
     func testLyricsSourceAvailability() {
         let testCase = [
             ("Rolling in the Deep", "Adele"),
-            ("海阔天空", "Beyond")
+            ("海阔天空", "Beyond"),
         ]
         
         let lyricsSources: [LyricsSource] = [
             LyricsXiami(),
             LyricsGecimi(),
-            LyricsTTPod()
+            LyricsTTPod(),
+            Lyrics163(),
+            LyricsQQ(),
         ]
-        
         lyricsSources.forEach() { src in
-            let fetchResule = testCase.flatMap() { song in
-                return src.fetchLyrics(title: song.0, artist: song.1)
+            var fetchReturnedEx: XCTestExpectation? = expectation(description: "fetch from \(src)")
+            for song in testCase {
+                src.fetchLyrics(title: song.0, artist: song.1) { _ in
+                    fetchReturnedEx?.fulfill()
+                    fetchReturnedEx = nil
+                }
             }
-            XCTAssert(fetchResule.count > 0)
+            waitForExpectations(timeout: 5)
         }
+    }
+    
+}
+
+class TextSrc: LyricsSourceDelegate {
+    
+    private let receivedHandle: (() -> Void)?
+    private let completedHandle: (() -> Void)?
+    
+    init(receivedHandle: (() -> Void)?, completedHandle: (() -> Void)? = nil) {
+        self.receivedHandle = receivedHandle
+        self.completedHandle = completedHandle
+    }
+    
+    func lyricsReceived(lyrics: Lyrics) {
+        receivedHandle?()
+    }
+    
+    func fetchCompleted(result: [Lyrics]) {
+        completedHandle?()
     }
     
 }

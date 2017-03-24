@@ -20,20 +20,25 @@
 		BB4141CE1E4745EA00A51775 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */; };
 		BB4141D01E47461800A51775 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB4141D81E475DD100A51775 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D71E475DD100A51775 /* iTunes.swift */; };
-		BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D91E4761F900A51775 /* LXLyrics.swift */; };
+		BB4141DA1E4761F900A51775 /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D91E4761F900A51775 /* Lyrics.swift */; };
 		BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44F8771E702863004194D9 /* Lyrics163.swift */; };
 		BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */; };
 		BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */; };
 		BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */; };
 		BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0811E82971400598D4F /* UserDefaults.plist */; };
+		BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58B0831E82B82F00598D4F /* OpenCC.framework */; };
+		BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB58B0831E82B82F00598D4F /* OpenCC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BB58B0871E82BFF600598D4F /* LyricsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B0861E82BFF600598D4F /* LyricsLine.swift */; };
+		BB58B0891E82CA9B00598D4F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
 		BB6004281E6F0BB100170CB4 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6004271E6F0BB100170CB4 /* Automator.framework */; };
 		BB6294E31E7A97420027B2A0 /* EasyPreference.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6294E21E7A97420027B2A0 /* EasyPreference.framework */; };
 		BB6294E41E7A97420027B2A0 /* EasyPreference.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB6294E21E7A97420027B2A0 /* EasyPreference.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
+		BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BCEB91E843157001BC54B /* Extension.swift */; };
 		BB9C6C981E51DACD00771424 /* LyricsTTPod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9C6C971E51DACD00771424 /* LyricsTTPod.swift */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
 		BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */; };
-		BBC1D35F1E499A6D002538A2 /* GlobalConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */; };
+		BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* Global.swift */; };
 		BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */; };
 		BBC1D5891E4B1C44008869EC /* LyricsXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5881E4B1C44008869EC /* LyricsXTests.swift */; };
 		BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */; };
@@ -57,6 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */,
 				BB4141D01E47461800A51775 /* SwiftyJSON.framework in Embed Frameworks */,
 				BB6294E41E7A97420027B2A0 /* EasyPreference.framework in Embed Frameworks */,
 				BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */,
@@ -80,19 +86,24 @@
 		BB4141CB1E47444200A51775 /* LyricsXiami.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsXiami.swift; path = Lyrics/LyricsXiami.swift; sourceTree = "<group>"; };
 		BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BB4141D71E475DD100A51775 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
-		BB4141D91E4761F900A51775 /* LXLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LXLyrics.swift; path = Lyrics/LXLyrics.swift; sourceTree = "<group>"; };
+		BB4141D91E4761F900A51775 /* Lyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lyrics.swift; path = Lyrics/Lyrics.swift; sourceTree = "<group>"; };
 		BB44F8771E702863004194D9 /* Lyrics163.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lyrics163.swift; path = Lyrics/Lyrics163.swift; sourceTree = "<group>"; };
 		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsGecimi.swift; path = Lyrics/LyricsGecimi.swift; sourceTree = "<group>"; };
 		BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceHelper.swift; path = Lyrics/LyricsSourceHelper.swift; sourceTree = "<group>"; };
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoActivateWindowController.swift; sourceTree = "<group>"; };
 		BB58B0811E82971400598D4F /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
+		BB58B0831E82B82F00598D4F /* OpenCC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCC.framework; path = Carthage/Build/Mac/OpenCC.framework; sourceTree = "<group>"; };
+		BB58B0861E82BFF600598D4F /* LyricsLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsLine.swift; path = Lyrics/LyricsLine.swift; sourceTree = "<group>"; };
+		BB58B0881E82CA9B00598D4F /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		BB6004271E6F0BB100170CB4 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = System/Library/Frameworks/Automator.framework; sourceTree = SDKROOT; };
 		BB6294E21E7A97420027B2A0 /* EasyPreference.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyPreference.framework; path = Carthage/Build/Mac/EasyPreference.framework; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
+		BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsX.entitlements; sourceTree = "<group>"; };
+		BB9BCEB91E843157001BC54B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		BB9C6C971E51DACD00771424 /* LyricsTTPod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsTTPod.swift; path = Lyrics/LyricsTTPod.swift; sourceTree = "<group>"; };
 		BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLyricsViewController.swift; sourceTree = "<group>"; };
 		BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesHelper.swift; sourceTree = "<group>"; };
-		BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConst.swift; sourceTree = "<group>"; };
+		BBC1D35E1E499A6D002538A2 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarLyrics.swift; sourceTree = "<group>"; };
 		BBC1D5861E4B1C44008869EC /* LyricsXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyricsXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC1D5881E4B1C44008869EC /* LyricsXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsXTests.swift; sourceTree = "<group>"; };
@@ -110,6 +121,7 @@
 				BB6294E31E7A97420027B2A0 /* EasyPreference.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BB4141CE1E4745EA00A51775 /* SwiftyJSON.framework in Frameworks */,
+				BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +157,7 @@
 		BB4141AC1E458BA800A51775 /* LyricsX */ = {
 			isa = PBXGroup;
 			children = (
+				BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */,
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
 				BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
@@ -162,6 +175,7 @@
 				BB4141B11E458BA800A51775 /* Assets.xcassets */,
 				BB4141B61E458BA900A51775 /* Info.plist */,
 				BB58B0811E82971400598D4F /* UserDefaults.plist */,
+				BB58B0881E82CA9B00598D4F /* Credits.rtf */,
 			);
 			name = "Support Files";
 			sourceTree = "<group>";
@@ -169,6 +183,7 @@
 		BB7EC7B31E4ECFC400A0AC3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB58B0831E82B82F00598D4F /* OpenCC.framework */,
 				BB6294E21E7A97420027B2A0 /* EasyPreference.framework */,
 				BB6004271E6F0BB100170CB4 /* Automator.framework */,
 				BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */,
@@ -194,7 +209,8 @@
 		BB7EC7B51E4ED02000A0AC3F /* Lyrics */ = {
 			isa = PBXGroup;
 			children = (
-				BB4141D91E4761F900A51775 /* LXLyrics.swift */,
+				BB58B0861E82BFF600598D4F /* LyricsLine.swift */,
+				BB4141D91E4761F900A51775 /* Lyrics.swift */,
 				BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */,
 				BB44F8771E702863004194D9 /* Lyrics163.swift */,
 				BB4141CB1E47444200A51775 /* LyricsXiami.swift */,
@@ -209,7 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				BB4141D71E475DD100A51775 /* iTunes.swift */,
-				BBC1D35E1E499A6D002538A2 /* GlobalConst.swift */,
+				BBC1D35E1E499A6D002538A2 /* Global.swift */,
+				BB9BCEB91E843157001BC54B /* Extension.swift */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -287,6 +304,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = KCY8NMTG34;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					BBC1D5851E4B1C44008869EC = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -323,6 +345,7 @@
 				BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */,
 				BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */,
 				BB4141B51E458BA900A51775 /* Main.storyboard in Resources */,
+				BB58B0891E82CA9B00598D4F /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,14 +386,16 @@
 				BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
+				BB58B0871E82BFF600598D4F /* LyricsLine.swift in Sources */,
 				BB9C6C981E51DACD00771424 /* LyricsTTPod.swift in Sources */,
-				BBC1D35F1E499A6D002538A2 /* GlobalConst.swift in Sources */,
+				BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */,
 				BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */,
-				BB4141DA1E4761F900A51775 /* LXLyrics.swift in Sources */,
+				BB4141DA1E4761F900A51775 /* Lyrics.swift in Sources */,
 				BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunes.swift in Sources */,
 				BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */,
 				BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */,
+				BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */,
 				BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */,
 				BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */,
 				BB0B296E1E80CD9E00B1D6C9 /* LyricsQQ.swift in Sources */,
@@ -503,6 +528,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LyricsX/LyricsX.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = KCY8NMTG34;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -522,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LyricsX/LyricsX.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = KCY8NMTG34;
 				FRAMEWORK_SEARCH_PATHS = (

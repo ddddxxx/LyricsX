@@ -17,14 +17,14 @@ class iTunesHelper: LyricsSourceDelegate {
     var positionChangeTimer: Timer!
     
     var currentSongID: Int?
-    var currentLyrics: LXLyrics? {
+    var currentLyrics: Lyrics? {
         didSet {
             appDelegate.currentOffset = currentLyrics?.offset ?? 0
         }
     }
     
-    var currentLyricsLine: LXLyricsLine?
-    var nextLyricsLine: LXLyricsLine?
+    var currentLyricsLine: LyricsLine?
+    var nextLyricsLine: LyricsLine?
     
     var fetchLrcQueue = OperationQueue()
     
@@ -93,7 +93,6 @@ class iTunesHelper: LyricsSourceDelegate {
         if let localLyrics = lyricsHelper.readLocalLyrics(title: title, artist: artist) {
             currentLyrics = localLyrics
             currentLyrics?.filtrate()
-            currentLyrics?.smartFiltrate()
         } else {
             lyricsHelper.fetchLyrics(title: title, artist: artist)
         }
@@ -127,7 +126,7 @@ class iTunesHelper: LyricsSourceDelegate {
     
     // MARK: LyricsSourceDelegate
     
-    func lyricsReceived(lyrics: LXLyrics) {
+    func lyricsReceived(lyrics: Lyrics) {
         guard lyrics.metadata[.searchTitle] == iTunes.currentTrack?.name as String?,
             lyrics.metadata[.searchArtist] == iTunes.currentTrack?.artist as String? else {
             return
@@ -139,45 +138,78 @@ class iTunesHelper: LyricsSourceDelegate {
         
         var lyrics = lyrics
         lyrics.filtrate()
-        lyrics.smartFiltrate()
         currentLyrics = lyrics
         lyrics.saveToLocal()
     }
     
-    func fetchCompleted(result: [LXLyrics]) {
+    func fetchCompleted(result: [Lyrics]) {
         
     }
     
 }
 
-extension LXLyrics {
+extension LyricsSourceHelper {
+    
+    func readLocalLyrics(title: String, artist: String) -> Lyrics? {
+        guard let url = Preference.lyricsSavingPath,
+            url.startAccessingSecurityScopedResource() else {
+            return nil
+        }
+        defer {
+            url.stopAccessingSecurityScopedResource()
+        }
+        let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
+        let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
+        let lrcFileURL = url.appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
+        if let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8) {
+            var lrc = Lyrics(lrcContents)
+            let metadata: [Lyrics.MetadataKey: String] = [
+                .searchTitle: title,
+                .searchArtist: artist,
+                .source: "Local"
+            ]
+            lrc?.metadata = metadata
+            return lrc
+        }
+        return nil
+    }
+    
+}
+
+extension Lyrics {
     
     func saveToLocal() {
-        let savingPath = Preference[LyricsCustomSavingPath]!
+        guard let url = Preference.lyricsSavingPath,
+            url.startAccessingSecurityScopedResource() else {
+            return
+        }
+        defer {
+            url.stopAccessingSecurityScopedResource()
+        }
         let fileManager = FileManager.default
         
         do {
             var isDir = ObjCBool(false)
-            if fileManager.fileExists(atPath: savingPath, isDirectory: &isDir) {
+            if fileManager.fileExists(atPath: url.path, isDirectory: &isDir) {
                 if !isDir.boolValue {
                     return
                 }
             } else {
-                try fileManager.createDirectory(atPath: savingPath, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             }
             
             let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
             let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
-            let lrcFilePath = (savingPath as NSString).appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
+            let lrcFileURL = url.appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
             
-            if fileManager.fileExists(atPath: lrcFilePath) {
-                try fileManager.removeItem(atPath: lrcFilePath)
+            if fileManager.fileExists(atPath: lrcFileURL.path) {
+                try fileManager.removeItem(at: lrcFileURL)
             }
             let content = contentString(withMetadata: false,
                                         ID3: true,
                                         timeTag: true,
                                         translation: true)
-            try content.write(toFile: lrcFilePath, atomically: false, encoding: .utf8)
+            try content.write(to: lrcFileURL, atomically: false, encoding: .utf8)
         } catch let error as NSError{
             print(error)
             return
@@ -185,6 +217,10 @@ extension LXLyrics {
     }
     
     mutating func filtrate() {
+        guard Preference[LyricsFilterEnabled] else {
+            return
+        }
+        
         guard let directFilter = Preference[LyricsDirectFilterKey],
             let colonFilter = Preference[LyricsColonFilterKey] else {
                 return
@@ -196,6 +232,10 @@ extension LXLyrics {
         let pattern = "\(directFilterPattern)|((\(colonFilterPattern))(\(colonsPattern)))"
         if let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) {
             filtrate(using: regex)
+        }
+        
+        if Preference[LyricsSmartFilterEnabled] {
+            smartFiltrate()
         }
     }
     
