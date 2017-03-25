@@ -12,7 +12,7 @@ import ScriptingBridge
 class iTunesHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     
     var player: MediaPlayer!
-    var lyricsHelper: LyricsSourceHelper
+    let lyricsHelper = LyricsSourceHelper()
     
     var currentLyrics: Lyrics? {
         didSet {
@@ -26,12 +26,22 @@ class iTunesHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     var fetchLrcQueue = OperationQueue()
     
     init() {
-        player = iTunes()
-        lyricsHelper = LyricsSourceHelper()
+        updateMediaPlayer(index: Preference[PreferredPlayerIndex])
         
-        player.delegate = self
         lyricsHelper.delegate = self
         
+        Preference.subscribe(key: PreferredPlayerIndex) { change in
+            self.updateMediaPlayer(index: change.newValue)
+        }
+    }
+    
+    func updateMediaPlayer(index: Int) {
+        if index == 1 {
+            player = Spotify()
+        } else {
+            player = iTunes()
+        }
+        player.delegate = self
         currentTrackChanged(track: player.currentTrack)
     }
     

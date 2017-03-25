@@ -30,6 +30,8 @@ let DesktopLyricsEnabled: PreferenceKey<Bool>   = "DesktopLyricsEnabled"
 let MenuBarLyricsEnabled: PreferenceKey<Bool>   = "MenuBarLyricsEnabled"
 
 // General
+let PreferredPlayerIndex: PreferenceKey<Int>        = "PreferredPlayerIndex"
+
 let LyricsSavingPathPopUpIndex: PreferenceKey<Int>  = "LyricsSavingPathPopUpIndex"
 let LyricsDefaultSavingPath: PreferenceKey<String>  = "LyricsDefaultSavingPath"
 let LyricsCustomSavingPathBookmark: PreferenceKey<Data>     = "LyricsCustomSavingPathBookmark"
