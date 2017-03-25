@@ -31,7 +31,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         lyricsHelper.delegate = self
         let helper = (NSApplication.shared().delegate as? AppDelegate)?.helper
         searchArtist = helper?.player.currentTrack?.artist ?? ""
-        searchTitle = helper?.player.currentTrack?.artist ?? ""
+        searchTitle = helper?.player.currentTrack?.name ?? ""
         searchResult = helper?.lyricsHelper.lyrics ?? []
         super.viewDidLoad()
     }
