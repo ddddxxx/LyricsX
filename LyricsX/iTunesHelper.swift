@@ -55,6 +55,7 @@ class iTunesHelper: MediaPlayerDelegate, LyricsSourceDelegate {
         let info = ["lrc": "", "next": ""]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
         guard let track = track else {
+            currentLyrics = nil
             return
         }
         let title = track.name
