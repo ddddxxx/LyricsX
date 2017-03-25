@@ -36,6 +36,8 @@
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
 		BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BCEB91E843157001BC54B /* Extension.swift */; };
 		BB9C6C981E51DACD00771424 /* LyricsTTPod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9C6C971E51DACD00771424 /* LyricsTTPod.swift */; };
+		BBB8DA3C1E86653700EF0A18 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB8DA3B1E86653700EF0A18 /* Spotify.swift */; };
+		BBB8DA3E1E86657F00EF0A18 /* Vox.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB8DA3D1E86657F00EF0A18 /* Vox.swift */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
 		BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */; };
 		BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* Global.swift */; };
@@ -101,6 +103,8 @@
 		BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsX.entitlements; sourceTree = "<group>"; };
 		BB9BCEB91E843157001BC54B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		BB9C6C971E51DACD00771424 /* LyricsTTPod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsTTPod.swift; path = Lyrics/LyricsTTPod.swift; sourceTree = "<group>"; };
+		BBB8DA3B1E86653700EF0A18 /* Spotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
+		BBB8DA3D1E86657F00EF0A18 /* Vox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vox.swift; sourceTree = "<group>"; };
 		BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLyricsViewController.swift; sourceTree = "<group>"; };
 		BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesHelper.swift; sourceTree = "<group>"; };
 		BBC1D35E1E499A6D002538A2 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
 				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
 				BB7EC7B51E4ED02000A0AC3F /* Lyrics */,
+				BBBB6EC31E86B08E003B3ED6 /* MediaPlayer */,
 				BB7EC7B61E4ED03900A0AC3F /* Others */,
 				BB4141BC1E45B26800A51775 /* Support Files */,
 			);
@@ -224,11 +229,28 @@
 		BB7EC7B61E4ED03900A0AC3F /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				BB4141D71E475DD100A51775 /* iTunes.swift */,
 				BBC1D35E1E499A6D002538A2 /* Global.swift */,
 				BB9BCEB91E843157001BC54B /* Extension.swift */,
 			);
 			name = Others;
+			sourceTree = "<group>";
+		};
+		BBB8DA3F1E8665B400EF0A18 /* ScriptingBridge */ = {
+			isa = PBXGroup;
+			children = (
+				BB4141D71E475DD100A51775 /* iTunes.swift */,
+				BBB8DA3B1E86653700EF0A18 /* Spotify.swift */,
+				BBB8DA3D1E86657F00EF0A18 /* Vox.swift */,
+			);
+			name = ScriptingBridge;
+			sourceTree = "<group>";
+		};
+		BBBB6EC31E86B08E003B3ED6 /* MediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				BBB8DA3F1E8665B400EF0A18 /* ScriptingBridge */,
+			);
+			name = MediaPlayer;
 			sourceTree = "<group>";
 		};
 		BBC1D5871E4B1C44008869EC /* LyricsXTests */ = {
@@ -392,9 +414,11 @@
 				BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */,
 				BB4141DA1E4761F900A51775 /* Lyrics.swift in Sources */,
 				BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */,
+				BBB8DA3C1E86653700EF0A18 /* Spotify.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunes.swift in Sources */,
 				BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */,
 				BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */,
+				BBB8DA3E1E86657F00EF0A18 /* Vox.swift in Sources */,
 				BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */,
 				BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */,
 				BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */,
