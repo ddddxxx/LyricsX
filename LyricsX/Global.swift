@@ -9,7 +9,7 @@
 import Cocoa
 import EasyPreference
 
-let appDelegate = NSApplication.shared().delegate as! AppDelegate
+let appDelegate = { NSApplication.shared().delegate as? AppDelegate }
 let Preference = { () -> EasyPreference in
     registerUserDefaults()
     return EasyPreference(defaults: .standard)
