@@ -12,9 +12,7 @@ import ScriptingBridge
 class iTunes: MediaPlayer {
     
     weak var delegate: MediaPlayerDelegate?
-    var currentTrack: MediaTrack? {
-        return _currentTrack
-    }
+    var currentTrack: MediaTrack? { return _currentTrack }
     var playerState: MediaPlayerState
     var playerPosition: Double
     
