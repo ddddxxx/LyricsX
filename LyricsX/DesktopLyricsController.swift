@@ -36,12 +36,6 @@ class DesktopLyricsViewController: NSViewController {
     
     var chineseConverter: ChineseConverter?
     
-    var enabled = Preference[DesktopLyricsEnabled] {
-        didSet {
-            backgroundView.isHidden = !enabled
-        }
-    }
-    
     var onAnimation = false {
         didSet {
             view.needsUpdateConstraints = true
@@ -80,10 +74,6 @@ class DesktopLyricsViewController: NSViewController {
             let lrc = n.userInfo?["lrc"] as? String
             let next = n.userInfo?["next"] as? String
             self.displayLrc(lrc, secondLine: next)
-        }
-        
-        Preference.subscribe(key: DesktopLyricsEnabled) { change in
-            self.enabled = change.newValue
         }
         
         Preference.subscribe(key: DesktopLyricsHeighFromDock) { change in
@@ -140,7 +130,7 @@ class DesktopLyricsViewController: NSViewController {
     }
     
     func displayLrc(_ firstLine: String?, secondLine: String? = nil) {
-        guard enabled else {
+        guard Preference[DesktopLyricsEnabled] else {
             return
         }
         
@@ -271,7 +261,7 @@ class DesktopLyricsViewController: NSViewController {
     }
     
     override func viewWillLayout() {
-        guard enabled else {
+        guard Preference[DesktopLyricsEnabled] else {
             backgroundView.isHidden = true
             return
         }
