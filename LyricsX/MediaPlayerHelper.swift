@@ -1,5 +1,5 @@
 //
-//  iTunesHelper.swift
+//  MediaPlayerHelper.swift
 //  LyricsX
 //
 //  Created by 邓翔 on 2017/2/6.
@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import ScriptingBridge
 
-class iTunesHelper: MediaPlayerDelegate, LyricsSourceDelegate {
+class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     
     var player: MediaPlayer!
     let lyricsHelper = LyricsSourceHelper()
