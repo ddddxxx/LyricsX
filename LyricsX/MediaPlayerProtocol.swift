@@ -26,6 +26,7 @@ protocol MediaPlayer {
     weak var delegate: MediaPlayerDelegate? { get set }
     var currentTrack: MediaTrack? { get }
     var playerState: MediaPlayerState { get }
+    var playerPosition: Double { get }
 }
 
 protocol MediaTrack {

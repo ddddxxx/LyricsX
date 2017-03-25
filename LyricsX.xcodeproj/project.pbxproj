@@ -40,6 +40,7 @@
 		BBB8DA3E1E86657F00EF0A18 /* VoxBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB8DA3D1E86657F00EF0A18 /* VoxBridge.swift */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
 		BBBB6EC21E86A2DD003B3ED6 /* MediaPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBB6EC11E86A2DD003B3ED6 /* MediaPlayerProtocol.swift */; };
+		BBBB6EC51E86B44B003B3ED6 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */; };
 		BBC1D35B1E485BA7002538A2 /* iTunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */; };
 		BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* Global.swift */; };
 		BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */; };
@@ -108,6 +109,7 @@
 		BBB8DA3D1E86657F00EF0A18 /* VoxBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoxBridge.swift; sourceTree = "<group>"; };
 		BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLyricsViewController.swift; sourceTree = "<group>"; };
 		BBBB6EC11E86A2DD003B3ED6 /* MediaPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerProtocol.swift; sourceTree = "<group>"; };
+		BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 		BBC1D35A1E485BA7002538A2 /* iTunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesHelper.swift; sourceTree = "<group>"; };
 		BBC1D35E1E499A6D002538A2 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarLyrics.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			children = (
 				BBB8DA3F1E8665B400EF0A18 /* ScriptingBridge */,
 				BBBB6EC11E86A2DD003B3ED6 /* MediaPlayerProtocol.swift */,
+				BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */,
 			);
 			name = MediaPlayer;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
 				BB58B0871E82BFF600598D4F /* LyricsLine.swift in Sources */,
 				BB9C6C981E51DACD00771424 /* LyricsTTPod.swift in Sources */,
+				BBBB6EC51E86B44B003B3ED6 /* iTunes.swift in Sources */,
 				BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */,
 				BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */,
 				BB4141DA1E4761F900A51775 /* Lyrics.swift in Sources */,
