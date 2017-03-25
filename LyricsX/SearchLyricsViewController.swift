@@ -30,8 +30,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     override func viewDidLoad() {
         lyricsHelper.delegate = self
         let helper = (NSApplication.shared().delegate as? AppDelegate)?.mediaPlayerHelper
-        searchArtist = helper?.player.currentTrack?.artist ?? ""
-        searchTitle = helper?.player.currentTrack?.name ?? ""
+        searchArtist = helper?.player?.currentTrack?.artist ?? ""
+        searchTitle = helper?.player?.currentTrack?.name ?? ""
         searchResult = helper?.lyricsHelper.lyrics ?? []
         super.viewDidLoad()
     }

@@ -10,7 +10,7 @@ import Foundation
 
 class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     
-    var player: MediaPlayer!
+    var player: MediaPlayer?
     let lyricsHelper = LyricsSourceHelper()
     
     var currentLyrics: Lyrics? {
@@ -40,8 +40,8 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
         } else {
             player = iTunes()
         }
-        player.delegate = self
-        currentTrackChanged(track: player.currentTrack)
+        player?.delegate = self
+        currentTrackChanged(track: player?.currentTrack)
     }
     
     // MARK: MediaPlayerDelegate
@@ -97,8 +97,8 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        guard lyrics.metadata[.searchTitle] == player.currentTrack?.name,
-            lyrics.metadata[.searchArtist] == player.currentTrack?.artist else {
+        guard lyrics.metadata[.searchTitle] == player?.currentTrack?.name,
+            lyrics.metadata[.searchArtist] == player?.currentTrack?.artist else {
             return
         }
         

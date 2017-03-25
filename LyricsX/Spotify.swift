@@ -16,12 +16,15 @@ class Spotify: MediaPlayer {
     var playerState: MediaPlayerState
     var playerPosition: Double
     
-    private var _spotify: SpotifyApplication!
+    private var _spotify: SpotifyApplication
     private var _currentTrack: Track?
     private var positionChangeTimer: Timer!
     
-    init() {
-        _spotify = SBApplication(bundleIdentifier: "com.spotify.client")
+    init?() {
+        guard let spotify = SBApplication(bundleIdentifier: "com.spotify.client") else {
+            return nil
+        }
+        _spotify = spotify
         _currentTrack = _spotify.currentTrack?.track
         playerState = _spotify.playerState?.state ?? .stopped
         playerPosition = _spotify.playerPosition ?? 0

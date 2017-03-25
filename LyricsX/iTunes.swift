@@ -16,12 +16,15 @@ class iTunes: MediaPlayer {
     var playerState: MediaPlayerState
     var playerPosition: Double
     
-    private var _iTunes: iTunesApplication!
+    private var _iTunes: iTunesApplication
     private var _currentTrack: Track?
     private var positionChangeTimer: Timer!
     
-    init() {
-        _iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
+    init?() {
+        guard let iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes") else {
+            return nil
+        }
+        self._iTunes = iTunes
         _currentTrack = _iTunes.currentTrack?.track
         playerState = _iTunes.playerState?.state ?? .stopped
         playerPosition = _iTunes.playerPosition ?? 0
