@@ -47,7 +47,11 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     // MARK: MediaPlayerDelegate
     
     func playerStateChanged(state: MediaPlayerState) {
-        
+        if state != .playing, Preference[DisableLyricsWhenPaused] {
+            currentLyricsLine = nil
+            nextLyricsLine = nil
+            NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+        }
     }
     
     func currentTrackChanged(track: MediaTrack?) {
