@@ -20,9 +20,9 @@ class PreferenceGeneralViewController: NSViewController {
     override func viewDidLoad() {
         switch Preference[PreferredPlayerIndex] {
         case 0:
-            preferSpotify.state = 1
-        case 1:
             preferiTunes.state = 1
+        case 1:
+            preferSpotify.state = 1
         case 2:
             preferVox.state = 1
         default:
