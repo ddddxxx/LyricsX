@@ -47,9 +47,7 @@ class PreferenceGeneralViewController: NSViewController {
     }
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
-        DispatchQueue.global().async {
-            Preference[PreferredPlayerIndex] = sender.tag
-        }
+        Preference[PreferredPlayerIndex] = sender.tag
     }
     
 }

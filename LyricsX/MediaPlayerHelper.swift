@@ -25,22 +25,15 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     var fetchLrcQueue = OperationQueue()
     
     init() {
-        updateMediaPlayer(index: Preference[PreferredPlayerIndex])
-        
-        lyricsHelper.delegate = self
-        
-        Preference.subscribe(key: PreferredPlayerIndex) { change in
-            self.updateMediaPlayer(index: change.newValue)
-        }
-    }
-    
-    func updateMediaPlayer(index: Int) {
-        if index == 1 {
+        if Preference[PreferredPlayerIndex] == 1 {
             player = Spotify()
         } else {
             player = iTunes()
         }
+        
         player?.delegate = self
+        lyricsHelper.delegate = self
+        
         currentTrackChanged(track: player?.currentTrack)
     }
     
