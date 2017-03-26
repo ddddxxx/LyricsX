@@ -191,7 +191,7 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BE8-Ux-QD2">
-                            <rect key="frame" x="106" y="6" width="72" height="19"/>
+                            <rect key="frame" x="106" y="6" width="74" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="s38-xY-35C"/>
                             </constraints>
@@ -209,8 +209,8 @@
                             </connections>
                         </textField>
                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FwA-Sj-odc">
-                            <rect key="frame" x="180" y="1" width="19" height="27"/>
-                            <stepperCell key="cell" continuous="YES" alignment="left" increment="100" minValue="-10000" maxValue="10000" id="Cnt-sc-zit"/>
+                            <rect key="frame" x="183" y="4" width="15" height="22"/>
+                            <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="100" minValue="-10000" maxValue="10000" id="Cnt-sc-zit"/>
                             <connections>
                                 <action selector="lyricsOffsetStepAction:" target="Voe-Tx-rLC" id="V63-rC-IAb"/>
                                 <binding destination="Voe-Tx-rLC" name="value" keyPath="self.currentOffset" id="Mwx-Ko-1Xn"/>
@@ -421,7 +421,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="5xx-Ht-pau">
-                                            <rect key="frame" x="130" y="0.0" width="172" height="108"/>
+                                            <rect key="frame" x="85" y="0.0" width="264" height="108"/>
                                             <subviews>
                                                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wb5-Rf-75m">
                                                     <rect key="frame" x="100" y="11" width="66" height="18"/>
@@ -462,13 +462,35 @@
                                                         <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="QHf-PU-hBB"/>
                                                     </connections>
                                                 </button>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sBk-d9-CZh">
+                                                    <rect key="frame" x="192" y="36" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="64" id="ULC-rt-gT2"/>
+                                                        <constraint firstAttribute="height" constant="64" id="dsE-qc-N9Q"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="vox_icon" id="AeE-Bx-gUK"/>
+                                                </imageView>
+                                                <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="RSg-dR-tCT">
+                                                    <rect key="frame" x="202" y="11" width="45" height="18"/>
+                                                    <buttonCell key="cell" type="radio" title="Vox" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oTS-3z-Tz7">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="iyh-YZ-fsB"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="IHX-Pr-iau" secondAttribute="trailing" constant="8" id="0WV-cu-keR"/>
+                                                <constraint firstItem="RSg-dR-tCT" firstAttribute="centerX" secondItem="sBk-d9-CZh" secondAttribute="centerX" id="2MX-XL-pIv"/>
                                                 <constraint firstItem="1fe-eA-nQI" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="Bm7-I5-wPR"/>
                                                 <constraint firstItem="6Bj-Lj-AqF" firstAttribute="centerX" secondItem="1fe-eA-nQI" secondAttribute="centerX" id="FSg-9X-cOL"/>
+                                                <constraint firstItem="sBk-d9-CZh" firstAttribute="leading" secondItem="IHX-Pr-iau" secondAttribute="trailing" constant="28" id="HkM-QG-O65"/>
+                                                <constraint firstItem="RSg-dR-tCT" firstAttribute="top" secondItem="sBk-d9-CZh" secondAttribute="bottom" constant="8" id="OHK-f1-WoR"/>
                                                 <constraint firstItem="Wb5-Rf-75m" firstAttribute="centerX" secondItem="IHX-Pr-iau" secondAttribute="centerX" id="P6r-5K-huJ"/>
+                                                <constraint firstItem="sBk-d9-CZh" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="WJt-dk-PXq"/>
                                                 <constraint firstAttribute="bottom" secondItem="6Bj-Lj-AqF" secondAttribute="bottom" constant="10" id="XOM-o6-68x"/>
+                                                <constraint firstAttribute="trailing" secondItem="sBk-d9-CZh" secondAttribute="trailing" constant="8" id="eg4-gF-cvh"/>
                                                 <constraint firstItem="IHX-Pr-iau" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="hqf-TN-wcE"/>
                                                 <constraint firstItem="6Bj-Lj-AqF" firstAttribute="top" secondItem="1fe-eA-nQI" secondAttribute="bottom" constant="8" id="w7r-MJ-nvl"/>
                                                 <constraint firstItem="Wb5-Rf-75m" firstAttribute="top" secondItem="IHX-Pr-iau" secondAttribute="bottom" constant="8" id="wxt-Pg-Hz2"/>
@@ -637,6 +659,7 @@
                     </view>
                     <connections>
                         <outlet property="preferSpotify" destination="Wb5-Rf-75m" id="fOa-Pt-HZD"/>
+                        <outlet property="preferVox" destination="RSg-dR-tCT" id="0FN-E8-vpj"/>
                         <outlet property="preferiTunes" destination="6Bj-Lj-AqF" id="ulb-Mw-FqJ"/>
                         <outlet property="savingPathPopUp" destination="ydZ-SE-AM3" id="b3z-xP-9uw"/>
                         <outlet property="userPathMenuItem" destination="hXE-OF-DFz" id="ioW-SC-5Kb"/>
@@ -1691,5 +1714,6 @@
         <image name="missing_artwork" width="800" height="800"/>
         <image name="spotify_icon" width="128" height="128"/>
         <image name="toolbar_filter" width="32" height="32"/>
+        <image name="vox_icon" width="128" height="128"/>
     </resources>
 </document>

@@ -1,33 +1,33 @@
 //
-//  Spotify.swift
+//  Vox.swift
 //  LyricsX
 //
-//  Created by 邓翔 on 2017/3/25.
+//  Created by 邓翔 on 2017/3/26.
 //  Copyright © 2017年 ddddxxx. All rights reserved.
 //
 
 import Foundation
 import ScriptingBridge
 
-class Spotify: MediaPlayer {
+class Vox: MediaPlayer {
     
     weak var delegate: MediaPlayerDelegate?
     var currentTrack: MediaTrack? { return _currentTrack }
     var playerState: MediaPlayerState
     var playerPosition: Double
     
-    private var _spotify: SpotifyApplication
+    private var _vox: VoxApplication
     private var _currentTrack: Track?
     private var positionChangeTimer: Timer!
     
     init?() {
-        guard let spotify = SBApplication(bundleIdentifier: "com.spotify.client") else {
+        guard let vox = SBApplication(bundleIdentifier: "com.coppertino.Vox") else {
             return nil
         }
-        _spotify = spotify
-        _currentTrack = _spotify.currentTrack?.track
-        playerState = _spotify.playerState?.state ?? .stopped
-        playerPosition = _spotify.playerPosition ?? 0
+        _vox = vox
+        _currentTrack = _vox.voxTrack
+        playerState = _vox.state
+        playerPosition = _vox.currentTime ?? 0
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
             self.updatePlayerState()
             self.updateCurrentTrack()
@@ -40,7 +40,7 @@ class Spotify: MediaPlayer {
     }
     
     private func updatePlayerState() {
-        let state = _spotify.playerState?.state ?? .stopped
+        let state = _vox.state
         if playerState == state {
             return
         }
@@ -50,7 +50,7 @@ class Spotify: MediaPlayer {
     }
     
     private func updateCurrentTrack() {
-        let track = _spotify.currentTrack?.track
+        let track = _vox.voxTrack
         if _currentTrack == nil, track == nil {
             return
         }
@@ -67,13 +67,13 @@ class Spotify: MediaPlayer {
             return
         }
         
-        playerPosition = _spotify.playerPosition ?? 0
+        playerPosition = _vox.currentTime ?? 0
         delegate?.playerPositionChanged(position: playerPosition)
     }
     
 }
 
-extension Spotify {
+extension Vox {
     struct Track: MediaTrack {
         var id: String
         var name: String
@@ -89,32 +89,29 @@ extension Spotify {
     }
 }
 
-extension Spotify.Track: Equatable {
-    public static func ==(lhs: Spotify.Track, rhs: Spotify.Track) -> Bool {
+extension Vox.Track: Equatable {
+    public static func ==(lhs: Vox.Track, rhs: Vox.Track) -> Bool {
         return (lhs.id != "") && (lhs.id == rhs.id)
     }
 }
 
-// MARK - Spotify Bridge Extension
+// MARK - Vox Bridge Extension
 
-extension SpotifyEPlS {
+extension VoxApplication {
     var state: MediaPlayerState {
-        switch self {
-        case .SpotifyEPlSStopped:
-            return .stopped
-        case .SpotifyEPlSPlaying:
+        if playerState == 1 {
             return .playing
-        case .SpotifyEPlSPaused:
+        } else {
             return .paused
         }
     }
-}
-
-extension SpotifyTrack {
-    var track: Spotify.Track {
-        return Spotify.Track(id: id?() as String?,
-                             name: name as String?,
-                             album: album as String?,
-                             artist: artist as String?)
+    var voxTrack: Vox.Track? {
+        guard let id = uniqueID, id != "" else {
+            return nil
+        }
+        return Vox.Track(id: id as String,
+                         name: track as String?,
+                         album: album as String?,
+                         artist: artist as String?)
     }
 }

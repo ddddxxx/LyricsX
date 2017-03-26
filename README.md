@@ -2,7 +2,7 @@
 
 [![codebeat badge](https://codebeat.co/badges/12718a7c-04f1-465d-a520-5525788f4fba)](https://codebeat.co/projects/github-com-xqs6lb3a-lyricsx-master)
 
-LyricsX is a plugin for iTunes & Spotify, which auto search and download lyrics for the current playing from Internet, and displays them in the desktop and menu bar.
+LyricsX is a plugin for iTunes, Spotify and Vox, which auto search and download lyrics for the current playing from Internet, and displays them in the desktop and menu bar.
 
 ## Features
 
@@ -14,7 +14,7 @@ LyricsX is a plugin for iTunes & Spotify, which auto search and download lyrics 
 
 ![menubar_lyrics](docs/img/menubar_lyrics.png)
 
-- Work perfectly with iTunes/Spotify.
+- Work perfectly with iTunes, Spotify and Vox.
 
 ![preferred_player](docs/img/preferred_player.png)
 

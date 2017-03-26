@@ -10,8 +10,6 @@
 	<integer>0</integer>
 	<key>LyricsSavingPathPopUpIndex</key>
 	<integer>0</integer>
-	<key>LyricsDefaultSavingPath</key>
-	<string>~/Music/LyricsX</string>
 	<key>PreferBilingualLyrics</key>
 	<true/>
 	<key>ChineseConversionIndex</key>
