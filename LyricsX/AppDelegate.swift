@@ -12,7 +12,7 @@ import EasyPreference
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var helper: iTunesHelper!
+    var mediaPlayerHelper = MediaPlayerHelper()
     
     var statusItem: NSStatusItem!
     var menuBarLyrics: MenuBarLyrics!
@@ -22,8 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        helper = iTunesHelper()
-        
         statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
         menuBarLyrics = MenuBarLyrics()
         
@@ -36,8 +34,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction func lyricsOffsetStepAction(_ sender: Any) {
-        helper?.currentLyrics?.offset = currentOffset
-        helper?.currentLyrics?.saveToLocal()
+        mediaPlayerHelper.currentLyrics?.offset = currentOffset
+        mediaPlayerHelper.currentLyrics?.saveToLocal()
     }
     
     @IBAction func checkUpdateAction(_ sender: Any) {

@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "mac",
-      "filename" : "missing_artwork_1x.png",
+      "filename" : "iTunes_icon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "mac",
-      "filename" : "missing_artwork_2x.png",
+      "filename" : "iTunes_icon_2x.png",
       "scale" : "2x"
     }
   ],

@@ -29,9 +29,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     override func viewDidLoad() {
         lyricsHelper.delegate = self
-        let helper = (NSApplication.shared().delegate as? AppDelegate)?.helper
-        searchArtist = helper?.iTunes.currentTrack?.artist as String? ?? ""
-        searchTitle = helper?.iTunes.currentTrack?.name as String? ?? ""
+        let helper = appDelegate()?.mediaPlayerHelper
+        searchArtist = helper?.player?.currentTrack?.artist ?? ""
+        searchTitle = helper?.player?.currentTrack?.name ?? ""
         searchResult = helper?.lyricsHelper.lyrics ?? []
         super.viewDidLoad()
     }
@@ -49,7 +49,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
         var lrc = searchResult[index]
         lrc.filtrate()
-        appDelegate.helper.currentLyrics = lrc
+        appDelegate()?.mediaPlayerHelper.currentLyrics = lrc
         lrc.saveToLocal()
     }
     

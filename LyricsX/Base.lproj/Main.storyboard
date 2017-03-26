@@ -411,7 +411,7 @@
             <objects>
                 <viewController id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
-                        <rect key="frame" x="0.0" y="0.0" width="471" height="222"/>
+                        <rect key="frame" x="0.0" y="0.0" width="471" height="359"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
@@ -533,6 +533,76 @@
                                     <binding destination="hHn-Lo-CwP" name="value" keyPath="values.DisableLyricsWhenSreenShot" id="O5h-wv-Lku"/>
                                 </connections>
                             </button>
+                            <box title="Preferred Music Player" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
+                                <rect key="frame" x="17" y="210" width="437" height="125"/>
+                                <view key="contentView" id="r1e-Ln-LSb">
+                                    <rect key="frame" x="2" y="2" width="433" height="108"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="5xx-Ht-pau">
+                                            <rect key="frame" x="130" y="0.0" width="172" height="108"/>
+                                            <subviews>
+                                                <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wb5-Rf-75m">
+                                                    <rect key="frame" x="100" y="11" width="66" height="18"/>
+                                                    <buttonCell key="cell" type="radio" title="Spotify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jhm-dK-4Y3">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="uP4-D4-sN6"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1fe-eA-nQI" userLabel="iTunes Icon">
+                                                    <rect key="frame" x="8" y="36" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="Ubx-XG-QeL"/>
+                                                        <constraint firstAttribute="width" constant="64" id="tLj-Qp-1bY"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="iTunes_icon" id="KdW-gY-oDg"/>
+                                                </imageView>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHX-Pr-iau" userLabel="Spotify Icon">
+                                                    <rect key="frame" x="100" y="36" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="Ich-si-grD"/>
+                                                        <constraint firstAttribute="width" constant="64" id="ZYM-Bg-Jpo"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="spotify_icon" id="fti-bu-8pV"/>
+                                                </imageView>
+                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="6Bj-Lj-AqF">
+                                                    <rect key="frame" x="9" y="9" width="62" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="Hx9-yf-PRU"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="radio" title="iTunes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cRD-iF-2qo">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="QHf-PU-hBB"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="IHX-Pr-iau" secondAttribute="trailing" constant="8" id="0WV-cu-keR"/>
+                                                <constraint firstItem="1fe-eA-nQI" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="Bm7-I5-wPR"/>
+                                                <constraint firstItem="6Bj-Lj-AqF" firstAttribute="centerX" secondItem="1fe-eA-nQI" secondAttribute="centerX" id="FSg-9X-cOL"/>
+                                                <constraint firstItem="Wb5-Rf-75m" firstAttribute="centerX" secondItem="IHX-Pr-iau" secondAttribute="centerX" id="P6r-5K-huJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="6Bj-Lj-AqF" secondAttribute="bottom" constant="10" id="XOM-o6-68x"/>
+                                                <constraint firstItem="IHX-Pr-iau" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="hqf-TN-wcE"/>
+                                                <constraint firstItem="6Bj-Lj-AqF" firstAttribute="top" secondItem="1fe-eA-nQI" secondAttribute="bottom" constant="8" id="w7r-MJ-nvl"/>
+                                                <constraint firstItem="Wb5-Rf-75m" firstAttribute="top" secondItem="IHX-Pr-iau" secondAttribute="bottom" constant="8" id="wxt-Pg-Hz2"/>
+                                                <constraint firstItem="IHX-Pr-iau" firstAttribute="leading" secondItem="1fe-eA-nQI" secondAttribute="trailing" constant="28" id="yNp-5z-CBH"/>
+                                                <constraint firstItem="1fe-eA-nQI" firstAttribute="leading" secondItem="5xx-Ht-pau" secondAttribute="leading" constant="8" id="ykw-VI-yEL"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5xx-Ht-pau" firstAttribute="top" secondItem="r1e-Ln-LSb" secondAttribute="top" id="0Fe-gL-MER"/>
+                                        <constraint firstAttribute="bottom" secondItem="5xx-Ht-pau" secondAttribute="bottom" id="MtA-FF-p49"/>
+                                        <constraint firstItem="5xx-Ht-pau" firstAttribute="centerX" secondItem="r1e-Ln-LSb" secondAttribute="centerX" id="PDG-4t-SNq"/>
+                                    </constraints>
+                                </view>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstItem="uoA-YU-YZk" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="0XK-XW-bY2"/>
@@ -548,29 +618,66 @@
                             <constraint firstItem="wpE-cM-ds1" firstAttribute="trailing" secondItem="you-yu-77c" secondAttribute="trailing" id="Rlx-Pc-urP"/>
                             <constraint firstItem="uoA-YU-YZk" firstAttribute="top" secondItem="wwb-0H-xk7" secondAttribute="bottom" constant="16" id="T1x-UF-AbZ"/>
                             <constraint firstItem="Nfb-pu-NGK" firstAttribute="top" secondItem="uoA-YU-YZk" secondAttribute="bottom" constant="16" id="Ul5-Mv-utJ"/>
-                            <constraint firstItem="ydZ-SE-AM3" firstAttribute="top" secondItem="Ium-Ya-ZzT" secondAttribute="top" constant="24" id="Zn5-88-W84"/>
+                            <constraint firstItem="JYR-Ed-Tax" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="a77-8k-2YR"/>
                             <constraint firstItem="xa7-h7-OHj" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="aFT-rM-OQf"/>
                             <constraint firstAttribute="bottom" secondItem="xa7-h7-OHj" secondAttribute="bottom" constant="24" id="bin-Ye-5tK"/>
                             <constraint firstItem="KcA-ys-XDa" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="ccC-08-oWp"/>
                             <constraint firstItem="KcA-ys-XDa" firstAttribute="top" secondItem="Nfb-pu-NGK" secondAttribute="bottom" constant="16" id="fMJ-fO-cY9"/>
+                            <constraint firstItem="JYR-Ed-Tax" firstAttribute="top" secondItem="Ium-Ya-ZzT" secondAttribute="top" constant="24" id="h5j-IZ-Xgi"/>
                             <constraint firstItem="wwb-0H-xk7" firstAttribute="top" secondItem="UQR-mH-y4R" secondAttribute="bottom" constant="16" id="h9u-Tw-Nme"/>
                             <constraint firstItem="UQR-mH-y4R" firstAttribute="top" secondItem="ydZ-SE-AM3" secondAttribute="bottom" constant="16" id="iCB-Wc-dGJ"/>
                             <constraint firstItem="ydZ-SE-AM3" firstAttribute="centerY" secondItem="you-yu-77c" secondAttribute="centerY" id="lz5-X8-tZT"/>
                             <constraint firstItem="UQR-mH-y4R" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="mJn-RT-EXL"/>
                             <constraint firstItem="Nfb-pu-NGK" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="no0-rJ-DSh"/>
+                            <constraint firstItem="ydZ-SE-AM3" firstAttribute="top" secondItem="JYR-Ed-Tax" secondAttribute="bottom" constant="16" id="t8a-0e-7Xk"/>
                             <constraint firstAttribute="trailing" secondItem="Nfb-pu-NGK" secondAttribute="trailing" constant="20" id="teZ-bz-MVN"/>
                             <constraint firstItem="wwb-0H-xk7" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="u0h-UR-jmK"/>
+                            <constraint firstAttribute="trailing" secondItem="JYR-Ed-Tax" secondAttribute="trailing" constant="20" id="xXs-qV-Iz7"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="preferSpotify" destination="Wb5-Rf-75m" id="fOa-Pt-HZD"/>
+                        <outlet property="preferiTunes" destination="6Bj-Lj-AqF" id="ulb-Mw-FqJ"/>
                         <outlet property="savingPathPopUp" destination="ydZ-SE-AM3" id="b3z-xP-9uw"/>
                         <outlet property="userPathMenuItem" destination="hXE-OF-DFz" id="ioW-SC-5Kb"/>
                     </connections>
                 </viewController>
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="hHn-Lo-CwP"/>
+                <customView id="2Qt-ru-dPN" userLabel="iTunes">
+                    <rect key="frame" x="0.0" y="0.0" width="64" height="99"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nB1-vh-Shu">
+                            <rect key="frame" x="0.0" y="35" width="64" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="nB1-vh-Shu" secondAttribute="height" multiplier="1:1" id="3Kl-JP-4Qn"/>
+                                <constraint firstAttribute="width" constant="64" id="Pnt-Hn-7yV"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="iTunes_icon" id="eSf-dw-WvX"/>
+                        </imageView>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="gok-wC-vT3">
+                            <rect key="frame" x="22" y="7" width="22" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="gok-wC-vT3" secondAttribute="height" id="vN7-aR-nDW"/>
+                            </constraints>
+                            <buttonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="W4x-QI-nBw">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="gok-wC-vT3" firstAttribute="top" secondItem="nB1-vh-Shu" secondAttribute="bottom" constant="8" id="1rZ-Tn-b1U"/>
+                        <constraint firstItem="nB1-vh-Shu" firstAttribute="top" secondItem="2Qt-ru-dPN" secondAttribute="top" id="EWH-Ir-y1e"/>
+                        <constraint firstAttribute="bottom" secondItem="gok-wC-vT3" secondAttribute="bottom" constant="8" id="HnO-WO-N6Y"/>
+                        <constraint firstItem="nB1-vh-Shu" firstAttribute="leading" secondItem="2Qt-ru-dPN" secondAttribute="leading" id="jUM-Fh-vFo"/>
+                        <constraint firstItem="gok-wC-vT3" firstAttribute="centerX" secondItem="nB1-vh-Shu" secondAttribute="centerX" id="joB-KY-2fK"/>
+                        <constraint firstAttribute="trailing" secondItem="nB1-vh-Shu" secondAttribute="trailing" id="rdF-JX-Lmq"/>
+                    </constraints>
+                </customView>
             </objects>
-            <point key="canvasLocation" x="1969.5" y="-194"/>
+            <point key="canvasLocation" x="1969.5" y="-251.5"/>
         </scene>
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
@@ -1580,7 +1687,9 @@
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="font_panel" width="22" height="20"/>
+        <image name="iTunes_icon" width="128" height="128"/>
         <image name="missing_artwork" width="800" height="800"/>
+        <image name="spotify_icon" width="128" height="128"/>
         <image name="toolbar_filter" width="32" height="32"/>
     </resources>
 </document>

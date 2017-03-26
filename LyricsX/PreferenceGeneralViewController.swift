@@ -10,15 +10,23 @@ import Cocoa
 
 class PreferenceGeneralViewController: NSViewController {
     
+    @IBOutlet weak var preferiTunes: NSButton!
+    @IBOutlet weak var preferSpotify: NSButton!
+    
     @IBOutlet weak var savingPathPopUp: NSPopUpButton!
     @IBOutlet weak var userPathMenuItem: NSMenuItem!
     
     override func viewDidLoad() {
-        guard let url = Preference.lyricsCustomSavingPath else {
-            return
+        if Preference[PreferredPlayerIndex] == 1 {
+            preferSpotify.state = 1
+        } else {
+            preferiTunes.state = 1
         }
-        savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
-        savingPathPopUp.item(at: 1)?.toolTip = url.path
+        
+        if let url = Preference.lyricsCustomSavingPath {
+            savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
+            savingPathPopUp.item(at: 1)?.toolTip = url.path
+        }
     }
     
     @IBAction func chooseSavingPathAction(_ sender: Any) {
@@ -35,6 +43,12 @@ class PreferenceGeneralViewController: NSViewController {
             } else {
                 self.savingPathPopUp.selectItem(at: 0)
             }
+        }
+    }
+    
+    @IBAction func preferredPlayerAction(_ sender: NSButton) {
+        DispatchQueue.global().async {
+            Preference[PreferredPlayerIndex] = sender.tag
         }
     }
     

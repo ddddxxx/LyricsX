@@ -1,5 +1,5 @@
 //
-//  iTunes.swift
+//  Spotify.swift
 //  LyricsX
 //
 //  Created by 邓翔 on 2017/3/25.
@@ -9,25 +9,25 @@
 import Foundation
 import ScriptingBridge
 
-class iTunes: MediaPlayer {
+class Spotify: MediaPlayer {
     
     weak var delegate: MediaPlayerDelegate?
     var currentTrack: MediaTrack? { return _currentTrack }
     var playerState: MediaPlayerState
     var playerPosition: Double
     
-    private var _iTunes: iTunesApplication
+    private var _spotify: SpotifyApplication
     private var _currentTrack: Track?
     private var positionChangeTimer: Timer!
     
     init?() {
-        guard let iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes") else {
+        guard let spotify = SBApplication(bundleIdentifier: "com.spotify.client") else {
             return nil
         }
-        self._iTunes = iTunes
-        _currentTrack = _iTunes.currentTrack?.track
-        playerState = _iTunes.playerState?.state ?? .stopped
-        playerPosition = _iTunes.playerPosition ?? 0
+        _spotify = spotify
+        _currentTrack = _spotify.currentTrack?.track
+        playerState = _spotify.playerState?.state ?? .stopped
+        playerPosition = _spotify.playerPosition ?? 0
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
             self.updatePlayerState()
             self.updateCurrentTrack()
@@ -40,7 +40,7 @@ class iTunes: MediaPlayer {
     }
     
     private func updatePlayerState() {
-        let state = _iTunes.playerState?.state ?? .stopped
+        let state = _spotify.playerState?.state ?? .stopped
         if playerState == state {
             return
         }
@@ -50,7 +50,7 @@ class iTunes: MediaPlayer {
     }
     
     private func updateCurrentTrack() {
-        let track = _iTunes.currentTrack?.track
+        let track = _spotify.currentTrack?.track
         if _currentTrack == nil, track == nil {
             return
         }
@@ -67,24 +67,21 @@ class iTunes: MediaPlayer {
             return
         }
         
-        playerPosition = _iTunes.playerPosition ?? 0
+        playerPosition = _spotify.playerPosition ?? 0
         delegate?.playerPositionChanged(position: playerPosition)
     }
     
 }
 
-extension iTunes {
+extension Spotify {
     struct Track: MediaTrack {
-        var rawID: Int
-        var id: String {
-            return "\(rawID)"
-        }
+        var id: String
         var name: String
         var album: String
         var artist: String
         
-        init(id: Int?, name: String?, album: String?, artist: String?) {
-            self.rawID = id ?? 0
+        init(id: String?, name: String?, album: String?, artist: String?) {
+            self.id = id ?? ""
             self.name = name ?? ""
             self.album = album ?? ""
             self.artist = artist ?? ""
@@ -92,36 +89,34 @@ extension iTunes {
     }
 }
 
-extension iTunes.Track: Equatable {
-    public static func ==(lhs: iTunes.Track, rhs: iTunes.Track) -> Bool {
-        return (lhs.rawID != 0) && (lhs.rawID == rhs.rawID)
+extension Spotify.Track: Equatable {
+    public static func ==(lhs: Spotify.Track, rhs: Spotify.Track) -> Bool {
+        return (lhs.id != "") && (lhs.id == rhs.id)
     }
 }
 
-// MARK - iTunes Bridge Extension
+// MARK - Spotify Bridge Extension
 
-extension iTunesEPlS {
+extension SpotifyEPlS {
     var state: MediaPlayerState {
         switch self {
-        case .iTunesEPlSStopped:
+        case .SpotifyEPlSStopped:
             return .stopped
-        case .iTunesEPlSPlaying:
+        case .SpotifyEPlSPlaying:
             return .playing
-        case .iTunesEPlSPaused:
+        case .SpotifyEPlSPaused:
             return .paused
-        case .iTunesEPlSFastForwarding:
-            return .fastForwarding
-        case .iTunesEPlSRewinding:
-            return .rewinding
         }
     }
 }
 
-extension iTunesTrack {
-    var track: iTunes.Track {
-        return iTunes.Track(id: id?() as Int?,
-                            name: name as String?,
-                            album: album as String?,
-                            artist: artist as String?)
+extension SpotifyTrack {
+    var track: Spotify.Track {
+        return Spotify.Track(id: id?() as String?,
+                             name: name as String?,
+                             album: album as String?,
+                             artist: artist as String?)
     }
 }
+
+

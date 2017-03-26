@@ -1,5 +1,5 @@
 //
-//  iTunesHelper.swift
+//  MediaPlayerHelper.swift
 //  LyricsX
 //
 //  Created by 邓翔 on 2017/2/6.
@@ -7,19 +7,15 @@
 //
 
 import Foundation
-import ScriptingBridge
 
-class iTunesHelper: LyricsSourceDelegate {
+class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     
-    var iTunes: iTunesApplication!
-    var lyricsHelper: LyricsSourceHelper
+    var player: MediaPlayer?
+    let lyricsHelper = LyricsSourceHelper()
     
-    var positionChangeTimer: Timer!
-    
-    var currentSongID: Int?
     var currentLyrics: Lyrics? {
         didSet {
-            appDelegate.currentOffset = currentLyrics?.offset ?? 0
+            appDelegate()?.currentOffset = currentLyrics?.offset ?? 0
         }
     }
     
@@ -28,67 +24,41 @@ class iTunesHelper: LyricsSourceDelegate {
     
     var fetchLrcQueue = OperationQueue()
     
-    var observerTokens = [NSObjectProtocol]()
-    
     init() {
-        iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
-        lyricsHelper = LyricsSourceHelper()
+        updateMediaPlayer(index: Preference[PreferredPlayerIndex])
+        
         lyricsHelper.delegate = self
         
-        positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in self.handlePositionChange() }
-        
-        observerTokens += [DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.iTunes.playerInfo"), object: nil, queue: nil) { notification in
-            self.handlePlayerInfoChange()
-        }]
-        
-        handlePlayerInfoChange()
-    }
-    
-    deinit {
-        observerTokens.forEach() { token in
-            NotificationCenter.default.removeObserver(token)
+        Preference.subscribe(key: PreferredPlayerIndex) { change in
+            self.updateMediaPlayer(index: change.newValue)
         }
     }
     
-    func handlePlayerInfoChange () {
-        let id = iTunes.currentTrack?.id?()
-        if currentSongID != id {
-            handleSongChange()
+    func updateMediaPlayer(index: Int) {
+        if index == 1 {
+            player = Spotify()
+        } else {
+            player = iTunes()
         }
-        
-        if let state = iTunes.playerState {
-            switch state {
-            case .iTunesEPlSPlaying:
-                positionChangeTimer.fireDate = Date()
-                print("playing")
-            case .iTunesEPlSPaused, .iTunesEPlSStopped:
-                positionChangeTimer.fireDate = .distantFuture
-                print("Paused")
-                if Preference[DisableLyricsWhenPaused] {
-                    currentLyricsLine = nil
-                    nextLyricsLine = nil
-                    NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
-                }
-            default:
-                break
-            }
-        }
+        player?.delegate = self
+        currentTrackChanged(track: player?.currentTrack)
     }
     
-    func handleSongChange() {
-        let track = iTunes.currentTrack
-        currentSongID = track?.id?()
+    // MARK: MediaPlayerDelegate
+    
+    func playerStateChanged(state: MediaPlayerState) {
+        
+    }
+    
+    func currentTrackChanged(track: MediaTrack?) {
         currentLyrics = nil
-        
-        print("song changed: \(iTunes.currentTrack?.name)")
-        
         let info = ["lrc": "", "next": ""]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
-        
-        guard let title = iTunes.currentTrack?.name as String?,
-            let artist = iTunes.currentTrack?.artist as String? else {
+        guard let track = track else {
             return
         }
+        let title = track.name
+        let artist = track.artist
         
         if let localLyrics = lyricsHelper.readLocalLyrics(title: title, artist: artist) {
             currentLyrics = localLyrics
@@ -98,8 +68,8 @@ class iTunesHelper: LyricsSourceDelegate {
         }
     }
     
-    func handlePositionChange() {
-        guard let lyrics = currentLyrics, let position = iTunes.playerPosition else {
+    func playerPositionChanged(position: Double) {
+        guard let lyrics = currentLyrics else {
             return
         }
         let lrc = lyrics[position]
@@ -127,8 +97,8 @@ class iTunesHelper: LyricsSourceDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        guard lyrics.metadata[.searchTitle] == iTunes.currentTrack?.name as String?,
-            lyrics.metadata[.searchArtist] == iTunes.currentTrack?.artist as String? else {
+        guard lyrics.metadata[.searchTitle] == player?.currentTrack?.name,
+            lyrics.metadata[.searchArtist] == player?.currentTrack?.artist else {
             return
         }
         
