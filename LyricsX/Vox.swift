@@ -51,7 +51,10 @@ class Vox: MediaPlayer {
     
     private func updateCurrentTrack() {
         let track = _vox.voxTrack
-        if _currentTrack == track {
+        if _currentTrack == nil, track == nil {
+            return
+        }
+        if let t1 = _currentTrack, let t2 = track, t1 == t2 {
             return
         }
         
@@ -102,8 +105,11 @@ extension VoxApplication {
             return .paused
         }
     }
-    var voxTrack: Vox.Track {
-        return Vox.Track(id: uniqueID as String?,
+    var voxTrack: Vox.Track? {
+        guard let id = uniqueID, id != "" else {
+            return nil
+        }
+        return Vox.Track(id: id as String,
                          name: track as String?,
                          album: album as String?,
                          artist: artist as String?)

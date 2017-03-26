@@ -12,19 +12,11 @@
 	<true/>
 	<key>com.apple.security.network.client</key>
 	<true/>
-	<key>com.apple.security.scripting-targets</key>
-	<dict>
-		<key>com.apple.iTunes</key>
-		<array>
-            <string>com.apple.iTunes.library.read</string>
-			<string>com.apple.iTunes.playback</string>
-			<string>com.apple.iTunes.playerInfo</string>
-		</array>
-        <key>com.spotify.client</key>
-        <array>
-            <string>com.spotify.library</string>
-            <string>com.spotify.playback</string>
-        </array>
-	</dict>
+    <key>com.apple.security.temporary-exception.apple-events</key>
+    <array>
+        <string>com.apple.iTunes</string>
+        <string>com.spotify.client</string>
+        <string>com.coppertino.Vox</string>
+    </array>
 </dict>
 </plist>
