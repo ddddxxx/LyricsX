@@ -21,10 +21,13 @@ extension UserDefaults {
 
 extension EasyPreference {
     
-    var lyricsSavingPath: URL? {
+    func lyricsSavingPath(securityScoped: inout Bool) -> URL? {
         if self[LyricsSavingPathPopUpIndex] == 0 {
-            return self[LyricsDefaultSavingPath].map() { URL(fileURLWithPath: $0) }
+            securityScoped = false
+            let userPath = String(cString: getpwuid(getuid()).pointee.pw_dir)
+            return URL(fileURLWithPath: userPath).appendingPathComponent("Music/LyricsX")
         } else {
+            securityScoped = true
             return lyricsCustomSavingPath
         }
     }

@@ -123,12 +123,17 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
 extension LyricsSourceHelper {
     
     func readLocalLyrics(title: String, artist: String) -> Lyrics? {
-        guard let url = Preference.lyricsSavingPath,
-            url.startAccessingSecurityScopedResource() else {
+        var securityScoped = false
+        guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
             return nil
         }
-        defer {
-            url.stopAccessingSecurityScopedResource()
+        if securityScoped {
+            guard url.startAccessingSecurityScopedResource() else {
+                return nil
+            }
+            defer {
+                url.stopAccessingSecurityScopedResource()
+            }
         }
         let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
         let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
@@ -151,12 +156,17 @@ extension LyricsSourceHelper {
 extension Lyrics {
     
     func saveToLocal() {
-        guard let url = Preference.lyricsSavingPath,
-            url.startAccessingSecurityScopedResource() else {
+        var securityScoped = false
+        guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
             return
         }
-        defer {
-            url.stopAccessingSecurityScopedResource()
+        if securityScoped {
+            guard url.startAccessingSecurityScopedResource() else {
+                return
+            }
+            defer {
+                url.stopAccessingSecurityScopedResource()
+            }
         }
         let fileManager = FileManager.default
         
