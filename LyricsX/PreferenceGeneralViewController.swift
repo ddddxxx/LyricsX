@@ -12,15 +12,21 @@ class PreferenceGeneralViewController: NSViewController {
     
     @IBOutlet weak var preferiTunes: NSButton!
     @IBOutlet weak var preferSpotify: NSButton!
+    @IBOutlet weak var preferVox: NSButton!
     
     @IBOutlet weak var savingPathPopUp: NSPopUpButton!
     @IBOutlet weak var userPathMenuItem: NSMenuItem!
     
     override func viewDidLoad() {
-        if Preference[PreferredPlayerIndex] == 1 {
+        switch Preference[PreferredPlayerIndex] {
+        case 0:
             preferSpotify.state = 1
-        } else {
+        case 1:
             preferiTunes.state = 1
+        case 2:
+            preferVox.state = 1
+        default:
+            break
         }
         
         if let url = Preference.lyricsCustomSavingPath {

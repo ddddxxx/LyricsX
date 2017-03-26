@@ -25,10 +25,15 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
     var fetchLrcQueue = OperationQueue()
     
     init() {
-        if Preference[PreferredPlayerIndex] == 1 {
-            player = Spotify()
-        } else {
+        switch Preference[PreferredPlayerIndex] {
+        case 0:
             player = iTunes()
+        case 1:
+            player = Spotify()
+        case 2:
+            player = Vox()
+        default:
+            return
         }
         
         player?.delegate = self
