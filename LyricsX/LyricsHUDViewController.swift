@@ -22,7 +22,7 @@ class LyricsHUDViewController: NSViewController {
     var withTag = Preference[DisplayLyricsWithTag]
     
     override func viewDidLoad() {
-        lyrics = appDelegate.helper.currentLyrics
+        lyrics = appDelegate()?.mediaPlayerHelper.currentLyrics
         Preference.subscribe(key: DisplayLyricsWithTag) { [weak self] (change) in
             self?.withTag = change.newValue
             self?.updateTextView()

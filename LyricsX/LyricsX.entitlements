@@ -20,6 +20,11 @@
 			<string>com.apple.iTunes.playback</string>
 			<string>com.apple.iTunes.playerInfo</string>
 		</array>
+        <key>com.spotify.client</key>
+        <array>
+            <string>com.spotify.library</string>
+            <string>com.spotify.playback</string>
+        </array>
 	</dict>
 </dict>
 </plist>
