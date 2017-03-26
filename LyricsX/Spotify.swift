@@ -28,11 +28,15 @@ class Spotify: MediaPlayer {
         _currentTrack = _spotify.currentTrack?.track
         playerState = _spotify.playerState?.state ?? .stopped
         playerPosition = _spotify.playerPosition ?? 0
-        positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+        positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
             self.updatePlayerState()
             self.updateCurrentTrack()
             self.updatePlayerPosition()
         }
+    }
+    
+    deinit {
+        positionChangeTimer.invalidate()
     }
     
     private func updatePlayerState() {

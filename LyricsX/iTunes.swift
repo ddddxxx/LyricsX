@@ -28,11 +28,15 @@ class iTunes: MediaPlayer {
         _currentTrack = _iTunes.currentTrack?.track
         playerState = _iTunes.playerState?.state ?? .stopped
         playerPosition = _iTunes.playerPosition ?? 0
-        positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+        positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
             self.updatePlayerState()
             self.updateCurrentTrack()
             self.updatePlayerPosition()
         }
+    }
+    
+    deinit {
+        positionChangeTimer.invalidate()
     }
     
     private func updatePlayerState() {
