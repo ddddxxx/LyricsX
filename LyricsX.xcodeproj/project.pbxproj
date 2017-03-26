@@ -31,6 +31,7 @@
 		BB58B0871E82BFF600598D4F /* LyricsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B0861E82BFF600598D4F /* LyricsLine.swift */; };
 		BB58B0891E82CA9B00598D4F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
 		BB6004281E6F0BB100170CB4 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6004271E6F0BB100170CB4 /* Automator.framework */; };
+		BB60F2FC1E87CF9200BA1FD2 /* Vox.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */; };
 		BB6294E31E7A97420027B2A0 /* EasyPreference.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6294E21E7A97420027B2A0 /* EasyPreference.framework */; };
 		BB6294E41E7A97420027B2A0 /* EasyPreference.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB6294E21E7A97420027B2A0 /* EasyPreference.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
@@ -101,6 +102,7 @@
 		BB58B0861E82BFF600598D4F /* LyricsLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsLine.swift; path = Lyrics/LyricsLine.swift; sourceTree = "<group>"; };
 		BB58B0881E82CA9B00598D4F /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		BB6004271E6F0BB100170CB4 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = System/Library/Frameworks/Automator.framework; sourceTree = SDKROOT; };
+		BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vox.swift; sourceTree = "<group>"; };
 		BB6294E21E7A97420027B2A0 /* EasyPreference.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyPreference.framework; path = Carthage/Build/Mac/EasyPreference.framework; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
 		BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsX.entitlements; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				BBBB6EC11E86A2DD003B3ED6 /* MediaPlayerProtocol.swift */,
 				BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */,
 				BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */,
+				BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */,
 			);
 			name = MediaPlayer;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */,
 				BBBB6EC71E86C74F003B3ED6 /* Spotify.swift in Sources */,
 				BB4141CC1E47444200A51775 /* LyricsXiami.swift in Sources */,
+				BB60F2FC1E87CF9200BA1FD2 /* Vox.swift in Sources */,
 				BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
