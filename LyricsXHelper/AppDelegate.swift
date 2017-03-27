@@ -12,20 +12,23 @@ import ScriptingBridge
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
+    var mediaPlayer: SBApplication?
     var shouldWaitForiTunesQuit = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let lyricsXDefault = UserDefaults(suiteName: "group.ddddxxx.LyricsX")!
         
+        let ident = playerBundleIdentifier[lyricsXDefault.integer(forKey: PreferredPlayerIndex)]
+        mediaPlayer = SBApplication(bundleIdentifier: ident)
+        
         if lyricsXDefault.bool(forKey: LaunchAndQuitWithPlayer) {
-            shouldWaitForiTunesQuit = iTunes?.isRunning == true
+            shouldWaitForiTunesQuit = mediaPlayer?.isRunning == true
             Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
                 if self.shouldWaitForiTunesQuit {
-                    self.shouldWaitForiTunesQuit = self.iTunes?.isRunning == true
+                    self.shouldWaitForiTunesQuit = self.mediaPlayer?.isRunning == true
                     return
                 }
-                if self.iTunes?.isRunning == true {
+                if self.mediaPlayer?.isRunning == true {
                     self.launchMainAndQuit()
                 }
             }
@@ -47,6 +50,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
+let playerBundleIdentifier = [
+    "com.apple.iTunes",
+    "com.spotify.client",
+    "com.coppertino.Vox",
+]
+
 // Preference
+let PreferredPlayerIndex = "PreferredPlayerIndex"
 let LaunchAndQuitWithPlayer = "LaunchAndQuitWithPlayer"
 

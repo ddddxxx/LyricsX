@@ -17,6 +17,7 @@ let Preference = { () -> EasyPreference in
     registerUserDefaults()
     return EasyPreference(defaults: .standard)
 }()
+let GroupPreference = EasyPreference(defaults: UserDefaults(suiteName: LyricsXGroupIdentifier)!)
 
 // MARK: - Notification Name
 

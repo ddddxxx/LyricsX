@@ -52,12 +52,12 @@ class PreferenceGeneralViewController: NSViewController {
         }
     }
     @IBAction func launchWithPlayerAction(_ sender: NSButton) {
-        let groupDefaults = UserDefaults(suiteName: LyricsXGroupIdentifier)
-        groupDefaults?.set(sender.state == NSOnState, forKey: LaunchAndQuitWithPlayer.rawValue)
+        GroupPreference[LaunchAndQuitWithPlayer] = sender.state == NSOnState
     }
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         Preference[PreferredPlayerIndex] = sender.tag
+        GroupPreference[PreferredPlayerIndex] = sender.tag
     }
     
 }
