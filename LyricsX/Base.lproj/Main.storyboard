@@ -1372,6 +1372,9 @@
                                             <action selector="searchAction:" target="hFt-BA-jFS" id="LsO-O6-hwU"/>
                                         </connections>
                                     </button>
+                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="eo9-Vx-b1i">
+                                        <rect key="frame" x="391" y="4" width="16" height="16"/>
+                                    </progressIndicator>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Np2-88-ohs" firstAttribute="centerY" secondItem="tXy-v4-kvS" secondAttribute="centerY" id="39c-6A-fHu"/>
@@ -1379,11 +1382,13 @@
                                     <constraint firstItem="GVe-a1-Feu" firstAttribute="centerY" secondItem="tXy-v4-kvS" secondAttribute="centerY" id="86I-NT-YWU"/>
                                     <constraint firstItem="ViJ-II-hW8" firstAttribute="centerY" secondItem="tXy-v4-kvS" secondAttribute="centerY" id="9ab-XU-glc"/>
                                     <constraint firstItem="1eb-gg-tTU" firstAttribute="leading" secondItem="GVe-a1-Feu" secondAttribute="trailing" constant="8" id="B2k-0I-a7Z"/>
-                                    <constraint firstItem="Np2-88-ohs" firstAttribute="leading" secondItem="1eb-gg-tTU" secondAttribute="trailing" constant="40" id="BjZ-5P-tjV"/>
                                     <constraint firstItem="1eb-gg-tTU" firstAttribute="centerY" secondItem="tXy-v4-kvS" secondAttribute="centerY" id="M0B-8P-Xou"/>
+                                    <constraint firstItem="Np2-88-ohs" firstAttribute="leading" secondItem="eo9-Vx-b1i" secondAttribute="trailing" constant="8" id="TVI-em-hju"/>
                                     <constraint firstItem="AYj-Hi-KJT" firstAttribute="leading" secondItem="tXy-v4-kvS" secondAttribute="leading" constant="16" id="ZEQ-p4-ddD"/>
+                                    <constraint firstItem="eo9-Vx-b1i" firstAttribute="leading" secondItem="1eb-gg-tTU" secondAttribute="trailing" constant="16" id="bej-AO-Vb8"/>
                                     <constraint firstAttribute="trailing" secondItem="Np2-88-ohs" secondAttribute="trailing" constant="16" id="c60-2a-RXi"/>
                                     <constraint firstItem="AYj-Hi-KJT" firstAttribute="centerY" secondItem="tXy-v4-kvS" secondAttribute="centerY" id="dJy-nS-uLs"/>
+                                    <constraint firstItem="eo9-Vx-b1i" firstAttribute="centerY" secondItem="tXy-v4-kvS" secondAttribute="centerY" id="nOa-71-J5R"/>
                                     <constraint firstItem="ViJ-II-hW8" firstAttribute="leading" secondItem="AYj-Hi-KJT" secondAttribute="trailing" constant="8" id="ob1-r0-LTa"/>
                                     <constraint firstAttribute="height" constant="24" id="rjG-qq-Kvk"/>
                                     <constraint firstItem="GVe-a1-Feu" firstAttribute="leading" secondItem="ViJ-II-hW8" secondAttribute="trailing" constant="20" id="zuB-g3-pKp"/>
@@ -1589,6 +1594,7 @@
                     <connections>
                         <outlet property="artworkView" destination="N4M-lF-IAL" id="4WI-Zu-ksO"/>
                         <outlet property="lyricsPreviewTextView" destination="PEz-rD-ja1" id="a3X-f7-EZD"/>
+                        <outlet property="progressIndicator" destination="eo9-Vx-b1i" id="BEI-Ud-sUb"/>
                         <outlet property="searchButton" destination="Np2-88-ohs" id="JBE-xM-6xb"/>
                         <outlet property="tableView" destination="gfB-qN-IQm" id="KZv-Xv-tSs"/>
                     </connections>
