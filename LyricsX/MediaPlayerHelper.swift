@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import AppKit
 
-class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
+class MediaPlayerHelper: MediaPlayerDelegate {
     
     var player: MediaPlayer?
-    let lyricsHelper = LyricsSourceHelper()
+    let lyricsSource = Lyrics163()
     
     var currentLyrics: Lyrics? {
         didSet {
@@ -37,12 +38,17 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
         }
         
         player?.delegate = self
-        lyricsHelper.delegate = self
         
         currentTrackChanged(track: player?.currentTrack)
     }
     
     // MARK: MediaPlayerDelegate
+    
+    func runningStateChanged(isRunning: Bool) {
+        if Preference[LaunchAndQuitWithPlayer], !isRunning {
+            NSApplication.shared().terminate(nil)
+        }
+    }
     
     func playerStateChanged(state: MediaPlayerState) {
         if state != .playing, Preference[DisableLyricsWhenPaused] {
@@ -62,11 +68,13 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
         let title = track.name
         let artist = track.artist
         
-        if let localLyrics = lyricsHelper.readLocalLyrics(title: title, artist: artist) {
+        if let localLyrics = LyricsSourceHelper.readLocalLyrics(title: title, artist: artist) {
             currentLyrics = localLyrics
             currentLyrics?.filtrate()
         } else {
-            lyricsHelper.fetchLyrics(title: title, artist: artist)
+            lyricsSource.iFellLucky(title: title, artist: artist) {
+                self.lyricsReceived(lyrics: $0)
+            }
         }
     }
     
@@ -114,15 +122,11 @@ class MediaPlayerHelper: MediaPlayerDelegate, LyricsSourceDelegate {
         lyrics.saveToLocal()
     }
     
-    func fetchCompleted(result: [Lyrics]) {
-        
-    }
-    
 }
 
 extension LyricsSourceHelper {
     
-    func readLocalLyrics(title: String, artist: String) -> Lyrics? {
+    static func readLocalLyrics(title: String, artist: String) -> Lyrics? {
         var securityScoped = false
         guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
             return nil

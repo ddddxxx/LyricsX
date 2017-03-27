@@ -19,6 +19,45 @@ class Lyrics163: LyricsSource {
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
+    func iFellLucky(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
+        let url = URL(string: "http://music.163.com/api/search/pc")!
+        let body = "s=\(title) \(artist)&offset=0&limit=1&type=1".data(using: .utf8)!
+        
+        var req = URLRequest(url: url)
+        req.allHTTPHeaderFields = [
+            "Cookie": "appver=1.5.0.75771;",
+            "Referer": "http://music.163.com/",
+        ]
+        req.httpMethod = "POST"
+        req.httpBody = body
+        
+        let task = session.dataTask(with: req) { data, resp, error in
+            guard let data = data else {
+                    return
+            }
+            let item = JSON(data: data)["result"]["songs"][0]
+            guard let id = item["id"].number?.intValue,
+                var lyrics = self.lyricsFor(id: id) else {
+                    return
+            }
+            var metadata: [Lyrics.MetadataKey: String] = [
+                .searchTitle: title,
+                .searchArtist: artist,
+                .source: "163",
+                ]
+            metadata[.artworkURL] = item["album"]["picUrl"].string
+            
+            lyrics.idTags[.title] = item["name"].string
+            lyrics.idTags[.artist] = item["artists"][0]["name"].string
+            lyrics.idTags[.album] = item["album"]["name"].string
+            lyrics.idTags[.lrcBy] = "163"
+            
+            lyrics.metadata = metadata
+            completionBlock(lyrics)
+        }
+        task.resume()
+    }
+    
     func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         let url = URL(string: "http://music.163.com/api/search/pc")!
         let body = "s=\(title) \(artist)&offset=0&limit=10&type=1".data(using: .utf8)!

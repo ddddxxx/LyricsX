@@ -6,6 +6,8 @@
 	<true/>
 	<key>MenuBarLyricsEnabled</key>
 	<false/>
+	<key>LaunchAndQuitWithPlayer</key>
+	<false/>
 	<key>PreferredPlayerIndex</key>
 	<integer>0</integer>
 	<key>LyricsSavingPathPopUpIndex</key>

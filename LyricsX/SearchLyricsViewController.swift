@@ -25,6 +25,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBOutlet weak var artworkView: NSImageView!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var searchButton: NSButton!
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var lyricsPreviewTextView: NSTextView!
     
     override func viewDidLoad() {
@@ -32,11 +33,13 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         let helper = appDelegate()?.mediaPlayerHelper
         searchArtist = helper?.player?.currentTrack?.artist ?? ""
         searchTitle = helper?.player?.currentTrack?.name ?? ""
-        searchResult = helper?.lyricsHelper.lyrics ?? []
+        searchAction(nil)
         super.viewDidLoad()
     }
     
-    @IBAction func searchAction(_ sender: NSButton) {
+    @IBAction func searchAction(_ sender: Any?) {
+        progressIndicator.startAnimation(nil)
+        progressIndicator.isHidden = false
         searchResult = []
         tableView.reloadData()
         lyricsHelper.fetchLyrics(title: searchTitle, artist: searchArtist)
@@ -63,7 +66,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     func fetchCompleted(result: [Lyrics]) {
-        
+        DispatchQueue.main.async {
+            self.progressIndicator.stopAnimation(nil)
+            self.progressIndicator.isHidden = true
+        }
     }
     
     // MARK: - TableViewDelegate
