@@ -32,11 +32,11 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         let helper = appDelegate()?.mediaPlayerHelper
         searchArtist = helper?.player?.currentTrack?.artist ?? ""
         searchTitle = helper?.player?.currentTrack?.name ?? ""
-        searchResult = helper?.lyricsHelper.lyrics ?? []
+        searchAction(nil)
         super.viewDidLoad()
     }
     
-    @IBAction func searchAction(_ sender: NSButton) {
+    @IBAction func searchAction(_ sender: Any?) {
         searchResult = []
         tableView.reloadData()
         lyricsHelper.fetchLyrics(title: searchTitle, artist: searchArtist)
