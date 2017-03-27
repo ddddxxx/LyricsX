@@ -13,7 +13,7 @@ import ScriptingBridge
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var mediaPlayer: SBApplication?
-    var shouldWaitForiTunesQuit = false
+    var shouldWaitForPlayerQuit = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let lyricsXDefault = UserDefaults(suiteName: "group.ddddxxx.LyricsX")!
@@ -22,10 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         mediaPlayer = SBApplication(bundleIdentifier: ident)
         
         if lyricsXDefault.bool(forKey: LaunchAndQuitWithPlayer) {
-            shouldWaitForiTunesQuit = mediaPlayer?.isRunning == true
+            shouldWaitForPlayerQuit = mediaPlayer?.isRunning == true
             Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-                if self.shouldWaitForiTunesQuit {
-                    self.shouldWaitForiTunesQuit = self.mediaPlayer?.isRunning == true
+                if self.shouldWaitForPlayerQuit {
+                    self.shouldWaitForPlayerQuit = self.mediaPlayer?.isRunning == true
                     return
                 }
                 if self.mediaPlayer?.isRunning == true {
