@@ -55,6 +55,10 @@ class iTunes: MediaPlayer {
     }
     
     private func updatePlayerState() {
+        guard isRunning else {
+            return
+        }
+        
         let state = _iTunes.playerState?.state ?? .stopped
         if playerState == state {
             return
@@ -65,6 +69,10 @@ class iTunes: MediaPlayer {
     }
     
     private func updateCurrentTrack() {
+        guard isRunning else {
+            return
+        }
+        
         let track = _iTunes.currentTrack?.track
         if _currentTrack == nil, track == nil {
             return
@@ -78,6 +86,10 @@ class iTunes: MediaPlayer {
     }
     
     private func updatePlayerPosition() {
+        guard isRunning else {
+            return
+        }
+        
         guard playerState != .stopped, playerState != .paused else {
             return
         }

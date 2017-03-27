@@ -55,6 +55,10 @@ class Vox: MediaPlayer {
     }
     
     private func updatePlayerState() {
+        guard isRunning else {
+            return
+        }
+        
         let state = _vox.state
         if playerState == state {
             return
@@ -65,6 +69,10 @@ class Vox: MediaPlayer {
     }
     
     private func updateCurrentTrack() {
+        guard isRunning else {
+            return
+        }
+        
         let track = _vox.voxTrack
         if _currentTrack == nil, track == nil {
             return
@@ -78,6 +86,10 @@ class Vox: MediaPlayer {
     }
     
     private func updatePlayerPosition() {
+        guard isRunning else {
+            return
+        }
+        
         guard playerState != .stopped, playerState != .paused else {
             return
         }
