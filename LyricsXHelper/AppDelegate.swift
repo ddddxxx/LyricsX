@@ -13,12 +13,18 @@ import ScriptingBridge
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     let iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes")
+    var shouldWaitForiTunesQuit = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let lyricsXDefault = UserDefaults(suiteName: "group.ddddxxx.LyricsX")!
         
         if lyricsXDefault.bool(forKey: LaunchAndQuitWithPlayer) {
+            shouldWaitForiTunesQuit = iTunes?.isRunning == true
             Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+                if self.shouldWaitForiTunesQuit {
+                    self.shouldWaitForiTunesQuit = self.iTunes?.isRunning == true
+                    return
+                }
                 if self.iTunes?.isRunning == true {
                     self.launchMainAndQuit()
                 }

@@ -36,7 +36,6 @@
 		BB60F3061E889A1B00BA1FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3051E889A1B00BA1FD2 /* Assets.xcassets */; };
 		BB60F3091E889A1B00BA1FD2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3071E889A1B00BA1FD2 /* MainMenu.xib */; };
 		BB60F3121E889FCD00BA1FD2 /* LyricsXHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BB60F3131E88A29E00BA1FD2 /* iTunesBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D71E475DD100A51775 /* iTunesBridge.swift */; };
 		BB6294E31E7A97420027B2A0 /* EasyPreference.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6294E21E7A97420027B2A0 /* EasyPreference.framework */; };
 		BB6294E41E7A97420027B2A0 /* EasyPreference.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB6294E21E7A97420027B2A0 /* EasyPreference.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
@@ -536,7 +535,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB60F3131E88A29E00BA1FD2 /* iTunesBridge.swift in Sources */,
 				BB60F3041E889A1B00BA1FD2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
