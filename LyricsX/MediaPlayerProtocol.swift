@@ -17,6 +17,7 @@ enum MediaPlayerState {
 }
 
 protocol MediaPlayerDelegate: class {
+    func runningStateChanged(isRunning: Bool)
     func playerStateChanged(state: MediaPlayerState)
     func currentTrackChanged(track: MediaTrack?)
     func playerPositionChanged(position: Double)
@@ -24,6 +25,7 @@ protocol MediaPlayerDelegate: class {
 
 protocol MediaPlayer {
     weak var delegate: MediaPlayerDelegate? { get set }
+    var isRunning: Bool { get }
     var currentTrack: MediaTrack? { get }
     var playerState: MediaPlayerState { get }
     var playerPosition: Double { get }

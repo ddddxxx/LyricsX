@@ -12,9 +12,10 @@ import ScriptingBridge
 class Spotify: MediaPlayer {
     
     weak var delegate: MediaPlayerDelegate?
+    var isRunning: Bool
     var currentTrack: MediaTrack? { return _currentTrack }
-    var playerState: MediaPlayerState
-    var playerPosition: Double
+    var playerState: MediaPlayerState = .stopped
+    var playerPosition: Double = 0
     
     private var _spotify: SpotifyApplication
     private var _currentTrack: Track?
@@ -25,10 +26,14 @@ class Spotify: MediaPlayer {
             return nil
         }
         _spotify = spotify
-        _currentTrack = _spotify.currentTrack?.track
-        playerState = _spotify.playerState?.state ?? .stopped
-        playerPosition = _spotify.playerPosition ?? 0
+        isRunning = (_spotify as! SBApplication).isRunning
+        if isRunning {
+            _currentTrack = _spotify.currentTrack?.track
+            playerState = _spotify.playerState?.state ?? .stopped
+            playerPosition = _spotify.playerPosition ?? 0
+        }
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
+            self.updateRunningState()
             self.updatePlayerState()
             self.updateCurrentTrack()
             self.updatePlayerPosition()
@@ -37,6 +42,16 @@ class Spotify: MediaPlayer {
     
     deinit {
         positionChangeTimer.invalidate()
+    }
+    
+    private func updateRunningState() {
+        let isRunningNew = (_spotify as! SBApplication).isRunning
+        if isRunning == isRunningNew {
+            return
+        }
+        
+        isRunning = isRunningNew
+        delegate?.runningStateChanged(isRunning: isRunningNew)
     }
     
     private func updatePlayerState() {

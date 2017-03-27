@@ -12,9 +12,10 @@ import ScriptingBridge
 class iTunes: MediaPlayer {
     
     weak var delegate: MediaPlayerDelegate?
+    var isRunning: Bool
     var currentTrack: MediaTrack? { return _currentTrack }
-    var playerState: MediaPlayerState
-    var playerPosition: Double
+    var playerState: MediaPlayerState = .stopped
+    var playerPosition: Double = 0
     
     private var _iTunes: iTunesApplication
     private var _currentTrack: Track?
@@ -25,10 +26,14 @@ class iTunes: MediaPlayer {
             return nil
         }
         self._iTunes = iTunes
-        _currentTrack = _iTunes.currentTrack?.track
-        playerState = _iTunes.playerState?.state ?? .stopped
-        playerPosition = _iTunes.playerPosition ?? 0
+        isRunning = (_iTunes as! SBApplication).isRunning
+        if isRunning {
+            _currentTrack = _iTunes.currentTrack?.track
+            playerState = _iTunes.playerState?.state ?? .stopped
+            playerPosition = _iTunes.playerPosition ?? 0
+        }
         positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
+            self.updateRunningState()
             self.updatePlayerState()
             self.updateCurrentTrack()
             self.updatePlayerPosition()
@@ -37,6 +42,16 @@ class iTunes: MediaPlayer {
     
     deinit {
         positionChangeTimer.invalidate()
+    }
+    
+    private func updateRunningState() {
+        let isRunningNew = (_iTunes as! SBApplication).isRunning
+        if isRunning == isRunningNew {
+            return
+        }
+        
+        isRunning = isRunningNew
+        delegate?.runningStateChanged(isRunning: isRunningNew)
     }
     
     private func updatePlayerState() {

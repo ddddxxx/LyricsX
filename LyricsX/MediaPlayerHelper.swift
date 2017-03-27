@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 class MediaPlayerHelper: MediaPlayerDelegate {
     
@@ -42,6 +43,12 @@ class MediaPlayerHelper: MediaPlayerDelegate {
     }
     
     // MARK: MediaPlayerDelegate
+    
+    func runningStateChanged(isRunning: Bool) {
+        if Preference[LaunchAndQuitWithPlayer], !isRunning {
+            NSApplication.shared().terminate(nil)
+        }
+    }
     
     func playerStateChanged(state: MediaPlayerState) {
         if state != .playing, Preference[DisableLyricsWhenPaused] {
