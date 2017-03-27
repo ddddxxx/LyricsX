@@ -9,6 +9,9 @@
 import Cocoa
 import EasyPreference
 
+let LyricsXGroupIdentifier = "group.ddddxxx.LyricsX"
+let LyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
+
 let appDelegate = { NSApplication.shared().delegate as? AppDelegate }
 let Preference = { () -> EasyPreference in
     registerUserDefaults()
@@ -31,6 +34,7 @@ let MenuBarLyricsEnabled: PreferenceKey<Bool>   = "MenuBarLyricsEnabled"
 
 // General
 let PreferredPlayerIndex: PreferenceKey<Int>        = "PreferredPlayerIndex"
+let LaunchAndQuitWithPlayer: PreferenceKey<Bool>    = "LaunchAndQuitWithPlayer"
 
 let LyricsSavingPathPopUpIndex: PreferenceKey<Int>  = "LyricsSavingPathPopUpIndex"
 let LyricsCustomSavingPathBookmark: PreferenceKey<Data>     = "LyricsCustomSavingPathBookmark"

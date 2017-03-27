@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import ServiceManagement
 import EasyPreference
 
 @NSApplicationMain
@@ -27,10 +28,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         statusItem.button?.image = #imageLiteral(resourceName: "status_bar_icon")
         statusItem.menu = statusBarMenu
+        
+        NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
+        
+        if Preference[LaunchAndQuitWithPlayer] {
+            if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
+                print("Failed to enable login item")
+            }
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        UserDefaults.standard.synchronize()
+        if Preference[LaunchAndQuitWithPlayer] {
+            let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
+            NSWorkspace.shared().launchApplication(url.path)
+        }
     }
 
     @IBAction func lyricsOffsetStepAction(_ sender: Any) {

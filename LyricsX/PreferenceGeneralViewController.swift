@@ -20,11 +20,11 @@ class PreferenceGeneralViewController: NSViewController {
     override func viewDidLoad() {
         switch Preference[PreferredPlayerIndex] {
         case 0:
-            preferiTunes.state = 1
+            preferiTunes.state = NSOnState
         case 1:
-            preferSpotify.state = 1
+            preferSpotify.state = NSOnState
         case 2:
-            preferVox.state = 1
+            preferVox.state = NSOnState
         default:
             break
         }
@@ -50,6 +50,10 @@ class PreferenceGeneralViewController: NSViewController {
                 self.savingPathPopUp.selectItem(at: 0)
             }
         }
+    }
+    @IBAction func launchWithPlayerAction(_ sender: NSButton) {
+        let groupDefaults = UserDefaults(suiteName: LyricsXGroupIdentifier)
+        groupDefaults?.set(sender.state == NSOnState, forKey: LaunchAndQuitWithPlayer.rawValue)
     }
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
