@@ -18,11 +18,11 @@ LyricsX is a plugin for iTunes, Spotify and Vox, which auto search and download 
 
 <img src="docs/img/desktop_lyrics.gif" width="480px">
 
-<img src="docs/img/preview_1.png" width="1280px">
+<img src="docs/img/preview_1.jpg" width="1280px">
 
-<img src="docs/img/preview_2.png" width="564px">
+<img src="docs/img/preview_2.jpg" width="564px">
 
-<img src="docs/img/preview_3.png" width="652px">
+<img src="docs/img/preview_3.jpg" width="652px">
 
-<img src="docs/img/preview_4.png" width="630px">
+<img src="docs/img/preview_4.jpg" width="630px">
 
