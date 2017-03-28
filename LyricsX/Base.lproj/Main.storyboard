@@ -634,11 +634,11 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="KcA-ys-XDa">
-                                <rect key="frame" x="224" y="44" width="146" height="18"/>
+                                <rect key="frame" x="224" y="44" width="183" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="WIn-RD-PBl"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="iTunes is not playing" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="NLl-9L-0gZ">
+                                <buttonCell key="cell" type="check" title="Music Player is not playing" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="NLl-9L-0gZ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
