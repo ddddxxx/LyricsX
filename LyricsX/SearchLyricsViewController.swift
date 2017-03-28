@@ -79,11 +79,11 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard let title = tableColumn?.title else {
+        guard let ident = tableColumn?.identifier else {
             return nil
         }
         
-        switch title {
+        switch ident {
         case "Title":
             return searchResult[row].idTags[.title] ?? "[lacking]"
         case "Artist":
