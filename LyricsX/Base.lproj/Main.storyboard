@@ -1289,18 +1289,32 @@
                                     <binding destination="2Ed-ZD-PSO" name="value" keyPath="values.DisplayLyricsWithTag" id="vH9-Tx-O5U"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oNM-UP-QTI">
+                                <rect key="frame" x="314" y="9" width="64" height="32"/>
+                                <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fxI-3c-YUD">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="editLyricsAction:" target="j0j-xF-gds" id="b1c-8Q-GhV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="RDM-TH-6JB" secondAttribute="bottom" constant="20" id="2bk-A1-rqq"/>
                             <constraint firstAttribute="trailing" secondItem="IdM-WB-V2o" secondAttribute="trailing" constant="20" id="2nm-0G-wba"/>
+                            <constraint firstItem="oNM-UP-QTI" firstAttribute="trailing" secondItem="IdM-WB-V2o" secondAttribute="trailing" constant="-8" id="FEz-59-3VY"/>
                             <constraint firstItem="IdM-WB-V2o" firstAttribute="top" secondItem="kbP-ZG-vEe" secondAttribute="top" constant="20" id="VG9-vR-76i"/>
                             <constraint firstItem="IdM-WB-V2o" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="20" id="VnR-Dw-Ta3"/>
+                            <constraint firstItem="oNM-UP-QTI" firstAttribute="centerY" secondItem="RDM-TH-6JB" secondAttribute="centerY" id="kHv-RB-NeY"/>
                             <constraint firstItem="RDM-TH-6JB" firstAttribute="top" secondItem="IdM-WB-V2o" secondAttribute="bottom" constant="16" id="ls6-qz-l3E"/>
                             <constraint firstItem="RDM-TH-6JB" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="20" id="qpk-eF-DF9"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="editButton" destination="oNM-UP-QTI" id="ugW-ZL-8g6"/>
                         <outlet property="lyricsTextView" destination="yrx-pH-R1e" id="3kk-LC-zpd"/>
+                        <outlet property="withTagButton" destination="RDM-TH-6JB" id="LPp-GJ-PEI"/>
                     </connections>
                 </viewController>
                 <customObject id="50J-qv-I61" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
