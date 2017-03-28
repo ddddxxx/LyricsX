@@ -158,7 +158,7 @@
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Lhf-nJ-oOF"/>
-                        <menuItem title="About LyricsX..." id="PdE-VG-JUC">
+                        <menuItem title="About LyricsX" id="PdE-VG-JUC">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
@@ -1443,7 +1443,7 @@
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn editable="NO" width="156.5" minWidth="40" maxWidth="1000" id="jWT-S5-YXM">
+                                                        <tableColumn identifier="Title" editable="NO" width="156.5" minWidth="40" maxWidth="1000" id="jWT-S5-YXM">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Title">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1456,7 +1456,7 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
-                                                        <tableColumn editable="NO" width="96.5" minWidth="40" maxWidth="1000" id="HMU-fa-17B">
+                                                        <tableColumn identifier="Artist" editable="NO" width="96.5" minWidth="40" maxWidth="1000" id="HMU-fa-17B">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Artist">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1469,7 +1469,7 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
-                                                        <tableColumn identifier="" editable="NO" width="67" minWidth="10" maxWidth="3.4028234663852886e+38" id="1xI-G4-Fsc">
+                                                        <tableColumn identifier="Source" editable="NO" width="67" minWidth="10" maxWidth="3.4028234663852886e+38" id="1xI-G4-Fsc">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Source">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

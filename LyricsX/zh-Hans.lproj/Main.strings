@@ -216,7 +216,7 @@
 "iMD-Wy-Bm7.title" = "屏幕截图时";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
-"jWT-S5-YXM.headerCell.title" = "Title";
+"jWT-S5-YXM.headerCell.title" = "歌曲";
 
 /* Class = "NSButtonCell"; title = "Spotify"; ObjectID = "jhm-dK-4Y3"; */
 "jhm-dK-4Y3.title" = "Spotify";
