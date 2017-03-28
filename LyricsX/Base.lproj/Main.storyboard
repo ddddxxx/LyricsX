@@ -423,40 +423,7 @@
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="5xx-Ht-pau">
                                             <rect key="frame" x="119" y="0.0" width="264" height="106"/>
                                             <subviews>
-                                                <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wb5-Rf-75m">
-                                                    <rect key="frame" x="100" y="7" width="66" height="20"/>
-                                                    <buttonCell key="cell" type="radio" title="Spotify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jhm-dK-4Y3">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="uP4-D4-sN6"/>
-                                                    </connections>
-                                                </button>
-                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="6Bj-Lj-AqF">
-                                                    <rect key="frame" x="10" y="7" width="62" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="917-Pa-ZzB"/>
-                                                    </constraints>
-                                                    <buttonCell key="cell" type="radio" title="iTunes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cRD-iF-2qo">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="QHf-PU-hBB"/>
-                                                    </connections>
-                                                </button>
-                                                <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="RSg-dR-tCT">
-                                                    <rect key="frame" x="202" y="7" width="45" height="20"/>
-                                                    <buttonCell key="cell" type="radio" title="Vox" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oTS-3z-Tz7">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="iyh-YZ-fsB"/>
-                                                    </connections>
-                                                </button>
-                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="iIP-cu-YIV">
+                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="iIP-cu-YIV" userLabel="iTunes icon">
                                                     <rect key="frame" x="8" y="34" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="YdP-3M-w9U"/>
@@ -470,7 +437,20 @@
                                                         <action selector="performClick:" target="6Bj-Lj-AqF" id="g5E-6j-bIo"/>
                                                     </connections>
                                                 </button>
-                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="LQF-xP-dc8">
+                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="6Bj-Lj-AqF" userLabel="Prefer iTunes">
+                                                    <rect key="frame" x="10" y="7" width="62" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="917-Pa-ZzB"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="radio" title="iTunes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cRD-iF-2qo">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="QHf-PU-hBB"/>
+                                                    </connections>
+                                                </button>
+                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="LQF-xP-dc8" userLabel="Spotify icon">
                                                     <rect key="frame" x="100" y="34" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="tw5-YA-trL"/>
@@ -484,7 +464,17 @@
                                                         <action selector="performClick:" target="Wb5-Rf-75m" id="IBZ-3w-o6k"/>
                                                     </connections>
                                                 </button>
-                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="lc1-kb-SxJ">
+                                                <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wb5-Rf-75m">
+                                                    <rect key="frame" x="100" y="7" width="66" height="20"/>
+                                                    <buttonCell key="cell" type="radio" title="Spotify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jhm-dK-4Y3">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="uP4-D4-sN6"/>
+                                                    </connections>
+                                                </button>
+                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="lc1-kb-SxJ" userLabel="Vox icon">
                                                     <rect key="frame" x="192" y="34" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="Dsr-eT-oSa"/>
@@ -496,6 +486,16 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="performClick:" target="RSg-dR-tCT" id="i3G-mI-qXK"/>
+                                                    </connections>
+                                                </button>
+                                                <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="RSg-dR-tCT">
+                                                    <rect key="frame" x="202" y="7" width="45" height="20"/>
+                                                    <buttonCell key="cell" type="radio" title="Vox" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oTS-3z-Tz7">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="iyh-YZ-fsB"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -526,6 +526,20 @@
                                     </constraints>
                                 </view>
                             </box>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="mfr-Al-Vu9">
+                                <rect key="frame" x="224" y="204" width="243" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="cPM-Hy-gXd"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Auto launch &amp; quit with music player" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="v63-4a-fPw">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="launchWithPlayerAction:" target="d5d-dC-DK4" id="hDP-kp-V2p"/>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.LaunchAndQuitWithPlayer" id="xkc-oL-EdL"/>
+                                </connections>
+                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
                                 <rect key="frame" x="95" y="171" width="117" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics saving path:" id="0M7-ao-0jb">
@@ -645,20 +659,6 @@
                                     <binding destination="hHn-Lo-CwP" name="value" keyPath="values.DisableLyricsWhenSreenShot" id="O5h-wv-Lku"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="mfr-Al-Vu9">
-                                <rect key="frame" x="224" y="204" width="243" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="cPM-Hy-gXd"/>
-                                </constraints>
-                                <buttonCell key="cell" type="check" title="Auto launch &amp; quit with music player" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="v63-4a-fPw">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="launchWithPlayerAction:" target="d5d-dC-DK4" id="hDP-kp-V2p"/>
-                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.LaunchAndQuitWithPlayer" id="xkc-oL-EdL"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="uoA-YU-YZk" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="0XK-XW-bY2"/>
@@ -747,7 +747,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbH-Ph-PYg">
-                                <rect key="frame" x="117" y="117" width="40" height="21"/>
+                                <rect key="frame" x="132" y="117" width="40" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="9NT-Kb-10b"/>
                                 </constraints>
@@ -758,9 +758,9 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHc-gj-4JF">
-                                <rect key="frame" x="171" y="118" width="250" height="20"/>
+                                <rect key="frame" x="186" y="118" width="260" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="co2-Ou-lic"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="co2-Ou-lic"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" usesSingleLineMode="YES" id="bQQ-3N-RVe">
                                     <font key="font" metaFont="system"/>
@@ -781,7 +781,7 @@
                                 </connections>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="peK-p0-cOB">
-                                <rect key="frame" x="397" y="118" width="24" height="20"/>
+                                <rect key="frame" x="422" y="118" width="24" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="GNN-su-fP4"/>
                                 </constraints>
@@ -794,18 +794,18 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKI-jJ-APf">
-                                <rect key="frame" x="101" y="84" width="56" height="17"/>
+                                <rect key="frame" x="59" y="84" width="113" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="52" id="Czq-Jo-4LL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Height:" id="9uO-zE-fs2">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Height from dock:" id="9uO-zE-fs2">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BE1-9G-oVL">
-                                <rect key="frame" x="169" y="83" width="194" height="19"/>
+                                <rect key="frame" x="184" y="83" width="204" height="19"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="yam-dc-MYO"/>
                                 <connections>
                                     <action selector="takeIntegerValueFrom:" target="l5v-ad-QQh" id="ZuF-Cw-nLc"/>
@@ -813,7 +813,7 @@
                                 </connections>
                             </slider>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l5v-ad-QQh">
-                                <rect key="frame" x="369" y="82" width="52" height="22"/>
+                                <rect key="frame" x="394" y="82" width="52" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="hQB-fh-kG9"/>
                                 </constraints>
@@ -914,7 +914,7 @@
                             <constraint firstAttribute="bottom" secondItem="hn1-Pb-VCw" secondAttribute="bottom" constant="24" id="VQQ-X7-Smb"/>
                             <constraint firstItem="peK-p0-cOB" firstAttribute="bottom" secondItem="oHc-gj-4JF" secondAttribute="bottom" id="Wag-00-1SJ"/>
                             <constraint firstItem="l5v-ad-QQh" firstAttribute="leading" secondItem="BE1-9G-oVL" secondAttribute="trailing" constant="8" id="WmJ-cb-vMC"/>
-                            <constraint firstItem="YbH-Ph-PYg" firstAttribute="trailing" secondItem="Y71-zj-nPg" secondAttribute="centerX" constant="-115" id="ZIJ-cg-4j1"/>
+                            <constraint firstItem="YbH-Ph-PYg" firstAttribute="trailing" secondItem="Y71-zj-nPg" secondAttribute="centerX" constant="-100" id="ZIJ-cg-4j1"/>
                             <constraint firstItem="oHc-gj-4JF" firstAttribute="leading" secondItem="YbH-Ph-PYg" secondAttribute="trailing" constant="16" id="aeG-yk-bYd"/>
                             <constraint firstItem="oHc-gj-4JF" firstAttribute="top" secondItem="Y71-zj-nPg" secondAttribute="top" constant="24" id="bWf-Rx-gbo"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oHc-gj-4JF" secondAttribute="trailing" constant="40" id="beZ-UQ-pc7"/>
