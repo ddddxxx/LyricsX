@@ -15,7 +15,15 @@ class KaraokeLyricsView: NSBox {
     private let secondLineLrcView = NSTextField(labelWithString: "")
     private let waitingLrcView = NSTextField(labelWithString: "")
     
-    private var onAnimation = false
+    var firstLine = "LyricsX" {
+        didSet { updateDisplay() }
+    }
+    var secondLine = "" {
+        didSet { updateDisplay() }
+    }
+    var onAnimation = false {
+        didSet { updateDisplay() }
+    }
     
     dynamic var fontName = "Helvetica Light"
     dynamic var fontSize = 24 { didSet { updateFontSize() } }
@@ -58,19 +66,6 @@ class KaraokeLyricsView: NSBox {
         makeConstraints()
     }
     
-    func setLrc(_ lrc: String, second: String, animation: Bool) {
-        if animation {
-            secondLineLrcView.stringValue = lrc
-            waitingLrcView.stringValue = second
-        } else {
-            firstLineLrcView.stringValue = lrc
-            secondLineLrcView.stringValue = second
-        }
-        onAnimation = animation
-        updateConstraint()
-        updateVisibility()
-    }
-    
     private func updateFontSize() {
         let insetX = fontSize
         let insetY = fontSize / 3
@@ -85,12 +80,10 @@ class KaraokeLyricsView: NSBox {
         cornerRadius = CGFloat(fontSize / 2)
     }
     
-    private var normalConstraint: [SnapKit.Constraint] = []
-    private var animatedConstraint: [SnapKit.Constraint] = []
+    // MARK: - Layout
     
-    private var firstLineConstraint: [SnapKit.Constraint] = []
-    private var secondLineConstraint: [SnapKit.Constraint] = []
-    private var waitingLineConstraint: [SnapKit.Constraint] = []
+    private var constraintsForAnimation: [Bool: [SnapKit.Constraint]] = [:]
+    private var constraintsForLyrics: [NSTextField: [SnapKit.Constraint]] = [:]
     
     private var topInsetConstraint: [SnapKit.Constraint] = []
     private var bottomInsetConstraint: [SnapKit.Constraint] = []
@@ -114,9 +107,9 @@ class KaraokeLyricsView: NSBox {
             
             let cons3 = make.top.equalToSuperview().offset(insetY).priority(750).constraint
             let cons4 = make.bottom.equalToSuperview().offset(-insetY).priority(500).constraint
-            normalConstraint += [cons1, cons2, cons3, cons4]
+            constraintsForAnimation[false] = [cons1, cons2, cons3, cons4]
             
-            firstLineConstraint += [cons3]
+            constraintsForLyrics[firstLineLrcView] = [cons3]
             
             topInsetConstraint += [cons3]
             bottomInsetConstraint += [cons4]
@@ -133,13 +126,13 @@ class KaraokeLyricsView: NSBox {
             
             let cons1 = make.top.equalToSuperview().offset(insetY).priority(500).constraint
             let cons2 = make.bottom.equalToSuperview().offset(-insetY).priority(750).constraint
-            normalConstraint += [cons1, cons2]
+            constraintsForAnimation[false]! += [cons1, cons2]
             
             let cons3 = make.top.equalToSuperview().offset(insetY).priority(750).constraint
             let cons4 = make.bottom.equalToSuperview().offset(-insetY).priority(500).constraint
-            animatedConstraint += [cons3, cons4]
+            constraintsForAnimation[true] = [cons3, cons4]
             
-            secondLineConstraint += [cons2, cons3]
+            constraintsForLyrics[secondLineLrcView] = [cons2, cons3]
             
             topInsetConstraint += [cons1, cons3]
             bottomInsetConstraint += [cons2, cons4]
@@ -153,9 +146,9 @@ class KaraokeLyricsView: NSBox {
             
             let cons3 = make.top.equalToSuperview().offset(insetY).priority(500).constraint
             let cons4 = make.bottom.equalToSuperview().offset(-insetY).priority(750).constraint
-            animatedConstraint += [cons1, cons2, cons3, cons4]
+            constraintsForAnimation[true]! += [cons1, cons2, cons3, cons4]
             
-            waitingLineConstraint += [cons4]
+            constraintsForLyrics[waitingLrcView] = [cons4]
             
             topInsetConstraint += [cons3]
             bottomInsetConstraint += [cons4]
@@ -163,59 +156,48 @@ class KaraokeLyricsView: NSBox {
             rightInsetConstraint += [cons2]
         }
         
-        updateConstraint()
+        updateDisplay()
     }
     
-    private func updateConstraint() {
+    private func updateDisplay() {
+        let upperView: NSTextField
+        let lowerView: NSTextField
+        let alternateView: NSTextField
         if onAnimation {
-            normalConstraint.forEach() { $0.deactivate() }
-            animatedConstraint.forEach() { $0.activate() }
+            upperView = secondLineLrcView
+            lowerView = waitingLrcView
+            alternateView = firstLineLrcView
         } else {
-            normalConstraint.forEach() { $0.activate() }
-            animatedConstraint.forEach() { $0.deactivate() }
+            upperView = firstLineLrcView
+            lowerView = secondLineLrcView
+            alternateView = waitingLrcView
         }
-    }
-    
-    private func updateVisibility() {
-        if onAnimation {
-            firstLineLrcView.alphaValue = 0
-            waitingLrcView.alphaValue = 1
-            
-            guard secondLineLrcView.stringValue != "" else {
-                secondLineLrcView.isHidden = true
-                secondLineConstraint.forEach() { $0.deactivate() }
-                alphaValue = 0
-                return
-            }
-            secondLineLrcView.isHidden = false
-            alphaValue = 1
-            
-            guard waitingLrcView.stringValue != "" else {
-                waitingLrcView.isHidden = true
-                waitingLineConstraint.forEach() { $0.deactivate() }
-                return
-            }
-            waitingLrcView.isHidden = false
-        } else {
-            firstLineLrcView.alphaValue = 1
-            waitingLrcView.alphaValue = 0
-            
-            guard firstLineLrcView.stringValue != "" else {
-                firstLineLrcView.isHidden = true
-                firstLineConstraint.forEach() { $0.deactivate() }
-                alphaValue = 0
-                return
-            }
-            firstLineLrcView.isHidden = false
-            alphaValue = 1
-            
-            guard secondLineLrcView.stringValue != "" else {
-                secondLineLrcView.isHidden = true
-                secondLineConstraint.forEach() { $0.deactivate() }
-                return
-            }
-            secondLineLrcView.isHidden = false
+        
+        constraintsForAnimation[onAnimation]!.forEach() { $0.activate() }
+        constraintsForAnimation[!onAnimation]!.forEach() { $0.deactivate() }
+        
+        upperView.alphaValue = 1
+        lowerView.alphaValue = 1
+        alternateView.alphaValue = 0
+        
+        upperView.stringValue = firstLine
+        lowerView.stringValue = secondLine
+        
+        guard firstLine != "" else {
+            upperView.isHidden = true
+            constraintsForLyrics[upperView]?.forEach() { $0.deactivate() }
+            alphaValue = 0
+            return
         }
+        upperView.isHidden = false
+        alphaValue = 1
+        
+        guard secondLine != "" else {
+            lowerView.isHidden = true
+            constraintsForLyrics[lowerView]?.forEach() { $0.deactivate() }
+            return
+        }
+        lowerView.isHidden = false
     }
     
 }

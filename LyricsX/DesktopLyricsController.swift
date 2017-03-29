@@ -55,8 +55,6 @@ class DesktopLyricsViewController: NSViewController {
         
         lyricsHeightConstraint.constant = CGFloat(Preference[DesktopLyricsHeighFromDock])
         
-        displayLrc("LyricsX")
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.displayLrc("")
             self.addObserver()
@@ -109,12 +107,14 @@ class DesktopLyricsViewController: NSViewController {
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.2
             context.allowsImplicitAnimation = true
-            self.lyricsView.setLrc(firstLine, second: secondLine, animation: true)
+            self.lyricsView.firstLine = firstLine
+            self.lyricsView.secondLine = secondLine
+            self.lyricsView.onAnimation = true
             self.view.needsUpdateConstraints = true
             self.view.needsLayout = true
             self.view.layoutSubtreeIfNeeded()
         }, completionHandler: {
-            self.lyricsView.setLrc(firstLine, second: secondLine, animation: false)
+            self.lyricsView.onAnimation = false
             self.view.needsUpdateConstraints = true
             self.view.needsLayout = true
             self.view.layoutSubtreeIfNeeded()
