@@ -19,7 +19,7 @@ class Lyrics163: LyricsSource {
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
-    func iFellLucky(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
+    func iFeelLucky(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         let url = URL(string: "http://music.163.com/api/search/pc")!
         let body = "s=\(title) \(artist)&offset=0&limit=1&type=1".data(using: .utf8)!
         

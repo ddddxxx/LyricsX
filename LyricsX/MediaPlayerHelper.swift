@@ -23,8 +23,6 @@ class MediaPlayerHelper: MediaPlayerDelegate {
     var currentLyricsLine: LyricsLine?
     var nextLyricsLine: LyricsLine?
     
-    var fetchLrcQueue = OperationQueue()
-    
     init() {
         switch Preference[PreferredPlayerIndex] {
         case 0:
@@ -72,7 +70,7 @@ class MediaPlayerHelper: MediaPlayerDelegate {
             currentLyrics = localLyrics
             currentLyrics?.filtrate()
         } else {
-            lyricsSource.iFellLucky(title: title, artist: artist) {
+            lyricsSource.iFeelLucky(title: title, artist: artist) {
                 self.lyricsReceived(lyrics: $0)
             }
         }
