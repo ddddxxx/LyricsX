@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="N3z-4I-Oeu">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="N3z-4I-Oeu">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -182,7 +182,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="234" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DG2-8b-vTy">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DG2-8b-vTy">
                             <rect key="frame" x="18" y="6" width="85" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics Offset:" id="IFz-XQ-DHf">
                                 <font key="font" metaFont="system"/>
@@ -190,7 +190,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BE8-Ux-QD2">
+                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BE8-Ux-QD2">
                             <rect key="frame" x="106" y="6" width="74" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="s38-xY-35C"/>
@@ -216,7 +216,7 @@
                                 <binding destination="Voe-Tx-rLC" name="value" keyPath="self.currentOffset" id="Mwx-Ko-1Xn"/>
                             </connections>
                         </stepper>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-PC-ZCl">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-PC-ZCl">
                             <rect key="frame" x="199" y="6" width="22" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="VQG-Pf-NsG">
                                 <font key="font" metaFont="system"/>
@@ -268,78 +268,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="DKt-ce-wX8">
-                                <rect key="frame" x="118" y="20" width="245" height="127"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="Z6w-NG-DTp">
-                                    <rect key="frame" x="0.0" y="0.0" width="245" height="127"/>
+                            <box boxType="custom" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="DKt-ce-wX8" customClass="KaraokeLyricsView" customModule="LyricsX" customModuleProvider="target">
+                                <rect key="frame" x="175" y="20" width="130" height="46"/>
+                                <view key="contentView" id="Z6w-NG-DTp">
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="46"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ty-Fn-vpw">
-                                            <rect key="frame" x="18" y="88" width="209" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <shadow key="shadow" blurRadius="3">
-                                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </shadow>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="riB-ZI-myj">
-                                                <font key="font" size="24" name="HelveticaNeue-Light"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                            <connections>
-                                                <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="10D-ta-JWM">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="pRC-hv-j8h"/>
-                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="pRC-hv-j8h" id="TZe-PA-Egw"/>
-                                            </connections>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wua-9w-SyS">
-                                            <rect key="frame" x="18" y="51" width="209" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <shadow key="shadow" blurRadius="3">
-                                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </shadow>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="1JT-sp-3Ci">
-                                                <font key="font" size="24" name="HelveticaNeue-Light"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                            <connections>
-                                                <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="ulk-hk-wGN">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="Ps2-cv-Zb6"/>
-                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="Ps2-cv-Zb6" id="G4H-bX-Mzd"/>
-                                            </connections>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxd-qE-sgm">
-                                            <rect key="frame" x="18" y="10" width="209" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <shadow key="shadow" blurRadius="3">
-                                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </shadow>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="MRM-nL-ymX">
-                                                <font key="font" size="24" name="HelveticaNeue-Light"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                            <connections>
-                                                <binding destination="AB5-cL-Rpb" name="textColor" keyPath="values.DesktopLyricsColor" id="WLj-ff-qCr">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="AB5-cL-Rpb" name="fontName" keyPath="values.DesktopLyricsFontName" id="ebk-r7-uRx"/>
-                                                <binding destination="AB5-cL-Rpb" name="fontSize" keyPath="values.DesktopLyricsFontSize" previousBinding="ebk-r7-uRx" id="bYb-xA-IVq"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" placeholder="YES" id="Isg-ak-Efq"/>
+                                    <constraint firstAttribute="height" constant="46" placeholder="YES" id="ha3-vh-gB1"/>
+                                </constraints>
                                 <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <binding destination="AB5-cL-Rpb" name="hidden" keyPath="values.DesktopLyricsEnabled" id="yTu-zL-Elu">
@@ -350,12 +288,14 @@
                                 </connections>
                             </box>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="DKt-ce-wX8" firstAttribute="centerX" secondItem="Jim-N9-wko" secondAttribute="centerX" id="Q5c-7w-xUS"/>
+                            <constraint firstAttribute="bottom" secondItem="DKt-ce-wX8" secondAttribute="bottom" constant="20" id="qqd-mx-rVB"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="DKt-ce-wX8" id="l4M-FK-kqI"/>
-                        <outlet property="firstLineLrcView" destination="5ty-Fn-vpw" id="ugd-E5-NQK"/>
-                        <outlet property="secondLineLrcView" destination="wua-9w-SyS" id="5O2-es-wWG"/>
-                        <outlet property="waitingLrcView" destination="cxd-qE-sgm" id="YMq-mT-h0v"/>
+                        <outlet property="lyricsHeightConstraint" destination="qqd-mx-rVB" id="bjG-r6-xie"/>
+                        <outlet property="lyricsView" destination="DKt-ce-wX8" id="OnU-jX-f4C"/>
                     </connections>
                 </viewController>
                 <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -812,7 +752,7 @@
                                     <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsHeighFromDock" id="Hdo-E3-Cf5"/>
                                 </connections>
                             </slider>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l5v-ad-QQh">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l5v-ad-QQh">
                                 <rect key="frame" x="394" y="82" width="52" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="hQB-fh-kG9"/>
