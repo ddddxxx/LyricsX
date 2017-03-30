@@ -19,7 +19,7 @@ class MenuBarLyrics {
     
     init() {
         observerTokens += [NotificationCenter.default.addObserver(forName: .PositionChange, object: nil, queue: .main) { n in
-            guard self.enabled, let lrc = n.userInfo?["lrc"] as? String, lrc != "" else {
+            guard self.enabled, let lrc = (n.userInfo?["lrc"] as? LyricsLine)?.sentence, lrc != "" else {
                 self.statusItem = nil
                 return
             }
