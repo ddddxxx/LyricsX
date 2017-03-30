@@ -16,13 +16,15 @@ class LyricsHUDViewController: NSViewController {
     
     private var ranges: [(Double, NSRange)] = []
     
+    var currentLyricsPosition: Double = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTextContents()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .lyricsShouldDisplay, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLyricsChange), name: .currentLyricsChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
     }
     
     override func viewDidDisappear() {
@@ -56,7 +58,6 @@ class LyricsHUDViewController: NSViewController {
         self.lyricsTextView.string = lrcContent
         
         self.lyricsTextView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, self.lyricsTextView.string!.characters.count))
-        self.scroll(position: 0)
     }
     
     func handleLyricsChange(_ n: Notification) {
@@ -67,6 +68,11 @@ class LyricsHUDViewController: NSViewController {
     }
     
     func handlePositionChange(_ n: Notification) {
+        guard let lrcPos = (n.userInfo?["lrc"] as? LyricsLine)?.position, currentLyricsPosition != lrcPos else {
+            return
+        }
+        currentLyricsPosition = lrcPos
+        
         guard let pos = n.userInfo?["position"] as? Double else {
             return
         }
@@ -128,6 +134,10 @@ class LyricsHUDViewController: NSViewController {
         lyricsScrollView.automaticallyAdjustsContentInsets = false
         lyricsScrollView.contentInsets = EdgeInsets(top: topInset, left: 0, bottom: BottomInset, right: 0)
         lyricsScrollView.scrollerInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    override func scrollWheel(with event: NSEvent) {
+        super.scrollWheel(with: event)
     }
     
 }

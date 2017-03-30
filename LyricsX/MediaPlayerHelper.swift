@@ -17,12 +17,9 @@ class MediaPlayerHelper: MediaPlayerDelegate {
     var currentLyrics: Lyrics? {
         didSet {
             appDelegate()?.currentOffset = currentLyrics?.offset ?? 0
-            NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
+            NotificationCenter.default.post(name: .LyricsChange, object: nil)
         }
     }
-    
-    var currentLyricsLine: LyricsLine?
-    var nextLyricsLine: LyricsLine?
     
     init() {
         switch Preference[PreferredPlayerIndex] {
@@ -51,16 +48,14 @@ class MediaPlayerHelper: MediaPlayerDelegate {
     
     func playerStateChanged(state: MediaPlayerState) {
         if state != .playing, Preference[DisableLyricsWhenPaused] {
-            currentLyricsLine = nil
-            nextLyricsLine = nil
-            NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+            NotificationCenter.default.post(name: .PositionChange, object: nil)
         }
     }
     
     func currentTrackChanged(track: MediaTrack?) {
         currentLyrics = nil
         let info = ["lrc": "", "next": ""]
-        NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
+        NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
         guard let track = track else {
             return
         }
@@ -83,25 +78,12 @@ class MediaPlayerHelper: MediaPlayerDelegate {
         }
         let lrc = lyrics[position]
         
-        if currentLyricsLine == lrc.current {
-            return
-        }
-        currentLyricsLine = lrc.current
-        nextLyricsLine = lrc.next
-        
-        let nextLyricsSentence: String?
-        if Preference[PreferBilingualLyrics] {
-            nextLyricsSentence = currentLyricsLine?.translation ?? nextLyricsLine?.sentence
-        } else {
-            nextLyricsSentence = nextLyricsLine?.sentence
-        }
-        
         let info = [
-            "lrc": currentLyricsLine?.sentence as Any,
-            "next": nextLyricsSentence as Any,
-            "position": currentLyricsLine?.position as Any,
+            "lrc": lrc.current as Any,
+            "next": lrc.next as Any,
+            "position": position as Any,
         ]
-        NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
+        NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
     }
     
     // MARK: LyricsSourceDelegate

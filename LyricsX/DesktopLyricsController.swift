@@ -34,6 +34,8 @@ class DesktopLyricsViewController: NSViewController {
     
     private var chineseConverter: ChineseConverter?
     
+    var currentLyricsPosition: Double = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,11 +64,7 @@ class DesktopLyricsViewController: NSViewController {
     }
     
     private func addObserver() {
-        NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
-            let lrc = n.userInfo?["lrc"] as? String
-            let next = n.userInfo?["next"] as? String
-            self.displayLrc(lrc, secondLine: next)
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
         
         Preference.subscribe(key: DesktopLyricsHeighFromDock) { change in
             self.lyricsHeightConstraint.constant = CGFloat(change.newValue)
@@ -89,6 +87,29 @@ class DesktopLyricsViewController: NSViewController {
             default:
                 self.chineseConverter = nil
             }
+        }
+    }
+    
+    func handlePositionChange(_ n: Notification) {
+        let lrc = n.userInfo?["lrc"] as? LyricsLine
+        let next = n.userInfo?["next"] as? LyricsLine
+        
+        guard currentLyricsPosition != lrc?.position else {
+            return
+        }
+        
+        currentLyricsPosition = lrc?.position ?? 0
+        
+        let firstLine = lrc?.sentence
+        let secondLine: String?
+        if Preference[PreferBilingualLyrics] {
+            secondLine = lrc?.translation ?? next?.sentence
+        } else {
+            secondLine = next?.sentence
+        }
+        
+        DispatchQueue.main.async {
+            self.displayLrc(firstLine, secondLine: secondLine)
         }
     }
     

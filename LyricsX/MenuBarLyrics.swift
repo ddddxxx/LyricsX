@@ -18,7 +18,7 @@ class MenuBarLyrics {
     var observerTokens = [NSObjectProtocol]()
     
     init() {
-        observerTokens += [NotificationCenter.default.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: .main) { n in
+        observerTokens += [NotificationCenter.default.addObserver(forName: .PositionChange, object: nil, queue: .main) { n in
             guard self.enabled, let lrc = n.userInfo?["lrc"] as? String, lrc != "" else {
                 self.statusItem = nil
                 return
