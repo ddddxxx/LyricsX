@@ -107,6 +107,7 @@ class DesktopLyricsViewController: NSViewController {
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.2
             context.allowsImplicitAnimation = true
+            context.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
             self.lyricsView.firstLine = firstLine
             self.lyricsView.secondLine = secondLine
             self.lyricsView.onAnimation = true

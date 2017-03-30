@@ -17,6 +17,7 @@ class MediaPlayerHelper: MediaPlayerDelegate {
     var currentLyrics: Lyrics? {
         didSet {
             appDelegate()?.currentOffset = currentLyrics?.offset ?? 0
+            NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
         }
     }
     
@@ -97,7 +98,8 @@ class MediaPlayerHelper: MediaPlayerDelegate {
         
         let info = [
             "lrc": currentLyricsLine?.sentence as Any,
-            "next": nextLyricsSentence as Any
+            "next": nextLyricsSentence as Any,
+            "position": currentLyricsLine?.position as Any,
         ]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }

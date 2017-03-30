@@ -22,9 +22,11 @@ let GroupPreference = EasyPreference(defaults: UserDefaults(suiteName: LyricsXGr
 // MARK: - Notification Name
 
 let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
+let CurrentLyricsChangeNotification = "CurrentLyricsChangeNotification"
 
 extension Notification.Name {
     static var lyricsShouldDisplay = Notification.Name(LyricsShouldDisplayNotification)
+    static var currentLyricsChange = Notification.Name(CurrentLyricsChangeNotification)
 }
 
 // MARK: - User Defaults
