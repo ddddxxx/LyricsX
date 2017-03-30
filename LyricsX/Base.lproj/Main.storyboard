@@ -251,12 +251,16 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="208" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                        <connections>
+                            <binding destination="UAo-xR-v4L" name="visible" keyPath="values.DesktopLyricsEnabled" id="NUp-wT-57g"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="Mpu-mB-dfa" kind="relationship" relationship="window.shadowedContentViewController" id="N2j-su-VUi"/>
                     </connections>
                 </windowController>
                 <customObject id="y9u-wo-y4M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="UAo-xR-v4L"/>
             </objects>
             <point key="canvasLocation" x="667" y="-352"/>
         </scene>
@@ -279,13 +283,6 @@
                                     <constraint firstAttribute="height" constant="46" placeholder="YES" id="ha3-vh-gB1"/>
                                 </constraints>
                                 <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <binding destination="AB5-cL-Rpb" name="hidden" keyPath="values.DesktopLyricsEnabled" id="yTu-zL-Elu">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
                             </box>
                         </subviews>
                         <constraints>
