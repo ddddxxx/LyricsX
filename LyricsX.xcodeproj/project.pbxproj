@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */; };
 		BB0B296A1E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */; };
 		BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B296B1E80CB0600B1D6C9 /* AboutViewController.swift */; };
 		BB0B296E1E80CD9E00B1D6C9 /* LyricsQQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B296D1E80CD9E00B1D6C9 /* LyricsQQ.swift */; };
@@ -94,6 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KaraokeLyricsView.swift; sourceTree = "<group>"; };
 		BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceFilterViewController.swift; sourceTree = "<group>"; };
 		BB0B296B1E80CB0600B1D6C9 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		BB0B296D1E80CD9E00B1D6C9 /* LyricsQQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsQQ.swift; path = Lyrics/LyricsQQ.swift; sourceTree = "<group>"; };
@@ -176,6 +178,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB063B2F1E8A93CE00A25C3E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		BB4141A11E458BA800A51775 = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
 				BBC1D35A1E485BA7002538A2 /* MediaPlayerHelper.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
+				BB063B2F1E8A93CE00A25C3E /* View */,
 				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
 				BB7EC7B51E4ED02000A0AC3F /* Lyrics */,
 				BBBB6EC31E86B08E003B3ED6 /* MediaPlayer */,
@@ -521,6 +532,7 @@
 				BBB8DA3C1E86653700EF0A18 /* SpotifyBridge.swift in Sources */,
 				BBBB6EC21E86A2DD003B3ED6 /* MediaPlayerProtocol.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunesBridge.swift in Sources */,
+				BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */,
 				BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */,
 				BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */,
 				BBB8DA3E1E86657F00EF0A18 /* VoxBridge.swift in Sources */,

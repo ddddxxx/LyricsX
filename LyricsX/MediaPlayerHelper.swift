@@ -17,13 +17,12 @@ class MediaPlayerHelper: MediaPlayerDelegate {
     var currentLyrics: Lyrics? {
         didSet {
             appDelegate()?.currentOffset = currentLyrics?.offset ?? 0
+            NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
         }
     }
     
     var currentLyricsLine: LyricsLine?
     var nextLyricsLine: LyricsLine?
-    
-    var fetchLrcQueue = OperationQueue()
     
     init() {
         switch Preference[PreferredPlayerIndex] {
@@ -72,7 +71,7 @@ class MediaPlayerHelper: MediaPlayerDelegate {
             currentLyrics = localLyrics
             currentLyrics?.filtrate()
         } else {
-            lyricsSource.iFellLucky(title: title, artist: artist) {
+            lyricsSource.iFeelLucky(title: title, artist: artist) {
                 self.lyricsReceived(lyrics: $0)
             }
         }
@@ -99,7 +98,8 @@ class MediaPlayerHelper: MediaPlayerDelegate {
         
         let info = [
             "lrc": currentLyricsLine?.sentence as Any,
-            "next": nextLyricsSentence as Any
+            "next": nextLyricsSentence as Any,
+            "position": currentLyricsLine?.position as Any,
         ]
         NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
     }
