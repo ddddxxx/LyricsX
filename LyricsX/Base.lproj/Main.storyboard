@@ -1182,7 +1182,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-WB-V2o">
+                            <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-WB-V2o" customClass="ScrollLyricsView" customModule="LyricsX" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="300" height="380"/>
                                 <clipView key="contentView" drawsBackground="NO" id="lTs-ol-c97">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="380"/>
@@ -1233,11 +1233,9 @@
                     </view>
                     <connections>
                         <outlet property="lyricsScrollView" destination="IdM-WB-V2o" id="c7A-VH-22w"/>
-                        <outlet property="lyricsTextView" destination="yrx-pH-R1e" id="3kk-LC-zpd"/>
                     </connections>
                 </viewController>
                 <customObject id="50J-qv-I61" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="2Ed-ZD-PSO"/>
             </objects>
             <point key="canvasLocation" x="1281" y="654"/>
         </scene>
