@@ -32,7 +32,6 @@
 		BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB58B0831E82B82F00598D4F /* OpenCC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB58B0871E82BFF600598D4F /* LyricsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B0861E82BFF600598D4F /* LyricsLine.swift */; };
 		BB58B0891E82CA9B00598D4F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
-		BB58DBBD1E8E5097004F5627 /* LyricsHUDAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58DBBC1E8E5097004F5627 /* LyricsHUDAccessoryViewController.swift */; };
 		BB6004281E6F0BB100170CB4 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6004271E6F0BB100170CB4 /* Automator.framework */; };
 		BB60F2FC1E87CF9200BA1FD2 /* Vox.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */; };
 		BB60F3041E889A1B00BA1FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60F3031E889A1B00BA1FD2 /* AppDelegate.swift */; };
@@ -122,7 +121,6 @@
 		BB58B0831E82B82F00598D4F /* OpenCC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCC.framework; path = Carthage/Build/Mac/OpenCC.framework; sourceTree = "<group>"; };
 		BB58B0861E82BFF600598D4F /* LyricsLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsLine.swift; path = Lyrics/LyricsLine.swift; sourceTree = "<group>"; };
 		BB58B0881E82CA9B00598D4F /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		BB58DBBC1E8E5097004F5627 /* LyricsHUDAccessoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDAccessoryViewController.swift; sourceTree = "<group>"; };
 		BB6004271E6F0BB100170CB4 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = System/Library/Frameworks/Automator.framework; sourceTree = SDKROOT; };
 		BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vox.swift; sourceTree = "<group>"; };
 		BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsXHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -272,7 +270,6 @@
 				BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */,
 				BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */,
 				BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */,
-				BB58DBBC1E8E5097004F5627 /* LyricsHUDAccessoryViewController.swift */,
 				BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */,
 				BB0B296B1E80CB0600B1D6C9 /* AboutViewController.swift */,
 			);
@@ -522,7 +519,6 @@
 				BB4141C01E45B67800A51775 /* DesktopLyricsController.swift in Sources */,
 				BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */,
 				BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */,
-				BB58DBBD1E8E5097004F5627 /* LyricsHUDAccessoryViewController.swift in Sources */,
 				BBBB6EC71E86C74F003B3ED6 /* Spotify.swift in Sources */,
 				BB4141CC1E47444200A51775 /* LyricsXiami.swift in Sources */,
 				BB60F2FC1E87CF9200BA1FD2 /* Vox.swift in Sources */,

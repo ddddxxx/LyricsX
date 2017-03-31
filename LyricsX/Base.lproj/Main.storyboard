@@ -348,11 +348,11 @@
             <objects>
                 <viewController id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="379"/>
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="387"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="Preferred Music Player (Requires restart)" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
-                                <rect key="frame" x="17" y="232" width="506" height="123"/>
+                                <rect key="frame" x="17" y="240" width="506" height="123"/>
                                 <view key="contentView" id="r1e-Ln-LSb">
                                     <rect key="frame" x="2" y="2" width="502" height="106"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -464,7 +464,7 @@
                                 </view>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="mfr-Al-Vu9">
-                                <rect key="frame" x="224" y="204" width="243" height="18"/>
+                                <rect key="frame" x="224" y="212" width="243" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="cPM-Hy-gXd"/>
                                 </constraints>
@@ -478,7 +478,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
-                                <rect key="frame" x="95" y="171" width="117" height="17"/>
+                                <rect key="frame" x="95" y="179" width="117" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics saving path:" id="0M7-ao-0jb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -486,7 +486,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ydZ-SE-AM3">
-                                <rect key="frame" x="224" y="166" width="165" height="26"/>
+                                <rect key="frame" x="224" y="174" width="165" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="2c0-ba-y6d"/>
                                 </constraints>
@@ -620,7 +620,7 @@
                             <constraint firstItem="KcA-ys-XDa" firstAttribute="top" secondItem="Nfb-pu-NGK" secondAttribute="bottom" constant="16" id="fMJ-fO-cY9"/>
                             <constraint firstItem="JYR-Ed-Tax" firstAttribute="top" secondItem="Ium-Ya-ZzT" secondAttribute="top" constant="24" id="h5j-IZ-Xgi"/>
                             <constraint firstItem="wwb-0H-xk7" firstAttribute="top" secondItem="UQR-mH-y4R" secondAttribute="bottom" constant="16" id="h9u-Tw-Nme"/>
-                            <constraint firstItem="UQR-mH-y4R" firstAttribute="top" secondItem="ydZ-SE-AM3" secondAttribute="bottom" constant="8" id="k4D-HD-GAv"/>
+                            <constraint firstItem="UQR-mH-y4R" firstAttribute="top" secondItem="ydZ-SE-AM3" secondAttribute="bottom" constant="16" id="k4D-HD-GAv"/>
                             <constraint firstItem="ydZ-SE-AM3" firstAttribute="centerY" secondItem="you-yu-77c" secondAttribute="centerY" id="lz5-X8-tZT"/>
                             <constraint firstItem="UQR-mH-y4R" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="mJn-RT-EXL"/>
                             <constraint firstItem="Nfb-pu-NGK" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="no0-rJ-DSh"/>
@@ -673,7 +673,7 @@
                     </constraints>
                 </customView>
             </objects>
-            <point key="canvasLocation" x="1969" y="-287"/>
+            <point key="canvasLocation" x="1969" y="-287.5"/>
         </scene>
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">

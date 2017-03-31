@@ -68,3 +68,9 @@ class LyricsHUDViewController: NSViewController {
     }
     
 }
+
+class LyricsHUDAccessoryViewController: NSTitlebarAccessoryViewController {
+    
+    @IBOutlet weak var trackLyricsButton: NSButton!
+    
+}
