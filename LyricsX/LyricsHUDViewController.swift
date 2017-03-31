@@ -11,14 +11,19 @@ import EasyPreference
 
 class LyricsHUDViewController: NSViewController {
     
-    
     @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
     
     dynamic var isTracking = true
-    var startTrackTimer: Timer?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear() {
+        view.window?.titlebarAppearsTransparent = true
+        view.window?.titleVisibility = .hidden
+        view.window?.styleMask.insert(.borderless)
+        
+        let accessory = self.storyboard?.instantiateController(withIdentifier: "LyricsHUDAccessory") as! LyricsHUDAccessoryViewController
+        accessory.layoutAttribute = .right
+        view.window?.addTitlebarAccessoryViewController(accessory)
+        accessory.trackLyricsButton.bind(NSValueBinding, to: self, withKeyPath: "isTracking", options: nil)
         
         lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
         
@@ -26,7 +31,6 @@ class LyricsHUDViewController: NSViewController {
         nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
         nc.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
         nc.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: .NSScrollViewWillStartLiveScroll, object: lyricsScrollView)
-        nc.addObserver(self, selector: #selector(handelScrollViewDidEndScroll), name: .NSScrollViewDidEndLiveScroll, object: lyricsScrollView)
     }
     
     override func viewDidDisappear() {
@@ -61,13 +65,6 @@ class LyricsHUDViewController: NSViewController {
     
     func handleScrollViewWillStartScroll(_ n: Notification) {
         isTracking = false
-        startTrackTimer?.invalidate()
-    }
-    
-    func handelScrollViewDidEndScroll(_ n: Notification) {
-        startTrackTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            self.isTracking = true
-        }
     }
     
 }
