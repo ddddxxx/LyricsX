@@ -20,13 +20,13 @@ class LyricsHUDViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lyricsScrollView.lyrics = appDelegate()?.mediaPlayerHelper.currentLyrics
+        lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
         nc.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
-        nc.addObserver(self, selector: #selector(handleScrollViewEvent), name: .NSScrollViewWillStartLiveScroll, object: lyricsScrollView)
-        nc.addObserver(self, selector: #selector(handleScrollViewEvent), name: .NSScrollViewDidEndLiveScroll, object: lyricsScrollView)
+        nc.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: .NSScrollViewWillStartLiveScroll, object: lyricsScrollView)
+        nc.addObserver(self, selector: #selector(handelScrollViewDidEndScroll), name: .NSScrollViewDidEndLiveScroll, object: lyricsScrollView)
     }
     
     override func viewDidDisappear() {
@@ -36,7 +36,9 @@ class LyricsHUDViewController: NSViewController {
     // MARK: - handler
     
     func handleLyricsChange(_ n: Notification) {
-        lyricsScrollView.lyrics = appDelegate()?.mediaPlayerHelper.currentLyrics
+        DispatchQueue.main.async {
+            self.lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
+        }
     }
     
     func handlePositionChange(_ n: Notification) {
@@ -47,22 +49,24 @@ class LyricsHUDViewController: NSViewController {
         guard let pos = n.userInfo?["position"] as? Double else {
             return
         }
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 0.3
-            context.allowsImplicitAnimation = true
-            context.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
-            lyricsScrollView.scroll(position: pos)
-        })
+        DispatchQueue.main.async {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.3
+                context.allowsImplicitAnimation = true
+                context.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
+                self.lyricsScrollView.scroll(position: pos)
+            })
+        }
     }
     
-    func handleScrollViewEvent(_ n: Notification) {
-        if n.name == .NSScrollViewWillStartLiveScroll {
-            isTracking = false
-            startTrackTimer?.invalidate()
-        } else if n.name == .NSScrollViewDidEndLiveScroll {
-            startTrackTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-                self.isTracking = true
-            }
+    func handleScrollViewWillStartScroll(_ n: Notification) {
+        isTracking = false
+        startTrackTimer?.invalidate()
+    }
+    
+    func handelScrollViewDidEndScroll(_ n: Notification) {
+        startTrackTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            self.isTracking = true
         }
     }
     

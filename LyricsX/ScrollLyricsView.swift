@@ -12,10 +12,6 @@ class ScrollLyricsView: NSScrollView {
     
     private var textView: NSTextView!
     
-    var lyrics: Lyrics? {
-        didSet { setupTextContents() }
-    }
-    
     var fadeStripWidth: CGFloat = 24
     
     private var ranges: [(Double, NSRange)] = []
@@ -37,7 +33,7 @@ class ScrollLyricsView: NSScrollView {
         documentView = textView
     }
     
-    func setupTextContents() {
+    func setupTextContents(lyrics: Lyrics?) {
         ranges = []
         
         guard let lyrics = lyrics else {
@@ -46,7 +42,7 @@ class ScrollLyricsView: NSScrollView {
         }
         
         var lrcContent = ""
-        let enabledLrc = lyrics.lyrics.filter({ $0.enabled })
+        let enabledLrc = lyrics.lyrics.filter({ $0.enabled && $0.sentence != "" })
         for line in enabledLrc {
             var lineStr = line.sentence
             if let trans = line.translation {
@@ -54,7 +50,10 @@ class ScrollLyricsView: NSScrollView {
             }
             let range = NSRange(location: lrcContent.characters.count, length: lineStr.characters.count)
             ranges.append(line.position, range)
-            lrcContent += lineStr + "\n\n"
+            lrcContent += lineStr
+            if line != enabledLrc.last {
+                lrcContent += "\n\n"
+            }
         }
         
         textView.string = lrcContent

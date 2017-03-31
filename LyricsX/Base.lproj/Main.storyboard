@@ -1163,7 +1163,7 @@
                     <window key="window" title="Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="6aU-M0-0Jh" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="862" y="135" width="320" height="400"/>
+                        <rect key="contentRect" x="862" y="135" width="320" height="280"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
                     </window>
                     <connections>
@@ -1179,21 +1179,21 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="j0j-xF-gds" userLabel="Lyrics HUD View Controller" customClass="LyricsHUDViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="kbP-ZG-vEe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-WB-V2o" customClass="ScrollLyricsView" customModule="LyricsX" customModuleProvider="target">
-                                <rect key="frame" x="10" y="10" width="300" height="380"/>
+                                <rect key="frame" x="10" y="10" width="300" height="260"/>
                                 <clipView key="contentView" drawsBackground="NO" id="lTs-ol-c97">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="380"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="yrx-pH-R1e">
-                                            <rect key="frame" x="0.0" y="-0.5" width="300" height="380"/>
+                                            <rect key="frame" x="0.0" y="-0.5" width="300" height="260"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="300" height="380"/>
+                                            <size key="minSize" width="300" height="260"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment content="Lyrics">
@@ -1219,7 +1219,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="mini" horizontal="NO" id="BuP-Au-Ruu">
-                                    <rect key="frame" x="286" y="0.0" width="14" height="380"/>
+                                    <rect key="frame" x="286" y="0.0" width="14" height="260"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
