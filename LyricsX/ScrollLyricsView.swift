@@ -15,6 +15,7 @@ class ScrollLyricsView: NSScrollView {
     var fadeStripWidth: CGFloat = 24
     
     private var ranges: [(Double, NSRange)] = []
+    private var highlightRange = NSRange()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -58,6 +59,7 @@ class ScrollLyricsView: NSScrollView {
         
         textView.string = lrcContent
         textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, textView.string!.characters.count))
+        needsLayout = true
     }
     
     override func layout() {
@@ -92,6 +94,29 @@ class ScrollLyricsView: NSScrollView {
         contentInsets = EdgeInsets(top: topInset, left: 0, bottom: BottomInset, right: 0)
     }
     
+    func highlight(position: Double) {
+        guard ranges.count > 0 else {
+            return
+        }
+        
+        let range: NSRange
+        if var index = ranges.index(where: { $0.0 > position }) {
+            if index > 0 {
+                index -= 1
+            }
+            range = ranges[index].1
+        } else {
+            range = ranges.last!.1
+        }
+        if highlightRange == range {
+            return
+        }
+        highlightRange = range
+        
+        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, textView.string!.characters.count))
+        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), range: range)
+    }
+    
     func scroll(position: Double) {
         guard ranges.count > 0 else {
             return
@@ -107,11 +132,17 @@ class ScrollLyricsView: NSScrollView {
             range = ranges.last!.1
         }
         
-        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, textView.string!.characters.count))
-        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), range: range)
         let bounding = textView.layoutManager!.boundingRect(forGlyphRange: range, in: textView.textContainer!)
         let point = NSPoint(x: 0, y: bounding.midY - frame.height / 2)
         textView.scroll(point)
+    }
+    
+}
+
+extension NSRange: Equatable {
+    
+    public static func ==(lhs: NSRange, rhs: NSRange) -> Bool {
+        return lhs.location == rhs.location && lhs.length == rhs.length
     }
     
 }

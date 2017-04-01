@@ -45,11 +45,11 @@ class LyricsHUDViewController: NSViewController {
     }
     
     func handlePositionChange(_ n: Notification) {
-        guard isTracking else {
+        guard let pos = n.userInfo?["position"] as? Double else {
             return
         }
-        
-        guard let pos = n.userInfo?["position"] as? Double else {
+        lyricsScrollView.highlight(position: pos)
+        guard isTracking else {
             return
         }
         DispatchQueue.main.async {
