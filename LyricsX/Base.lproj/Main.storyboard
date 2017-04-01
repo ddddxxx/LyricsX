@@ -1164,16 +1164,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="130" height="53"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Gza-SX-MCH">
-                                <rect key="frame" x="108" y="18" width="18" height="18"/>
+                            <button toolTip="Always on top" translatesAutoresizingMaskIntoConstraints="NO" id="Gza-SX-MCH">
+                                <rect key="frame" x="115" y="21" width="11" height="11"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="cFK-hb-1mS"/>
-                                    <constraint firstAttribute="width" constant="18" id="qqU-Od-szk"/>
+                                    <constraint firstAttribute="height" constant="11" id="cFK-hb-1mS"/>
+                                    <constraint firstAttribute="width" constant="11" id="qqU-Od-szk"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStatusNone" imagePosition="only" alignment="center" alternateImage="NSStatusAvailable" imageScaling="proportionallyUpOrDown" inset="2" id="9FZ-sc-gCU">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="hud_button_lock_on" imagePosition="only" alignment="center" alternateImage="hud_button_lock_off" imageScaling="proportionallyUpOrDown" inset="2" id="9FZ-sc-gCU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="lockAction:" target="qIY-x4-82C" id="ets-PT-qqw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -1182,9 +1185,6 @@
                             <constraint firstItem="Gza-SX-MCH" firstAttribute="centerY" secondItem="iU6-PW-pat" secondAttribute="centerY" id="hu1-3a-FKw"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="trackLyricsButton" destination="Gza-SX-MCH" id="pU4-Qy-WM3"/>
-                    </connections>
                 </viewController>
                 <customObject id="BzW-ne-X63" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1257,12 +1257,32 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button toolTip="Synchronism" translatesAutoresizingMaskIntoConstraints="NO" id="d5a-4n-6k8">
+                                <rect key="frame" x="8" y="8" width="14" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="RLe-p2-k1q"/>
+                                    <constraint firstAttribute="width" constant="14" id="rsq-vj-INV"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="hud_button_sync_button" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="jHn-3l-toP">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+IA
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="j0j-xF-gds" name="hidden" keyPath="self.isTracking" id="Ad6-zO-R5j"/>
+                                    <binding destination="j0j-xF-gds" name="value" keyPath="self.isTracking" id="mQG-pf-YRh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="IdM-WB-V2o" secondAttribute="trailing" constant="8" id="2nm-0G-wba"/>
                             <constraint firstAttribute="bottom" secondItem="IdM-WB-V2o" secondAttribute="bottom" constant="8" id="6nX-Rd-gyU"/>
+                            <constraint firstItem="d5a-4n-6k8" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="8" id="OwQ-i8-Yll"/>
                             <constraint firstItem="IdM-WB-V2o" firstAttribute="top" secondItem="kbP-ZG-vEe" secondAttribute="top" constant="8" id="VG9-vR-76i"/>
                             <constraint firstItem="IdM-WB-V2o" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="8" id="VnR-Dw-Ta3"/>
+                            <constraint firstAttribute="bottom" secondItem="d5a-4n-6k8" secondAttribute="bottom" constant="8" id="wik-HQ-e4b"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1719,9 +1739,10 @@
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
-        <image name="NSStatusAvailable" width="16" height="16"/>
-        <image name="NSStatusNone" width="16" height="16"/>
         <image name="font_panel" width="22" height="20"/>
+        <image name="hud_button_lock_off" width="11" height="11"/>
+        <image name="hud_button_lock_on" width="11" height="11"/>
+        <image name="hud_button_sync_button" width="14" height="12"/>
         <image name="iTunes_icon" width="128" height="128"/>
         <image name="missing_artwork" width="800" height="800"/>
         <image name="spotify_icon" width="128" height="128"/>

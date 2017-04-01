@@ -23,7 +23,6 @@ class LyricsHUDViewController: NSViewController {
         let accessory = self.storyboard?.instantiateController(withIdentifier: "LyricsHUDAccessory") as! LyricsHUDAccessoryViewController
         accessory.layoutAttribute = .right
         view.window?.addTitlebarAccessoryViewController(accessory)
-        accessory.trackLyricsButton.bind(NSValueBinding, to: self, withKeyPath: "isTracking", options: nil)
         
         lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
         
@@ -71,6 +70,16 @@ class LyricsHUDViewController: NSViewController {
 
 class LyricsHUDAccessoryViewController: NSTitlebarAccessoryViewController {
     
-    @IBOutlet weak var trackLyricsButton: NSButton!
+    override func viewWillAppear() {
+        view.window?.level = Int(CGWindowLevelForKey(.normalWindow))
+    }
+    
+    @IBAction func lockAction(_ sender: NSButton) {
+        if sender.state == NSOnState {
+            view.window?.level = Int(CGWindowLevelForKey(.floatingWindow))
+        } else {
+            view.window?.level = Int(CGWindowLevelForKey(.normalWindow))
+        }
+    }
     
 }
