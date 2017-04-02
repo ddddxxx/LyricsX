@@ -108,9 +108,7 @@ class DesktopLyricsViewController: NSViewController {
             secondLine = next?.sentence
         }
         
-        DispatchQueue.main.async {
-            self.displayLrc(firstLine, secondLine: secondLine)
-        }
+        displayLrc(firstLine, secondLine: secondLine)
     }
     
     func displayLrc(_ firstLine: String?, secondLine: String? = nil) {

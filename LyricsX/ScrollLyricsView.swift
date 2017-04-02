@@ -15,7 +15,7 @@ class ScrollLyricsView: NSScrollView {
     var fadeStripWidth: CGFloat = 24
     
     private var ranges: [(Double, NSRange)] = []
-    private var highlightRange = NSRange()
+    private var highlightedRange = NSRange()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -108,13 +108,14 @@ class ScrollLyricsView: NSScrollView {
         } else {
             range = ranges.last!.1
         }
-        if highlightRange == range {
+        if highlightedRange == range {
             return
         }
-        highlightRange = range
         
-        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, textView.string!.characters.count))
+        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: highlightedRange)
         textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), range: range)
+        
+        highlightedRange = range
     }
     
     func scroll(position: Double) {

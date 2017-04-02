@@ -101,13 +101,14 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         let index = tableView.selectedRow
-        DispatchQueue.main.async {
-            if self.hideLrcPreviewConstraint?.isActive == true {
-                self.expansionPreview()
-            }
-            self.lyricsPreviewTextView.string = self.searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
-            self.updateImage()
+        guard index >= 0 else {
+            return
         }
+        if self.hideLrcPreviewConstraint?.isActive == true {
+            self.expansionPreview()
+        }
+        self.lyricsPreviewTextView.string = self.searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+        self.updateImage()
     }
     
     func expansionPreview() {
@@ -131,6 +132,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     func updateImage() {
         let index = tableView.selectedRow
+        guard index >= 0 else {
+            return
+        }
         guard let urlStr = self.searchResult[index].metadata[.artworkURL],
             let url = URL(string: urlStr) else {
             artworkView.image = #imageLiteral(resourceName: "missing_artwork")
