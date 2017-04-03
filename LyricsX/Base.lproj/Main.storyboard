@@ -107,6 +107,8 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LyricsX" customModuleProvider="target">
                     <connections>
+                        <outlet property="lyricsOffsetStepper" destination="FwA-Sj-odc" id="Wpt-Xo-ryF"/>
+                        <outlet property="lyricsOffsetTextField" destination="BE8-Ux-QD2" id="U25-Zx-LxS"/>
                         <outlet property="statusBarMenu" destination="OCV-Y8-x1C" id="zHx-WQ-Hu4"/>
                     </connections>
                 </customObject>
@@ -204,17 +206,10 @@
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
-                            <connections>
-                                <binding destination="Voe-Tx-rLC" name="value" keyPath="self.currentOffset" id="46X-dT-CHX"/>
-                            </connections>
                         </textField>
                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FwA-Sj-odc">
                             <rect key="frame" x="183" y="4" width="15" height="22"/>
                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="100" minValue="-10000" maxValue="10000" id="Cnt-sc-zit"/>
-                            <connections>
-                                <action selector="lyricsOffsetStepAction:" target="Voe-Tx-rLC" id="V63-rC-IAb"/>
-                                <binding destination="Voe-Tx-rLC" name="value" keyPath="self.currentOffset" id="Mwx-Ko-1Xn"/>
-                            </connections>
                         </stepper>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-PC-ZCl">
                             <rect key="frame" x="199" y="6" width="22" height="17"/>

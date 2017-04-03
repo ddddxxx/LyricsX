@@ -54,10 +54,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard let index = tableView.selectedRowIndexes.first else {
             return
         }
-        var lrc = searchResult[index]
-        lrc.filtrate()
-        appDelegate()?.mediaPlayerHelper.currentLyrics = lrc
-        lrc.saveToLocal()
+        let lrc = searchResult[index]
+        appDelegate()?.mediaPlayerHelper.setCurrentLyrics(lyrics: lrc)
     }
     
     // MARK: - LyricsSourceDelegate
