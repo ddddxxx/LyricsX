@@ -45,9 +45,10 @@ class LyricsHUDViewController: NSViewController {
     }
     
     func handlePositionChange(_ n: Notification) {
-        guard let pos = n.userInfo?["position"] as? Double else {
+        guard var pos = n.userInfo?["position"] as? Double else {
             return
         }
+        pos += appDelegate()?.mediaPlayerHelper.currentLyrics?.timeDelay ?? 0
         lyricsScrollView.highlight(position: pos)
         guard isTracking else {
             return
