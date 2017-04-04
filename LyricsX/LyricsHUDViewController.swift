@@ -9,7 +9,7 @@
 import Cocoa
 import EasyPreference
 
-class LyricsHUDViewController: NSViewController {
+class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate {
     
     @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
     
@@ -24,6 +24,7 @@ class LyricsHUDViewController: NSViewController {
         accessory.layoutAttribute = .right
         view.window?.addTitlebarAccessoryViewController(accessory)
         
+        lyricsScrollView.delegate = self
         lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
         
         let nc = NotificationCenter.default
@@ -34,6 +35,11 @@ class LyricsHUDViewController: NSViewController {
     
     override func viewDidDisappear() {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func doubleClickLyricsLine(at position: Double) {
+        appDelegate()?.mediaPlayerHelper.player?.changePosition(position: position)
+        isTracking = true
     }
     
     // MARK: - handler

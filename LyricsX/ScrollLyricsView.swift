@@ -8,7 +8,13 @@
 
 import Cocoa
 
+protocol ScrollLyricsViewDelegate: class {
+    func doubleClickLyricsLine(at position: Double)
+}
+
 class ScrollLyricsView: NSScrollView {
+    
+    weak var delegate: ScrollLyricsViewDelegate?
     
     private var textView: NSTextView!
     
@@ -66,6 +72,22 @@ class ScrollLyricsView: NSScrollView {
         super.layout()
         updateFadeEdgeMask()
         updateEdgeInset()
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        guard event.clickCount == 2 else {
+            super.mouseUp(with: event)
+            return
+        }
+        
+        let clickPoint = textView.convert(event.locationInWindow, from: nil)
+        let clickRange = ranges.filter { (_, range) in
+            let bounding = textView.layoutManager!.boundingRect(forGlyphRange: range, in: textView.textContainer!)
+            return bounding.contains(clickPoint)
+        }
+        if let (position, _) = clickRange.first {
+            delegate?.doubleClickLyricsLine(at: position)
+        }
     }
     
     func updateFadeEdgeMask() {

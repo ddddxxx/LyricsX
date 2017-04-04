@@ -44,6 +44,10 @@ class iTunes: MediaPlayer {
         positionChangeTimer.invalidate()
     }
     
+    func changePosition(position: Double) {
+        (_iTunes as! SBApplication).setValue(position, forKey: "playerPosition")
+    }
+    
     private func updateRunningState() {
         let isRunningNew = (_iTunes as! SBApplication).isRunning
         if isRunning == isRunningNew {
