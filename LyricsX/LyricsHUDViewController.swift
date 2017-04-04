@@ -38,7 +38,8 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate {
     }
     
     func doubleClickLyricsLine(at position: Double) {
-        appDelegate()?.mediaPlayerHelper.player?.changePosition(position: position)
+        let pos = position - (appDelegate()?.mediaPlayerHelper.currentLyrics?.timeDelay ?? 0)
+        appDelegate()?.mediaPlayerHelper.player?.changePosition(position: pos)
         isTracking = true
     }
     
