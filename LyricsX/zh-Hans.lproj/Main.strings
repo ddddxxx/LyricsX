@@ -77,8 +77,11 @@
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
 "FMI-7E-tCo.title" = "Title:";
 
-/* Class = "NSMenuItem"; title = "Enable Desktop Lyrics"; ObjectID = "GGU-uz-d9h"; */
-"GGU-uz-d9h.title" = "启用桌面歌词";
+/* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
+"GGU-uz-d9h.title" = "启用逐行歌词";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
+"Gza-SX-MCH.ibShadowedToolTip" = "Always on top";
 
 /* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "HEI-Dn-Xny"; */
 "HEI-Dn-Xny.title" = "Text";
@@ -107,10 +110,7 @@
 /* Class = "NSMenu"; title = "Application"; ObjectID = "L37-wq-P3U"; */
 "L37-wq-P3U.title" = "Application";
 
-/* Class = "NSButtonCell"; title = "With Tag"; ObjectID = "LHz-0E-uo2"; */
-"LHz-0E-uo2.title" = "显示标签";
-
-/* Class = "NSButtonCell"; title = "iTunes is not playing"; ObjectID = "NLl-9L-0gZ"; */
+/* Class = "NSButtonCell"; title = "Music Player is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "暂停播放时";
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "Nxv-i6-pWj"; */
@@ -188,14 +188,14 @@
 /* Class = "NSMenuItem"; title = "Hide Application"; ObjectID = "csd-w7-kJw"; */
 "csd-w7-kJw.title" = "Hide Application";
 
+/* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
+"d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
+
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
 "eb9-fE-Lgq.title" = "搜索";
 
 /* Class = "NSWindow"; title = "Window"; ObjectID = "fhu-ba-Lnu"; */
 "fhu-ba-Lnu.title" = "Window";
-
-/* Class = "NSButtonCell"; title = "Edit"; ObjectID = "fxI-3c-YUD"; */
-"fxI-3c-YUD.title" = "编辑";
 
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "gPf-oY-cYP"; */
 "gPf-oY-cYP.title" = "Select All";
@@ -224,8 +224,8 @@
 /* Class = "NSButtonCell"; title = "Lyrics Filter"; ObjectID = "kEd-lC-aAH"; */
 "kEd-lC-aAH.title" = "启用歌词过滤";
 
-/* Class = "NSMenuItem"; title = "Show Lyrics..."; ObjectID = "kyJ-kV-2Du"; */
-"kyJ-kV-2Du.title" = "显示歌词...";
+/* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
+"kyJ-kV-2Du.title" = "显示歌词窗口";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
 "l8J-1r-dIZ.title" = "艺人:";
