@@ -9,22 +9,25 @@
 import Foundation
 import AppKit
 
-class MediaPlayerHelper: MediaPlayerDelegate {
+class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
     
     var player: MediaPlayer?
     let lyricsSource = Lyrics163()
     
-    var currentLyrics: Lyrics? {
-        didSet {
-            appDelegate()?.currentOffset = currentLyrics?.offset ?? 0
-            NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
+    private(set) var currentLyrics: Lyrics?
+    dynamic var lyricsOffset: Int {
+        get {
+            return currentLyrics?.offset ?? 0
+        }
+        set {
+            currentLyrics?.offset = newValue
+            currentLyrics?.saveToLocal()
         }
     }
     
-    var currentLyricsLine: LyricsLine?
-    var nextLyricsLine: LyricsLine?
     
-    init() {
+    override init() {
+        super.init()
         switch Preference[PreferredPlayerIndex] {
         case 0:
             player = iTunes()
@@ -41,6 +44,18 @@ class MediaPlayerHelper: MediaPlayerDelegate {
         currentTrackChanged(track: player?.currentTrack)
     }
     
+    func setCurrentLyrics(lyrics: Lyrics?) {
+        var lyrics = lyrics
+        lyrics?.filtrate()
+        willChangeValue(forKey: "lyricsOffset")
+        currentLyrics = lyrics
+        didChangeValue(forKey: "lyricsOffset")
+        NotificationCenter.default.post(name: .LyricsChange, object: nil)
+        if currentLyrics?.metadata[.source] != "Local" {
+            currentLyrics?.saveToLocal()
+        }
+    }
+    
     // MARK: MediaPlayerDelegate
     
     func runningStateChanged(isRunning: Bool) {
@@ -51,16 +66,14 @@ class MediaPlayerHelper: MediaPlayerDelegate {
     
     func playerStateChanged(state: MediaPlayerState) {
         if state != .playing, Preference[DisableLyricsWhenPaused] {
-            currentLyricsLine = nil
-            nextLyricsLine = nil
-            NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+            NotificationCenter.default.post(name: .PositionChange, object: nil)
         }
     }
     
     func currentTrackChanged(track: MediaTrack?) {
-        currentLyrics = nil
+        setCurrentLyrics(lyrics: nil)
         let info = ["lrc": "", "next": ""]
-        NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
+        NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
         guard let track = track else {
             return
         }
@@ -68,8 +81,7 @@ class MediaPlayerHelper: MediaPlayerDelegate {
         let artist = track.artist
         
         if let localLyrics = LyricsSourceHelper.readLocalLyrics(title: title, artist: artist) {
-            currentLyrics = localLyrics
-            currentLyrics?.filtrate()
+            setCurrentLyrics(lyrics: localLyrics)
         } else {
             lyricsSource.iFeelLucky(title: title, artist: artist) {
                 self.lyricsReceived(lyrics: $0)
@@ -83,25 +95,12 @@ class MediaPlayerHelper: MediaPlayerDelegate {
         }
         let lrc = lyrics[position]
         
-        if currentLyricsLine == lrc.current {
-            return
-        }
-        currentLyricsLine = lrc.current
-        nextLyricsLine = lrc.next
-        
-        let nextLyricsSentence: String?
-        if Preference[PreferBilingualLyrics] {
-            nextLyricsSentence = currentLyricsLine?.translation ?? nextLyricsLine?.sentence
-        } else {
-            nextLyricsSentence = nextLyricsLine?.sentence
-        }
-        
         let info = [
-            "lrc": currentLyricsLine?.sentence as Any,
-            "next": nextLyricsSentence as Any,
-            "position": currentLyricsLine?.position as Any,
+            "lrc": lrc.current as Any,
+            "next": lrc.next as Any,
+            "position": position as Any,
         ]
-        NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil, userInfo: info)
+        NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
     }
     
     // MARK: LyricsSourceDelegate
@@ -116,10 +115,7 @@ class MediaPlayerHelper: MediaPlayerDelegate {
             return
         }
         
-        var lyrics = lyrics
-        lyrics.filtrate()
-        currentLyrics = lyrics
-        lyrics.saveToLocal()
+        setCurrentLyrics(lyrics: lyrics)
     }
     
 }

@@ -25,8 +25,8 @@ let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
 let CurrentLyricsChangeNotification = "CurrentLyricsChangeNotification"
 
 extension Notification.Name {
-    static var lyricsShouldDisplay = Notification.Name(LyricsShouldDisplayNotification)
-    static var currentLyricsChange = Notification.Name(CurrentLyricsChangeNotification)
+    static var PositionChange = Notification.Name(LyricsShouldDisplayNotification)
+    static var LyricsChange = Notification.Name(CurrentLyricsChangeNotification)
 }
 
 // MARK: - User Defaults

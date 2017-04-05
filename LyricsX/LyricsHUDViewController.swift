@@ -9,125 +9,85 @@
 import Cocoa
 import EasyPreference
 
-class LyricsHUDViewController: NSViewController {
+class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate {
     
-    @IBOutlet weak var lyricsScrollView: NSScrollView!
-    @IBOutlet weak var lyricsTextView: NSTextView!
+    @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
     
-    private var ranges: [(Double, NSRange)] = []
+    dynamic var isTracking = true
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear() {
+        view.window?.titlebarAppearsTransparent = true
+        view.window?.titleVisibility = .hidden
+        view.window?.styleMask.insert(.borderless)
         
-        setupTextContents()
+        let accessory = self.storyboard?.instantiateController(withIdentifier: "LyricsHUDAccessory") as! LyricsHUDAccessoryViewController
+        accessory.layoutAttribute = .right
+        view.window?.addTitlebarAccessoryViewController(accessory)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .lyricsShouldDisplay, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLyricsChange), name: .currentLyricsChange, object: nil)
+        lyricsScrollView.delegate = self
+        lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
+        nc.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
+        nc.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: .NSScrollViewWillStartLiveScroll, object: lyricsScrollView)
     }
     
     override func viewDidDisappear() {
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func viewDidLayout() {
-        updateFadeEdgeMask()
-        updateEdgeInset()
+    func doubleClickLyricsLine(at position: Double) {
+        let pos = position - (appDelegate()?.mediaPlayerHelper.currentLyrics?.timeDelay ?? 0)
+        appDelegate()?.mediaPlayerHelper.player?.changePosition(position: pos)
+        isTracking = true
     }
     
-    func setupTextContents() {
-        guard let lyrics = appDelegate()?.mediaPlayerHelper.currentLyrics else {
-            lyricsTextView.string = ""
-            ranges = []
-            return
-        }
-        
-        var lrcContent = ""
-        let enabledLrc = lyrics.lyrics.filter({ $0.enabled })
-        for line in enabledLrc {
-            var lineStr = line.sentence
-            if let trans = line.translation {
-                lineStr += "\n" + trans
-            }
-            let range = NSRange(location: lrcContent.characters.count, length: lineStr.characters.count)
-            ranges.append(line.position, range)
-            lrcContent += lineStr + "\n\n"
-        }
-        
-        self.lyricsTextView.string = lrcContent
-        
-        self.lyricsTextView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, self.lyricsTextView.string!.characters.count))
-        self.scroll(position: 0)
-    }
+    // MARK: - handler
     
     func handleLyricsChange(_ n: Notification) {
-        ranges = []
         DispatchQueue.main.async {
-            self.setupTextContents()
+            self.lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
         }
     }
     
     func handlePositionChange(_ n: Notification) {
-        guard let pos = n.userInfo?["position"] as? Double else {
+        guard var pos = n.userInfo?["position"] as? Double else {
+            return
+        }
+        pos += appDelegate()?.mediaPlayerHelper.currentLyrics?.timeDelay ?? 0
+        lyricsScrollView.highlight(position: pos)
+        guard isTracking else {
             return
         }
         DispatchQueue.main.async {
-            self.scroll(position: pos)
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.3
+                context.allowsImplicitAnimation = true
+                context.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
+                self.lyricsScrollView.scroll(position: pos)
+            })
         }
     }
     
-    func scroll(position: Double) {
-        guard ranges.count > 0 else {
-            return
-        }
-        
-        let range: NSRange
-        if var index = ranges.index(where: { $0.0 > position }) {
-            if index > 0 {
-                index -= 1
-            }
-            range = ranges[index].1
+    func handleScrollViewWillStartScroll(_ n: Notification) {
+        isTracking = false
+    }
+    
+}
+
+class LyricsHUDAccessoryViewController: NSTitlebarAccessoryViewController {
+    
+    override func viewWillAppear() {
+        view.window?.level = Int(CGWindowLevelForKey(.normalWindow))
+    }
+    
+    @IBAction func lockAction(_ sender: NSButton) {
+        if sender.state == NSOnState {
+            view.window?.level = Int(CGWindowLevelForKey(.floatingWindow))
         } else {
-            range = ranges.last!.1
+            view.window?.level = Int(CGWindowLevelForKey(.normalWindow))
         }
-        
-        lyricsTextView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, lyricsTextView.string!.characters.count))
-        lyricsTextView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), range: range)
-        let bounding = lyricsTextView.layoutManager!.boundingRect(forGlyphRange: range, in: lyricsTextView.textContainer!)
-        let point = NSPoint(x: 0, y: bounding.midY - lyricsScrollView.frame.height / 2)
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 0.3
-            context.allowsImplicitAnimation = true
-            context.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
-            lyricsTextView.scroll(point)
-        })
-    }
-    
-    func updateFadeEdgeMask() {
-        let fadeStripWidth: CGFloat = 24
-        let location = fadeStripWidth / lyricsScrollView.frame.height
-        
-        let mask = CAGradientLayer()
-        mask.frame = lyricsScrollView.bounds
-        mask.colors = [#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor]
-        mask.locations = [0, location as NSNumber, (1 - location) as NSNumber, 1]
-        mask.startPoint = .zero
-        mask.endPoint = CGPoint(x: 0, y: 1)
-        lyricsScrollView.wantsLayer = true
-        lyricsScrollView.layer?.mask = mask
-    }
-    
-    func updateEdgeInset() {
-        guard ranges.count > 0 else {
-            return
-        }
-        
-        let bounding1 = lyricsTextView.layoutManager!.boundingRect(forGlyphRange: ranges.first!.1, in: lyricsTextView.textContainer!)
-        let topInset = lyricsScrollView.frame.height/2 - bounding1.height/2
-        let bounding2 = lyricsTextView.layoutManager!.boundingRect(forGlyphRange: ranges.last!.1, in: lyricsTextView.textContainer!)
-        let BottomInset = lyricsScrollView.frame.height/2 - bounding2.height/2
-        lyricsScrollView.automaticallyAdjustsContentInsets = false
-        lyricsScrollView.contentInsets = EdgeInsets(top: topInset, left: 0, bottom: BottomInset, right: 0)
-        lyricsScrollView.scrollerInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
 }

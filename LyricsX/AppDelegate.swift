@@ -18,8 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var menuBarLyrics: MenuBarLyrics!
 
-    dynamic var currentOffset = 0
-    
+    @IBOutlet weak var lyricsOffsetTextField: NSTextField!
+    @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -30,6 +30,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = statusBarMenu
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
+        
+        lyricsOffsetStepper.bind(NSValueBinding, to: mediaPlayerHelper, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
+        lyricsOffsetTextField.bind(NSValueBinding, to: mediaPlayerHelper, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         
         if Preference[LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
@@ -44,11 +47,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
             NSWorkspace.shared().launchApplication(url.path)
         }
-    }
-
-    @IBAction func lyricsOffsetStepAction(_ sender: Any) {
-        mediaPlayerHelper.currentLyrics?.offset = currentOffset
-        mediaPlayerHelper.currentLyrics?.saveToLocal()
     }
     
     @IBAction func checkUpdateAction(_ sender: Any) {

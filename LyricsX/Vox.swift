@@ -44,6 +44,10 @@ class Vox: MediaPlayer {
         positionChangeTimer.invalidate()
     }
     
+    func changePosition(position: Double) {
+        (_vox as! SBApplication).setValue(position, forKey: "currentTime")
+    }
+    
     private func updateRunningState() {
         let isRunningNew = (_vox as! SBApplication).isRunning
         if isRunning == isRunningNew {

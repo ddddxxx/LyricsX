@@ -29,6 +29,7 @@ protocol MediaPlayer {
     var currentTrack: MediaTrack? { get }
     var playerState: MediaPlayerState { get }
     var playerPosition: Double { get }
+    func changePosition(position: Double)
 }
 
 protocol MediaTrack {

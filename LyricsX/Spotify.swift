@@ -44,6 +44,10 @@ class Spotify: MediaPlayer {
         positionChangeTimer.invalidate()
     }
     
+    func changePosition(position: Double) {
+        (_spotify as! SBApplication).setValue(position, forKey: "playerPosition")
+    }
+    
     private func updateRunningState() {
         let isRunningNew = (_spotify as! SBApplication).isRunning
         if isRunning == isRunningNew {
