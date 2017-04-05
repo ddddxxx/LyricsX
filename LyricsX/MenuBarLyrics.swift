@@ -23,9 +23,10 @@ class MenuBarLyrics {
                 self.statusItem = nil
                 return
             }
-            
-            self.statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-            self.statusItem?.highlightMode = false
+            if self.statusItem == nil {
+                self.statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+                self.statusItem?.highlightMode = false
+            }
             self.statusItem?.button?.title = lrc
         }]
         
