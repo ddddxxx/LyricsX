@@ -51,7 +51,7 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
         currentLyrics = lyrics
         didChangeValue(forKey: "lyricsOffset")
         NotificationCenter.default.post(name: .LyricsChange, object: nil)
-        if currentLyrics?.metadata[.source] != "Local" {
+        if currentLyrics?.metadata[.source] as? String != "Local" {
             currentLyrics?.saveToLocal()
         }
     }
@@ -106,8 +106,8 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        guard lyrics.metadata[.searchTitle] == player?.currentTrack?.name,
-            lyrics.metadata[.searchArtist] == player?.currentTrack?.artist else {
+        guard lyrics.metadata[.searchTitle] as? String == player?.currentTrack?.name,
+            lyrics.metadata[.searchArtist] as? String == player?.currentTrack?.artist else {
             return
         }
         
@@ -140,7 +140,7 @@ extension LyricsSourceHelper {
         let lrcFileURL = url.appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
         if let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8) {
             var lrc = Lyrics(lrcContents)
-            let metadata: [Lyrics.MetadataKey: String] = [
+            let metadata: [Lyrics.MetadataKey: Any] = [
                 .searchTitle: title,
                 .searchArtist: artist,
                 .source: "Local"
@@ -180,8 +180,10 @@ extension Lyrics {
                 try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             }
             
-            let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
-            let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
+            guard let titleForSaving = (metadata[.searchTitle] as? String)?.replacingOccurrences(of: "/", with: "&"),
+                let artistForSaving = (metadata[.searchArtist] as? String)?.replacingOccurrences(of: "/", with: "&") else {
+                return
+            }
             let lrcFileURL = url.appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
             
             if fileManager.fileExists(atPath: lrcFileURL.path) {

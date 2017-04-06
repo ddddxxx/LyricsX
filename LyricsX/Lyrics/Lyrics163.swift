@@ -40,12 +40,12 @@ class Lyrics163: LyricsSource {
                 var lyrics = self.lyricsFor(id: id) else {
                     return
             }
-            var metadata: [Lyrics.MetadataKey: String] = [
+            var metadata: [Lyrics.MetadataKey: Any] = [
                 .searchTitle: title,
                 .searchArtist: artist,
                 .source: "163",
                 ]
-            metadata[.artworkURL] = item["album"]["picUrl"].string
+            metadata[.artworkURL] = item["album"]["picUrl"].url
             
             lyrics.idTags[.title] = item["name"].string
             lyrics.idTags[.artist] = item["artists"][0]["name"].string
@@ -76,18 +76,19 @@ class Lyrics163: LyricsSource {
                 return
             }
             
-            for item in array {
+            for (index, item) in array.enumerated() {
                 self.queue.addOperation {
                     guard let id = item["id"].number?.intValue,
                         var lyrics = self.lyricsFor(id: id) else {
                             return
                     }
-                    var metadata: [Lyrics.MetadataKey: String] = [
-                        .searchTitle: title,
-                        .searchArtist: artist,
-                        .source: "163",
+                    var metadata: [Lyrics.MetadataKey: Any] = [
+                        .searchTitle:   title,
+                        .searchArtist:  artist,
+                        .searchIndex:   index,
+                        .source:        "163",
                     ]
-                    metadata[.artworkURL] = item["album"]["picUrl"].string
+                    metadata[.artworkURL] = item["album"]["picUrl"].url
                     
                     lyrics.idTags[.title] = item["name"].string
                     lyrics.idTags[.artist] = item["artists"][0]["name"].string
@@ -117,7 +118,7 @@ class Lyrics163: LyricsSource {
         if let transLrcContent = json["tlyric"]["lyric"].string,
             let transLrc = Lyrics(transLrcContent) {
             lrc.merge(translation: transLrc)
-            lrc.metadata[.includeTranslation] = "true"
+            lrc.metadata[.includeTranslation] = true
         }
         
         return lrc

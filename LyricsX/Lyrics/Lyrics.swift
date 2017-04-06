@@ -12,7 +12,7 @@ struct Lyrics {
     
     var lyrics: [LyricsLine]
     var idTags: [IDTagKey: String]
-    var metadata: [MetadataKey: String]
+    var metadata: [MetadataKey: Any]
     
     var offset: Int {
         get {
@@ -87,9 +87,8 @@ struct Lyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
-    init?(metadata: [MetadataKey: String]) {
-        guard let lrcURLStr = metadata[.lyricsURL],
-            let lrcURL = URL(string: lrcURLStr),
+    init?(metadata: [MetadataKey: Any]) {
+        guard let lrcURL = metadata[.lyricsURL] as? URL,
             let lrcContent = try? String(contentsOf: lrcURL) else {
             return nil
         }
@@ -151,6 +150,8 @@ extension Lyrics {
         
         case searchArtist       = "searchArtist"
         
+        case searchIndex        = "searchIndex"
+        
         case artworkURL         = "artworkURL"
         
         case includeTranslation = "includeTranslation"
@@ -204,8 +205,8 @@ extension Lyrics {
                 sentence.contains(idTagTitle),
                 sentence.contains(idTagArtist) {
                 lyrics[index].enabled = false
-            } else if let iTunesTitle = metadata[.searchTitle],
-                let iTunesArtist = metadata[.searchArtist],
+            } else if let iTunesTitle = metadata[.searchTitle] as? String,
+                let iTunesArtist = metadata[.searchArtist] as? String,
                 sentence.contains(iTunesTitle),
                 sentence.contains(iTunesArtist) {
                 lyrics[index].enabled = false
@@ -219,7 +220,8 @@ extension Lyrics {
     
     var grade: Int {
         var grade = 0
-        if let searchArtist = metadata[.searchArtist], let artist = idTags[.artist] {
+        if let searchArtist = metadata[.searchArtist] as? String,
+            let artist = idTags[.artist] {
             if searchArtist == artist {
                 grade += 1 << 10
             } else if searchArtist.contains(artist) || artist.contains(searchArtist) {
@@ -229,7 +231,8 @@ extension Lyrics {
             grade += 1 << 8
         }
         
-        if let searchTitle = metadata[.searchTitle], let title = idTags[.title] {
+        if let searchTitle = metadata[.searchTitle] as? String,
+            let title = idTags[.title] {
             if searchTitle == title {
                 grade += 1 << 10
             } else if searchTitle.contains(title) || title.contains(searchTitle) {
@@ -239,7 +242,7 @@ extension Lyrics {
             grade += 1 << 8
         }
         
-        if metadata[.includeTranslation] == "true" {
+        if metadata[.includeTranslation] as? Bool == true {
             grade += 1 << 2
         }
         

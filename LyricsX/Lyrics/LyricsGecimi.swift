@@ -20,11 +20,12 @@ class LyricsGecimi: LyricsSource {
     func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         queue.addOperation {
             let lrcDatas = self.searchLrcFor(title: title, artist: artist)
-            lrcDatas.forEach() { lrcData in
+            for (index, lrcData) in lrcDatas.enumerated() {
                 var metadata = lrcData
-                metadata[.source] = "Gecimi"
-                metadata[.searchTitle] = title
+                metadata[.source]       = "Gecimi"
+                metadata[.searchTitle]  = title
                 metadata[.searchArtist] = artist
+                metadata[.searchIndex]  = index
                 if let lrc = Lyrics(metadata: metadata) {
                     completionBlock(lrc)
                 }
@@ -32,7 +33,7 @@ class LyricsGecimi: LyricsSource {
         }
     }
     
-    private func searchLrcFor(title: String, artist: String) -> [[Lyrics.MetadataKey: String]] {
+    private func searchLrcFor(title: String, artist: String) -> [[Lyrics.MetadataKey: Any]] {
         let urlStr = "http://gecimi.com/api/lyric/\(title)/\(artist)"
         let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
@@ -42,13 +43,13 @@ class LyricsGecimi: LyricsSource {
         }
         
         return array.flatMap() { item in
-            var result: [Lyrics.MetadataKey: String] = [:]
-            result[.lyricsURL] = item["lrc"].string
+            var result: [Lyrics.MetadataKey: Any] = [:]
+            result[.lyricsURL] = item["lrc"].url
             
             if let aid = item["aid"].string,
                 let url = URL(string:"http://gecimi.com/api/cover/\(aid)"),
                 let data = try? Data(contentsOf: url),
-                let artworkURL = JSON(data)["result"]["cover"].string {
+                let artworkURL = JSON(data)["result"]["cover"].url {
                     result[.artworkURL] = artworkURL
             }
             return result

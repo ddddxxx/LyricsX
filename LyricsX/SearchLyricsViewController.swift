@@ -133,8 +133,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard index >= 0 else {
             return
         }
-        guard let urlStr = self.searchResult[index].metadata[.artworkURL],
-            let url = URL(string: urlStr) else {
+        guard let url = self.searchResult[index].metadata[.artworkURL] as? URL else {
             artworkView.image = #imageLiteral(resourceName: "missing_artwork")
             return
         }

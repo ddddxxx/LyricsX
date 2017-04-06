@@ -26,7 +26,7 @@ class LyricsQQ: LyricsSource {
             return
         }
         
-        for item in array {
+        for (index, item) in array.enumerated() {
             queue.addOperation {
                 guard let f = item["f"].string,
                     let range = f.range(of: "|"),
@@ -35,11 +35,12 @@ class LyricsQQ: LyricsSource {
                     return
                 }
                 
-                var metadata: [Lyrics.MetadataKey: String] = [:]
-                metadata[.source] = "QQMusic"
-                metadata[.searchTitle] = title
+                var metadata: [Lyrics.MetadataKey: Any] = [:]
+                metadata[.source]       = "QQMusic"
+                metadata[.searchTitle]  = title
                 metadata[.searchArtist] = artist
-                metadata[.artworkURL] = "http://imgcache.qq.com/music/photo/album/\(id%100)/\(id).jpg"
+                metadata[.searchIndex]  = index
+                metadata[.artworkURL] = URL(string: "http://imgcache.qq.com/music/photo/album/\(id%100)/\(id).jpg")
                 
                 lrc.metadata = metadata
                 
