@@ -82,20 +82,18 @@ class Lyrics163: LyricsSource {
                         var lyrics = self.lyricsFor(id: id) else {
                             return
                     }
-                    var metadata: [Lyrics.MetadataKey: Any] = [
-                        .searchTitle:   title,
-                        .searchArtist:  artist,
-                        .searchIndex:   index,
-                        .source:        "163",
-                    ]
-                    metadata[.artworkURL] = item["album"]["picUrl"].url
                     
-                    lyrics.idTags[.title] = item["name"].string
-                    lyrics.idTags[.artist] = item["artists"][0]["name"].string
-                    lyrics.idTags[.album] = item["album"]["name"].string
-                    lyrics.idTags[.lrcBy] = "163"
+                    lyrics.idTags[.title]   = item["name"].string
+                    lyrics.idTags[.artist]  = item["artists"][0]["name"].string
+                    lyrics.idTags[.album]   = item["album"]["name"].string
+                    lyrics.idTags[.lrcBy]   = "163"
                     
-                    lyrics.metadata = metadata
+                    lyrics.metadata[.searchTitle]   = title
+                    lyrics.metadata[.searchArtist]  = artist
+                    lyrics.metadata[.searchIndex]   = index
+                    lyrics.metadata[.source]        = "163"
+                    lyrics.metadata[.artworkURL]    = item["album"]["picUrl"].url
+                    
                     completionBlock(lyrics)
                 }
             }
@@ -128,7 +126,7 @@ class Lyrics163: LyricsSource {
 
 extension Lyrics {
     
-    mutating func merge(translation: Lyrics) {
+    fileprivate mutating func merge(translation: Lyrics) {
         var index = lyrics.startIndex
         var transIndex = translation.lyrics.startIndex
         while index < lyrics.endIndex, transIndex < translation.lyrics.endIndex {
