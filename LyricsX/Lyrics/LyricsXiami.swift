@@ -20,7 +20,7 @@ class LyricsXiami: LyricsSource {
     func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
         queue.addOperation {
             let xiamiIDs = self.searchXiamiIDFor(title: title, artist: artist)
-            xiamiIDs.forEach() { xiamiID in
+            for (index, xiamiID) in xiamiIDs.enumerated() {
                 self.queue.addOperation {
                     let parser = LyricsXiamiXMLParser()
                     guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(xiamiID)"),
@@ -28,9 +28,10 @@ class LyricsXiami: LyricsSource {
                         var metadata = parser.parseLrcURL(data: data) else {
                             return
                     }
-                    metadata[.source] = "Xiami"
-                    metadata[.searchTitle] = title
+                    metadata[.source]       = "Xiami"
+                    metadata[.searchTitle]  = title
                     metadata[.searchArtist] = artist
+                    metadata[.searchIndex]  = index
                     if let lrc = Lyrics(metadata: metadata) {
                         completionBlock(lrc)
                     }
@@ -61,9 +62,9 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     
     var XMLContent: String?
     
-    var result: [Lyrics.MetadataKey: String] = [:]
+    var result: [Lyrics.MetadataKey: Any] = [:]
     
-    func parseLrcURL(data: Data) -> [Lyrics.MetadataKey: String]? {
+    func parseLrcURL(data: Data) -> [Lyrics.MetadataKey: Any]? {
         let parser = XMLParser(data: data)
         parser.delegate = self
         let success = parser.parse()
@@ -75,9 +76,9 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         switch elementName {
         case "lyric":
-            result[.lyricsURL] = XMLContent
+            result[.lyricsURL] = XMLContent.flatMap { URL(string: $0) }
         case "pic":
-            result[.artworkURL] = XMLContent
+            result[.artworkURL] = XMLContent.flatMap { URL(string: $0) }
         default:
             return
         }

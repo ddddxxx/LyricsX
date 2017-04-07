@@ -60,7 +60,8 @@ class LyricsSourceHelper {
                 guard self.searchTitle == title, self.searchArtist == artist else {
                     return
                 }
-                self.lyrics += [lrc]
+                let index = self.lyrics.index(where: {$0 < lrc}) ?? self.lyrics.count
+                self.lyrics.insert(lrc, at: index)
                 self.delegate?.lyricsReceived(lyrics: lrc)
             }
             DispatchQueue.global(qos: .background).async {

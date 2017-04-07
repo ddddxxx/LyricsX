@@ -9,10 +9,10 @@
 import Foundation
 import AppKit
 
-class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
+class MediaPlayerHelper: NSObject, MediaPlayerDelegate, LyricsSourceDelegate {
     
     var player: MediaPlayer?
-    let lyricsSource = Lyrics163()
+    let lyricsSource = LyricsSourceHelper()
     
     private(set) var currentLyrics: Lyrics?
     dynamic var lyricsOffset: Int {
@@ -40,6 +40,7 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
         }
         
         player?.delegate = self
+        lyricsSource.delegate = self
         
         currentTrackChanged(track: player?.currentTrack)
     }
@@ -51,7 +52,7 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
         currentLyrics = lyrics
         didChangeValue(forKey: "lyricsOffset")
         NotificationCenter.default.post(name: .LyricsChange, object: nil)
-        if currentLyrics?.metadata[.source] != "Local" {
+        if currentLyrics?.metadata[.source] as? String != "Local" {
             currentLyrics?.saveToLocal()
         }
     }
@@ -83,9 +84,7 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
         if let localLyrics = LyricsSourceHelper.readLocalLyrics(title: title, artist: artist) {
             setCurrentLyrics(lyrics: localLyrics)
         } else {
-            lyricsSource.iFeelLucky(title: title, artist: artist) {
-                self.lyricsReceived(lyrics: $0)
-            }
+            lyricsSource.fetchLyrics(title: title, artist: artist)
         }
     }
     
@@ -106,16 +105,20 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        guard lyrics.metadata[.searchTitle] == player?.currentTrack?.name,
-            lyrics.metadata[.searchArtist] == player?.currentTrack?.artist else {
+        guard lyrics.metadata[.searchTitle] as? String == player?.currentTrack?.name,
+            lyrics.metadata[.searchArtist] as? String == player?.currentTrack?.artist else {
             return
         }
         
-        if let current = currentLyrics, current.grade >= lyrics.grade {
+        if let current = currentLyrics, current >= lyrics {
             return
         }
         
         setCurrentLyrics(lyrics: lyrics)
+    }
+    
+    func fetchCompleted(result: [Lyrics]) {
+        
     }
     
 }
@@ -140,7 +143,7 @@ extension LyricsSourceHelper {
         let lrcFileURL = url.appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
         if let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8) {
             var lrc = Lyrics(lrcContents)
-            let metadata: [Lyrics.MetadataKey: String] = [
+            let metadata: [Lyrics.MetadataKey: Any] = [
                 .searchTitle: title,
                 .searchArtist: artist,
                 .source: "Local"
@@ -180,8 +183,10 @@ extension Lyrics {
                 try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             }
             
-            let titleForSaving = metadata[.searchTitle]!.replacingOccurrences(of: "/", with: "&")
-            let artistForSaving = metadata[.searchArtist]!.replacingOccurrences(of: "/", with: "&")
+            guard let titleForSaving = (metadata[.searchTitle] as? String)?.replacingOccurrences(of: "/", with: "&"),
+                let artistForSaving = (metadata[.searchArtist] as? String)?.replacingOccurrences(of: "/", with: "&") else {
+                return
+            }
             let lrcFileURL = url.appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
             
             if fileManager.fileExists(atPath: lrcFileURL.path) {

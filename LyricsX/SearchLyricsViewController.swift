@@ -61,7 +61,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     // MARK: - LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        searchResult += [lyrics]
+        let index = searchResult.index(where: {$0 < lyrics}) ?? searchResult.count
+        searchResult.insert(lyrics, at: index)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -133,8 +134,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard index >= 0 else {
             return
         }
-        guard let urlStr = self.searchResult[index].metadata[.artworkURL],
-            let url = URL(string: urlStr) else {
+        guard let url = self.searchResult[index].metadata[.artworkURL] as? URL else {
             artworkView.image = #imageLiteral(resourceName: "missing_artwork")
             return
         }
@@ -146,6 +146,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         artworkView.image = #imageLiteral(resourceName: "missing_artwork")
         DispatchQueue.global().async {
+            if self.cacheImages.keys.contains(url) {
+                return
+            }
             self.cacheImages[url] = NSImage(contentsOf: url)
             DispatchQueue.main.async {
                 self.updateImage()

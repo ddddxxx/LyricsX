@@ -12,7 +12,7 @@ struct Lyrics {
     
     var lyrics: [LyricsLine]
     var idTags: [IDTagKey: String]
-    var metadata: [MetadataKey: String]
+    var metadata: [MetadataKey: Any]
     
     var offset: Int {
         get {
@@ -87,9 +87,8 @@ struct Lyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
-    init?(metadata: [MetadataKey: String]) {
-        guard let lrcURLStr = metadata[.lyricsURL],
-            let lrcURL = URL(string: lrcURLStr),
+    init?(metadata: [MetadataKey: Any]) {
+        guard let lrcURL = metadata[.lyricsURL] as? URL,
             let lrcContent = try? String(contentsOf: lrcURL) else {
             return nil
         }
@@ -151,6 +150,8 @@ extension Lyrics {
         
         case searchArtist       = "searchArtist"
         
+        case searchIndex        = "searchIndex"
+        
         case artworkURL         = "artworkURL"
         
         case includeTranslation = "includeTranslation"
@@ -204,8 +205,8 @@ extension Lyrics {
                 sentence.contains(idTagTitle),
                 sentence.contains(idTagArtist) {
                 lyrics[index].enabled = false
-            } else if let iTunesTitle = metadata[.searchTitle],
-                let iTunesArtist = metadata[.searchArtist],
+            } else if let iTunesTitle = metadata[.searchTitle] as? String,
+                let iTunesArtist = metadata[.searchArtist] as? String,
                 sentence.contains(iTunesTitle),
                 sentence.contains(iTunesArtist) {
                 lyrics[index].enabled = false
@@ -215,37 +216,106 @@ extension Lyrics {
     
 }
 
+infix operator ?>
+private func ?>(lhs: Bool?, rhs: Bool?) -> Bool? {
+    switch (lhs, rhs) {
+    case (.some(true), .some(true)), (.some(false), .some(false)):
+        return nil
+    case (.some(true), _), (_, .some(false)):
+        return true
+    case (_, .some(true)), (.some(false), _):
+        return false
+    default:
+        return nil
+    }
+}
+
 extension Lyrics {
     
-    var grade: Int {
-        var grade = 0
-        if let searchArtist = metadata[.searchArtist], let artist = idTags[.artist] {
-            if searchArtist == artist {
-                grade += 1 << 10
-            } else if searchArtist.contains(artist) || artist.contains(searchArtist) {
-                grade += 1 << 9
-            }
-        } else {
-            grade += 1 << 8
+    static func >(lhs: Lyrics, rhs: Lyrics) -> Bool {
+        if lhs.metadata[.source] as? String == rhs.metadata[.source] as? String,
+            let lIndex = lhs.metadata[.searchIndex] as? Int,
+            let rIndex = rhs.metadata[.searchIndex] as? Int {
+            return lIndex < rIndex
         }
         
-        if let searchTitle = metadata[.searchTitle], let title = idTags[.title] {
-            if searchTitle == title {
-                grade += 1 << 10
-            } else if searchTitle.contains(title) || title.contains(searchTitle) {
-                grade += 1 << 9
-            }
-        } else {
-            grade += 1 << 8
+        if let artistComparison = lhs.isFitArtist ?> rhs.isFitArtist {
+            return artistComparison
         }
         
-        if metadata[.includeTranslation] == "true" {
-            grade += 1 << 2
+        if let artistComparison = lhs.isApproachArtise ?> rhs.isApproachArtise {
+            return artistComparison
         }
         
-        return grade
+        if let titleComparison = lhs.isFitTitle ?> rhs.isFitTitle {
+            return titleComparison
+        }
+        
+        if let titleComparison = lhs.isApproachTitle ?> rhs.isApproachTitle {
+            return titleComparison
+        }
+        
+        if let translationComparison = (lhs.metadata[.includeTranslation] as? Bool) ?> (rhs.metadata[.includeTranslation] as? Bool) {
+            return translationComparison
+        }
+        
+        return false
     }
     
+    static func <(lhs: Lyrics, rhs: Lyrics) -> Bool {
+        return rhs > lhs
+    }
+    
+    static func >=(lhs: Lyrics, rhs: Lyrics) -> Bool {
+        return !(lhs < rhs)
+    }
+    
+    static func <=(lhs: Lyrics, rhs: Lyrics) -> Bool {
+        return !(lhs > rhs)
+    }
+    
+    private var isFitArtist: Bool? {
+        guard let searchArtist = metadata[.searchArtist] as? String,
+            let artist = idTags[.artist] else {
+            return nil
+        }
+        
+        return searchArtist == artist
+    }
+    
+    private var isApproachArtise: Bool? {
+        guard let searchArtist = metadata[.searchArtist] as? String,
+            let artist = idTags[.artist] else {
+                return nil
+        }
+        
+        let s1 = searchArtist.lowercased().replacingOccurrences(of: " ", with: "")
+        let s2 = artist.lowercased().replacingOccurrences(of: " ", with: "")
+        
+        return s1.contains(s2) || s2.contains(s1)
+    }
+    
+    private var isFitTitle: Bool? {
+        guard let searchTitle = metadata[.searchTitle] as? String,
+            let title = idTags[.title] else {
+                return nil
+        }
+        
+        return searchTitle == title
+    }
+    
+    private var isApproachTitle: Bool? {
+        guard let searchTitle = metadata[.searchTitle] as? String,
+            let title = idTags[.title] else {
+                return nil
+        }
+        
+        let s1 = searchTitle.lowercased().replacingOccurrences(of: " ", with: "")
+        let s2 = title.lowercased().replacingOccurrences(of: " ", with: "")
+        
+        return s1.contains(s2) || s2.contains(s1)
+    }
+
 }
 
 extension Lyrics.IDTagKey: CustomStringConvertible {

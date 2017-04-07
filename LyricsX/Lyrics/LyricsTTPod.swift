@@ -29,10 +29,11 @@ class LyricsTTPod: LyricsSource {
                     return
             }
             
-            var metadata: [Lyrics.MetadataKey: String] = [:]
-            metadata[.source] = "TTPod"
-            metadata[.searchTitle] = title
+            var metadata: [Lyrics.MetadataKey: Any] = [:]
+            metadata[.source]       = "TTPod"
+            metadata[.searchTitle]  = title
             metadata[.searchArtist] = artist
+            metadata[.searchIndex]  = 0
             
             lrc.metadata = metadata
             
