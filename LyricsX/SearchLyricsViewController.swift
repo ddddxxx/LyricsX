@@ -146,6 +146,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         artworkView.image = #imageLiteral(resourceName: "missing_artwork")
         DispatchQueue.global().async {
+            if self.cacheImages.keys.contains(url) {
+                return
+            }
             self.cacheImages[url] = NSImage(contentsOf: url)
             DispatchQueue.main.async {
                 self.updateImage()
