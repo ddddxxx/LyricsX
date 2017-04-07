@@ -84,7 +84,7 @@ class LyricsHUDAccessoryViewController: NSTitlebarAccessoryViewController {
     
     @IBAction func lockAction(_ sender: NSButton) {
         if sender.state == NSOnState {
-            view.window?.level = Int(CGWindowLevelForKey(.floatingWindow))
+            view.window?.level = Int(CGWindowLevelForKey(.modalPanelWindow))
         } else {
             view.window?.level = Int(CGWindowLevelForKey(.normalWindow))
         }
