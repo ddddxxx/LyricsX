@@ -61,7 +61,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     // MARK: - LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        searchResult += [lyrics]
+        let index = searchResult.index(where: {$0 < lyrics}) ?? searchResult.count
+        searchResult.insert(lyrics, at: index)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

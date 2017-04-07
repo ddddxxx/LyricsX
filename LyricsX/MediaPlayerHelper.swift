@@ -9,10 +9,10 @@
 import Foundation
 import AppKit
 
-class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
+class MediaPlayerHelper: NSObject, MediaPlayerDelegate, LyricsSourceDelegate {
     
     var player: MediaPlayer?
-    let lyricsSource = Lyrics163()
+    let lyricsSource = LyricsSourceHelper()
     
     private(set) var currentLyrics: Lyrics?
     dynamic var lyricsOffset: Int {
@@ -40,6 +40,7 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
         }
         
         player?.delegate = self
+        lyricsSource.delegate = self
         
         currentTrackChanged(track: player?.currentTrack)
     }
@@ -83,9 +84,7 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
         if let localLyrics = LyricsSourceHelper.readLocalLyrics(title: title, artist: artist) {
             setCurrentLyrics(lyrics: localLyrics)
         } else {
-            lyricsSource.iFeelLucky(title: title, artist: artist) {
-                self.lyricsReceived(lyrics: $0)
-            }
+            lyricsSource.fetchLyrics(title: title, artist: artist)
         }
     }
     
@@ -111,11 +110,15 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate {
             return
         }
         
-        if let current = currentLyrics, current.grade >= lyrics.grade {
+        if let current = currentLyrics, current >= lyrics {
             return
         }
         
         setCurrentLyrics(lyrics: lyrics)
+    }
+    
+    func fetchCompleted(result: [Lyrics]) {
+        
     }
     
 }

@@ -216,39 +216,106 @@ extension Lyrics {
     
 }
 
+infix operator ?>
+private func ?>(lhs: Bool?, rhs: Bool?) -> Bool? {
+    switch (lhs, rhs) {
+    case (.some(true), .some(true)), (.some(false), .some(false)):
+        return nil
+    case (.some(true), _), (_, .some(false)):
+        return true
+    case (_, .some(true)), (.some(false), _):
+        return false
+    default:
+        return nil
+    }
+}
+
 extension Lyrics {
     
-    var grade: Int {
-        var grade = 0
-        if let searchArtist = metadata[.searchArtist] as? String,
-            let artist = idTags[.artist] {
-            if searchArtist == artist {
-                grade += 1 << 10
-            } else if searchArtist.contains(artist) || artist.contains(searchArtist) {
-                grade += 1 << 9
-            }
-        } else {
-            grade += 1 << 8
+    static func >(lhs: Lyrics, rhs: Lyrics) -> Bool {
+        if lhs.metadata[.source] as? String == rhs.metadata[.source] as? String,
+            let lIndex = lhs.metadata[.searchIndex] as? Int,
+            let rIndex = rhs.metadata[.searchIndex] as? Int {
+            return lIndex < rIndex
         }
         
-        if let searchTitle = metadata[.searchTitle] as? String,
-            let title = idTags[.title] {
-            if searchTitle == title {
-                grade += 1 << 10
-            } else if searchTitle.contains(title) || title.contains(searchTitle) {
-                grade += 1 << 9
-            }
-        } else {
-            grade += 1 << 8
+        if let artistComparison = lhs.isFitArtist ?> rhs.isFitArtist {
+            return artistComparison
         }
         
-        if metadata[.includeTranslation] as? Bool == true {
-            grade += 1 << 2
+        if let artistComparison = lhs.isApproachArtise ?> rhs.isApproachArtise {
+            return artistComparison
         }
         
-        return grade
+        if let titleComparison = lhs.isFitTitle ?> rhs.isFitTitle {
+            return titleComparison
+        }
+        
+        if let titleComparison = lhs.isApproachTitle ?> rhs.isApproachTitle {
+            return titleComparison
+        }
+        
+        if let translationComparison = (lhs.metadata[.includeTranslation] as? Bool) ?> (rhs.metadata[.includeTranslation] as? Bool) {
+            return translationComparison
+        }
+        
+        return false
     }
     
+    static func <(lhs: Lyrics, rhs: Lyrics) -> Bool {
+        return rhs > lhs
+    }
+    
+    static func >=(lhs: Lyrics, rhs: Lyrics) -> Bool {
+        return !(lhs < rhs)
+    }
+    
+    static func <=(lhs: Lyrics, rhs: Lyrics) -> Bool {
+        return !(lhs > rhs)
+    }
+    
+    private var isFitArtist: Bool? {
+        guard let searchArtist = metadata[.searchArtist] as? String,
+            let artist = idTags[.artist] else {
+            return nil
+        }
+        
+        return searchArtist == artist
+    }
+    
+    private var isApproachArtise: Bool? {
+        guard let searchArtist = metadata[.searchArtist] as? String,
+            let artist = idTags[.artist] else {
+                return nil
+        }
+        
+        let s1 = searchArtist.lowercased().replacingOccurrences(of: " ", with: "")
+        let s2 = artist.lowercased().replacingOccurrences(of: " ", with: "")
+        
+        return s1.contains(s2) || s2.contains(s1)
+    }
+    
+    private var isFitTitle: Bool? {
+        guard let searchTitle = metadata[.searchTitle] as? String,
+            let title = idTags[.title] else {
+                return nil
+        }
+        
+        return searchTitle == title
+    }
+    
+    private var isApproachTitle: Bool? {
+        guard let searchTitle = metadata[.searchTitle] as? String,
+            let title = idTags[.title] else {
+                return nil
+        }
+        
+        let s1 = searchTitle.lowercased().replacingOccurrences(of: " ", with: "")
+        let s2 = title.lowercased().replacingOccurrences(of: " ", with: "")
+        
+        return s1.contains(s2) || s2.contains(s1)
+    }
+
 }
 
 extension Lyrics.IDTagKey: CustomStringConvertible {
