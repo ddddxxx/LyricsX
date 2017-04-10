@@ -183,11 +183,7 @@ extension Lyrics {
                 try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             }
             
-            guard let titleForSaving = (metadata[.searchTitle] as? String)?.replacingOccurrences(of: "/", with: "&"),
-                let artistForSaving = (metadata[.searchArtist] as? String)?.replacingOccurrences(of: "/", with: "&") else {
-                return
-            }
-            let lrcFileURL = url.appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
+            let lrcFileURL = url.appendingPathComponent(fileName)
             
             if fileManager.fileExists(atPath: lrcFileURL.path) {
                 try fileManager.removeItem(at: lrcFileURL)

@@ -121,12 +121,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     func tableView(_ tableView: NSTableView, namesOfPromisedFilesDroppedAtDestination dropDestination: URL, forDraggedRowsWith indexSet: IndexSet) -> [String] {
         return indexSet.flatMap { index -> String? in
-            let data = searchResult[index].metadata
-            guard let title = (data[.searchTitle] as? String)?.replacingOccurrences(of: "/", with: "&"),
-                let artist = (data[.searchArtist] as? String)?.replacingOccurrences(of: "/", with: "&") else {
-                    return nil
-            }
-            let fileName = "\(title) - \(artist).lrc"
+            let fileName = searchResult[index].fileName
             
             let destURL = dropDestination.appendingPathComponent(fileName)
             let lrcStr = searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
