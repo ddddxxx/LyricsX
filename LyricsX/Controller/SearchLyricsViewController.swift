@@ -114,8 +114,14 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
-        pboard.declareTypes([NSFilesPromisePboardType], owner: self)
+        var pboardType = [NSFilesPromisePboardType]
         pboard.setPropertyList(["lrc"], forType: NSFilesPromisePboardType)
+        if let index = rowIndexes.first {
+            let lrcContent = searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+            pboardType.append(NSStringPboardType)
+            pboard.setString(lrcContent, forType: NSStringPboardType)
+        }
+        pboard.declareTypes(pboardType, owner: self)
         return true
     }
     
