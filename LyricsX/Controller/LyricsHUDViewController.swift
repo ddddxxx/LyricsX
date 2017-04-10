@@ -9,13 +9,14 @@
 import Cocoa
 import EasyPreference
 
-class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate {
+class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragNDropDelegate {
     
+    @IBOutlet weak var dragNDropView: DragNDropView!
     @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
     
     dynamic var isTracking = true
     
-    override func viewWillAppear() {
+    override func awakeFromNib() {
         view.window?.titlebarAppearsTransparent = true
         view.window?.titleVisibility = .hidden
         view.window?.styleMask.insert(.borderless)
@@ -23,6 +24,8 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate {
         let accessory = self.storyboard?.instantiateController(withIdentifier: "LyricsHUDAccessory") as! LyricsHUDAccessoryViewController
         accessory.layoutAttribute = .right
         view.window?.addTitlebarAccessoryViewController(accessory)
+        
+        dragNDropView.dragDelegate = self
         
         lyricsScrollView.delegate = self
         lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
@@ -72,6 +75,12 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate {
     
     func handleScrollViewWillStartScroll(_ n: Notification) {
         isTracking = false
+    }
+    
+    // MARK: DragNDrop Delegate
+    
+    func dragFinished(content: String) {
+        appDelegate()?.mediaPlayerHelper.importLyrics(content)
     }
     
 }

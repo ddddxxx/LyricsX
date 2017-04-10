@@ -34,11 +34,14 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     override func viewDidLoad() {
         lyricsHelper.delegate = self
-        let helper = appDelegate()?.mediaPlayerHelper
+        tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
+        
+        let helper = appDelegate()?.mediaPlayerHelper
         searchArtist = helper?.player?.currentTrack?.artist ?? ""
         searchTitle = helper?.player?.currentTrack?.name ?? ""
         searchAction(nil)
+        
         super.viewDidLoad()
     }
     
@@ -104,13 +107,39 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         if self.hideLrcPreviewConstraint?.isActive == true {
-            self.expansionPreview()
+            self.expandPreview()
         }
         self.lyricsPreviewTextView.string = self.searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
         self.updateImage()
     }
     
-    func expansionPreview() {
+    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
+        let lrcContent = searchResult[rowIndexes.first!].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+        pboard.declareTypes([NSStringPboardType, NSFilesPromisePboardType], owner: self)
+        pboard.setString(lrcContent, forType: NSStringPboardType)
+        pboard.setPropertyList(["lrc"], forType: NSFilesPromisePboardType)
+        return true
+    }
+    
+    func tableView(_ tableView: NSTableView, namesOfPromisedFilesDroppedAtDestination dropDestination: URL, forDraggedRowsWith indexSet: IndexSet) -> [String] {
+        return indexSet.flatMap { index -> String? in
+            let fileName = searchResult[index].fileName
+            
+            let destURL = dropDestination.appendingPathComponent(fileName)
+            let lrcStr = searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+            
+            do {
+                try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)
+            } catch let error as NSError{
+                print(error)
+                return nil
+            }
+            
+            return fileName
+        }
+    }
+    
+    func expandPreview() {
         let expandingHeight = -view.subviews.reduce(0) { min($0, $1.frame.minY) }
         var windowFrame = self.view.window!.frame
         windowFrame.size.height += expandingHeight

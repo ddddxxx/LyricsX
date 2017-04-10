@@ -126,36 +126,22 @@ extension Lyrics {
             return rawValue.hash
         }
         
-        static let title: IDTagKey = .init("ti")
-        
-        static let album: IDTagKey = .init("al")
-        
-        static let artist: IDTagKey = .init("ar")
-        
-        static let author: IDTagKey = .init("au")
-        
-        static let lrcBy: IDTagKey = .init("by")
-        
-        static let offset: IDTagKey = .init("offset")
-        
+        static let title    = IDTagKey("ti")
+        static let album    = IDTagKey("al")
+        static let artist   = IDTagKey("ar")
+        static let author   = IDTagKey("au")
+        static let lrcBy    = IDTagKey("by")
+        static let offset   = IDTagKey("offset")
     }
     
     enum MetadataKey: String {
-        
         case source             = "source"
-        
         case lyricsURL          = "lyricsURL"
-        
         case searchTitle        = "searchTitle"
-        
         case searchArtist       = "searchArtist"
-        
         case searchIndex        = "searchIndex"
-        
         case artworkURL         = "artworkURL"
-        
         case includeTranslation = "includeTranslation"
-        
     }
     
 }

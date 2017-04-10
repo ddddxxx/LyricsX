@@ -123,6 +123,22 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate, LyricsSourceDelegate {
     
 }
 
+extension MediaPlayerHelper {
+    
+    func importLyrics(_ lyrics: String) {
+        if var lrc = Lyrics(lyrics),
+            let track = player?.currentTrack {
+            lrc.metadata = [
+                .searchTitle: track.name,
+                .searchArtist: track.artist,
+                .source: "Import"
+            ]
+            setCurrentLyrics(lyrics: lrc)
+        }
+    }
+    
+}
+
 extension LyricsSourceHelper {
     
     static func readLocalLyrics(title: String, artist: String) -> Lyrics? {
@@ -183,11 +199,7 @@ extension Lyrics {
                 try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             }
             
-            guard let titleForSaving = (metadata[.searchTitle] as? String)?.replacingOccurrences(of: "/", with: "&"),
-                let artistForSaving = (metadata[.searchArtist] as? String)?.replacingOccurrences(of: "/", with: "&") else {
-                return
-            }
-            let lrcFileURL = url.appendingPathComponent("\(titleForSaving) - \(artistForSaving).lrc")
+            let lrcFileURL = url.appendingPathComponent(fileName)
             
             if fileManager.fileExists(atPath: lrcFileURL.path) {
                 try fileManager.removeItem(at: lrcFileURL)
