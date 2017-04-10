@@ -123,6 +123,22 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate, LyricsSourceDelegate {
     
 }
 
+extension MediaPlayerHelper {
+    
+    func importLyrics(_ lyrics: String) {
+        if var lrc = Lyrics(lyrics),
+            let track = player?.currentTrack {
+            lrc.metadata = [
+                .searchTitle: track.name,
+                .searchArtist: track.artist,
+                .source: "Import"
+            ]
+            setCurrentLyrics(lyrics: lrc)
+        }
+    }
+    
+}
+
 extension LyricsSourceHelper {
     
     static func readLocalLyrics(title: String, artist: String) -> Lyrics? {

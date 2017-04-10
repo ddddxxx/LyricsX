@@ -1211,6 +1211,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="00o-Z8-m5E" customClass="DragNDropView" customModule="LyricsX" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                             <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-WB-V2o" customClass="ScrollLyricsView" customModule="LyricsX" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="304" height="264"/>
                                 <clipView key="contentView" drawsBackground="NO" id="lTs-ol-c97">
@@ -1281,6 +1285,7 @@ IA
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dragNDropView" destination="00o-Z8-m5E" id="kV0-Yy-bTs"/>
                         <outlet property="lyricsScrollView" destination="IdM-WB-V2o" id="c7A-VH-22w"/>
                     </connections>
                 </viewController>

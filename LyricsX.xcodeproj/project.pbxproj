@@ -55,6 +55,7 @@
 		BBC1D5891E4B1C44008869EC /* LyricsXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5881E4B1C44008869EC /* LyricsXTests.swift */; };
 		BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */; };
 		BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */; };
+		BBD03C371E9B2C7200EFB975 /* DragNDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		BBC1D58A1E4B1C44008869EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferenceDisplayViewController.swift; path = Controller/Preferences/PreferenceDisplayViewController.swift; sourceTree = "<group>"; };
 		BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferenceGeneralViewController.swift; path = Controller/Preferences/PreferenceGeneralViewController.swift; sourceTree = "<group>"; };
+		BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DragNDropView.swift; path = View/DragNDropView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			children = (
 				BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */,
 				BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */,
+				BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				BB60F2FC1E87CF9200BA1FD2 /* Vox.swift in Sources */,
 				BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */,
 				BB1B631B1E8CD7CA004CC9E0 /* ScrollLyricsView.swift in Sources */,
+				BBD03C371E9B2C7200EFB975 /* DragNDropView.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
 				BB58B0871E82BFF600598D4F /* LyricsLine.swift in Sources */,
