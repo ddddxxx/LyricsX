@@ -34,11 +34,14 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     override func viewDidLoad() {
         lyricsHelper.delegate = self
-        let helper = appDelegate()?.mediaPlayerHelper
+        tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
+        
+        let helper = appDelegate()?.mediaPlayerHelper
         searchArtist = helper?.player?.currentTrack?.artist ?? ""
         searchTitle = helper?.player?.currentTrack?.name ?? ""
         searchAction(nil)
+        
         super.viewDidLoad()
     }
     
@@ -104,13 +107,42 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         if self.hideLrcPreviewConstraint?.isActive == true {
-            self.expansionPreview()
+            self.expandPreview()
         }
         self.lyricsPreviewTextView.string = self.searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
         self.updateImage()
     }
     
-    func expansionPreview() {
+    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
+        pboard.declareTypes([NSFilesPromisePboardType], owner: self)
+        pboard.setPropertyList(["lrc"], forType: NSFilesPromisePboardType)
+        return true
+    }
+    
+    func tableView(_ tableView: NSTableView, namesOfPromisedFilesDroppedAtDestination dropDestination: URL, forDraggedRowsWith indexSet: IndexSet) -> [String] {
+        return indexSet.flatMap { index -> String? in
+            let data = searchResult[index].metadata
+            guard let title = (data[.searchTitle] as? String)?.replacingOccurrences(of: "/", with: "&"),
+                let artist = (data[.searchArtist] as? String)?.replacingOccurrences(of: "/", with: "&") else {
+                    return nil
+            }
+            let fileName = "\(title) - \(artist).lrc"
+            
+            let destURL = dropDestination.appendingPathComponent(fileName)
+            let lrcStr = searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+            
+            do {
+                try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)
+            } catch let error as NSError{
+                print(error)
+                return nil
+            }
+            
+            return fileName
+        }
+    }
+    
+    func expandPreview() {
         let expandingHeight = -view.subviews.reduce(0) { min($0, $1.frame.minY) }
         var windowFrame = self.view.window!.frame
         windowFrame.size.height += expandingHeight
