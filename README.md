@@ -16,6 +16,8 @@ You can download ZIP from [release](https://github.com/XQS6LB3A/LyricsX/releases
 - Automatically search & download synchronized lyrics.
 - Display lyrics on desktop and menubar. you can customize font, color and position for desktop lyrics.
 - Adjust lyrics offset on status menu.
+- Double click lyrics to set player position.
+- Drag & Drop to import/export lyrics file.
 - Auto launch & quit with music player.
 - Auto convert Traditional Chinese or Simplified Chinese if you want.
 
@@ -37,3 +39,7 @@ You can download ZIP from [release](https://github.com/XQS6LB3A/LyricsX/releases
 - [EasyPreference](https://github.com/XQS6LB3A/EasyPreference)
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [SnapKit](https://github.com/SnapKit/SnapKit)
+
+## ⚠️ Disclaimer
+
+All lyrics are property and copyright of their owners.
