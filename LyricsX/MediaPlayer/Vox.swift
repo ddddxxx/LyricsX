@@ -16,18 +16,22 @@ class Vox: MusicPlayer {
     }
     
     var currentTrack: MusicTrack? {
+        guard isRunning else { return nil }
         return _vox.track
     }
     
     var playerState: MusicPlayerState {
+        guard isRunning else { return .stopped }
         return _vox.state
     }
     
     var playerPosition: Double {
         get {
+            guard isRunning else { return 0 }
             return _vox.currentTime ?? 0
         }
         set {
+            guard isRunning else { return }
             (_vox as! SBApplication).setValue(newValue, forKey: "currentTime")
         }
     }

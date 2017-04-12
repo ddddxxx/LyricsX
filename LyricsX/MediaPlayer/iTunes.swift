@@ -16,18 +16,22 @@ class iTunes: MusicPlayer {
     }
     
     var currentTrack: MusicTrack? {
+        guard isRunning else { return nil }
         return _iTunes.currentTrack?.track
     }
     
     var playerState: MusicPlayerState {
+        guard isRunning else { return .stopped }
         return _iTunes.playerState?.state ?? .stopped
     }
     
     var playerPosition: Double {
         get {
+            guard isRunning else { return 0 }
             return _iTunes.playerPosition ?? 0
         }
         set {
+            guard isRunning else { return }
             (_iTunes as! SBApplication).setValue(newValue, forKey: "playerPosition")
         }
     }

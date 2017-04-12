@@ -16,18 +16,22 @@ class Spotify: MusicPlayer {
     }
     
     var currentTrack: MusicTrack? {
+        guard isRunning else { return nil }
         return _spotify.currentTrack?.track
     }
     
     var playerState: MusicPlayerState {
+        guard isRunning else { return .stopped }
         return _spotify.playerState?.state ?? .stopped
     }
     
     var playerPosition: Double {
         get {
+            guard isRunning else { return 0 }
             return _spotify.playerPosition ?? 0
         }
         set {
+            guard isRunning else { return }
             (_spotify as! SBApplication).setValue(newValue, forKey: "playerPosition")
         }
     }
