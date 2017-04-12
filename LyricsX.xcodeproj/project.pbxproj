@@ -24,6 +24,7 @@
 		BB4141D81E475DD100A51775 /* iTunesBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D71E475DD100A51775 /* iTunesBridge.swift */; };
 		BB4141DA1E4761F900A51775 /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141D91E4761F900A51775 /* Lyrics.swift */; };
 		BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44F8771E702863004194D9 /* Lyrics163.swift */; };
+		BB45AC801E9E337F0099432F /* MusicPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */; };
 		BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */; };
 		BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */; };
 		BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */; };
@@ -115,6 +116,7 @@
 		BB4141D71E475DD100A51775 /* iTunesBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iTunesBridge.swift; path = MediaPlayer/iTunesBridge.swift; sourceTree = "<group>"; };
 		BB4141D91E4761F900A51775 /* Lyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lyrics.swift; path = Lyrics/Lyrics.swift; sourceTree = "<group>"; };
 		BB44F8771E702863004194D9 /* Lyrics163.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lyrics163.swift; path = Lyrics/Lyrics163.swift; sourceTree = "<group>"; };
+		BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayerProtocol.swift; path = MediaPlayer/MusicPlayerProtocol.swift; sourceTree = "<group>"; };
 		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsGecimi.swift; path = Lyrics/LyricsGecimi.swift; sourceTree = "<group>"; };
 		BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceHelper.swift; path = Lyrics/LyricsSourceHelper.swift; sourceTree = "<group>"; };
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoActivateWindowController.swift; path = Controller/AutoActivateWindowController.swift; sourceTree = "<group>"; };
@@ -222,7 +224,7 @@
 				BB063B2F1E8A93CE00A25C3E /* View */,
 				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
 				BB7EC7B51E4ED02000A0AC3F /* Lyrics */,
-				BBBB6EC31E86B08E003B3ED6 /* MediaPlayer */,
+				BBBB6EC31E86B08E003B3ED6 /* MusicPlayer */,
 				BB7EC7B61E4ED03900A0AC3F /* Others */,
 				BB4141BC1E45B26800A51775 /* Support Files */,
 			);
@@ -321,16 +323,17 @@
 			name = ScriptingBridge;
 			sourceTree = "<group>";
 		};
-		BBBB6EC31E86B08E003B3ED6 /* MediaPlayer */ = {
+		BBBB6EC31E86B08E003B3ED6 /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				BBB8DA3F1E8665B400EF0A18 /* ScriptingBridge */,
+				BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */,
 				BBC811791E9E1D0000331CFC /* MusicPlayerManager.swift */,
 				BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */,
 				BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */,
 				BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */,
 			);
-			name = MediaPlayer;
+			name = MusicPlayer;
 			sourceTree = "<group>";
 		};
 		BBC1D5871E4B1C44008869EC /* LyricsXTests */ = {
@@ -547,6 +550,7 @@
 				BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */,
 				BBB8DA3C1E86653700EF0A18 /* SpotifyBridge.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunesBridge.swift in Sources */,
+				BB45AC801E9E337F0099432F /* MusicPlayerProtocol.swift in Sources */,
 				BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */,
 				BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */,
 				BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */,

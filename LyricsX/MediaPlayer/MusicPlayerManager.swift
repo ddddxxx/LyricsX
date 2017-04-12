@@ -8,39 +8,6 @@
 
 import Foundation
 
-enum MusicPlayerState {
-    case stopped
-    case playing
-    case paused
-    case fastForwarding
-    case rewinding
-}
-
-struct MusicTrack: Equatable {
-    var id:     String
-    var name:   String?
-    var album:  String?
-    var artist: String?
-    
-    static func ==(lhs: MusicTrack, rhs: MusicTrack) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
-protocol MusicPlayer {
-    var isRunning: Bool { get }
-    var currentTrack: MusicTrack? { get }
-    var playerState: MusicPlayerState { get }
-    var playerPosition: Double { get set }
-}
-
-protocol MusicPlayerDelegate: class {
-    func runningStateChanged(isRunning: Bool)
-    func playerStateChanged(state: MusicPlayerState)
-    func currentTrackChanged(track: MusicTrack?)
-    func playerPositionChanged(position: Double)
-}
-
 class MusicPlayerManager {
     
     static let shared = MusicPlayerManager()
