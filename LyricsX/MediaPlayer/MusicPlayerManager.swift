@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EasyPreference
 
 class MusicPlayerManager {
     
@@ -20,9 +21,14 @@ class MusicPlayerManager {
     private var _track: MusicTrack?
     private var _state: MusicPlayerState = .stopped
     private var _position: Double = 0
+    private var subscripToken: EventSubscription?
     
     private init() {
-        updateMusicPlayerApplication()
+        updateMusicPlayerApplication(index: Preference[PreferredPlayerIndex])
+        
+        subscripToken = Preference.subscribe(key: PreferredPlayerIndex) { [unowned self] change in
+            self.updateMusicPlayerApplication(index: change.newValue)
+        }
         
         _timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
             self.updatePlayerState()
@@ -33,10 +39,11 @@ class MusicPlayerManager {
     
     deinit {
         _timer.invalidate()
+        subscripToken?.invalidate()
     }
     
-    private func updateMusicPlayerApplication() {
-        switch Preference[PreferredPlayerIndex] {
+    private func updateMusicPlayerApplication(index: Int) {
+        switch index {
         case 0:
             player = iTunes()
         case 1:
