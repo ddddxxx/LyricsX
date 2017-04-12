@@ -71,7 +71,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         let title = track.name ?? ""    // TODO: ?
         let artist = track.artist ?? ""
         
-        if let localLyrics = LyricsSourceManager.readLocalLyrics(title: title, artist: artist) {
+        if let localLyrics = Lyrics.loadFromLocal(title: title, artist: artist) {
             setCurrentLyrics(lyrics: localLyrics)
         } else {
             lyricsManager.fetchLyrics(title: title, artist: artist)
@@ -125,107 +125,6 @@ extension AppController {
                 .source: "Import"
             ]
             setCurrentLyrics(lyrics: lrc)
-        }
-    }
-    
-}
-
-extension LyricsSourceManager {
-    
-    static func readLocalLyrics(title: String, artist: String) -> Lyrics? {
-        var securityScoped = false
-        guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
-            return nil
-        }
-        if securityScoped {
-            guard url.startAccessingSecurityScopedResource() else {
-                return nil
-            }
-            defer {
-                url.stopAccessingSecurityScopedResource()
-            }
-        }
-        let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
-        let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
-        let lrcFileURL = url.appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
-        if let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8) {
-            var lrc = Lyrics(lrcContents)
-            let metadata: [Lyrics.MetadataKey: Any] = [
-                .searchTitle: title,
-                .searchArtist: artist,
-                .source: "Local"
-            ]
-            lrc?.metadata = metadata
-            return lrc
-        }
-        return nil
-    }
-    
-}
-
-extension Lyrics {
-    
-    func saveToLocal() {
-        var securityScoped = false
-        guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
-            return
-        }
-        if securityScoped {
-            guard url.startAccessingSecurityScopedResource() else {
-                return
-            }
-            defer {
-                url.stopAccessingSecurityScopedResource()
-            }
-        }
-        let fileManager = FileManager.default
-        
-        do {
-            var isDir = ObjCBool(false)
-            if fileManager.fileExists(atPath: url.path, isDirectory: &isDir) {
-                if !isDir.boolValue {
-                    return
-                }
-            } else {
-                try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-            }
-            
-            let lrcFileURL = url.appendingPathComponent(fileName)
-            
-            if fileManager.fileExists(atPath: lrcFileURL.path) {
-                try fileManager.removeItem(at: lrcFileURL)
-            }
-            let content = contentString(withMetadata: false,
-                                        ID3: true,
-                                        timeTag: true,
-                                        translation: true)
-            try content.write(to: lrcFileURL, atomically: false, encoding: .utf8)
-        } catch let error as NSError{
-            print(error)
-            return
-        }
-    }
-    
-    mutating func filtrate() {
-        guard Preference[LyricsFilterEnabled] else {
-            return
-        }
-        
-        guard let directFilter = Preference[LyricsDirectFilterKey],
-            let colonFilter = Preference[LyricsColonFilterKey] else {
-                return
-        }
-        let colons = [":", "：", "∶"]
-        let directFilterPattern = directFilter.joined(separator: "|")
-        let colonFilterPattern = colonFilter.joined(separator: "|")
-        let colonsPattern = colons.joined(separator: "|")
-        let pattern = "\(directFilterPattern)|((\(colonFilterPattern))(\(colonsPattern)))"
-        if let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) {
-            filtrate(using: regex)
-        }
-        
-        if Preference[LyricsSmartFilterEnabled] {
-            smartFiltrate()
         }
     }
     
