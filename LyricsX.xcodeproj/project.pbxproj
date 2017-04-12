@@ -26,7 +26,7 @@
 		BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44F8771E702863004194D9 /* Lyrics163.swift */; };
 		BB45AC801E9E337F0099432F /* MusicPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */; };
 		BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */; };
-		BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */; };
+		BB58A3421E4EDFF100836903 /* LyricsSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */; };
 		BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */; };
 		BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0811E82971400598D4F /* UserDefaults.plist */; };
 		BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58B0831E82B82F00598D4F /* OpenCC.framework */; };
@@ -118,7 +118,7 @@
 		BB44F8771E702863004194D9 /* Lyrics163.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lyrics163.swift; path = Lyrics/Lyrics163.swift; sourceTree = "<group>"; };
 		BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayerProtocol.swift; path = MediaPlayer/MusicPlayerProtocol.swift; sourceTree = "<group>"; };
 		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsGecimi.swift; path = Lyrics/LyricsGecimi.swift; sourceTree = "<group>"; };
-		BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceHelper.swift; path = Lyrics/LyricsSourceHelper.swift; sourceTree = "<group>"; };
+		BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceManager.swift; path = Lyrics/LyricsSourceManager.swift; sourceTree = "<group>"; };
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoActivateWindowController.swift; path = Controller/AutoActivateWindowController.swift; sourceTree = "<group>"; };
 		BB58B0811E82971400598D4F /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UserDefaults.plist; path = "Support Files/UserDefaults.plist"; sourceTree = "<group>"; };
 		BB58B0831E82B82F00598D4F /* OpenCC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCC.framework; path = Carthage/Build/Mac/OpenCC.framework; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 			children = (
 				BB58B0861E82BFF600598D4F /* LyricsLine.swift */,
 				BB4141D91E4761F900A51775 /* Lyrics.swift */,
-				BB58A3411E4EDFF100836903 /* LyricsSourceHelper.swift */,
+				BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */,
 				BB861AA31E99E56A00AC9194 /* Sources */,
 			);
 			name = Lyrics;
@@ -558,7 +558,7 @@
 				BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */,
 				BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */,
 				BBC8117A1E9E1D0000331CFC /* MusicPlayerManager.swift in Sources */,
-				BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */,
+				BB58A3421E4EDFF100836903 /* LyricsSourceManager.swift in Sources */,
 				BB0B296E1E80CD9E00B1D6C9 /* LyricsQQ.swift in Sources */,
 				BBC1D35B1E485BA7002538A2 /* AppController.swift in Sources */,
 				BB0B296A1E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift in Sources */,
