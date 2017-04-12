@@ -49,7 +49,7 @@
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
 		BBBB6EC51E86B44B003B3ED6 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */; };
 		BBBB6EC71E86C74F003B3ED6 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */; };
-		BBC1D35B1E485BA7002538A2 /* MediaPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* MediaPlayerHelper.swift */; };
+		BBC1D35B1E485BA7002538A2 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* AppController.swift */; };
 		BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* Global.swift */; };
 		BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */; };
 		BBC1D5891E4B1C44008869EC /* LyricsXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5881E4B1C44008869EC /* LyricsXTests.swift */; };
@@ -142,7 +142,7 @@
 		BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLyricsViewController.swift; path = Controller/SearchLyricsViewController.swift; sourceTree = "<group>"; };
 		BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iTunes.swift; path = MediaPlayer/iTunes.swift; sourceTree = "<group>"; };
 		BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spotify.swift; path = MediaPlayer/Spotify.swift; sourceTree = "<group>"; };
-		BBC1D35A1E485BA7002538A2 /* MediaPlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerHelper.swift; sourceTree = "<group>"; };
+		BBC1D35A1E485BA7002538A2 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		BBC1D35E1E499A6D002538A2 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuBarLyrics.swift; path = Controller/MenuBarLyrics.swift; sourceTree = "<group>"; };
 		BBC1D5861E4B1C44008869EC /* LyricsXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyricsXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
-				BBC1D35A1E485BA7002538A2 /* MediaPlayerHelper.swift */,
+				BBC1D35A1E485BA7002538A2 /* AppController.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
 				BB063B2F1E8A93CE00A25C3E /* View */,
 				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
@@ -560,7 +560,7 @@
 				BBC8117A1E9E1D0000331CFC /* MusicPlayerManager.swift in Sources */,
 				BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */,
 				BB0B296E1E80CD9E00B1D6C9 /* LyricsQQ.swift in Sources */,
-				BBC1D35B1E485BA7002538A2 /* MediaPlayerHelper.swift in Sources */,
+				BBC1D35B1E485BA7002538A2 /* AppController.swift in Sources */,
 				BB0B296A1E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

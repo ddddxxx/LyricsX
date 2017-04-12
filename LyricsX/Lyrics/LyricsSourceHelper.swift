@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol LyricsSourceDelegate: class {
+protocol LyricsConsuming: class {
     
     func lyricsReceived(lyrics: Lyrics)
     
@@ -26,9 +26,9 @@ protocol LyricsSource {
     
 }
 
-class LyricsSourceHelper {
+class LyricsSourceManager {
     
-    weak var delegate: LyricsSourceDelegate?
+    weak var consumer: LyricsConsuming?
     
     private let lyricsSource: [LyricsSource]
     private let queue: OperationQueue
@@ -62,11 +62,11 @@ class LyricsSourceHelper {
                 }
                 let index = self.lyrics.index(where: {$0 < lrc}) ?? self.lyrics.count
                 self.lyrics.insert(lrc, at: index)
-                self.delegate?.lyricsReceived(lyrics: lrc)
+                self.consumer?.lyricsReceived(lyrics: lrc)
             }
             DispatchQueue.global(qos: .background).async {
                 self.queue.waitUntilAllOperationsAreFinished()
-                self.delegate?.fetchCompleted(result: self.lyrics)
+                self.consumer?.fetchCompleted(result: self.lyrics)
             }
         }
     }

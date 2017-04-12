@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsSourceDelegate {
+class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsConsuming {
     
     var searchResult = [Lyrics]()
     var cacheImages = [URL: NSImage]()
@@ -21,7 +21,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     dynamic var selectedIndex = NSIndexSet()
     
-    let lyricsHelper = LyricsSourceHelper()
+    let lyricsManager = LyricsSourceManager()
     
     @IBOutlet weak var artworkView: NSImageView!
     @IBOutlet weak var tableView: NSTableView!
@@ -33,7 +33,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBOutlet var normalConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
-        lyricsHelper.delegate = self
+        lyricsManager.consumer = self
         tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
         
@@ -50,7 +50,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         progressIndicator.isHidden = false
         searchResult = []
         tableView.reloadData()
-        lyricsHelper.fetchLyrics(title: searchTitle, artist: searchArtist)
+        lyricsManager.fetchLyrics(title: searchTitle, artist: searchArtist)
     }
     
     @IBAction func useLyricsAction(_ sender: NSButton) {
@@ -58,7 +58,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         let lrc = searchResult[index]
-        appDelegate()?.mediaPlayerHelper.setCurrentLyrics(lyrics: lrc)
+        appDelegate()?.controller.setCurrentLyrics(lyrics: lrc)
     }
     
     // MARK: - LyricsSourceDelegate

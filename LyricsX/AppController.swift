@@ -1,5 +1,5 @@
 //
-//  MediaPlayerHelper.swift
+//  AppController.swift
 //  LyricsX
 //
 //  Created by 邓翔 on 2017/2/6.
@@ -9,9 +9,9 @@
 import Foundation
 import AppKit
 
-class MediaPlayerHelper: NSObject, MusicPlayerDelegate, LyricsSourceDelegate {
+class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     
-    let lyricsSource = LyricsSourceHelper()
+    let lyricsManager = LyricsSourceManager()
     
     private(set) var currentLyrics: Lyrics?
     dynamic var lyricsOffset: Int {
@@ -28,7 +28,7 @@ class MediaPlayerHelper: NSObject, MusicPlayerDelegate, LyricsSourceDelegate {
     override init() {
         super.init()
         MusicPlayerManager.shared.delegate = self
-        lyricsSource.delegate = self
+        lyricsManager.consumer = self
         
         currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
     }
@@ -69,10 +69,10 @@ class MediaPlayerHelper: NSObject, MusicPlayerDelegate, LyricsSourceDelegate {
         let title = track.name ?? ""    // TODO: ?
         let artist = track.artist ?? ""
         
-        if let localLyrics = LyricsSourceHelper.readLocalLyrics(title: title, artist: artist) {
+        if let localLyrics = LyricsSourceManager.readLocalLyrics(title: title, artist: artist) {
             setCurrentLyrics(lyrics: localLyrics)
         } else {
-            lyricsSource.fetchLyrics(title: title, artist: artist)
+            lyricsManager.fetchLyrics(title: title, artist: artist)
         }
     }
     
@@ -112,7 +112,7 @@ class MediaPlayerHelper: NSObject, MusicPlayerDelegate, LyricsSourceDelegate {
     
 }
 
-extension MediaPlayerHelper {
+extension AppController {
     
     func importLyrics(_ lyrics: String) {
         if var lrc = Lyrics(lyrics),
@@ -128,7 +128,7 @@ extension MediaPlayerHelper {
     
 }
 
-extension LyricsSourceHelper {
+extension LyricsSourceManager {
     
     static func readLocalLyrics(title: String, artist: String) -> Lyrics? {
         var securityScoped = false

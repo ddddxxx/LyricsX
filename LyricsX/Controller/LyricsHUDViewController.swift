@@ -28,7 +28,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         dragNDropView.dragDelegate = self
         
         lyricsScrollView.delegate = self
-        lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
+        lyricsScrollView.setupTextContents(lyrics: appDelegate()?.controller.currentLyrics)
         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
@@ -41,7 +41,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     }
     
     func doubleClickLyricsLine(at position: Double) {
-        let pos = position - (appDelegate()?.mediaPlayerHelper.currentLyrics?.timeDelay ?? 0)
+        let pos = position - (appDelegate()?.controller.currentLyrics?.timeDelay ?? 0)
         MusicPlayerManager.shared.player?.playerPosition = pos
         isTracking = true
     }
@@ -50,7 +50,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     
     func handleLyricsChange(_ n: Notification) {
         DispatchQueue.main.async {
-            self.lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
+            self.lyricsScrollView.setupTextContents(lyrics: appDelegate()?.controller.currentLyrics)
         }
     }
     
@@ -58,7 +58,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         guard var pos = n.userInfo?["position"] as? Double else {
             return
         }
-        pos += appDelegate()?.mediaPlayerHelper.currentLyrics?.timeDelay ?? 0
+        pos += appDelegate()?.controller.currentLyrics?.timeDelay ?? 0
         lyricsScrollView.highlight(position: pos)
         guard isTracking else {
             return
@@ -80,7 +80,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     // MARK: DragNDrop Delegate
     
     func dragFinished(content: String) {
-        appDelegate()?.mediaPlayerHelper.importLyrics(content)
+        appDelegate()?.controller.importLyrics(content)
     }
     
 }

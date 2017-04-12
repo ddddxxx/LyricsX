@@ -13,7 +13,7 @@ import EasyPreference
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var mediaPlayerHelper = MediaPlayerHelper()
+    var controller = AppController()
     
     var statusItem: NSStatusItem!
     var menuBarLyrics: MenuBarLyrics!
@@ -31,8 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
         
-        lyricsOffsetStepper.bind(NSValueBinding, to: mediaPlayerHelper, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
-        lyricsOffsetTextField.bind(NSValueBinding, to: mediaPlayerHelper, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
+        lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
+        lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         
         if Preference[LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
