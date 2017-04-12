@@ -28,7 +28,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         dragNDropView.dragDelegate = self
         
         lyricsScrollView.delegate = self
-        lyricsScrollView.setupTextContents(lyrics: appDelegate()?.controller.currentLyrics)
+        lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
@@ -41,7 +41,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     }
     
     func doubleClickLyricsLine(at position: Double) {
-        let pos = position - (appDelegate()?.controller.currentLyrics?.timeDelay ?? 0)
+        let pos = position - (AppController.shared.currentLyrics?.timeDelay ?? 0)
         MusicPlayerManager.shared.player?.playerPosition = pos
         isTracking = true
     }
@@ -50,7 +50,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     
     func handleLyricsChange(_ n: Notification) {
         DispatchQueue.main.async {
-            self.lyricsScrollView.setupTextContents(lyrics: appDelegate()?.controller.currentLyrics)
+            self.lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         }
     }
     
@@ -58,7 +58,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         guard var pos = n.userInfo?["position"] as? Double else {
             return
         }
-        pos += appDelegate()?.controller.currentLyrics?.timeDelay ?? 0
+        pos += AppController.shared.currentLyrics?.timeDelay ?? 0
         lyricsScrollView.highlight(position: pos)
         guard isTracking else {
             return
@@ -80,7 +80,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     // MARK: DragNDrop Delegate
     
     func dragFinished(content: String) {
-        appDelegate()?.controller.importLyrics(content)
+        AppController.shared.importLyrics(content)
     }
     
 }

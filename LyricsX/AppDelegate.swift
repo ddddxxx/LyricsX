@@ -13,7 +13,9 @@ import EasyPreference
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var controller = AppController()
+    static var shared: AppDelegate? {
+        return NSApplication.shared().delegate as? AppDelegate
+    }
     
     var statusItem: NSStatusItem!
     var menuBarLyrics: MenuBarLyrics!
@@ -31,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
         
+        let controller = AppController.shared
         lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         

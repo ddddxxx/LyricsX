@@ -11,6 +11,8 @@ import AppKit
 
 class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     
+    static var shared = AppController()
+    
     let lyricsManager = LyricsSourceManager()
     
     private(set) var currentLyrics: Lyrics?
@@ -25,7 +27,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     }
     
     
-    override init() {
+    private override init() {
         super.init()
         MusicPlayerManager.shared.delegate = self
         lyricsManager.consumer = self

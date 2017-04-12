@@ -58,7 +58,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         let lrc = searchResult[index]
-        appDelegate()?.controller.setCurrentLyrics(lyrics: lrc)
+        AppController.shared.setCurrentLyrics(lyrics: lrc)
     }
     
     // MARK: - LyricsSourceDelegate
