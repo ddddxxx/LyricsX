@@ -9,130 +9,44 @@
 import Foundation
 import ScriptingBridge
 
-class iTunes: MediaPlayer {
+class iTunes: MusicPlayer {
     
-    weak var delegate: MediaPlayerDelegate?
-    var isRunning: Bool
-    var currentTrack: MediaTrack? { return _currentTrack }
-    var playerState: MediaPlayerState = .stopped
-    var playerPosition: Double = 0
+    var isRunning: Bool {
+        return (_iTunes as! SBApplication).isRunning
+    }
+    
+    var currentTrack: MusicTrack? {
+        return _iTunes.currentTrack?.track
+    }
+    
+    var playerState: MusicPlayerState {
+        return _iTunes.playerState?.state ?? .stopped
+    }
+    
+    var playerPosition: Double {
+        get {
+            return _iTunes.playerPosition ?? 0
+        }
+        set {
+            (_iTunes as! SBApplication).setValue(newValue, forKey: "playerPosition")
+        }
+    }
     
     private var _iTunes: iTunesApplication
-    private var _currentTrack: Track?
-    private var positionChangeTimer: Timer!
     
     init?() {
         guard let iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes") else {
             return nil
         }
         self._iTunes = iTunes
-        isRunning = (_iTunes as! SBApplication).isRunning
-        if isRunning {
-            _currentTrack = _iTunes.currentTrack?.track
-            playerState = _iTunes.playerState?.state ?? .stopped
-            playerPosition = _iTunes.playerPosition ?? 0
-        }
-        positionChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
-            self.updateRunningState()
-            self.updatePlayerState()
-            self.updateCurrentTrack()
-            self.updatePlayerPosition()
-        }
     }
     
-    deinit {
-        positionChangeTimer.invalidate()
-    }
-    
-    func changePosition(position: Double) {
-        (_iTunes as! SBApplication).setValue(position, forKey: "playerPosition")
-    }
-    
-    private func updateRunningState() {
-        let isRunningNew = (_iTunes as! SBApplication).isRunning
-        if isRunning == isRunningNew {
-            return
-        }
-        
-        isRunning = isRunningNew
-        delegate?.runningStateChanged(isRunning: isRunningNew)
-    }
-    
-    private func updatePlayerState() {
-        guard isRunning else {
-            return
-        }
-        
-        let state = _iTunes.playerState?.state ?? .stopped
-        if playerState == state {
-            return
-        }
-        
-        playerState = state
-        delegate?.playerStateChanged(state: state)
-    }
-    
-    private func updateCurrentTrack() {
-        guard isRunning else {
-            return
-        }
-        
-        let track = _iTunes.currentTrack?.track
-        if _currentTrack == nil, track == nil {
-            return
-        }
-        if let t1 = _currentTrack, let t2 = track, t1 == t2 {
-            return
-        }
-        
-        _currentTrack = track
-        delegate?.currentTrackChanged(track: track)
-    }
-    
-    private func updatePlayerPosition() {
-        guard isRunning else {
-            return
-        }
-        
-        guard playerState != .stopped, playerState != .paused else {
-            return
-        }
-        
-        playerPosition = _iTunes.playerPosition ?? 0
-        delegate?.playerPositionChanged(position: playerPosition)
-    }
-    
-}
-
-extension iTunes {
-    struct Track: MediaTrack {
-        var rawID: Int
-        var id: String {
-            return "\(rawID)"
-        }
-        var name: String
-        var album: String
-        var artist: String
-        
-        init(id: Int?, name: String?, album: String?, artist: String?) {
-            self.rawID = id ?? 0
-            self.name = name ?? ""
-            self.album = album ?? ""
-            self.artist = artist ?? ""
-        }
-    }
-}
-
-extension iTunes.Track: Equatable {
-    public static func ==(lhs: iTunes.Track, rhs: iTunes.Track) -> Bool {
-        return (lhs.rawID != 0) && (lhs.rawID == rhs.rawID)
-    }
 }
 
 // MARK - iTunes Bridge Extension
 
 extension iTunesEPlS {
-    var state: MediaPlayerState {
+    var state: MusicPlayerState {
         switch self {
         case .iTunesEPlSStopped:
             return .stopped
@@ -149,10 +63,19 @@ extension iTunesEPlS {
 }
 
 extension iTunesTrack {
-    var track: iTunes.Track {
-        return iTunes.Track(id: id?() as Int?,
-                            name: name as String?,
-                            album: album as String?,
-                            artist: artist as String?)
+    var stringID: String? {
+        guard let id = id?() else {
+            return nil
+        }
+        
+        return "\(id)"
+    }
+    
+    var track: MusicTrack? {
+        guard let id = stringID else {
+            return nil
+        }
+        
+        return MusicTrack(id: id, name: name as String?, album: album as String?, artist: artist as String?)
     }
 }

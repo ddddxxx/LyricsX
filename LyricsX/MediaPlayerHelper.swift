@@ -9,9 +9,8 @@
 import Foundation
 import AppKit
 
-class MediaPlayerHelper: NSObject, MediaPlayerDelegate, LyricsSourceDelegate {
+class MediaPlayerHelper: NSObject, MusicPlayerDelegate, LyricsSourceDelegate {
     
-    var player: MediaPlayer?
     let lyricsSource = LyricsSourceHelper()
     
     private(set) var currentLyrics: Lyrics?
@@ -28,21 +27,10 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate, LyricsSourceDelegate {
     
     override init() {
         super.init()
-        switch Preference[PreferredPlayerIndex] {
-        case 0:
-            player = iTunes()
-        case 1:
-            player = Spotify()
-        case 2:
-            player = Vox()
-        default:
-            return
-        }
-        
-        player?.delegate = self
+        MusicPlayerManager.shared.delegate = self
         lyricsSource.delegate = self
         
-        currentTrackChanged(track: player?.currentTrack)
+        currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
     }
     
     func setCurrentLyrics(lyrics: Lyrics?) {
@@ -65,21 +53,21 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate, LyricsSourceDelegate {
         }
     }
     
-    func playerStateChanged(state: MediaPlayerState) {
+    func playerStateChanged(state: MusicPlayerState) {
         if state != .playing, Preference[DisableLyricsWhenPaused] {
             NotificationCenter.default.post(name: .PositionChange, object: nil)
         }
     }
     
-    func currentTrackChanged(track: MediaTrack?) {
+    func currentTrackChanged(track: MusicTrack?) {
         setCurrentLyrics(lyrics: nil)
         let info = ["lrc": "", "next": ""]
         NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
         guard let track = track else {
             return
         }
-        let title = track.name
-        let artist = track.artist
+        let title = track.name ?? ""    // TODO: ?
+        let artist = track.artist ?? ""
         
         if let localLyrics = LyricsSourceHelper.readLocalLyrics(title: title, artist: artist) {
             setCurrentLyrics(lyrics: localLyrics)
@@ -105,8 +93,9 @@ class MediaPlayerHelper: NSObject, MediaPlayerDelegate, LyricsSourceDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        guard lyrics.metadata[.searchTitle] as? String == player?.currentTrack?.name,
-            lyrics.metadata[.searchArtist] as? String == player?.currentTrack?.artist else {
+        let track = MusicPlayerManager.shared.player?.currentTrack
+        guard lyrics.metadata[.searchTitle] as? String == track?.name,
+            lyrics.metadata[.searchArtist] as? String == track?.artist else {
             return
         }
         
@@ -127,10 +116,10 @@ extension MediaPlayerHelper {
     
     func importLyrics(_ lyrics: String) {
         if var lrc = Lyrics(lyrics),
-            let track = player?.currentTrack {
+            let track = MusicPlayerManager.shared.player?.currentTrack {
             lrc.metadata = [
-                .searchTitle: track.name,
-                .searchArtist: track.artist,
+                .searchTitle: track.name ?? "", // TODO: ?
+                .searchArtist: track.artist ?? "",
                 .source: "Import"
             ]
             setCurrentLyrics(lyrics: lrc)

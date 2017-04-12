@@ -37,9 +37,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
         
-        let helper = appDelegate()?.mediaPlayerHelper
-        searchArtist = helper?.player?.currentTrack?.artist ?? ""
-        searchTitle = helper?.player?.currentTrack?.name ?? ""
+        let track = MusicPlayerManager.shared.player?.currentTrack
+        searchArtist = track?.artist ?? ""
+        searchTitle = track?.name ?? ""
         searchAction(nil)
         
         super.viewDidLoad()

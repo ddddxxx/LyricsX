@@ -46,7 +46,6 @@
 		BBB8DA3C1E86653700EF0A18 /* SpotifyBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB8DA3B1E86653700EF0A18 /* SpotifyBridge.swift */; };
 		BBB8DA3E1E86657F00EF0A18 /* VoxBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB8DA3D1E86657F00EF0A18 /* VoxBridge.swift */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
-		BBBB6EC21E86A2DD003B3ED6 /* MediaPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBB6EC11E86A2DD003B3ED6 /* MediaPlayerProtocol.swift */; };
 		BBBB6EC51E86B44B003B3ED6 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */; };
 		BBBB6EC71E86C74F003B3ED6 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */; };
 		BBC1D35B1E485BA7002538A2 /* MediaPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* MediaPlayerHelper.swift */; };
@@ -55,6 +54,7 @@
 		BBC1D5891E4B1C44008869EC /* LyricsXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5881E4B1C44008869EC /* LyricsXTests.swift */; };
 		BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */; };
 		BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */; };
+		BBC8117A1E9E1D0000331CFC /* MusicPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC811791E9E1D0000331CFC /* MusicPlayerManager.swift */; };
 		BBD03C371E9B2C7200EFB975 /* DragNDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */; };
 /* End PBXBuildFile section */
 
@@ -138,7 +138,6 @@
 		BBB8DA3B1E86653700EF0A18 /* SpotifyBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotifyBridge.swift; path = MediaPlayer/SpotifyBridge.swift; sourceTree = "<group>"; };
 		BBB8DA3D1E86657F00EF0A18 /* VoxBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoxBridge.swift; path = MediaPlayer/VoxBridge.swift; sourceTree = "<group>"; };
 		BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLyricsViewController.swift; path = Controller/SearchLyricsViewController.swift; sourceTree = "<group>"; };
-		BBBB6EC11E86A2DD003B3ED6 /* MediaPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPlayerProtocol.swift; path = MediaPlayer/MediaPlayerProtocol.swift; sourceTree = "<group>"; };
 		BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iTunes.swift; path = MediaPlayer/iTunes.swift; sourceTree = "<group>"; };
 		BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spotify.swift; path = MediaPlayer/Spotify.swift; sourceTree = "<group>"; };
 		BBC1D35A1E485BA7002538A2 /* MediaPlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerHelper.swift; sourceTree = "<group>"; };
@@ -149,6 +148,7 @@
 		BBC1D58A1E4B1C44008869EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferenceDisplayViewController.swift; path = Controller/Preferences/PreferenceDisplayViewController.swift; sourceTree = "<group>"; };
 		BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferenceGeneralViewController.swift; path = Controller/Preferences/PreferenceGeneralViewController.swift; sourceTree = "<group>"; };
+		BBC811791E9E1D0000331CFC /* MusicPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayerManager.swift; path = MediaPlayer/MusicPlayerManager.swift; sourceTree = "<group>"; };
 		BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DragNDropView.swift; path = View/DragNDropView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -325,7 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				BBB8DA3F1E8665B400EF0A18 /* ScriptingBridge */,
-				BBBB6EC11E86A2DD003B3ED6 /* MediaPlayerProtocol.swift */,
+				BBC811791E9E1D0000331CFC /* MusicPlayerManager.swift */,
 				BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */,
 				BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */,
 				BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */,
@@ -546,7 +546,6 @@
 				BB4141DA1E4761F900A51775 /* Lyrics.swift in Sources */,
 				BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */,
 				BBB8DA3C1E86653700EF0A18 /* SpotifyBridge.swift in Sources */,
-				BBBB6EC21E86A2DD003B3ED6 /* MediaPlayerProtocol.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunesBridge.swift in Sources */,
 				BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */,
 				BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */,
@@ -554,6 +553,7 @@
 				BBB8DA3E1E86657F00EF0A18 /* VoxBridge.swift in Sources */,
 				BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */,
 				BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */,
+				BBC8117A1E9E1D0000331CFC /* MusicPlayerManager.swift in Sources */,
 				BB58A3421E4EDFF100836903 /* LyricsSourceHelper.swift in Sources */,
 				BB0B296E1E80CD9E00B1D6C9 /* LyricsQQ.swift in Sources */,
 				BBC1D35B1E485BA7002538A2 /* MediaPlayerHelper.swift in Sources */,
