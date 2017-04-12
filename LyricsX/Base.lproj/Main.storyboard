@@ -346,7 +346,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="540" height="387"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box title="Preferred Music Player (Requires restart)" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
+                            <box title="Preferred Music Player" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
                                 <rect key="frame" x="17" y="240" width="506" height="123"/>
                                 <view key="contentView" id="r1e-Ln-LSb">
                                     <rect key="frame" x="2" y="2" width="502" height="106"/>
