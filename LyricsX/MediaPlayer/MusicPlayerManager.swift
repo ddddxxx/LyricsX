@@ -55,6 +55,7 @@ class MusicPlayerManager {
         default:
             player = iTunes()
         }
+        _isRunning = false
     }
     
     private func updateRunningState() {
