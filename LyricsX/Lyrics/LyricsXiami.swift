@@ -17,7 +17,7 @@ class LyricsXiami: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, duration: Double, completionBlock: @escaping (Lyrics) -> Void) {
         queue.addOperation {
             let xiamiIDs = self.searchXiamiIDFor(title: title, artist: artist)
             for (index, xiamiID) in xiamiIDs.enumerated() {

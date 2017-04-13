@@ -22,7 +22,7 @@ protocol LyricsSource {
     
     init(queue: OperationQueue);
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void)
+    func fetchLyrics(title: String, artist: String, duration: Double, completionBlock: @escaping (Lyrics) -> Void)
     
 }
 
@@ -46,17 +46,18 @@ class LyricsSourceManager {
             LyricsTTPod(queue: queue),
             Lyrics163(queue: queue),
             LyricsQQ(queue: queue),
+            LyricsKugou(queue: queue),
         ]
         lyrics = []
     }
     
-    func fetchLyrics(title: String, artist: String) {
+    func fetchLyrics(title: String, artist: String, duration: Double) {
         searchTitle = title
         searchArtist = artist
         lyrics = []
         queue.cancelAllOperations()
         lyricsSource.forEach() { source in
-            source.fetchLyrics(title: title, artist: artist) { lrc in
+            source.fetchLyrics(title: title, artist: artist, duration: duration) { lrc in
                 guard self.searchTitle == title, self.searchArtist == artist else {
                     return
                 }

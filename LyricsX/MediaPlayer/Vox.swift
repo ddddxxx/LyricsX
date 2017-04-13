@@ -61,6 +61,6 @@ extension VoxApplication {
         guard let id = uniqueID as String?, id != "" else {
             return nil
         }
-        return MusicTrack(id: id, name: track as String?, album: album as String?, artist: artist as String?)
+        return MusicTrack(id: id, name: track as String?, album: album as String?, artist: artist as String?, duration: totalTime as Double?)
     }
 }

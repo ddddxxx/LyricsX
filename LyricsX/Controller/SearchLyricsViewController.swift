@@ -50,7 +50,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         progressIndicator.isHidden = false
         searchResult = []
         tableView.reloadData()
-        lyricsManager.fetchLyrics(title: searchTitle, artist: searchArtist)
+        let duration = MusicPlayerManager.shared.player?.currentTrack?.duration ?? 0
+        lyricsManager.fetchLyrics(title: searchTitle, artist: searchArtist, duration: duration)
     }
     
     @IBAction func useLyricsAction(_ sender: NSButton) {
