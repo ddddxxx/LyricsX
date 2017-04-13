@@ -14,8 +14,9 @@ import OpenCC
 class DesktopLyricsWindowController: NSWindowController {
     
     override func windowDidLoad() {
-        let visibleFrame = NSScreen.main()!.visibleFrame
-        window?.setFrame(visibleFrame, display: true)
+        if let mainScreen = NSScreen.main() {
+            window?.setFrame(mainScreen.visibleFrame, display: true)
+        }
         window?.backgroundColor = .clear
         window?.isOpaque = false
         window?.ignoresMouseEvents = true
@@ -23,8 +24,30 @@ class DesktopLyricsWindowController: NSWindowController {
         if Preference[DisableLyricsWhenSreenShot] {
             window?.sharingType = .none
         }
+        
+        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(updateWindowFrame), name: .NSWorkspaceActiveSpaceDidChange, object: nil)
     }
     
+    func updateWindowFrame() {
+        guard let mainScreen = NSScreen.main() else {
+            return
+        }
+        let frame = isFullScreen() == true ? mainScreen.frame : mainScreen.visibleFrame
+        window?.setFrame(frame, display: true, animate: true)
+    }
+    
+    func isFullScreen() -> Bool? {
+        guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
+            return nil
+        }
+        for info in windowInfoList {
+            if info[kCGWindowOwnerName as String] as? String == "Window Server",
+                info[kCGWindowName as String] as? String == "Menubar" {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 class DesktopLyricsViewController: NSViewController {
