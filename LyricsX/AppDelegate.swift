@@ -16,27 +16,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     static var shared: AppDelegate? {
         return NSApplication.shared().delegate as? AppDelegate
     }
-    
-    var statusItem: NSStatusItem!
-    var menuBarLyrics: MenuBarLyrics!
 
     @IBOutlet weak var lyricsOffsetTextField: NSTextField!
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-        menuBarLyrics = MenuBarLyrics()
-        
-        statusItem.button?.image = #imageLiteral(resourceName: "status_bar_icon")
-        statusItem.menu = statusBarMenu
-        
-        NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
+        MenuBarLyrics.shared.statusItem.menu = statusBarMenu
         
         let controller = AppController.shared
         lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         
+        NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
         if Preference[LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
                 print("Failed to enable login item")

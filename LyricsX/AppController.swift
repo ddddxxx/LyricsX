@@ -11,7 +11,7 @@ import AppKit
 
 class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     
-    static var shared = AppController()
+    static let shared = AppController()
     
     let lyricsManager = LyricsSourceManager()
     
