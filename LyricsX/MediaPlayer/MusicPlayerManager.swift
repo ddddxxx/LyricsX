@@ -18,6 +18,7 @@ class MusicPlayerManager {
     var player: MusicPlayer?
     
     private var _timer: Timer!
+    private var _isRunning = false
     private var _track: MusicTrack?
     private var _state: MusicPlayerState = .stopped
     private var _position: Double = 0
@@ -31,6 +32,7 @@ class MusicPlayerManager {
         }
         
         _timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
+            self.updateRunningState()
             self.updatePlayerState()
             self.updateCurrentTrack()
             self.updatePlayerPosition()
@@ -53,6 +55,16 @@ class MusicPlayerManager {
         default:
             player = iTunes()
         }
+    }
+    
+    private func updateRunningState() {
+        guard let isRunning = player?.isRunning,
+            _isRunning != isRunning else {
+            return
+        }
+        
+        _isRunning = isRunning
+        delegate?.runningStateChanged(isRunning: _isRunning)
     }
     
     private func updatePlayerState() {
