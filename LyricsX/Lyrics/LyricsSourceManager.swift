@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol LyricsSourceDelegate: class {
+protocol LyricsConsuming: class {
     
     func lyricsReceived(lyrics: Lyrics)
     
@@ -22,13 +22,13 @@ protocol LyricsSource {
     
     init(queue: OperationQueue);
     
-    func fetchLyrics(title: String, artist: String, completionBlock: @escaping (Lyrics) -> Void)
+    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void)
     
 }
 
-class LyricsSourceHelper {
+class LyricsSourceManager {
     
-    weak var delegate: LyricsSourceDelegate?
+    weak var consumer: LyricsConsuming?
     
     private let lyricsSource: [LyricsSource]
     private let queue: OperationQueue
@@ -46,27 +46,28 @@ class LyricsSourceHelper {
             LyricsTTPod(queue: queue),
             Lyrics163(queue: queue),
             LyricsQQ(queue: queue),
+            LyricsKugou(queue: queue),
         ]
         lyrics = []
     }
     
-    func fetchLyrics(title: String, artist: String) {
+    func fetchLyrics(title: String, artist: String, duration: TimeInterval) {
         searchTitle = title
         searchArtist = artist
         lyrics = []
         queue.cancelAllOperations()
         lyricsSource.forEach() { source in
-            source.fetchLyrics(title: title, artist: artist) { lrc in
+            source.fetchLyrics(title: title, artist: artist, duration: duration) { lrc in
                 guard self.searchTitle == title, self.searchArtist == artist else {
                     return
                 }
                 let index = self.lyrics.index(where: {$0 < lrc}) ?? self.lyrics.count
                 self.lyrics.insert(lrc, at: index)
-                self.delegate?.lyricsReceived(lyrics: lrc)
+                self.consumer?.lyricsReceived(lyrics: lrc)
             }
             DispatchQueue.global(qos: .background).async {
                 self.queue.waitUntilAllOperationsAreFinished()
-                self.delegate?.fetchCompleted(result: self.lyrics)
+                self.consumer?.fetchCompleted(result: self.lyrics)
             }
         }
     }

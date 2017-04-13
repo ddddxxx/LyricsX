@@ -12,16 +12,16 @@ struct LyricsLine {
     
     var sentence: String
     var translation: String?
-    var position: Double
+    var position: TimeInterval
     var enabled: Bool
     
     var timeTag: String {
         let min = Int(position / 60)
-        let sec = position - Double(min * 60)
+        let sec = position - TimeInterval(min * 60)
         return String(format: "%02d:%06.3f", min, sec)
     }
     
-    init(sentence: String, translation: String? = nil, position: Double) {
+    init(sentence: String, translation: String? = nil, position: TimeInterval) {
         self.sentence = sentence
         self.translation = translation
         self.position = position
@@ -35,8 +35,8 @@ struct LyricsLine {
         tagContent.remove(at: tagContent.index(before: tagContent.endIndex))
         let components = tagContent.components(separatedBy: ":")
         if components.count == 2,
-            let min = Double(components[0]),
-            let sec = Double(components[1]) {
+            let min = TimeInterval(components[0]),
+            let sec = TimeInterval(components[1]) {
             let position = sec + min * 60
             self.init(sentence: sentence, translation: translation, position: position)
         } else {

@@ -28,7 +28,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         dragNDropView.dragDelegate = self
         
         lyricsScrollView.delegate = self
-        lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
+        lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
@@ -40,9 +40,9 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         NotificationCenter.default.removeObserver(self)
     }
     
-    func doubleClickLyricsLine(at position: Double) {
-        let pos = position - (appDelegate()?.mediaPlayerHelper.currentLyrics?.timeDelay ?? 0)
-        appDelegate()?.mediaPlayerHelper.player?.changePosition(position: pos)
+    func doubleClickLyricsLine(at position: TimeInterval) {
+        let pos = position - (AppController.shared.currentLyrics?.timeDelay ?? 0)
+        MusicPlayerManager.shared.player?.playerPosition = pos
         isTracking = true
     }
     
@@ -50,15 +50,15 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     
     func handleLyricsChange(_ n: Notification) {
         DispatchQueue.main.async {
-            self.lyricsScrollView.setupTextContents(lyrics: appDelegate()?.mediaPlayerHelper.currentLyrics)
+            self.lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         }
     }
     
     func handlePositionChange(_ n: Notification) {
-        guard var pos = n.userInfo?["position"] as? Double else {
+        guard var pos = n.userInfo?["position"] as? TimeInterval else {
             return
         }
-        pos += appDelegate()?.mediaPlayerHelper.currentLyrics?.timeDelay ?? 0
+        pos += AppController.shared.currentLyrics?.timeDelay ?? 0
         lyricsScrollView.highlight(position: pos)
         guard isTracking else {
             return
@@ -80,7 +80,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     // MARK: DragNDrop Delegate
     
     func dragFinished(content: String) {
-        appDelegate()?.mediaPlayerHelper.importLyrics(content)
+        AppController.shared.importLyrics(content)
     }
     
 }

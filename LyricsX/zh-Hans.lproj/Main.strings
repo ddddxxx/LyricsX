@@ -102,7 +102,7 @@
 "JPB-ag-MN7.title" = "自动中文转换:";
 
 /* Class = "NSBox"; title = "Preferred Music Player (Requires restart)"; ObjectID = "JYR-Ed-Tax"; */
-"JYR-Ed-Tax.title" = "首选音乐播放器（需要重启）";
+"JYR-Ed-Tax.title" = "首选音乐播放器";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "Jbz-xE-Ntb"; */
 "Jbz-xE-Ntb.title" = "Redo";

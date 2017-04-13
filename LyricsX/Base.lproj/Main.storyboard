@@ -181,19 +181,31 @@
                     </items>
                 </menu>
                 <customView id="LV9-pp-2tz" userLabel="Lyrics Offset View">
-                    <rect key="frame" x="0.0" y="0.0" width="234" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="0.0" y="0.0" width="242" height="23"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DG2-8b-vTy">
-                            <rect key="frame" x="18" y="6" width="85" height="17"/>
+                            <rect key="frame" x="19" y="3" width="85" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics Offset:" id="IFz-XQ-DHf">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FwA-Sj-odc">
+                            <rect key="frame" x="185" y="0.0" width="15" height="22"/>
+                            <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="100" minValue="-10000" maxValue="10000" id="Cnt-sc-zit"/>
+                        </stepper>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-PC-ZCl">
+                            <rect key="frame" x="201" y="3" width="22" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="VQG-Pf-NsG">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                         <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BE8-Ux-QD2">
-                            <rect key="frame" x="106" y="6" width="74" height="19"/>
+                            <rect key="frame" x="110" y="2" width="72" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="s38-xY-35C"/>
                             </constraints>
@@ -207,27 +219,17 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FwA-Sj-odc">
-                            <rect key="frame" x="183" y="4" width="15" height="22"/>
-                            <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="100" minValue="-10000" maxValue="10000" id="Cnt-sc-zit"/>
-                        </stepper>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-PC-ZCl">
-                            <rect key="frame" x="199" y="6" width="22" height="17"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="VQG-Pf-NsG">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
                     </subviews>
                     <constraints>
                         <constraint firstItem="DG2-8b-vTy" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="5gA-e2-0RM"/>
-                        <constraint firstItem="BE8-Ux-QD2" firstAttribute="leading" secondItem="DG2-8b-vTy" secondAttribute="trailing" constant="5" id="66I-Ch-hG0"/>
-                        <constraint firstItem="DG2-8b-vTy" firstAttribute="leading" secondItem="LV9-pp-2tz" secondAttribute="leading" constant="20" id="826-cy-w1T"/>
+                        <constraint firstItem="BE8-Ux-QD2" firstAttribute="leading" secondItem="DG2-8b-vTy" secondAttribute="trailing" constant="8" id="66I-Ch-hG0"/>
+                        <constraint firstItem="DG2-8b-vTy" firstAttribute="leading" secondItem="LV9-pp-2tz" secondAttribute="leading" constant="21" id="826-cy-w1T"/>
                         <constraint firstItem="FwA-Sj-odc" firstAttribute="leading" secondItem="BE8-Ux-QD2" secondAttribute="trailing" constant="5" id="9G1-eA-c8X"/>
+                        <constraint firstItem="BE8-Ux-QD2" firstAttribute="top" secondItem="LV9-pp-2tz" secondAttribute="top" constant="2" id="Jw4-sr-Qu8"/>
                         <constraint firstItem="0ii-PC-ZCl" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="Yhp-74-yJR"/>
                         <constraint firstItem="BE8-Ux-QD2" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="dzq-HW-L2Y"/>
-                        <constraint firstAttribute="trailing" secondItem="0ii-PC-ZCl" secondAttribute="trailing" constant="15" id="pnw-Le-Ihj"/>
+                        <constraint firstAttribute="trailing" secondItem="0ii-PC-ZCl" secondAttribute="trailing" constant="21" id="pnw-Le-Ihj"/>
+                        <constraint firstAttribute="bottom" secondItem="BE8-Ux-QD2" secondAttribute="bottom" constant="2" id="pqe-WB-hxs"/>
                         <constraint firstItem="0ii-PC-ZCl" firstAttribute="leading" secondItem="FwA-Sj-odc" secondAttribute="trailing" constant="5" id="rbZ-oR-lp1"/>
                         <constraint firstItem="FwA-Sj-odc" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="wCe-8m-cvA"/>
                     </constraints>
@@ -346,7 +348,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="540" height="387"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box title="Preferred Music Player (Requires restart)" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
+                            <box title="Preferred Music Player" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
                                 <rect key="frame" x="17" y="240" width="506" height="123"/>
                                 <view key="contentView" id="r1e-Ln-LSb">
                                     <rect key="frame" x="2" y="2" width="502" height="106"/>

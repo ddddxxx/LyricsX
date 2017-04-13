@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol ScrollLyricsViewDelegate: class {
-    func doubleClickLyricsLine(at position: Double)
+    func doubleClickLyricsLine(at position: TimeInterval)
 }
 
 class ScrollLyricsView: NSScrollView {
@@ -20,7 +20,7 @@ class ScrollLyricsView: NSScrollView {
     
     var fadeStripWidth: CGFloat = 24
     
-    private var ranges: [(Double, NSRange)] = []
+    private var ranges: [(TimeInterval, NSRange)] = []
     private var highlightedRange = NSRange()
     
     required init?(coder: NSCoder) {
@@ -116,7 +116,7 @@ class ScrollLyricsView: NSScrollView {
         contentInsets = EdgeInsets(top: topInset, left: 0, bottom: BottomInset, right: 0)
     }
     
-    func highlight(position: Double) {
+    func highlight(position: TimeInterval) {
         guard ranges.count > 0 else {
             return
         }
@@ -140,7 +140,7 @@ class ScrollLyricsView: NSScrollView {
         highlightedRange = range
     }
     
-    func scroll(position: Double) {
+    func scroll(position: TimeInterval) {
         guard ranges.count > 0 else {
             return
         }

@@ -21,6 +21,15 @@ You can download ZIP from [release](https://github.com/XQS6LB3A/LyricsX/releases
 - Auto launch & quit with music player.
 - Auto convert Traditional Chinese or Simplified Chinese if you want.
 
+### Lyrics Sources
+
+- 163 Music
+- QQ Music
+- Kugou Music
+- Xiami Music
+- TTPod
+- Gecimi
+
 ## Screenshot
 
 <img src="docs/img/desktop_lyrics.gif" width="480px">

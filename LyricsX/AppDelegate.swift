@@ -13,27 +13,22 @@ import EasyPreference
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var mediaPlayerHelper = MediaPlayerHelper()
-    
-    var statusItem: NSStatusItem!
-    var menuBarLyrics: MenuBarLyrics!
+    static var shared: AppDelegate? {
+        return NSApplication.shared().delegate as? AppDelegate
+    }
 
     @IBOutlet weak var lyricsOffsetTextField: NSTextField!
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-        menuBarLyrics = MenuBarLyrics()
+        MenuBarLyrics.shared.statusItem.menu = statusBarMenu
         
-        statusItem.button?.image = #imageLiteral(resourceName: "status_bar_icon")
-        statusItem.menu = statusBarMenu
+        let controller = AppController.shared
+        lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
+        lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
-        
-        lyricsOffsetStepper.bind(NSValueBinding, to: mediaPlayerHelper, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
-        lyricsOffsetTextField.bind(NSValueBinding, to: mediaPlayerHelper, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
-        
         if Preference[LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
                 print("Failed to enable login item")
