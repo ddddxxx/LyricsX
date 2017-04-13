@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import EasyPreference
 
 class MenuBarLyrics: NSObject {
     

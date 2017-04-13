@@ -8,7 +8,6 @@
 
 import Cocoa
 import ServiceManagement
-import EasyPreference
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -48,6 +47,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
         NSWorkspace.shared().open(url)
     }
-    
 }
 

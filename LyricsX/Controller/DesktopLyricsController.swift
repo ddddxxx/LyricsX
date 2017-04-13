@@ -8,7 +8,6 @@
 
 import Cocoa
 import SnapKit
-import EasyPreference
 import OpenCC
 
 class DesktopLyricsWindowController: NSWindowController {
