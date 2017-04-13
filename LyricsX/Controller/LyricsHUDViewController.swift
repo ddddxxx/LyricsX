@@ -40,7 +40,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         NotificationCenter.default.removeObserver(self)
     }
     
-    func doubleClickLyricsLine(at position: Double) {
+    func doubleClickLyricsLine(at position: TimeInterval) {
         let pos = position - (AppController.shared.currentLyrics?.timeDelay ?? 0)
         MusicPlayerManager.shared.player?.playerPosition = pos
         isTracking = true
@@ -55,7 +55,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     }
     
     func handlePositionChange(_ n: Notification) {
-        guard var pos = n.userInfo?["position"] as? Double else {
+        guard var pos = n.userInfo?["position"] as? TimeInterval else {
             return
         }
         pos += AppController.shared.currentLyrics?.timeDelay ?? 0

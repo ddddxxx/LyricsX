@@ -25,7 +25,7 @@ class iTunes: MusicPlayer {
         return _iTunes.playerState?.state ?? .stopped
     }
     
-    var playerPosition: Double {
+    var playerPosition: TimeInterval {
         get {
             guard isRunning else { return 0 }
             return _iTunes.playerPosition ?? 0
@@ -80,6 +80,6 @@ extension iTunesTrack {
             return nil
         }
         
-        return MusicTrack(id: id, name: name as String?, album: album as String?, artist: artist as String?, duration: duration as Double?)
+        return MusicTrack(id: id, name: name as String?, album: album as String?, artist: artist as String?, duration: duration as TimeInterval?)
     }
 }

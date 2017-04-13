@@ -17,7 +17,7 @@ class LyricsKugou: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, duration: Double, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
         let mDuration = Int(duration * 1000)
         queue.addOperation {
             let searchItems = self.searchKugouIDFor(title: title, artist: artist, duration: mDuration)

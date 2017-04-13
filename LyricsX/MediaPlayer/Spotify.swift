@@ -25,7 +25,7 @@ class Spotify: MusicPlayer {
         return _spotify.playerState?.state ?? .stopped
     }
     
-    var playerPosition: Double {
+    var playerPosition: TimeInterval {
         get {
             guard isRunning else { return 0 }
             return _spotify.playerPosition ?? 0
@@ -68,6 +68,6 @@ extension SpotifyTrack {
             return nil
         }
         
-        return MusicTrack(id: id, name: name as String?, album: album as String?, artist: artist as String?, duration: duration.map({Double($0)}))
+        return MusicTrack(id: id, name: name as String?, album: album as String?, artist: artist as String?, duration: duration.map({TimeInterval($0)}))
     }
 }

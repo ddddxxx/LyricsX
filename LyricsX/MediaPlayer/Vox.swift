@@ -25,7 +25,7 @@ class Vox: MusicPlayer {
         return _vox.state
     }
     
-    var playerPosition: Double {
+    var playerPosition: TimeInterval {
         get {
             guard isRunning else { return 0 }
             return _vox.currentTime ?? 0
@@ -61,6 +61,6 @@ extension VoxApplication {
         guard let id = uniqueID as String?, id != "" else {
             return nil
         }
-        return MusicTrack(id: id, name: track as String?, album: album as String?, artist: artist as String?, duration: totalTime as Double?)
+        return MusicTrack(id: id, name: track as String?, album: album as String?, artist: artist as String?, duration: totalTime as TimeInterval?)
     }
 }

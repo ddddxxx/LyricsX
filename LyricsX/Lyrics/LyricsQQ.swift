@@ -17,7 +17,7 @@ class LyricsQQ: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, duration: Double, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
         queue.addOperation {
             let qqIDs = self.searchQQIDFor(title: title, artist: artist)
             for (index, qqID) in qqIDs.enumerated() {

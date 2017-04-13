@@ -21,7 +21,7 @@ class MusicPlayerManager {
     private var _isRunning = false
     private var _track: MusicTrack?
     private var _state: MusicPlayerState = .stopped
-    private var _position: Double = 0
+    private var _position: TimeInterval = 0
     private var subscripToken: EventSubscription?
     
     private init() {

@@ -19,7 +19,7 @@ class Lyrics163: LyricsSource {
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
-    func fetchLyrics(title: String, artist: String, duration: Double, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
         let url = URL(string: "http://music.163.com/api/search/pc")!
         let body = "s=\(title) \(artist)&offset=0&limit=10&type=1".data(using: .utf8)!
         

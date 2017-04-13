@@ -6,6 +6,8 @@
 //  Copyright © 2017年 ddddxxx. All rights reserved.
 //
 
+import Foundation
+
 enum MusicPlayerState {
     case stopped
     case playing
@@ -19,21 +21,21 @@ struct MusicTrack {
     var name:   String?
     var album:  String?
     var artist: String?
-    var duration: Double?
+    var duration: TimeInterval?
 }
 
 protocol MusicPlayer {
     var isRunning: Bool { get }
     var currentTrack: MusicTrack? { get }
     var playerState: MusicPlayerState { get }
-    var playerPosition: Double { get set }
+    var playerPosition: TimeInterval { get set }
 }
 
 protocol MusicPlayerDelegate: class {
     func runningStateChanged(isRunning: Bool)
     func playerStateChanged(state: MusicPlayerState)
     func currentTrackChanged(track: MusicTrack?)
-    func playerPositionChanged(position: Double)
+    func playerPositionChanged(position: TimeInterval)
 }
 
 extension MusicTrack: Equatable {

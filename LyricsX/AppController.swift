@@ -79,7 +79,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         }
     }
     
-    func playerPositionChanged(position: Double) {
+    func playerPositionChanged(position: TimeInterval) {
         guard let lyrics = currentLyrics else {
             return
         }

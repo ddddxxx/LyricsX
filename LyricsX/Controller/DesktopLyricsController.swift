@@ -34,7 +34,7 @@ class DesktopLyricsViewController: NSViewController {
     
     private var chineseConverter: ChineseConverter?
     
-    var currentLyricsPosition: Double = 0
+    var currentLyricsPosition: TimeInterval = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

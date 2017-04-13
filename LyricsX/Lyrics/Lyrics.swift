@@ -23,9 +23,9 @@ struct Lyrics {
         }
     }
     
-    var timeDelay: Double {
+    var timeDelay: TimeInterval {
         get {
-            return Double(offset) / 1000
+            return TimeInterval(offset) / 1000
         }
         set {
             offset = Int(newValue * 1000)
@@ -97,7 +97,7 @@ struct Lyrics {
         self.metadata = metadata
     }
     
-    subscript(_ position: Double) -> (current:LyricsLine?, next:LyricsLine?) {
+    subscript(_ position: TimeInterval) -> (current:LyricsLine?, next:LyricsLine?) {
         let lyrics = self.lyrics.filter() { $0.enabled }
         guard let index = lyrics.index(where: { $0.position - timeDelay > position }) else {
             return (lyrics.last, nil)

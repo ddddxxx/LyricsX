@@ -22,7 +22,7 @@ protocol LyricsSource {
     
     init(queue: OperationQueue);
     
-    func fetchLyrics(title: String, artist: String, duration: Double, completionBlock: @escaping (Lyrics) -> Void)
+    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void)
     
 }
 
@@ -51,7 +51,7 @@ class LyricsSourceManager {
         lyrics = []
     }
     
-    func fetchLyrics(title: String, artist: String, duration: Double) {
+    func fetchLyrics(title: String, artist: String, duration: TimeInterval) {
         searchTitle = title
         searchArtist = artist
         lyrics = []

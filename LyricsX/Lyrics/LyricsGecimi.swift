@@ -17,7 +17,7 @@ class LyricsGecimi: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, duration: Double, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
         queue.addOperation {
             let lrcDatas = self.searchLrcFor(title: title, artist: artist)
             for (index, lrcData) in lrcDatas.enumerated() {
