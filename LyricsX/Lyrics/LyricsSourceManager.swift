@@ -8,24 +8,6 @@
 
 import Foundation
 
-protocol LyricsConsuming: class {
-    
-    func lyricsReceived(lyrics: Lyrics)
-    
-    func fetchCompleted(result: [Lyrics])
-    
-}
-
-protocol LyricsSource {
-    
-    var queue: OperationQueue { get }
-    
-    init(queue: OperationQueue);
-    
-    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void)
-    
-}
-
 class LyricsSourceManager {
     
     weak var consumer: LyricsConsuming?
@@ -71,5 +53,4 @@ class LyricsSourceManager {
             }
         }
     }
-    
 }

@@ -105,7 +105,6 @@ struct Lyrics {
         let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
         return (previous, lyrics[index])
     }
-    
 }
 
 extension Lyrics {
@@ -143,7 +142,6 @@ extension Lyrics {
         case artworkURL         = "artworkURL"
         case includeTranslation = "includeTranslation"
     }
-    
 }
 
 extension Lyrics {
@@ -167,7 +165,6 @@ extension Lyrics {
         
         return content
     }
-    
 }
 
 extension Lyrics {
@@ -199,7 +196,6 @@ extension Lyrics {
             }
         }
     }
-    
 }
 
 infix operator ?>
@@ -301,7 +297,6 @@ extension Lyrics {
         
         return s1.contains(s2) || s2.contains(s1)
     }
-
 }
 
 extension Lyrics.IDTagKey: CustomStringConvertible {
@@ -309,7 +304,6 @@ extension Lyrics.IDTagKey: CustomStringConvertible {
     public var description: String {
         return rawValue
     }
-    
 }
 
 extension Lyrics: CustomStringConvertible {
@@ -317,5 +311,4 @@ extension Lyrics: CustomStringConvertible {
     public var description: String {
         return contentString(withMetadata: true, ID3: true, timeTag: true, translation: true)
     }
-    
 }

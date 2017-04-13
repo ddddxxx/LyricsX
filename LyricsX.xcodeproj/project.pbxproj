@@ -26,6 +26,7 @@
 		BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44F8771E702863004194D9 /* Lyrics163.swift */; };
 		BB45AC801E9E337F0099432F /* MusicPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */; };
 		BB45AC841E9F220E0099432F /* LyricsKugou.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC831E9F220E0099432F /* LyricsKugou.swift */; };
+		BB45AC861E9F65E90099432F /* LyricsSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC851E9F65E90099432F /* LyricsSourceProtocol.swift */; };
 		BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */; };
 		BB58A3421E4EDFF100836903 /* LyricsSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */; };
 		BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */; };
@@ -119,6 +120,7 @@
 		BB44F8771E702863004194D9 /* Lyrics163.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lyrics163.swift; path = Lyrics/Lyrics163.swift; sourceTree = "<group>"; };
 		BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayerProtocol.swift; path = MediaPlayer/MusicPlayerProtocol.swift; sourceTree = "<group>"; };
 		BB45AC831E9F220E0099432F /* LyricsKugou.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsKugou.swift; path = Lyrics/LyricsKugou.swift; sourceTree = "<group>"; };
+		BB45AC851E9F65E90099432F /* LyricsSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceProtocol.swift; path = Lyrics/LyricsSourceProtocol.swift; sourceTree = "<group>"; };
 		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsGecimi.swift; path = Lyrics/LyricsGecimi.swift; sourceTree = "<group>"; };
 		BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceManager.swift; path = Lyrics/LyricsSourceManager.swift; sourceTree = "<group>"; };
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoActivateWindowController.swift; path = Controller/AutoActivateWindowController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			children = (
 				BB58B0861E82BFF600598D4F /* LyricsLine.swift */,
 				BB4141D91E4761F900A51775 /* Lyrics.swift */,
+				BB45AC851E9F65E90099432F /* LyricsSourceProtocol.swift */,
 				BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */,
 				BB861AA31E99E56A00AC9194 /* Sources */,
 			);
@@ -559,6 +562,7 @@
 				BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */,
 				BBB8DA3E1E86657F00EF0A18 /* VoxBridge.swift in Sources */,
 				BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */,
+				BB45AC861E9F65E90099432F /* LyricsSourceProtocol.swift in Sources */,
 				BB45AC841E9F220E0099432F /* LyricsKugou.swift in Sources */,
 				BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */,
 				BBC8117A1E9E1D0000331CFC /* MusicPlayerManager.swift in Sources */,
