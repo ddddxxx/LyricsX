@@ -76,6 +76,7 @@ class DesktopLyricsViewController: NSViewController {
         lyricsView.bind("fontSize", to: dfs, withKeyPath: DesktopLyricsFontSize.rawValue, options: nil)
         lyricsView.bind("textColor", to: dfs, withKeyPath: DesktopLyricsColor.rawValue, options: transOpt)
         lyricsView.bind("shadowColor", to: dfs, withKeyPath: DesktopLyricsShadowColor.rawValue, options: transOpt)
+        lyricsView.bind("fillColor", to: dfs, withKeyPath: DesktopLyricsBackgroundColor.rawValue, options: transOpt)
         
         lyricsHeightConstraint.constant = CGFloat(Preference[DesktopLyricsHeighFromDock])
         
