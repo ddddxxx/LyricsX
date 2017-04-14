@@ -201,11 +201,11 @@ extension Lyrics {
 infix operator ?>
 private func ?>(lhs: Bool?, rhs: Bool?) -> Bool? {
     switch (lhs, rhs) {
-    case (.some(true), .some(true)), (.some(false), .some(false)):
+    case (true?, true?), (false?, false?):
         return nil
-    case (.some(true), _), (_, .some(false)):
+    case (true?, _), (_, false?):
         return true
-    case (_, .some(true)), (.some(false), _):
+    case (_, true?), (false?, _):
         return false
     default:
         return nil
