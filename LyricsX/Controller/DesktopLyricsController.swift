@@ -93,10 +93,6 @@ class DesktopLyricsViewController: NSViewController {
             self.lyricsHeightConstraint.constant = CGFloat(change.newValue)
         }
         
-        Preference.subscribe(key: DesktopLyricsBackgroundColor) { change in
-            self.lyricsView.fillColor = change.newValue
-        }
-        
         Preference.subscribe(key: DesktopLyricsShadowColor) { change in
             self.lyricsView.shadowColor = change.newValue
         }
