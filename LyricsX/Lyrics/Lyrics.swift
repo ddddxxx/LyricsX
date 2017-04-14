@@ -12,7 +12,7 @@ struct Lyrics {
     
     var lyrics: [LyricsLine]
     var idTags: [IDTagKey: String]
-    var metadata: [MetadataKey: Any]
+    var metadata: MetaData
     
     var offset: Int {
         get {
@@ -38,7 +38,7 @@ struct Lyrics {
     init?(_ lrcContents: String) {
         lyrics = []
         idTags = [:]
-        metadata = [:]
+        metadata = MetaData(source: .Unknown)
         
         let lyricsLines = lrcContents.components(separatedBy: .newlines)
         for line in lyricsLines {
@@ -87,14 +87,13 @@ struct Lyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
-    init?(metadata: [MetadataKey: Any]) {
-        guard let lrcURL = metadata[.lyricsURL] as? URL,
-            let lrcContent = try? String(contentsOf: lrcURL) else {
+    init?(url: URL) {
+        guard let lrcContent = try? String(contentsOf: url) else {
             return nil
         }
         
         self.init(lrcContent)
-        self.metadata = metadata
+        metadata.lyricsURL = url
     }
     
     subscript(_ position: TimeInterval) -> (current:LyricsLine?, next:LyricsLine?) {
@@ -105,9 +104,6 @@ struct Lyrics {
         let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
         return (previous, lyrics[index])
     }
-}
-
-extension Lyrics {
     
     struct IDTagKey: RawRepresentable, Hashable {
         
@@ -133,14 +129,48 @@ extension Lyrics {
         static let offset   = IDTagKey("offset")
     }
     
-    enum MetadataKey: String {
-        case source             = "source"
-        case lyricsURL          = "lyricsURL"
-        case searchTitle        = "searchTitle"
-        case searchArtist       = "searchArtist"
-        case searchIndex        = "searchIndex"
-        case artworkURL         = "artworkURL"
-        case includeTranslation = "includeTranslation"
+    struct MetaData {
+        
+        var source: Source
+        var title: String?
+        var artist: String?
+        var searchBy: SearchCriteria?
+        var searchIndex: Int
+        var lyricsURL: URL?
+        var artworkURL: URL?
+        var includeTranslation: Bool
+        
+        init(source: Source, title: String? = nil, artist: String? = nil, searchBy: SearchCriteria? = nil, searchIndex: Int = 0, lyricsURL: URL? = nil, artworkURL: URL? = nil, includeTranslation: Bool = false) {
+            self.source = source
+            self.title = title
+            self.artist = artist
+            self.searchBy = searchBy
+            self.searchIndex = searchIndex
+            self.lyricsURL = lyricsURL
+            self.artworkURL = artworkURL
+            self.includeTranslation = includeTranslation
+        }
+        
+        struct Source: RawRepresentable {
+            var rawValue: String
+            
+            init(rawValue: String) {
+                self.rawValue = rawValue
+            }
+            
+            init(_ rawValue: String) {
+                self.rawValue = rawValue
+            }
+            
+            static let Unknown = Source("unknown")
+            static let Local = Source("Local")
+            static let Import = Source("Import")
+        }
+        
+        enum SearchCriteria {
+            case keyword(String)
+            case info(title: String, artist: String)
+        }
     }
 }
 
@@ -148,11 +178,11 @@ extension Lyrics {
     
     func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
         var content = ""
-        if withMetadata {
-            content += metadata.map {
-                return "[\($0.key):\($0.value)]\n"
-            }.joined()
-        }
+//        if withMetadata {
+//            content += metadata.map {
+//                return "[\($0.key):\($0.value)]\n"
+//            }.joined()
+//        }
         if ID3 {
             content += idTags.map() {
                 return "[\($0.key.rawValue):\($0.value)]\n"
@@ -188,8 +218,8 @@ extension Lyrics {
                 sentence.contains(idTagTitle),
                 sentence.contains(idTagArtist) {
                 lyrics[index].enabled = false
-            } else if let iTunesTitle = metadata[.searchTitle] as? String,
-                let iTunesArtist = metadata[.searchArtist] as? String,
+            } else if let iTunesTitle = metadata.title,
+                let iTunesArtist = metadata.artist,
                 sentence.contains(iTunesTitle),
                 sentence.contains(iTunesArtist) {
                 lyrics[index].enabled = false
@@ -215,10 +245,8 @@ private func ?>(lhs: Bool?, rhs: Bool?) -> Bool? {
 extension Lyrics {
     
     static func >(lhs: Lyrics, rhs: Lyrics) -> Bool {
-        if lhs.metadata[.source] as? String == rhs.metadata[.source] as? String,
-            let lIndex = lhs.metadata[.searchIndex] as? Int,
-            let rIndex = rhs.metadata[.searchIndex] as? Int {
-            return lIndex < rIndex
+        if lhs.metadata.source == rhs.metadata.source  {
+            return lhs.metadata.searchIndex < rhs.metadata.searchIndex
         }
         
         if let artistComparison = lhs.isFitArtist ?> rhs.isFitArtist {
@@ -237,7 +265,7 @@ extension Lyrics {
             return titleComparison
         }
         
-        if let translationComparison = (lhs.metadata[.includeTranslation] as? Bool) ?> (rhs.metadata[.includeTranslation] as? Bool) {
+        if let translationComparison = lhs.metadata.includeTranslation ?> rhs.metadata.includeTranslation {
             return translationComparison
         }
         
@@ -257,7 +285,7 @@ extension Lyrics {
     }
     
     private var isFitArtist: Bool? {
-        guard let searchArtist = metadata[.searchArtist] as? String,
+        guard let searchArtist = metadata.artist,
             let artist = idTags[.artist] else {
             return nil
         }
@@ -266,7 +294,7 @@ extension Lyrics {
     }
     
     private var isApproachArtise: Bool? {
-        guard let searchArtist = metadata[.searchArtist] as? String,
+        guard let searchArtist = metadata.artist,
             let artist = idTags[.artist] else {
                 return nil
         }
@@ -278,7 +306,7 @@ extension Lyrics {
     }
     
     private var isFitTitle: Bool? {
-        guard let searchTitle = metadata[.searchTitle] as? String,
+        guard let searchTitle = metadata.title,
             let title = idTags[.title] else {
                 return nil
         }
@@ -287,7 +315,7 @@ extension Lyrics {
     }
     
     private var isApproachTitle: Bool? {
-        guard let searchTitle = metadata[.searchTitle] as? String,
+        guard let searchTitle = metadata.title,
             let title = idTags[.title] else {
                 return nil
         }
@@ -296,6 +324,25 @@ extension Lyrics {
         let s2 = title.lowercased().replacingOccurrences(of: " ", with: "")
         
         return s1.contains(s2) || s2.contains(s1)
+    }
+}
+
+extension Lyrics.MetaData.Source: Equatable {
+    static func ==(lhs: Lyrics.MetaData.Source, rhs: Lyrics.MetaData.Source) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+}
+
+extension Lyrics.MetaData.SearchCriteria: Equatable {
+    static func ==(lhs: Lyrics.MetaData.SearchCriteria, rhs: Lyrics.MetaData.SearchCriteria) -> Bool {
+        switch (lhs, rhs) {
+        case (.keyword, .info), (.info, .keyword):
+            return false
+        case (let .keyword(l), let .keyword(r)):
+            return l == r
+        case (let .info(l1, l2), let .info(r1, r2)):
+            return (l1 == r1) && (l2 == r2)
+        }
     }
 }
 

@@ -9,6 +9,10 @@
 import Foundation
 import SwiftyJSON
 
+extension Lyrics.MetaData.Source {
+    static let Gecimi = Lyrics.MetaData.Source("Gecimi")
+}
+
 class LyricsGecimi: LyricsSource {
     
     let queue: OperationQueue
@@ -17,23 +21,32 @@ class LyricsGecimi: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+        guard case let .info(title, artist) = criteria else {
+            // cannot search by keyword
+            return
+        }
+        
         queue.addOperation {
             let lrcDatas = self.searchLrcFor(title: title, artist: artist)
             for (index, lrcData) in lrcDatas.enumerated() {
-                var metadata = lrcData
-                metadata[.source]       = "Gecimi"
-                metadata[.searchTitle]  = title
-                metadata[.searchArtist] = artist
-                metadata[.searchIndex]  = index
-                if let lrc = Lyrics(metadata: metadata) {
+                self.queue.addOperation {
+                    guard var lrc = Lyrics(url: lrcData.lyricsURL) else {
+                        return
+                    }
+                    
+                    lrc.metadata.source = .Gecimi
+                    lrc.metadata.searchBy = criteria
+                    lrc.metadata.searchIndex = index
+                    lrc.metadata.artworkURL = lrcData.artworkURL
+                    
                     completionBlock(lrc)
                 }
             }
         }
     }
     
-    private func searchLrcFor(title: String, artist: String) -> [[Lyrics.MetadataKey: Any]] {
+    private func searchLrcFor(title: String, artist: String) -> [(lyricsURL: URL, artworkURL: URL?)] {
         let urlStr = "http://gecimi.com/api/lyric/\(title)/\(artist)"
         let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
@@ -43,17 +56,17 @@ class LyricsGecimi: LyricsSource {
         }
         
         return array.flatMap() { item in
-            var result: [Lyrics.MetadataKey: Any] = [:]
-            result[.lyricsURL] = item["lrc"].url
+            guard let lrcURL = item["lrc"].url else {
+                return nil
+            }
             
             if let aid = item["aid"].string,
                 let url = URL(string:"http://gecimi.com/api/cover/\(aid)"),
                 let data = try? Data(contentsOf: url),
                 let artworkURL = JSON(data)["result"]["cover"].url {
-                    result[.artworkURL] = artworkURL
+                    return (lrcURL, artworkURL)
             }
-            return result
+            return (lrcURL, nil)
         }
     }
-
 }

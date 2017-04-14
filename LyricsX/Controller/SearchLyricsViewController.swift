@@ -50,8 +50,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         progressIndicator.isHidden = false
         searchResult = []
         tableView.reloadData()
-        let duration = MusicPlayerManager.shared.player?.currentTrack?.duration ?? 0
-        lyricsManager.fetchLyrics(title: searchTitle, artist: searchArtist, duration: duration)
+        let track = MusicPlayerManager.shared.player?.currentTrack
+        let duration = track?.duration ?? 0
+        let criteria = Lyrics.MetaData.SearchCriteria.info(title: searchTitle, artist: searchArtist)
+        lyricsManager.fetchLyrics(with: criteria, title: track?.name, artist: track?.artist, duration: duration)
     }
     
     @IBAction func useLyricsAction(_ sender: NSButton) {
@@ -96,7 +98,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         case "Artist":
             return searchResult[row].idTags[.artist] ?? "[lacking]"
         case "Source":
-            return searchResult[row].metadata[.source]
+            return searchResult[row].metadata.source.rawValue
         default:
             return nil
         }
@@ -164,7 +166,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard index >= 0 else {
             return
         }
-        guard let url = self.searchResult[index].metadata[.artworkURL] as? URL else {
+        guard let url = self.searchResult[index].metadata.artworkURL else {
             artworkView.image = #imageLiteral(resourceName: "missing_artwork")
             return
         }

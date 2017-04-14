@@ -9,6 +9,10 @@
 import Foundation
 import SwiftyJSON
 
+extension Lyrics.MetaData.Source {
+    static let Xiami = Lyrics.MetaData.Source("Xiami")
+}
+
 class LyricsXiami: LyricsSource {
     
     let queue: OperationQueue
@@ -17,31 +21,39 @@ class LyricsXiami: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+        let keyword: String
+        switch criteria {
+        case let .keyword(key):
+            keyword = key
+        case let .info(title, artist):
+            keyword = title + " " + artist
+        }
+        
         queue.addOperation {
-            let xiamiIDs = self.searchXiamiIDFor(title: title, artist: artist)
+            let xiamiIDs = self.searchXiamiIDFor(keyword: keyword)
             for (index, xiamiID) in xiamiIDs.enumerated() {
                 self.queue.addOperation {
                     let parser = LyricsXiamiXMLParser()
                     guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(xiamiID)"),
                         let data = try? Data(contentsOf: url),
-                        var metadata = parser.parseLrcURL(data: data) else {
+                        let parseResult = parser.parseLrcURL(data: data),
+                        var lrc = Lyrics(url: parseResult.lyricsURL) else {
                             return
                     }
-                    metadata[.source]       = "Xiami"
-                    metadata[.searchTitle]  = title
-                    metadata[.searchArtist] = artist
-                    metadata[.searchIndex]  = index
-                    if let lrc = Lyrics(metadata: metadata) {
-                        completionBlock(lrc)
-                    }
+                    lrc.metadata.source = .Xiami
+                    lrc.metadata.searchBy = criteria
+                    lrc.metadata.searchIndex = index
+                    lrc.metadata.artworkURL = parseResult.artworkURL
+                    
+                    completionBlock(lrc)
                 }
             }
         }
     }
     
-    private func searchXiamiIDFor(title: String, artist: String) -> [Int] {
-        let urlStr = "http://www.xiami.com/web/search-songs?key=\(title) \(artist)"
+    private func searchXiamiIDFor(keyword: String) -> [Int] {
+        let urlStr = "http://www.xiami.com/web/search-songs?key=" + keyword
         let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         let url = URL(string: convertedURLStr)!
         
@@ -53,7 +65,6 @@ class LyricsXiami: LyricsSource {
             return item["id"].string.flatMap() {Int($0)}
         }
     }
-    
 }
 
 // MARK: - XMLParser
@@ -62,13 +73,18 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     
     var XMLContent: String?
     
-    var result: [Lyrics.MetadataKey: Any] = [:]
+    var lyricsURL: URL?
+    var artworkURL: URL?
     
-    func parseLrcURL(data: Data) -> [Lyrics.MetadataKey: Any]? {
+    func parseLrcURL(data: Data) -> (lyricsURL: URL, artworkURL: URL?)? {
         let parser = XMLParser(data: data)
         parser.delegate = self
-        let success = parser.parse()
-        return success ? result : nil
+        parser.parse()
+        guard let lyricsURL = lyricsURL else {
+            return nil
+        }
+        
+        return (lyricsURL, artworkURL)
     }
     
     // MARK: XMLParserDelegate
@@ -76,9 +92,9 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         switch elementName {
         case "lyric":
-            result[.lyricsURL] = XMLContent.flatMap { URL(string: $0) }
+            lyricsURL = XMLContent.flatMap { URL(string: $0) }
         case "pic":
-            result[.artworkURL] = XMLContent.flatMap { URL(string: $0) }
+            artworkURL = XMLContent.flatMap { URL(string: $0) }
         default:
             return
         }
@@ -87,5 +103,4 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         XMLContent = string
     }
-    
 }

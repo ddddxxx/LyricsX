@@ -42,7 +42,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         currentLyrics = lyrics
         didChangeValue(forKey: "lyricsOffset")
         NotificationCenter.default.post(name: .LyricsChange, object: nil)
-        if currentLyrics?.metadata[.source] as? String != "Local" {
+        if currentLyrics?.metadata.source != .Local {
             currentLyrics?.saveToLocal()
         }
     }
@@ -97,8 +97,8 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     
     func lyricsReceived(lyrics: Lyrics) {
         let track = MusicPlayerManager.shared.player?.currentTrack
-        guard lyrics.metadata[.searchTitle] as? String == track?.name,
-            lyrics.metadata[.searchArtist] as? String == track?.artist else {
+        guard lyrics.metadata.title == track?.name,
+            lyrics.metadata.artist == track?.artist else {
             return
         }
         
@@ -112,7 +112,6 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     func fetchCompleted(result: [Lyrics]) {
         
     }
-    
 }
 
 extension AppController {
@@ -120,13 +119,10 @@ extension AppController {
     func importLyrics(_ lyrics: String) {
         if var lrc = Lyrics(lyrics),
             let track = MusicPlayerManager.shared.player?.currentTrack {
-            lrc.metadata = [
-                .searchTitle: track.name ?? "", // TODO: ?
-                .searchArtist: track.artist ?? "",
-                .source: "Import"
-            ]
+            lrc.metadata.source = .Import
+            lrc.metadata.title = track.name ?? ""   // TODO: ?
+            lrc.metadata.artist = track.artist ?? ""
             setCurrentLyrics(lyrics: lrc)
         }
     }
-    
 }

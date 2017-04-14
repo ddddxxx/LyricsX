@@ -21,5 +21,5 @@ protocol LyricsSource {
     
     init(queue: OperationQueue);
     
-    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void)
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void)
 }

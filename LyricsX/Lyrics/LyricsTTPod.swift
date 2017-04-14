@@ -9,6 +9,10 @@
 import Foundation
 import SwiftyJSON
 
+extension Lyrics.MetaData.Source {
+    static let TTPod = Lyrics.MetaData.Source("TTPod")
+}
+
 class LyricsTTPod: LyricsSource {
     
     let queue: OperationQueue
@@ -17,7 +21,12 @@ class LyricsTTPod: LyricsSource {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+        guard case let .info(title, artist) = criteria else {
+            // cannot search by keyword
+            return
+        }
+        
         queue.addOperation {
             let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(artist)&title=\(title)"
             let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
@@ -29,16 +38,11 @@ class LyricsTTPod: LyricsSource {
                     return
             }
             
-            var metadata: [Lyrics.MetadataKey: Any] = [:]
-            metadata[.source]       = "TTPod"
-            metadata[.searchTitle]  = title
-            metadata[.searchArtist] = artist
-            metadata[.searchIndex]  = 0
-            
-            lrc.metadata = metadata
+            lrc.metadata.source = .TTPod
+            lrc.metadata.searchBy = criteria
+            lrc.metadata.searchIndex = 0
             
             completionBlock(lrc)
         }
     }
-    
 }
