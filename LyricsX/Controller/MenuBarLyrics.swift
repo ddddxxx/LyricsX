@@ -70,49 +70,8 @@ class MenuBarLyrics: NSObject {
 extension NSStatusItem {
     
     fileprivate var isVisibe: Bool? {
-        guard let windowFrame = button?.frame,
-            let frame = button?.window?.convertToScreen(windowFrame) else {
-            return nil
-        }
-        
-        let point = CGPoint(x: frame.midX, y: frame.midY)
-        let carbonPoint = point.carbonScreenPoint()
-        
-        guard let element = carbonPoint.getUIElementCopy() else {
-            return false
-        }
-        
-        return getpid() == element.pid
-    }
-}
-
-extension CGPoint {
-    
-    fileprivate func carbonScreenPoint() -> CGPoint {
-        guard let screen = NSScreen.screens()?.first(where: {$0.frame.contains(self)}) else {
-            return .zero
-        }
-        return CGPoint(x: x, y: screen.frame.height - y - 1)
-    }
-    
-    fileprivate func getUIElementCopy() -> AXUIElement? {
-        var element: AXUIElement?
-        let error = AXUIElementCopyElementAtPosition(AXUIElementCreateSystemWide(), Float(x), Float(y), &element)
-        guard error == .success else {
-            return nil
-        }
-        return element
-    }
-}
-
-extension AXUIElement {
-    
-    fileprivate var pid: pid_t? {
-        var pid: pid_t = 0
-        let error = AXUIElementGetPid(self, &pid)
-        guard error == .success else {
-            return nil
-        }
-        return pid
+        let windowNumber = (button?.window?.windowNumber).map(CGWindowID.init(_:)) ?? kCGNullWindowID
+        let info = CGWindowListCopyWindowInfo([.optionOnScreenAboveWindow], windowNumber)
+        return CFArrayGetCount(info) == 0
     }
 }
