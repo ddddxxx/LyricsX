@@ -46,8 +46,16 @@ class MenuBarLyrics: NSObject {
         }
         
         setTextStatusItem(string: lyrics)
-        if statusItem.isVisibe != true {
-            setImageStatusItem()
+        if statusItem.isVisibe {
+            return
+        }
+        
+        // truncation
+        var components = lyrics.components(options: [.byWords])
+        while !components.isEmpty, !statusItem.isVisibe {
+            components.removeLast()
+            let proposed = components.joined() + "..."
+            setTextStatusItem(string: proposed)
         }
     }
     
@@ -69,9 +77,21 @@ class MenuBarLyrics: NSObject {
 
 extension NSStatusItem {
     
-    fileprivate var isVisibe: Bool? {
+    fileprivate var isVisibe: Bool {
         let windowNumber = (button?.window?.windowNumber).map(CGWindowID.init(_:)) ?? kCGNullWindowID
         let info = CGWindowListCopyWindowInfo([.optionOnScreenAboveWindow], windowNumber)
         return CFArrayGetCount(info) == 0
+    }
+}
+
+extension String {
+    
+    func components(options: String.EnumerationOptions) -> [String] {
+        var components: [String] = []
+        let range = Range(uncheckedBounds: (startIndex, endIndex))
+        enumerateSubstrings(in: range, options: options) { (_, _, r, _) in
+            components.append(self[r])
+        }
+        return components
     }
 }
