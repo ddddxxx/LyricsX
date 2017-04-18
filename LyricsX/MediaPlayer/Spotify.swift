@@ -11,6 +11,8 @@ import ScriptingBridge
 
 class Spotify: MusicPlayer {
     
+    static let shared = Spotify()
+    
     var isRunning: Bool {
         return (_spotify as! SBApplication).isRunning
     }
@@ -38,7 +40,7 @@ class Spotify: MusicPlayer {
     
     private var _spotify: SpotifyApplication
     
-    init?() {
+    private init?() {
         guard let spotify = SBApplication(bundleIdentifier: "com.spotify.client") else {
             return nil
         }
