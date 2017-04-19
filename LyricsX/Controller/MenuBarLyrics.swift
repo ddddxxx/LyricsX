@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import EasyPreference
 
 class MenuBarLyrics: NSObject {
     
@@ -47,8 +46,16 @@ class MenuBarLyrics: NSObject {
         }
         
         setTextStatusItem(string: lyrics)
-        if statusItem.isVisibe != true {
-            setImageStatusItem()
+        if statusItem.isVisibe {
+            return
+        }
+        
+        // truncation
+        var components = lyrics.components(options: [.byWords])
+        while !components.isEmpty, !statusItem.isVisibe {
+            components.removeLast()
+            let proposed = components.joined() + "..."
+            setTextStatusItem(string: proposed)
         }
     }
     
@@ -70,50 +77,21 @@ class MenuBarLyrics: NSObject {
 
 extension NSStatusItem {
     
-    fileprivate var isVisibe: Bool? {
-        guard let windowFrame = button?.frame,
-            let frame = button?.window?.convertToScreen(windowFrame) else {
-            return nil
-        }
-        
-        let point = CGPoint(x: frame.midX, y: frame.midY)
-        let carbonPoint = point.carbonScreenPoint()
-        
-        guard let element = carbonPoint.getUIElementCopy() else {
-            return false
-        }
-        
-        return getpid() == element.pid
+    fileprivate var isVisibe: Bool {
+        let windowNumber = (button?.window?.windowNumber).map(CGWindowID.init(_:)) ?? kCGNullWindowID
+        let info = CGWindowListCopyWindowInfo([.optionOnScreenAboveWindow], windowNumber)
+        return CFArrayGetCount(info) == 0
     }
 }
 
-extension CGPoint {
+extension String {
     
-    fileprivate func carbonScreenPoint() -> CGPoint {
-        guard let screen = NSScreen.screens()?.first(where: {$0.frame.contains(self)}) else {
-            return .zero
+    func components(options: String.EnumerationOptions) -> [String] {
+        var components: [String] = []
+        let range = Range(uncheckedBounds: (startIndex, endIndex))
+        enumerateSubstrings(in: range, options: options) { (_, _, r, _) in
+            components.append(self[r])
         }
-        return CGPoint(x: x, y: screen.frame.height - y - 1)
-    }
-    
-    fileprivate func getUIElementCopy() -> AXUIElement? {
-        var element: AXUIElement?
-        let error = AXUIElementCopyElementAtPosition(AXUIElementCreateSystemWide(), Float(x), Float(y), &element)
-        guard error == .success else {
-            return nil
-        }
-        return element
-    }
-}
-
-extension AXUIElement {
-    
-    fileprivate var pid: pid_t? {
-        var pid: pid_t = 0
-        let error = AXUIElementGetPid(self, &pid)
-        guard error == .success else {
-            return nil
-        }
-        return pid
+        return components
     }
 }

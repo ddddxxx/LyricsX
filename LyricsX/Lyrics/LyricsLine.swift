@@ -53,7 +53,6 @@ struct LyricsLine {
             sentence = ""
         }
     }
-    
 }
 
 extension LyricsLine: Equatable, Hashable {
@@ -65,7 +64,6 @@ extension LyricsLine: Equatable, Hashable {
     static func ==(lhs: LyricsLine, rhs: LyricsLine) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
-    
 }
 
 extension LyricsLine {
@@ -81,7 +79,6 @@ extension LyricsLine {
         }
         return content
     }
-    
 }
 
 extension LyricsLine: CustomStringConvertible {
@@ -89,7 +86,6 @@ extension LyricsLine: CustomStringConvertible {
     public var description: String {
         return contentString(withTimeTag: true, translation: true)
     }
-    
 }
 
 extension String {
@@ -97,5 +93,4 @@ extension String {
     var range: NSRange {
         return NSRange(location: 0, length: characters.count)
     }
-    
 }

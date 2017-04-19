@@ -8,24 +8,6 @@
 
 import Foundation
 
-protocol LyricsConsuming: class {
-    
-    func lyricsReceived(lyrics: Lyrics)
-    
-    func fetchCompleted(result: [Lyrics])
-    
-}
-
-protocol LyricsSource {
-    
-    var queue: OperationQueue { get }
-    
-    init(queue: OperationQueue);
-    
-    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void)
-    
-}
-
 class LyricsSourceManager {
     
     weak var consumer: LyricsConsuming?
@@ -33,8 +15,7 @@ class LyricsSourceManager {
     private let lyricsSource: [LyricsSource]
     private let queue: OperationQueue
     
-    var searchTitle: String?
-    var searchArtist: String?
+    var criteria: Lyrics.MetaData.SearchCriteria?
     
     var lyrics: [Lyrics]
     
@@ -52,15 +33,23 @@ class LyricsSourceManager {
     }
     
     func fetchLyrics(title: String, artist: String, duration: TimeInterval) {
-        searchTitle = title
-        searchArtist = artist
+        fetchLyrics(with: .info(title: title, artist: artist), title: title, artist: artist, duration: duration)
+    }
+    
+    func fetchLyrics(with criteria: Lyrics.MetaData.SearchCriteria, title: String?, artist: String?, duration: TimeInterval) {
+        self.criteria = criteria
         lyrics = []
         queue.cancelAllOperations()
         lyricsSource.forEach() { source in
-            source.fetchLyrics(title: title, artist: artist, duration: duration) { lrc in
-                guard self.searchTitle == title, self.searchArtist == artist else {
+            source.fetchLyrics(by: criteria, duration: duration) { lrc in
+                guard self.criteria == criteria else {
                     return
                 }
+                
+                var lrc = lrc
+                lrc.metadata.title = title
+                lrc.metadata.artist = artist
+                
                 let index = self.lyrics.index(where: {$0 < lrc}) ?? self.lyrics.count
                 self.lyrics.insert(lrc, at: index)
                 self.consumer?.lyricsReceived(lyrics: lrc)
@@ -71,5 +60,4 @@ class LyricsSourceManager {
             }
         }
     }
-    
 }

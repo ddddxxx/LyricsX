@@ -15,23 +15,17 @@ class MusicPlayerManager {
     
     weak var delegate: MusicPlayerDelegate?
     
-    var player: MusicPlayer?
+    private(set) var player: MusicPlayer?
     
     private var _timer: Timer!
     private var _isRunning = false
     private var _track: MusicTrack?
     private var _state: MusicPlayerState = .stopped
     private var _position: TimeInterval = 0
-    private var subscripToken: EventSubscription?
     
     private init() {
-        updateMusicPlayerApplication(index: Preference[PreferredPlayerIndex])
-        
-        subscripToken = Preference.subscribe(key: PreferredPlayerIndex) { [unowned self] change in
-            self.updateMusicPlayerApplication(index: change.newValue)
-        }
-        
         _timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
+            self.updateSelectedPlayer()
             self.updateRunningState()
             self.updatePlayerState()
             self.updateCurrentTrack()
@@ -39,22 +33,43 @@ class MusicPlayerManager {
         }
     }
     
-    deinit {
-        _timer.invalidate()
-        subscripToken?.invalidate()
+    private func updateSelectedPlayer() {
+        if player?.playerState == .playing {
+            return
+        }
+        
+        let newPlayer: MusicPlayer?
+        switch Preference[PreferredPlayerIndex] {
+        case 0:
+            newPlayer = iTunes.shared
+        case 1:
+            newPlayer = Spotify.shared
+        case 2:
+            newPlayer = Vox.shared
+        default:
+            newPlayer = autoSelectPlayer()
+        }
+        
+        guard newPlayer != nil, newPlayer !== player else {
+            return
+        }
+        
+        player = newPlayer
+        _isRunning = false
+        _track = nil
+        _state = .stopped
+        _position = 0
     }
     
-    private func updateMusicPlayerApplication(index: Int) {
-        switch index {
-        case 0:
-            player = iTunes()
-        case 1:
-            player = Spotify()
-        case 2:
-            player = Vox()
-        default:
-            player = iTunes()
-        }
+    private func autoSelectPlayer() -> MusicPlayer? {
+        let players: [MusicPlayer?] = [
+            player,
+            iTunes.shared,
+            Spotify.shared,
+            Vox.shared,
+        ]
+        
+        return players.first { $0?.playerState == .playing } ?? nil
     }
     
     private func updateRunningState() {

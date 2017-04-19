@@ -59,8 +59,8 @@ extension EasyPreference {
 extension Lyrics {
     
     var fileName: String {
-        let title = (metadata[.searchTitle] as? String)?.replacingOccurrences(of: "/", with: "&") ?? ""
-        let artist = (metadata[.searchArtist] as? String)?.replacingOccurrences(of: "/", with: "&") ?? ""
+        let title = metadata.title?.replacingOccurrences(of: "/", with: "&") ?? ""
+        let artist = metadata.artist?.replacingOccurrences(of: "/", with: "&") ?? ""
         return "\(title) - \(artist).lrc"
     }
     
@@ -90,11 +90,9 @@ extension Lyrics {
         }
         
         var lrc = Lyrics(lrcContents)
-        lrc?.metadata = [
-            .searchTitle: title,
-            .searchArtist: artist,
-            .source: "Local"
-        ]
+        lrc?.metadata.source = .Local
+        lrc?.metadata.title = title
+        lrc?.metadata.artist = artist
         return lrc
     }
     

@@ -11,6 +11,8 @@ import ScriptingBridge
 
 class Vox: MusicPlayer {
     
+    static let shared = Vox()
+    
     var isRunning: Bool {
         return (_vox as! SBApplication).isRunning
     }
@@ -38,7 +40,7 @@ class Vox: MusicPlayer {
     
     private var _vox: VoxApplication
     
-    init?() {
+    private init?() {
         guard let vox = SBApplication(bundleIdentifier: "com.coppertino.Vox") else {
             return nil
         }

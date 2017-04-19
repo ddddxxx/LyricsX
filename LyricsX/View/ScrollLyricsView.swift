@@ -21,7 +21,7 @@ class ScrollLyricsView: NSScrollView {
     var fadeStripWidth: CGFloat = 24
     
     private var ranges: [(TimeInterval, NSRange)] = []
-    private var highlightedRange = NSRange()
+    private var highlightedRange: NSRange? = nil
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -41,14 +41,15 @@ class ScrollLyricsView: NSScrollView {
     }
     
     func setupTextContents(lyrics: Lyrics?) {
-        ranges = []
-        
         guard let lyrics = lyrics else {
+            ranges = []
             textView.string = ""
+            highlightedRange = nil
             return
         }
         
         var lrcContent = ""
+        var newRanges: [(TimeInterval, NSRange)] = []
         let enabledLrc = lyrics.lyrics.filter({ $0.enabled && $0.sentence != "" })
         for line in enabledLrc {
             var lineStr = line.sentence
@@ -56,14 +57,15 @@ class ScrollLyricsView: NSScrollView {
                 lineStr += "\n" + trans
             }
             let range = NSRange(location: lrcContent.characters.count, length: lineStr.characters.count)
-            ranges.append(line.position, range)
+            newRanges.append(line.position, range)
             lrcContent += lineStr
             if line != enabledLrc.last {
                 lrcContent += "\n\n"
             }
         }
-        
+        ranges = newRanges
         textView.string = lrcContent
+        highlightedRange = nil
         textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, textView.string!.characters.count))
         needsLayout = true
     }
@@ -134,7 +136,7 @@ class ScrollLyricsView: NSScrollView {
             return
         }
         
-        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: highlightedRange)
+        highlightedRange.map { textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: $0) }
         textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1), range: range)
         
         highlightedRange = range
@@ -156,6 +158,7 @@ class ScrollLyricsView: NSScrollView {
         }
         
         let bounding = textView.layoutManager!.boundingRect(forGlyphRange: range, in: textView.textContainer!)
+        
         let point = NSPoint(x: 0, y: bounding.midY - frame.height / 2)
         textView.scroll(point)
     }

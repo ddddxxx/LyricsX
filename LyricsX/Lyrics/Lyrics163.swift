@@ -9,6 +9,10 @@
 import Foundation
 import SwiftyJSON
 
+extension Lyrics.MetaData.Source {
+    static let Music163 = Lyrics.MetaData.Source("163")
+}
+
 class Lyrics163: LyricsSource {
     
     let queue: OperationQueue
@@ -19,9 +23,17 @@ class Lyrics163: LyricsSource {
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
-    func fetchLyrics(title: String, artist: String, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+        let keyword: String
+        switch criteria {
+        case let .keyword(key):
+            keyword = key
+        case let .info(title, artist):
+            keyword = title + " " + artist
+        }
+        
         let url = URL(string: "http://music.163.com/api/search/pc")!
-        let body = "s=\(title) \(artist)&offset=0&limit=10&type=1".data(using: .utf8)!
+        let body = "s=\(keyword)&offset=0&limit=10&type=1".data(using: .utf8)!
         
         var req = URLRequest(url: url)
         req.allHTTPHeaderFields = [
@@ -34,7 +46,7 @@ class Lyrics163: LyricsSource {
         let task = session.dataTask(with: req) { data, resp, error in
             guard let data = data,
                 let array = JSON(data: data)["result"]["songs"].array else {
-                return
+                    return
             }
             
             for (index, item) in array.enumerated() {
@@ -49,11 +61,10 @@ class Lyrics163: LyricsSource {
                     lyrics.idTags[.album]   = item["album"]["name"].string
                     lyrics.idTags[.lrcBy]   = "163"
                     
-                    lyrics.metadata[.searchTitle]   = title
-                    lyrics.metadata[.searchArtist]  = artist
-                    lyrics.metadata[.searchIndex]   = index
-                    lyrics.metadata[.source]        = "163"
-                    lyrics.metadata[.artworkURL]    = item["album"]["picUrl"].url
+                    lyrics.metadata.searchBy    = criteria
+                    lyrics.metadata.searchIndex = index
+                    lyrics.metadata.source      = .Music163
+                    lyrics.metadata.artworkURL  = item["album"]["picUrl"].url
                     
                     completionBlock(lyrics)
                 }
@@ -77,12 +88,11 @@ class Lyrics163: LyricsSource {
         if let transLrcContent = json["tlyric"]["lyric"].string,
             let transLrc = Lyrics(transLrcContent) {
             lrc.merge(translation: transLrc)
-            lrc.metadata[.includeTranslation] = true
+            lrc.metadata.includeTranslation = true
         }
         
         return lrc
     }
-    
 }
 
 extension Lyrics {
@@ -105,5 +115,4 @@ extension Lyrics {
             }
         }
     }
-    
 }

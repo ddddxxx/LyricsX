@@ -11,6 +11,8 @@ import ScriptingBridge
 
 class iTunes: MusicPlayer {
     
+    static let shared = iTunes()
+    
     var isRunning: Bool {
         return (_iTunes as! SBApplication).isRunning
     }
@@ -38,7 +40,7 @@ class iTunes: MusicPlayer {
     
     private var _iTunes: iTunesApplication
     
-    init?() {
+    private init?() {
         guard let iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes") else {
             return nil
         }

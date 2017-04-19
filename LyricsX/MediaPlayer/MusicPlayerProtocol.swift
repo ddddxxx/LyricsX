@@ -24,7 +24,7 @@ struct MusicTrack {
     var duration: TimeInterval?
 }
 
-protocol MusicPlayer {
+protocol MusicPlayer: class {
     var isRunning: Bool { get }
     var currentTrack: MusicTrack? { get }
     var playerState: MusicPlayerState { get }
