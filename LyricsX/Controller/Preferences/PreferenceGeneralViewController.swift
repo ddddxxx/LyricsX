@@ -10,6 +10,7 @@ import Cocoa
 
 class PreferenceGeneralViewController: NSViewController {
     
+    @IBOutlet weak var preferAuto: NSButton!
     @IBOutlet weak var preferiTunes: NSButton!
     @IBOutlet weak var preferSpotify: NSButton!
     @IBOutlet weak var preferVox: NSButton!
@@ -26,7 +27,7 @@ class PreferenceGeneralViewController: NSViewController {
         case 2:
             preferVox.state = NSOnState
         default:
-            break
+            preferAuto.state = NSOnState
         }
         
         if let url = Preference.lyricsCustomSavingPath {

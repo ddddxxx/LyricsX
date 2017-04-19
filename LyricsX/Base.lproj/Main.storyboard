@@ -355,10 +355,20 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="5xx-Ht-pau">
-                                            <rect key="frame" x="119" y="0.0" width="264" height="106"/>
+                                            <rect key="frame" x="73" y="0.0" width="356" height="106"/>
                                             <subviews>
+                                                <button tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GAh-L4-fgK">
+                                                    <rect key="frame" x="15" y="8" width="51" height="18"/>
+                                                    <buttonCell key="cell" type="radio" title="Auto" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="0VO-JB-ubq">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="gg2-JV-oqS"/>
+                                                    </connections>
+                                                </button>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="iIP-cu-YIV" userLabel="iTunes icon">
-                                                    <rect key="frame" x="8" y="34" width="64" height="64"/>
+                                                    <rect key="frame" x="100" y="34" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="YdP-3M-w9U"/>
                                                         <constraint firstAttribute="width" constant="64" id="rWD-Ij-XhR"/>
@@ -372,7 +382,7 @@
                                                     </connections>
                                                 </button>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="6Bj-Lj-AqF" userLabel="Prefer iTunes">
-                                                    <rect key="frame" x="10" y="7" width="62" height="20"/>
+                                                    <rect key="frame" x="102" y="7" width="62" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="917-Pa-ZzB"/>
                                                     </constraints>
@@ -385,7 +395,7 @@
                                                     </connections>
                                                 </button>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="LQF-xP-dc8" userLabel="Spotify icon">
-                                                    <rect key="frame" x="100" y="34" width="64" height="64"/>
+                                                    <rect key="frame" x="192" y="34" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="tw5-YA-trL"/>
                                                         <constraint firstAttribute="height" constant="64" id="zXi-Cp-LkN"/>
@@ -399,7 +409,7 @@
                                                     </connections>
                                                 </button>
                                                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wb5-Rf-75m">
-                                                    <rect key="frame" x="100" y="7" width="66" height="20"/>
+                                                    <rect key="frame" x="192" y="7" width="66" height="20"/>
                                                     <buttonCell key="cell" type="radio" title="Spotify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jhm-dK-4Y3">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -409,7 +419,7 @@
                                                     </connections>
                                                 </button>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="lc1-kb-SxJ" userLabel="Vox icon">
-                                                    <rect key="frame" x="192" y="34" width="64" height="64"/>
+                                                    <rect key="frame" x="284" y="34" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="Dsr-eT-oSa"/>
                                                         <constraint firstAttribute="height" constant="64" id="tGI-qk-5c0"/>
@@ -423,7 +433,7 @@
                                                     </connections>
                                                 </button>
                                                 <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="RSg-dR-tCT">
-                                                    <rect key="frame" x="202" y="7" width="45" height="20"/>
+                                                    <rect key="frame" x="294" y="7" width="45" height="20"/>
                                                     <buttonCell key="cell" type="radio" title="Vox" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oTS-3z-Tz7">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -432,13 +442,23 @@
                                                         <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="iyh-YZ-fsB"/>
                                                     </connections>
                                                 </button>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aFD-X8-Fw8">
+                                                    <rect key="frame" x="8" y="34" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="23v-Xb-0qH"/>
+                                                        <constraint firstAttribute="width" constant="64" id="p68-ai-RnB"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="now_playing" id="QwT-Ef-fOO"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="lc1-kb-SxJ" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="3Mw-2j-Y1G"/>
                                                 <constraint firstItem="6Bj-Lj-AqF" firstAttribute="top" secondItem="iIP-cu-YIV" secondAttribute="bottom" constant="8" id="4BF-Dd-Tyo"/>
                                                 <constraint firstItem="LQF-xP-dc8" firstAttribute="leading" secondItem="iIP-cu-YIV" secondAttribute="trailing" constant="28" id="4aO-fS-tW5"/>
+                                                <constraint firstItem="aFD-X8-Fw8" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="6Ad-RK-Sk3"/>
                                                 <constraint firstAttribute="trailing" secondItem="lc1-kb-SxJ" secondAttribute="trailing" constant="8" id="6TY-zj-49M"/>
                                                 <constraint firstItem="RSg-dR-tCT" firstAttribute="centerY" secondItem="6Bj-Lj-AqF" secondAttribute="centerY" id="C0L-l2-DBb"/>
+                                                <constraint firstItem="iIP-cu-YIV" firstAttribute="leading" secondItem="aFD-X8-Fw8" secondAttribute="trailing" constant="28" id="EMn-F7-Mdn"/>
                                                 <constraint firstItem="lc1-kb-SxJ" firstAttribute="leading" secondItem="LQF-xP-dc8" secondAttribute="trailing" constant="28" id="GeT-Yz-IaV"/>
                                                 <constraint firstItem="RSg-dR-tCT" firstAttribute="centerX" secondItem="lc1-kb-SxJ" secondAttribute="centerX" id="K7B-A4-Rbp"/>
                                                 <constraint firstItem="Wb5-Rf-75m" firstAttribute="top" secondItem="LQF-xP-dc8" secondAttribute="bottom" constant="8" id="Kb4-rB-AVH"/>
@@ -446,10 +466,12 @@
                                                 <constraint firstItem="Wb5-Rf-75m" firstAttribute="centerX" secondItem="LQF-xP-dc8" secondAttribute="centerX" id="NHI-CJ-N5X"/>
                                                 <constraint firstItem="LQF-xP-dc8" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="QrH-cZ-YvI"/>
                                                 <constraint firstItem="6Bj-Lj-AqF" firstAttribute="centerX" secondItem="iIP-cu-YIV" secondAttribute="centerX" id="TkR-Gs-bwi"/>
+                                                <constraint firstItem="GAh-L4-fgK" firstAttribute="centerX" secondItem="aFD-X8-Fw8" secondAttribute="centerX" id="dFC-pE-SW7"/>
+                                                <constraint firstItem="aFD-X8-Fw8" firstAttribute="leading" secondItem="5xx-Ht-pau" secondAttribute="leading" constant="8" id="gDR-6M-Dk1"/>
                                                 <constraint firstItem="Wb5-Rf-75m" firstAttribute="centerY" secondItem="6Bj-Lj-AqF" secondAttribute="centerY" id="lzD-7t-e9u"/>
                                                 <constraint firstAttribute="bottom" secondItem="6Bj-Lj-AqF" secondAttribute="bottom" constant="8" id="nD0-v5-8uP"/>
                                                 <constraint firstItem="iIP-cu-YIV" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="pdi-yG-V0B"/>
-                                                <constraint firstItem="iIP-cu-YIV" firstAttribute="leading" secondItem="5xx-Ht-pau" secondAttribute="leading" constant="8" id="vTc-ud-pS7"/>
+                                                <constraint firstItem="6Bj-Lj-AqF" firstAttribute="centerY" secondItem="GAh-L4-fgK" secondAttribute="centerY" id="vWT-yi-S82"/>
                                             </constraints>
                                         </customView>
                                     </subviews>
@@ -628,6 +650,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="preferAuto" destination="GAh-L4-fgK" id="QSc-xP-6L7"/>
                         <outlet property="preferSpotify" destination="Wb5-Rf-75m" id="fOa-Pt-HZD"/>
                         <outlet property="preferVox" destination="RSg-dR-tCT" id="0FN-E8-vpj"/>
                         <outlet property="preferiTunes" destination="6Bj-Lj-AqF" id="ulb-Mw-FqJ"/>
@@ -1747,6 +1770,7 @@ IA
         <image name="hud_button_sync_button" width="14" height="12"/>
         <image name="iTunes_icon" width="128" height="128"/>
         <image name="missing_artwork" width="800" height="800"/>
+        <image name="now_playing" width="64" height="64"/>
         <image name="spotify_icon" width="128" height="128"/>
         <image name="toolbar_filter" width="32" height="32"/>
         <image name="vox_icon" width="128" height="128"/>
