@@ -54,10 +54,10 @@ class LyricsSourceManager {
                 self.lyrics.insert(lrc, at: index)
                 self.consumer?.lyricsReceived(lyrics: lrc)
             }
-            DispatchQueue.global(qos: .background).async {
-                self.queue.waitUntilAllOperationsAreFinished()
-                self.consumer?.fetchCompleted(result: self.lyrics)
-            }
+        }
+        DispatchQueue.global(qos: .background).async {
+            self.queue.waitUntilAllOperationsAreFinished()
+            self.consumer?.fetchCompleted(result: self.lyrics)
         }
     }
 }
