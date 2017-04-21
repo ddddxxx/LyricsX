@@ -15,6 +15,8 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var preferSpotify: NSButton!
     @IBOutlet weak var preferVox: NSButton!
     
+    @IBOutlet weak var autoLaunchButton: NSButton!
+    
     @IBOutlet weak var savingPathPopUp: NSPopUpButton!
     @IBOutlet weak var userPathMenuItem: NSMenuItem!
     
@@ -28,6 +30,7 @@ class PreferenceGeneralViewController: NSViewController {
             preferVox.state = NSOnState
         default:
             preferAuto.state = NSOnState
+            autoLaunchButton.isEnabled = false
         }
         
         if let url = Preference.lyricsCustomSavingPath {
@@ -59,6 +62,13 @@ class PreferenceGeneralViewController: NSViewController {
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         Preference[PreferredPlayerIndex] = sender.tag
         GroupPreference[PreferredPlayerIndex] = sender.tag
+        if sender.tag < 0 {
+            autoLaunchButton.isEnabled = false
+            autoLaunchButton.state = NSOffState
+            Preference[LaunchAndQuitWithPlayer] = false
+        } else {
+            autoLaunchButton.isEnabled = true
+        }
     }
     
 }

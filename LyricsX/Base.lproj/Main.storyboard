@@ -493,7 +493,11 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="launchWithPlayerAction:" target="d5d-dC-DK4" id="hDP-kp-V2p"/>
-                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.LaunchAndQuitWithPlayer" id="xkc-oL-EdL"/>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.LaunchAndQuitWithPlayer" id="vpG-FV-TVD">
+                                        <dictionary key="options">
+                                            <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
@@ -650,6 +654,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoLaunchButton" destination="mfr-Al-Vu9" id="Nwf-Mq-nSa"/>
                         <outlet property="preferAuto" destination="GAh-L4-fgK" id="QSc-xP-6L7"/>
                         <outlet property="preferSpotify" destination="Wb5-Rf-75m" id="fOa-Pt-HZD"/>
                         <outlet property="preferVox" destination="RSg-dR-tCT" id="0FN-E8-vpj"/>
