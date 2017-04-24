@@ -9,6 +9,7 @@
 import Cocoa
 import SnapKit
 import OpenCC
+import EasyPreference
 
 class DesktopLyricsWindowController: NSWindowController {
     
@@ -20,7 +21,7 @@ class DesktopLyricsWindowController: NSWindowController {
         window?.isOpaque = false
         window?.ignoresMouseEvents = true
         window?.level = Int(CGWindowLevelForKey(.floatingWindow))
-        if Preference[DisableLyricsWhenSreenShot] {
+        if Preference[.DisableLyricsWhenSreenShot] {
             window?.sharingType = .none
         }
         
@@ -61,7 +62,7 @@ class DesktopLyricsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        switch Preference[ChineseConversionIndex] {
+        switch Preference[.ChineseConversionIndex] {
         case 1:
             chineseConverter = ChineseConverter(option: [.simplify])
         case 2:
@@ -72,13 +73,13 @@ class DesktopLyricsViewController: NSViewController {
         
         let dfs = UserDefaults.standard
         let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind("fontName", to: dfs, withKeyPath: DesktopLyricsFontName.rawValue, options: nil)
-        lyricsView.bind("fontSize", to: dfs, withKeyPath: DesktopLyricsFontSize.rawValue, options: nil)
-        lyricsView.bind("textColor", to: dfs, withKeyPath: DesktopLyricsColor.rawValue, options: transOpt)
-        lyricsView.bind("shadowColor", to: dfs, withKeyPath: DesktopLyricsShadowColor.rawValue, options: transOpt)
-        lyricsView.bind("fillColor", to: dfs, withKeyPath: DesktopLyricsBackgroundColor.rawValue, options: transOpt)
+        lyricsView.bind("fontName", to: dfs, withKeyPath: EasyPreference.Keys.DesktopLyricsFontName.rawValue, options: nil)
+        lyricsView.bind("fontSize", to: dfs, withKeyPath: EasyPreference.Keys.DesktopLyricsFontSize.rawValue, options: nil)
+        lyricsView.bind("textColor", to: dfs, withKeyPath: EasyPreference.Keys.DesktopLyricsColor.rawValue, options: transOpt)
+        lyricsView.bind("shadowColor", to: dfs, withKeyPath: EasyPreference.Keys.DesktopLyricsShadowColor.rawValue, options: transOpt)
+        lyricsView.bind("fillColor", to: dfs, withKeyPath: EasyPreference.Keys.DesktopLyricsBackgroundColor.rawValue, options: transOpt)
         
-        lyricsHeightConstraint.constant = CGFloat(Preference[DesktopLyricsHeighFromDock])
+        lyricsHeightConstraint.constant = CGFloat(Preference[.DesktopLyricsHeighFromDock])
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.displayLrc("")
@@ -89,15 +90,15 @@ class DesktopLyricsViewController: NSViewController {
     private func addObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
         
-        Preference.subscribe(key: DesktopLyricsHeighFromDock) { change in
+        Preference.addObserver(key: .DesktopLyricsHeighFromDock) { change in
             self.lyricsHeightConstraint.constant = CGFloat(change.newValue)
         }
         
-        Preference.subscribe(key: DesktopLyricsShadowColor) { change in
+        Preference.addObserver(key: .DesktopLyricsShadowColor) { change in
             self.lyricsView.shadowColor = change.newValue
         }
         
-        Preference.subscribe(key: ChineseConversionIndex) { change in
+        Preference.addObserver(key: .ChineseConversionIndex) { change in
             switch change.newValue {
             case 1:
                 self.chineseConverter = ChineseConverter(option: [.simplify])
@@ -121,7 +122,7 @@ class DesktopLyricsViewController: NSViewController {
         
         let firstLine = lrc?.sentence
         let secondLine: String?
-        if Preference[PreferBilingualLyrics] {
+        if Preference[.PreferBilingualLyrics] {
             secondLine = lrc?.translation ?? next?.sentence
         } else {
             secondLine = next?.sentence
@@ -131,7 +132,7 @@ class DesktopLyricsViewController: NSViewController {
     }
     
     func displayLrc(_ firstLine: String?, secondLine: String? = nil) {
-        guard Preference[DesktopLyricsEnabled] else {
+        guard Preference[.DesktopLyricsEnabled] else {
             return
         }
         

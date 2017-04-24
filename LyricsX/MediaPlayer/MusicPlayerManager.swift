@@ -39,7 +39,7 @@ class MusicPlayerManager {
         }
         
         let newPlayer: MusicPlayer?
-        switch Preference[PreferredPlayerIndex] {
+        switch Preference[.PreferredPlayerIndex] {
         case 0:
             newPlayer = iTunes.shared
         case 1:

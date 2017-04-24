@@ -23,7 +23,7 @@ class MenuBarLyrics: NSObject {
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
         NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(updateStatusItem), name: .NSWorkspaceDidActivateApplication, object: nil)
-        Preference.subscribe(key: MenuBarLyricsEnabled) { _ in
+        Preference.addObserver(key: .MenuBarLyricsEnabled) { _ in
             self.updateStatusItem()
         }
         updateStatusItem()
@@ -40,7 +40,7 @@ class MenuBarLyrics: NSObject {
     }
     
     func updateStatusItem() {
-        guard Preference[MenuBarLyricsEnabled], lyrics != "" else {
+        guard Preference[.MenuBarLyricsEnabled], lyrics != "" else {
             setImageStatusItem()
             return
         }

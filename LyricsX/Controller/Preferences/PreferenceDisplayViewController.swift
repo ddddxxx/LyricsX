@@ -17,8 +17,8 @@ class PreferenceDisplayViewController: NSViewController {
     var font: NSFont!
     
     override func viewDidLoad() {
-        let fontName = Preference[DesktopLyricsFontName]!
-        let fontSize = Preference[DesktopLyricsFontSize]
+        let fontName = Preference[.DesktopLyricsFontName]!
+        let fontSize = Preference[.DesktopLyricsFontSize]
         font = NSFont(name: fontName, size: CGFloat(fontSize))
         
         super.viewDidLoad()
@@ -31,8 +31,8 @@ class PreferenceDisplayViewController: NSViewController {
         
         font = manager.convert(font)
         
-        Preference[DesktopLyricsFontName] = font.fontName
-        Preference[DesktopLyricsFontSize] = Int(font.pointSize)
+        Preference[.DesktopLyricsFontName] = font.fontName
+        Preference[.DesktopLyricsFontSize] = Int(font.pointSize)
     }
     
     override func validModesForFontPanel(_ fontPanel: NSFontPanel) -> Int {

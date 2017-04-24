@@ -50,13 +50,13 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     // MARK: MediaPlayerDelegate
     
     func runningStateChanged(isRunning: Bool) {
-        if Preference[LaunchAndQuitWithPlayer], !isRunning {
+        if Preference[.LaunchAndQuitWithPlayer], !isRunning {
             NSApplication.shared().terminate(nil)
         }
     }
     
     func playerStateChanged(state: MusicPlayerState) {
-        if state != .playing, Preference[DisableLyricsWhenPaused] {
+        if state != .playing, Preference[.DisableLyricsWhenPaused] {
             NotificationCenter.default.post(name: .PositionChange, object: nil)
         }
     }

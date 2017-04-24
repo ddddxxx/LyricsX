@@ -30,39 +30,42 @@ extension Notification.Name {
 
 // MARK: - User Defaults
 
-// Menu
-let DesktopLyricsEnabled: PreferenceKey<Bool>   = "DesktopLyricsEnabled"
-let MenuBarLyricsEnabled: PreferenceKey<Bool>   = "MenuBarLyricsEnabled"
-
-// General
-let PreferredPlayerIndex: PreferenceKey<Int>        = "PreferredPlayerIndex"
-let LaunchAndQuitWithPlayer: PreferenceKey<Bool>    = "LaunchAndQuitWithPlayer"
-
-let LyricsSavingPathPopUpIndex: PreferenceKey<Int>  = "LyricsSavingPathPopUpIndex"
-let LyricsCustomSavingPathBookmark: PreferenceKey<Data>     = "LyricsCustomSavingPathBookmark"
-
-let PreferBilingualLyrics: PreferenceKey<Bool>      = "PreferBilingualLyrics"
-let ChineseConversionIndex: PreferenceKey<Int>      = "ChineseConversionIndex"
-
-let DisableLyricsWhenPaused: PreferenceKey<Bool>    = "DisableLyricsWhenPaused"
-let DisableLyricsWhenSreenShot: PreferenceKey<Bool> = "DisableLyricsWhenSreenShot"
-
-// Display
-let DesktopLyricsHeighFromDock: PreferenceKey<Int>  = "DesktopLyricsHeighFromDock"
-let DesktopLyricsFontName: PreferenceKey<String>    = "DesktopLyricsFontName"
-let DesktopLyricsFontSize: PreferenceKey<Int>       = "DesktopLyricsFontSize"
-
-let DesktopLyricsColor: PreferenceKey<NSColor>              = "DesktopLyricsColor"
-let DesktopLyricsShadowColor: PreferenceKey<NSColor>        = "DesktopLyricsShadowColor"
-let DesktopLyricsBackgroundColor: PreferenceKey<NSColor>    = "DesktopLyricsBackgroundColor"
-
-let DisplayLyricsWithTag: PreferenceKey<Bool>       = "DisplayLyricsWithTag"
-
-// Filter
-let LyricsFilterEnabled: PreferenceKey<Bool>        = "LyricsFilterEnabled"
-let LyricsSmartFilterEnabled: PreferenceKey<Bool>   = "LyricsSmartFilterEnabled"
-let LyricsDirectFilterKey: PreferenceKey<[String]>  = "LyricsDirectFilterKey"
-let LyricsColonFilterKey: PreferenceKey<[String]>   = "LyricsColonFilterKey"
+extension EasyPreference.Keys {
+    
+    // Menu
+    static let DesktopLyricsEnabled: Key<Bool>  = "DesktopLyricsEnabled"
+    static let MenuBarLyricsEnabled: Key<Bool>  = "MenuBarLyricsEnabled"
+    
+    // General
+    static let PreferredPlayerIndex: Key<Int>       = "PreferredPlayerIndex"
+    static let LaunchAndQuitWithPlayer: Key<Bool>   = "LaunchAndQuitWithPlayer"
+    
+    static let LyricsSavingPathPopUpIndex: Key<Int>         = "LyricsSavingPathPopUpIndex"
+    static let LyricsCustomSavingPathBookmark: Key<Data>    = "LyricsCustomSavingPathBookmark"
+    
+    static let PreferBilingualLyrics: Key<Bool>         = "PreferBilingualLyrics"
+    static let ChineseConversionIndex: Key<Int>         = "ChineseConversionIndex"
+    
+    static let DisableLyricsWhenPaused: Key<Bool>       = "DisableLyricsWhenPaused"
+    static let DisableLyricsWhenSreenShot: Key<Bool>    = "DisableLyricsWhenSreenShot"
+    
+    // Display
+    static let DesktopLyricsHeighFromDock: Key<Int>     = "DesktopLyricsHeighFromDock"
+    static let DesktopLyricsFontName: Key<String>       = "DesktopLyricsFontName"
+    static let DesktopLyricsFontSize: Key<Int>          = "DesktopLyricsFontSize"
+    
+    static let DesktopLyricsColor: Key<NSColor>             = "DesktopLyricsColor"
+    static let DesktopLyricsShadowColor: Key<NSColor>       = "DesktopLyricsShadowColor"
+    static let DesktopLyricsBackgroundColor: Key<NSColor>   = "DesktopLyricsBackgroundColor"
+    
+    static let DisplayLyricsWithTag: Key<Bool>      = "DisplayLyricsWithTag"
+    
+    // Filter
+    static let LyricsFilterEnabled: Key<Bool>       = "LyricsFilterEnabled"
+    static let LyricsSmartFilterEnabled: Key<Bool>  = "LyricsSmartFilterEnabled"
+    static let LyricsDirectFilterKey: Key<[String]> = "LyricsDirectFilterKey"
+    static let LyricsColonFilterKey: Key<[String]>  = "LyricsColonFilterKey"
+}
 
 // MARK: -
 
