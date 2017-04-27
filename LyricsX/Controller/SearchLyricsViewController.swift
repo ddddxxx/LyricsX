@@ -10,8 +10,8 @@ import Cocoa
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsConsuming {
     
-    var searchResult = [Lyrics]()
-    var cacheImages = [URL: NSImage]()
+    var searchResult: [Lyrics] = []
+    var imageCache = NSCache<NSURL, NSImage>()
     
     dynamic var searchArtist = ""
     dynamic var searchTitle = "" {
@@ -171,17 +171,17 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         
-        if let cacheImage = cacheImages[url] {
+        if let cacheImage = imageCache.object(forKey: url as NSURL) {
             artworkView.image = cacheImage
             return
         }
         
         artworkView.image = #imageLiteral(resourceName: "missing_artwork")
         DispatchQueue.global().async {
-            if self.cacheImages.keys.contains(url) {
+            guard let image = NSImage(contentsOf: url) else {
                 return
             }
-            self.cacheImages[url] = NSImage(contentsOf: url)
+            self.imageCache.setObject(image, forKey: url as NSURL)
             DispatchQueue.main.async {
                 self.updateImage()
             }
