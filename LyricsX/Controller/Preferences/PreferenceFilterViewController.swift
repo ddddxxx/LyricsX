@@ -43,6 +43,7 @@ class PreferenceFilterViewController: NSViewController {
     
 }
 
+@objc(FilterKey)
 class FilterKey: NSObject, NSCoding {
     
     var keyword = ""
