@@ -55,9 +55,6 @@ class PreferenceGeneralViewController: NSViewController {
             }
         }
     }
-    @IBAction func launchWithPlayerAction(_ sender: NSButton) {
-        GroupPreference[.LaunchAndQuitWithPlayer] = sender.state == NSOnState
-    }
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         Preference[.PreferredPlayerIndex] = sender.tag
