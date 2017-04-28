@@ -201,3 +201,23 @@ class KaraokeLyricsView: NSBox {
     }
     
 }
+
+extension NSTextField {
+    
+    @available(macOS, obsoleted: 10.12)
+    convenience init(labelWithString stringValue: String){
+        self.init()
+        self.stringValue = stringValue
+        isEditable = false
+        isSelectable = false
+        textColor = .labelColor
+        backgroundColor = .controlColor
+        drawsBackground = false
+        isBezeled = false
+        alignment = .natural
+        font = NSFont.systemFont(ofSize: NSFont.systemFontSize(for: controlSize))
+        lineBreakMode = .byClipping
+        cell?.isScrollable = true
+        cell?.wraps = false
+    }
+}

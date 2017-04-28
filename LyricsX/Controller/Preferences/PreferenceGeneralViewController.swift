@@ -21,7 +21,7 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var userPathMenuItem: NSMenuItem!
     
     override func viewDidLoad() {
-        switch Preference[PreferredPlayerIndex] {
+        switch Preference[.PreferredPlayerIndex] {
         case 0:
             preferiTunes.state = NSOnState
         case 1:
@@ -55,17 +55,14 @@ class PreferenceGeneralViewController: NSViewController {
             }
         }
     }
-    @IBAction func launchWithPlayerAction(_ sender: NSButton) {
-        GroupPreference[LaunchAndQuitWithPlayer] = sender.state == NSOnState
-    }
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
-        Preference[PreferredPlayerIndex] = sender.tag
-        GroupPreference[PreferredPlayerIndex] = sender.tag
+        Preference[.PreferredPlayerIndex] = sender.tag
+        GroupPreference[.PreferredPlayerIndex] = sender.tag
         if sender.tag < 0 {
             autoLaunchButton.isEnabled = false
             autoLaunchButton.state = NSOffState
-            Preference[LaunchAndQuitWithPlayer] = false
+            Preference[.LaunchAndQuitWithPlayer] = false
         } else {
             autoLaunchButton.isEnabled = true
         }

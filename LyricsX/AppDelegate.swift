@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
-        if Preference[LaunchAndQuitWithPlayer] {
+        if Preference[.LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
                 print("Failed to enable login item")
             }
@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         UserDefaults.standard.synchronize()
-        if Preference[LaunchAndQuitWithPlayer] {
+        if Preference[.LaunchAndQuitWithPlayer] {
             let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
             NSWorkspace.shared().launchApplication(url.path)
         }

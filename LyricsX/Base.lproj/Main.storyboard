@@ -492,7 +492,6 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="launchWithPlayerAction:" target="d5d-dC-DK4" id="hDP-kp-V2p"/>
                                     <binding destination="hHn-Lo-CwP" name="value" keyPath="values.LaunchAndQuitWithPlayer" id="vpG-FV-TVD">
                                         <dictionary key="options">
                                             <bool key="NSConditionallySetsEnabled" value="NO"/>

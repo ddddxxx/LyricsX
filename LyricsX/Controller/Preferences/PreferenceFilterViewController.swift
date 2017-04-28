@@ -22,27 +22,28 @@ class PreferenceFilterViewController: NSViewController {
     }
     
     func loadFilter() {
-        directFilter = Preference[LyricsDirectFilterKey]?.map() {
+        directFilter = Preference[.LyricsDirectFilterKey]?.map() {
             FilterKey(keyword: $0)
         } ?? []
-        colonFilter = Preference[LyricsColonFilterKey]?.map() {
+        colonFilter = Preference[.LyricsColonFilterKey]?.map() {
             FilterKey(keyword: $0)
         } ?? []
     }
     
     func saveFilter() {
-        Preference[LyricsDirectFilterKey] = directFilter.map() { $0.keyword }
-        Preference[LyricsColonFilterKey] = colonFilter.map() { $0.keyword }
+        Preference[.LyricsDirectFilterKey] = directFilter.map() { $0.keyword }
+        Preference[.LyricsColonFilterKey] = colonFilter.map() { $0.keyword }
     }
     
     @IBAction func resetFilterKey(_ sender: Any) {
-        Preference[LyricsDirectFilterKey] = nil
-        Preference[LyricsColonFilterKey] = nil
+        Preference[.LyricsDirectFilterKey] = nil
+        Preference[.LyricsColonFilterKey] = nil
         loadFilter()
     }
     
 }
 
+@objc(FilterKey)
 class FilterKey: NSObject, NSCoding {
     
     var keyword = ""

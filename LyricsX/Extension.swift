@@ -22,7 +22,7 @@ extension UserDefaults {
 extension EasyPreference {
     
     func lyricsSavingPath(securityScoped: inout Bool) -> URL? {
-        if self[LyricsSavingPathPopUpIndex] == 0 {
+        if self[.LyricsSavingPathPopUpIndex] == 0 {
             securityScoped = false
             let userPath = String(cString: getpwuid(getuid()).pointee.pw_dir)
             return URL(fileURLWithPath: userPath).appendingPathComponent("Music/LyricsX")
@@ -34,7 +34,7 @@ extension EasyPreference {
     
     var lyricsCustomSavingPath: URL? {
         get {
-            guard let data = self[LyricsCustomSavingPathBookmark] else {
+            guard let data = self[.LyricsCustomSavingPathBookmark] else {
                 return nil
             }
             var bookmarkDataIsStale = false
@@ -49,7 +49,7 @@ extension EasyPreference {
         set {
             if let url = newValue,
                 let data = try? url.bookmarkData(options: [.withSecurityScope]) {
-                self[LyricsCustomSavingPathBookmark] = data
+                self[.LyricsCustomSavingPathBookmark] = data
             }
         }
     }
@@ -141,12 +141,12 @@ extension Lyrics {
 extension Lyrics {
     
     mutating func filtrate() {
-        guard Preference[LyricsFilterEnabled] else {
+        guard Preference[.LyricsFilterEnabled] else {
             return
         }
         
-        guard let directFilter = Preference[LyricsDirectFilterKey],
-            let colonFilter = Preference[LyricsColonFilterKey] else {
+        guard let directFilter = Preference[.LyricsDirectFilterKey],
+            let colonFilter = Preference[.LyricsColonFilterKey] else {
                 return
         }
         let colons = [":", "：", "∶"]
@@ -158,7 +158,7 @@ extension Lyrics {
             filtrate(using: regex)
         }
         
-        if Preference[LyricsSmartFilterEnabled] {
+        if Preference[.LyricsSmartFilterEnabled] {
             smartFiltrate()
         }
     }
