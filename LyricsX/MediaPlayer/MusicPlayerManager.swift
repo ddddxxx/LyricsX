@@ -24,13 +24,15 @@ class MusicPlayerManager {
     private var _position: TimeInterval = 0
     
     private init() {
-        _timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] _ in
-            self.updateSelectedPlayer()
-            self.updateRunningState()
-            self.updatePlayerState()
-            self.updateCurrentTrack()
-            self.updatePlayerPosition()
-        }
+        _timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func update() {
+        updateSelectedPlayer()
+        updateRunningState()
+        updatePlayerState()
+        updateCurrentTrack()
+        updatePlayerPosition()
     }
     
     private func updateSelectedPlayer() {
@@ -59,17 +61,6 @@ class MusicPlayerManager {
         _track = nil
         _state = .stopped
         _position = 0
-    }
-    
-    private func autoSelectPlayer() -> MusicPlayer? {
-        let players: [MusicPlayer?] = [
-            player,
-            iTunes.shared,
-            Spotify.shared,
-            Vox.shared,
-        ]
-        
-        return players.first { $0?.playerState == .playing } ?? nil
     }
     
     private func updateRunningState() {
@@ -112,5 +103,16 @@ class MusicPlayerManager {
         
         _position = player?.playerPosition ?? 0
         delegate?.playerPositionChanged(position: _position)
+    }
+    
+    private func autoSelectPlayer() -> MusicPlayer? {
+        let players: [MusicPlayer?] = [
+            player,
+            iTunes.shared,
+            Spotify.shared,
+            Vox.shared,
+        ]
+        
+        return players.first { $0?.playerState == .playing } ?? nil
     }
 }
