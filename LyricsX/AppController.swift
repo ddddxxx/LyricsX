@@ -68,8 +68,8 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         guard let track = track else {
             return
         }
-        let title = track.name ?? ""    // TODO: ?
-        let artist = track.artist ?? ""
+        let title = track.name
+        let artist = track.artist
         
         if let localLyrics = Lyrics.loadFromLocal(title: title, artist: artist) {
             setCurrentLyrics(lyrics: localLyrics)
@@ -120,8 +120,8 @@ extension AppController {
         if var lrc = Lyrics(lyrics),
             let track = MusicPlayerManager.shared.player?.currentTrack {
             lrc.metadata.source = .Import
-            lrc.metadata.title = track.name ?? ""   // TODO: ?
-            lrc.metadata.artist = track.artist ?? ""
+            lrc.metadata.title = track.name
+            lrc.metadata.artist = track.artist
             setCurrentLyrics(lyrics: lrc)
         }
     }

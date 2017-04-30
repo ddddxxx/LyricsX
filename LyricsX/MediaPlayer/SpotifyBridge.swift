@@ -55,7 +55,7 @@ import ScriptingBridge
      * Standard Suite
      */
     // The application"s top level scripting object.
-    @objc optional var name: NSString {get}
+    @objc optional var name: NSString? {get}
     // The name of the application.
     @objc optional var frontmost: Bool {get}
     // Is this the frontmost (active) application?
@@ -83,7 +83,7 @@ extension SBApplication: SpotifyApplication{}
     // Is the track starred?
     @objc optional var popularity: NSInteger {get}
     // How popular is this track? 0-100
-    @objc optional func id() -> NSString
+    @objc optional func id() -> NSString?
     // The ID of the item.
     @objc optional var name: NSString {get}
     // The name of the track.

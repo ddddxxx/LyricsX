@@ -66,10 +66,13 @@ extension SpotifyEPlS {
 
 extension SpotifyTrack {
     var track: MusicTrack? {
-        guard let id = id?() as String? else {
+        guard let id = id?() as? String,
+            let name = name as String?,
+            let album = album as String?,
+            let artist = artist as String? else {
             return nil
         }
         
-        return MusicTrack(id: id, name: name as String?, album: album as String?, artist: artist as String?, duration: duration.map({TimeInterval($0)}))
+        return MusicTrack(id: id, name: name, album: album, artist: artist, duration: duration.map({TimeInterval($0)}))
     }
 }

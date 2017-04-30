@@ -74,7 +74,7 @@ import ScriptingBridge
     // Current track album artist.
     @objc optional var album: NSString {get}
     // Current track album.
-    @objc optional var uniqueID: NSString {get}
+    @objc optional var uniqueID: NSString? {get}
     // Unique identifier for the current track.
     @objc optional var currentTime: CDouble {get set}
     // The current playback position.
