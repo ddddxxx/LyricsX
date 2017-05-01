@@ -75,7 +75,7 @@
 "E3f-78-EMG.label" = "通用";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
-"FMI-7E-tCo.title" = "Title:";
+"FMI-7E-tCo.title" = "歌曲:";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
 "GGU-uz-d9h.title" = "启用逐行歌词";
