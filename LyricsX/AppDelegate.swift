@@ -33,6 +33,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 print("Failed to enable login item")
             }
         }
+        
+        DispatchQueue.global().async {
+            UpdateManager.shared.checkForUpdate()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

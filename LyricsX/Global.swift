@@ -32,6 +32,8 @@ extension Notification.Name {
 
 extension EasyPreference.Keys {
     
+    static let NotifiedUpdateVersion: Key<String>  = "NotifiedUpdateVersion"
+    
     // Menu
     static let DesktopLyricsEnabled: Key<Bool>  = "DesktopLyricsEnabled"
     static let MenuBarLyricsEnabled: Key<Bool>  = "MenuBarLyricsEnabled"
