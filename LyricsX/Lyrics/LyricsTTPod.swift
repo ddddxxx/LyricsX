@@ -26,9 +26,11 @@ class LyricsTTPod: LyricsSource {
             // cannot search by keyword
             return
         }
+        let encodedTitle = title.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
+        let encodedArtist = artist.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         
         queue.addOperation {
-            let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(artist)&title=\(title)"
+            let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(encodedArtist)&title=\(encodedTitle)"
             let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
             let url = URL(string: convertedURLStr)!
             

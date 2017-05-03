@@ -23,3 +23,13 @@ protocol LyricsSource {
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void)
 }
+
+// MARK: - Utility
+
+extension CharacterSet {
+    
+    static var uriComponentAllowed: CharacterSet {
+        let unsafe = CharacterSet(charactersIn: "!*'();:&=+$,[]~")
+        return CharacterSet.urlHostAllowed.subtracting(unsafe)
+    }
+}

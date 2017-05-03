@@ -29,9 +29,10 @@ class LyricsQQ: LyricsSource {
         case let .info(title, artist):
             keyword = title + " " + artist
         }
+        let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         
         queue.addOperation {
-            let qqIDs = self.searchQQIDFor(keyword: keyword)
+            let qqIDs = self.searchQQIDFor(keyword: encodedKeyword)
             for (index, qqID) in qqIDs.enumerated() {
                 self.queue.addOperation {
                     guard var lrc = self.lyricsFor(id: qqID) else {
