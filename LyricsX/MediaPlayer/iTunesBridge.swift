@@ -279,7 +279,7 @@ extension SBApplication: iTunesApplication{}
     // the id of the item
     @objc optional var index: NSInteger {get}
     // The index of the item in internal application order.
-    @objc optional var name: NSString {get set}
+    @objc optional var name: NSString? {get set}
     // the name of the item
     @objc optional var persistentID: NSString {get}
     // the id of the item as a hexadecimal string. This id does not change over time.

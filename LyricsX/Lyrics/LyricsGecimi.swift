@@ -26,9 +26,11 @@ class LyricsGecimi: LyricsSource {
             // cannot search by keyword
             return
         }
+        let encodedTitle = title.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
+        let encodedArtist = artist.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         
         queue.addOperation {
-            let lrcDatas = self.searchLrcFor(title: title, artist: artist)
+            let lrcDatas = self.searchLrcFor(title: encodedTitle, artist: encodedArtist)
             for (index, lrcData) in lrcDatas.enumerated() {
                 self.queue.addOperation {
                     guard var lrc = Lyrics(url: lrcData.lyricsURL) else {

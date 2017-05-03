@@ -29,10 +29,11 @@ class LyricsKugou: LyricsSource {
         case let .info(title, artist):
             keyword = title + " " + artist
         }
+        let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         
         let mDuration = Int(duration * 1000)
         queue.addOperation {
-            let searchItems = self.searchKugouIDFor(keyword: keyword, duration: mDuration)
+            let searchItems = self.searchKugouIDFor(keyword: encodedKeyword, duration: mDuration)
             for (index, searchItem) in searchItems.enumerated() {
                 self.queue.addOperation {
                     guard var lrc = self.lyricsFor(searchItem) else {

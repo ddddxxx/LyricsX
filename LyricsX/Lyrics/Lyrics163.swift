@@ -31,9 +31,9 @@ class Lyrics163: LyricsSource {
         case let .info(title, artist):
             keyword = title + " " + artist
         }
-        
+        let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let url = URL(string: "http://music.163.com/api/search/pc")!
-        let body = "s=\(keyword)&offset=0&limit=10&type=1".data(using: .utf8)!
+        let body = "s=\(encodedKeyword)&offset=0&limit=10&type=1".data(using: .utf8)!
         
         var req = URLRequest(url: url)
         req.allHTTPHeaderFields = [

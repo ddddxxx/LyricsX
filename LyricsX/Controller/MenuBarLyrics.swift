@@ -13,6 +13,7 @@ class MenuBarLyrics: NSObject {
     static let shared = MenuBarLyrics()
     
     let statusItem: NSStatusItem
+    var lyricsItem: NSStatusItem?
     var buttonImage = #imageLiteral(resourceName: "status_bar_icon")
     var buttonlength: CGFloat = 30
     
@@ -42,6 +43,12 @@ class MenuBarLyrics: NSObject {
     func updateStatusItem() {
         guard Preference[.MenuBarLyricsEnabled], lyrics != "" else {
             setImageStatusItem()
+            lyricsItem = nil
+            return
+        }
+        
+        guard Preference[.CombinedMenubarLyrics] else {
+            updateCombinedStatusItem()
             return
         }
         
@@ -57,6 +64,20 @@ class MenuBarLyrics: NSObject {
             let proposed = components.joined() + "..."
             setTextStatusItem(string: proposed)
         }
+    }
+    
+    func updateCombinedStatusItem() {
+        setImageStatusItem()
+        guard lyrics != "" else {
+            lyricsItem = nil
+            return
+        }
+        
+        if lyricsItem == nil {
+            lyricsItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+            lyricsItem?.highlightMode = false
+        }
+        lyricsItem?.button?.title = lyrics
     }
     
     private func setTextStatusItem(string: String) {

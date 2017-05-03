@@ -32,6 +32,8 @@ extension Notification.Name {
 
 extension EasyPreference.Keys {
     
+    static let NotifiedUpdateVersion: Key<String>  = "NotifiedUpdateVersion"
+    
     // Menu
     static let DesktopLyricsEnabled: Key<Bool>  = "DesktopLyricsEnabled"
     static let MenuBarLyricsEnabled: Key<Bool>  = "MenuBarLyricsEnabled"
@@ -45,6 +47,8 @@ extension EasyPreference.Keys {
     
     static let PreferBilingualLyrics: Key<Bool>         = "PreferBilingualLyrics"
     static let ChineseConversionIndex: Key<Int>         = "ChineseConversionIndex"
+    
+    static let CombinedMenubarLyrics: Key<Bool>         = "CombinedMenubarLyrics"
     
     static let DisableLyricsWhenPaused: Key<Bool>       = "DisableLyricsWhenPaused"
     static let DisableLyricsWhenSreenShot: Key<Bool>    = "DisableLyricsWhenSreenShot"

@@ -2,6 +2,9 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
 "0M7-ao-0jb.title" = "歌词文件保存地址:";
 
+/* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
+"0VO-JB-ubq.title" = "自动选择";
+
 /* Class = "NSTextFieldCell"; title = "Copyright © 2017 Xander Deng."; ObjectID = "0X5-3L-Uzo"; */
 "0X5-3L-Uzo.title" = "Copyright © 2017 Xander Deng.";
 
@@ -75,7 +78,7 @@
 "E3f-78-EMG.label" = "通用";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
-"FMI-7E-tCo.title" = "Title:";
+"FMI-7E-tCo.title" = "歌曲:";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
 "GGU-uz-d9h.title" = "启用逐行歌词";
@@ -101,7 +104,7 @@
 /* Class = "NSTextFieldCell"; title = "Auto Chinese conversion:"; ObjectID = "JPB-ag-MN7"; */
 "JPB-ag-MN7.title" = "自动中文转换:";
 
-/* Class = "NSBox"; title = "Preferred Music Player (Requires restart)"; ObjectID = "JYR-Ed-Tax"; */
+/* Class = "NSBox"; title = "Preferred Music Player"; ObjectID = "JYR-Ed-Tax"; */
 "JYR-Ed-Tax.title" = "首选音乐播放器";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "Jbz-xE-Ntb"; */
@@ -169,6 +172,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
 "bDS-Lb-m34.title" = "隐藏歌词:";
+
+/* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics (Beta)"; ObjectID = "bbd-ra-rSF"; */
+"bbd-ra-rSF.title" = "合并菜单栏图标与歌词 (Beta)";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c9V-Dh-f1D"; */
 "c9V-Dh-f1D.title" = "Text Cell";
@@ -255,7 +261,7 @@
 "wzG-Up-fN8.title" = "Text";
 
 /* Class = "NSTabViewItem"; label = "Filter"; ObjectID = "xcA-tm-q8A"; */
-"xcA-tm-q8A.label" = "Filter";
+"xcA-tm-q8A.label" = "歌词过滤";
 
 /* Class = "NSWindow"; title = "Search Lyrics"; ObjectID = "y4a-GW-tEh"; */
 "y4a-GW-tEh.title" = "搜索歌词";

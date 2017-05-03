@@ -29,9 +29,10 @@ class LyricsXiami: LyricsSource {
         case let .info(title, artist):
             keyword = title + " " + artist
         }
+        let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         
         queue.addOperation {
-            let xiamiIDs = self.searchXiamiIDFor(keyword: keyword)
+            let xiamiIDs = self.searchXiamiIDFor(keyword: encodedKeyword)
             for (index, xiamiID) in xiamiIDs.enumerated() {
                 self.queue.addOperation {
                     let parser = LyricsXiamiXMLParser()
