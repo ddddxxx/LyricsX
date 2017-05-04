@@ -31,8 +31,7 @@ class LyricsTTPod: LyricsSource {
         
         queue.addOperation {
             let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(encodedArtist)&title=\(encodedTitle)"
-            let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
-            let url = URL(string: convertedURLStr)!
+            let url = URL(string: urlStr)!
             
             guard let data = try? Data(contentsOf: url),
                 let lrcContent = JSON(data)["data"]["lrc"].string,

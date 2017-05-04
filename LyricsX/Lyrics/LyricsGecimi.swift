@@ -50,8 +50,7 @@ class LyricsGecimi: LyricsSource {
     
     private func searchLrcFor(title: String, artist: String) -> [(lyricsURL: URL, artworkURL: URL?)] {
         let urlStr = "http://gecimi.com/api/lyric/\(title)/\(artist)"
-        let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
-        let url = URL(string: convertedURLStr)!
+        let url = URL(string: urlStr)!
         
         guard let data = try? Data(contentsOf: url), let array = JSON(data)["result"].array else {
             return []

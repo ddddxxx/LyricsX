@@ -55,8 +55,7 @@ class LyricsXiami: LyricsSource {
     
     private func searchXiamiIDFor(keyword: String) -> [Int] {
         let urlStr = "http://www.xiami.com/web/search-songs?key=" + keyword
-        let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
-        let url = URL(string: convertedURLStr)!
+        let url = URL(string: urlStr)!
         
         guard let data = try? Data(contentsOf: url), let array = JSON(data).array else {
             return []

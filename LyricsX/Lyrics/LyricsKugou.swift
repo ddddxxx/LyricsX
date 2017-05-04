@@ -52,8 +52,7 @@ class LyricsKugou: LyricsSource {
     
     private func searchKugouIDFor(keyword: String, duration: Int) -> [JSON] {
         let urlStr = "http://lyrics.kugou.com/search?ver=1&man=yes&client=pc&keyword=\(keyword)&duration=\(duration)"
-        let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
-        let url = URL(string: convertedURLStr)!
+        let url = URL(string: urlStr)!
         
         guard let data = try? Data(contentsOf: url) else {
             return []
