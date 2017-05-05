@@ -171,6 +171,12 @@
                                 <action selector="checkUpdateAction:" target="Voe-Tx-rLC" id="L25-7q-sbM"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Donate..." id="EoO-ld-6Xv">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="e4U-yI-muf" kind="show" id="Ssw-2c-afe"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="eB1-fb-ptE"/>
                         <menuItem title="Quit LyricsX" keyEquivalent="q" id="RPR-IV-34T">
                             <connections>
@@ -1772,6 +1778,54 @@ IA
             </objects>
             <point key="canvasLocation" x="75" y="1024"/>
         </scene>
+        <!--Donate Window Controller-->
+        <scene sceneID="ttD-5N-HU8">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="e4U-yI-muf" userLabel="Donate Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Donate" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Donate" animationBehavior="default" id="CW0-AL-Z6N">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="208" width="280" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                    </window>
+                    <connections>
+                        <segue destination="cxf-WZ-T1I" kind="relationship" relationship="window.shadowedContentViewController" id="Ve6-mm-IrS"/>
+                    </connections>
+                </windowController>
+                <customObject id="fDl-4Y-pyj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-372" y="1471"/>
+        </scene>
+        <!--Donate View Controller-->
+        <scene sceneID="Xh3-eq-XhM">
+            <objects>
+                <viewController id="cxf-WZ-T1I" userLabel="Donate View Controller" sceneMemberID="viewController">
+                    <view key="view" id="Btv-Tm-tpH">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odr-DA-p5E">
+                                <rect key="frame" x="18" y="165" width="244" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" id="o52-Z0-lue">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urv-5s-cvf">
+                                <rect key="frame" x="90" y="36" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="donate_alipay" id="xyA-hb-xlw"/>
+                            </imageView>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="r7B-B4-Qpg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="1471"/>
+        </scene>
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
@@ -1779,6 +1833,7 @@ IA
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="donate_alipay" width="200" height="200"/>
         <image name="font_panel" width="22" height="20"/>
         <image name="hud_button_lock_off" width="11" height="11"/>
         <image name="hud_button_lock_on" width="11" height="11"/>
