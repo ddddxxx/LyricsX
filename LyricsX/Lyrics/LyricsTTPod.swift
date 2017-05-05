@@ -3,7 +3,21 @@
 //  LyricsX
 //
 //  Created by 邓翔 on 2017/2/13.
-//  Copyright © 2017年 ddddxxx. All rights reserved.
+//
+//  Copyright (C) 2017  Xander Deng
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 import Foundation
@@ -31,8 +45,7 @@ class LyricsTTPod: LyricsSource {
         
         queue.addOperation {
             let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(encodedArtist)&title=\(encodedTitle)"
-            let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
-            let url = URL(string: convertedURLStr)!
+            let url = URL(string: urlStr)!
             
             guard let data = try? Data(contentsOf: url),
                 let lrcContent = JSON(data)["data"]["lrc"].string,

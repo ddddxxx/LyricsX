@@ -3,17 +3,31 @@
 //  LyricsX
 //
 //  Created by 邓翔 on 2017/5/2.
-//  Copyright © 2017年 ddddxxx. All rights reserved.
+//
+//  Copyright (C) 2017  Xander Deng
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 import Cocoa
 import SwiftyJSON
 
-class UpdateManager: NSObject, NSUserNotificationCenterDelegate {
+class UpdateManager {
     
     static let shared = UpdateManager()
     
-    private override init() {}
+    private init() {}
     
     static var remoteVersion: Semver? {
         let gitHubPath = "XQS6LB3A/LyricsX"
@@ -37,33 +51,47 @@ class UpdateManager: NSObject, NSUserNotificationCenterDelegate {
         return Semver(shortVersion)!
     }
     
-    func checkForUpdate() {
+    func checkForUpdate(force: Bool = false) {
         let localVersion = UpdateManager.localVersion
-        guard let remoteVersion = UpdateManager.remoteVersion,
-            remoteVersion > localVersion else {
+        guard let remoteVersion = UpdateManager.remoteVersion else {
             return
         }
         
-        if let skipVersionString = Preference[.NotifiedUpdateVersion],
+        guard remoteVersion > localVersion else {
+            if force {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "You're up-to-date!"
+                    alert.informativeText = "LyricsX \(localVersion) is currently the newest version available."
+                    NSApp.activate(ignoringOtherApps: true)
+                    alert.runModal()
+                }
+            }
+            return
+        }
+        
+        if !force,
+            let skipVersionString = Preference[.NotifiedUpdateVersion],
             let skipVersion = Semver(skipVersionString),
-            skipVersion == remoteVersion {
+            skipVersion >= remoteVersion {
             return
-        } else {
-            Preference[.NotifiedUpdateVersion] = remoteVersion.description
         }
         
-        let noti = NSUserNotification()
-        noti.title = "A new version of LyricsX is available!"
-        noti.informativeText = "LyricsX \(remoteVersion) is now available -- you have \(localVersion). Would you like to download it now?"
+        Preference[.NotifiedUpdateVersion] = remoteVersion.description
         
-        NSUserNotificationCenter.default.delegate = self
-        NSUserNotificationCenter.default.deliver(noti)
-    }
-    
-    func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
-        center.removeAllDeliveredNotifications()
-        let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases/latest")!
-        NSWorkspace.shared().open(url)
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.messageText = "A new version of LyricsX is available!"
+            alert.informativeText = "LyricsX \(remoteVersion) is now available -- you have \(localVersion). Would you like to download it now?"
+            alert.addButton(withTitle: "Download")
+            alert.addButton(withTitle: "Skip")
+            NSApp.activate(ignoringOtherApps: true)
+            let response = alert.runModal()
+            if response == NSAlertFirstButtonReturn {
+                let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
+                NSWorkspace.shared().open(url)
+            }
+        }
     }
     
 }

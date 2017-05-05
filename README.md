@@ -14,6 +14,10 @@ Coming soon...
 
 You can download ZIP from [releases](https://github.com/XQS6LB3A/LyricsX/releases).
 
+### Requirements
+
+- macOS 10.10+
+
 ## Features
 
 - Work perfectly with iTunes, Spotify and Vox.
