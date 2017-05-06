@@ -35,14 +35,12 @@ extension UserDefaults {
 
 extension EasyPreference {
     
-    func lyricsSavingPath(securityScoped: inout Bool) -> URL? {
+    func lyricsSavingPath() -> (URL, security: Bool)? {
         if self[.LyricsSavingPathPopUpIndex] == 0 {
-            securityScoped = false
             let userPath = String(cString: getpwuid(getuid()).pointee.pw_dir)
-            return URL(fileURLWithPath: userPath).appendingPathComponent("Music/LyricsX")
+            return (URL(fileURLWithPath: userPath).appendingPathComponent("Music/LyricsX"), false)
         } else {
-            securityScoped = true
-            return lyricsCustomSavingPath
+            return lyricsCustomSavingPath.map { ($0, true) }
         }
     }
     
@@ -86,15 +84,16 @@ extension Lyrics {
 extension Lyrics {
     
     static func loadFromLocal(title: String, artist: String) -> Lyrics? {
-        var securityScoped = false
-        guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
+        guard let (url, security) = Preference.lyricsSavingPath() else {
             return nil
         }
-        if securityScoped {
+        if security {
             guard url.startAccessingSecurityScopedResource() else {
                 return nil
             }
-            defer {
+        }
+        defer {
+            if security {
                 url.stopAccessingSecurityScopedResource()
             }
         }
@@ -114,17 +113,16 @@ extension Lyrics {
     }
     
     func saveToLocal() {
-        var securityScoped = false
-        guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
+        guard let (url, security) = Preference.lyricsSavingPath() else {
             return
         }
-        if securityScoped {
+        if security {
             guard url.startAccessingSecurityScopedResource() else {
                 return
             }
         }
         defer {
-            if securityScoped {
+            if security {
                 url.stopAccessingSecurityScopedResource()
             }
         }
