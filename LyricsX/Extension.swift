@@ -54,6 +54,9 @@ extension EasyPreference {
             var bookmarkDataIsStale = false
             do {
                 let url = try URL(resolvingBookmarkData: data, options: [.withSecurityScope], bookmarkDataIsStale: &bookmarkDataIsStale)
+                guard bookmarkDataIsStale == false else {
+                    return nil
+                }
                 return url
             } catch let error {
                 print(error)
@@ -119,7 +122,9 @@ extension Lyrics {
             guard url.startAccessingSecurityScopedResource() else {
                 return
             }
-            defer {
+        }
+        defer {
+            if securityScoped {
                 url.stopAccessingSecurityScopedResource()
             }
         }
