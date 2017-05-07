@@ -66,6 +66,10 @@ class MusicPlayerManager {
             newPlayer = autoSelectPlayer()
         }
         
+        if newPlayer?.playerState != .playing {
+            _timer.fireDate = Date().addingTimeInterval(1)
+        }
+        
         guard newPlayer != nil, newPlayer !== player else {
             return
         }
