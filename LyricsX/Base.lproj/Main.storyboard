@@ -523,15 +523,7 @@
                                     <menu key="menu" id="5gc-ov-0H5">
                                         <items>
                                             <menuItem title="LyricsX (Default)" state="on" id="IE7-IT-oPk"/>
-                                            <menuItem title="User Path" id="hXE-OF-DFz">
-                                                <connections>
-                                                    <binding destination="hHn-Lo-CwP" name="hidden" keyPath="values.LyricsCustomSavingPathBookmark" id="p7q-40-Bn6">
-                                                        <dictionary key="options">
-                                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                                        </dictionary>
-                                                    </binding>
-                                                </connections>
-                                            </menuItem>
+                                            <menuItem title="User Path" id="hXE-OF-DFz"/>
                                             <menuItem isSeparatorItem="YES" id="iSc-zy-02K"/>
                                             <menuItem title="Other..." id="HvN-Ou-h1t">
                                                 <connections>

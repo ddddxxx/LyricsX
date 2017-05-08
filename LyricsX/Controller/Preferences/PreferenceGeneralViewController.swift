@@ -50,6 +50,8 @@ class PreferenceGeneralViewController: NSViewController {
         if let url = Preference.lyricsCustomSavingPath {
             savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
             savingPathPopUp.item(at: 1)?.toolTip = url.path
+        } else {
+            savingPathPopUp.item(at: 1)?.isHidden = true
         }
     }
     
