@@ -35,6 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var statusBarMenu: NSMenu!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        registerUserDefaults()
+        
         MenuBarLyrics.shared.statusItem.menu = statusBarMenu
         
         let controller = AppController.shared
@@ -42,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
-        if Preference[.LaunchAndQuitWithPlayer] {
+        if defaults[.LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
                 print("Failed to enable login item")
             }
@@ -55,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         UserDefaults.standard.synchronize()
-        if Preference[.LaunchAndQuitWithPlayer] {
+        if defaults[.LaunchAndQuitWithPlayer] {
             let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
             NSWorkspace.shared().launchApplication(url.path)
         }
@@ -65,6 +67,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DispatchQueue.global().async {
             UpdateManager.shared.checkForUpdate(force: true)
         }
+    }
+    
+    func registerUserDefaults() {
+        let defaultsUrl = Bundle.main.url(forResource: "UserDefaults", withExtension: "plist")!
+        var defaults = NSDictionary(contentsOf: defaultsUrl) as! [String: AnyObject]
+        defaults["DesktopLyricsColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) as AnyObject
+        defaults["DesktopLyricsShadowColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject
+        defaults["DesktopLyricsBackgroundColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject
+        UserDefaults.standard.register(defaults: defaults)
     }
 }
 

@@ -21,16 +21,16 @@
 //
 
 import Cocoa
-import EasyPreference
+import GenericID
 
 let LyricsXGroupIdentifier = "group.ddddxxx.LyricsX"
 let LyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
 
-let Preference = { () -> EasyPreference in
-    registerUserDefaults()
-    return EasyPreference(defaults: .standard)
-}()
-let GroupPreference = EasyPreference(defaults: UserDefaults(suiteName: LyricsXGroupIdentifier)!)
+let defaults = UserDefaults.standard
+
+extension UserDefaults {
+    static let group = UserDefaults(suiteName: LyricsXGroupIdentifier)!
+}
 
 // MARK: - Notification Name
 
@@ -44,9 +44,9 @@ extension Notification.Name {
 
 // MARK: - User Defaults
 
-extension EasyPreference.Keys {
+extension UserDefaults.DefaultKeys {
     
-    static let NotifiedUpdateVersion: Key<String>  = "NotifiedUpdateVersion"
+    static let NotifiedUpdateVersion: Key<String?>  = "NotifiedUpdateVersion"
     
     // Menu
     static let DesktopLyricsEnabled: Key<Bool>  = "DesktopLyricsEnabled"
@@ -57,7 +57,7 @@ extension EasyPreference.Keys {
     static let LaunchAndQuitWithPlayer: Key<Bool>   = "LaunchAndQuitWithPlayer"
     
     static let LyricsSavingPathPopUpIndex: Key<Int>         = "LyricsSavingPathPopUpIndex"
-    static let LyricsCustomSavingPathBookmark: Key<Data>    = "LyricsCustomSavingPathBookmark"
+    static let LyricsCustomSavingPathBookmark: Key<Data?>   = "LyricsCustomSavingPathBookmark"
     
     static let PreferBilingualLyrics: Key<Bool>         = "PreferBilingualLyrics"
     static let ChineseConversionIndex: Key<Int>         = "ChineseConversionIndex"
@@ -69,7 +69,7 @@ extension EasyPreference.Keys {
     
     // Display
     static let DesktopLyricsHeighFromDock: Key<Int>     = "DesktopLyricsHeighFromDock"
-    static let DesktopLyricsFontName: Key<String>       = "DesktopLyricsFontName"
+    static let DesktopLyricsFontName: Key<String?>      = "DesktopLyricsFontName"
     static let DesktopLyricsFontSize: Key<Int>          = "DesktopLyricsFontSize"
     
     static let DesktopLyricsColor: Key<NSColor>             = "DesktopLyricsColor"
@@ -83,15 +83,4 @@ extension EasyPreference.Keys {
     static let LyricsSmartFilterEnabled: Key<Bool>  = "LyricsSmartFilterEnabled"
     static let LyricsDirectFilterKey: Key<[String]> = "LyricsDirectFilterKey"
     static let LyricsColonFilterKey: Key<[String]>  = "LyricsColonFilterKey"
-}
-
-// MARK: -
-
-func registerUserDefaults() {
-    let defaultsUrl = Bundle.main.url(forResource: "UserDefaults", withExtension: "plist")!
-    var defaults = NSDictionary(contentsOf: defaultsUrl) as! [String: AnyObject]
-    defaults["DesktopLyricsColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) as AnyObject
-    defaults["DesktopLyricsShadowColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject
-    defaults["DesktopLyricsBackgroundColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject
-    UserDefaults.standard.register(defaults: defaults)
 }

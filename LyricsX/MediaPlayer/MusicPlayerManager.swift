@@ -21,7 +21,6 @@
 //
 
 import Foundation
-import EasyPreference
 
 class MusicPlayerManager {
     
@@ -55,7 +54,7 @@ class MusicPlayerManager {
         }
         
         let newPlayer: MusicPlayer?
-        switch Preference[.PreferredPlayerIndex] {
+        switch defaults[.PreferredPlayerIndex] {
         case 0:
             newPlayer = iTunes.shared
         case 1:

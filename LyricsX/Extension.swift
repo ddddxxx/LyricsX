@@ -21,7 +21,6 @@
 //
 
 import Foundation
-import EasyPreference
 
 extension UserDefaults {
     
@@ -33,7 +32,7 @@ extension UserDefaults {
     
 }
 
-extension EasyPreference {
+extension UserDefaults {
     
     func lyricsSavingPath() -> (URL, security: Bool)? {
         if self[.LyricsSavingPathPopUpIndex] != 0, let path = lyricsCustomSavingPath {
@@ -84,7 +83,7 @@ extension Lyrics {
 extension Lyrics {
     
     static func loadFromLocal(title: String, artist: String) -> Lyrics? {
-        guard let (url, security) = Preference.lyricsSavingPath() else {
+        guard let (url, security) = defaults.lyricsSavingPath() else {
             return nil
         }
         if security {
@@ -113,7 +112,7 @@ extension Lyrics {
     }
     
     func saveToLocal() {
-        guard let (url, security) = Preference.lyricsSavingPath() else {
+        guard let (url, security) = defaults.lyricsSavingPath() else {
             return
         }
         if security {
@@ -158,24 +157,19 @@ extension Lyrics {
 extension Lyrics {
     
     mutating func filtrate() {
-        guard Preference[.LyricsFilterEnabled] else {
+        guard defaults[.LyricsFilterEnabled] else {
             return
         }
         
-        guard let directFilter = Preference[.LyricsDirectFilterKey],
-            let colonFilter = Preference[.LyricsColonFilterKey] else {
-                return
-        }
-        let colons = [":", "：", "∶"]
-        let directFilterPattern = directFilter.joined(separator: "|")
-        let colonFilterPattern = colonFilter.joined(separator: "|")
-        let colonsPattern = colons.joined(separator: "|")
-        let pattern = "\(directFilterPattern)|((\(colonFilterPattern))(\(colonsPattern)))"
+        let directFilter = defaults[.LyricsDirectFilterKey].joined(separator: "|")
+        let colonFilter = defaults[.LyricsColonFilterKey].joined(separator: "|")
+        let colons = [":", "：", "∶"].joined(separator: "|")
+        let pattern = "\(directFilter)|((\(colonFilter))(\(colons)))"
         if let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) {
             filtrate(using: regex)
         }
         
-        if Preference[.LyricsSmartFilterEnabled] {
+        if defaults[.LyricsSmartFilterEnabled] {
             smartFiltrate()
         }
     }

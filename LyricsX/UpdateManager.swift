@@ -71,13 +71,13 @@ class UpdateManager {
         }
         
         if !force,
-            let skipVersionString = Preference[.NotifiedUpdateVersion],
+            let skipVersionString = defaults[.NotifiedUpdateVersion],
             let skipVersion = Semver(skipVersionString),
             skipVersion >= remoteVersion {
             return
         }
         
-        Preference[.NotifiedUpdateVersion] = remoteVersion.description
+        defaults[.NotifiedUpdateVersion] = remoteVersion.description
         
         DispatchQueue.main.async {
             let alert = NSAlert()
