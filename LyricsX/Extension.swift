@@ -21,7 +21,6 @@
 //
 
 import Foundation
-import EasyPreference
 
 extension UserDefaults {
     
@@ -33,16 +32,14 @@ extension UserDefaults {
     
 }
 
-extension EasyPreference {
+extension UserDefaults {
     
-    func lyricsSavingPath(securityScoped: inout Bool) -> URL? {
-        if self[.LyricsSavingPathPopUpIndex] == 0 {
-            securityScoped = false
-            let userPath = String(cString: getpwuid(getuid()).pointee.pw_dir)
-            return URL(fileURLWithPath: userPath).appendingPathComponent("Music/LyricsX")
+    func lyricsSavingPath() -> (URL, security: Bool)? {
+        if self[.LyricsSavingPathPopUpIndex] != 0, let path = lyricsCustomSavingPath {
+            return (path, true)
         } else {
-            securityScoped = true
-            return lyricsCustomSavingPath
+            let userPath = String(cString: getpwuid(getuid()).pointee.pw_dir)
+            return (URL(fileURLWithPath: userPath).appendingPathComponent("Music/LyricsX"), false)
         }
     }
     
@@ -54,6 +51,9 @@ extension EasyPreference {
             var bookmarkDataIsStale = false
             do {
                 let url = try URL(resolvingBookmarkData: data, options: [.withSecurityScope], bookmarkDataIsStale: &bookmarkDataIsStale)
+                guard bookmarkDataIsStale == false else {
+                    return nil
+                }
                 return url
             } catch let error {
                 print(error)
@@ -83,15 +83,16 @@ extension Lyrics {
 extension Lyrics {
     
     static func loadFromLocal(title: String, artist: String) -> Lyrics? {
-        var securityScoped = false
-        guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
+        guard let (url, security) = defaults.lyricsSavingPath() else {
             return nil
         }
-        if securityScoped {
+        if security {
             guard url.startAccessingSecurityScopedResource() else {
                 return nil
             }
-            defer {
+        }
+        defer {
+            if security {
                 url.stopAccessingSecurityScopedResource()
             }
         }
@@ -111,15 +112,16 @@ extension Lyrics {
     }
     
     func saveToLocal() {
-        var securityScoped = false
-        guard let url = Preference.lyricsSavingPath(securityScoped: &securityScoped) else {
+        guard let (url, security) = defaults.lyricsSavingPath() else {
             return
         }
-        if securityScoped {
+        if security {
             guard url.startAccessingSecurityScopedResource() else {
                 return
             }
-            defer {
+        }
+        defer {
+            if security {
                 url.stopAccessingSecurityScopedResource()
             }
         }
@@ -155,24 +157,19 @@ extension Lyrics {
 extension Lyrics {
     
     mutating func filtrate() {
-        guard Preference[.LyricsFilterEnabled] else {
+        guard defaults[.LyricsFilterEnabled] else {
             return
         }
         
-        guard let directFilter = Preference[.LyricsDirectFilterKey],
-            let colonFilter = Preference[.LyricsColonFilterKey] else {
-                return
-        }
-        let colons = [":", "：", "∶"]
-        let directFilterPattern = directFilter.joined(separator: "|")
-        let colonFilterPattern = colonFilter.joined(separator: "|")
-        let colonsPattern = colons.joined(separator: "|")
-        let pattern = "\(directFilterPattern)|((\(colonFilterPattern))(\(colonsPattern)))"
+        let directFilter = defaults[.LyricsDirectFilterKey].joined(separator: "|")
+        let colonFilter = defaults[.LyricsColonFilterKey].joined(separator: "|")
+        let colons = [":", "：", "∶"].joined(separator: "|")
+        let pattern = "\(directFilter)|((\(colonFilter))(\(colons)))"
         if let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) {
             filtrate(using: regex)
         }
         
-        if Preference[.LyricsSmartFilterEnabled] {
+        if defaults[.LyricsSmartFilterEnabled] {
             smartFiltrate()
         }
     }

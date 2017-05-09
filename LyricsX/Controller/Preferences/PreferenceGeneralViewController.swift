@@ -35,7 +35,7 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var userPathMenuItem: NSMenuItem!
     
     override func viewDidLoad() {
-        switch Preference[.PreferredPlayerIndex] {
+        switch defaults[.PreferredPlayerIndex] {
         case 0:
             preferiTunes.state = NSOnState
         case 1:
@@ -47,9 +47,11 @@ class PreferenceGeneralViewController: NSViewController {
             autoLaunchButton.isEnabled = false
         }
         
-        if let url = Preference.lyricsCustomSavingPath {
+        if let url = defaults.lyricsCustomSavingPath {
             savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
             savingPathPopUp.item(at: 1)?.toolTip = url.path
+        } else {
+            savingPathPopUp.item(at: 1)?.isHidden = true
         }
     }
     
@@ -60,7 +62,7 @@ class PreferenceGeneralViewController: NSViewController {
         openPanel.beginSheetModal(for: self.view.window!) { result in
             if result == NSFileHandlingPanelOKButton {
                 let url = openPanel.url!
-                Preference.lyricsCustomSavingPath = url
+                defaults.lyricsCustomSavingPath = url
                 self.savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
                 self.savingPathPopUp.item(at: 1)?.toolTip = url.path
                 self.savingPathPopUp.selectItem(at: 1)
@@ -71,12 +73,12 @@ class PreferenceGeneralViewController: NSViewController {
     }
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
-        Preference[.PreferredPlayerIndex] = sender.tag
-        GroupPreference[.PreferredPlayerIndex] = sender.tag
+        defaults[.PreferredPlayerIndex] = sender.tag
+        UserDefaults.group[.PreferredPlayerIndex] = sender.tag
         if sender.tag < 0 {
             autoLaunchButton.isEnabled = false
             autoLaunchButton.state = NSOffState
-            Preference[.LaunchAndQuitWithPlayer] = false
+            defaults[.LaunchAndQuitWithPlayer] = false
         } else {
             autoLaunchButton.isEnabled = true
         }

@@ -21,7 +21,6 @@
 //
 
 import Foundation
-import EasyPreference
 
 class MusicPlayerManager {
     
@@ -55,7 +54,7 @@ class MusicPlayerManager {
         }
         
         let newPlayer: MusicPlayer?
-        switch Preference[.PreferredPlayerIndex] {
+        switch defaults[.PreferredPlayerIndex] {
         case 0:
             newPlayer = iTunes.shared
         case 1:
@@ -64,6 +63,10 @@ class MusicPlayerManager {
             newPlayer = Vox.shared
         default:
             newPlayer = autoSelectPlayer()
+        }
+        
+        if newPlayer?.playerState != .playing {
+            _timer.fireDate = Date().addingTimeInterval(1)
         }
         
         guard newPlayer != nil, newPlayer !== player else {

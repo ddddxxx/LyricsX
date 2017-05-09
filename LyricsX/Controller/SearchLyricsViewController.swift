@@ -41,7 +41,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var searchButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
-    @IBOutlet weak var lyricsPreviewTextView: NSTextView!
+    @IBOutlet var lyricsPreviewTextView: NSTextView!
     
     @IBOutlet weak var hideLrcPreviewConstraint: NSLayoutConstraint?
     @IBOutlet var normalConstraint: NSLayoutConstraint!

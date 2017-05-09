@@ -67,7 +67,7 @@ class ScrollLyricsView: NSScrollView {
         let enabledLrc = lyrics.lyrics.filter({ $0.enabled && $0.sentence != "" })
         for line in enabledLrc {
             var lineStr = line.sentence
-            if let trans = line.translation, Preference[.PreferBilingualLyrics] {
+            if let trans = line.translation, defaults[.PreferBilingualLyrics] {
                 lineStr += "\n" + trans
             }
             let range = NSRange(location: lrcContent.characters.count, length: lineStr.characters.count)
