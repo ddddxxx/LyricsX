@@ -51,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         DispatchQueue.global().async {
-            UpdateManager.shared.checkForUpdate()
+            checkForUpdate()
         }
     }
 
@@ -65,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func checkUpdateAction(_ sender: Any) {
         DispatchQueue.global().async {
-            UpdateManager.shared.checkForUpdate(force: true)
+            checkForUpdate(force: true)
         }
     }
     

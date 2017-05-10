@@ -27,7 +27,7 @@
 		BB45AC801E9E337F0099432F /* MusicPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */; };
 		BB45AC841E9F220E0099432F /* LyricsKugou.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC831E9F220E0099432F /* LyricsKugou.swift */; };
 		BB45AC861E9F65E90099432F /* LyricsSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC851E9F65E90099432F /* LyricsSourceProtocol.swift */; };
-		BB5596E21EB856140064D278 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5596E11EB856140064D278 /* UpdateManager.swift */; };
+		BB5596E21EB856140064D278 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5596E11EB856140064D278 /* Updater.swift */; };
 		BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */; };
 		BB58A3421E4EDFF100836903 /* LyricsSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */; };
 		BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */; };
@@ -121,7 +121,7 @@
 		BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayerProtocol.swift; path = MediaPlayer/MusicPlayerProtocol.swift; sourceTree = "<group>"; };
 		BB45AC831E9F220E0099432F /* LyricsKugou.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsKugou.swift; path = Lyrics/LyricsKugou.swift; sourceTree = "<group>"; };
 		BB45AC851E9F65E90099432F /* LyricsSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceProtocol.swift; path = Lyrics/LyricsSourceProtocol.swift; sourceTree = "<group>"; };
-		BB5596E11EB856140064D278 /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
+		BB5596E11EB856140064D278 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsGecimi.swift; path = Lyrics/LyricsGecimi.swift; sourceTree = "<group>"; };
 		BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceManager.swift; path = Lyrics/LyricsSourceManager.swift; sourceTree = "<group>"; };
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoActivateWindowController.swift; path = Controller/AutoActivateWindowController.swift; sourceTree = "<group>"; };
@@ -223,13 +223,12 @@
 			children = (
 				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
 				BBC1D35A1E485BA7002538A2 /* AppController.swift */,
-				BB5596E11EB856140064D278 /* UpdateManager.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
 				BB063B2F1E8A93CE00A25C3E /* View */,
 				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
 				BB7EC7B51E4ED02000A0AC3F /* Lyrics */,
 				BBBB6EC31E86B08E003B3ED6 /* MusicPlayer */,
-				BB7EC7B61E4ED03900A0AC3F /* Others */,
+				BB7EC7B61E4ED03900A0AC3F /* Utility */,
 				BB4141BC1E45B26800A51775 /* Support Files */,
 			);
 			path = LyricsX;
@@ -296,13 +295,14 @@
 			name = Lyrics;
 			sourceTree = "<group>";
 		};
-		BB7EC7B61E4ED03900A0AC3F /* Others */ = {
+		BB7EC7B61E4ED03900A0AC3F /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				BBC1D35E1E499A6D002538A2 /* Global.swift */,
 				BB9BCEB91E843157001BC54B /* Extension.swift */,
+				BB5596E11EB856140064D278 /* Updater.swift */,
 			);
-			name = Others;
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		BB861AA31E99E56A00AC9194 /* Sources */ = {
@@ -543,7 +543,7 @@
 				BB60F2FC1E87CF9200BA1FD2 /* Vox.swift in Sources */,
 				BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */,
 				BB1B631B1E8CD7CA004CC9E0 /* ScrollLyricsView.swift in Sources */,
-				BB5596E21EB856140064D278 /* UpdateManager.swift in Sources */,
+				BB5596E21EB856140064D278 /* Updater.swift in Sources */,
 				BBD03C371E9B2C7200EFB975 /* DragNDropView.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,

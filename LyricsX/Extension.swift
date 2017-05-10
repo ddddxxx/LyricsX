@@ -146,7 +146,7 @@ extension Lyrics {
                                         ID3: true,
                                         timeTag: true,
                                         translation: true)
-            try content.write(to: lrcFileURL, atomically: false, encoding: .utf8)
+            try content.write(to: lrcFileURL, atomically: true, encoding: .utf8)
         } catch let error as NSError{
             print(error)
             return
