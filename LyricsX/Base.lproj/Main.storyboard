@@ -152,6 +152,12 @@
                                 <segue destination="Fyy-jy-wIT" kind="show" id="QlQ-Pc-nUk"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Wrong Lyrics" id="fmS-zv-RcJ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="wrongLyrics:" target="Voe-Tx-rLC" id="PSJ-f3-tnK"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
                         <menuItem title="Preference..." keyEquivalent="," id="CWo-Qx-2Ut">
                             <connections>

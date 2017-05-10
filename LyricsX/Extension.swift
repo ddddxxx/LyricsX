@@ -22,6 +22,22 @@
 
 import Foundation
 
+extension Dictionary where Key == String, Value == Any {
+    
+    init?(contentsOf url: URL) {
+        if let data = try? Data(contentsOf: url),
+            let plist = (try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil)) as? [String: Any] {
+            self = plist
+        }
+        return nil
+    }
+    
+    func write(to url: URL) throws {
+        let data = try PropertyListSerialization.data(fromPropertyList: self, format: .xml, options: 0)
+        try data.write(to: url)
+    }
+}
+
 extension UserDefaults {
     
     func reset() {

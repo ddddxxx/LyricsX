@@ -69,6 +69,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @IBAction func wrongLyrics(_ sender: Any) {
+        let track = MusicPlayerManager.shared.player?.currentTrack
+        let title = track?.name ?? ""
+        let artist = track?.artist ?? ""
+        WrongLyricsUtil.shared.noMatching(title: title, artist: artist)
+        AppController.shared.setCurrentLyrics(lyrics: nil)
+    }
+    
     func registerUserDefaults() {
         let defaultsUrl = Bundle.main.url(forResource: "UserDefaults", withExtension: "plist")!
         var defaults = NSDictionary(contentsOf: defaultsUrl) as! [String: AnyObject]
