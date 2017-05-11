@@ -77,11 +77,11 @@ class DesktopLyricsViewController: NSViewController {
         
         let dfs = UserDefaults.standard
         let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind("fontName", to: dfs, withKeyPath: UserDefaults.DefaultKeys.DesktopLyricsFontName.rawValue, options: nil)
-        lyricsView.bind("fontSize", to: dfs, withKeyPath: UserDefaults.DefaultKeys.DesktopLyricsFontSize.rawValue, options: nil)
-        lyricsView.bind("textColor", to: dfs, withKeyPath: UserDefaults.DefaultKeys.DesktopLyricsColor.rawValue, options: transOpt)
-        lyricsView.bind("shadowColor", to: dfs, withKeyPath: UserDefaults.DefaultKeys.DesktopLyricsShadowColor.rawValue, options: transOpt)
-        lyricsView.bind("fillColor", to: dfs, withKeyPath: UserDefaults.DefaultKeys.DesktopLyricsBackgroundColor.rawValue, options: transOpt)
+        lyricsView.bind("fontName", to: dfs, withKeyPath: .DesktopLyricsFontName, options: nil)
+        lyricsView.bind("fontSize", to: dfs, withKeyPath: .DesktopLyricsFontSize, options: nil)
+        lyricsView.bind("textColor", to: dfs, withKeyPath: .DesktopLyricsColor, options: transOpt)
+        lyricsView.bind("shadowColor", to: dfs, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
+        lyricsView.bind("fillColor", to: dfs, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.displayLrc("")

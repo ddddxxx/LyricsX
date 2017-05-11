@@ -22,6 +22,13 @@
 
 import Foundation
 
+extension NSObject {
+    
+    func bind<T>(_ binding: String, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [String : Any]? = nil) {
+        bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
+    }
+}
+
 extension Dictionary where Key == String, Value == Any {
     
     init?(contentsOf url: URL) {
