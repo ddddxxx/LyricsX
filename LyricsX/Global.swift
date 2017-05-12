@@ -32,6 +32,10 @@ extension UserDefaults {
     static let group = UserDefaults(suiteName: LyricsXGroupIdentifier)!
 }
 
+extension CAMediaTimingFunction {
+    static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
+}
+
 // MARK: - Notification Name
 
 let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"

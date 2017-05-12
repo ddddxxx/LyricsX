@@ -80,7 +80,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.3
                 context.allowsImplicitAnimation = true
-                context.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
+                context.timingFunction = .mystery
                 self.lyricsScrollView.scroll(position: pos)
             })
         }

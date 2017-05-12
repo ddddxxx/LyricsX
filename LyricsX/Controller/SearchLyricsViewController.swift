@@ -164,7 +164,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.33
             context.allowsImplicitAnimation = true
-            context.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
+            context.timingFunction = .mystery
             self.hideLrcPreviewConstraint?.animator().isActive = false
             view.window?.setFrame(windowFrame, display: true, animate: true)
             self.view.needsUpdateConstraints = true
