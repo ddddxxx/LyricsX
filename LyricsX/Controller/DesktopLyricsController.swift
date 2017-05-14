@@ -66,7 +66,6 @@ class DesktopLyricsWindowController: NSWindowController {
 class DesktopLyricsViewController: NSViewController {
     
     @IBOutlet weak var lyricsView: KaraokeLyricsView!
-    @IBOutlet weak var lyricsHeightConstraint: NSLayoutConstraint!
     
     private var chineseConverter: ChineseConverter?
     
@@ -83,6 +82,8 @@ class DesktopLyricsViewController: NSViewController {
         lyricsView.bind("shadowColor", to: dfs, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
         lyricsView.bind("fillColor", to: dfs, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         
+        makeConstraints()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.displayLrc("")
             self.addObserver()
@@ -92,9 +93,6 @@ class DesktopLyricsViewController: NSViewController {
     private func addObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
         
-        defaults.addObserver(key: .DesktopLyricsHeighFromDock, initial: true) { _, new in
-            self.lyricsHeightConstraint.constant = CGFloat(new)
-        }
         defaults.addObserver(key: .ChineseConversionIndex, initial: true) { _, new in
             switch new {
             case 1:
@@ -105,6 +103,22 @@ class DesktopLyricsViewController: NSViewController {
                 self.chineseConverter = nil
             }
         }
+        
+        let block = { (_ :Int?, _: Int?) -> Void in
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.2
+                context.allowsImplicitAnimation = true
+                context.timingFunction = .mystery
+                self.makeConstraints()
+                self.view.needsLayout = true
+                self.view.layoutSubtreeIfNeeded()
+                self.view.displayIfNeeded()
+            })
+        }
+        defaults.addObserver(key: .DesktopLyricsInsetTop, using: block)
+        defaults.addObserver(key: .DesktopLyricsInsetBottom, using: block)
+        defaults.addObserver(key: .DesktopLyricsInsetLeft, using: block)
+        defaults.addObserver(key: .DesktopLyricsInsetRight, using: block)
     }
     
     func handlePositionChange(_ n: Notification) {
@@ -156,6 +170,28 @@ class DesktopLyricsViewController: NSViewController {
             self.view.needsLayout = true
             self.view.layoutSubtreeIfNeeded()
         })
+    }
+    
+    private func makeConstraints() {
+        lyricsView.snp.remakeConstraints { make in
+            switch (defaults[.DesktopLyricsInsetTop], defaults[.DesktopLyricsInsetBottom]) {
+            case let (top?, nil):
+                make.top.equalToSuperview().offset(top)
+            case let (nil, bottom?):
+                make.bottom.equalToSuperview().offset(-bottom)
+            default:
+                make.centerY.equalToSuperview()
+            }
+            
+            switch (defaults[.DesktopLyricsInsetLeft], defaults[.DesktopLyricsInsetRight]) {
+            case let (left?, nil):
+                make.left.equalToSuperview().offset(left)
+            case let (nil, right?):
+                make.right.equalToSuperview().offset(-right)
+            default:
+                make.centerX.equalToSuperview()
+            }
+        }
     }
     
 }
