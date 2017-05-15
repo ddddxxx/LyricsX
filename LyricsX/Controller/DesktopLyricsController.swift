@@ -174,19 +174,24 @@ class DesktopLyricsViewController: NSViewController {
     
     private func makeConstraints() {
         lyricsView.snp.remakeConstraints { make in
-            switch (defaults[.DesktopLyricsInsetTop], defaults[.DesktopLyricsInsetBottom]) {
-            case let (top?, nil):
+            let top = defaults[.DesktopLyricsInsetTop]
+            let bottom = defaults[.DesktopLyricsInsetBottom]
+            let left = defaults[.DesktopLyricsInsetLeft]
+            let right = defaults[.DesktopLyricsInsetRight]
+            
+            switch (defaults[.DesktopLyricsInsetTopEnabled], defaults[.DesktopLyricsInsetBottomEnabled]) {
+            case (true, false):
                 make.top.equalToSuperview().offset(top)
-            case let (nil, bottom?):
+            case (false, true):
                 make.bottom.equalToSuperview().offset(-bottom)
             default:
                 make.centerY.equalToSuperview()
             }
             
-            switch (defaults[.DesktopLyricsInsetLeft], defaults[.DesktopLyricsInsetRight]) {
-            case let (left?, nil):
+            switch (defaults[.DesktopLyricsInsetLeftEnabled], defaults[.DesktopLyricsInsetRightEnabled]) {
+            case (true, false):
                 make.left.equalToSuperview().offset(left)
-            case let (nil, right?):
+            case (false, true):
                 make.right.equalToSuperview().offset(-right)
             default:
                 make.centerX.equalToSuperview()
