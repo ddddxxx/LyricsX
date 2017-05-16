@@ -1,5 +1,7 @@
 # LyricsX
 
+[![release](https://img.shields.io/github/release/XQS6LB3A/LyricsX.svg)](https://github.com/XQS6LB3A/LyricsX/releases)
+[![license](https://img.shields.io/github/license/XQS6LB3A/LyricsX.svg)](LICENSE)
 [![codebeat badge](https://codebeat.co/badges/12718a7c-04f1-465d-a520-5525788f4fba)](https://codebeat.co/projects/github-com-xqs6lb3a-lyricsx-master)
 
 <img src="docs/img/icon.png" width="128px">
@@ -21,13 +23,13 @@ You can download ZIP from [releases](https://github.com/XQS6LB3A/LyricsX/release
 ## Features
 
 - Work perfectly with iTunes, Spotify and Vox.
-- Automatically search & download synchronized lyrics.
+- Automatically search & download live lyrics.
 - Display lyrics on desktop and menubar. you can customize font, color and position for desktop lyrics.
 - Adjust lyrics offset on status menu.
-- Double click lyrics to set player position.
+- Navigate the song with lyrics - Double click a line to jump to specific position.
 - Drag & Drop to import/export lyrics file.
 - Auto launch & quit with music player.
-- Auto convert Traditional Chinese or Simplified Chinese if you want.
+- Automatic conversion between Traditional Chinese and Simplified Chinese.
 
 ### Lyrics Sources
 
