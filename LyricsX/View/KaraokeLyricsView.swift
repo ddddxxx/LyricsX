@@ -61,17 +61,17 @@ class KaraokeLyricsView: NSBox {
         secondLineLrcView.alignment = .center
         waitingLrcView.alignment = .center
         
-        firstLineLrcView.bind(NSFontNameBinding, to: self, withKeyPath: "fontName", options: nil)
-        secondLineLrcView.bind(NSFontNameBinding, to: self, withKeyPath: "fontName", options: nil)
-        waitingLrcView.bind(NSFontNameBinding, to: self, withKeyPath: "fontName", options: nil)
+        firstLineLrcView.bind(NSFontNameBinding, to: self, withKeyPath: #keyPath(fontName), options: nil)
+        secondLineLrcView.bind(NSFontNameBinding, to: self, withKeyPath: #keyPath(fontName), options: nil)
+        waitingLrcView.bind(NSFontNameBinding, to: self, withKeyPath: #keyPath(fontName), options: nil)
         
-        firstLineLrcView.bind(NSFontSizeBinding, to: self, withKeyPath: "fontSize", options: nil)
-        secondLineLrcView.bind(NSFontSizeBinding, to: self, withKeyPath: "fontSize", options: nil)
-        waitingLrcView.bind(NSFontSizeBinding, to: self, withKeyPath: "fontSize", options: nil)
+        firstLineLrcView.bind(NSFontSizeBinding, to: self, withKeyPath: #keyPath(fontSize), options: nil)
+        secondLineLrcView.bind(NSFontSizeBinding, to: self, withKeyPath: #keyPath(fontSize), options: nil)
+        waitingLrcView.bind(NSFontSizeBinding, to: self, withKeyPath: #keyPath(fontSize), options: nil)
         
-        firstLineLrcView.bind(NSTextColorBinding, to: self, withKeyPath: "textColor", options: nil)
-        secondLineLrcView.bind(NSTextColorBinding, to: self, withKeyPath: "textColor", options: nil)
-        waitingLrcView.bind(NSTextColorBinding, to: self, withKeyPath: "textColor", options: nil)
+        firstLineLrcView.bind(NSTextColorBinding, to: self, withKeyPath: #keyPath(textColor), options: nil)
+        secondLineLrcView.bind(NSTextColorBinding, to: self, withKeyPath: #keyPath(textColor), options: nil)
+        waitingLrcView.bind(NSTextColorBinding, to: self, withKeyPath: #keyPath(textColor), options: nil)
         
         self.addSubview(firstLineLrcView)
         self.addSubview(secondLineLrcView)

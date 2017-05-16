@@ -65,6 +65,9 @@
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "CDj-ot-3DR"; */
 "CDj-ot-3DR.title" = "Edit";
 
+/* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
+"CW0-AL-Z6N.title" = "捐赠";
+
 /* Class = "NSMenuItem"; title = "Preference..."; ObjectID = "CWo-Qx-2Ut"; */
 "CWo-Qx-2Ut.title" = "偏好设置...";
 
@@ -77,6 +80,9 @@
 /* Class = "NSTabViewItem"; label = "General"; ObjectID = "E3f-78-EMG"; */
 "E3f-78-EMG.label" = "通用";
 
+/* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
+"EoO-ld-6Xv.title" = "捐赠...";
+
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
 "FMI-7E-tCo.title" = "歌曲:";
 
@@ -84,7 +90,7 @@
 "GGU-uz-d9h.title" = "启用逐行歌词";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
-"Gza-SX-MCH.ibShadowedToolTip" = "Always on top";
+"Gza-SX-MCH.ibShadowedToolTip" = "置顶";
 
 /* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "HEI-Dn-Xny"; */
 "HEI-Dn-Xny.title" = "Text";
@@ -195,13 +201,16 @@
 "csd-w7-kJw.title" = "Hide Application";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
-"d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
+"d5a-4n-6k8.ibShadowedToolTip" = "同步";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
 "eb9-fE-Lgq.title" = "搜索";
 
 /* Class = "NSWindow"; title = "Window"; ObjectID = "fhu-ba-Lnu"; */
 "fhu-ba-Lnu.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
+"fmS-zv-RcJ.title" = "错误的歌词";
 
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "gPf-oY-cYP"; */
 "gPf-oY-cYP.title" = "Select All";
@@ -238,6 +247,9 @@
 
 /* Class = "NSTextFieldCell"; title = "AppName"; ObjectID = "m4c-y5-n5Z"; */
 "m4c-y5-n5Z.title" = "AppName";
+
+/* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
+"o52-Z0-lue.title" = "如果您认为 LyricsX 对您有所帮助，并愿意支持软件的维护，可以扫描下方的二维码向我捐赠。";
 
 /* Class = "NSButtonCell"; title = "Vox"; ObjectID = "oTS-3z-Tz7"; */
 "oTS-3z-Tz7.title" = "Vox";

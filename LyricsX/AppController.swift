@@ -59,6 +59,9 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         if currentLyrics?.metadata.source != .Local {
             currentLyrics?.saveToLocal()
         }
+        if lyrics == nil {
+            NotificationCenter.default.post(name: .PositionChange, object: nil)
+        }
     }
     
     // MARK: MediaPlayerDelegate
@@ -84,6 +87,10 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         }
         let title = track.name
         let artist = track.artist
+        
+        guard !WrongLyricsUtil.shared.isNoMatching(title: title, artist: artist) else {
+            return
+        }
         
         if let localLyrics = Lyrics.loadFromLocal(title: title, artist: artist) {
             setCurrentLyrics(lyrics: localLyrics)

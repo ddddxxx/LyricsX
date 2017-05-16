@@ -33,15 +33,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var lyricsOffsetTextField: NSTextField!
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
+    
+    var desktopLyrics: NSWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         
+        desktopLyrics = NSStoryboard.main().instantiateController(withIdentifier: "DesktopLyricsWindow") as? NSWindowController
+        desktopLyrics?.showWindow(nil)
+        desktopLyrics?.window?.makeKeyAndOrderFront(nil)
+        
         MenuBarLyrics.shared.statusItem.menu = statusBarMenu
         
         let controller = AppController.shared
-        lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
-        lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: "lyricsOffset", options: [NSContinuouslyUpdatesValueBindingOption: true])
+        lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
+        lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
         if defaults[.LaunchAndQuitWithPlayer] {
@@ -51,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         DispatchQueue.global().async {
-            UpdateManager.shared.checkForUpdate()
+            checkForUpdate()
         }
     }
 
@@ -65,8 +71,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func checkUpdateAction(_ sender: Any) {
         DispatchQueue.global().async {
-            UpdateManager.shared.checkForUpdate(force: true)
+            checkForUpdate(force: true)
         }
+    }
+    
+    @IBAction func wrongLyrics(_ sender: Any) {
+        let track = MusicPlayerManager.shared.player?.currentTrack
+        let title = track?.name ?? ""
+        let artist = track?.artist ?? ""
+        WrongLyricsUtil.shared.noMatching(title: title, artist: artist)
+        AppController.shared.setCurrentLyrics(lyrics: nil)
     }
     
     func registerUserDefaults() {
