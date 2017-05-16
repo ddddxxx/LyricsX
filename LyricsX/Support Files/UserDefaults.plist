@@ -22,7 +22,9 @@
 	<true/>
 	<key>DisableLyricsWhenSreenShot</key>
 	<true/>
-	<key>DesktopLyricsHeighFromDock</key>
+	<key>DesktopLyricsInsetBottomEnabled</key>
+	<true/>
+	<key>DesktopLyricsInsetBottom</key>
 	<integer>20</integer>
 	<key>DesktopLyricsFontName</key>
 	<string>Helvetica Light</string>

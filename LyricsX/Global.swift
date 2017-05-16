@@ -72,7 +72,16 @@ extension UserDefaults.DefaultKeys {
     static let DisableLyricsWhenSreenShot: Key<Bool>    = "DisableLyricsWhenSreenShot"
     
     // Display
-    static let DesktopLyricsHeighFromDock: Key<Int>     = "DesktopLyricsHeighFromDock"
+    static let DesktopLyricsInsetTopEnabled: Key<Bool>      = "DesktopLyricsInsetTopEnabled"
+    static let DesktopLyricsInsetBottomEnabled: Key<Bool>   = "DesktopLyricsInsetBottomEnabled"
+    static let DesktopLyricsInsetLeftEnabled: Key<Bool>     = "DesktopLyricsInsetLeftEnabled"
+    static let DesktopLyricsInsetRightEnabled: Key<Bool>    = "DesktopLyricsInsetRightEnabled"
+    
+    static let DesktopLyricsInsetTop: Key<Int>          = "DesktopLyricsInsetTop"
+    static let DesktopLyricsInsetBottom: Key<Int>       = "DesktopLyricsInsetBottom"
+    static let DesktopLyricsInsetLeft: Key<Int>         = "DesktopLyricsInsetLeft"
+    static let DesktopLyricsInsetRight: Key<Int>        = "DesktopLyricsInsetRight"
+    
     static let DesktopLyricsFontName: Key<String?>      = "DesktopLyricsFontName"
     static let DesktopLyricsFontSize: Key<Int>          = "DesktopLyricsFontSize"
     

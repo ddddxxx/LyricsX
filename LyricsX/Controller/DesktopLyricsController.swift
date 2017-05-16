@@ -66,7 +66,6 @@ class DesktopLyricsWindowController: NSWindowController {
 class DesktopLyricsViewController: NSViewController {
     
     @IBOutlet weak var lyricsView: KaraokeLyricsView!
-    @IBOutlet weak var lyricsHeightConstraint: NSLayoutConstraint!
     
     private var chineseConverter: ChineseConverter?
     
@@ -83,6 +82,8 @@ class DesktopLyricsViewController: NSViewController {
         lyricsView.bind("shadowColor", to: dfs, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
         lyricsView.bind("fillColor", to: dfs, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         
+        makeConstraints()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.displayLrc("")
             self.addObserver()
@@ -92,9 +93,6 @@ class DesktopLyricsViewController: NSViewController {
     private func addObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
         
-        defaults.addObserver(key: .DesktopLyricsHeighFromDock, initial: true) { _, new in
-            self.lyricsHeightConstraint.constant = CGFloat(new)
-        }
         defaults.addObserver(key: .ChineseConversionIndex, initial: true) { _, new in
             switch new {
             case 1:
@@ -105,6 +103,30 @@ class DesktopLyricsViewController: NSViewController {
                 self.chineseConverter = nil
             }
         }
+        
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetTopEnabled)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetBottomEnabled)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetLeftEnabled)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetRightEnabled)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetTop)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetBottom)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetLeft)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetRight)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard object as? UserDefaults == defaults else {
+            return
+        }
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0.2
+            context.allowsImplicitAnimation = true
+            context.timingFunction = .mystery
+            self.makeConstraints()
+            self.view.needsLayout = true
+            self.view.layoutSubtreeIfNeeded()
+            self.view.displayIfNeeded()
+        })
     }
     
     func handlePositionChange(_ n: Notification) {
@@ -156,6 +178,37 @@ class DesktopLyricsViewController: NSViewController {
             self.view.needsLayout = true
             self.view.layoutSubtreeIfNeeded()
         })
+    }
+    
+    private func makeConstraints() {
+        lyricsView.snp.remakeConstraints { make in
+            let top = defaults[.DesktopLyricsInsetTop]
+            let bottom = defaults[.DesktopLyricsInsetBottom]
+            let left = defaults[.DesktopLyricsInsetLeft]
+            let right = defaults[.DesktopLyricsInsetRight]
+            
+            switch (defaults[.DesktopLyricsInsetTopEnabled], defaults[.DesktopLyricsInsetBottomEnabled]) {
+            case (true, true):
+                make.centerY.equalToSuperview().offset(top - bottom)
+            case (true, false):
+                make.top.equalToSuperview().offset(top)
+            case (false, true):
+                make.bottom.equalToSuperview().offset(-bottom)
+            default:
+                make.centerY.equalToSuperview()
+            }
+            
+            switch (defaults[.DesktopLyricsInsetLeftEnabled], defaults[.DesktopLyricsInsetRightEnabled]) {
+            case (true, true):
+                make.centerX.equalToSuperview().offset(left - right)
+            case (true, false):
+                make.left.equalToSuperview().offset(left)
+            case (false, true):
+                make.right.equalToSuperview().offset(-right)
+            default:
+                make.centerX.equalToSuperview()
+            }
+        }
     }
     
 }

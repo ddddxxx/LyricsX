@@ -33,9 +33,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var lyricsOffsetTextField: NSTextField!
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
+    
+    var desktopLyrics: NSWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
+        
+        desktopLyrics = NSStoryboard.main().instantiateController(withIdentifier: "DesktopLyricsWindow") as? NSWindowController
+        desktopLyrics?.showWindow(nil)
+        desktopLyrics?.window?.makeKeyAndOrderFront(nil)
         
         MenuBarLyrics.shared.statusItem.menu = statusBarMenu
         

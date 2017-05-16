@@ -27,6 +27,10 @@ extension NSObject {
     func bind<T>(_ binding: String, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [String : Any]? = nil) {
         bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
     }
+    
+    open func addObserver<T>(_ observer: NSObject, forKeyPath keyPath: UserDefaults.DefaultKey<T>, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer? = nil) {
+        addObserver(observer, forKeyPath: keyPath.rawValue, options: options, context: context)
+    }
 }
 
 extension Dictionary where Key == String, Value == Any {
