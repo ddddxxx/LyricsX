@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="N3z-4I-Oeu">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -253,7 +253,7 @@
         <!--Desktop Lyrics Window Controller-->
         <scene sceneID="nf6-bn-z8A">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="N3z-4I-Oeu" userLabel="Desktop Lyrics Window Controller" customClass="DesktopLyricsWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="DesktopLyricsWindow" showSeguePresentationStyle="single" id="N3z-4I-Oeu" userLabel="Desktop Lyrics Window Controller" customClass="DesktopLyricsWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="fhu-ba-Lnu">
                         <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
