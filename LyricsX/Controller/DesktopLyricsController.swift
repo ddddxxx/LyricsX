@@ -188,6 +188,8 @@ class DesktopLyricsViewController: NSViewController {
             let right = defaults[.DesktopLyricsInsetRight]
             
             switch (defaults[.DesktopLyricsInsetTopEnabled], defaults[.DesktopLyricsInsetBottomEnabled]) {
+            case (true, true):
+                make.centerY.equalToSuperview().offset(top - bottom)
             case (true, false):
                 make.top.equalToSuperview().offset(top)
             case (false, true):
@@ -197,6 +199,8 @@ class DesktopLyricsViewController: NSViewController {
             }
             
             switch (defaults[.DesktopLyricsInsetLeftEnabled], defaults[.DesktopLyricsInsetRightEnabled]) {
+            case (true, true):
+                make.centerX.equalToSuperview().offset(left - right)
             case (true, false):
                 make.left.equalToSuperview().offset(left)
             case (false, true):
