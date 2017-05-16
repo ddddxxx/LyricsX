@@ -22,6 +22,8 @@
 	<true/>
 	<key>DisableLyricsWhenSreenShot</key>
 	<true/>
+	<key>DesktopLyricsInsetBottomEnabled</key>
+	<true/>
 	<key>DesktopLyricsInsetBottom</key>
 	<integer>20</integer>
 	<key>DesktopLyricsFontName</key>

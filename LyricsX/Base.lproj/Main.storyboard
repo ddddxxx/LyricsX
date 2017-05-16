@@ -711,11 +711,169 @@
             <objects>
                 <viewController id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="252"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="302"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <textField allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omX-p8-BIa" userLabel="Top Inset">
+                                <rect key="frame" x="264" y="260" width="72" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="0bf-gS-eUv"/>
+                                    <constraint firstAttribute="height" constant="22" id="7m5-0K-UGg"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="uwH-ai-UDc">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="syH-Kv-Grd"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetTop" id="zO5-EQ-14C">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="0"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeb-2M-0tH" userLabel="Bottom Inset">
+                                <rect key="frame" x="264" y="168" width="72" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="LXV-EN-aVM"/>
+                                    <constraint firstAttribute="height" constant="22" id="dGv-J9-xyx"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="pAd-oS-Vzm">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Fos-SU-Fot"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetBottom" id="TMd-n2-oHs">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="20"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTs-tc-7ow" userLabel="Left Inset">
+                                <rect key="frame" x="193" y="214" width="72" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="4SD-xN-R2A"/>
+                                    <constraint firstAttribute="width" constant="72" id="OZY-GN-Wa6"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Rbf-cS-AIb">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Npm-0k-L90"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetLeft" id="Dca-1q-jfB">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="0"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9x-aq-xVB" userLabel="Right Inset">
+                                <rect key="frame" x="335" y="214" width="72" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="NIf-qh-gwT"/>
+                                    <constraint firstAttribute="width" constant="72" id="RlO-Bo-j9j"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="4YG-1s-OwC">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Hp4-3Z-8R4"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetRight" id="Wsv-3f-4bv">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="0"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="ypM-pp-BJC" userLabel="Top Inset Enable">
+                                <rect key="frame" x="293" y="238" width="14" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="mUd-ec-UW6"/>
+                                    <constraint firstAttribute="width" constant="14" id="q34-Um-iWG"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="gap_hollow_vertical" imagePosition="left" alternateImage="gap_solid_vertical" state="on" inset="2" id="oWk-Uv-xMg">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetTopEnabled" id="rsR-Xr-DbF"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="jtx-mE-gSf" userLabel="Bottom Inset Enable">
+                                <rect key="frame" x="293" y="194" width="14" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="GaH-aQ-xbO"/>
+                                    <constraint firstAttribute="height" constant="18" id="t2Z-f3-zmB"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="gap_hollow_vertical" imagePosition="left" alternateImage="gap_solid_vertical" state="on" inset="2" id="R9h-pZ-E8H">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetBottomEnabled" id="THj-E6-htC"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="BgT-4z-Ttn" userLabel="Left Inset Enable">
+                                <rect key="frame" x="269" y="218" width="18" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="Djh-lw-LPC"/>
+                                    <constraint firstAttribute="height" constant="14" id="osU-Ue-LVK"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="gap_hollow_horizontal" imagePosition="left" alternateImage="gap_solid_horizontal" state="on" inset="2" id="aA9-jw-Q6f">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetLeftEnabled" id="ZOG-fF-MXA"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="mJO-Zo-M0B" userLabel="Right Inset Enable">
+                                <rect key="frame" x="313" y="218" width="18" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="556-d6-erY"/>
+                                    <constraint firstAttribute="height" constant="14" id="Jas-Dy-yJO"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="gap_hollow_horizontal" imagePosition="left" alternateImage="gap_solid_horizontal" state="on" inset="2" id="DhR-J2-enu">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetRightEnabled" id="TkA-JW-2ZD"/>
+                                </connections>
+                            </button>
+                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="g9p-LU-8NU" userLabel="Rect Center">
+                                <rect key="frame" x="291" y="216" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="0NP-sr-XSb"/>
+                                    <constraint firstAttribute="width" constant="18" id="5DJ-f0-ECi"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="rect_center" id="dCG-yk-Dui"/>
+                            </imageView>
+                            <textField allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhu-4A-8yr">
+                                <rect key="frame" x="226" y="143" width="148" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="D66-gd-XEk"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Spacing to screen edge" id="p7Y-sV-OPH">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-Xq-2K7">
+                                <rect key="frame" x="20" y="124" width="560" height="5"/>
+                            </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbH-Ph-PYg">
-                                <rect key="frame" x="142" y="94" width="40" height="17"/>
+                                <rect key="frame" x="142" y="90" width="40" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="9NT-Kb-10b"/>
                                 </constraints>
@@ -725,8 +883,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHc-gj-4JF">
-                                <rect key="frame" x="196" y="92" width="260" height="22"/>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHc-gj-4JF">
+                                <rect key="frame" x="196" y="88" width="260" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="co2-Ou-lic"/>
                                 </constraints>
@@ -749,7 +907,7 @@
                                 </connections>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="peK-p0-cOB">
-                                <rect key="frame" x="432" y="92" width="24" height="22"/>
+                                <rect key="frame" x="432" y="88" width="24" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="GNN-su-fP4"/>
                                 </constraints>
@@ -799,7 +957,7 @@
                                     </binding>
                                 </connections>
                             </colorWell>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn1-Pb-VCw">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn1-Pb-VCw">
                                 <rect key="frame" x="280" y="24" width="40" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics" id="3Bt-md-QNc">
                                     <font key="font" metaFont="system"/>
@@ -830,84 +988,56 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omX-p8-BIa">
-                                <rect key="frame" x="252" y="210" width="96" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="uwH-ai-UDc">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="syH-Kv-Grd"/>
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetTop" id="QVv-bH-cHi"/>
-                                </connections>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTs-tc-7ow">
-                                <rect key="frame" x="148" y="176" width="96" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Rbf-cS-AIb">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Npm-0k-L90"/>
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetLeft" id="D0C-1K-ot2"/>
-                                </connections>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9x-aq-xVB">
-                                <rect key="frame" x="356" y="176" width="96" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="4YG-1s-OwC">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Hp4-3Z-8R4"/>
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetRight" id="j2H-FX-GWs"/>
-                                </connections>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeb-2M-0tH">
-                                <rect key="frame" x="252" y="144" width="96" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="pAd-oS-Vzm">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Fos-SU-Fot"/>
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsInsetBottom" id="mDL-gA-Wh6"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="fhu-4A-8yr" firstAttribute="top" secondItem="zeb-2M-0tH" secondAttribute="bottom" constant="8" id="0NE-Nd-j7G"/>
                             <constraint firstItem="9of-o0-c02" firstAttribute="bottom" secondItem="UmX-Zf-IW4" secondAttribute="bottom" id="0wh-E8-9Nv"/>
+                            <constraint firstItem="Z9x-aq-xVB" firstAttribute="centerY" secondItem="mJO-Zo-M0B" secondAttribute="centerY" id="59W-vq-Xl5"/>
                             <constraint firstItem="eGr-gm-cw0" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="bottom" constant="4" id="6CH-uN-u6O"/>
                             <constraint firstItem="eUo-ma-3JR" firstAttribute="centerX" secondItem="9of-o0-c02" secondAttribute="centerX" id="7nh-kp-aq7"/>
                             <constraint firstItem="peK-p0-cOB" firstAttribute="trailing" secondItem="oHc-gj-4JF" secondAttribute="trailing" id="84M-qN-eoS"/>
-                            <constraint firstItem="9of-o0-c02" firstAttribute="top" secondItem="oHc-gj-4JF" secondAttribute="bottom" constant="24" id="IiM-f0-Nji"/>
+                            <constraint firstItem="g9p-LU-8NU" firstAttribute="centerX" secondItem="ypM-pp-BJC" secondAttribute="centerX" id="8Di-Y5-PrY"/>
+                            <constraint firstAttribute="trailing" secondItem="QfW-Xq-2K7" secondAttribute="trailing" constant="20" id="9f5-gw-cmf"/>
+                            <constraint firstItem="oHc-gj-4JF" firstAttribute="top" secondItem="QfW-Xq-2K7" secondAttribute="bottom" constant="16" id="Dpk-Qu-qVh"/>
+                            <constraint firstItem="Jji-JX-Etj" firstAttribute="top" secondItem="oHc-gj-4JF" secondAttribute="bottom" constant="20" id="EEk-1X-vKC"/>
                             <constraint firstItem="9of-o0-c02" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="top" id="KAX-fo-u9Z"/>
                             <constraint firstItem="hn1-Pb-VCw" firstAttribute="centerX" secondItem="Jji-JX-Etj" secondAttribute="centerX" id="KQl-c7-ALC"/>
+                            <constraint firstItem="Z9x-aq-xVB" firstAttribute="leading" secondItem="mJO-Zo-M0B" secondAttribute="trailing" constant="4" id="Myj-Fp-0oK"/>
+                            <constraint firstItem="QfW-Xq-2K7" firstAttribute="top" secondItem="fhu-4A-8yr" secondAttribute="bottom" constant="16" id="PYU-eS-Pfa"/>
+                            <constraint firstItem="BgT-4z-Ttn" firstAttribute="centerY" secondItem="MTs-tc-7ow" secondAttribute="centerY" id="Ph1-f7-n5S"/>
                             <constraint firstItem="peK-p0-cOB" firstAttribute="top" secondItem="oHc-gj-4JF" secondAttribute="top" id="RX7-wi-4yJ"/>
+                            <constraint firstItem="ypM-pp-BJC" firstAttribute="top" secondItem="omX-p8-BIa" secondAttribute="bottom" constant="4" id="TLD-hb-juV"/>
                             <constraint firstItem="oHc-gj-4JF" firstAttribute="centerY" secondItem="YbH-Ph-PYg" secondAttribute="centerY" id="TcT-2h-Jcb"/>
                             <constraint firstItem="Jji-JX-Etj" firstAttribute="centerX" secondItem="Y71-zj-nPg" secondAttribute="centerX" id="U2k-Qo-mRt"/>
                             <constraint firstAttribute="bottom" secondItem="hn1-Pb-VCw" secondAttribute="bottom" constant="24" id="VQQ-X7-Smb"/>
                             <constraint firstItem="peK-p0-cOB" firstAttribute="bottom" secondItem="oHc-gj-4JF" secondAttribute="bottom" id="Wag-00-1SJ"/>
                             <constraint firstItem="YbH-Ph-PYg" firstAttribute="trailing" secondItem="Y71-zj-nPg" secondAttribute="centerX" constant="-120" id="ZIJ-cg-4j1"/>
+                            <constraint firstItem="ypM-pp-BJC" firstAttribute="centerX" secondItem="omX-p8-BIa" secondAttribute="centerX" id="aYU-3n-0PV"/>
                             <constraint firstItem="oHc-gj-4JF" firstAttribute="leading" secondItem="YbH-Ph-PYg" secondAttribute="trailing" constant="16" id="aeG-yk-bYd"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oHc-gj-4JF" secondAttribute="trailing" constant="40" id="beZ-UQ-pc7"/>
+                            <constraint firstItem="g9p-LU-8NU" firstAttribute="centerY" secondItem="BgT-4z-Ttn" secondAttribute="centerY" id="e4y-11-tFO"/>
+                            <constraint firstItem="QfW-Xq-2K7" firstAttribute="leading" secondItem="Y71-zj-nPg" secondAttribute="leading" constant="20" id="eEJ-p0-5fO"/>
+                            <constraint firstItem="BgT-4z-Ttn" firstAttribute="leading" secondItem="MTs-tc-7ow" secondAttribute="trailing" constant="4" id="eaC-4R-0sx"/>
+                            <constraint firstItem="g9p-LU-8NU" firstAttribute="leading" secondItem="BgT-4z-Ttn" secondAttribute="trailing" constant="4" id="evo-7C-rTb"/>
+                            <constraint firstItem="fhu-4A-8yr" firstAttribute="centerX" secondItem="Y71-zj-nPg" secondAttribute="centerX" id="g9G-yj-xwu"/>
+                            <constraint firstItem="jtx-mE-gSf" firstAttribute="centerX" secondItem="g9p-LU-8NU" secondAttribute="centerX" id="i5q-kh-KJi"/>
+                            <constraint firstItem="mJO-Zo-M0B" firstAttribute="centerY" secondItem="g9p-LU-8NU" secondAttribute="centerY" id="jiR-rB-0LK"/>
+                            <constraint firstItem="jtx-mE-gSf" firstAttribute="centerX" secondItem="zeb-2M-0tH" secondAttribute="centerX" id="mTe-e1-m0P"/>
                             <constraint firstItem="hn1-Pb-VCw" firstAttribute="top" secondItem="Jji-JX-Etj" secondAttribute="bottom" constant="4" id="n67-RC-Ut0"/>
+                            <constraint firstItem="g9p-LU-8NU" firstAttribute="top" secondItem="ypM-pp-BJC" secondAttribute="bottom" constant="4" id="nX6-yo-bFZ"/>
+                            <constraint firstItem="mJO-Zo-M0B" firstAttribute="leading" secondItem="g9p-LU-8NU" secondAttribute="trailing" constant="4" id="swt-kW-4ox"/>
                             <constraint firstItem="Jji-JX-Etj" firstAttribute="leading" secondItem="UmX-Zf-IW4" secondAttribute="trailing" constant="60" id="tKJ-Vf-gw4"/>
+                            <constraint firstItem="omX-p8-BIa" firstAttribute="top" secondItem="Y71-zj-nPg" secondAttribute="top" constant="20" id="tLf-qs-a3q"/>
                             <constraint firstItem="eGr-gm-cw0" firstAttribute="centerX" secondItem="UmX-Zf-IW4" secondAttribute="centerX" id="uS2-a1-OkG"/>
                             <constraint firstItem="eUo-ma-3JR" firstAttribute="top" secondItem="9of-o0-c02" secondAttribute="bottom" constant="4" id="vCR-0O-o9D"/>
                             <constraint firstItem="peK-p0-cOB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oHc-gj-4JF" secondAttribute="leading" id="vOT-Z7-CXj"/>
+                            <constraint firstItem="g9p-LU-8NU" firstAttribute="centerX" secondItem="Y71-zj-nPg" secondAttribute="centerX" id="wlI-mJ-fyS"/>
                             <constraint firstItem="Jji-JX-Etj" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="top" id="xdH-HW-svG"/>
                             <constraint firstItem="YbH-Ph-PYg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y71-zj-nPg" secondAttribute="leading" constant="40" id="ybH-bI-3WA"/>
                             <constraint firstItem="Jji-JX-Etj" firstAttribute="bottom" secondItem="UmX-Zf-IW4" secondAttribute="bottom" id="ywn-6M-DJS"/>
+                            <constraint firstItem="jtx-mE-gSf" firstAttribute="top" secondItem="g9p-LU-8NU" secondAttribute="bottom" constant="4" id="z3Q-KJ-gET"/>
                             <constraint firstItem="9of-o0-c02" firstAttribute="leading" secondItem="Jji-JX-Etj" secondAttribute="trailing" constant="60" id="z7V-KC-dtd"/>
+                            <constraint firstItem="zeb-2M-0tH" firstAttribute="top" secondItem="jtx-mE-gSf" secondAttribute="bottom" constant="4" id="zyt-hF-dRj"/>
                         </constraints>
                     </view>
                     <connections>
@@ -919,7 +1049,7 @@
                 <customObject id="mRF-Ay-vJP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="Nm6-oq-wpY"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="143"/>
+            <point key="canvasLocation" x="1969" y="155"/>
         </scene>
         <!--Filter-->
         <scene sceneID="I5E-Nt-3Jp">
@@ -1842,12 +1972,17 @@ IA
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="donate_alipay" width="200" height="200"/>
         <image name="font_panel" width="22" height="20"/>
+        <image name="gap_hollow_horizontal" width="18" height="14"/>
+        <image name="gap_hollow_vertical" width="14" height="18"/>
+        <image name="gap_solid_horizontal" width="18" height="14"/>
+        <image name="gap_solid_vertical" width="14" height="18"/>
         <image name="hud_button_lock_off" width="11" height="11"/>
         <image name="hud_button_lock_on" width="11" height="11"/>
         <image name="hud_button_sync_button" width="14" height="12"/>
         <image name="iTunes_icon" width="128" height="128"/>
         <image name="missing_artwork" width="800" height="800"/>
         <image name="now_playing" width="64" height="64"/>
+        <image name="rect_center" width="18" height="18"/>
         <image name="spotify_icon" width="128" height="128"/>
         <image name="toolbar_filter" width="32" height="32"/>
         <image name="vox_icon" width="128" height="128"/>

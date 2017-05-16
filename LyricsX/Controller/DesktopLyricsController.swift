@@ -104,21 +104,29 @@ class DesktopLyricsViewController: NSViewController {
             }
         }
         
-        let block = { (_ :Int?, _: Int?) -> Void in
-            NSAnimationContext.runAnimationGroup({ context in
-                context.duration = 0.2
-                context.allowsImplicitAnimation = true
-                context.timingFunction = .mystery
-                self.makeConstraints()
-                self.view.needsLayout = true
-                self.view.layoutSubtreeIfNeeded()
-                self.view.displayIfNeeded()
-            })
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetTopEnabled)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetBottomEnabled)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetLeftEnabled)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetRightEnabled)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetTop)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetBottom)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetLeft)
+        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetRight)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard object as? UserDefaults == defaults else {
+            return
         }
-        defaults.addObserver(key: .DesktopLyricsInsetTop, using: block)
-        defaults.addObserver(key: .DesktopLyricsInsetBottom, using: block)
-        defaults.addObserver(key: .DesktopLyricsInsetLeft, using: block)
-        defaults.addObserver(key: .DesktopLyricsInsetRight, using: block)
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0.2
+            context.allowsImplicitAnimation = true
+            context.timingFunction = .mystery
+            self.makeConstraints()
+            self.view.needsLayout = true
+            self.view.layoutSubtreeIfNeeded()
+            self.view.displayIfNeeded()
+        })
     }
     
     func handlePositionChange(_ n: Notification) {
