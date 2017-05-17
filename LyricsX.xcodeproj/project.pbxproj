@@ -122,7 +122,7 @@
 		BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayerProtocol.swift; path = MediaPlayer/MusicPlayerProtocol.swift; sourceTree = "<group>"; };
 		BB45AC831E9F220E0099432F /* LyricsKugou.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsKugou.swift; path = Lyrics/LyricsKugou.swift; sourceTree = "<group>"; };
 		BB45AC851E9F65E90099432F /* LyricsSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceProtocol.swift; path = Lyrics/LyricsSourceProtocol.swift; sourceTree = "<group>"; };
-		BB5596E11EB856140064D278 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+		BB5596E11EB856140064D278 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Updater.swift; path = Utility/Updater.swift; sourceTree = "<group>"; };
 		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsGecimi.swift; path = Lyrics/LyricsGecimi.swift; sourceTree = "<group>"; };
 		BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceManager.swift; path = Lyrics/LyricsSourceManager.swift; sourceTree = "<group>"; };
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoActivateWindowController.swift; path = Controller/AutoActivateWindowController.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		BB60F30E1E889C5400BA1FD2 /* LyricsXHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsXHelper.entitlements; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsHUDViewController.swift; path = Controller/LyricsHUDViewController.swift; sourceTree = "<group>"; };
 		BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LyricsX.entitlements; path = "Support Files/LyricsX.entitlements"; sourceTree = "<group>"; };
-		BB9BCEB91E843157001BC54B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		BB9BCEB91E843157001BC54B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = Utility/Extension.swift; sourceTree = "<group>"; };
 		BB9C6C971E51DACD00771424 /* LyricsTTPod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsTTPod.swift; path = Lyrics/LyricsTTPod.swift; sourceTree = "<group>"; };
 		BBB8DA3B1E86653700EF0A18 /* SpotifyBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotifyBridge.swift; path = MediaPlayer/SpotifyBridge.swift; sourceTree = "<group>"; };
 		BBB8DA3D1E86657F00EF0A18 /* VoxBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoxBridge.swift; path = MediaPlayer/VoxBridge.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iTunes.swift; path = MediaPlayer/iTunes.swift; sourceTree = "<group>"; };
 		BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spotify.swift; path = MediaPlayer/Spotify.swift; sourceTree = "<group>"; };
 		BBC1D35A1E485BA7002538A2 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
-		BBC1D35E1E499A6D002538A2 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		BBC1D35E1E499A6D002538A2 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Global.swift; path = Utility/Global.swift; sourceTree = "<group>"; };
 		BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuBarLyrics.swift; path = Controller/MenuBarLyrics.swift; sourceTree = "<group>"; };
 		BBC1D5861E4B1C44008869EC /* LyricsXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyricsXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC1D5881E4B1C44008869EC /* LyricsXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsXTests.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 		BBC811791E9E1D0000331CFC /* MusicPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayerManager.swift; path = MediaPlayer/MusicPlayerManager.swift; sourceTree = "<group>"; };
 		BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DragNDropView.swift; path = View/DragNDropView.swift; sourceTree = "<group>"; };
 		BBE557961EC0291E00F1EC31 /* GenericID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GenericID.framework; path = Carthage/Build/Mac/GenericID.framework; sourceTree = "<group>"; };
-		BBE5579A1EC2AB3700F1EC31 /* WrongLyricsUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrongLyricsUtil.swift; sourceTree = "<group>"; };
+		BBE5579A1EC2AB3700F1EC31 /* WrongLyricsUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WrongLyricsUtil.swift; path = Utility/WrongLyricsUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
