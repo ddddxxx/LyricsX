@@ -36,6 +36,10 @@ extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
 }
 
+func log(_ message: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) {
+    NSLog("\(file):\(line): \(message())")
+}
+
 // MARK: - Notification Name
 
 let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"

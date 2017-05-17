@@ -49,7 +49,6 @@ class DragNDropView: NSView {
         if pboard.types?.contains(NSStringPboardType) == true,
             let str = pboard.string(forType: NSStringPboardType) {
             dragDelegate?.dragFinished(content: str)
-            Swift.print(str)
             return true
         }
         
@@ -58,7 +57,6 @@ class DragNDropView: NSView {
             let path = files.first as? String,
             let str = try? String(contentsOf: URL(fileURLWithPath: path)) {
             dragDelegate?.dragFinished(content: str)
-            Swift.print(str)
             return true
         }
         

@@ -83,7 +83,7 @@ extension UserDefaults {
                 }
                 return url
             } catch let error {
-                print(error)
+                log(error.localizedDescription)
                 return nil
             }
         }
@@ -175,7 +175,7 @@ extension Lyrics {
                                         translation: true)
             try content.write(to: lrcFileURL, atomically: true, encoding: .utf8)
         } catch let error as NSError{
-            print(error)
+            log(error.localizedDescription)
             return
         }
     }

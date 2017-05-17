@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
         if defaults[.LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
-                print("Failed to enable login item")
+                log("Failed to enable login item")
             }
         }
         
