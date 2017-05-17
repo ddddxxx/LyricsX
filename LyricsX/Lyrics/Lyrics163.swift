@@ -1,9 +1,7 @@
 //
 //  Lyrics163.swift
-//  LyricsX
 //
-//  Created by 邓翔 on 2017/3/8.
-//
+//  This file is part of LyricsX
 //  Copyright (C) 2017  Xander Deng
 //
 //  This program is free software: you can redistribute it and/or modify

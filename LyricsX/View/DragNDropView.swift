@@ -1,9 +1,7 @@
 //
 //  DragNDropView.swift
-//  LyricsX
 //
-//  Created by 邓翔 on 2017/4/10.
-//
+//  This file is part of LyricsX
 //  Copyright (C) 2017  Xander Deng
 //
 //  This program is free software: you can redistribute it and/or modify
