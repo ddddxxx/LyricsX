@@ -50,6 +50,15 @@ class iTunes: MusicPlayer {
         }
     }
     
+    var currentLyrics: String? {
+        get {
+            return _iTunes.currentTrack?.lyrics as String?
+        }
+        set {
+            (_iTunes.currentTrack as? SBObject)?.setValue(newValue ?? "", forKey: "lyrics")
+        }
+    }
+    
     private var _iTunes: iTunesApplication
     
     private init?() {
