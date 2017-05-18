@@ -72,13 +72,12 @@ class DesktopLyricsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dfs = UserDefaults.standard
         let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind("fontName", to: dfs, withKeyPath: .DesktopLyricsFontName, options: nil)
-        lyricsView.bind("fontSize", to: dfs, withKeyPath: .DesktopLyricsFontSize, options: nil)
-        lyricsView.bind("textColor", to: dfs, withKeyPath: .DesktopLyricsColor, options: transOpt)
-        lyricsView.bind("shadowColor", to: dfs, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
-        lyricsView.bind("fillColor", to: dfs, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
+        lyricsView.bind("fontName", to: defaults, withKeyPath: .DesktopLyricsFontName, options: nil)
+        lyricsView.bind("fontSize", to: defaults, withKeyPath: .DesktopLyricsFontSize, options: nil)
+        lyricsView.bind("textColor", to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
+        lyricsView.bind("shadowColor", to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
+        lyricsView.bind("fillColor", to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         
         makeConstraints()
         
