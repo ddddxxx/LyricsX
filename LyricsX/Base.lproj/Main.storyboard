@@ -152,13 +152,13 @@
                                 <segue destination="Fyy-jy-wIT" kind="show" id="QlQ-Pc-nUk"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Write to iTunes" id="kNl-ZO-aX6">
+                        <menuItem title="Write to iTunes" identifier="WriteToiTunes" id="kNl-ZO-aX6">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="writeToiTunes:" target="Voe-Tx-rLC" id="4Gb-qk-5mT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Wrong Lyrics" id="fmS-zv-RcJ">
+                        <menuItem title="Wrong Lyrics" identifier="WrongLyrics" id="fmS-zv-RcJ">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="wrongLyrics:" target="Voe-Tx-rLC" id="PSJ-f3-tnK"/>

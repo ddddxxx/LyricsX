@@ -67,6 +67,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        switch menuItem.identifier {
+        case "WriteToiTunes"?:
+            return MusicPlayerManager.shared.player is iTunes && AppController.shared.currentLyrics != nil
+        case "WrongLyrics"?:
+            return AppController.shared.currentLyrics != nil
+        default:
+            return true
+        }
+    }
+    
+    // MARK: - Menubar Action
+    
     @IBAction func checkUpdateAction(_ sender: Any) {
         DispatchQueue.global().async {
             checkForUpdate(force: true)
