@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -150,6 +150,12 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="Fyy-jy-wIT" kind="show" id="QlQ-Pc-nUk"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Write to iTunes" id="kNl-ZO-aX6">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="writeToiTunes:" target="Voe-Tx-rLC" id="4Gb-qk-5mT"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Wrong Lyrics" id="fmS-zv-RcJ">
