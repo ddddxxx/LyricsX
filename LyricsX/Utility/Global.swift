@@ -1,9 +1,7 @@
 //
 //  GlobalConst.swift
-//  LyricsX
 //
-//  Created by 邓翔 on 2017/2/7.
-//
+//  This file is part of LyricsX
 //  Copyright (C) 2017  Xander Deng
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -34,6 +32,10 @@ extension UserDefaults {
 
 extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
+}
+
+func log(_ message: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) {
+    NSLog("\(file):\(line): \(message())")
 }
 
 // MARK: - Notification Name

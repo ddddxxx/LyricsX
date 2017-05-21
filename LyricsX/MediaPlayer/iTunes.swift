@@ -1,9 +1,7 @@
 //
 //  iTunes.swift
-//  LyricsX
 //
-//  Created by 邓翔 on 2017/3/25.
-//
+//  This file is part of LyricsX
 //  Copyright (C) 2017  Xander Deng
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -49,6 +47,15 @@ class iTunes: MusicPlayer {
         set {
             guard isRunning else { return }
             (_iTunes as! SBApplication).setValue(newValue, forKey: "playerPosition")
+        }
+    }
+    
+    var currentLyrics: String? {
+        get {
+            return _iTunes.currentTrack?.lyrics as String?
+        }
+        set {
+            (_iTunes.currentTrack as? SBObject)?.setValue(newValue ?? "", forKey: "lyrics")
         }
     }
     

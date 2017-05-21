@@ -1,9 +1,7 @@
 //
 //  AppDelegate.swift
-//  LyricsX
 //
-//  Created by 邓翔 on 2017/2/4.
-//
+//  This file is part of LyricsX
 //  Copyright (C) 2017  Xander Deng
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -52,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
         if defaults[.LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
-                print("Failed to enable login item")
+                log("Failed to enable login item")
             }
         }
         
@@ -69,10 +67,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        switch menuItem.identifier {
+        case "WriteToiTunes"?:
+            return MusicPlayerManager.shared.player is iTunes && AppController.shared.currentLyrics != nil
+        case "WrongLyrics"?:
+            return AppController.shared.currentLyrics != nil
+        default:
+            return true
+        }
+    }
+    
+    // MARK: - Menubar Action
+    
     @IBAction func checkUpdateAction(_ sender: Any) {
         DispatchQueue.global().async {
             checkForUpdate(force: true)
         }
+    }
+    
+    @IBAction func writeToiTunes(_ sender: Any) {
+        guard let player = MusicPlayerManager.shared.player as? iTunes else {
+            return
+        }
+        player.currentLyrics = AppController.shared.currentLyrics?.contentString(withMetadata: false, ID3: false, timeTag: false, translation: defaults[.PreferBilingualLyrics])
     }
     
     @IBAction func wrongLyrics(_ sender: Any) {

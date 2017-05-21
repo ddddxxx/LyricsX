@@ -1,9 +1,7 @@
 //
 //  BasicExtension.swift
-//  LyricsX
 //
-//  Created by 邓翔 on 2017/3/24.
-//
+//  This file is part of LyricsX
 //  Copyright (C) 2017  Xander Deng
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -83,7 +81,7 @@ extension UserDefaults {
                 }
                 return url
             } catch let error {
-                print(error)
+                log(error.localizedDescription)
                 return nil
             }
         }
@@ -175,7 +173,7 @@ extension Lyrics {
                                         translation: true)
             try content.write(to: lrcFileURL, atomically: true, encoding: .utf8)
         } catch let error as NSError{
-            print(error)
+            log(error.localizedDescription)
             return
         }
     }

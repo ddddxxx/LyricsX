@@ -1,9 +1,7 @@
 //
 //  SearchLyricsViewController.swift
-//  LyricsX
 //
-//  Created by 邓翔 on 2017/2/18.
-//
+//  This file is part of LyricsX
 //  Copyright (C) 2017  Xander Deng
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -148,7 +146,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             do {
                 try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)
             } catch let error as NSError{
-                print(error)
+                log(error.localizedDescription)
                 return nil
             }
             
