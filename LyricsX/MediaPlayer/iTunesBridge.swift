@@ -197,9 +197,9 @@ import ScriptingBridge
     // the currently selected equalizer preset
     @objc optional var currentPlaylist: iTunesPlaylist {get}
     // the playlist containing the currently targeted track
-    @objc optional var currentStreamTitle: NSString {get}
+    @objc optional var currentStreamTitle: NSString? {get}
     // the name of the current song in the playing stream (provided by streaming server)
-    @objc optional var currentStreamURL: NSString {get}
+    @objc optional var currentStreamURL: NSString? {get}
     // the URL of the playing stream or streaming web site (provided by streaming server)
     @objc optional var currentTrack: iTunesTrack {get}
     // the current targeted track
@@ -213,7 +213,7 @@ import ScriptingBridge
     // is iTunes the frontmost application?
     @objc optional var fullScreen: Bool {get set}
     // are visuals displayed using the entire screen?
-    @objc optional var name: NSString {get}
+    @objc optional var name: NSString? {get}
     // the name of the application
     @objc optional var mute: Bool {get set}
     // has the sound output been muted?
@@ -231,7 +231,7 @@ import ScriptingBridge
     // the playback repeat mode
     @objc optional var soundVolume: NSInteger {get set}
     // the sound output volume (0 = minimum, 100 = maximum)
-    @objc optional var version: NSString {get}
+    @objc optional var version: NSString? {get}
     // the version of iTunes
     @objc optional var visualsEnabled: Bool {get set}
     // are visuals currently being displayed?
@@ -293,7 +293,7 @@ extension SBApplication: iTunesApplication{}
     // The index of the item in internal application order.
     @objc optional var name: NSString? {get set}
     // the name of the item
-    @objc optional var persistentID: NSString {get}
+    @objc optional var persistentID: NSString? {get}
     // the id of the item as a hexadecimal string. This id does not change over time.
     @objc optional var properties: NSDictionary {get set}
     // every property of the item
@@ -313,7 +313,7 @@ extension SBObject: iTunesItem{}
     // is the device currently available?
     @objc optional var kind: iTunesEAPD {get}
     // the kind of the device
-    @objc optional var networkAddress: NSString {get}
+    @objc optional var networkAddress: NSString? {get}
     // the network (MAC) address of the device
     @objc optional func protected() -> Bool
     // is the device password- or passcode-protected?
@@ -333,7 +333,7 @@ extension SBObject: iTunesAirPlayDevice{}
 @objc protocol iTunesArtwork: iTunesItem {
     @objc optional var data: NSImage {get set}
     // data for this artwork, in the form of a picture
-    @objc optional var objectDescription: NSString {get set}
+    @objc optional var objectDescription: NSString? {get set}
     // description of artwork as a string
     @objc optional var downloaded: Bool {get}
     // was this artwork downloaded by iTunes?
@@ -349,7 +349,7 @@ extension SBObject: iTunesArtwork{}
 
 // converts a track to a specific file format
 @objc protocol iTunesEncoder: iTunesItem {
-    @objc optional var format: NSString {get}
+    @objc optional var format: NSString? {get}
     // the data format created by the encoder
 }
 extension SBObject: iTunesEncoder{}
@@ -391,13 +391,13 @@ extension SBObject: iTunesEQPreset{}
 @objc protocol iTunesPlaylist: iTunesItem {
     @objc optional func tracks() -> [iTunesTrack]
     @objc optional func artworks() -> [iTunesArtwork]
-    @objc optional var objectDescription: NSString {get set}
+    @objc optional var objectDescription: NSString? {get set}
     // the description of the playlist
     @objc optional var disliked: Bool {get set}
     // is this playlist disliked?
     @objc optional var duration: NSInteger {get}
     // the total length of all songs (in seconds)
-    @objc optional var name: NSString {get set}
+    @objc optional var name: NSString? {get set}
     // the name of the playlist
     @objc optional var loved: Bool {get set}
     // is this playlist loved?
@@ -409,7 +409,7 @@ extension SBObject: iTunesEQPreset{}
     @objc optional var songRepeat: iTunesERpt {get set}
     // playback repeat mode (obsolete	@objc optional var specialKind: iTunesESpK {get}
     // special playlist kind
-    @objc optional var time: NSString {get}
+    @objc optional var time: NSString? {get}
     // the length of all songs in MM:SS format
     @objc optional var visible: Bool {get}
     // is this playlist visible in the Source list?
@@ -424,17 +424,17 @@ extension SBObject: iTunesPlaylist{}
 // a playlist representing an audio CD
 @objc protocol iTunesAudioCDPlaylist: iTunesPlaylist {
     @objc optional func audioCDTracks() -> [iTunesAudioCDTrack]
-    @objc optional var artist: NSString {get set}
+    @objc optional var artist: NSString? {get set}
     // the artist of the CD
     @objc optional var compilation: Bool {get set}
     // is this CD a compilation album?
-    @objc optional var composer: NSString {get set}
+    @objc optional var composer: NSString? {get set}
     // the composer of the CD
     @objc optional var discCount: NSInteger {get set}
     // the total number of discs in this CD’s album
     @objc optional var discNumber: NSInteger {get set}
     // the index of this CD disc in the source album
-    @objc optional var genre: NSString {get set}
+    @objc optional var genre: NSString? {get set}
     // the genre of the CD
     @objc optional var year: NSInteger {get set}
     // the year the album was recorded/released
@@ -490,9 +490,9 @@ extension SBObject: iTunesSubscriptionPlaylist{}
 // playable audio source
 @objc protocol iTunesTrack: iTunesItem {
     @objc optional func artworks() -> [iTunesArtwork]
-    @objc optional var album: NSString {get set}
+    @objc optional var album: NSString? {get set}
     // the album name of the track
-    @objc optional var albumArtist: NSString {get set}
+    @objc optional var albumArtist: NSString? {get set}
     // the album artist of the track
     @objc optional var albumDisliked: Bool {get set}
     // is the album for this track disliked?
@@ -502,7 +502,7 @@ extension SBObject: iTunesSubscriptionPlaylist{}
     // the rating of the album for this track (0 to 100)
     @objc optional var albumRatingKind: iTunesERtK {get}
     // the rating kind of the album rating for this track
-    @objc optional var artist: NSString {get set}
+    @objc optional var artist: NSString? {get set}
     // the artist/source of the track
     @objc optional var bitRate: NSInteger {get}
     // the bit rate of the track (in kbps)
@@ -512,21 +512,21 @@ extension SBObject: iTunesSubscriptionPlaylist{}
     // is the playback position for this track remembered?
     @objc optional var bpm: NSInteger {get set}
     // the tempo of this track in beats per minute
-    @objc optional var category: NSString {get set}
+    @objc optional var category: NSString? {get set}
     // the category of the track
     @objc optional var cloudStatus: iTunesEClS {get}
     // the iCloud status of the track
-    @objc optional var comment: NSString {get set}
+    @objc optional var comment: NSString? {get set}
     // freeform notes about the track
     @objc optional var compilation: Bool {get set}
     // is this track from a compilation album?
-    @objc optional var composer: NSString {get set}
+    @objc optional var composer: NSString? {get set}
     // the composer of the track
     @objc optional var databaseID: NSInteger {get}
     // the common, unique ID for this track. If two tracks in different playlists have the same database ID, they are sharing the same data.
     @objc optional var dateAdded: NSDate {get}
     // the date the track was added to the playlist
-    @objc optional var objectDescription: NSString {get set}
+    @objc optional var objectDescription: NSString? {get set}
     // the description of the track
     @objc optional var discCount: NSInteger {get set}
     // the total number of discs in the source album
@@ -534,40 +534,40 @@ extension SBObject: iTunesSubscriptionPlaylist{}
     // the index of the disc containing this track on the source album
     @objc optional var disliked: Bool {get set}
     // is this track disliked?
-    @objc optional var downloaderAppleID: NSString {get}
+    @objc optional var downloaderAppleID: NSString? {get}
     // the Apple ID of the person who downloaded this track
-    @objc optional var downloaderName: NSString {get}
+    @objc optional var downloaderName: NSString? {get}
     // the name of the person who downloaded this track
     @objc optional var duration: CDouble {get}
     // the length of the track in seconds
     @objc optional var enabled: Bool {get set}
     // is this track checked for playback?
-    @objc optional var episodeID: NSString {get set}
+    @objc optional var episodeID: NSString? {get set}
     // the episode ID of the track
     @objc optional var episodeNumber: NSInteger {get set}
     // the episode number of the track
-    @objc optional var EQ: NSString {get set}
+    @objc optional var EQ: NSString? {get set}
     // the name of the EQ preset of the track
     @objc optional var finish: CDouble {get set}
     // the stop time of the track in seconds
     @objc optional var gapless: Bool {get set}
     // is this track from a gapless album?
-    @objc optional var genre: NSString {get set}
+    @objc optional var genre: NSString? {get set}
     // the music/audio genre (category) of the track
-    @objc optional var grouping: NSString {get set}
+    @objc optional var grouping: NSString? {get set}
     // the grouping (piece) of the track. Generally used to denote movements within a classical work.
-    @objc optional var kind: NSString {get}
+    @objc optional var kind: NSString? {get}
     // a text description of the track
-    @objc optional var longDescription: NSString {get set}
+    @objc optional var longDescription: NSString? {get set}
     @objc optional var loved: Bool {get set}
     // is this track loved?
-    @objc optional var lyrics: NSString {get set}
+    @objc optional var lyrics: NSString? {get set}
     // the lyrics of the track
     @objc optional var mediaKind: iTunesEMdK {get set}
     // the media kind of the track
     @objc optional var modificationDate: NSDate {get}
     // the modification date of the content of this track
-    @objc optional var movement: NSString {get set}
+    @objc optional var movement: NSString? {get set}
     // the movement name of the track
     @objc optional var movementCount: NSInteger {get set}
     // the total number of movements in the work
@@ -577,9 +577,9 @@ extension SBObject: iTunesSubscriptionPlaylist{}
     // number of times this track has been played
     @objc optional var playedDate: NSDate {get set}
     // the date and time this track was last played
-    @objc optional var purchaserAppleID: NSString {get}
+    @objc optional var purchaserAppleID: NSString? {get}
     // the Apple ID of the person who purchased this track
-    @objc optional var purchaserName: NSString {get}
+    @objc optional var purchaserName: NSString? {get}
     // the name of the person who purchased this track
     @objc optional var rating: NSInteger {get set}
     // the rating of this track (0 to 100)
@@ -597,25 +597,25 @@ extension SBObject: iTunesSubscriptionPlaylist{}
     // number of times this track has been skipped
     @objc optional var skippedDate: NSDate {get set}
     // the date and time this track was last skipped
-    @objc optional var show: NSString {get set}
+    @objc optional var show: NSString? {get set}
     // the show name of the track
-    @objc optional var sortAlbum: NSString {get set}
+    @objc optional var sortAlbum: NSString? {get set}
     // override string to use for the track when sorting by album
-    @objc optional var sortArtist: NSString {get set}
+    @objc optional var sortArtist: NSString? {get set}
     // override string to use for the track when sorting by artist
-    @objc optional var sortAlbumArtist: NSString {get set}
+    @objc optional var sortAlbumArtist: NSString? {get set}
     // override string to use for the track when sorting by album artist
-    @objc optional var sortName: NSString {get set}
+    @objc optional var sortName: NSString? {get set}
     // override string to use for the track when sorting by name
-    @objc optional var sortComposer: NSString {get set}
+    @objc optional var sortComposer: NSString? {get set}
     // override string to use for the track when sorting by composer
-    @objc optional var sortShow: NSString {get set}
+    @objc optional var sortShow: NSString? {get set}
     // override string to use for the track when sorting by show name
     @objc optional var size: CLong {get}
     // the size of the track (in bytes)
     @objc optional var start: CDouble {get set}
     // the start time of the track in seconds
-    @objc optional var time: NSString {get}
+    @objc optional var time: NSString? {get}
     // the length of the track in MM:SS format
     @objc optional var trackCount: NSInteger {get set}
     // the total number of tracks on the source album
@@ -627,7 +627,7 @@ extension SBObject: iTunesSubscriptionPlaylist{}
     // kind of video track
     @objc optional var volumeAdjustment: NSInteger {get set}
     // relative volume adjustment of the track (-100% to 100%)
-    @objc optional var work: NSString {get set}
+    @objc optional var work: NSString? {get set}
     // the work name of the track
     @objc optional var year: NSInteger {get set}
     // the year the track was recorded/released
@@ -661,7 +661,7 @@ extension SBObject: iTunesSharedTrack{}
 
 // a track representing a network stream
 @objc protocol iTunesURLTrack: iTunesTrack {
-    @objc optional var address: NSString {get set}
+    @objc optional var address: NSString? {get set}
     // the URL for this track
 }
 extension SBObject: iTunesURLTrack{}

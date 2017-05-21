@@ -71,7 +71,7 @@ import ScriptingBridge
     // The name of the application.
     @objc optional var frontmost: Bool {get}
     // Is this the frontmost (active) application?
-    @objc optional var version: NSString {get}
+    @objc optional var version: NSString? {get}
     // The version of the application.
 }
 extension SBApplication: SpotifyApplication{}
@@ -79,9 +79,9 @@ extension SBApplication: SpotifyApplication{}
 
 // A Spotify track.
 @objc protocol SpotifyTrack {
-    @objc optional var artist: NSString {get}
+    @objc optional var artist: NSString? {get}
     // The artist of the track.
-    @objc optional var album: NSString {get}
+    @objc optional var album: NSString? {get}
     // The album of the track.
     @objc optional var discNumber: NSInteger {get}
     // The disc number of the track.
@@ -97,14 +97,14 @@ extension SBApplication: SpotifyApplication{}
     // How popular is this track? 0-100
     @objc optional func id() -> NSString?
     // The ID of the item.
-    @objc optional var name: NSString {get}
+    @objc optional var name: NSString? {get}
     // The name of the track.
-    @objc optional var artworkUrl: NSString {get}
+    @objc optional var artworkUrl: NSString? {get}
     // The URL of the track%apos	@objc optional var artwork: NSImage {get}
     // The property is deprecated and will never be set. Use the "artwork url" instead.
-    @objc optional var albumArtist: NSString {get}
+    @objc optional var albumArtist: NSString? {get}
     // That album artist of the track.
-    @objc optional var spotifyUrl: NSString {get set}
+    @objc optional var spotifyUrl: NSString? {get set}
     // The URL of the track.
 }
 extension SBObject: SpotifyTrack{}

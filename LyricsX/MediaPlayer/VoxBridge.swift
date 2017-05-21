@@ -27,11 +27,11 @@ import ScriptingBridge
  */
 // The application"s top level scripting object.
 @objc protocol VoxApplication {
-    @objc optional var name: NSString {get}
+    @objc optional var name: NSString? {get}
     // The name of the application.
     @objc optional var frontmost: Bool {get}
     // Is this the frontmost (active) application?
-    @objc optional var version: NSString {get}
+    @objc optional var version: NSString? {get}
     // The version of the application.
     @objc optional func quit()
     // Quit an application.
@@ -76,15 +76,15 @@ import ScriptingBridge
     // Current track artwork as an image.
     @objc optional var playerState: NSInteger {get}
     // Player state (playing = 1, paused = 0)
-    @objc optional var track: NSString {get}
+    @objc optional var track: NSString? {get}
     // Current track title.
-    @objc optional var trackUrl: NSString {get}
+    @objc optional var trackUrl: NSString? {get}
     // Current track URL.
-    @objc optional var artist: NSString {get}
+    @objc optional var artist: NSString? {get}
     // Current track artist.
-    @objc optional var albumArtist: NSString {get}
+    @objc optional var albumArtist: NSString? {get}
     // Current track album artist.
-    @objc optional var album: NSString {get}
+    @objc optional var album: NSString? {get}
     // Current track album.
     @objc optional var uniqueID: NSString? {get}
     // Unique identifier for the current track.
