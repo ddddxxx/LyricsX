@@ -91,11 +91,7 @@ extension iTunesEPlS {
 
 extension iTunesTrack {
     var stringID: String? {
-        guard let id = id?() else {
-            return nil
-        }
-        
-        return "\(id)"
+        return id?().description
     }
     
     var track: MusicTrack? {
