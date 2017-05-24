@@ -52,7 +52,7 @@ class iTunes: MusicPlayer {
     
     var currentLyrics: String? {
         get {
-            return _iTunes.currentTrack?.lyrics as String?
+            return _iTunes.currentTrack?.lyrics as? String
         }
         set {
             (_iTunes.currentTrack as? SBObject)?.setValue(newValue ?? "", forKey: "lyrics")
@@ -91,18 +91,14 @@ extension iTunesEPlS {
 
 extension iTunesTrack {
     var stringID: String? {
-        guard let id = id?() else {
-            return nil
-        }
-        
-        return "\(id)"
+        return id?().description
     }
     
     var track: MusicTrack? {
         guard let id = stringID,
             let name = name as? String,
-            let album = album as String?,
-            let artist = artist as String? else {
+            let album = album as? String,
+            let artist = artist as? String else {
             return nil
         }
         

@@ -35,20 +35,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if lyricsXDefault.bool(forKey: LaunchAndQuitWithPlayer) {
             shouldWaitForPlayerQuit = mediaPlayer?.isRunning == true
-            Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-                if self.shouldWaitForPlayerQuit {
-                    self.shouldWaitForPlayerQuit = self.mediaPlayer?.isRunning == true
-                    return
-                }
-                if self.mediaPlayer?.isRunning == true {
-                    self.launchMainAndQuit()
-                }
-            }
+            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(checkiTunes), userInfo: nil, repeats: true)
+        } else {
+            NSApplication.shared().terminate(nil)
         }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         
+    }
+    
+    func checkiTunes() {
+        if self.shouldWaitForPlayerQuit {
+            self.shouldWaitForPlayerQuit = self.mediaPlayer?.isRunning == true
+            return
+        }
+        if self.mediaPlayer?.isRunning == true {
+            self.launchMainAndQuit()
+        }
     }
 
     func launchMainAndQuit() -> Never {

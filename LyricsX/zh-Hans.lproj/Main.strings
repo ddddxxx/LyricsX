@@ -47,9 +47,6 @@
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "字体:";
 
-/* Class = "NSTextFieldCell"; title = "Height from dock:"; ObjectID = "9uO-zE-fs2"; */
-"9uO-zE-fs2.title" = "距底部高度:";
-
 /* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "9vQ-yD-Q3V"; */
 "9vQ-yD-Q3V.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
 
@@ -239,6 +236,9 @@
 /* Class = "NSButtonCell"; title = "Lyrics Filter"; ObjectID = "kEd-lC-aAH"; */
 "kEd-lC-aAH.title" = "启用歌词过滤";
 
+/* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
+"kNl-ZO-aX6.title" = "写入歌词到 iTunes";
+
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
 "kyJ-kV-2Du.title" = "显示歌词窗口";
 
@@ -253,6 +253,9 @@
 
 /* Class = "NSButtonCell"; title = "Vox"; ObjectID = "oTS-3z-Tz7"; */
 "oTS-3z-Tz7.title" = "Vox";
+
+/* Class = "NSTextFieldCell"; title = "Spacing to screen edge"; ObjectID = "p7Y-sV-OPH"; */
+"p7Y-sV-OPH.title" = "与屏幕边缘距离";
 
 /* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "tMS-HS-dqi"; */
 "tMS-HS-dqi.title" = "Version";
