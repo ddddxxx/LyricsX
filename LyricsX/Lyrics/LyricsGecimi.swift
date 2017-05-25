@@ -68,7 +68,7 @@ class LyricsGecimi: LyricsSource {
             return []
         }
         
-        return array.flatMap() { item in
+        return array.flatMap { item in
             guard let lrcURL = item["lrc"].url else {
                 return nil
             }

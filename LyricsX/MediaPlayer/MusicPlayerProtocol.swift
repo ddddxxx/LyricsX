@@ -37,20 +37,29 @@ struct MusicTrack {
 }
 
 protocol MusicPlayer: class {
+    
     var isRunning: Bool { get }
+    
     var currentTrack: MusicTrack? { get }
+    
     var playerState: MusicPlayerState { get }
+    
     var playerPosition: TimeInterval { get set }
 }
 
 protocol MusicPlayerDelegate: class {
+    
     func runningStateChanged(isRunning: Bool)
+    
     func playerStateChanged(state: MusicPlayerState)
+    
     func currentTrackChanged(track: MusicTrack?)
+    
     func playerPositionChanged(position: TimeInterval)
 }
 
 extension MusicTrack: Equatable {
+    
     static func ==(lhs: MusicTrack, rhs: MusicTrack) -> Bool {
         return lhs.id == rhs.id
     }

@@ -73,8 +73,8 @@ class LyricsXiami: LyricsSource {
             return []
         }
         
-        return array.flatMap() { item in
-            return item["id"].string.flatMap() {Int($0)}
+        return array.flatMap { item in
+            return item["id"].string.flatMap {Int($0)}
         }
     }
 }

@@ -38,7 +38,6 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         }
     }
     
-    
     private override init() {
         super.init()
         MusicPlayerManager.shared.delegate = self

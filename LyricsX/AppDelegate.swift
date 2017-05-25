@@ -27,13 +27,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     static var shared: AppDelegate? {
         return NSApplication.shared().delegate as? AppDelegate
     }
-
+    
     @IBOutlet weak var lyricsOffsetTextField: NSTextField!
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
     
     var desktopLyrics: NSWindowController?
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         
@@ -47,7 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
         lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
         
-        NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach() { $0.terminate() }
+        NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach { $0.terminate() }
         if defaults[.LaunchAndQuitWithPlayer] {
             if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
                 log("Failed to enable login item")
@@ -58,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             checkForUpdate()
         }
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         UserDefaults.standard.synchronize()
         if defaults[.LaunchAndQuitWithPlayer] {

@@ -83,11 +83,11 @@ class KaraokeLyricsView: NSBox {
         let insetY = fontSize / 3
         let leading = fontSize * 3 / 2
         
-        topInsetConstraint.forEach() { $0.update(offset: insetY) }
-        bottomInsetConstraint.forEach() { $0.update(offset: -insetY) }
-        leftInsetConstraint.forEach() { $0.update(offset: insetX) }
-        rightInsetConstraint.forEach() { $0.update(offset: -insetX) }
-        leadingConstraint.forEach() { $0.update(offset: -leading) }
+        topInsetConstraint.forEach { $0.update(offset: insetY) }
+        bottomInsetConstraint.forEach { $0.update(offset: -insetY) }
+        leftInsetConstraint.forEach { $0.update(offset: insetX) }
+        rightInsetConstraint.forEach { $0.update(offset: -insetX) }
+        leadingConstraint.forEach { $0.update(offset: -leading) }
         
         cornerRadius = CGFloat(fontSize / 2)
     }
@@ -185,8 +185,8 @@ class KaraokeLyricsView: NSBox {
             alternateView = waitingLrcView
         }
         
-        constraintsForAnimation[onAnimation]!.forEach() { $0.activate() }
-        constraintsForAnimation[!onAnimation]!.forEach() { $0.deactivate() }
+        constraintsForAnimation[onAnimation]!.forEach { $0.activate() }
+        constraintsForAnimation[!onAnimation]!.forEach { $0.deactivate() }
         
         upperView.alphaValue = 1
         lowerView.alphaValue = 1
@@ -197,7 +197,7 @@ class KaraokeLyricsView: NSBox {
         
         guard firstLine != "" else {
             upperView.isHidden = true
-            constraintsForLyrics[upperView]?.forEach() { $0.deactivate() }
+            constraintsForLyrics[upperView]?.forEach { $0.deactivate() }
             alphaValue = 0
             return
         }
@@ -206,7 +206,7 @@ class KaraokeLyricsView: NSBox {
         
         guard secondLine != "" else {
             lowerView.isHidden = true
-            constraintsForLyrics[lowerView]?.forEach() { $0.deactivate() }
+            constraintsForLyrics[lowerView]?.forEach { $0.deactivate() }
             return
         }
         lowerView.isHidden = false
@@ -217,7 +217,7 @@ class KaraokeLyricsView: NSBox {
 extension NSTextField {
     
     @available(macOS, obsoleted: 10.12)
-    convenience init(labelWithString stringValue: String){
+    convenience init(labelWithString stringValue: String) {
         self.init()
         self.stringValue = stringValue
         isEditable = false

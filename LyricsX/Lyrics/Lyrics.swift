@@ -28,7 +28,7 @@ struct Lyrics {
     
     var offset: Int {
         get {
-            return idTags[.offset].flatMap() { Int($0) } ?? 0
+            return idTags[.offset].flatMap { Int($0) } ?? 0
         }
         set {
             idTags[.offset] = "\(newValue)"
@@ -68,7 +68,7 @@ struct Lyrics {
                     lyricsStr = lyricsSentence
                     translation = nil
                 }
-                let lyrics = timeTagsMatched.flatMap() { result -> LyricsLine? in
+                let lyrics = timeTagsMatched.flatMap { result -> LyricsLine? in
                     let timeTagStr = (line as NSString).substring(with: result.range) as String
                     return LyricsLine(sentence: lyricsStr, translation: translation, timeTag: timeTagStr)
                 }
@@ -113,7 +113,7 @@ struct Lyrics {
         guard let index = lyrics.index(where: { $0.position - timeDelay > position }) else {
             return (lyrics.last, nil)
         }
-        let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
+        let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap { lyrics[$0] }
         return (previous, lyrics[index])
     }
     
@@ -196,12 +196,12 @@ extension Lyrics {
 //            }.joined()
 //        }
         if ID3 {
-            content += idTags.map() {
+            content += idTags.map {
                 return "[\($0.key.rawValue):\($0.value)]\n"
             }.joined()
         }
         
-        content += lyrics.map() {
+        content += lyrics.map {
             return $0.contentString(withTimeTag: timeTag, translation: translation) + "\n"
         }.joined()
         

@@ -55,7 +55,7 @@ class LyricsXTests: XCTestCase {
             Lyrics163(),
             LyricsQQ(),
         ]
-        lyricsSources.forEach() { src in
+        lyricsSources.forEach { src in
             var fetchReturnedEx: XCTestExpectation? = expectation(description: "fetch from \(src)")
             for song in testCase {
                 src.fetchLyrics(by: .info(title: song.0, artist: song.1), duration: 0) { _ in
