@@ -28,6 +28,9 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     let lyricsManager = LyricsSourceManager()
     
     var currentLyrics: Lyrics? {
+        willSet {
+            willChangeValue(forKey: "lyricsOffset")
+        }
         didSet {
             currentLyrics?.filtrate()
             didChangeValue(forKey: "lyricsOffset")
