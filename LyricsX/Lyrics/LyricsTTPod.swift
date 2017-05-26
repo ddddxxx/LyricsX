@@ -47,7 +47,7 @@ class LyricsTTPod: LyricsSource {
             
             guard let data = try? Data(contentsOf: url),
                 let lrcContent = JSON(data)["data"]["lrc"].string,
-                var lrc = Lyrics(lrcContent)else {
+                let lrc = Lyrics(lrcContent)else {
                     return
             }
             

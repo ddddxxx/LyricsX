@@ -125,14 +125,14 @@ extension Lyrics {
         let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
         let lrcFileURL = url.appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
         
-        guard let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8) else {
+        guard let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8),
+            let lrc = Lyrics(lrcContents) else {
             return nil
         }
         
-        var lrc = Lyrics(lrcContents)
-        lrc?.metadata.source = .Local
-        lrc?.metadata.title = title
-        lrc?.metadata.artist = artist
+        lrc.metadata.source = .Local
+        lrc.metadata.title = title
+        lrc.metadata.artist = artist
         return lrc
     }
     
@@ -181,7 +181,7 @@ extension Lyrics {
 
 extension Lyrics {
     
-    mutating func filtrate() {
+    func filtrate() {
         guard defaults[.LyricsFilterEnabled] else {
             return
         }

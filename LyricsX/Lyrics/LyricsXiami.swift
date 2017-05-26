@@ -51,7 +51,7 @@ class LyricsXiami: LyricsSource {
                     guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(xiamiID)"),
                         let data = try? Data(contentsOf: url),
                         let parseResult = parser.parseLrcURL(data: data),
-                        var lrc = Lyrics(url: parseResult.lyricsURL) else {
+                        let lrc = Lyrics(url: parseResult.lyricsURL) else {
                             return
                     }
                     lrc.metadata.source = .Xiami

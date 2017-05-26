@@ -27,7 +27,20 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     
     let lyricsManager = LyricsSourceManager()
     
-    private(set) var currentLyrics: Lyrics?
+    var currentLyrics: Lyrics? {
+        didSet {
+            currentLyrics?.filtrate()
+            didChangeValue(forKey: "lyricsOffset")
+            NotificationCenter.default.post(name: .LyricsChange, object: nil)
+            if currentLyrics?.metadata.source != .Local {
+                currentLyrics?.saveToLocal()
+            }
+            if currentLyrics == nil {
+                NotificationCenter.default.post(name: .PositionChange, object: nil)
+            }
+        }
+    }
+    
     dynamic var lyricsOffset: Int {
         get {
             return currentLyrics?.offset ?? 0
@@ -46,21 +59,6 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
     }
     
-    func setCurrentLyrics(lyrics: Lyrics?) {
-        var lyrics = lyrics
-        lyrics?.filtrate()
-        willChangeValue(forKey: "lyricsOffset")
-        currentLyrics = lyrics
-        didChangeValue(forKey: "lyricsOffset")
-        NotificationCenter.default.post(name: .LyricsChange, object: nil)
-        if currentLyrics?.metadata.source != .Local {
-            currentLyrics?.saveToLocal()
-        }
-        if lyrics == nil {
-            NotificationCenter.default.post(name: .PositionChange, object: nil)
-        }
-    }
-    
     // MARK: MediaPlayerDelegate
     
     func runningStateChanged(isRunning: Bool) {
@@ -76,7 +74,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     }
     
     func currentTrackChanged(track: MusicTrack?) {
-        setCurrentLyrics(lyrics: nil)
+        currentLyrics = nil
         let info = ["lrc": "", "next": ""]
         NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
         guard let track = track else {
@@ -90,7 +88,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         }
         
         if let localLyrics = Lyrics.loadFromLocal(title: title, artist: artist) {
-            setCurrentLyrics(lyrics: localLyrics)
+            currentLyrics = localLyrics
         } else {
             let duration = track.duration ?? 0
             lyricsManager.fetchLyrics(title: title, artist: artist, duration: duration)
@@ -124,7 +122,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
             return
         }
         
-        setCurrentLyrics(lyrics: lyrics)
+        currentLyrics = lyrics
     }
     
     func fetchCompleted(result: [Lyrics]) {
@@ -134,13 +132,13 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
 
 extension AppController {
     
-    func importLyrics(_ lyrics: String) {
-        if var lrc = Lyrics(lyrics),
+    func importLyrics(_ lyricsString: String) {
+        if let lrc = Lyrics(lyricsString),
             let track = MusicPlayerManager.shared.player?.currentTrack {
             lrc.metadata.source = .Import
             lrc.metadata.title = track.name
             lrc.metadata.artist = track.artist
-            setCurrentLyrics(lyrics: lrc)
+            currentLyrics = lrc
         }
     }
 }

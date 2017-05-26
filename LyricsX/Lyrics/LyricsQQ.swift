@@ -47,7 +47,7 @@ class LyricsQQ: LyricsSource {
             let qqIDs = self.searchQQIDFor(keyword: encodedKeyword)
             for (index, qqID) in qqIDs.enumerated() {
                 self.queue.addOperation {
-                    guard var lrc = self.lyricsFor(id: qqID) else {
+                    guard let lrc = self.lyricsFor(id: qqID) else {
                         return
                     }
                     

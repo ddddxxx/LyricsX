@@ -20,7 +20,7 @@
 
 import Foundation
 
-struct Lyrics {
+class Lyrics {
     
     var lyrics: [LyricsLine]
     var idTags: [IDTagKey: String]
@@ -99,7 +99,7 @@ struct Lyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
-    init?(url: URL) {
+    convenience init?(url: URL) {
         guard let lrcContent = try? String(contentsOf: url) else {
             return nil
         }
@@ -190,6 +190,7 @@ extension Lyrics {
     
     func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
         var content = ""
+        // FIXME: missing metadata
 //        if withMetadata {
 //            content += metadata.map {
 //                return "[\($0.key):\($0.value)]\n"
@@ -211,7 +212,7 @@ extension Lyrics {
 
 extension Lyrics {
     
-    mutating func filtrate(using regex: NSRegularExpression) {
+    func filtrate(using regex: NSRegularExpression) {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
             let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: sentence.range)
@@ -222,7 +223,7 @@ extension Lyrics {
         }
     }
     
-    mutating func smartFiltrate() {
+    func smartFiltrate() {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence
             if let idTagTitle = idTags[.title],

@@ -48,7 +48,7 @@ class LyricsKugou: LyricsSource {
             let searchItems = self.searchKugouIDFor(keyword: encodedKeyword, duration: mDuration)
             for (index, searchItem) in searchItems.enumerated() {
                 self.queue.addOperation {
-                    guard var lrc = self.lyricsFor(searchItem) else {
+                    guard let lrc = self.lyricsFor(searchItem) else {
                         return
                     }
                     
@@ -82,7 +82,7 @@ class LyricsKugou: LyricsSource {
             let lrcDataStr = JSON(jsonData)["content"].string,
             let lrcData = Data(base64Encoded: lrcDataStr),
             let lrcContent = String(data: lrcData, encoding: .utf8),
-            var lrc = Lyrics(lrcContent) else {
+            let lrc = Lyrics(lrcContent) else {
             return nil
         }
         lrc.idTags[.title] = item["song"].string

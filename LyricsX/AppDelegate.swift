@@ -98,7 +98,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let title = track?.name ?? ""
         let artist = track?.artist ?? ""
         WrongLyricsUtil.shared.noMatching(title: title, artist: artist)
-        AppController.shared.setCurrentLyrics(lyrics: nil)
+        AppController.shared.currentLyrics = nil
     }
     
     func registerUserDefaults() {

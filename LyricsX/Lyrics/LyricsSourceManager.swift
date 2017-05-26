@@ -58,7 +58,6 @@ class LyricsSourceManager {
                     return
                 }
                 
-                var lrc = lrc
                 lrc.metadata.title = title
                 lrc.metadata.artist = artist
                 
