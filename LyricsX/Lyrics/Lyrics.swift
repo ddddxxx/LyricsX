@@ -109,12 +109,20 @@ class Lyrics {
     }
     
     subscript(_ position: TimeInterval) -> (current:LyricsLine?, next:LyricsLine?) {
-        let lyrics = self.lyrics.filter() { $0.enabled }
-        guard let index = lyrics.index(where: { $0.position - timeDelay > position }) else {
-            return (lyrics.last, nil)
+        var left = lyrics.startIndex
+        var right = lyrics.endIndex - 1
+        while left <= right {
+            let mid = (left + right) / 2
+            if lyrics[mid].position <= position {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
         }
-        let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap { lyrics[$0] }
-        return (previous, lyrics[index])
+        
+        let current = right < 0 ? nil : lyrics[lyrics.startIndex...right].reversed().first { $0.enabled }
+        let next = lyrics[left..<lyrics.endIndex].first { $0.enabled }
+        return (current, next)
     }
     
     struct IDTagKey: RawRepresentable, Hashable {
