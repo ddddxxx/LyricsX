@@ -190,12 +190,9 @@ extension Lyrics {
     
     func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
         var content = ""
-        // FIXME: missing metadata
-//        if withMetadata {
-//            content += metadata.map {
-//                return "[\($0.key):\($0.value)]\n"
-//            }.joined()
-//        }
+        if withMetadata {
+            content += metadata.description
+        }
         if ID3 {
             content += idTags.map {
                 return "[\($0.key.rawValue):\($0.value)]\n"
@@ -340,6 +337,8 @@ extension Lyrics {
     }
 }
 
+// MARK: - Equatable
+
 extension Lyrics.MetaData.Source: Equatable {
     static func ==(lhs: Lyrics.MetaData.Source, rhs: Lyrics.MetaData.Source) -> Bool {
         return lhs.rawValue == rhs.rawValue
@@ -356,6 +355,15 @@ extension Lyrics.MetaData.SearchCriteria: Equatable {
         case (let .info(l1, l2), let .info(r1, r2)):
             return (l1 == r1) && (l2 == r2)
         }
+    }
+}
+
+// MARK: CustomStringConvertible
+
+extension Lyrics.MetaData: CustomStringConvertible {
+    
+    public var description: String {
+        return Mirror(reflecting: self).children.map { "[\($0!):\($1)]\n" }.joined()
     }
 }
 
