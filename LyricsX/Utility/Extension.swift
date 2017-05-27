@@ -20,6 +20,22 @@
 
 import Foundation
 
+extension Collection {
+    
+    var indexes: Range<Index> {
+        return startIndex..<endIndex
+    }
+}
+
+extension Comparable {
+    
+    func clamped(to limits: Range<Self>) -> Self {
+        guard limits.lowerBound <= self else { return limits.lowerBound }
+        guard limits.upperBound >= self else { return limits.upperBound }
+        return self
+    }
+}
+
 extension NSObject {
     
     func bind<T>(_ binding: String, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [String : Any]? = nil) {
