@@ -5,3 +5,5 @@ github "SwiftyJSON/SwiftyJSON"
 github "XQS6LB3A/GenericID" == 0.1.1
 
 github "XQS6LB3A/SwiftyOpenCC"
+
+github "XQS6LB3A/Semver" == 0.1.0
