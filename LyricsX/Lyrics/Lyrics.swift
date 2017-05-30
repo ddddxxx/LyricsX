@@ -20,7 +20,7 @@
 
 import Foundation
 
-struct Lyrics {
+class Lyrics {
     
     var lyrics: [LyricsLine]
     var idTags: [IDTagKey: String]
@@ -28,7 +28,7 @@ struct Lyrics {
     
     var offset: Int {
         get {
-            return idTags[.offset].flatMap() { Int($0) } ?? 0
+            return idTags[.offset].flatMap { Int($0) } ?? 0
         }
         set {
             idTags[.offset] = "\(newValue)"
@@ -68,7 +68,7 @@ struct Lyrics {
                     lyricsStr = lyricsSentence
                     translation = nil
                 }
-                let lyrics = timeTagsMatched.flatMap() { result -> LyricsLine? in
+                let lyrics = timeTagsMatched.flatMap { result -> LyricsLine? in
                     let timeTagStr = (line as NSString).substring(with: result.range) as String
                     return LyricsLine(sentence: lyricsStr, translation: translation, timeTag: timeTagStr)
                 }
@@ -99,7 +99,7 @@ struct Lyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
-    init?(url: URL) {
+    convenience init?(url: URL) {
         guard let lrcContent = try? String(contentsOf: url) else {
             return nil
         }
@@ -109,12 +109,20 @@ struct Lyrics {
     }
     
     subscript(_ position: TimeInterval) -> (current:LyricsLine?, next:LyricsLine?) {
-        let lyrics = self.lyrics.filter() { $0.enabled }
-        guard let index = lyrics.index(where: { $0.position - timeDelay > position }) else {
-            return (lyrics.last, nil)
+        var left = lyrics.startIndex
+        var right = lyrics.endIndex - 1
+        while left <= right {
+            let mid = (left + right) / 2
+            if lyrics[mid].position <= position {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
         }
-        let previous = lyrics.index(index, offsetBy: -1, limitedBy: lyrics.startIndex).flatMap() { lyrics[$0] }
-        return (previous, lyrics[index])
+        
+        let current = right < 0 ? nil : lyrics[lyrics.startIndex...right].reversed().first { $0.enabled }
+        let next = lyrics[left..<lyrics.endIndex].first { $0.enabled }
+        return (current, next)
     }
     
     struct IDTagKey: RawRepresentable, Hashable {
@@ -190,18 +198,16 @@ extension Lyrics {
     
     func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
         var content = ""
-//        if withMetadata {
-//            content += metadata.map {
-//                return "[\($0.key):\($0.value)]\n"
-//            }.joined()
-//        }
+        if withMetadata {
+            content += metadata.description
+        }
         if ID3 {
-            content += idTags.map() {
+            content += idTags.map {
                 return "[\($0.key.rawValue):\($0.value)]\n"
             }.joined()
         }
         
-        content += lyrics.map() {
+        content += lyrics.map {
             return $0.contentString(withTimeTag: timeTag, translation: translation) + "\n"
         }.joined()
         
@@ -211,7 +217,7 @@ extension Lyrics {
 
 extension Lyrics {
     
-    mutating func filtrate(using regex: NSRegularExpression) {
+    func filtrate(using regex: NSRegularExpression) {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
             let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: sentence.range)
@@ -222,7 +228,7 @@ extension Lyrics {
         }
     }
     
-    mutating func smartFiltrate() {
+    func smartFiltrate() {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence
             if let idTagTitle = idTags[.title],
@@ -339,6 +345,8 @@ extension Lyrics {
     }
 }
 
+// MARK: - Equatable
+
 extension Lyrics.MetaData.Source: Equatable {
     static func ==(lhs: Lyrics.MetaData.Source, rhs: Lyrics.MetaData.Source) -> Bool {
         return lhs.rawValue == rhs.rawValue
@@ -355,6 +363,15 @@ extension Lyrics.MetaData.SearchCriteria: Equatable {
         case (let .info(l1, l2), let .info(r1, r2)):
             return (l1 == r1) && (l2 == r2)
         }
+    }
+}
+
+// MARK: CustomStringConvertible
+
+extension Lyrics.MetaData: CustomStringConvertible {
+    
+    public var description: String {
+        return Mirror(reflecting: self).children.map { "[\($0!):\($1)]\n" }.joined()
     }
 }
 

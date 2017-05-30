@@ -20,6 +20,22 @@
 
 import Foundation
 
+extension Collection {
+    
+    var indexes: Range<Index> {
+        return startIndex..<endIndex
+    }
+}
+
+extension Comparable {
+    
+    func clamped(to limits: Range<Self>) -> Self {
+        guard limits.lowerBound <= self else { return limits.lowerBound }
+        guard limits.upperBound >= self else { return limits.upperBound }
+        return self
+    }
+}
+
 extension NSObject {
     
     func bind<T>(_ binding: String, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [String : Any]? = nil) {
@@ -125,14 +141,14 @@ extension Lyrics {
         let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
         let lrcFileURL = url.appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
         
-        guard let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8) else {
+        guard let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8),
+            let lrc = Lyrics(lrcContents) else {
             return nil
         }
         
-        var lrc = Lyrics(lrcContents)
-        lrc?.metadata.source = .Local
-        lrc?.metadata.title = title
-        lrc?.metadata.artist = artist
+        lrc.metadata.source = .Local
+        lrc.metadata.title = title
+        lrc.metadata.artist = artist
         return lrc
     }
     
@@ -181,7 +197,7 @@ extension Lyrics {
 
 extension Lyrics {
     
-    mutating func filtrate() {
+    func filtrate() {
         guard defaults[.LyricsFilterEnabled] else {
             return
         }

@@ -55,9 +55,15 @@ You can download ZIP from [releases](https://github.com/XQS6LB3A/LyricsX/release
 ## Open Source Libraries
 
 - [SwiftyOpenCC](https://github.com/XQS6LB3A/SwiftyOpenCC)
-- [EasyPreference](https://github.com/XQS6LB3A/EasyPreference)
+- [GenericID](https://github.com/XQS6LB3A/GenericID)
+- [Semver](https://github.com/XQS6LB3A/Semver)
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [SnapKit](https://github.com/SnapKit/SnapKit)
+
+Special Thanks
+
+- [Lyrics Project](https://github.com/MichaelRow/Lyrics)
+
 
 ## ⚠️ Disclaimer
 

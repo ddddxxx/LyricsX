@@ -45,7 +45,7 @@ class LyricsGecimi: LyricsSource {
             let lrcDatas = self.searchLrcFor(title: encodedTitle, artist: encodedArtist)
             for (index, lrcData) in lrcDatas.enumerated() {
                 self.queue.addOperation {
-                    guard var lrc = Lyrics(url: lrcData.lyricsURL) else {
+                    guard let lrc = Lyrics(url: lrcData.lyricsURL) else {
                         return
                     }
                     
@@ -68,7 +68,7 @@ class LyricsGecimi: LyricsSource {
             return []
         }
         
-        return array.flatMap() { item in
+        return array.flatMap { item in
             guard let lrcURL = item["lrc"].url else {
                 return nil
             }

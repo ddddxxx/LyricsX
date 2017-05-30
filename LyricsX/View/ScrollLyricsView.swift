@@ -135,15 +135,18 @@ class ScrollLyricsView: NSScrollView {
             return
         }
         
-        let range: NSRange
-        if var index = ranges.index(where: { $0.0 > position }) {
-            if index > 0 {
-                index -= 1
+        var left = ranges.startIndex
+        var right = ranges.endIndex - 1
+        while left <= right {
+            let mid = (left + right) / 2
+            if ranges[mid].0 <= position {
+                left = mid + 1
+            } else {
+                right = mid - 1
             }
-            range = ranges[index].1
-        } else {
-            range = ranges.last!.1
         }
+        let range = ranges[right.clamped(to: ranges.indexes)].1
+        
         if highlightedRange == range {
             return
         }
@@ -159,15 +162,17 @@ class ScrollLyricsView: NSScrollView {
             return
         }
         
-        let range: NSRange
-        if var index = ranges.index(where: { $0.0 > position }) {
-            if index > 0 {
-                index -= 1
+        var left = ranges.startIndex
+        var right = ranges.endIndex - 1
+        while left <= right {
+            let mid = (left + right) / 2
+            if ranges[mid].0 <= position {
+                left = mid + 1
+            } else {
+                right = mid - 1
             }
-            range = ranges[index].1
-        } else {
-            range = ranges.last!.1
         }
+        let range = ranges[right.clamped(to: ranges.indexes)].1
         
         let bounding = textView.layoutManager!.boundingRect(forGlyphRange: range, in: textView.textContainer!)
         

@@ -64,7 +64,7 @@ class Lyrics163: LyricsSource {
             for (index, item) in array.enumerated() {
                 self.queue.addOperation {
                     guard let id = item["id"].number?.intValue,
-                        var lyrics = self.lyricsFor(id: id) else {
+                        let lyrics = self.lyricsFor(id: id) else {
                             return
                     }
                     
@@ -93,7 +93,7 @@ class Lyrics163: LyricsSource {
         
         let json = JSON(data: data)
         guard let lrcContent = json["lrc"]["lyric"].string,
-            var lrc = Lyrics(lrcContent) else {
+            let lrc = Lyrics(lrcContent) else {
             return nil
         }
         
@@ -109,7 +109,7 @@ class Lyrics163: LyricsSource {
 
 extension Lyrics {
     
-    fileprivate mutating func merge(translation: Lyrics) {
+    fileprivate func merge(translation: Lyrics) {
         var index = lyrics.startIndex
         var transIndex = translation.lyrics.startIndex
         while index < lyrics.endIndex, transIndex < translation.lyrics.endIndex {

@@ -20,6 +20,7 @@
 
 import Cocoa
 import SwiftyJSON
+import Semver
 
 var remoteVersion: Semver? {
     let gitHubPath = "XQS6LB3A/LyricsX"
@@ -34,13 +35,13 @@ var remoteVersion: Semver? {
     if tag[tag.startIndex] == "v" {
         tag.remove(at: tag.startIndex)
     }
-    return Semver(tag)
+    return try? Semver(tag)
 }
 
 var localVersion: Semver {
     let info = Bundle.main.infoDictionary!
     let shortVersion = info["CFBundleShortVersionString"] as! String
-    return Semver(shortVersion)!
+    return try! Semver(shortVersion)
 }
 
 func checkForUpdate(force: Bool = false) {
@@ -64,7 +65,7 @@ func checkForUpdate(force: Bool = false) {
     
     if !force,
         let skipVersionString = defaults[.NotifiedUpdateVersion],
-        let skipVersion = Semver(skipVersionString),
+        let skipVersion = try? Semver(skipVersionString),
         skipVersion >= remote {
         return
     }
@@ -83,56 +84,5 @@ func checkForUpdate(force: Bool = false) {
             let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
             NSWorkspace.shared().open(url)
         }
-    }
-}
-
-struct Semver {
-    
-    var major: Int
-    var minor: Int
-    var patch: Int
-    
-    init?(_ string:String) {
-        let components = string.components(separatedBy: ".").flatMap { Int($0) }
-        guard components.count == 3 else {
-            return nil
-        }
-        major = components[0]
-        minor = components[1]
-        patch = components[2]
-    }
-}
-
-extension Semver: Comparable {
-    
-    public static func ==(lhs: Semver, rhs: Semver) -> Bool {
-        return lhs.major == rhs.major && lhs.minor == rhs.minor && lhs.patch == rhs.patch
-    }
-    
-    public static func <(lhs: Semver, rhs: Semver) -> Bool {
-        return (lhs.major < rhs.major) ||
-            (lhs.major == rhs.major && lhs.minor < rhs.minor) ||
-            (lhs.major == rhs.major && lhs.minor == rhs.minor && lhs.patch < rhs.patch)
-    }
-    
-    public static func <=(lhs: Semver, rhs: Semver) -> Bool {
-        return !(lhs > rhs)
-    }
-    
-    public static func >=(lhs: Semver, rhs: Semver) -> Bool {
-        return !(lhs < rhs)
-    }
-    
-    public static func >(lhs: Semver, rhs: Semver) -> Bool {
-        return (lhs.major > rhs.major) ||
-            (lhs.major == rhs.major && lhs.minor > rhs.minor) ||
-            (lhs.major == rhs.major && lhs.minor == rhs.minor && lhs.patch > rhs.patch)
-    }
-}
-
-extension Semver: CustomStringConvertible {
-    
-    public var description: String {
-        return "\(major).\(minor).\(patch)"
     }
 }

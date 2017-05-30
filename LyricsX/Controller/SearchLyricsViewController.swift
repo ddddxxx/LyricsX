@@ -22,7 +22,6 @@ import Cocoa
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsConsuming {
     
-    var searchResult: [Lyrics] = []
     var imageCache = NSCache<NSURL, NSImage>()
     
     dynamic var searchArtist = ""
@@ -60,7 +59,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func searchAction(_ sender: Any?) {
         progressIndicator.startAnimation(nil)
         progressIndicator.isHidden = false
-        searchResult = []
         tableView.reloadData()
         let track = MusicPlayerManager.shared.player?.currentTrack
         let duration = track?.duration ?? 0
@@ -72,15 +70,13 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard let index = tableView.selectedRowIndexes.first else {
             return
         }
-        let lrc = searchResult[index]
-        AppController.shared.setCurrentLyrics(lyrics: lrc)
+        let lrc = lyricsManager.lyrics[index]
+        AppController.shared.currentLyrics = lrc
     }
     
     // MARK: - LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        let index = searchResult.index(where: {$0 < lyrics}) ?? searchResult.count
-        searchResult.insert(lyrics, at: index)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -96,7 +92,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     // MARK: - TableViewDelegate
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return searchResult.count
+        return lyricsManager.lyrics.count
     }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
@@ -106,11 +102,11 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         switch ident {
         case "Title":
-            return searchResult[row].idTags[.title] ?? "[lacking]"
+            return lyricsManager.lyrics[row].idTags[.title] ?? "[lacking]"
         case "Artist":
-            return searchResult[row].idTags[.artist] ?? "[lacking]"
+            return lyricsManager.lyrics[row].idTags[.artist] ?? "[lacking]"
         case "Source":
-            return searchResult[row].metadata.source.rawValue
+            return lyricsManager.lyrics[row].metadata.source.rawValue
         default:
             return nil
         }
@@ -124,12 +120,12 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         if self.hideLrcPreviewConstraint?.isActive == true {
             self.expandPreview()
         }
-        self.lyricsPreviewTextView.string = self.searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+        self.lyricsPreviewTextView.string = self.lyricsManager.lyrics[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
         self.updateImage()
     }
     
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
-        let lrcContent = searchResult[rowIndexes.first!].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+        let lrcContent = lyricsManager.lyrics[rowIndexes.first!].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
         pboard.declareTypes([NSStringPboardType, NSFilesPromisePboardType], owner: self)
         pboard.setString(lrcContent, forType: NSStringPboardType)
         pboard.setPropertyList(["lrc"], forType: NSFilesPromisePboardType)
@@ -138,10 +134,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     func tableView(_ tableView: NSTableView, namesOfPromisedFilesDroppedAtDestination dropDestination: URL, forDraggedRowsWith indexSet: IndexSet) -> [String] {
         return indexSet.flatMap { index -> String? in
-            let fileName = searchResult[index].fileName
+            let fileName = lyricsManager.lyrics[index].fileName
             
             let destURL = dropDestination.appendingPathComponent(fileName)
-            let lrcStr = searchResult[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+            let lrcStr = lyricsManager.lyrics[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
             
             do {
                 try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)
@@ -178,7 +174,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard index >= 0 else {
             return
         }
-        guard let url = self.searchResult[index].metadata.artworkURL else {
+        guard let url = self.lyricsManager.lyrics[index].metadata.artworkURL else {
             artworkView.image = #imageLiteral(resourceName: "missing_artwork")
             return
         }

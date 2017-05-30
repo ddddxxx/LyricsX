@@ -52,13 +52,12 @@ class LyricsSourceManager {
         self.criteria = criteria
         lyrics = []
         queue.cancelAllOperations()
-        lyricsSource.forEach() { source in
+        lyricsSource.forEach { source in
             source.fetchLyrics(by: criteria, duration: duration) { lrc in
                 guard self.criteria == criteria else {
                     return
                 }
                 
-                var lrc = lrc
                 lrc.metadata.title = title
                 lrc.metadata.artist = artist
                 

@@ -34,17 +34,17 @@ class PreferenceFilterViewController: NSViewController {
     }
     
     func loadFilter() {
-        directFilter = defaults[.LyricsDirectFilterKey].map() {
+        directFilter = defaults[.LyricsDirectFilterKey].map {
             FilterKey(keyword: $0)
         }
-        colonFilter = defaults[.LyricsColonFilterKey].map() {
+        colonFilter = defaults[.LyricsColonFilterKey].map {
             FilterKey(keyword: $0)
         }
     }
     
     func saveFilter() {
-        defaults[.LyricsDirectFilterKey] = directFilter.map() { $0.keyword }
-        defaults[.LyricsColonFilterKey] = colonFilter.map() { $0.keyword }
+        defaults[.LyricsDirectFilterKey] = directFilter.map { $0.keyword }
+        defaults[.LyricsColonFilterKey] = colonFilter.map { $0.keyword }
     }
     
     @IBAction func resetFilterKey(_ sender: Any) {
