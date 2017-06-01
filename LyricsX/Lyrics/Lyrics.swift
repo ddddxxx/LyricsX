@@ -184,7 +184,7 @@ class Lyrics {
                 self.rawValue = rawValue
             }
             
-            static let Unknown = Source("unknown")
+            static let Unknown = Source("Unknown")
             static let Local = Source("Local")
             static let Import = Source("Import")
         }
