@@ -60,6 +60,8 @@ class LyricsSourceManager {
                 
                 lrc.metadata.title = title
                 lrc.metadata.artist = artist
+                lrc.idTags[.recreater] = "LyricsX"
+                lrc.idTags[.version] = "1"
                 
                 let index = self.lyrics.index(where: {$0 < lrc}) ?? self.lyrics.count
                 self.lyrics.insert(lrc, at: index)

@@ -147,6 +147,8 @@ class Lyrics {
         static let author   = IDTagKey("au")
         static let lrcBy    = IDTagKey("by")
         static let offset   = IDTagKey("offset")
+        static let recreater = IDTagKey("re")
+        static let version  = IDTagKey("ve")
     }
     
     struct MetaData {
