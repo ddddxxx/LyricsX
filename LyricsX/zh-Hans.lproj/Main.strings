@@ -182,8 +182,8 @@
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
 "bDS-Lb-m34.title" = "隐藏歌词:";
 
-/* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics (Beta)"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "合并菜单栏图标与歌词 (Beta)";
+/* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
+"bbd-ra-rSF.title" = "合并菜单栏图标与歌词";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c9V-Dh-f1D"; */
 "c9V-Dh-f1D.title" = "Text Cell";
@@ -216,7 +216,7 @@
 "fmS-zv-RcJ.title" = "错误的歌词";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "这里是一些实验性的功能，这些功能可能不够稳定，并可能在将来被移除。";
+"g2u-8D-dln.title" = "这里是一些实验性的功能。这些功能可能不够稳定，并可能在将来被移除。";
 
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "gPf-oY-cYP"; */
 "gPf-oY-cYP.title" = "Select All";
