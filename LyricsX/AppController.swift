@@ -62,6 +62,15 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
     }
     
+    func writeToiTunes(overwrite: Bool) {
+        guard let player = MusicPlayerManager.shared.player as? iTunes else {
+            return
+        }
+        if overwrite || player.currentLyrics == nil {
+            player.currentLyrics = currentLyrics?.contentString(withMetadata: false, ID3: false, timeTag: false, translation: defaults[.PreferBilingualLyrics])
+        }
+    }
+    
     // MARK: MediaPlayerDelegate
     
     func runningStateChanged(isRunning: Bool) {
@@ -129,7 +138,9 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     }
     
     func fetchCompleted(result: [Lyrics]) {
-        
+        if defaults[.AutomaticallyWriteToiTunes] {
+            writeToiTunes(overwrite: true)
+        }
     }
 }
 

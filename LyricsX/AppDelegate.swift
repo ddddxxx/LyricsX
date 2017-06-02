@@ -87,10 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func writeToiTunes(_ sender: Any) {
-        guard let player = MusicPlayerManager.shared.player as? iTunes else {
-            return
-        }
-        player.currentLyrics = AppController.shared.currentLyrics?.contentString(withMetadata: false, ID3: false, timeTag: false, translation: defaults[.PreferBilingualLyrics])
+        AppController.shared.writeToiTunes(overwrite: true)
     }
     
     @IBAction func wrongLyrics(_ sender: Any) {

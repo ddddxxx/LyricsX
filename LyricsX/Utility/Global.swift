@@ -98,4 +98,7 @@ extension UserDefaults.DefaultKeys {
     static let LyricsSmartFilterEnabled: Key<Bool>  = "LyricsSmartFilterEnabled"
     static let LyricsDirectFilterKey: Key<[String]> = "LyricsDirectFilterKey"
     static let LyricsColonFilterKey: Key<[String]>  = "LyricsColonFilterKey"
+    
+    // Lab
+    static let AutomaticallyWriteToiTunes: Key<Bool>    = "AutomaticallyWriteToiTunes"
 }
