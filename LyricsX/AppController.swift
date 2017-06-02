@@ -67,7 +67,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
             return
         }
         if overwrite || player.currentLyrics == nil {
-            player.currentLyrics = currentLyrics?.contentString(withMetadata: false, ID3: false, timeTag: false, translation: defaults[.PreferBilingualLyrics])
+            player.currentLyrics = currentLyrics?.contentString(withMetadata: false, ID3: false, timeTag: false, translation: defaults[.WriteiTunesWithTranslation])
         }
     }
     
@@ -138,7 +138,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     }
     
     func fetchCompleted(result: [Lyrics]) {
-        if defaults[.AutomaticallyWriteToiTunes] {
+        if defaults[.WriteToiTunesAutomatically] {
             writeToiTunes(overwrite: true)
         }
     }

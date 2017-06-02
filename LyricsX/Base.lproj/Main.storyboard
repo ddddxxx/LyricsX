@@ -332,6 +332,7 @@
                         <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG"/>
                         <tabViewItem label="Display" identifier="" image="NSFontPanel" id="8VI-6O-0Rn"/>
                         <tabViewItem label="Filter" image="toolbar_filter" id="xcA-tm-q8A" userLabel="Filter"/>
+                        <tabViewItem label="Lab" image="toolbar_lab" id="uj7-lo-QuS" userLabel="Lab"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="ufX-Bl-B8D">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -343,6 +344,7 @@
                         <segue destination="d5d-dC-DK4" kind="relationship" relationship="tabItems" id="kfu-5b-Mm3"/>
                         <segue destination="8JF-Og-z6E" kind="relationship" relationship="tabItems" id="ybT-iY-287"/>
                         <segue destination="lN1-gG-AVq" kind="relationship" relationship="tabItems" id="wPI-VX-th7"/>
+                        <segue destination="bFk-1g-XeL" kind="relationship" relationship="tabItems" id="OQC-tQ-r62"/>
                     </connections>
                 </tabViewController>
                 <customObject id="n2u-iM-pje" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -621,6 +623,9 @@
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-Tg-5JV">
                                 <rect key="frame" x="234" y="74" width="325" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="NVr-Iq-ohX"/>
+                                </constraints>
                                 <buttonCell key="cell" type="check" title="Combine menubar icon with menubar lyrics (Beta)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bbd-ra-rSF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -710,14 +715,14 @@
                     </constraints>
                 </customView>
             </objects>
-            <point key="canvasLocation" x="1969" y="-287.5"/>
+            <point key="canvasLocation" x="1969" y="-303"/>
         </scene>
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
             <objects>
                 <viewController id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="302"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="306"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omX-p8-BIa" userLabel="Top Inset">
@@ -1033,7 +1038,7 @@
                             <constraint firstItem="g9p-LU-8NU" firstAttribute="top" secondItem="ypM-pp-BJC" secondAttribute="bottom" constant="4" id="nX6-yo-bFZ"/>
                             <constraint firstItem="mJO-Zo-M0B" firstAttribute="leading" secondItem="g9p-LU-8NU" secondAttribute="trailing" constant="4" id="swt-kW-4ox"/>
                             <constraint firstItem="Jji-JX-Etj" firstAttribute="leading" secondItem="UmX-Zf-IW4" secondAttribute="trailing" constant="60" id="tKJ-Vf-gw4"/>
-                            <constraint firstItem="omX-p8-BIa" firstAttribute="top" secondItem="Y71-zj-nPg" secondAttribute="top" constant="20" id="tLf-qs-a3q"/>
+                            <constraint firstItem="omX-p8-BIa" firstAttribute="top" secondItem="Y71-zj-nPg" secondAttribute="top" constant="24" id="tLf-qs-a3q"/>
                             <constraint firstItem="eGr-gm-cw0" firstAttribute="centerX" secondItem="UmX-Zf-IW4" secondAttribute="centerX" id="uS2-a1-OkG"/>
                             <constraint firstItem="eUo-ma-3JR" firstAttribute="top" secondItem="9of-o0-c02" secondAttribute="bottom" constant="4" id="vCR-0O-o9D"/>
                             <constraint firstItem="peK-p0-cOB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oHc-gj-4JF" secondAttribute="leading" id="vOT-Z7-CXj"/>
@@ -1329,6 +1334,65 @@
                 <userDefaultsController id="QTW-Rd-aiV"/>
             </objects>
             <point key="canvasLocation" x="1969" y="590"/>
+        </scene>
+        <!--Lab-->
+        <scene sceneID="SoK-6E-AMw">
+            <objects>
+                <viewController id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
+                    <view key="view" id="uY5-7S-zG1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Tvk-yf-w4p">
+                                <rect key="frame" x="238" y="22" width="104" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="5jL-a9-ugy"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7Ax-7T-26K">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="MQW-nm-dXS" name="value" keyPath="values.WriteToiTunesAutomatically" id="s2M-GE-9K2"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IKY-aR-ZdS">
+                                <rect key="frame" x="238" y="44" width="118" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="bSc-nc-SA1"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="With translation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="jFb-kX-VbY">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="MQW-nm-dXS" name="value" keyPath="values.WriteiTunesWithTranslation" id="YcT-LV-fEn"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5r-WZ-ZnL">
+                                <rect key="frame" x="127" y="45" width="99" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Write to iTunes:" id="8Sx-vb-5pB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Tvk-yf-w4p" secondAttribute="leading" id="8Ip-8V-Nhx"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="uY5-7S-zG1" secondAttribute="centerX" constant="-60" id="9ZF-bK-ckf"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="24" id="P1P-Yz-UJq"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="centerY" secondItem="Z5r-WZ-ZnL" secondAttribute="centerY" id="Pql-bZ-j9U"/>
+                            <constraint firstAttribute="bottom" secondItem="Tvk-yf-w4p" secondAttribute="bottom" constant="24" id="dxp-Sm-NC6"/>
+                            <constraint firstItem="Tvk-yf-w4p" firstAttribute="top" secondItem="IKY-aR-ZdS" secondAttribute="bottom" constant="8" id="tKi-Ka-ZTQ"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Z5r-WZ-ZnL" secondAttribute="trailing" constant="16" id="wee-My-TEI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="hIA-Hp-BDR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="MQW-nm-dXS"/>
+            </objects>
+            <point key="canvasLocation" x="1969" y="961.5"/>
         </scene>
         <!--Lyrics HUD Accessory-->
         <scene sceneID="WWo-Fn-ADk">
@@ -1991,6 +2055,7 @@ IA
         <image name="rect_center" width="18" height="18"/>
         <image name="spotify_icon" width="128" height="128"/>
         <image name="toolbar_filter" width="32" height="32"/>
+        <image name="toolbar_lab" width="32" height="32"/>
         <image name="vox_icon" width="128" height="128"/>
     </resources>
 </document>
