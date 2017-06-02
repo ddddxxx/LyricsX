@@ -113,9 +113,11 @@ extension UserDefaults {
 
 extension Lyrics {
     
-    var fileName: String {
-        let title = metadata.title?.replacingOccurrences(of: "/", with: "&") ?? ""
-        let artist = metadata.artist?.replacingOccurrences(of: "/", with: "&") ?? ""
+    var fileName: String? {
+        guard let title = metadata.title?.replacingOccurrences(of: "/", with: "&"),
+            let artist = metadata.artist?.replacingOccurrences(of: "/", with: "&") else {
+            return nil
+        }
         return "\(title) - \(artist).lrc"
     }
     
@@ -178,7 +180,9 @@ extension Lyrics {
                 try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             }
             
-            let lrcFileURL = url.appendingPathComponent(fileName)
+            guard let lrcFileURL = fileName.map(url.appendingPathComponent) else {
+                return
+            }
             
             if fileManager.fileExists(atPath: lrcFileURL.path) {
                 try fileManager.removeItem(at: lrcFileURL)

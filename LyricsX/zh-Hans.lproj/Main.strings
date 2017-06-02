@@ -41,6 +41,12 @@
 /* Class = "NSWindow"; title = "Lyrics"; ObjectID = "6aU-M0-0Jh"; */
 "6aU-M0-0Jh.title" = "Lyrics";
 
+/* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
+"7Ax-7T-26K.title" = "自动写入";
+
+/* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
+"8Sx-vb-5pB.title" = "写入歌词到 iTunes:";
+
 /* Class = "NSTabViewItem"; label = "Display"; ObjectID = "8VI-6O-0Rn"; */
 "8VI-6O-0Rn.label" = "显示";
 
@@ -176,8 +182,8 @@
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
 "bDS-Lb-m34.title" = "隐藏歌词:";
 
-/* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics (Beta)"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "合并菜单栏图标与歌词 (Beta)";
+/* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
+"bbd-ra-rSF.title" = "合并菜单栏图标与歌词";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c9V-Dh-f1D"; */
 "c9V-Dh-f1D.title" = "Text Cell";
@@ -209,6 +215,9 @@
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
 "fmS-zv-RcJ.title" = "错误的歌词";
 
+/* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
+"g2u-8D-dln.title" = "这里是一些实验性的功能。这些功能可能不够稳定，并可能在将来被移除。";
+
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "gPf-oY-cYP"; */
 "gPf-oY-cYP.title" = "Select All";
 
@@ -226,6 +235,9 @@
 
 /* Class = "NSButtonCell"; title = "Taking screen shot"; ObjectID = "iMD-Wy-Bm7"; */
 "iMD-Wy-Bm7.title" = "屏幕截图时";
+
+/* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
+"jFb-kX-VbY.title" = "包含翻译";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
 "jWT-S5-YXM.headerCell.title" = "歌曲";
@@ -262,6 +274,9 @@
 
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uP6-6j-RSc"; */
 "uP6-6j-RSc.title" = "Cut";
+
+/* Class = "NSTabViewItem"; label = "Lab"; ObjectID = "uj7-lo-QuS"; */
+"uj7-lo-QuS.label" = "实验室";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
 "v63-4a-fPw.title" = "跟随播放器启动和退出";

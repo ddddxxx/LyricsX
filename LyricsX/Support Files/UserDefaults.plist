@@ -4,20 +4,8 @@
 <dict>
 	<key>DesktopLyricsEnabled</key>
 	<true/>
-	<key>MenuBarLyricsEnabled</key>
-	<false/>
-	<key>LaunchAndQuitWithPlayer</key>
-	<false/>
-	<key>PreferredPlayerIndex</key>
-	<integer>0</integer>
-	<key>LyricsSavingPathPopUpIndex</key>
-	<integer>0</integer>
 	<key>PreferBilingualLyrics</key>
 	<true/>
-	<key>ChineseConversionIndex</key>
-	<integer>0</integer>
-	<key>CombinedMenubarLyrics</key>
-	<false/>
 	<key>DisableLyricsWhenPaused</key>
 	<true/>
 	<key>DisableLyricsWhenSreenShot</key>

@@ -147,6 +147,8 @@ class Lyrics {
         static let author   = IDTagKey("au")
         static let lrcBy    = IDTagKey("by")
         static let offset   = IDTagKey("offset")
+        static let recreater = IDTagKey("re")
+        static let version  = IDTagKey("ve")
     }
     
     struct MetaData {
@@ -182,7 +184,7 @@ class Lyrics {
                 self.rawValue = rawValue
             }
             
-            static let Unknown = Source("unknown")
+            static let Unknown = Source("Unknown")
             static let Local = Source("Local")
             static let Import = Source("Import")
         }
