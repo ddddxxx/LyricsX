@@ -1340,13 +1340,13 @@
             <objects>
                 <viewController id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
                     <view key="view" id="uY5-7S-zG1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Tvk-yf-w4p">
-                                <rect key="frame" x="238" y="22" width="104" height="18"/>
+                                <rect key="frame" x="258" y="22" width="104" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="5jL-a9-ugy"/>
+                                    <constraint firstAttribute="height" constant="14" id="Wmf-HR-Jnk"/>
                                 </constraints>
                                 <buttonCell key="cell" type="check" title="Automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7Ax-7T-26K">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1357,9 +1357,9 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="IKY-aR-ZdS">
-                                <rect key="frame" x="238" y="44" width="118" height="18"/>
+                                <rect key="frame" x="258" y="44" width="118" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="bSc-nc-SA1"/>
+                                    <constraint firstAttribute="height" constant="14" id="tTI-SA-b7h"/>
                                 </constraints>
                                 <buttonCell key="cell" type="check" title="With translation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="jFb-kX-VbY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1370,8 +1370,16 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5r-WZ-ZnL">
-                                <rect key="frame" x="127" y="45" width="99" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Write to iTunes:" id="8Sx-vb-5pB">
+                                <rect key="frame" x="111" y="45" width="135" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Write lyrics to iTunes:" id="8Sx-vb-5pB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-7c-IhI">
+                                <rect key="frame" x="76" y="78" width="449" height="58"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Here are some experimental features that may not be stable enough, and may be removed in the future." id="g2u-8D-dln">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1380,11 +1388,15 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Tvk-yf-w4p" secondAttribute="leading" id="8Ip-8V-Nhx"/>
-                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="uY5-7S-zG1" secondAttribute="centerX" constant="-60" id="9ZF-bK-ckf"/>
-                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="24" id="P1P-Yz-UJq"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="uY5-7S-zG1" secondAttribute="centerX" constant="-40" id="9ZF-bK-ckf"/>
+                            <constraint firstItem="GqQ-7c-IhI" firstAttribute="centerX" secondItem="uY5-7S-zG1" secondAttribute="centerX" id="B45-c6-kKm"/>
+                            <constraint firstItem="GqQ-7c-IhI" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="24" id="OTp-XT-yZH"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="100" id="P1P-Yz-UJq"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="centerY" secondItem="Z5r-WZ-ZnL" secondAttribute="centerY" id="Pql-bZ-j9U"/>
                             <constraint firstAttribute="bottom" secondItem="Tvk-yf-w4p" secondAttribute="bottom" constant="24" id="dxp-Sm-NC6"/>
+                            <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="top" secondItem="GqQ-7c-IhI" secondAttribute="bottom" constant="16" id="lf4-bH-map"/>
                             <constraint firstItem="Tvk-yf-w4p" firstAttribute="top" secondItem="IKY-aR-ZdS" secondAttribute="bottom" constant="8" id="tKi-Ka-ZTQ"/>
+                            <constraint firstItem="GqQ-7c-IhI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uY5-7S-zG1" secondAttribute="leading" constant="75" id="tiw-jZ-dmo"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Z5r-WZ-ZnL" secondAttribute="trailing" constant="16" id="wee-My-TEI"/>
                         </constraints>
                     </view>
@@ -1392,7 +1404,7 @@
                 <customObject id="hIA-Hp-BDR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="MQW-nm-dXS"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="961.5"/>
+            <point key="canvasLocation" x="1969" y="965"/>
         </scene>
         <!--Lyrics HUD Accessory-->
         <scene sceneID="WWo-Fn-ADk">
@@ -2001,7 +2013,7 @@ IA
                         <rect key="frame" x="0.0" y="0.0" width="280" height="253"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odr-DA-p5E">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odr-DA-p5E">
                                 <rect key="frame" x="18" y="148" width="244" height="85"/>
                                 <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" id="o52-Z0-lue">
                                     <font key="font" metaFont="system"/>
