@@ -265,9 +265,6 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="208" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
-                        <connections>
-                            <binding destination="UAo-xR-v4L" name="visible" keyPath="values.DesktopLyricsEnabled" id="NUp-wT-57g"/>
-                        </connections>
                     </window>
                     <connections>
                         <segue destination="Mpu-mB-dfa" kind="relationship" relationship="window.shadowedContentViewController" id="N2j-su-VUi"/>
@@ -296,6 +293,13 @@
                                 <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </box>
                         </subviews>
+                        <connections>
+                            <binding destination="cTu-hR-jwk" name="hidden" keyPath="values.DesktopLyricsEnabled" id="Nzd-F3-fIy">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="lyricsView" destination="DKt-ce-wX8" id="OnU-jX-f4C"/>
@@ -303,6 +307,7 @@
                 </viewController>
                 <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="AB5-cL-Rpb"/>
+                <userDefaultsController id="cTu-hR-jwk"/>
             </objects>
             <point key="canvasLocation" x="1281" y="-352"/>
         </scene>
