@@ -1333,11 +1333,11 @@
             <objects>
                 <viewController id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
                     <view key="view" id="uY5-7S-zG1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="190"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="227"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Tvk-yf-w4p">
-                                <rect key="frame" x="234" y="52" width="104" height="18"/>
+                                <rect key="frame" x="234" y="89" width="104" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="Wmf-HR-Jnk"/>
                                 </constraints>
@@ -1350,7 +1350,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="IKY-aR-ZdS">
-                                <rect key="frame" x="234" y="74" width="118" height="18"/>
+                                <rect key="frame" x="234" y="111" width="118" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="tTI-SA-b7h"/>
                                 </constraints>
@@ -1363,7 +1363,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5r-WZ-ZnL">
-                                <rect key="frame" x="87" y="75" width="135" height="17"/>
+                                <rect key="frame" x="87" y="112" width="135" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Write lyrics to iTunes:" id="8Sx-vb-5pB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1371,13 +1371,36 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-7c-IhI">
-                                <rect key="frame" x="76" y="108" width="449" height="58"/>
+                                <rect key="frame" x="76" y="145" width="449" height="58"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Here are some experimental features that may not be stable enough, and may be removed in the future." id="g2u-8D-dln">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqN-EP-pPj">
+                                <rect key="frame" x="77" y="56" width="145" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Preferred lyrics sourse:" id="7J3-g3-cfQ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-31-EIX">
+                                <rect key="frame" x="234" y="51" width="105" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="ZxH-p4-zoD"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="xol-CZ-NQp">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="K8h-MA-FKK"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="6Z8-y3-1xP" name="content" keyPath="values.LyricsSources" id="kxk-Hf-J8i"/>
+                                    <binding destination="6Z8-y3-1xP" name="selectedValue" keyPath="values.PreferredLyricsSource" previousBinding="kxk-Hf-J8i" id="Sfm-Xi-juZ"/>
+                                </connections>
+                            </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-Tg-5JV">
                                 <rect key="frame" x="234" y="22" width="284" height="18"/>
                                 <constraints>
@@ -1398,11 +1421,15 @@
                             <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="trailing" secondItem="uY5-7S-zG1" secondAttribute="centerX" constant="-80" id="Bvv-K0-o1n"/>
                             <constraint firstAttribute="bottom" secondItem="Dt8-Tg-5JV" secondAttribute="bottom" constant="24" id="FKR-Kz-0Dz"/>
                             <constraint firstItem="Dt8-Tg-5JV" firstAttribute="leading" secondItem="IKY-aR-ZdS" secondAttribute="leading" id="H4F-3n-tYj"/>
+                            <constraint firstItem="mNF-31-EIX" firstAttribute="top" secondItem="Tvk-yf-w4p" secondAttribute="bottom" constant="16" id="Naf-WW-rry"/>
                             <constraint firstItem="GqQ-7c-IhI" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="24" id="OTp-XT-yZH"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="100" id="P1P-Yz-UJq"/>
+                            <constraint firstItem="kqN-EP-pPj" firstAttribute="trailing" secondItem="Z5r-WZ-ZnL" secondAttribute="trailing" id="P2D-Tn-qGn"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="centerY" secondItem="Z5r-WZ-ZnL" secondAttribute="centerY" id="Pql-bZ-j9U"/>
+                            <constraint firstItem="mNF-31-EIX" firstAttribute="centerY" secondItem="kqN-EP-pPj" secondAttribute="centerY" id="TID-YA-daQ"/>
+                            <constraint firstItem="mNF-31-EIX" firstAttribute="leading" secondItem="kqN-EP-pPj" secondAttribute="trailing" constant="16" id="l9R-vf-yGY"/>
                             <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="top" secondItem="GqQ-7c-IhI" secondAttribute="bottom" constant="16" id="lf4-bH-map"/>
-                            <constraint firstItem="Dt8-Tg-5JV" firstAttribute="top" secondItem="Tvk-yf-w4p" secondAttribute="bottom" constant="16" id="shW-v9-r5P"/>
+                            <constraint firstItem="Dt8-Tg-5JV" firstAttribute="top" secondItem="mNF-31-EIX" secondAttribute="bottom" constant="16" id="qZw-Kd-Bl4"/>
                             <constraint firstItem="Tvk-yf-w4p" firstAttribute="top" secondItem="IKY-aR-ZdS" secondAttribute="bottom" constant="8" id="tKi-Ka-ZTQ"/>
                             <constraint firstItem="GqQ-7c-IhI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uY5-7S-zG1" secondAttribute="leading" constant="75" id="tiw-jZ-dmo"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Z5r-WZ-ZnL" secondAttribute="trailing" constant="16" id="wee-My-TEI"/>
@@ -1411,8 +1438,9 @@
                 </viewController>
                 <customObject id="hIA-Hp-BDR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="MQW-nm-dXS"/>
+                <userDefaultsController id="6Z8-y3-1xP"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="990"/>
+            <point key="canvasLocation" x="1969" y="1018.5"/>
         </scene>
         <!--Lyrics HUD Accessory-->
         <scene sceneID="WWo-Fn-ADk">

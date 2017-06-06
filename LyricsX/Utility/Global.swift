@@ -103,5 +103,6 @@ extension UserDefaults.DefaultKeys {
     static let WriteiTunesWithTranslation: Key<Bool>    = "WriteiTunesWithTranslation"
     static let WriteToiTunesAutomatically: Key<Bool>    = "WriteToiTunesAutomatically"
     
+    static let LyricsSources: Key<[String]>         = "LyricsSources"
     static let PreferredLyricsSource: Key<String?>  = "PreferredLyricsSource"
 }
