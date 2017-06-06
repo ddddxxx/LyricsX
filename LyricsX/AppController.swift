@@ -130,7 +130,14 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
             return
         }
         
-        if let current = currentLyrics, current >= lyrics {
+        func shoudReplace(_ from: Lyrics, to: Lyrics) -> Bool {
+            if (from.metadata.source.rawValue == defaults[.PreferredLyricsSource]) != (to.metadata.source.rawValue == defaults[.PreferredLyricsSource]) {
+                return to.metadata.source.rawValue == defaults[.PreferredLyricsSource]
+            }
+            return to > from
+        }
+        
+        if let current = currentLyrics, !shoudReplace(current, to: lyrics) {
             return
         }
         
