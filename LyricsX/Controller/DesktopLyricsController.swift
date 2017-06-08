@@ -154,6 +154,9 @@ class DesktopLyricsViewController: NSViewController {
         
         var firstLine = firstLine ?? ""
         var secondLine = secondLine ?? ""
+        if defaults[.DesktopLyricsOneLineMode] {
+            secondLine = ""
+        }
         if let converter = chineseConverter {
             firstLine = converter.convert(firstLine)
             secondLine = converter.convert(secondLine)
