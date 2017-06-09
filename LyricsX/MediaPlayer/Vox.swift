@@ -73,11 +73,9 @@ extension VoxApplication {
     }
     var track: MusicTrack? {
         guard let id = uniqueID as? String,
-            let name = track as? String,
-            let album = album as? String,
-            let artist = artist as? String else {
+            let name = track as? String else {
             return nil
         }
-        return MusicTrack(id: id, name: name, album: album, artist: artist, duration: totalTime as TimeInterval?)
+        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: totalTime as TimeInterval?)
     }
 }

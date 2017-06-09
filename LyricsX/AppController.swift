@@ -93,7 +93,8 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
             return
         }
         let title = track.name
-        let artist = track.artist
+        // FIXME: deal with optional value
+        let artist = track.artist ?? ""
         
         guard !WrongLyricsUtil.shared.isNoMatching(title: title, artist: artist) else {
             return

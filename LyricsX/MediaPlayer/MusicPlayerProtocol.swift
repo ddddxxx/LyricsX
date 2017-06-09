@@ -31,8 +31,8 @@ enum MusicPlayerState {
 struct MusicTrack {
     var id:     String
     var name:   String
-    var album:  String
-    var artist: String
+    var album:  String?
+    var artist: String?
     var duration: TimeInterval?
 }
 
