@@ -96,12 +96,10 @@ extension iTunesTrack {
     
     var track: MusicTrack? {
         guard let id = stringID,
-            let name = name as? String,
-            let album = album as? String,
-            let artist = artist as? String else {
+            let name = name as? String else {
             return nil
         }
         
-        return MusicTrack(id: id, name: name, album: album, artist: artist, duration: duration as TimeInterval?)
+        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration as TimeInterval?)
     }
 }
