@@ -141,7 +141,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             
             do {
                 try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)
-            } catch let error as NSError{
+            } catch {
                 log(error.localizedDescription)
                 return nil
             }

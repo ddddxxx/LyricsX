@@ -96,7 +96,7 @@ extension UserDefaults {
                     return nil
                 }
                 return url
-            } catch let error {
+            } catch {
                 log(error.localizedDescription)
                 return nil
             }
@@ -192,7 +192,7 @@ extension Lyrics {
                                         timeTag: true,
                                         translation: true)
             try content.write(to: lrcFileURL, atomically: true, encoding: .utf8)
-        } catch let error as NSError{
+        } catch {
             log(error.localizedDescription)
             return
         }
