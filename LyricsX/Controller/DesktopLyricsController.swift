@@ -81,8 +81,9 @@ class DesktopLyricsViewController: NSViewController {
         
         makeConstraints()
         
+        self.lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.displayLrc("")
+            self.lyricsView.displayLrc("")
             self.addObserver()
         }
     }
@@ -127,6 +128,10 @@ class DesktopLyricsViewController: NSViewController {
     }
     
     func handlePositionChange(_ n: Notification) {
+        guard defaults[.DesktopLyricsEnabled] else {
+            return
+        }
+        
         let lrc = n.userInfo?["lrc"] as? LyricsLine
         let next = n.userInfo?["next"] as? LyricsLine
         
@@ -136,48 +141,22 @@ class DesktopLyricsViewController: NSViewController {
         
         currentLyricsPosition = lrc?.position ?? 0
         
-        let firstLine = lrc?.sentence
-        let secondLine: String?
-        if defaults[.PreferBilingualLyrics] {
-            secondLine = lrc?.translation ?? next?.sentence
-        } else {
-            secondLine = next?.sentence
-        }
-        
-        displayLrc(firstLine, secondLine: secondLine)
-    }
-    
-    func displayLrc(_ firstLine: String?, secondLine: String? = nil) {
-        guard defaults[.DesktopLyricsEnabled] else {
-            return
-        }
-        
-        var firstLine = firstLine ?? ""
-        var secondLine = secondLine ?? ""
+        var firstLine = lrc?.sentence ?? ""
+        var secondLine: String
         if defaults[.DesktopLyricsOneLineMode] {
             secondLine = ""
+        } else if defaults[.PreferBilingualLyrics] {
+            secondLine = lrc?.translation ?? next?.sentence ?? ""
+        } else {
+            secondLine = next?.sentence ?? ""
         }
+        
         if let converter = chineseConverter {
             firstLine = converter.convert(firstLine)
             secondLine = converter.convert(secondLine)
         }
         
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 0.2
-            context.allowsImplicitAnimation = true
-            context.timingFunction = .mystery
-            self.lyricsView.firstLine = firstLine
-            self.lyricsView.secondLine = secondLine
-            self.lyricsView.onAnimation = true
-            self.view.needsUpdateConstraints = true
-            self.view.needsLayout = true
-            self.view.layoutSubtreeIfNeeded()
-        }, completionHandler: {
-            self.lyricsView.onAnimation = false
-            self.view.needsUpdateConstraints = true
-            self.view.needsLayout = true
-            self.view.layoutSubtreeIfNeeded()
-        })
+        lyricsView.displayLrc(firstLine, secondLine: secondLine)
     }
     
     private func makeConstraints() {
