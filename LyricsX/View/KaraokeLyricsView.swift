@@ -58,7 +58,7 @@ class KaraokeLyricsView: NSBox {
             $0.edges.equalToSuperview().inset(EdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX))
         }
         
-        cornerRadius = CGFloat(fontSize / 2)
+        cornerRadius = insetX / 2
     }
     
     private func lyricsLabel(_ content: String) -> NSTextField {
@@ -69,9 +69,9 @@ class KaraokeLyricsView: NSBox {
         shadow.shadowOffset = .zero
         
         let label = NSTextField(labelWithString: content)
-        label.bind(NSFontNameBinding, to: self, withKeyPath: #keyPath(fontName), options: nil)
-        label.bind(NSFontSizeBinding, to: self, withKeyPath: #keyPath(fontSize), options: nil)
-        label.bind(NSTextColorBinding, to: self, withKeyPath: #keyPath(textColor), options: nil)
+        label.bind(NSFontNameBinding, to: self, withKeyPath: #keyPath(fontName))
+        label.bind(NSFontSizeBinding, to: self, withKeyPath: #keyPath(fontSize))
+        label.bind(NSTextColorBinding, to: self, withKeyPath: #keyPath(textColor))
         label.shadow = shadow
         label.alphaValue = 0
         label.isHidden = true

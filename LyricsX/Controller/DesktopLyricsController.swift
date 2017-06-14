@@ -73,8 +73,8 @@ class DesktopLyricsViewController: NSViewController {
         super.viewDidLoad()
         
         let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind("fontName", to: defaults, withKeyPath: .DesktopLyricsFontName, options: nil)
-        lyricsView.bind("fontSize", to: defaults, withKeyPath: .DesktopLyricsFontSize, options: nil)
+        lyricsView.bind("fontName", to: defaults, withKeyPath: .DesktopLyricsFontName)
+        lyricsView.bind("fontSize", to: defaults, withKeyPath: .DesktopLyricsFontSize)
         lyricsView.bind("textColor", to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
         lyricsView.bind("shadowColor", to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
         lyricsView.bind("fillColor", to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
@@ -121,8 +121,6 @@ class DesktopLyricsViewController: NSViewController {
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
             self.makeConstraints()
-            self.view.needsLayout = true
-            self.view.layoutSubtreeIfNeeded()
             self.view.displayIfNeeded()
         })
     }
@@ -138,7 +136,6 @@ class DesktopLyricsViewController: NSViewController {
         guard currentLyricsPosition != lrc?.position else {
             return
         }
-        
         currentLyricsPosition = lrc?.position ?? 0
         
         var firstLine = lrc?.sentence ?? ""
