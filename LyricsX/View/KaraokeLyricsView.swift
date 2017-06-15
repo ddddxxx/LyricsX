@@ -30,10 +30,11 @@ class KaraokeLyricsView: NSBox {
     dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1) {
         didSet {
-            let shadow = NSShadow()
-            shadow.shadowBlurRadius = 3
-            shadow.shadowColor = shadowColor
-            shadow.shadowOffset = .zero
+            let shadow = NSShadow().then {
+                $0.shadowBlurRadius = 3
+                $0.shadowColor = shadowColor
+                $0.shadowOffset = .zero
+            }
             for label in stackView.subviews {
                 label.shadow = shadow
             }
@@ -63,20 +64,19 @@ class KaraokeLyricsView: NSBox {
     
     private func lyricsLabel(_ content: String) -> NSTextField {
         // TODO: reuse label
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 3
-        shadow.shadowColor = shadowColor
-        shadow.shadowOffset = .zero
-        
-        let label = NSTextField(labelWithString: content)
-        label.bind(NSFontNameBinding, to: self, withKeyPath: #keyPath(fontName))
-        label.bind(NSFontSizeBinding, to: self, withKeyPath: #keyPath(fontSize))
-        label.bind(NSTextColorBinding, to: self, withKeyPath: #keyPath(textColor))
-        label.shadow = shadow
-        label.alphaValue = 0
-        label.isHidden = true
-        
-        return label
+        let shadow = NSShadow().then {
+            $0.shadowBlurRadius = 3
+            $0.shadowColor = shadowColor
+            $0.shadowOffset = .zero
+        }
+        return NSTextField(labelWithString: content).then {
+            $0.bind(NSFontNameBinding, to: self, withKeyPath: #keyPath(fontName))
+            $0.bind(NSFontSizeBinding, to: self, withKeyPath: #keyPath(fontSize))
+            $0.bind(NSTextColorBinding, to: self, withKeyPath: #keyPath(textColor))
+            $0.shadow = shadow
+            $0.alphaValue = 0
+            $0.isHidden = true
+        }
     }
     
     func displayLrc(_ firstLine: String, secondLine: String = "") {
@@ -112,7 +112,7 @@ class KaraokeLyricsView: NSBox {
                 $0.alphaValue = 1
             }
             isHidden = shouldHideAll
-            self.window?.layoutIfNeeded()
+            window?.layoutIfNeeded()
         })
     }
     

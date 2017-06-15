@@ -73,11 +73,12 @@ func checkForUpdate(force: Bool = false) {
     defaults[.NotifiedUpdateVersion] = remote.description
     
     DispatchQueue.main.async {
-        let alert = NSAlert()
-        alert.messageText = "A new version of LyricsX is available!"
-        alert.informativeText = "LyricsX \(remote) is now available -- you have \(localVersion). Would you like to download it now?"
-        alert.addButton(withTitle: "Download")
-        alert.addButton(withTitle: "Skip")
+        let alert = NSAlert().then {
+            $0.messageText = "A new version of LyricsX is available!"
+            $0.informativeText = "LyricsX \(remote) is now available -- you have \(localVersion). Would you like to download it now?"
+            $0.addButton(withTitle: "Download")
+            $0.addButton(withTitle: "Skip")
+        }
         NSApp.activate(ignoringOtherApps: true)
         let response = alert.runModal()
         if response == NSAlertFirstButtonReturn {

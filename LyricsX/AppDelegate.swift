@@ -20,6 +20,7 @@
 
 import Cocoa
 import ServiceManagement
+import Then
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

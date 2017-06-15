@@ -28,23 +28,24 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     dynamic var isTracking = true
     
     override func awakeFromNib() {
-        view.window?.titlebarAppearsTransparent = true
-        view.window?.titleVisibility = .hidden
-        view.window?.styleMask.insert(.borderless)
-        
+        view.window?.do {
+            $0.titlebarAppearsTransparent = true
+            $0.titleVisibility = .hidden
+            $0.styleMask.insert(.borderless)
+        }
         let accessory = self.storyboard?.instantiateController(withIdentifier: "LyricsHUDAccessory") as! LyricsHUDAccessoryViewController
         accessory.layoutAttribute = .right
         view.window?.addTitlebarAccessoryViewController(accessory)
         
         dragNDropView.dragDelegate = self
-        
         lyricsScrollView.delegate = self
         lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
-        let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
-        nc.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
-        nc.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: .NSScrollViewWillStartLiveScroll, object: lyricsScrollView)
+        NotificationCenter.default.do {
+            $0.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
+            $0.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
+            $0.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: .NSScrollViewWillStartLiveScroll, object: lyricsScrollView)
+        }
     }
     
     override func viewDidDisappear() {

@@ -41,14 +41,15 @@ class ScrollLyricsView: NSScrollView {
         borderType = .noBorder
         hasHorizontalScroller = false
         hasVerticalScroller = false
-        textView = NSTextView(frame: frame)
-        textView.font = NSFont.systemFont(ofSize: 12)
-        textView.textColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)
-        textView.alignment = .center
-        textView.drawsBackground = false
-        textView.isEditable = false
-        textView.isSelectable = false
-        textView.autoresizingMask = [.viewWidthSizable]
+        textView = NSTextView(frame: frame).then {
+            $0.font = NSFont.systemFont(ofSize: 12)
+            $0.textColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)
+            $0.alignment = .center
+            $0.drawsBackground = false
+            $0.isEditable = false
+            $0.isSelectable = false
+            $0.autoresizingMask = [.viewWidthSizable]
+        }
         documentView = textView
     }
     
@@ -106,15 +107,14 @@ class ScrollLyricsView: NSScrollView {
     
     func updateFadeEdgeMask() {
         let location = fadeStripWidth / frame.height
-        
-        let mask = CAGradientLayer()
-        mask.frame = bounds
-        mask.colors = [#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor]
-        mask.locations = [0, location as NSNumber, (1 - location) as NSNumber, 1]
-        mask.startPoint = .zero
-        mask.endPoint = CGPoint(x: 0, y: 1)
         wantsLayer = true
-        layer?.mask = mask
+        layer?.mask = CAGradientLayer().then {
+            $0.frame = bounds
+            $0.colors = [#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor]
+            $0.locations = [0, location as NSNumber, (1 - location) as NSNumber, 1]
+            $0.startPoint = .zero
+            $0.endPoint = CGPoint(x: 0, y: 1)
+        }
     }
     
     func updateEdgeInset() {

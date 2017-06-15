@@ -25,15 +25,17 @@ import OpenCC
 class DesktopLyricsWindowController: NSWindowController {
     
     override func windowDidLoad() {
-        if let mainScreen = NSScreen.main() {
-            window?.setFrame(mainScreen.visibleFrame, display: true)
-        }
-        window?.backgroundColor = .clear
-        window?.isOpaque = false
-        window?.ignoresMouseEvents = true
-        window?.level = Int(CGWindowLevelForKey(.floatingWindow))
-        if defaults[.DisableLyricsWhenSreenShot] {
-            window?.sharingType = .none
+        window?.do {
+            if let mainScreen = NSScreen.main() {
+                $0.setFrame(mainScreen.visibleFrame, display: true)
+            }
+            if defaults[.DisableLyricsWhenSreenShot] {
+                $0.sharingType = .none
+            }
+            $0.backgroundColor = .clear
+            $0.isOpaque = false
+            $0.ignoresMouseEvents = true
+            $0.level = Int(CGWindowLevelForKey(.floatingWindow))
         }
         
         NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(updateWindowFrame), name: .NSWorkspaceActiveSpaceDidChange, object: nil)
@@ -72,16 +74,17 @@ class DesktopLyricsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind("fontName", to: defaults, withKeyPath: .DesktopLyricsFontName)
-        lyricsView.bind("fontSize", to: defaults, withKeyPath: .DesktopLyricsFontSize)
-        lyricsView.bind("textColor", to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
-        lyricsView.bind("shadowColor", to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
-        lyricsView.bind("fillColor", to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
-        
+        lyricsView.do {
+            let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
+            $0.bind("fontName", to: defaults, withKeyPath: .DesktopLyricsFontName)
+            $0.bind("fontSize", to: defaults, withKeyPath: .DesktopLyricsFontSize)
+            $0.bind("textColor", to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
+            $0.bind("shadowColor", to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
+            $0.bind("fillColor", to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
+        }
         makeConstraints()
         
-        self.lyricsView.displayLrc("LyricsX")
+        lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
             self.addObserver()
@@ -120,8 +123,8 @@ class DesktopLyricsViewController: NSViewController {
             context.duration = 0.2
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
-            self.makeConstraints()
-            self.view.displayIfNeeded()
+            makeConstraints()
+            view.displayIfNeeded()
         })
     }
     
