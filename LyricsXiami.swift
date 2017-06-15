@@ -1,59 +1,82 @@
 //
 //  LyricsXiami.swift
-//  LyricsX
 //
-//  Created by 邓翔 on 2017/2/5.
-//  Copyright © 2017年 ddddxxx. All rights reserved.
+//  This file is part of LyricsX
+//  Copyright (C) 2017  Xander Deng
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 import Foundation
 import SwiftyJSON
 
+extension Lyrics.MetaData.Source {
+    static let Xiami = Lyrics.MetaData.Source("Xiami")
+}
+
 class LyricsXiami: LyricsSource {
     
-    private let queue: OperationQueue
+    let queue: OperationQueue
     
-    init(queue: OperationQueue = OperationQueue()) {
+    required init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
     }
     
-    func fetchLyrics(title: String, artist: String) -> [LXLyrics] {
-        var result = [LXLyrics]()
-        let xiamiIDs = searchXiamiIDFor(title: title, artist: artist)
-        let fetchOps = xiamiIDs.map() { id in
-            return BlockOperation() {
-                let parser = LyricsXiamiXMLParser()
-                guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(id)"),
-                    let data = try? Data(contentsOf: url),
-                    var metadata = parser.parseLrcURL(data: data) else {
-                        return
-                }
-                metadata[.source] = "Xiami"
-                metadata[.searchTitle] = title
-                metadata[.searchArtist] = artist
-                if let lrc = LXLyrics(metadata: metadata) {
-                    result += [lrc]
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+        let keyword: String
+        switch criteria {
+        case let .keyword(key):
+            keyword = key
+        case let .info(title, artist):
+            keyword = title + " " + artist
+        }
+        let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
+        
+        queue.addOperation {
+            let xiamiIDs = self.searchXiamiIDFor(keyword: encodedKeyword)
+            for (index, xiamiID) in xiamiIDs.enumerated() {
+                self.queue.addOperation {
+                    let parser = LyricsXiamiXMLParser()
+                    guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(xiamiID)"),
+                        let data = try? Data(contentsOf: url),
+                        let parseResult = parser.parseLrcURL(data: data),
+                        let lrc = Lyrics(url: parseResult.lyricsURL) else {
+                            return
+                    }
+                    lrc.metadata.source = .Xiami
+                    lrc.metadata.searchBy = criteria
+                    lrc.metadata.searchIndex = index
+                    lrc.metadata.artworkURL = parseResult.artworkURL
+                    
+                    completionBlock(lrc)
                 }
             }
         }
-        queue.addOperations(fetchOps, waitUntilFinished: true)
-        return result
     }
     
-    private func searchXiamiIDFor(title: String, artist: String) -> [Int] {
-        let urlStr = "http://www.xiami.com/web/search-songs?key=\(title) \(artist)"
-        let convertedURLStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
-        let url = URL(string: convertedURLStr)!
+    private func searchXiamiIDFor(keyword: String) -> [Int] {
+        let urlStr = "http://www.xiami.com/web/search-songs?key=" + keyword
+        let url = URL(string: urlStr)!
         
         guard let data = try? Data(contentsOf: url), let array = JSON(data).array else {
             return []
         }
         
-        return array.flatMap() { item in
-            return item["id"].string.flatMap() {Int($0)}
+        return array.flatMap { item in
+            return item["id"].string.flatMap {Int($0)}
         }
     }
-    
 }
 
 // MARK: - XMLParser
@@ -62,13 +85,18 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     
     var XMLContent: String?
     
-    var result: [LXLyrics.MetadataKey: String] = [:]
+    var lyricsURL: URL?
+    var artworkURL: URL?
     
-    func parseLrcURL(data: Data) -> [LXLyrics.MetadataKey: String]? {
+    func parseLrcURL(data: Data) -> (lyricsURL: URL, artworkURL: URL?)? {
         let parser = XMLParser(data: data)
         parser.delegate = self
-        let success = parser.parse()
-        return success ? result : nil
+        parser.parse()
+        guard let lyricsURL = lyricsURL else {
+            return nil
+        }
+        
+        return (lyricsURL, artworkURL)
     }
     
     // MARK: XMLParserDelegate
@@ -76,9 +104,9 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         switch elementName {
         case "lyric":
-            result[.lyricsURL] = XMLContent
+            lyricsURL = XMLContent.flatMap { URL(string: $0) }
         case "pic":
-            result[.artworkURL] = XMLContent
+            artworkURL = XMLContent.flatMap { URL(string: $0) }
         default:
             return
         }
@@ -87,5 +115,4 @@ private class LyricsXiamiXMLParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         XMLContent = string
     }
-    
 }
