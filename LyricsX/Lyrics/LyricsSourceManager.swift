@@ -24,8 +24,8 @@ class LyricsSourceManager {
     
     weak var consumer: LyricsConsuming?
     
-    private let lyricsSource: [LyricsSource]
-    private let queue: OperationQueue
+    let lyricsSource: [LyricsSource]
+    let queue: OperationQueue
     
     var criteria: Lyrics.MetaData.SearchCriteria?
     
