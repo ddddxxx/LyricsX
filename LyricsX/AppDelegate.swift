@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         
-        desktopLyrics = NSStoryboard.main().instantiateController(withIdentifier: "DesktopLyricsWindow") as? NSWindowController
+        desktopLyrics = NSStoryboard.main().instantiateController(withIdentifier: .DesktopLyricsWindow)
         desktopLyrics?.showWindow(nil)
         desktopLyrics?.window?.makeKeyAndOrderFront(nil)
         

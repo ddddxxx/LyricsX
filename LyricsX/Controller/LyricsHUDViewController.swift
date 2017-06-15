@@ -33,8 +33,9 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
             $0.titleVisibility = .hidden
             $0.styleMask.insert(.borderless)
         }
-        let accessory = self.storyboard?.instantiateController(withIdentifier: "LyricsHUDAccessory") as! LyricsHUDAccessoryViewController
-        accessory.layoutAttribute = .right
+        let accessory = NSStoryboard.main().instantiateController(withIdentifier: .LyricsHUDAccessory).then {
+            $0.layoutAttribute = .right
+        }
         view.window?.addTitlebarAccessoryViewController(accessory)
         
         dragNDropView.dragDelegate = self
@@ -58,7 +59,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         isTracking = true
     }
     
-    // MARK: - handler
+    // MARK: - Handler
     
     func handleLyricsChange(_ n: Notification) {
         DispatchQueue.main.async {
@@ -89,7 +90,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         isTracking = false
     }
     
-    // MARK: DragNDrop Delegate
+    // MARK: DragNDropDelegate
     
     func dragFinished(content: String) {
         AppController.shared.importLyrics(content)

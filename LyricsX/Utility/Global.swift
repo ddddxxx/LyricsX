@@ -38,6 +38,11 @@ func log(_ message: @autoclosure () -> String, file: StaticString = #file, line:
     NSLog("\(file):\(line): \(message())")
 }
 
+extension NSStoryboard.Identifiers {
+    static let DesktopLyricsWindow: ID<NSWindowController> = "DesktopLyricsWindow"
+    static let LyricsHUDAccessory: ID<LyricsHUDAccessoryViewController> = "LyricsHUDAccessory"
+}
+
 // MARK: - Notification Name
 
 let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
