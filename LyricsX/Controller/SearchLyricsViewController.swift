@@ -141,7 +141,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             
             do {
                 try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)
-            } catch let error as NSError{
+            } catch {
                 log(error.localizedDescription)
                 return nil
             }
@@ -152,21 +152,22 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     func expandPreview() {
         let expandingHeight = -view.subviews.reduce(0) { min($0, $1.frame.minY) }
-        var windowFrame = self.view.window!.frame
-        windowFrame.size.height += expandingHeight
-        windowFrame.origin.y -= expandingHeight
+        let windowFrame = self.view.window!.frame.with {
+            $0.size.height += expandingHeight
+            $0.origin.y -= expandingHeight
+        }
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.33
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
-            self.hideLrcPreviewConstraint?.animator().isActive = false
+            hideLrcPreviewConstraint?.animator().isActive = false
             view.window?.setFrame(windowFrame, display: true, animate: true)
-            self.view.needsUpdateConstraints = true
-            self.view.needsLayout = true
-            self.view.layoutSubtreeIfNeeded()
-        }) {
+            view.needsUpdateConstraints = true
+            view.needsLayout = true
+            view.layoutSubtreeIfNeeded()
+        }, completionHandler: {
             self.normalConstraint.isActive = true
-        }
+        })
     }
     
     func updateImage() {

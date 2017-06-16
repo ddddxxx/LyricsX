@@ -109,6 +109,7 @@ class Lyrics {
     }
     
     subscript(_ position: TimeInterval) -> (current:LyricsLine?, next:LyricsLine?) {
+        let position = position + timeDelay
         var left = lyrics.startIndex
         var right = lyrics.endIndex - 1
         while left <= right {

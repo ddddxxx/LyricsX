@@ -25,15 +25,17 @@ import OpenCC
 class DesktopLyricsWindowController: NSWindowController {
     
     override func windowDidLoad() {
-        if let mainScreen = NSScreen.main() {
-            window?.setFrame(mainScreen.visibleFrame, display: true)
-        }
-        window?.backgroundColor = .clear
-        window?.isOpaque = false
-        window?.ignoresMouseEvents = true
-        window?.level = Int(CGWindowLevelForKey(.floatingWindow))
-        if defaults[.DisableLyricsWhenSreenShot] {
-            window?.sharingType = .none
+        window?.do {
+            if let mainScreen = NSScreen.main() {
+                $0.setFrame(mainScreen.visibleFrame, display: true)
+            }
+            if defaults[.DisableLyricsWhenSreenShot] {
+                $0.sharingType = .none
+            }
+            $0.backgroundColor = .clear
+            $0.isOpaque = false
+            $0.ignoresMouseEvents = true
+            $0.level = Int(CGWindowLevelForKey(.floatingWindow))
         }
         
         NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(updateWindowFrame), name: .NSWorkspaceActiveSpaceDidChange, object: nil)
@@ -72,17 +74,19 @@ class DesktopLyricsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind("fontName", to: defaults, withKeyPath: .DesktopLyricsFontName, options: nil)
-        lyricsView.bind("fontSize", to: defaults, withKeyPath: .DesktopLyricsFontSize, options: nil)
-        lyricsView.bind("textColor", to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
-        lyricsView.bind("shadowColor", to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
-        lyricsView.bind("fillColor", to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
-        
+        lyricsView.do {
+            let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
+            $0.bind("fontName", to: defaults, withKeyPath: .DesktopLyricsFontName)
+            $0.bind("fontSize", to: defaults, withKeyPath: .DesktopLyricsFontSize)
+            $0.bind("textColor", to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
+            $0.bind("shadowColor", to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
+            $0.bind("fillColor", to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
+        }
         makeConstraints()
         
+        lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.displayLrc("")
+            self.lyricsView.displayLrc("")
             self.addObserver()
         }
     }
@@ -119,65 +123,40 @@ class DesktopLyricsViewController: NSViewController {
             context.duration = 0.2
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
-            self.makeConstraints()
-            self.view.needsLayout = true
-            self.view.layoutSubtreeIfNeeded()
-            self.view.displayIfNeeded()
+            makeConstraints()
+            view.displayIfNeeded()
         })
     }
     
     func handlePositionChange(_ n: Notification) {
+        guard defaults[.DesktopLyricsEnabled] else {
+            return
+        }
+        
         let lrc = n.userInfo?["lrc"] as? LyricsLine
         let next = n.userInfo?["next"] as? LyricsLine
         
         guard currentLyricsPosition != lrc?.position else {
             return
         }
-        
         currentLyricsPosition = lrc?.position ?? 0
         
-        let firstLine = lrc?.sentence
-        let secondLine: String?
-        if defaults[.PreferBilingualLyrics] {
-            secondLine = lrc?.translation ?? next?.sentence
-        } else {
-            secondLine = next?.sentence
-        }
-        
-        displayLrc(firstLine, secondLine: secondLine)
-    }
-    
-    func displayLrc(_ firstLine: String?, secondLine: String? = nil) {
-        guard defaults[.DesktopLyricsEnabled] else {
-            return
-        }
-        
-        var firstLine = firstLine ?? ""
-        var secondLine = secondLine ?? ""
+        var firstLine = lrc?.sentence ?? ""
+        var secondLine: String
         if defaults[.DesktopLyricsOneLineMode] {
             secondLine = ""
+        } else if defaults[.PreferBilingualLyrics] {
+            secondLine = lrc?.translation ?? next?.sentence ?? ""
+        } else {
+            secondLine = next?.sentence ?? ""
         }
+        
         if let converter = chineseConverter {
             firstLine = converter.convert(firstLine)
             secondLine = converter.convert(secondLine)
         }
         
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 0.2
-            context.allowsImplicitAnimation = true
-            context.timingFunction = .mystery
-            self.lyricsView.firstLine = firstLine
-            self.lyricsView.secondLine = secondLine
-            self.lyricsView.onAnimation = true
-            self.view.needsUpdateConstraints = true
-            self.view.needsLayout = true
-            self.view.layoutSubtreeIfNeeded()
-        }, completionHandler: {
-            self.lyricsView.onAnimation = false
-            self.view.needsUpdateConstraints = true
-            self.view.needsLayout = true
-            self.view.layoutSubtreeIfNeeded()
-        })
+        lyricsView.displayLrc(firstLine, secondLine: secondLine)
     }
     
     private func makeConstraints() {

@@ -36,6 +36,8 @@
 		BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB58B0831E82B82F00598D4F /* OpenCC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB58B0871E82BFF600598D4F /* LyricsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B0861E82BFF600598D4F /* LyricsLine.swift */; };
 		BB58B0891E82CA9B00598D4F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
+		BB5CCDA61EF2A2CB00C4FEB2 /* Then.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5CCDA51EF2A2CB00C4FEB2 /* Then.framework */; };
+		BB5CCDA71EF2A2CB00C4FEB2 /* Then.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB5CCDA51EF2A2CB00C4FEB2 /* Then.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB60F2FC1E87CF9200BA1FD2 /* Vox.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */; };
 		BB60F3041E889A1B00BA1FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60F3031E889A1B00BA1FD2 /* AppDelegate.swift */; };
 		BB60F3061E889A1B00BA1FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3051E889A1B00BA1FD2 /* Assets.xcassets */; };
@@ -84,6 +86,7 @@
 				BB98A3B31ED8266600C5CD57 /* Semver.framework in Embed Frameworks */,
 				BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */,
 				BB4141D01E47461800A51775 /* SwiftyJSON.framework in Embed Frameworks */,
+				BB5CCDA71EF2A2CB00C4FEB2 /* Then.framework in Embed Frameworks */,
 				BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */,
 				BBE557981EC0291E00F1EC31 /* GenericID.framework in Embed Frameworks */,
 			);
@@ -133,6 +136,7 @@
 		BB58B0831E82B82F00598D4F /* OpenCC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCC.framework; path = Carthage/Build/Mac/OpenCC.framework; sourceTree = "<group>"; };
 		BB58B0861E82BFF600598D4F /* LyricsLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsLine.swift; path = Lyrics/LyricsLine.swift; sourceTree = "<group>"; };
 		BB58B0881E82CA9B00598D4F /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = "Support Files/Credits.rtf"; sourceTree = "<group>"; };
+		BB5CCDA51EF2A2CB00C4FEB2 /* Then.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Then.framework; path = Carthage/Build/Mac/Then.framework; sourceTree = "<group>"; };
 		BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vox.swift; path = MediaPlayer/Vox.swift; sourceTree = "<group>"; };
 		BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsXHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB60F3031E889A1B00BA1FD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				BB98A3B21ED8266600C5CD57 /* Semver.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BB4141CE1E4745EA00A51775 /* SwiftyJSON.framework in Frameworks */,
+				BB5CCDA61EF2A2CB00C4FEB2 /* Then.framework in Frameworks */,
 				BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */,
 				BBE557971EC0291E00F1EC31 /* GenericID.framework in Frameworks */,
 			);
@@ -270,6 +275,7 @@
 			children = (
 				BBE557961EC0291E00F1EC31 /* GenericID.framework */,
 				BB58B0831E82B82F00598D4F /* OpenCC.framework */,
+				BB5CCDA51EF2A2CB00C4FEB2 /* Then.framework */,
 				BB98A3B11ED8266600C5CD57 /* Semver.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
 				BB4141CD1E4745EA00A51775 /* SwiftyJSON.framework */,
