@@ -59,6 +59,7 @@ You can download ZIP from [releases](https://github.com/XQS6LB3A/LyricsX/release
 - [Semver](https://github.com/XQS6LB3A/Semver)
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [SnapKit](https://github.com/SnapKit/SnapKit)
+- [Then](https://github.com/devxoul/Then)
 
 Special Thanks
 
