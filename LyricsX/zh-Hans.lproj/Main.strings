@@ -35,6 +35,9 @@
 /* Class = "NSBox"; title = "Box"; ObjectID = "5Bt-74-pXu"; */
 "5Bt-74-pXu.title" = "Box";
 
+/* Class = "NSButtonCell"; title = "One line Mode"; ObjectID = "5dp-p5-YmE"; */
+"5dp-p5-YmE.title" = "单行模式";
+
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
 "6FU-j0-FTV.title" = "转换为正体中文";
 
@@ -43,6 +46,9 @@
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "自动写入";
+
+/* Class = "NSTextFieldCell"; title = "Preferred lyrics sourse:"; ObjectID = "7J3-g3-cfQ"; */
+"7J3-g3-cfQ.title" = "优先使用歌词源:";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
 "8Sx-vb-5pB.title" = "写入歌词到 iTunes:";
@@ -121,6 +127,9 @@
 
 /* Class = "NSMenu"; title = "Application"; ObjectID = "L37-wq-P3U"; */
 "L37-wq-P3U.title" = "Application";
+
+/* Class = "NSBox"; title = "Spacing to screen edge"; ObjectID = "LDq-wS-wqc"; */
+"LDq-wS-wqc.title" = "与屏幕边缘距离";
 
 /* Class = "NSButtonCell"; title = "Music Player is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "暂停播放时";
@@ -265,9 +274,6 @@
 
 /* Class = "NSButtonCell"; title = "Vox"; ObjectID = "oTS-3z-Tz7"; */
 "oTS-3z-Tz7.title" = "Vox";
-
-/* Class = "NSTextFieldCell"; title = "Spacing to screen edge"; ObjectID = "p7Y-sV-OPH"; */
-"p7Y-sV-OPH.title" = "与屏幕边缘距离";
 
 /* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "tMS-HS-dqi"; */
 "tMS-HS-dqi.title" = "Version";
