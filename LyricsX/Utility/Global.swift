@@ -21,14 +21,13 @@
 import Cocoa
 import GenericID
 
-let LyricsXGroupIdentifier = "group.ddddxxx.LyricsX"
+// NOTE: to build your own product, you need to replace the team identifier to yours
+// and do the same thing in LyricsXHelper
+let LyricsXGroupIdentifier = "KCY8NMTG34.group.ddddxxx.LyricsX"
 let LyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
 
 let defaults = UserDefaults.standard
-
-extension UserDefaults {
-    static let group = UserDefaults(suiteName: LyricsXGroupIdentifier)!
-}
+let groupDefaults = UserDefaults(suiteName: LyricsXGroupIdentifier)!
 
 extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)

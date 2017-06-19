@@ -28,21 +28,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var shouldWaitForPlayerQuit = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let lyricsXDefault = UserDefaults(suiteName: "group.ddddxxx.LyricsX")!
+        guard groupDefaults.bool(forKey: LaunchAndQuitWithPlayer) else {
+            NSApplication.shared().terminate(nil)
+            abort() // fake invoking, just make compiler happy.
+        }
         
-        let ident = playerBundleIdentifier[lyricsXDefault.integer(forKey: PreferredPlayerIndex)]
+        let index = groupDefaults.integer(forKey: PreferredPlayerIndex)
+        let ident = playerBundleIdentifiers[index]
         mediaPlayer = SBApplication(bundleIdentifier: ident)
         
-        if lyricsXDefault.bool(forKey: LaunchAndQuitWithPlayer) {
-            shouldWaitForPlayerQuit = mediaPlayer?.isRunning == true
-            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(checkiTunes), userInfo: nil, repeats: true)
-        } else {
-            NSApplication.shared().terminate(nil)
-        }
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        
+        shouldWaitForPlayerQuit = mediaPlayer?.isRunning == true
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(checkiTunes), userInfo: nil, repeats: true)
     }
     
     func checkiTunes() {
@@ -66,11 +62,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
-let playerBundleIdentifier = [
+let playerBundleIdentifiers = [
     "com.apple.iTunes",
     "com.spotify.client",
     "com.coppertino.Vox",
 ]
+
+let groupDefaults = UserDefaults(suiteName: "KCY8NMTG34.group.ddddxxx.LyricsX")!
 
 // Preference
 let PreferredPlayerIndex = "PreferredPlayerIndex"
