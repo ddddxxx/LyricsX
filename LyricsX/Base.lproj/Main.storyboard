@@ -675,38 +675,6 @@
                 </viewController>
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="hHn-Lo-CwP"/>
-                <customView id="2Qt-ru-dPN" userLabel="iTunes">
-                    <rect key="frame" x="0.0" y="0.0" width="64" height="99"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <subviews>
-                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nB1-vh-Shu">
-                            <rect key="frame" x="0.0" y="35" width="64" height="64"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="nB1-vh-Shu" secondAttribute="height" multiplier="1:1" id="3Kl-JP-4Qn"/>
-                                <constraint firstAttribute="width" constant="64" id="Pnt-Hn-7yV"/>
-                            </constraints>
-                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="iTunes_icon" id="eSf-dw-WvX"/>
-                        </imageView>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="gok-wC-vT3">
-                            <rect key="frame" x="22" y="7" width="22" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="gok-wC-vT3" secondAttribute="height" id="vN7-aR-nDW"/>
-                            </constraints>
-                            <buttonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="W4x-QI-nBw">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="gok-wC-vT3" firstAttribute="top" secondItem="nB1-vh-Shu" secondAttribute="bottom" constant="8" id="1rZ-Tn-b1U"/>
-                        <constraint firstItem="nB1-vh-Shu" firstAttribute="top" secondItem="2Qt-ru-dPN" secondAttribute="top" id="EWH-Ir-y1e"/>
-                        <constraint firstAttribute="bottom" secondItem="gok-wC-vT3" secondAttribute="bottom" constant="8" id="HnO-WO-N6Y"/>
-                        <constraint firstItem="nB1-vh-Shu" firstAttribute="leading" secondItem="2Qt-ru-dPN" secondAttribute="leading" id="jUM-Fh-vFo"/>
-                        <constraint firstItem="gok-wC-vT3" firstAttribute="centerX" secondItem="nB1-vh-Shu" secondAttribute="centerX" id="joB-KY-2fK"/>
-                        <constraint firstAttribute="trailing" secondItem="nB1-vh-Shu" secondAttribute="trailing" id="rdF-JX-Lmq"/>
-                    </constraints>
-                </customView>
             </objects>
             <point key="canvasLocation" x="1969" y="-303.5"/>
         </scene>
