@@ -25,12 +25,14 @@ extension Lyrics.MetaData.Source {
     static let Music163 = Lyrics.MetaData.Source("163")
 }
 
-class Lyrics163: LyricsSource {
+final class Lyrics163: LyricsSource {
+    
+    var timeout: TimeInterval = 10
     
     let queue: OperationQueue
     private let session: URLSession
     
-    required init(queue: OperationQueue = OperationQueue()) {
+    init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
@@ -47,27 +49,22 @@ class Lyrics163: LyricsSource {
         let url = URL(string: "http://music.163.com/api/search/pc")!
         let body = "s=\(encodedKeyword)&offset=0&limit=10&type=1".data(using: .utf8)!
         
-        var req = URLRequest(url: url)
-        req.allHTTPHeaderFields = [
-            "Cookie": "appver=1.5.0.75771;",
-            "Referer": "http://music.163.com/",
-        ]
-        req.httpMethod = "POST"
-        req.httpBody = body
-        
+        let req = URLRequest(url: url, timeoutInterval: timeout).with {
+            $0.httpMethod = "POST"
+            $0.setValue("appver=1.5.0.75771", forHTTPHeaderField: "Cookie")
+            $0.setValue("http://music.163.com/", forHTTPHeaderField: "Referer")
+            $0.httpBody = body
+        }
         let task = session.dataTask(with: req) { data, resp, error in
-            guard let data = data,
-                let array = JSON(data: data)["result"]["songs"].array else {
-                    return
+            guard let data = data else {
+                return
             }
             
-            for (index, item) in array.enumerated() {
-                self.queue.addOperation {
-                    guard let id = item["id"].number?.intValue,
-                        let lyrics = self.lyricsFor(id: id) else {
-                            return
-                    }
-                    
+            JSON(data: data)["result"]["songs"].array?.enumerated().forEach { index, item in
+                guard let id = item["id"].number?.intValue else {
+                    return
+                }
+                self.fetchLyrics(id: id) { lyrics in
                     lyrics.idTags[.title]   = item["name"].string
                     lyrics.idTags[.artist]  = item["artists"][0]["name"].string
                     lyrics.idTags[.album]   = item["album"]["name"].string
@@ -85,25 +82,28 @@ class Lyrics163: LyricsSource {
         task.resume()
     }
     
-    private func lyricsFor(id: Int) -> Lyrics? {
+    private func fetchLyrics(id: Int, completionBlock: @escaping (Lyrics) -> Void) {
         let url = URL(string: "http://music.163.com/api/song/lyric?id=\(id)&lv=1&kv=1&tv=-1")!
-        guard let data = try? Data(contentsOf: url) else {
-            return nil
+        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let task = session.dataTask(with: req) { data, resp, error in
+            guard let data = data else {
+                return
+            }
+            
+            let json = JSON(data: data)
+            guard let lrcContent = json["lrc"]["lyric"].string,
+                let lrc = Lyrics(lrcContent) else {
+                return
+            }
+            if let transLrcContent = json["tlyric"]["lyric"].string,
+                let transLrc = Lyrics(transLrcContent) {
+                lrc.merge(translation: transLrc)
+                lrc.metadata.includeTranslation = true
+            }
+            
+            completionBlock(lrc)
         }
-        
-        let json = JSON(data: data)
-        guard let lrcContent = json["lrc"]["lyric"].string,
-            let lrc = Lyrics(lrcContent) else {
-            return nil
-        }
-        
-        if let transLrcContent = json["tlyric"]["lyric"].string,
-            let transLrc = Lyrics(transLrcContent) {
-            lrc.merge(translation: transLrc)
-            lrc.metadata.includeTranslation = true
-        }
-        
-        return lrc
+        task.resume()
     }
 }
 

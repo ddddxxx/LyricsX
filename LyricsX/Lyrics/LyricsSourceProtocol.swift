@@ -19,6 +19,7 @@
 //
 
 import Foundation
+import Then
 
 protocol LyricsConsuming: class {
     
@@ -45,3 +46,5 @@ extension CharacterSet {
         return CharacterSet.urlHostAllowed.subtracting(unsafe)
     }
 }
+
+extension URLRequest: Then {}
