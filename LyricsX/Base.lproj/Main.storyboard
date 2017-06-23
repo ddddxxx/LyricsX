@@ -675,38 +675,6 @@
                 </viewController>
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="hHn-Lo-CwP"/>
-                <customView id="2Qt-ru-dPN" userLabel="iTunes">
-                    <rect key="frame" x="0.0" y="0.0" width="64" height="99"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <subviews>
-                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nB1-vh-Shu">
-                            <rect key="frame" x="0.0" y="35" width="64" height="64"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="nB1-vh-Shu" secondAttribute="height" multiplier="1:1" id="3Kl-JP-4Qn"/>
-                                <constraint firstAttribute="width" constant="64" id="Pnt-Hn-7yV"/>
-                            </constraints>
-                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="iTunes_icon" id="eSf-dw-WvX"/>
-                        </imageView>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="gok-wC-vT3">
-                            <rect key="frame" x="22" y="7" width="22" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="gok-wC-vT3" secondAttribute="height" id="vN7-aR-nDW"/>
-                            </constraints>
-                            <buttonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="W4x-QI-nBw">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="gok-wC-vT3" firstAttribute="top" secondItem="nB1-vh-Shu" secondAttribute="bottom" constant="8" id="1rZ-Tn-b1U"/>
-                        <constraint firstItem="nB1-vh-Shu" firstAttribute="top" secondItem="2Qt-ru-dPN" secondAttribute="top" id="EWH-Ir-y1e"/>
-                        <constraint firstAttribute="bottom" secondItem="gok-wC-vT3" secondAttribute="bottom" constant="8" id="HnO-WO-N6Y"/>
-                        <constraint firstItem="nB1-vh-Shu" firstAttribute="leading" secondItem="2Qt-ru-dPN" secondAttribute="leading" id="jUM-Fh-vFo"/>
-                        <constraint firstItem="gok-wC-vT3" firstAttribute="centerX" secondItem="nB1-vh-Shu" secondAttribute="centerX" id="joB-KY-2fK"/>
-                        <constraint firstAttribute="trailing" secondItem="nB1-vh-Shu" secondAttribute="trailing" id="rdF-JX-Lmq"/>
-                    </constraints>
-                </customView>
             </objects>
             <point key="canvasLocation" x="1969" y="-303.5"/>
         </scene>
@@ -1523,7 +1491,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
-                            <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-WB-V2o" customClass="ScrollLyricsView" customModule="LyricsX" customModuleProvider="target">
+                            <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-WB-V2o" customClass="ScrollLyricsView" customModule="LyricsX" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="304" height="264"/>
                                 <clipView key="contentView" drawsBackground="NO" id="lTs-ol-c97">
                                     <rect key="frame" x="0.0" y="0.0" width="304" height="264"/>
@@ -1559,8 +1527,8 @@
                                     <rect key="frame" x="-100" y="-100" width="87" height="11"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="mini" horizontal="NO" id="BuP-Au-Ruu">
-                                    <rect key="frame" x="290" y="0.0" width="14" height="264"/>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="mini" horizontal="NO" id="BuP-Au-Ruu">
+                                    <rect key="frame" x="-100" y="-100" width="14" height="264"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>

@@ -35,7 +35,8 @@ class MusicPlayerManager {
     private var _position: TimeInterval = 0
     
     private init() {
-        _timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        _timer = Timer(timeInterval: 0.1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        RunLoop.main.add(_timer, forMode: .commonModes)
     }
     
     @objc private func update() {

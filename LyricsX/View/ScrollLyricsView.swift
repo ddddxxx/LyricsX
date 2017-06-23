@@ -28,30 +28,14 @@ class ScrollLyricsView: NSScrollView {
     
     weak var delegate: ScrollLyricsViewDelegate?
     
-    private var textView: NSTextView!
+    private var textView: NSTextView {
+        return documentView as! NSTextView
+    }
     
     var fadeStripWidth: CGFloat = 24
     
     private var ranges: [(TimeInterval, NSRange)] = []
     private var highlightedRange: NSRange? = nil
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        drawsBackground = false
-        borderType = .noBorder
-        hasHorizontalScroller = false
-        hasVerticalScroller = false
-        textView = NSTextView(frame: frame).then {
-            $0.font = NSFont.systemFont(ofSize: 12)
-            $0.textColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)
-            $0.alignment = .center
-            $0.drawsBackground = false
-            $0.isEditable = false
-            $0.isSelectable = false
-            $0.autoresizingMask = [.viewWidthSizable]
-        }
-        documentView = textView
-    }
     
     func setupTextContents(lyrics: Lyrics?) {
         guard let lyrics = lyrics else {

@@ -1,7 +1,8 @@
 # LyricsX
 
 [![release](https://img.shields.io/github/release/XQS6LB3A/LyricsX.svg)](https://github.com/XQS6LB3A/LyricsX/releases)
-[![license](https://img.shields.io/github/license/XQS6LB3A/LyricsX.svg)](LICENSE)
+[![gitter](https://img.shields.io/gitter/room/LyricsX/Lobby.svg)](https://gitter.im/LyricsX)
+[![license](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
 [![codebeat badge](https://codebeat.co/badges/12718a7c-04f1-465d-a520-5525788f4fba)](https://codebeat.co/projects/github-com-xqs6lb3a-lyricsx-master)
 
 <img src="docs/img/icon.png" width="128px">
@@ -59,6 +60,7 @@ You can download ZIP from [releases](https://github.com/XQS6LB3A/LyricsX/release
 - [Semver](https://github.com/XQS6LB3A/Semver)
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [SnapKit](https://github.com/SnapKit/SnapKit)
+- [Then](https://github.com/devxoul/Then)
 
 Special Thanks
 

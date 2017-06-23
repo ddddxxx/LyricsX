@@ -6,7 +6,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.ddddxxx.LyricsX</string>
+		<string>$(TeamIdentifierPrefix)group.ddddxxx.LyricsX</string>
 	</array>
 	<key>com.apple.security.assets.music.read-write</key>
 	<true/>

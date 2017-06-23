@@ -58,6 +58,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DispatchQueue.global().async {
             checkForUpdate()
         }
+        
+        let sharedKeys = [
+            UserDefaults.DefaultKeys.LaunchAndQuitWithPlayer.rawValue,
+            UserDefaults.DefaultKeys.PreferredPlayerIndex.rawValue
+        ]
+        sharedKeys.forEach {
+            groupDefaults.bind($0, to: defaults, withKeyPath: $0)
+        }
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
