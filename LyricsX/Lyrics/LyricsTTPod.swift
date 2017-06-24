@@ -25,12 +25,16 @@ extension Lyrics.MetaData.Source {
     static let TTPod = Lyrics.MetaData.Source("TTPod")
 }
 
-class LyricsTTPod: LyricsSource {
+final class LyricsTTPod: LyricsSource {
+    
+    var timeout: TimeInterval = 10
     
     let queue: OperationQueue
+    private let session: URLSession
     
-    required init(queue: OperationQueue = OperationQueue()) {
+    init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
+        session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
@@ -41,21 +45,22 @@ class LyricsTTPod: LyricsSource {
         let encodedTitle = title.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let encodedArtist = artist.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         
-        queue.addOperation {
-            let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(encodedArtist)&title=\(encodedTitle)"
-            let url = URL(string: urlStr)!
-            
-            guard let data = try? Data(contentsOf: url),
-                let lrcContent = JSON(data)["data"]["lrc"].string,
-                let lrc = Lyrics(lrcContent)else {
-                    return
+        let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(encodedArtist)&title=\(encodedTitle)"
+        let url = URL(string: urlStr)!
+        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let task = session.dataTask(with: req) { data, resp, error in
+            guard let data = data else {
+                return
             }
-            
+            guard let lrcContent = JSON(data)["data"]["lrc"].string,
+                let lrc = Lyrics(lrcContent) else {
+                return
+            }
             lrc.metadata.source = .TTPod
             lrc.metadata.searchBy = criteria
             lrc.metadata.searchIndex = 0
-            
             completionBlock(lrc)
         }
+        task.resume()
     }
 }
