@@ -59,11 +59,11 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func searchAction(_ sender: Any?) {
         progressIndicator.startAnimation(nil)
         progressIndicator.isHidden = false
-        tableView.reloadData()
         let track = MusicPlayerManager.shared.player?.currentTrack
         let duration = track?.duration ?? 0
         let criteria = Lyrics.MetaData.SearchCriteria.info(title: searchTitle, artist: searchArtist)
         lyricsManager.fetchLyrics(with: criteria, title: track?.name, artist: track?.artist, duration: duration)
+        tableView.reloadData()
     }
     
     @IBAction func useLyricsAction(_ sender: NSButton) {

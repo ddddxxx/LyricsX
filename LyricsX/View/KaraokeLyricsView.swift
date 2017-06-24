@@ -46,7 +46,7 @@ class KaraokeLyricsView: NSBox {
         isHidden = true
         stackView.orientation = .vertical
         stackView.alignment = .centerX
-        addSubview(stackView)
+        contentView = stackView
         
         updateFontSize()
     }
@@ -115,7 +115,6 @@ class KaraokeLyricsView: NSBox {
             window?.layoutIfNeeded()
         })
     }
-    
 }
 
 extension NSTextField {

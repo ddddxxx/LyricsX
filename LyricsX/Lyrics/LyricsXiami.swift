@@ -25,57 +25,72 @@ extension Lyrics.MetaData.Source {
     static let Xiami = Lyrics.MetaData.Source("Xiami")
 }
 
-class LyricsXiami: LyricsSource {
+final class LyricsXiami: LyricsSource {
     
-    let queue: OperationQueue
-    
-    required init(queue: OperationQueue = OperationQueue()) {
-        self.queue = queue
-    }
-    
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
-        let keyword: String
-        switch criteria {
-        case let .keyword(key):
-            keyword = key
-        case let .info(title, artist):
-            keyword = title + " " + artist
+    let session = { () -> URLSession in
+        let config = URLSessionConfiguration.default.with {
+            $0.timeoutIntervalForRequest = 10
         }
-        let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
-        
-        queue.addOperation {
-            let xiamiIDs = self.searchXiamiIDFor(keyword: encodedKeyword)
-            for (index, xiamiID) in xiamiIDs.enumerated() {
-                self.queue.addOperation {
-                    let parser = LyricsXiamiXMLParser()
-                    guard let url = URL(string: "http://www.xiami.com/song/playlist/id/\(xiamiID)"),
-                        let data = try? Data(contentsOf: url),
-                        let parseResult = parser.parseLrcURL(data: data),
-                        let lrc = Lyrics(url: parseResult.lyricsURL) else {
-                            return
-                    }
-                    lrc.metadata.source = .Xiami
-                    lrc.metadata.searchBy = criteria
-                    lrc.metadata.searchIndex = index
-                    lrc.metadata.artworkURL = parseResult.artworkURL
-                    
-                    completionBlock(lrc)
-                }
+        return URLSession(configuration: config)
+    }()
+    let dispatchGroup = DispatchGroup()
+    
+    func cancel() {
+        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
+            dataTasks.forEach {
+                $0.cancel()
             }
         }
     }
     
-    private func searchXiamiIDFor(keyword: String) -> [Int] {
-        let urlStr = "http://www.xiami.com/web/search-songs?key=" + keyword
-        let url = URL(string: urlStr)!
-        
-        guard let data = try? Data(contentsOf: url), let array = JSON(data).array else {
-            return []
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+        let keyword = criteria.description
+        let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
+        let url = URL(string: "http://www.xiami.com/web/search-songs?key=\(encodedKeyword)")!
+        let req = URLRequest(url: url)
+        dispatchGroup.enter()
+        let task = session.dataTask(with: req) { data, resp, error in
+            defer {
+                self.dispatchGroup.leave()
+            }
+            guard let data = data else {
+                return
+            }
+            
+            let ids = JSON(data: data).array?.flatMap {
+                $0["id"].string.flatMap { Int($0) }
+            }
+            ids?.enumerated().forEach { index, id in
+                self.fetchLyrics(id: id) { lrc in
+                    lrc.metadata.source = .Xiami
+                    lrc.metadata.searchBy = criteria
+                    lrc.metadata.searchIndex = index
+                    
+                    using(lrc)
+                }
+            }
         }
-        
-        return array.flatMap { item in
-            return item["id"].string.flatMap {Int($0)}
+        task.resume()
+        dispatchGroup.notify(queue: .global(), execute: completionHandler)
+    }
+    
+    private func fetchLyrics(id: Int, completionBlock: @escaping (Lyrics) -> Void) {
+        let url = URL(string: "http://www.xiami.com/song/playlist/id/\(id)")!
+        let req = URLRequest(url: url)
+        dispatchGroup.enter()
+        let task = session.dataTask(with: req) { data, resp, error in
+            defer {
+                self.dispatchGroup.leave()
+            }
+            guard let data = data,
+                let parseResult = LyricsXiamiXMLParser().parseLrcURL(data: data),
+                let lrc = Lyrics(url: parseResult.lyricsURL) else {
+                return
+            }
+            lrc.metadata.artworkURL = parseResult.artworkURL
+            completionBlock(lrc)
         }
+        task.resume()
     }
 }
 

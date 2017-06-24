@@ -24,25 +24,19 @@ class LyricsSourceManager {
     
     weak var consumer: LyricsConsuming?
     
-    let lyricsSource: [LyricsSource]
-    let queue: OperationQueue
+    private var dispatchGroup = DispatchGroup()
+    let lyricsSource: [LyricsSource] = [
+        LyricsXiami(),
+        LyricsGecimi(),
+        LyricsTTPod(),
+        Lyrics163(),
+        LyricsQQ(),
+        LyricsKugou(),
+    ]
     
     var criteria: Lyrics.MetaData.SearchCriteria?
     
-    var lyrics: [Lyrics]
-    
-    init() {
-        queue = OperationQueue()
-        lyricsSource = [
-            LyricsXiami(queue: queue),
-            LyricsGecimi(queue: queue),
-            LyricsTTPod(queue: queue),
-            Lyrics163(queue: queue),
-            LyricsQQ(queue: queue),
-            LyricsKugou(queue: queue),
-        ]
-        lyrics = []
-    }
+    var lyrics: [Lyrics] = []
     
     func fetchLyrics(title: String, artist: String, duration: TimeInterval) {
         fetchLyrics(with: .info(title: title, artist: artist), title: title, artist: artist, duration: duration)
@@ -51,9 +45,10 @@ class LyricsSourceManager {
     func fetchLyrics(with criteria: Lyrics.MetaData.SearchCriteria, title: String?, artist: String?, duration: TimeInterval) {
         self.criteria = criteria
         lyrics = []
-        queue.cancelAllOperations()
+        lyricsSource.forEach { $0.cancel() }
         lyricsSource.forEach { source in
-            source.fetchLyrics(by: criteria, duration: duration) { lrc in
+            dispatchGroup.enter()
+            source.fetchLyrics(by: criteria, duration: duration, using: { lrc in
                 guard self.criteria == criteria else {
                     return
                 }
@@ -66,10 +61,11 @@ class LyricsSourceManager {
                 let index = self.lyrics.index(where: {$0 < lrc}) ?? self.lyrics.count
                 self.lyrics.insert(lrc, at: index)
                 self.consumer?.lyricsReceived(lyrics: lrc)
-            }
+            }, completionHandler: {
+                self.dispatchGroup.leave()
+            })
         }
-        DispatchQueue.global(qos: .background).async {
-            self.queue.waitUntilAllOperationsAreFinished()
+        dispatchGroup.notify(queue: .global()) {
             self.consumer?.fetchCompleted(result: self.lyrics)
         }
     }
