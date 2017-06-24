@@ -25,12 +25,16 @@ extension Lyrics.MetaData.Source {
     static let QQMusic = Lyrics.MetaData.Source("QQMusic")
 }
 
-class LyricsQQ: LyricsSource {
+final class LyricsQQ: LyricsSource {
+    
+    var timeout: TimeInterval = 10
     
     let queue: OperationQueue
+    private let session: URLSession
     
-    required init(queue: OperationQueue = OperationQueue()) {
+    init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
+        session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
@@ -42,51 +46,49 @@ class LyricsQQ: LyricsSource {
             keyword = title + " " + artist
         }
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
-        
-        queue.addOperation {
-            let qqIDs = self.searchQQIDFor(keyword: encodedKeyword)
-            for (index, qqID) in qqIDs.enumerated() {
-                self.queue.addOperation {
-                    guard let lrc = self.lyricsFor(id: qqID) else {
-                        return
-                    }
-                    
+        let urlString = "http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n=10&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w=\(encodedKeyword)"
+        let url = URL(string: urlString)!
+        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let task = session.dataTask(with: req) { data, resp, error in
+            guard let data = data else {
+                return
+            }
+            let ids = JSON(data)["data"]["song"]["list"].array?.flatMap { (item: JSON) -> Int? in
+                guard let f = item["f"].string,
+                    let range = f.range(of: "|") else {
+                    return nil
+                }
+                return Int(f.substring(to: range.lowerBound))
+            }
+            ids?.enumerated().forEach { index, id in
+                self.fetchLyrics(id: id) { lrc in
                     lrc.metadata.source = .QQMusic
                     lrc.metadata.searchBy = criteria
                     lrc.metadata.searchIndex = index
-                    lrc.metadata.artworkURL = URL(string: "http://imgcache.qq.com/music/photo/album/\(qqID%100)/\(qqID).jpg")
+                    lrc.metadata.artworkURL = URL(string: "http://imgcache.qq.com/music/photo/album/\(id % 100)/\(id).jpg")
                     
                     completionBlock(lrc)
                 }
             }
         }
+        task.resume()
     }
     
-    private func searchQQIDFor(keyword: String) -> [Int] {
-        let urlString: String = "http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n=10&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w=\(keyword)"
-        let url = URL(string: urlString)!
-        
-        guard let data = try? Data(contentsOf: url), let array = JSON(data)["data"]["song"]["list"].array else {
-            return []
-        }
-        
-        return array.flatMap { item in
-            guard let f = item["f"].string,
-                let range = f.range(of: "|") else {
-                return nil
-            }
-            return Int(f.substring(to: range.lowerBound))
-        }
-    }
-    
-    private func lyricsFor(id: Int) -> Lyrics? {
+    private func fetchLyrics(id: Int, completionBlock: @escaping (Lyrics) -> Void) {
         let url = URL(string: "http://music.qq.com/miniportal/static/lyric/\(id%100)/\(id).xml")!
-        let parser = LyricsQQXMLParser()
-        guard let lrcData = try? Data(contentsOf: url),
-            let lrcContent = parser.parseLrcContents(data: lrcData) else {
-            return nil
+        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let task = session.dataTask(with: req) { data, resp, error in
+            let parser = LyricsQQXMLParser()
+            guard let data = data else {
+                return
+            }
+            guard let lrcContent = parser.parseLrcContents(data: data),
+                let lrc = Lyrics(lrcContent) else {
+                return
+            }
+            completionBlock(lrc)
         }
-        return Lyrics(lrcContent)
+        task.resume()
     }
 }
 
