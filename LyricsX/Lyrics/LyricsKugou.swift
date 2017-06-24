@@ -38,13 +38,7 @@ final class LyricsKugou: LyricsSource {
     }
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
-        let keyword: String
-        switch criteria {
-        case let .keyword(key):
-            keyword = key
-        case let .info(title, artist):
-            keyword = title + " " + artist
-        }
+        let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let mDuration = Int(duration * 1000)
         let urlStr = "http://lyrics.kugou.com/search?ver=1&man=yes&client=pc&keyword=\(encodedKeyword)&duration=\(mDuration)"

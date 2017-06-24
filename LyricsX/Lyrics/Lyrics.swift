@@ -371,6 +371,18 @@ extension Lyrics.MetaData.SearchCriteria: Equatable {
 
 // MARK: CustomStringConvertible
 
+extension Lyrics.MetaData.SearchCriteria: CustomStringConvertible {
+    
+    public var description: String {
+        switch self {
+        case let .keyword(keyword):
+            return keyword
+        case let .info(title: title, artist: artist):
+            return title + " " + artist
+        }
+    }
+}
+
 extension Lyrics.MetaData: CustomStringConvertible {
     
     public var description: String {

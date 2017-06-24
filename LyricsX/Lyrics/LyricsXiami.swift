@@ -38,13 +38,7 @@ final class LyricsXiami: LyricsSource {
     }
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
-        let keyword: String
-        switch criteria {
-        case let .keyword(key):
-            keyword = key
-        case let .info(title, artist):
-            keyword = title + " " + artist
-        }
+        let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let url = URL(string: "http://www.xiami.com/web/search-songs?key=\(encodedKeyword)")!
         let req = URLRequest(url: url, timeoutInterval: timeout)

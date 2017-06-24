@@ -38,13 +38,7 @@ final class Lyrics163: LyricsSource {
     }
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
-        let keyword: String
-        switch criteria {
-        case let .keyword(key):
-            keyword = key
-        case let .info(title, artist):
-            keyword = title + " " + artist
-        }
+        let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let url = URL(string: "http://music.163.com/api/search/pc")!
         let body = "s=\(encodedKeyword)&offset=0&limit=10&type=1".data(using: .utf8)!
