@@ -25,12 +25,16 @@ extension Lyrics.MetaData.Source {
     static let Kugou = Lyrics.MetaData.Source("Kugou")
 }
 
-class LyricsKugou: LyricsSource {
+final class LyricsKugou: LyricsSource {
+    
+    var timeout: TimeInterval = 10
     
     let queue: OperationQueue
+    private let session: URLSession
     
-    required init(queue: OperationQueue = OperationQueue()) {
+    init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
+        session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
@@ -42,15 +46,22 @@ class LyricsKugou: LyricsSource {
             keyword = title + " " + artist
         }
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
-        
         let mDuration = Int(duration * 1000)
-        queue.addOperation {
-            let searchItems = self.searchKugouIDFor(keyword: encodedKeyword, duration: mDuration)
-            for (index, searchItem) in searchItems.enumerated() {
-                self.queue.addOperation {
-                    guard let lrc = self.lyricsFor(searchItem) else {
-                        return
-                    }
+        let urlStr = "http://lyrics.kugou.com/search?ver=1&man=yes&client=pc&keyword=\(encodedKeyword)&duration=\(mDuration)"
+        let url = URL(string: urlStr)!
+        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let task = session.dataTask(with: req) { data, resp, error in
+            guard let data = data else {
+                return
+            }
+            JSON(data)["candidates"].array?.enumerated().forEach { index, json in
+                guard let id = json["id"].string, let accesskey = json["accesskey"].string else {
+                    return
+                }
+                self.fetchLyrics(id: id, accesskey: accesskey) { lrc in
+                    lrc.idTags[.title] = json["song"].string
+                    lrc.idTags[.artist] = json["singer"].string
+                    lrc.idTags[.lrcBy] = "Kugou"
                     
                     lrc.metadata.source = .Kugou
                     lrc.metadata.searchIndex = index
@@ -60,34 +71,25 @@ class LyricsKugou: LyricsSource {
                 }
             }
         }
+        task.resume()
     }
     
-    private func searchKugouIDFor(keyword: String, duration: Int) -> [JSON] {
-        let urlStr = "http://lyrics.kugou.com/search?ver=1&man=yes&client=pc&keyword=\(keyword)&duration=\(duration)"
+    private func fetchLyrics(id: String, accesskey: String, completionBlock: @escaping (Lyrics) -> Void) {
+        let urlStr = "http://lyrics.kugou.com/download?ver=1&client=pc&id=\(id)&accesskey=\(accesskey)&fmt=lrc&charset=utf8"
         let url = URL(string: urlStr)!
-        
-        guard let data = try? Data(contentsOf: url) else {
-            return []
+        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let task = session.dataTask(with: req) { data, resp, error in
+            guard let data = data else {
+                return
+            }
+            guard let lrcDataStr = JSON(data)["content"].string,
+                let lrcData = Data(base64Encoded: lrcDataStr),
+                let lrcContent = String(data: lrcData, encoding: .utf8),
+                let lrc = Lyrics(lrcContent) else {
+                    return
+            }
+            completionBlock(lrc)
         }
-        
-        return JSON(data)["candidates"].array ?? []
-    }
-    
-    private func lyricsFor(_ item: JSON) -> Lyrics? {
-        guard let id = item["id"].string, let accesskey = item["accesskey"].string else {
-            return nil
-        }
-        let url = URL(string: "http://lyrics.kugou.com/download?ver=1&client=pc&id=\(id)&accesskey=\(accesskey)&fmt=lrc&charset=utf8")!
-        guard let jsonData = try? Data(contentsOf: url),
-            let lrcDataStr = JSON(jsonData)["content"].string,
-            let lrcData = Data(base64Encoded: lrcDataStr),
-            let lrcContent = String(data: lrcData, encoding: .utf8),
-            let lrc = Lyrics(lrcContent) else {
-            return nil
-        }
-        lrc.idTags[.title] = item["song"].string
-        lrc.idTags[.artist] = item["singer"].string
-        lrc.idTags[.lrcBy] = "Kugou"
-        return lrc
+        task.resume()
     }
 }
