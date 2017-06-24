@@ -30,11 +30,9 @@ protocol LyricsConsuming: class {
 
 protocol LyricsSource {
     
-    var queue: OperationQueue { get }
+    func cancel()
     
-    init(queue: OperationQueue);
-    
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void)
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void)
 }
 
 // MARK: - Utility

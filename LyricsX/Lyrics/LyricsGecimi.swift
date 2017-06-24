@@ -27,17 +27,23 @@ extension Lyrics.MetaData.Source {
 
 final class LyricsGecimi: LyricsSource {
     
-    var timeout: TimeInterval = 10
+    let session = { () -> URLSession in
+        let config = URLSessionConfiguration.default.with {
+            $0.timeoutIntervalForRequest = 10
+        }
+        return URLSession(configuration: config)
+    }()
+    let dispatchGroup = DispatchGroup()
     
-    let queue: OperationQueue
-    private let session: URLSession
-    
-    init(queue: OperationQueue = OperationQueue()) {
-        self.queue = queue
-        session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
+    func cancel() {
+        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
+            dataTasks.forEach {
+                $0.cancel()
+            }
+        }
     }
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         guard case let .info(title, artist) = criteria else {
             // cannot search by keyword
             return
@@ -46,8 +52,12 @@ final class LyricsGecimi: LyricsSource {
         let encodedArtist = artist.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         
         let url = URL(string: "http://gecimi.com/api/lyric/\(encodedTitle)/\(encodedArtist)")!
-        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let req = URLRequest(url: url)
+        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
+            defer {
+                self.dispatchGroup.leave()
+            }
             guard let data = data else {
                 return
             }
@@ -62,7 +72,11 @@ final class LyricsGecimi: LyricsSource {
                 lrc.metadata.searchIndex = index
                 if let aid = item["aid"].string,
                     let url = URL(string:"http://gecimi.com/api/cover/\(aid)") {
-                    self.session.dataTask(with: url) { data, resp, error in
+                    self.dispatchGroup.enter()
+                    let task = self.session.dataTask(with: req) { data, resp, error in
+                        defer {
+                            self.dispatchGroup.leave()
+                        }
                         // FIXME: contentsOf
                         if let data = try? Data(contentsOf: url),
                             let artworkURL = JSON(data)["result"]["cover"].url {
@@ -70,9 +84,10 @@ final class LyricsGecimi: LyricsSource {
                         }
                     }
                 }
-                completionBlock(lrc)
+                using(lrc)
             }
         }
         task.resume()
+        dispatchGroup.notify(queue: .global(), execute: completionHandler)
     }
 }

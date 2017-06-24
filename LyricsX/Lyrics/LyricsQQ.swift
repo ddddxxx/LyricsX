@@ -27,23 +27,33 @@ extension Lyrics.MetaData.Source {
 
 final class LyricsQQ: LyricsSource {
     
-    var timeout: TimeInterval = 10
+    let session = { () -> URLSession in
+        let config = URLSessionConfiguration.default.with {
+            $0.timeoutIntervalForRequest = 10
+        }
+        return URLSession(configuration: config)
+    }()
+    let dispatchGroup = DispatchGroup()
     
-    let queue: OperationQueue
-    private let session: URLSession
-    
-    init(queue: OperationQueue = OperationQueue()) {
-        self.queue = queue
-        session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
+    func cancel() {
+        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
+            dataTasks.forEach {
+                $0.cancel()
+            }
+        }
     }
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let urlString = "http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n=10&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w=\(encodedKeyword)"
         let url = URL(string: urlString)!
-        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let req = URLRequest(url: url)
+        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
+            defer {
+                self.dispatchGroup.leave()
+            }
             guard let data = data else {
                 return
             }
@@ -61,17 +71,22 @@ final class LyricsQQ: LyricsSource {
                     lrc.metadata.searchIndex = index
                     lrc.metadata.artworkURL = URL(string: "http://imgcache.qq.com/music/photo/album/\(id % 100)/\(id).jpg")
                     
-                    completionBlock(lrc)
+                    using(lrc)
                 }
             }
         }
         task.resume()
+        dispatchGroup.notify(queue: .global(), execute: completionHandler)
     }
     
     private func fetchLyrics(id: Int, completionBlock: @escaping (Lyrics) -> Void) {
         let url = URL(string: "http://music.qq.com/miniportal/static/lyric/\(id%100)/\(id).xml")!
-        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let req = URLRequest(url: url)
+        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
+            defer {
+                self.dispatchGroup.leave()
+            }
             let parser = LyricsQQXMLParser()
             guard let data = data else {
                 return

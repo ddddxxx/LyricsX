@@ -27,17 +27,23 @@ extension Lyrics.MetaData.Source {
 
 final class LyricsTTPod: LyricsSource {
     
-    var timeout: TimeInterval = 10
+    let session = { () -> URLSession in
+        let config = URLSessionConfiguration.default.with {
+            $0.timeoutIntervalForRequest = 10
+        }
+        return URLSession(configuration: config)
+    }()
+    let dispatchGroup = DispatchGroup()
     
-    let queue: OperationQueue
-    private let session: URLSession
-    
-    init(queue: OperationQueue = OperationQueue()) {
-        self.queue = queue
-        session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
+    func cancel() {
+        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
+            dataTasks.forEach {
+                $0.cancel()
+            }
+        }
     }
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
+    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         guard case let .info(title, artist) = criteria else {
             // cannot search by keyword
             return
@@ -47,8 +53,12 @@ final class LyricsTTPod: LyricsSource {
         
         let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(encodedArtist)&title=\(encodedTitle)"
         let url = URL(string: urlStr)!
-        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let req = URLRequest(url: url)
+        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
+            defer {
+                self.dispatchGroup.leave()
+            }
             guard let data = data else {
                 return
             }
@@ -59,8 +69,9 @@ final class LyricsTTPod: LyricsSource {
             lrc.metadata.source = .TTPod
             lrc.metadata.searchBy = criteria
             lrc.metadata.searchIndex = 0
-            completionBlock(lrc)
+            using(lrc)
         }
         task.resume()
+        dispatchGroup.notify(queue: .global(), execute: completionHandler)
     }
 }
