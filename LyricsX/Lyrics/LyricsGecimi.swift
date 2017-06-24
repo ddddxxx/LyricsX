@@ -25,12 +25,16 @@ extension Lyrics.MetaData.Source {
     static let Gecimi = Lyrics.MetaData.Source("Gecimi")
 }
 
-class LyricsGecimi: LyricsSource {
+final class LyricsGecimi: LyricsSource {
+    
+    var timeout: TimeInterval = 10
     
     let queue: OperationQueue
+    private let session: URLSession
     
-    required init(queue: OperationQueue = OperationQueue()) {
+    init(queue: OperationQueue = OperationQueue()) {
         self.queue = queue
+        session = URLSession(configuration: .default, delegate: nil, delegateQueue: queue)
     }
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionBlock: @escaping (Lyrics) -> Void) {
@@ -41,45 +45,34 @@ class LyricsGecimi: LyricsSource {
         let encodedTitle = title.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let encodedArtist = artist.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         
-        queue.addOperation {
-            let lrcDatas = self.searchLrcFor(title: encodedTitle, artist: encodedArtist)
-            for (index, lrcData) in lrcDatas.enumerated() {
-                self.queue.addOperation {
-                    guard let lrc = Lyrics(url: lrcData.lyricsURL) else {
-                        return
-                    }
-                    
-                    lrc.metadata.source = .Gecimi
-                    lrc.metadata.searchBy = criteria
-                    lrc.metadata.searchIndex = index
-                    lrc.metadata.artworkURL = lrcData.artworkURL
-                    
-                    completionBlock(lrc)
+        let url = URL(string: "http://gecimi.com/api/lyric/\(encodedTitle)/\(encodedArtist)")!
+        let req = URLRequest(url: url, timeoutInterval: timeout)
+        let task = session.dataTask(with: req) { data, resp, error in
+            guard let data = data else {
+                return
+            }
+            JSON(data)["result"].array?.enumerated().forEach { index, item in
+                guard let lrcURL = item["lrc"].url,
+                    // FIXME: use URLSession instead of contentsOfURL
+                    let lrc = Lyrics(url: lrcURL) else {
+                    return
                 }
+                lrc.metadata.source = .Gecimi
+                lrc.metadata.searchBy = criteria
+                lrc.metadata.searchIndex = index
+                if let aid = item["aid"].string,
+                    let url = URL(string:"http://gecimi.com/api/cover/\(aid)") {
+                    self.session.dataTask(with: url) { data, resp, error in
+                        // FIXME: contentsOf
+                        if let data = try? Data(contentsOf: url),
+                            let artworkURL = JSON(data)["result"]["cover"].url {
+                            lrc.metadata.artworkURL = artworkURL
+                        }
+                    }
+                }
+                completionBlock(lrc)
             }
         }
-    }
-    
-    private func searchLrcFor(title: String, artist: String) -> [(lyricsURL: URL, artworkURL: URL?)] {
-        let urlStr = "http://gecimi.com/api/lyric/\(title)/\(artist)"
-        let url = URL(string: urlStr)!
-        
-        guard let data = try? Data(contentsOf: url), let array = JSON(data)["result"].array else {
-            return []
-        }
-        
-        return array.flatMap { item in
-            guard let lrcURL = item["lrc"].url else {
-                return nil
-            }
-            
-            if let aid = item["aid"].string,
-                let url = URL(string:"http://gecimi.com/api/cover/\(aid)"),
-                let data = try? Data(contentsOf: url),
-                let artworkURL = JSON(data)["result"]["cover"].url {
-                    return (lrcURL, artworkURL)
-            }
-            return (lrcURL, nil)
-        }
+        task.resume()
     }
 }
