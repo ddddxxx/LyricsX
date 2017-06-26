@@ -334,11 +334,11 @@
             <objects>
                 <tabViewController showSeguePresentationStyle="single" tabStyle="toolbar" id="sV3-nO-PkZ" userLabel="Preference View Controller" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG"/>
-                        <tabViewItem label="Display" identifier="" image="NSFontPanel" id="8VI-6O-0Rn"/>
-                        <tabViewItem label="Shortcut" image="NSAdvanced" id="bJe-2l-VWO"/>
-                        <tabViewItem label="Filter" image="toolbar_filter" id="xcA-tm-q8A" userLabel="Filter"/>
-                        <tabViewItem label="Lab" image="toolbar_lab" id="uj7-lo-QuS" userLabel="Lab"/>
+                        <tabViewItem identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG" userLabel="General"/>
+                        <tabViewItem identifier="" image="NSFontPanel" id="8VI-6O-0Rn" userLabel="Display"/>
+                        <tabViewItem image="NSAdvanced" id="bJe-2l-VWO" userLabel="Shortcut"/>
+                        <tabViewItem image="toolbar_filter" id="xcA-tm-q8A" userLabel="Filter"/>
+                        <tabViewItem image="toolbar_lab" id="uj7-lo-QuS" userLabel="Lab"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="ufX-Bl-B8D">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -361,7 +361,7 @@
         <!--General-->
         <scene sceneID="mkJ-2y-SA4">
             <objects>
-                <viewController id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="General" id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="387"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -683,7 +683,7 @@
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
             <objects>
-                <viewController id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Display" id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="356"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1045,7 +1045,7 @@
         <!--Filter-->
         <scene sceneID="I5E-Nt-3Jp">
             <objects>
-                <viewController id="lN1-gG-AVq" userLabel="Filter" customClass="PreferenceFilterViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Filter" id="lN1-gG-AVq" userLabel="Filter" customClass="PreferenceFilterViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jcL-Yv-YP6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="408"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1318,7 +1318,7 @@
         <!--Shortcut-->
         <scene sceneID="fM0-at-U1A">
             <objects>
-                <viewController id="ppx-ob-WJc" userLabel="Shortcut" customClass="PreferenceShortcutViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Shortcut" id="ppx-ob-WJc" userLabel="Shortcut" customClass="PreferenceShortcutViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yOR-wI-2Wv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="164"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1430,7 +1430,7 @@
         <!--Lab-->
         <scene sceneID="SoK-6E-AMw">
             <objects>
-                <viewController id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
+                <viewController title="Lab" id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
                     <view key="view" id="uY5-7S-zG1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="227"/>
                         <autoresizingMask key="autoresizingMask"/>
