@@ -29,6 +29,7 @@
 		BB45AC801E9E337F0099432F /* MusicPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */; };
 		BB45AC841E9F220E0099432F /* LyricsKugou.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC831E9F220E0099432F /* LyricsKugou.swift */; };
 		BB45AC861E9F65E90099432F /* LyricsSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45AC851E9F65E90099432F /* LyricsSourceProtocol.swift */; };
+		BB4919361F00CD800054EA09 /* PreferenceShortcutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4919351F00CD800054EA09 /* PreferenceShortcutViewController.swift */; };
 		BB5596E21EB856140064D278 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5596E11EB856140064D278 /* Updater.swift */; };
 		BB58A3401E4EDBA300836903 /* LyricsGecimi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */; };
 		BB58A3421E4EDFF100836903 /* LyricsSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */; };
@@ -132,6 +133,7 @@
 		BB45AC7F1E9E337F0099432F /* MusicPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayerProtocol.swift; path = MediaPlayer/MusicPlayerProtocol.swift; sourceTree = "<group>"; };
 		BB45AC831E9F220E0099432F /* LyricsKugou.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsKugou.swift; path = Lyrics/LyricsKugou.swift; sourceTree = "<group>"; };
 		BB45AC851E9F65E90099432F /* LyricsSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceProtocol.swift; path = Lyrics/LyricsSourceProtocol.swift; sourceTree = "<group>"; };
+		BB4919351F00CD800054EA09 /* PreferenceShortcutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferenceShortcutViewController.swift; path = Controller/Preferences/PreferenceShortcutViewController.swift; sourceTree = "<group>"; };
 		BB5596E11EB856140064D278 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Updater.swift; path = Utility/Updater.swift; sourceTree = "<group>"; };
 		BB58A33F1E4EDBA300836903 /* LyricsGecimi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsGecimi.swift; path = Lyrics/LyricsGecimi.swift; sourceTree = "<group>"; };
 		BB58A3411E4EDFF100836903 /* LyricsSourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsSourceManager.swift; path = Lyrics/LyricsSourceManager.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			children = (
 				BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */,
 				BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */,
+				BB4919351F00CD800054EA09 /* PreferenceShortcutViewController.swift */,
 				BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */,
 			);
 			name = Preferences;
@@ -577,6 +580,7 @@
 				BB4141DA1E4761F900A51775 /* Lyrics.swift in Sources */,
 				BB44F8781E702863004194D9 /* Lyrics163.swift in Sources */,
 				BBB8DA3C1E86653700EF0A18 /* SpotifyBridge.swift in Sources */,
+				BB4919361F00CD800054EA09 /* PreferenceShortcutViewController.swift in Sources */,
 				BB4141D81E475DD100A51775 /* iTunesBridge.swift in Sources */,
 				BB45AC801E9E337F0099432F /* MusicPlayerProtocol.swift in Sources */,
 				BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */,

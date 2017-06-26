@@ -21,6 +21,7 @@
 import Cocoa
 import ServiceManagement
 import Then
+import MASShortcut
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -47,6 +48,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let controller = AppController.shared
         lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
         lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
+        
+        setupShortcuts()
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach { $0.terminate() }
         if defaults[.LaunchAndQuitWithPlayer] {
@@ -87,6 +90,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    private func setupShortcuts() {
+        let binder = MASShortcutBinder.shared()!
+        binder.bindShortcut(with: .ShortcutOffsetIncrease) {
+            self.increaseOffset(nil)
+        }
+        binder.bindShortcut(with: .ShortcutOffsetDecrease) {
+            self.decreaseOffset(nil)
+        }
+        binder.bindShortcut(with: .ShortcutWriteToiTunes) {
+            self.writeToiTunes(nil)
+        }
+        binder.bindShortcut(with: .ShortcutWrongLyrics) {
+            self.wrongLyrics(nil)
+        }
+    }
+    
     // MARK: - Menubar Action
     
     @IBAction func checkUpdateAction(_ sender: Any) {
@@ -95,11 +114,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func writeToiTunes(_ sender: Any) {
+    @IBAction func increaseOffset(_ sender: Any?) {
+        AppController.shared.lyricsOffset += 100
+    }
+    
+    @IBAction func decreaseOffset(_ sender: Any?) {
+        AppController.shared.lyricsOffset -= 100
+    }
+    
+    @IBAction func writeToiTunes(_ sender: Any?) {
         AppController.shared.writeToiTunes(overwrite: true)
     }
     
-    @IBAction func wrongLyrics(_ sender: Any) {
+    @IBAction func wrongLyrics(_ sender: Any?) {
         let track = MusicPlayerManager.shared.player?.currentTrack
         let title = track?.name ?? ""
         let artist = track?.artist ?? ""
@@ -117,3 +144,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
+extension MASShortcutBinder {
+    
+    func bindShortcut<T>(with defaultKay: UserDefaults.DefaultKey<T>, to action: @escaping () -> Void) {
+        bindShortcut(withDefaultsKey: defaultKay.rawValue, toAction: action)
+    }
+}

@@ -99,6 +99,12 @@ extension UserDefaults.DefaultKeys {
     
     static let DisplayLyricsWithTag: Key<Bool>      = "DisplayLyricsWithTag"
     
+    // Shortcut
+    static let ShortcutOffsetIncrease: Key<String>  = "ShortcutOffsetIncrease"
+    static let ShortcutOffsetDecrease: Key<String>  = "ShortcutOffsetDecrease"
+    static let ShortcutWriteToiTunes: Key<String>   = "ShortcutWriteToiTunes"
+    static let ShortcutWrongLyrics: Key<String>     = "ShortcutWrongLyrics"
+    
     // Filter
     static let LyricsFilterEnabled: Key<Bool>       = "LyricsFilterEnabled"
     static let LyricsSmartFilterEnabled: Key<Bool>  = "LyricsSmartFilterEnabled"
