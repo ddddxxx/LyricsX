@@ -454,7 +454,7 @@
 				TargetAttributes = {
 					BB4141A91E458BA800A51775 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = KCY8NMTG34;
+						DevelopmentTeam = 3665V726AE;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -467,7 +467,7 @@
 					};
 					BB60F3001E889A1B00BA1FD2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = KCY8NMTG34;
+						DevelopmentTeam = 3665V726AE;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -745,7 +745,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LyricsX/Support Files/LyricsX.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = KCY8NMTG34;
+				DEVELOPMENT_TEAM = 3665V726AE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -766,7 +766,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LyricsX/Support Files/LyricsX.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = KCY8NMTG34;
+				DEVELOPMENT_TEAM = 3665V726AE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -787,7 +787,7 @@
 				CODE_SIGN_ENTITLEMENTS = LyricsXHelper/LyricsXHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = KCY8NMTG34;
+				DEVELOPMENT_TEAM = 3665V726AE;
 				INFOPLIST_FILE = LyricsXHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -805,7 +805,7 @@
 				CODE_SIGN_ENTITLEMENTS = LyricsXHelper/LyricsXHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = KCY8NMTG34;
+				DEVELOPMENT_TEAM = 3665V726AE;
 				INFOPLIST_FILE = LyricsXHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;

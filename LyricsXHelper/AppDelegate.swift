@@ -68,7 +68,7 @@ let playerBundleIdentifiers = [
     "com.coppertino.Vox",
 ]
 
-let groupDefaults = UserDefaults(suiteName: "KCY8NMTG34.group.ddddxxx.LyricsX")!
+let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!
 
 // Preference
 let PreferredPlayerIndex = "PreferredPlayerIndex"
