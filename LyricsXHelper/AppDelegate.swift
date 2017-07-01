@@ -37,7 +37,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let ident = playerBundleIdentifiers[index]
         mediaPlayer = SBApplication(bundleIdentifier: ident)
         
-        shouldWaitForPlayerQuit = mediaPlayer?.isRunning == true
+        let event = NSAppleEventManager.shared().currentAppleEvent
+        let isLaunchedAsLogInItem = event?.eventID == kAEOpenApplication && event?.paramDescriptor(forKeyword: keyAEPropData)?.enumCodeValue == keyAELaunchedAsLogInItem
+        shouldWaitForPlayerQuit = (!isLaunchedAsLogInItem) && (mediaPlayer?.isRunning == true)
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(checkiTunes), userInfo: nil, repeats: true)
     }
     
