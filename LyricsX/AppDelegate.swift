@@ -58,10 +58,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        DispatchQueue.global().async {
-            checkForUpdate()
-        }
-        
         let sharedKeys = [
             UserDefaults.DefaultKeys.LaunchAndQuitWithPlayer.rawValue,
             UserDefaults.DefaultKeys.PreferredPlayerIndex.rawValue
@@ -107,12 +103,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: - Menubar Action
-    
-    @IBAction func checkUpdateAction(_ sender: Any) {
-        DispatchQueue.global().async {
-            checkForUpdate(force: true)
-        }
-    }
     
     @IBAction func increaseOffset(_ sender: Any?) {
         AppController.shared.lyricsOffset += 100
