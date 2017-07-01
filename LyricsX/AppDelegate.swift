@@ -52,10 +52,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupShortcuts()
         
         NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach { $0.terminate() }
-        if defaults[.LaunchAndQuitWithPlayer] {
-            if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
-                log("Failed to enable login item")
-            }
+        if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, defaults[.LaunchAndQuitWithPlayer]) {
+            log("Failed to set login item enabled")
         }
         
         let sharedKeys = [
