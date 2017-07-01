@@ -177,12 +177,6 @@
                                 <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Check For Update..." id="CkK-tr-Bqn">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="checkUpdateAction:" target="Voe-Tx-rLC" id="L25-7q-sbM"/>
-                            </connections>
-                        </menuItem>
                         <menuItem title="Donate..." id="EoO-ld-6Xv">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
@@ -334,10 +328,11 @@
             <objects>
                 <tabViewController showSeguePresentationStyle="single" tabStyle="toolbar" id="sV3-nO-PkZ" userLabel="Preference View Controller" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG"/>
-                        <tabViewItem label="Display" identifier="" image="NSFontPanel" id="8VI-6O-0Rn"/>
-                        <tabViewItem label="Filter" image="toolbar_filter" id="xcA-tm-q8A" userLabel="Filter"/>
-                        <tabViewItem label="Lab" image="toolbar_lab" id="uj7-lo-QuS" userLabel="Lab"/>
+                        <tabViewItem identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG" userLabel="General"/>
+                        <tabViewItem identifier="" image="NSFontPanel" id="8VI-6O-0Rn" userLabel="Display"/>
+                        <tabViewItem image="NSAdvanced" id="bJe-2l-VWO" userLabel="Shortcut"/>
+                        <tabViewItem image="toolbar_filter" id="xcA-tm-q8A" userLabel="Filter"/>
+                        <tabViewItem image="toolbar_lab" id="uj7-lo-QuS" userLabel="Lab"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="ufX-Bl-B8D">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -348,6 +343,7 @@
                     <connections>
                         <segue destination="d5d-dC-DK4" kind="relationship" relationship="tabItems" id="kfu-5b-Mm3"/>
                         <segue destination="8JF-Og-z6E" kind="relationship" relationship="tabItems" id="ybT-iY-287"/>
+                        <segue destination="ppx-ob-WJc" kind="relationship" relationship="tabItems" id="UNQ-1s-Cez"/>
                         <segue destination="lN1-gG-AVq" kind="relationship" relationship="tabItems" id="wPI-VX-th7"/>
                         <segue destination="bFk-1g-XeL" kind="relationship" relationship="tabItems" id="OQC-tQ-r62"/>
                     </connections>
@@ -359,7 +355,7 @@
         <!--General-->
         <scene sceneID="mkJ-2y-SA4">
             <objects>
-                <viewController id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="General" id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="387"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -681,7 +677,7 @@
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
             <objects>
-                <viewController id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Display" id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="356"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1043,7 +1039,7 @@
         <!--Filter-->
         <scene sceneID="I5E-Nt-3Jp">
             <objects>
-                <viewController id="lN1-gG-AVq" userLabel="Filter" customClass="PreferenceFilterViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Filter" id="lN1-gG-AVq" userLabel="Filter" customClass="PreferenceFilterViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jcL-Yv-YP6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="408"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1311,12 +1307,124 @@
                 </arrayController>
                 <userDefaultsController id="QTW-Rd-aiV"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="590"/>
+            <point key="canvasLocation" x="1969" y="879"/>
+        </scene>
+        <!--Shortcut-->
+        <scene sceneID="fM0-at-U1A">
+            <objects>
+                <viewController title="Shortcut" id="ppx-ob-WJc" userLabel="Shortcut" customClass="PreferenceShortcutViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="yOR-wI-2Wv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="164"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZM-vL-ukW">
+                                <rect key="frame" x="168" y="123" width="134" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="gCm-k1-jk7"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Increase lyrics offset:" id="mo2-3C-gLY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="xRx-86-gVx" customClass="MASShortcutView">
+                                <rect key="frame" x="308" y="122" width="120" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="IMs-tc-Ug3"/>
+                                    <constraint firstAttribute="height" constant="19" id="m70-Qr-7Hx"/>
+                                </constraints>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LH-Ws-6CC">
+                                <rect key="frame" x="162" y="90" width="140" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="iZ2-h0-0qX"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Decrease lyrics offset:" id="bmk-rW-Uot">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="92Q-NC-T3a" customClass="MASShortcutView">
+                                <rect key="frame" x="308" y="89" width="120" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Ual-Pp-5ip"/>
+                                    <constraint firstAttribute="height" constant="19" id="uTu-hP-tC1"/>
+                                </constraints>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Paz-vU-k0Z">
+                                <rect key="frame" x="167" y="57" width="135" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="2Ia-qf-w7S"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Write lyrics to iTunes:" id="6We-TB-Wfc">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZhS-BF-7UN" customClass="MASShortcutView">
+                                <rect key="frame" x="308" y="56" width="120" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="Zoc-wc-dp9"/>
+                                    <constraint firstAttribute="width" constant="120" id="qNN-Qz-KrM"/>
+                                </constraints>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kmn-Mi-l4p">
+                                <rect key="frame" x="169" y="24" width="133" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="wUK-VV-zhw"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mark as wrong lyrics:" id="uEb-Q5-cda">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="l4G-ES-LlU" customClass="MASShortcutView">
+                                <rect key="frame" x="308" y="23" width="120" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="8Vz-YA-8cs"/>
+                                    <constraint firstAttribute="height" constant="19" id="iDp-hN-IeG"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="l4G-ES-LlU" firstAttribute="centerY" secondItem="Kmn-Mi-l4p" secondAttribute="centerY" id="58G-dQ-WcG"/>
+                            <constraint firstItem="Paz-vU-k0Z" firstAttribute="trailing" secondItem="rZM-vL-ukW" secondAttribute="trailing" id="APM-uX-ZnS"/>
+                            <constraint firstItem="Kmn-Mi-l4p" firstAttribute="top" secondItem="Paz-vU-k0Z" secondAttribute="bottom" constant="16" id="Add-q2-oTe"/>
+                            <constraint firstItem="Kmn-Mi-l4p" firstAttribute="trailing" secondItem="rZM-vL-ukW" secondAttribute="trailing" id="ESI-UF-K8H"/>
+                            <constraint firstItem="l4G-ES-LlU" firstAttribute="leading" secondItem="Kmn-Mi-l4p" secondAttribute="trailing" constant="8" id="LNf-No-i7b"/>
+                            <constraint firstItem="ZhS-BF-7UN" firstAttribute="leading" secondItem="Paz-vU-k0Z" secondAttribute="trailing" constant="8" id="MnK-HN-lKs"/>
+                            <constraint firstAttribute="bottom" secondItem="Kmn-Mi-l4p" secondAttribute="bottom" constant="24" id="PMl-xq-0wi"/>
+                            <constraint firstItem="xRx-86-gVx" firstAttribute="centerY" secondItem="rZM-vL-ukW" secondAttribute="centerY" id="dzF-pI-dlc"/>
+                            <constraint firstItem="ZhS-BF-7UN" firstAttribute="centerY" secondItem="Paz-vU-k0Z" secondAttribute="centerY" id="hnp-DF-O2a"/>
+                            <constraint firstItem="rZM-vL-ukW" firstAttribute="top" secondItem="yOR-wI-2Wv" secondAttribute="top" constant="24" id="j7l-HV-eXc"/>
+                            <constraint firstItem="92Q-NC-T3a" firstAttribute="centerY" secondItem="8LH-Ws-6CC" secondAttribute="centerY" id="js1-zR-2g2"/>
+                            <constraint firstItem="92Q-NC-T3a" firstAttribute="leading" secondItem="8LH-Ws-6CC" secondAttribute="trailing" constant="8" id="mLE-HC-SDN"/>
+                            <constraint firstItem="8LH-Ws-6CC" firstAttribute="trailing" secondItem="rZM-vL-ukW" secondAttribute="trailing" id="nmc-gD-W7K"/>
+                            <constraint firstItem="Paz-vU-k0Z" firstAttribute="top" secondItem="8LH-Ws-6CC" secondAttribute="bottom" constant="16" id="sVE-M2-NRt"/>
+                            <constraint firstItem="rZM-vL-ukW" firstAttribute="trailing" secondItem="yOR-wI-2Wv" secondAttribute="centerX" id="vop-eU-AJO"/>
+                            <constraint firstItem="xRx-86-gVx" firstAttribute="leading" secondItem="rZM-vL-ukW" secondAttribute="trailing" constant="8" id="zQi-Ou-E9R"/>
+                            <constraint firstItem="8LH-Ws-6CC" firstAttribute="top" secondItem="rZM-vL-ukW" secondAttribute="bottom" constant="16" id="za1-YD-BRY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="shortcutDecreaseOffset" destination="92Q-NC-T3a" id="ZS7-6f-Waj"/>
+                        <outlet property="shortcutIncreaseOffset" destination="xRx-86-gVx" id="pAF-m5-rJ2"/>
+                        <outlet property="shortcutWriteToiTunes" destination="ZhS-BF-7UN" id="J7G-Ub-B2q"/>
+                        <outlet property="shortcutWrongLyrics" destination="l4G-ES-LlU" id="SQL-gX-wr4"/>
+                    </connections>
+                </viewController>
+                <customObject id="I0Z-pO-sVx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1969" y="492"/>
         </scene>
         <!--Lab-->
         <scene sceneID="SoK-6E-AMw">
             <objects>
-                <viewController id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
+                <viewController title="Lab" id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
                     <view key="view" id="uY5-7S-zG1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="227"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1425,7 +1533,7 @@
                 <userDefaultsController id="MQW-nm-dXS"/>
                 <userDefaultsController id="6Z8-y3-1xP"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="1018.5"/>
+            <point key="canvasLocation" x="1969" y="1308"/>
         </scene>
         <!--Lyrics HUD Accessory-->
         <scene sceneID="WWo-Fn-ADk">
@@ -2069,6 +2177,7 @@ IA
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSAdvanced" width="32" height="32"/>
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>

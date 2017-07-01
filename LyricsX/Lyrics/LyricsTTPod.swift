@@ -33,14 +33,10 @@ final class LyricsTTPod: LyricsSource {
         }
         return URLSession(configuration: config)
     }()
-    let dispatchGroup = DispatchGroup()
+    var task: URLSessionDataTask?
     
     func cancel() {
-        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
-            dataTasks.forEach {
-                $0.cancel()
-            }
-        }
+        task?.cancel()
     }
     
     func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
@@ -54,11 +50,7 @@ final class LyricsTTPod: LyricsSource {
         let urlStr = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=\(encodedArtist)&title=\(encodedTitle)"
         let url = URL(string: urlStr)!
         let req = URLRequest(url: url)
-        dispatchGroup.enter()
-        let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
+        task = session.dataTask(with: req) { data, resp, error in
             guard let data = data else {
                 return
             }
@@ -70,8 +62,8 @@ final class LyricsTTPod: LyricsSource {
             lrc.metadata.searchBy = criteria
             lrc.metadata.searchIndex = 0
             using(lrc)
+            completionHandler()
         }
-        task.resume()
-        dispatchGroup.notify(queue: .global(), execute: completionHandler)
+        task?.resume()
     }
 }

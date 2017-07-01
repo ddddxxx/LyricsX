@@ -21,6 +21,7 @@
 import Cocoa
 import ServiceManagement
 import Then
+import MASShortcut
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -48,15 +49,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
         lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
         
-        NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach { $0.terminate() }
-        if defaults[.LaunchAndQuitWithPlayer] {
-            if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, true) {
-                log("Failed to enable login item")
-            }
-        }
+        setupShortcuts()
         
-        DispatchQueue.global().async {
-            checkForUpdate()
+        NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach { $0.terminate() }
+        if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, defaults[.LaunchAndQuitWithPlayer]) {
+            log("Failed to set login item enabled")
         }
         
         let sharedKeys = [
@@ -87,19 +84,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // MARK: - Menubar Action
-    
-    @IBAction func checkUpdateAction(_ sender: Any) {
-        DispatchQueue.global().async {
-            checkForUpdate(force: true)
+    private func setupShortcuts() {
+        let binder = MASShortcutBinder.shared()!
+        binder.bindShortcut(with: .ShortcutOffsetIncrease) {
+            self.increaseOffset(nil)
+        }
+        binder.bindShortcut(with: .ShortcutOffsetDecrease) {
+            self.decreaseOffset(nil)
+        }
+        binder.bindShortcut(with: .ShortcutWriteToiTunes) {
+            self.writeToiTunes(nil)
+        }
+        binder.bindShortcut(with: .ShortcutWrongLyrics) {
+            self.wrongLyrics(nil)
         }
     }
     
-    @IBAction func writeToiTunes(_ sender: Any) {
+    // MARK: - Menubar Action
+    
+    @IBAction func increaseOffset(_ sender: Any?) {
+        AppController.shared.lyricsOffset += 100
+    }
+    
+    @IBAction func decreaseOffset(_ sender: Any?) {
+        AppController.shared.lyricsOffset -= 100
+    }
+    
+    @IBAction func writeToiTunes(_ sender: Any?) {
         AppController.shared.writeToiTunes(overwrite: true)
     }
     
-    @IBAction func wrongLyrics(_ sender: Any) {
+    @IBAction func wrongLyrics(_ sender: Any?) {
         let track = MusicPlayerManager.shared.player?.currentTrack
         let title = track?.name ?? ""
         let artist = track?.artist ?? ""
@@ -117,3 +132,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
+extension MASShortcutBinder {
+    
+    func bindShortcut<T>(with defaultKay: UserDefaults.DefaultKey<T>, to action: @escaping () -> Void) {
+        bindShortcut(withDefaultsKey: defaultKay.rawValue, toAction: action)
+    }
+}

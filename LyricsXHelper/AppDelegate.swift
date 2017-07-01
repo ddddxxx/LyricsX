@@ -24,7 +24,7 @@ import ScriptingBridge
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var mediaPlayer: SBApplication?
+    var musicPlayer: SBApplication?
     var shouldWaitForPlayerQuit = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -35,18 +35,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let index = groupDefaults.integer(forKey: PreferredPlayerIndex)
         let ident = playerBundleIdentifiers[index]
-        mediaPlayer = SBApplication(bundleIdentifier: ident)
+        musicPlayer = SBApplication(bundleIdentifier: ident)
         
-        shouldWaitForPlayerQuit = mediaPlayer?.isRunning == true
-        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(checkiTunes), userInfo: nil, repeats: true)
+        let event = NSAppleEventManager.shared().currentAppleEvent
+        let isLaunchedAsLogInItem = event?.eventID == kAEOpenApplication && event?.paramDescriptor(forKeyword: keyAEPropData)?.enumCodeValue == keyAELaunchedAsLogInItem
+        shouldWaitForPlayerQuit = (!isLaunchedAsLogInItem) && (musicPlayer?.isRunning == true)
+        
+        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: .NSWorkspaceDidLaunchApplication, object: nil)
+        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: .NSWorkspaceDidTerminateApplication, object: nil)
     }
     
     func checkiTunes() {
         if self.shouldWaitForPlayerQuit {
-            self.shouldWaitForPlayerQuit = self.mediaPlayer?.isRunning == true
+            self.shouldWaitForPlayerQuit = self.musicPlayer?.isRunning == true
             return
         }
-        if self.mediaPlayer?.isRunning == true {
+        if self.musicPlayer?.isRunning == true {
             self.launchMainAndQuit()
         }
     }
@@ -68,7 +72,7 @@ let playerBundleIdentifiers = [
     "com.coppertino.Vox",
 ]
 
-let groupDefaults = UserDefaults(suiteName: "KCY8NMTG34.group.ddddxxx.LyricsX")!
+let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!
 
 // Preference
 let PreferredPlayerIndex = "PreferredPlayerIndex"

@@ -23,7 +23,7 @@ import GenericID
 
 // NOTE: to build your own product, you need to replace the team identifier to yours
 // and do the same thing in LyricsXHelper
-let LyricsXGroupIdentifier = "KCY8NMTG34.group.ddddxxx.LyricsX"
+let LyricsXGroupIdentifier = "3665V726AE.group.ddddxxx.LyricsX"
 let LyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
 
 let defaults = UserDefaults.standard
@@ -98,6 +98,12 @@ extension UserDefaults.DefaultKeys {
     static let DesktopLyricsBackgroundColor: Key<NSColor>   = "DesktopLyricsBackgroundColor"
     
     static let DisplayLyricsWithTag: Key<Bool>      = "DisplayLyricsWithTag"
+    
+    // Shortcut
+    static let ShortcutOffsetIncrease: Key<String>  = "ShortcutOffsetIncrease"
+    static let ShortcutOffsetDecrease: Key<String>  = "ShortcutOffsetDecrease"
+    static let ShortcutWriteToiTunes: Key<String>   = "ShortcutWriteToiTunes"
+    static let ShortcutWrongLyrics: Key<String>     = "ShortcutWrongLyrics"
     
     // Filter
     static let LyricsFilterEnabled: Key<Bool>       = "LyricsFilterEnabled"

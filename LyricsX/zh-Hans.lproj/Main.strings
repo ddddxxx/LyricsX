@@ -41,6 +41,9 @@
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
 "6FU-j0-FTV.title" = "转换为正体中文";
 
+/* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
+"6We-TB-Wfc.title" = "写入歌词到 iTunes:";
+
 /* Class = "NSWindow"; title = "Lyrics"; ObjectID = "6aU-M0-0Jh"; */
 "6aU-M0-0Jh.title" = "Lyrics";
 
@@ -50,11 +53,11 @@
 /* Class = "NSTextFieldCell"; title = "Preferred lyrics sourse:"; ObjectID = "7J3-g3-cfQ"; */
 "7J3-g3-cfQ.title" = "优先使用歌词源:";
 
+/* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
+"8JF-Og-z6E.title" = "显示";
+
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
 "8Sx-vb-5pB.title" = "写入歌词到 iTunes:";
-
-/* Class = "NSTabViewItem"; label = "Display"; ObjectID = "8VI-6O-0Rn"; */
-"8VI-6O-0Rn.label" = "显示";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "字体:";
@@ -85,9 +88,6 @@
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "DKt-ce-wX8"; */
 "DKt-ce-wX8.title" = "Box";
-
-/* Class = "NSTabViewItem"; label = "General"; ObjectID = "E3f-78-EMG"; */
-"E3f-78-EMG.label" = "通用";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
 "EoO-ld-6Xv.title" = "捐赠...";
@@ -191,8 +191,14 @@
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
 "bDS-Lb-m34.title" = "隐藏歌词:";
 
+/* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
+"bFk-1g-XeL.title" = "实验室";
+
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
 "bbd-ra-rSF.title" = "合并菜单栏图标与歌词";
+
+/* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
+"bmk-rW-Uot.title" = "减少歌词偏移（歌词延迟）:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c9V-Dh-f1D"; */
 "c9V-Dh-f1D.title" = "Text Cell";
@@ -214,6 +220,9 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
 "d5a-4n-6k8.ibShadowedToolTip" = "同步";
+
+/* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
+"d5d-dC-DK4.title" = "通用";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
 "eb9-fE-Lgq.title" = "搜索";
@@ -266,8 +275,14 @@
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
 "l8J-1r-dIZ.title" = "艺人:";
 
+/* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
+"lN1-gG-AVq.title" = "歌词过滤";
+
 /* Class = "NSTextFieldCell"; title = "AppName"; ObjectID = "m4c-y5-n5Z"; */
 "m4c-y5-n5Z.title" = "AppName";
+
+/* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
+"mo2-3C-gLY.title" = "增加歌词偏移（歌词提前）:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
 "o52-Z0-lue.title" = "如果您认为 LyricsX 对您有所帮助，并愿意支持软件的维护，可以扫描下方的二维码向我捐赠。";
@@ -275,14 +290,17 @@
 /* Class = "NSButtonCell"; title = "Vox"; ObjectID = "oTS-3z-Tz7"; */
 "oTS-3z-Tz7.title" = "Vox";
 
+/* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
+"ppx-ob-WJc.title" = "快捷键";
+
 /* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "tMS-HS-dqi"; */
 "tMS-HS-dqi.title" = "Version";
 
+/* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
+"uEb-Q5-cda.title" = "标记为错误的歌词:";
+
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uP6-6j-RSc"; */
 "uP6-6j-RSc.title" = "Cut";
-
-/* Class = "NSTabViewItem"; label = "Lab"; ObjectID = "uj7-lo-QuS"; */
-"uj7-lo-QuS.label" = "实验室";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
 "v63-4a-fPw.title" = "跟随播放器启动和退出";
@@ -295,9 +313,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "wzG-Up-fN8"; */
 "wzG-Up-fN8.title" = "Text";
-
-/* Class = "NSTabViewItem"; label = "Filter"; ObjectID = "xcA-tm-q8A"; */
-"xcA-tm-q8A.label" = "歌词过滤";
 
 /* Class = "NSWindow"; title = "Search Lyrics"; ObjectID = "y4a-GW-tEh"; */
 "y4a-GW-tEh.title" = "搜索歌词";
