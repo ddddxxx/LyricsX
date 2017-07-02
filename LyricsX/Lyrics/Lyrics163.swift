@@ -22,10 +22,10 @@ import Foundation
 import SwiftyJSON
 
 extension Lyrics.MetaData.Source {
-    static let Music163 = Lyrics.MetaData.Source("163")
+    public static let Music163 = Lyrics.MetaData.Source("163")
 }
 
-final class Lyrics163: LyricsSource {
+public final class Lyrics163: LyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,7 +35,7 @@ final class Lyrics163: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    func cancel() {
+    public func cancel() {
         session.getTasksWithCompletionHandler() { dataTasks, _, _ in
             dataTasks.forEach {
                 $0.cancel()
@@ -43,7 +43,7 @@ final class Lyrics163: LyricsSource {
         }
     }
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    public func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let url = URL(string: "http://music.163.com/api/search/pc")!

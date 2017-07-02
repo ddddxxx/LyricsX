@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let TTPod = Lyrics.MetaData.Source("TTPod")
 }
 
-final class LyricsTTPod: LyricsSource {
+public final class LyricsTTPod: LyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,11 +35,11 @@ final class LyricsTTPod: LyricsSource {
     }()
     var task: URLSessionDataTask?
     
-    func cancel() {
+    public func cancel() {
         task?.cancel()
     }
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    public func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         guard case let .info(title, artist) = criteria else {
             // cannot search by keyword
             return

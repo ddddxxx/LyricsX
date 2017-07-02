@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let QQMusic = Lyrics.MetaData.Source("QQMusic")
 }
 
-final class LyricsQQ: LyricsSource {
+public final class LyricsQQ: LyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,7 +35,7 @@ final class LyricsQQ: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    func cancel() {
+    public func cancel() {
         session.getTasksWithCompletionHandler() { dataTasks, _, _ in
             dataTasks.forEach {
                 $0.cancel()
@@ -43,7 +43,7 @@ final class LyricsQQ: LyricsSource {
         }
     }
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    public func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let urlString = "http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n=10&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w=\(encodedKeyword)"

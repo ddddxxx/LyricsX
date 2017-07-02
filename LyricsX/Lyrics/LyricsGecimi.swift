@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let Gecimi = Lyrics.MetaData.Source("Gecimi")
 }
 
-final class LyricsGecimi: LyricsSource {
+public final class LyricsGecimi: LyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,7 +35,7 @@ final class LyricsGecimi: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    func cancel() {
+    public func cancel() {
         session.getTasksWithCompletionHandler() { dataTasks, _, _ in
             dataTasks.forEach {
                 $0.cancel()
@@ -43,7 +43,7 @@ final class LyricsGecimi: LyricsSource {
         }
     }
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    public func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         guard case let .info(title, artist) = criteria else {
             // cannot search by keyword
             return

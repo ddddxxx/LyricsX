@@ -20,9 +20,9 @@
 
 import Foundation
 
-class LyricsSourceManager {
+public class LyricsSourceManager {
     
-    weak var consumer: LyricsConsuming?
+    public weak var consumer: LyricsConsuming?
     
     private var dispatchGroup = DispatchGroup()
     let lyricsSource: [LyricsSource] = [
@@ -34,15 +34,15 @@ class LyricsSourceManager {
         LyricsKugou(),
     ]
     
-    var criteria: Lyrics.MetaData.SearchCriteria?
+    public var criteria: Lyrics.MetaData.SearchCriteria?
     
-    var lyrics: [Lyrics] = []
+    public var lyrics: [Lyrics] = []
     
-    func fetchLyrics(title: String, artist: String, duration: TimeInterval) {
+    public func fetchLyrics(title: String, artist: String, duration: TimeInterval) {
         fetchLyrics(with: .info(title: title, artist: artist), title: title, artist: artist, duration: duration)
     }
     
-    func fetchLyrics(with criteria: Lyrics.MetaData.SearchCriteria, title: String?, artist: String?, duration: TimeInterval) {
+    public func fetchLyrics(with criteria: Lyrics.MetaData.SearchCriteria, title: String?, artist: String?, duration: TimeInterval) {
         self.criteria = criteria
         lyrics = []
         lyricsSource.forEach { $0.cancel() }

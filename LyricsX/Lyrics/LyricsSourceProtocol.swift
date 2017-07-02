@@ -21,14 +21,14 @@
 import Foundation
 import Then
 
-protocol LyricsConsuming: class {
+public protocol LyricsConsuming: class {
     
     func lyricsReceived(lyrics: Lyrics)
     
     func fetchCompleted(result: [Lyrics])
 }
 
-protocol LyricsSource {
+public protocol LyricsSource {
     
     func cancel()
     

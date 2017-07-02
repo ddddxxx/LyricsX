@@ -20,13 +20,13 @@
 
 import Foundation
 
-class Lyrics {
+public class Lyrics {
     
-    var lyrics: [LyricsLine]
-    var idTags: [IDTagKey: String]
-    var metadata: MetaData
+    public var lyrics: [LyricsLine]
+    public var idTags: [IDTagKey: String]
+    public var metadata: MetaData
     
-    var offset: Int {
+    public var offset: Int {
         get {
             return idTags[.offset].flatMap { Int($0) } ?? 0
         }
@@ -35,7 +35,7 @@ class Lyrics {
         }
     }
     
-    var timeDelay: TimeInterval {
+    public var timeDelay: TimeInterval {
         get {
             return TimeInterval(offset) / 1000
         }
@@ -47,7 +47,7 @@ class Lyrics {
     private static let idTagRegex = try! NSRegularExpression(pattern: "\\[[^\\]]+:[^\\]]+\\]")
     private static let timeTagRegex = try! NSRegularExpression(pattern: "\\[\\d+:\\d+.\\d+\\]|\\[\\d+:\\d+\\]")
     
-    init?(_ lrcContents: String) {
+    public init?(_ lrcContents: String) {
         lyrics = []
         idTags = [:]
         metadata = MetaData(source: .Unknown)
@@ -99,7 +99,7 @@ class Lyrics {
         lyrics.sort() { $0.position < $1.position }
     }
     
-    convenience init?(url: URL) {
+    public convenience init?(url: URL) {
         guard let lrcContent = try? String(contentsOf: url) else {
             return nil
         }
@@ -108,7 +108,7 @@ class Lyrics {
         metadata.lyricsURL = url
     }
     
-    subscript(_ position: TimeInterval) -> (current:LyricsLine?, next:LyricsLine?) {
+    public subscript(_ position: TimeInterval) -> (current:LyricsLine?, next:LyricsLine?) {
         let position = position + timeDelay
         var left = lyrics.startIndex
         var right = lyrics.endIndex - 1
@@ -126,44 +126,44 @@ class Lyrics {
         return (current, next)
     }
     
-    struct IDTagKey: RawRepresentable, Hashable {
+    public struct IDTagKey: RawRepresentable, Hashable {
         
-        var rawValue: String
+        public var rawValue: String
         
-        init(_ rawValue: String) {
+        public init(_ rawValue: String) {
             self.rawValue = rawValue
         }
         
-        init(rawValue: String) {
+        public init(rawValue: String) {
             self.rawValue = rawValue
         }
         
-        var hashValue: Int {
+        public var hashValue: Int {
             return rawValue.hash
         }
         
-        static let title    = IDTagKey("ti")
-        static let album    = IDTagKey("al")
-        static let artist   = IDTagKey("ar")
-        static let author   = IDTagKey("au")
-        static let lrcBy    = IDTagKey("by")
-        static let offset   = IDTagKey("offset")
-        static let recreater = IDTagKey("re")
-        static let version  = IDTagKey("ve")
+        public static let title    = IDTagKey("ti")
+        public static let album    = IDTagKey("al")
+        public static let artist   = IDTagKey("ar")
+        public static let author   = IDTagKey("au")
+        public static let lrcBy    = IDTagKey("by")
+        public static let offset   = IDTagKey("offset")
+        public static let recreater = IDTagKey("re")
+        public static let version  = IDTagKey("ve")
     }
     
-    struct MetaData {
+    public struct MetaData {
         
-        var source: Source
-        var title: String?
-        var artist: String?
-        var searchBy: SearchCriteria?
-        var searchIndex: Int
-        var lyricsURL: URL?
-        var artworkURL: URL?
-        var includeTranslation: Bool
+        public var source: Source
+        public var title: String?
+        public var artist: String?
+        public var searchBy: SearchCriteria?
+        public var searchIndex: Int
+        public var lyricsURL: URL?
+        public var artworkURL: URL?
+        public var includeTranslation: Bool
         
-        init(source: Source, title: String? = nil, artist: String? = nil, searchBy: SearchCriteria? = nil, searchIndex: Int = 0, lyricsURL: URL? = nil, artworkURL: URL? = nil, includeTranslation: Bool = false) {
+        public init(source: Source, title: String? = nil, artist: String? = nil, searchBy: SearchCriteria? = nil, searchIndex: Int = 0, lyricsURL: URL? = nil, artworkURL: URL? = nil, includeTranslation: Bool = false) {
             self.source = source
             self.title = title
             self.artist = artist
@@ -174,23 +174,25 @@ class Lyrics {
             self.includeTranslation = includeTranslation
         }
         
-        struct Source: RawRepresentable {
-            var rawValue: String
+        public struct Source: RawRepresentable {
             
-            init(rawValue: String) {
+            public var rawValue: String
+            
+            public init(rawValue: String) {
                 self.rawValue = rawValue
             }
             
-            init(_ rawValue: String) {
+            public init(_ rawValue: String) {
                 self.rawValue = rawValue
             }
             
-            static let Unknown = Source("Unknown")
-            static let Local = Source("Local")
-            static let Import = Source("Import")
+            public static let Unknown = Source("Unknown")
+            public static let Local = Source("Local")
+            public static let Import = Source("Import")
         }
         
-        enum SearchCriteria {
+        public enum SearchCriteria {
+            
             case keyword(String)
             case info(title: String, artist: String)
         }
@@ -199,7 +201,7 @@ class Lyrics {
 
 extension Lyrics {
     
-    func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
+    public func contentString(withMetadata: Bool, ID3: Bool, timeTag: Bool, translation: Bool) -> String {
         var content = ""
         if withMetadata {
             content += metadata.description
@@ -220,7 +222,7 @@ extension Lyrics {
 
 extension Lyrics {
     
-    func filtrate(using regex: NSRegularExpression) {
+    public func filtrate(using regex: NSRegularExpression) {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence.replacingOccurrences(of: " ", with: "")
             let numberOfMatches = regex.numberOfMatches(in: sentence, options: [], range: sentence.range)
@@ -231,7 +233,7 @@ extension Lyrics {
         }
     }
     
-    func smartFiltrate() {
+    public func smartFiltrate() {
         for (index, lyric) in lyrics.enumerated() {
             let sentence = lyric.sentence
             if let idTagTitle = idTags[.title],
@@ -265,7 +267,7 @@ private func ?>(lhs: Bool?, rhs: Bool?) -> Bool? {
 
 extension Lyrics {
     
-    static func >(lhs: Lyrics, rhs: Lyrics) -> Bool {
+    public static func >(lhs: Lyrics, rhs: Lyrics) -> Bool {
         if lhs.metadata.source == rhs.metadata.source  {
             return lhs.metadata.searchIndex < rhs.metadata.searchIndex
         }
@@ -293,15 +295,15 @@ extension Lyrics {
         return false
     }
     
-    static func <(lhs: Lyrics, rhs: Lyrics) -> Bool {
+    public static func <(lhs: Lyrics, rhs: Lyrics) -> Bool {
         return rhs > lhs
     }
     
-    static func >=(lhs: Lyrics, rhs: Lyrics) -> Bool {
+    public static func >=(lhs: Lyrics, rhs: Lyrics) -> Bool {
         return !(lhs < rhs)
     }
     
-    static func <=(lhs: Lyrics, rhs: Lyrics) -> Bool {
+    public static func <=(lhs: Lyrics, rhs: Lyrics) -> Bool {
         return !(lhs > rhs)
     }
     
@@ -351,13 +353,13 @@ extension Lyrics {
 // MARK: - Equatable
 
 extension Lyrics.MetaData.Source: Equatable {
-    static func ==(lhs: Lyrics.MetaData.Source, rhs: Lyrics.MetaData.Source) -> Bool {
+    public static func ==(lhs: Lyrics.MetaData.Source, rhs: Lyrics.MetaData.Source) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 }
 
 extension Lyrics.MetaData.SearchCriteria: Equatable {
-    static func ==(lhs: Lyrics.MetaData.SearchCriteria, rhs: Lyrics.MetaData.SearchCriteria) -> Bool {
+    public static func ==(lhs: Lyrics.MetaData.SearchCriteria, rhs: Lyrics.MetaData.SearchCriteria) -> Bool {
         switch (lhs, rhs) {
         case (.keyword, .info), (.info, .keyword):
             return false

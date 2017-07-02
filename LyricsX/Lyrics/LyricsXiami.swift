@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let Xiami = Lyrics.MetaData.Source("Xiami")
 }
 
-final class LyricsXiami: LyricsSource {
+public final class LyricsXiami: LyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,7 +35,7 @@ final class LyricsXiami: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    func cancel() {
+    public func cancel() {
         session.getTasksWithCompletionHandler() { dataTasks, _, _ in
             dataTasks.forEach {
                 $0.cancel()
@@ -43,7 +43,7 @@ final class LyricsXiami: LyricsSource {
         }
     }
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    public func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let url = URL(string: "http://www.xiami.com/web/search-songs?key=\(encodedKeyword)")!
