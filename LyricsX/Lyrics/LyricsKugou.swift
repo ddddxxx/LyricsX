@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let Kugou = Lyrics.MetaData.Source("Kugou")
 }
 
-public final class LyricsKugou: LyricsSource {
+public final class LyricsKugou: CommonLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,69 +35,43 @@ public final class LyricsKugou: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    public func cancelSearch() {
-        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
-            dataTasks.forEach {
-                $0.cancel()
-            }
-        }
-    }
-    
-    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    func searchLyricsToken(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping ([JSON]) -> Void) {
         let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let mDuration = Int(duration * 1000)
         let urlStr = "http://lyrics.kugou.com/search?ver=1&man=yes&client=pc&keyword=\(encodedKeyword)&duration=\(mDuration)"
         let url = URL(string: urlStr)!
         let req = URLRequest(url: url)
-        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
-            guard let data = data else {
-                return
-            }
-            JSON(data)["candidates"].array?.enumerated().forEach { index, json in
-                guard let id = json["id"].string, let accesskey = json["accesskey"].string else {
-                    return
-                }
-                self.fetchLyrics(id: id, accesskey: accesskey) { lrc in
-                    lrc.idTags[.title] = json["song"].string
-                    lrc.idTags[.artist] = json["singer"].string
-                    lrc.idTags[.lrcBy] = "Kugou"
-                    
-                    lrc.metadata.source = .Kugou
-                    lrc.metadata.searchIndex = index
-                    lrc.metadata.searchBy = criteria
-                    
-                    using(lrc)
-                }
-            }
+            let json = data.map(JSON.init)?["candidates"].array ?? []
+            completionHandler(json)
         }
         task.resume()
-        dispatchGroup.notify(queue: .global(), execute: completionHandler)
     }
     
-    private func fetchLyrics(id: String, accesskey: String, completionBlock: @escaping (Lyrics) -> Void) {
+    func getLyricsWithToken(token: JSON, completionHandler: @escaping (Lyrics?) -> Void) {
+        guard let id = token["id"].string, let accesskey = token["accesskey"].string else {
+            completionHandler(nil)
+            return
+        }
         let urlStr = "http://lyrics.kugou.com/download?ver=1&client=pc&id=\(id)&accesskey=\(accesskey)&fmt=lrc&charset=utf8"
         let url = URL(string: urlStr)!
         let req = URLRequest(url: url)
-        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
-            guard let data = data else {
-                return
-            }
-            guard let lrcDataStr = JSON(data)["content"].string,
+            guard let lrcDataStr = data.map(JSON.init)?["content"].string,
                 let lrcData = Data(base64Encoded: lrcDataStr),
                 let lrcContent = String(data: lrcData, encoding: .utf8),
                 let lrc = Lyrics(lrcContent) else {
-                    return
+                completionHandler(nil)
+                return
             }
-            completionBlock(lrc)
+            lrc.idTags[.title] = token["song"].string
+            lrc.idTags[.artist] = token["singer"].string
+            lrc.idTags[.lrcBy] = "Kugou"
+            
+            lrc.metadata.source = .Kugou
+            
+            completionHandler(lrc)
         }
         task.resume()
     }
