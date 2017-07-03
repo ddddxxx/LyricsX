@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let QQMusic = Lyrics.MetaData.Source("QQMusic")
 }
 
-public final class LyricsQQ: LyricsSource {
+public final class LyricsQQ: CommonLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,15 +35,7 @@ public final class LyricsQQ: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    public func cancelSearch() {
-        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
-            dataTasks.forEach {
-                $0.cancel()
-            }
-        }
-    }
-    
-    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    func searchLyricsToken(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping ([Int]) -> Void) {
         let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let urlString = "http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n=10&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w=\(encodedKeyword)"
@@ -51,51 +43,32 @@ public final class LyricsQQ: LyricsSource {
         let req = URLRequest(url: url)
         dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
-            guard let data = data else {
-                return
-            }
-            let ids = JSON(data)["data"]["song"]["list"].array?.flatMap { (item: JSON) -> Int? in
+            let ids = data.map(JSON.init)?["data"]["song"]["list"].array?.flatMap { (item: JSON) -> Int? in
                 guard let f = item["f"].string,
                     let range = f.range(of: "|") else {
-                    return nil
+                        return nil
                 }
                 return Int(f.substring(to: range.lowerBound))
-            }
-            ids?.enumerated().forEach { index, id in
-                self.fetchLyrics(id: id) { lrc in
-                    lrc.metadata.source = .QQMusic
-                    lrc.metadata.searchBy = criteria
-                    lrc.metadata.searchIndex = index
-                    lrc.metadata.artworkURL = URL(string: "http://imgcache.qq.com/music/photo/album/\(id % 100)/\(id).jpg")
-                    
-                    using(lrc)
-                }
-            }
+            } ?? []
+            completionHandler(ids)
         }
         task.resume()
-        dispatchGroup.notify(queue: .global(), execute: completionHandler)
     }
     
-    private func fetchLyrics(id: Int, completionBlock: @escaping (Lyrics) -> Void) {
-        let url = URL(string: "http://music.qq.com/miniportal/static/lyric/\(id%100)/\(id).xml")!
+    func getLyricsWithToken(token: Int, completionHandler: @escaping (Lyrics?) -> Void) {
+        let url = URL(string: "http://music.qq.com/miniportal/static/lyric/\(token%100)/\(token).xml")!
         let req = URLRequest(url: url)
-        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
             let parser = LyricsQQXMLParser()
-            guard let data = data else {
-                return
-            }
-            guard let lrcContent = parser.parseLrcContents(data: data),
+            guard let data = data,
+                let lrcContent = parser.parseLrcContents(data: data),
                 let lrc = Lyrics(lrcContent) else {
+                completionHandler(nil)
                 return
             }
-            completionBlock(lrc)
+            lrc.metadata.source = .QQMusic
+            lrc.metadata.artworkURL = URL(string: "http://imgcache.qq.com/music/photo/album/\(token % 100)/\(token).jpg")
+            completionHandler(lrc)
         }
         task.resume()
     }
