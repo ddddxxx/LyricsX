@@ -35,7 +35,7 @@ public final class LyricsXiami: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    public func cancel() {
+    public func cancelSearch() {
         session.getTasksWithCompletionHandler() { dataTasks, _, _ in
             dataTasks.forEach {
                 $0.cancel()
@@ -43,7 +43,7 @@ public final class LyricsXiami: LyricsSource {
         }
     }
     
-    public func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let url = URL(string: "http://www.xiami.com/web/search-songs?key=\(encodedKeyword)")!

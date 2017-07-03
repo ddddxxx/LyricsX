@@ -35,11 +35,11 @@ public final class LyricsTTPod: LyricsSource {
     }()
     var task: URLSessionDataTask?
     
-    public func cancel() {
+    public func cancelSearch() {
         task?.cancel()
     }
     
-    public func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         guard case let .info(title, artist) = criteria else {
             // cannot search by keyword
             return

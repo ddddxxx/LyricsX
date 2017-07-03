@@ -45,10 +45,10 @@ public class LyricsSourceManager {
     public func fetchLyrics(with criteria: Lyrics.MetaData.SearchCriteria, title: String?, artist: String?, duration: TimeInterval) {
         self.criteria = criteria
         lyrics = []
-        lyricsSource.forEach { $0.cancel() }
+        lyricsSource.forEach { $0.cancelSearch() }
         lyricsSource.forEach { source in
             dispatchGroup.enter()
-            source.fetchLyrics(by: criteria, duration: duration, using: { lrc in
+            source.searchLyrics(criteria: criteria, duration: duration, using: { lrc in
                 guard self.criteria == criteria else {
                     return
                 }
