@@ -61,19 +61,12 @@ public final class Lyrics163: CommonLyricsSource {
         }
         let url = URL(string: "http://music.163.com/api/song/lyric?id=\(id)&lv=1&kv=1&tv=-1")!
         let req = URLRequest(url: url)
-        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
-            guard let data = data else {
-                return
-            }
-            
-            let json = JSON(data: data)
-            guard let lrcContent = json["lrc"]["lyric"].string,
+            guard let json = data.map(JSON.init),
+                let lrcContent = json["lrc"]["lyric"].string,
                 let lrc = Lyrics(lrcContent) else {
-                    return
+                completionHandler(nil)
+                return
             }
             if let transLrcContent = json["tlyric"]["lyric"].string,
                 let transLrc = Lyrics(transLrcContent) {
