@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let Gecimi = Lyrics.MetaData.Source("Gecimi")
 }
 
-public final class LyricsGecimi: LyricsSource {
+public final class LyricsGecimi: CommonLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,17 +35,10 @@ public final class LyricsGecimi: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    public func cancelSearch() {
-        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
-            dataTasks.forEach {
-                $0.cancel()
-            }
-        }
-    }
-    
-    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    func searchLyricsToken(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping ([JSON]) -> Void) {
         guard case let .info(title, artist) = criteria else {
             // cannot search by keyword
+            completionHandler([])
             return
         }
         let encodedTitle = title.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
@@ -53,41 +46,32 @@ public final class LyricsGecimi: LyricsSource {
         
         let url = URL(string: "http://gecimi.com/api/lyric/\(encodedTitle)/\(encodedArtist)")!
         let req = URLRequest(url: url)
-        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
-            guard let data = data else {
-                return
-            }
-            JSON(data)["result"].array?.enumerated().forEach { index, item in
-                guard let lrcURL = item["lrc"].url,
-                    // FIXME: use URLSession instead of contentsOfURL
-                    let lrc = Lyrics(url: lrcURL) else {
-                    return
-                }
-                lrc.metadata.source = .Gecimi
-                lrc.metadata.searchBy = criteria
-                lrc.metadata.searchIndex = index
-                if let aid = item["aid"].string,
-                    let url = URL(string:"http://gecimi.com/api/cover/\(aid)") {
-                    self.dispatchGroup.enter()
-                    let task = self.session.dataTask(with: req) { data, resp, error in
-                        defer {
-                            self.dispatchGroup.leave()
-                        }
-                        // FIXME: contentsOf
-                        if let data = try? Data(contentsOf: url),
-                            let artworkURL = JSON(data)["result"]["cover"].url {
-                            lrc.metadata.artworkURL = artworkURL
-                        }
-                    }
-                }
-                using(lrc)
-            }
+            let json = data.map(JSON.init)?["result"].array ?? []
+            completionHandler(json)
         }
         task.resume()
-        dispatchGroup.notify(queue: .global(), execute: completionHandler)
+    }
+    
+    func getLyricsWithToken(token: JSON, completionHandler: @escaping (Lyrics?) -> Void) {
+        guard let lrcURL = token["lrc"].url,
+            // FIXME: use URLSession instead of contentsOfURL
+            let lrc = Lyrics(url: lrcURL) else {
+                return
+        }
+        lrc.metadata.source = .Gecimi
+        if let aid = token["aid"].string,
+            let url = URL(string:"http://gecimi.com/api/cover/\(aid)") {
+            let req = URLRequest(url: url)
+            let task = self.session.dataTask(with: req) { data, resp, error in
+                // FIXME: contentsOf
+                if let data = try? Data(contentsOf: url),
+                    let artworkURL = JSON(data)["result"]["cover"].url {
+                    lrc.metadata.artworkURL = artworkURL
+                }
+            }
+            task.resume()
+        }
+        completionHandler(lrc)
     }
 }
