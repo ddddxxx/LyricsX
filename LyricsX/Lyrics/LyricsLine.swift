@@ -20,20 +20,20 @@
 
 import Foundation
 
-struct LyricsLine {
+public struct LyricsLine {
     
-    var sentence: String
-    var translation: String?
-    var position: TimeInterval
-    var enabled: Bool
+    public var sentence: String
+    public var translation: String?
+    public var position: TimeInterval
+    public var enabled: Bool
     
-    var timeTag: String {
+    public var timeTag: String {
         let min = Int(position / 60)
         let sec = position - TimeInterval(min * 60)
         return String(format: "%02d:%06.3f", min, sec)
     }
     
-    init(sentence: String, translation: String? = nil, position: TimeInterval) {
+    public init(sentence: String, translation: String? = nil, position: TimeInterval) {
         self.sentence = sentence
         self.translation = translation
         self.position = position
@@ -41,7 +41,7 @@ struct LyricsLine {
         normalization()
     }
     
-    init?(sentence: String, translation: String? = nil, timeTag: String) {
+    public init?(sentence: String, translation: String? = nil, timeTag: String) {
         var tagContent = timeTag
         tagContent.remove(at: tagContent.startIndex)
         tagContent.remove(at: tagContent.index(before: tagContent.endIndex))
@@ -69,18 +69,18 @@ struct LyricsLine {
 
 extension LyricsLine: Equatable, Hashable {
     
-    var hashValue: Int {
+    public var hashValue: Int {
         return sentence.hashValue ^ position.hashValue ^ (translation?.hash ?? 0)
     }
     
-    static func ==(lhs: LyricsLine, rhs: LyricsLine) -> Bool {
+    public static func ==(lhs: LyricsLine, rhs: LyricsLine) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
 }
 
 extension LyricsLine {
     
-    func contentString(withTimeTag: Bool, translation: Bool) -> String {
+    public func contentString(withTimeTag: Bool, translation: Bool) -> String {
         var content = ""
         if withTimeTag {
             content += "[" + timeTag + "]"

@@ -21,18 +21,97 @@
 import Foundation
 import Then
 
-protocol LyricsConsuming: class {
+public protocol LyricsConsuming: class {
     
     func lyricsReceived(lyrics: Lyrics)
     
     func fetchCompleted(result: [Lyrics])
 }
 
-protocol LyricsSource {
+public protocol LyricsSource {
     
-    func cancel()
+    func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void)
     
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void)
+    func iFeelLucky(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping (Lyrics?) -> Void)
+    
+    func cancelSearch()
+}
+
+// MARK: Internal Protocol
+
+protocol MultiResultLyricsSource: LyricsSource {
+    
+    associatedtype LyricsToken
+    
+    var session: URLSession { get }
+    var dispatchGroup: DispatchGroup { get }
+    
+    func searchLyricsToken(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping ([LyricsToken]) -> Void)
+    
+    func getLyricsWithToken(token: LyricsToken, completionHandler: @escaping (Lyrics?) -> Void)
+}
+
+extension MultiResultLyricsSource {
+    
+    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+        dispatchGroup.enter()
+        searchLyricsToken(criteria: criteria, duration: duration) { tokens in
+            tokens.enumerated().forEach { index, token in
+                self.dispatchGroup.enter()
+                self.getLyricsWithToken(token: token) { lyrics in
+                    if let lyrics = lyrics {
+                        lyrics.metadata.searchIndex = index
+                        using(lyrics)
+                    }
+                    self.dispatchGroup.leave()
+                }
+            }
+            self.dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .global(), execute: completionHandler)
+    }
+    
+    public func iFeelLucky(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping (Lyrics?) -> Void) {
+        searchLyricsToken(criteria: criteria, duration: duration) { tokens in
+            guard let token = tokens.first else {
+                completionHandler(nil)
+                return
+            }
+            self.getLyricsWithToken(token: token, completionHandler: completionHandler)
+        }
+    }
+    
+    public func cancelSearch() {
+        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
+            dataTasks.forEach {
+                $0.cancel()
+            }
+        }
+    }
+}
+
+protocol SingleResultLyricsSource: LyricsSource {
+    var session: URLSession { get }
+}
+
+extension SingleResultLyricsSource {
+    
+    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+        iFeelLucky(criteria: criteria, duration: duration) {
+            if let lyrics = $0 {
+                using(lyrics)
+            }
+            completionHandler()
+        }
+    }
+    
+    public func cancelSearch() {
+        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
+            dataTasks.forEach {
+                $0.cancel()
+            }
+        }
+    }
 }
 
 // MARK: - Utility

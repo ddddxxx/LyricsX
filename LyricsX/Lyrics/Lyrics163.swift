@@ -22,10 +22,10 @@ import Foundation
 import SwiftyJSON
 
 extension Lyrics.MetaData.Source {
-    static let Music163 = Lyrics.MetaData.Source("163")
+    public static let Music163 = Lyrics.MetaData.Source("163")
 }
 
-final class Lyrics163: LyricsSource {
+public final class Lyrics163: MultiResultLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,15 +35,7 @@ final class Lyrics163: LyricsSource {
     }()
     let dispatchGroup = DispatchGroup()
     
-    func cancel() {
-        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
-            dataTasks.forEach {
-                $0.cancel()
-            }
-        }
-    }
-    
-    func fetchLyrics(by criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    func searchLyricsToken(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping ([JSON]) -> Void) {
         let keyword = criteria.description
         let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .uriComponentAllowed)!
         let url = URL(string: "http://music.163.com/api/search/pc")!
@@ -55,53 +47,25 @@ final class Lyrics163: LyricsSource {
             $0.setValue("http://music.163.com/", forHTTPHeaderField: "Referer")
             $0.httpBody = body
         }
-        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
-            guard let data = data else {
-                return
-            }
-            
-            JSON(data: data)["result"]["songs"].array?.enumerated().forEach { index, item in
-                guard let id = item["id"].number?.intValue else {
-                    return
-                }
-                self.fetchLyrics(id: id) { lyrics in
-                    lyrics.idTags[.title]   = item["name"].string
-                    lyrics.idTags[.artist]  = item["artists"][0]["name"].string
-                    lyrics.idTags[.album]   = item["album"]["name"].string
-                    lyrics.idTags[.lrcBy]   = "163"
-                    
-                    lyrics.metadata.searchBy    = criteria
-                    lyrics.metadata.searchIndex = index
-                    lyrics.metadata.source      = .Music163
-                    lyrics.metadata.artworkURL  = item["album"]["picUrl"].url
-                    
-                    using(lyrics)
-                }
-            }
+            let array = data.map(JSON.init)?["result"]["songs"].array ?? []
+            completionHandler(array)
         }
         task.resume()
-        dispatchGroup.notify(queue: .global(), execute: completionHandler)
     }
     
-    private func fetchLyrics(id: Int, completionBlock: @escaping (Lyrics) -> Void) {
+    func getLyricsWithToken(token: JSON, completionHandler: @escaping (Lyrics?) -> Void) {
+        guard let id = token["id"].number?.intValue else {
+            completionHandler(nil)
+            return
+        }
         let url = URL(string: "http://music.163.com/api/song/lyric?id=\(id)&lv=1&kv=1&tv=-1")!
         let req = URLRequest(url: url)
-        dispatchGroup.enter()
         let task = session.dataTask(with: req) { data, resp, error in
-            defer {
-                self.dispatchGroup.leave()
-            }
-            guard let data = data else {
-                return
-            }
-            
-            let json = JSON(data: data)
-            guard let lrcContent = json["lrc"]["lyric"].string,
+            guard let json = data.map(JSON.init),
+                let lrcContent = json["lrc"]["lyric"].string,
                 let lrc = Lyrics(lrcContent) else {
+                completionHandler(nil)
                 return
             }
             if let transLrcContent = json["tlyric"]["lyric"].string,
@@ -110,7 +74,15 @@ final class Lyrics163: LyricsSource {
                 lrc.metadata.includeTranslation = true
             }
             
-            completionBlock(lrc)
+            lrc.idTags[.title]   = token["name"].string
+            lrc.idTags[.artist]  = token["artists"][0]["name"].string
+            lrc.idTags[.album]   = token["album"]["name"].string
+            lrc.idTags[.lrcBy]   = "163"
+            
+            lrc.metadata.source      = .Music163
+            lrc.metadata.artworkURL  = token["album"]["picUrl"].url
+            
+            completionHandler(lrc)
         }
         task.resume()
     }
