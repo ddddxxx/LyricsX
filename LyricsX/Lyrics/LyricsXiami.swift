@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let Xiami = Lyrics.MetaData.Source("Xiami")
 }
 
-public final class LyricsXiami: CommonLyricsSource {
+public final class LyricsXiami: MultiResultLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {

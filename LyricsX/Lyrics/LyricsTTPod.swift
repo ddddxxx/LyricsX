@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let TTPod = Lyrics.MetaData.Source("TTPod")
 }
 
-public final class LyricsTTPod: LyricsSource {
+public final class LyricsTTPod: SingleResultLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
@@ -35,11 +35,7 @@ public final class LyricsTTPod: LyricsSource {
     }()
     var task: URLSessionDataTask?
     
-    public func cancelSearch() {
-        task?.cancel()
-    }
-    
-    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+    public func iFeelLucky(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping (Lyrics?) -> Void) {
         guard case let .info(title, artist) = criteria else {
             // cannot search by keyword
             return
@@ -51,18 +47,16 @@ public final class LyricsTTPod: LyricsSource {
         let url = URL(string: urlStr)!
         let req = URLRequest(url: url)
         task = session.dataTask(with: req) { data, resp, error in
-            guard let data = data else {
-                return
-            }
-            guard let lrcContent = JSON(data)["data"]["lrc"].string,
+            guard let data = data,
+                let lrcContent = JSON(data)["data"]["lrc"].string,
                 let lrc = Lyrics(lrcContent) else {
-                return
+                    completionHandler(nil)
+                    return
             }
             lrc.metadata.source = .TTPod
             lrc.metadata.searchBy = criteria
             lrc.metadata.searchIndex = 0
-            using(lrc)
-            completionHandler()
+            completionHandler(lrc)
         }
         task?.resume()
     }

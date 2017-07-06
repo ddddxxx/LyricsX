@@ -30,14 +30,16 @@ public protocol LyricsConsuming: class {
 
 public protocol LyricsSource {
     
-    func cancelSearch()
-    
     func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void)
+    
+    func iFeelLucky(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, completionHandler: @escaping (Lyrics?) -> Void)
+    
+    func cancelSearch()
 }
 
 // MARK: Internal Protocol
 
-protocol CommonLyricsSource: LyricsSource {
+protocol MultiResultLyricsSource: LyricsSource {
     
     associatedtype LyricsToken
     
@@ -49,7 +51,7 @@ protocol CommonLyricsSource: LyricsSource {
     func getLyricsWithToken(token: LyricsToken, completionHandler: @escaping (Lyrics?) -> Void)
 }
 
-extension CommonLyricsSource {
+extension MultiResultLyricsSource {
     
     public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
         dispatchGroup.enter()
@@ -76,6 +78,30 @@ extension CommonLyricsSource {
                 return
             }
             self.getLyricsWithToken(token: token, completionHandler: completionHandler)
+        }
+    }
+    
+    public func cancelSearch() {
+        session.getTasksWithCompletionHandler() { dataTasks, _, _ in
+            dataTasks.forEach {
+                $0.cancel()
+            }
+        }
+    }
+}
+
+protocol SingleResultLyricsSource: LyricsSource {
+    var session: URLSession { get }
+}
+
+extension SingleResultLyricsSource {
+    
+    public func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, duration: TimeInterval, using: @escaping (Lyrics) -> Void, completionHandler: @escaping () -> Void) {
+        iFeelLucky(criteria: criteria, duration: duration) {
+            if let lyrics = $0 {
+                using(lyrics)
+            }
+            completionHandler()
         }
     }
     

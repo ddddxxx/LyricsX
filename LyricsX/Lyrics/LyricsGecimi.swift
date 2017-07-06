@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let Gecimi = Lyrics.MetaData.Source("Gecimi")
 }
 
-public final class LyricsGecimi: CommonLyricsSource {
+public final class LyricsGecimi: MultiResultLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {

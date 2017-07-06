@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let Kugou = Lyrics.MetaData.Source("Kugou")
 }
 
-public final class LyricsKugou: CommonLyricsSource {
+public final class LyricsKugou: MultiResultLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {

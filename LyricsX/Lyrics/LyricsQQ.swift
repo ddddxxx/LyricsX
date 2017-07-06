@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     static let QQMusic = Lyrics.MetaData.Source("QQMusic")
 }
 
-public final class LyricsQQ: CommonLyricsSource {
+public final class LyricsQQ: MultiResultLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {

@@ -25,7 +25,7 @@ extension Lyrics.MetaData.Source {
     public static let Music163 = Lyrics.MetaData.Source("163")
 }
 
-public final class Lyrics163: CommonLyricsSource {
+public final class Lyrics163: MultiResultLyricsSource {
     
     let session = { () -> URLSession in
         let config = URLSessionConfiguration.default.with {
