@@ -38,11 +38,7 @@ public class LyricsSourceManager {
     
     public var lyrics: [Lyrics] = []
     
-    public func fetchLyrics(title: String, artist: String, duration: TimeInterval) {
-        fetchLyrics(with: .info(title: title, artist: artist), title: title, artist: artist, duration: duration)
-    }
-    
-    public func fetchLyrics(with criteria: Lyrics.MetaData.SearchCriteria, title: String?, artist: String?, duration: TimeInterval) {
+    fileprivate func searchLyrics(criteria: Lyrics.MetaData.SearchCriteria, title: String?, artist: String?, duration: TimeInterval) {
         self.criteria = criteria
         lyrics = []
         lyricsSource.forEach { $0.cancelSearch() }
@@ -69,4 +65,56 @@ public class LyricsSourceManager {
             self.consumer?.fetchCompleted(result: self.lyrics)
         }
     }
+    
+    fileprivate func iFeelLucky(criteria: Lyrics.MetaData.SearchCriteria, title: String?, artist: String?, duration: TimeInterval) {
+        self.criteria = criteria
+        lyrics = []
+        lyricsSource.forEach { $0.cancelSearch() }
+        lyricsSource.forEach { source in
+            dispatchGroup.enter()
+            source.iFeelLucky(criteria: criteria, duration: duration) {
+                defer {
+                    self.dispatchGroup.leave()
+                }
+                if let lrc = $0 {
+                    guard self.criteria == criteria else {
+                        return
+                    }
+                    lrc.metadata.title = title
+                    lrc.metadata.artist = artist
+                    lrc.idTags[.recreater] = "LyricsX"
+                    lrc.idTags[.version] = "1"
+                    
+                    let index = self.lyrics.index(where: {$0 < lrc}) ?? self.lyrics.count
+                    self.lyrics.insert(lrc, at: index)
+                    self.consumer?.lyricsReceived(lyrics: lrc)
+                }
+            }
+        }
+    }
 }
+
+extension LyricsSourceManager {
+    
+    public func searchLyrics(keyword: String? = nil, title: String, artist: String, duration: TimeInterval) {
+        let criteria: Lyrics.MetaData.SearchCriteria
+        if let keyword = keyword {
+            criteria = .keyword(keyword)
+        } else {
+            criteria = .info(title: title, artist: artist)
+        }
+        searchLyrics(criteria: criteria, title: title, artist: artist, duration: duration)
+    }
+    
+    public func iFeelLucky(keyword: String? = nil, title: String, artist: String, duration: TimeInterval) {
+        let criteria: Lyrics.MetaData.SearchCriteria
+        if let keyword = keyword {
+            criteria = .keyword(keyword)
+        } else {
+            criteria = .info(title: title, artist: artist)
+        }
+        iFeelLucky(criteria: criteria, title: title, artist: artist, duration: duration)
+    }
+    
+}
+

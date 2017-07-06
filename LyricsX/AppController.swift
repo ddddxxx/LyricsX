@@ -104,7 +104,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
             currentLyrics = localLyrics
         } else {
             let duration = track.duration ?? 0
-            lyricsManager.fetchLyrics(title: title, artist: artist, duration: duration)
+            lyricsManager.iFeelLucky(title: title, artist: artist, duration: duration)
         }
     }
     
