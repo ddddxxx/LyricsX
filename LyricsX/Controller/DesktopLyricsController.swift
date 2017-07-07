@@ -21,6 +21,7 @@
 import Cocoa
 import SnapKit
 import OpenCC
+import LyricsProvider
 
 class DesktopLyricsWindowController: NSWindowController {
     

@@ -20,12 +20,13 @@
 
 import Foundation
 import AppKit
+import LyricsProvider
 
 class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     
     static let shared = AppController()
     
-    let lyricsManager = LyricsSourceManager()
+    let lyricsManager = LyricsProviderManager()
     
     var currentLyrics: Lyrics? {
         willSet {
