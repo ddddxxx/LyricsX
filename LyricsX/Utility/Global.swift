@@ -57,6 +57,7 @@ extension Notification.Name {
 extension UserDefaults.DefaultKeys {
     
     static let NotifiedUpdateVersion: Key<String?>  = "NotifiedUpdateVersion"
+    static let NoSearchingTrackIds: Key<[String]>   = "NoSearchingTrackIds"
     
     // Menu
     static let DesktopLyricsEnabled: Key<Bool>  = "DesktopLyricsEnabled"

@@ -115,10 +115,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func wrongLyrics(_ sender: Any?) {
-        let track = MusicPlayerManager.shared.player?.currentTrack
-        let title = track?.name ?? ""
-        let artist = track?.artist ?? ""
-        WrongLyricsUtil.shared.noMatching(title: title, artist: artist)
+        if let id = MusicPlayerManager.shared.player?.currentTrack?.id {
+            defaults[.NoSearchingTrackIds].append(id)
+        }
         AppController.shared.currentLyrics = nil
     }
     

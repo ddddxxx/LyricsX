@@ -97,7 +97,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         // FIXME: deal with optional value
         let artist = track.artist ?? ""
         
-        guard !WrongLyricsUtil.shared.isNoMatching(title: title, artist: artist) else {
+        guard !defaults[.NoSearchingTrackIds].contains(track.id) else {
             return
         }
         
