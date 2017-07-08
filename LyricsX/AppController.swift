@@ -20,12 +20,13 @@
 
 import Foundation
 import AppKit
+import LyricsProvider
 
 class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     
     static let shared = AppController()
     
-    let lyricsManager = LyricsSourceManager()
+    let lyricsManager = LyricsProviderManager()
     
     var currentLyrics: Lyrics? {
         willSet {
@@ -96,7 +97,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         // FIXME: deal with optional value
         let artist = track.artist ?? ""
         
-        guard !WrongLyricsUtil.shared.isNoMatching(title: title, artist: artist) else {
+        guard !defaults[.NoSearchingTrackIds].contains(track.id) else {
             return
         }
         

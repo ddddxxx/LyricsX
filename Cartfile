@@ -1,11 +1,11 @@
-github "SnapKit/SnapKit" ~> 3.1.2
-
-github "SwiftyJSON/SwiftyJSON"
+github "XQS6LB3A/LyricsProvider" "master"
 
 github "XQS6LB3A/GenericID"
 
 github "XQS6LB3A/SwiftyOpenCC"
 
-github "devxoul/Then"
+github "SnapKit/SnapKit" ~> 3.1.2
 
 github "shpakovski/MASShortcut"
+
+github "devxoul/Then"

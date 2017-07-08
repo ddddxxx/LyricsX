@@ -19,6 +19,7 @@
 //
 
 import Cocoa
+import LyricsProvider
 
 class MenuBarLyrics: NSObject {
     

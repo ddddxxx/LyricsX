@@ -19,6 +19,7 @@
 //
 
 import Foundation
+import LyricsProvider
 
 extension Collection {
     

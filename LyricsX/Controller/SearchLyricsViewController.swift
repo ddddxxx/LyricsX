@@ -19,6 +19,7 @@
 //
 
 import Cocoa
+import LyricsProvider
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsConsuming {
     
@@ -32,7 +33,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     dynamic var selectedIndex = NSIndexSet()
     
-    let lyricsManager = LyricsSourceManager()
+    let lyricsManager = LyricsProviderManager()
     
     @IBOutlet weak var artworkView: NSImageView!
     @IBOutlet weak var tableView: NSTableView!
@@ -69,6 +70,12 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard let index = tableView.selectedRowIndexes.first else {
             return
         }
+        
+        if let id = MusicPlayerManager.shared.player?.currentTrack?.id,
+            let i = defaults[.NoSearchingTrackIds].index(where: { $0 == id }) {
+            defaults[.NoSearchingTrackIds].remove(at: i)
+        }
+        
         let lrc = lyricsManager.lyrics[index]
         AppController.shared.currentLyrics = lrc
     }

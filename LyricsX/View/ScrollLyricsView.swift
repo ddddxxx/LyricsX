@@ -19,6 +19,7 @@
 //
 
 import Cocoa
+import LyricsProvider
 
 protocol ScrollLyricsViewDelegate: class {
     func doubleClickLyricsLine(at position: TimeInterval)
