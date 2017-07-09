@@ -76,6 +76,8 @@ extension VoxApplication {
             let name = track as? String else {
             return nil
         }
-        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: totalTime as TimeInterval?)
+        let url = trackUrl?.flatMap { URL.init(string: $0 as String) }
+        
+        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: totalTime as TimeInterval?, url: url)
     }
 }

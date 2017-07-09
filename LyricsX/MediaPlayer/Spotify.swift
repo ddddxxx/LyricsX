@@ -83,6 +83,6 @@ extension SpotifyTrack {
             return nil
         }
         
-        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration.map({TimeInterval($0)}))
+        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration.map({TimeInterval($0)}), url: nil)
     }
 }

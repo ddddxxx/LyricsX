@@ -34,6 +34,7 @@ struct MusicTrack {
     var album:  String?
     var artist: String?
     var duration: TimeInterval?
+    var url:    URL?
 }
 
 protocol MusicPlayer: class {

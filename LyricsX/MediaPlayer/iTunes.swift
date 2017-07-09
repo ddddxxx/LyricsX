@@ -73,6 +73,7 @@ class iTunes: MusicPlayer {
 // MARK - iTunes Bridge Extension
 
 extension iTunesEPlS {
+    
     var state: MusicPlayerState {
         switch self {
         case .iTunesEPlSStopped:
@@ -90,6 +91,7 @@ extension iTunesEPlS {
 }
 
 extension iTunesTrack {
+    
     var stringID: String? {
         return id?().description
     }
@@ -100,6 +102,18 @@ extension iTunesTrack {
             return nil
         }
         
-        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration as TimeInterval?)
+        // The property `location` of class `iTunesFileTrack` is broken, but AppleScript still works.
+        let trackURL: URL?
+        if #available(OSX 10.11, *) {
+            trackURL = trackURLScript.executeAndReturnError(nil).fileURLValue
+        } else {
+            trackURL = trackURLScript.executeAndReturnError(nil).stringValue.flatMap { URL(string: $0) }
+        }
+        
+        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration as TimeInterval?, url: trackURL)
     }
+}
+
+private let trackURLScript: NSAppleScript = NSAppleScript(source: "tell application \"iTunes\" to get location of current track")!.then {
+    $0.compileAndReturnError(nil)
 }
