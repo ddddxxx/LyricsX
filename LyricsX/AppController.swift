@@ -101,6 +101,18 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
             return
         }
         
+        // Load lyrics beside current track.
+        if defaults[.LoadLyricsBesideTrack],
+            let lrcURL = track.url?.deletingPathExtension().appendingPathExtension("lrc"),
+            let lrcContents = try? String(contentsOf: lrcURL, encoding: String.Encoding.utf8),
+            let lyrics = Lyrics(lrcContents) {
+            lyrics.metadata.source = .Local
+            lyrics.metadata.title = title
+            lyrics.metadata.artist = artist
+            currentLyrics = lyrics
+            return
+        }
+        
         if let localLyrics = Lyrics.loadFromLocal(title: title, artist: artist) {
             currentLyrics = localLyrics
         } else {
