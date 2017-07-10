@@ -29,6 +29,8 @@ let LyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
 let defaults = UserDefaults.standard
 let groupDefaults = UserDefaults(suiteName: LyricsXGroupIdentifier)!
 
+let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
+
 extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
 }

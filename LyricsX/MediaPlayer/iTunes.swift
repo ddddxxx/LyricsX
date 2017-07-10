@@ -103,8 +103,7 @@ extension iTunesTrack {
         }
         
         var trackURL: URL?
-        let inSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
-        if !inSandbox {
+        if !isInSandbox {
             // The property `location` of class `iTunesFileTrack` is broken, but AppleScript still works.
             // Not work in sandbox.
             trackURL = trackURLScript.executeAndReturnError(nil).stringValue.flatMap { URL(string: $0) }

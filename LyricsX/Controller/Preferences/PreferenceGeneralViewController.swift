@@ -32,12 +32,16 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var savingPathPopUp: NSPopUpButton!
     @IBOutlet weak var userPathMenuItem: NSMenuItem!
     
+    @IBOutlet weak var loadHomonymLrcButton: NSButton!
+    
     override func viewDidLoad() {
         switch defaults[.PreferredPlayerIndex] {
         case 0:
             preferiTunes.state = NSOnState
+            loadHomonymLrcButton.isEnabled = !isInSandbox
         case 1:
             preferSpotify.state = NSOnState
+            loadHomonymLrcButton.isEnabled = false
         case 2:
             preferVox.state = NSOnState
         default:
@@ -79,6 +83,14 @@ class PreferenceGeneralViewController: NSViewController {
             defaults[.LaunchAndQuitWithPlayer] = false
         } else {
             autoLaunchButton.isEnabled = true
+        }
+        
+        if sender.tag == -1 || (!isInSandbox && sender.tag == 0) || sender.tag == 2 {
+            loadHomonymLrcButton.isEnabled = true
+        } else {
+            loadHomonymLrcButton.isEnabled = false
+            loadHomonymLrcButton.state = NSOffState
+            defaults[.LoadLyricsBesideTrack] = false
         }
     }
     
