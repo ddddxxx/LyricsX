@@ -29,6 +29,8 @@ let LyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
 let defaults = UserDefaults.standard
 let groupDefaults = UserDefaults(suiteName: LyricsXGroupIdentifier)!
 
+let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
+
 extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
 }
@@ -69,6 +71,7 @@ extension UserDefaults.DefaultKeys {
     
     static let LyricsSavingPathPopUpIndex: Key<Int>         = "LyricsSavingPathPopUpIndex"
     static let LyricsCustomSavingPathBookmark: Key<Data?>   = "LyricsCustomSavingPathBookmark"
+    static let LoadLyricsBesideTrack: Key<Bool>         = "LoadLyricsBesideTrack"
     
     static let PreferBilingualLyrics: Key<Bool>         = "PreferBilingualLyrics"
     static let ChineseConversionIndex: Key<Int>         = "ChineseConversionIndex"

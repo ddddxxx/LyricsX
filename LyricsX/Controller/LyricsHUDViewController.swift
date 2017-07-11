@@ -100,10 +100,6 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
 
 class LyricsHUDAccessoryViewController: NSTitlebarAccessoryViewController {
     
-    override func viewWillAppear() {
-        view.window?.level = Int(CGWindowLevelForKey(.normalWindow))
-    }
-    
     @IBAction func lockAction(_ sender: NSButton) {
         if sender.state == NSOnState {
             view.window?.level = Int(CGWindowLevelForKey(.modalPanelWindow))
