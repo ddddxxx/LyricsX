@@ -83,11 +83,11 @@
 /* Class = "NSMenuItem"; title = "Preference..."; ObjectID = "CWo-Qx-2Ut"; */
 "CWo-Qx-2Ut.title" = "偏好设置...";
 
-/* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "CkK-tr-Bqn"; */
-"CkK-tr-Bqn.title" = "检查更新...";
-
 /* Class = "NSBox"; title = "Box"; ObjectID = "DKt-ce-wX8"; */
 "DKt-ce-wX8.title" = "Box";
+
+/* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
+"EDv-ax-0hI.title" = "加载同名歌词";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
 "EoO-ld-6Xv.title" = "捐赠...";
