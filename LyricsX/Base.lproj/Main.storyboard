@@ -330,7 +330,7 @@
                     <tabViewItems>
                         <tabViewItem identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG" userLabel="General"/>
                         <tabViewItem identifier="" image="NSFontPanel" id="8VI-6O-0Rn" userLabel="Display"/>
-                        <tabViewItem image="NSAdvanced" id="bJe-2l-VWO" userLabel="Shortcut"/>
+                        <tabViewItem image="toolbar_shortcut" id="bJe-2l-VWO" userLabel="Shortcut"/>
                         <tabViewItem image="toolbar_filter" id="xcA-tm-q8A" userLabel="Filter"/>
                         <tabViewItem image="toolbar_lab" id="uj7-lo-QuS" userLabel="Lab"/>
                     </tabViewItems>
@@ -2197,7 +2197,6 @@ IA
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSAdvanced" width="32" height="32"/>
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
@@ -2218,6 +2217,7 @@ IA
         <image name="spotify_icon" width="128" height="128"/>
         <image name="toolbar_filter" width="32" height="32"/>
         <image name="toolbar_lab" width="32" height="32"/>
+        <image name="toolbar_shortcut" width="32" height="32"/>
         <image name="vox_icon" width="128" height="128"/>
     </resources>
 </document>
