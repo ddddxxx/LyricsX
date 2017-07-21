@@ -43,7 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         desktopLyrics?.showWindow(nil)
         desktopLyrics?.window?.makeKeyAndOrderFront(nil)
         
-        MenuBarLyrics.shared.statusItem.menu = statusBarMenu
+        MenuBarLyrics.shared.statusItem.target = self
+        MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
         
         let controller = AppController.shared
         lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
@@ -101,6 +102,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: - Menubar Action
+    
+    @IBAction func clickMenuBarItem(_ sender: NSStatusItem) {
+        defer {
+            MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
+        }
+        
+        #if RELEASE
+            checkForMASReview()
+            statusBarMenu.item(withTag: 201)?.isHidden = defaults[.isInMASReview] != false
+        #endif
+    }
     
     @IBAction func increaseOffset(_ sender: Any?) {
         AppController.shared.lyricsOffset += 100

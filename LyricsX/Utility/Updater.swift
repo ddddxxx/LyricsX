@@ -23,7 +23,7 @@ import SwiftyJSON
 import Semver
 
 var remoteVersion: Semver? {
-    let gitHubPath = "XQS6LB3A/LyricsX"
+    let gitHubPath = "ddddxxx/LyricsX"
     let url = URL(string: "https://api.github.com/repos/\(gitHubPath)/releases/latest")!
     guard let data = try? Data(contentsOf: url) else { return nil }
     let json = JSON(data: data)
@@ -85,5 +85,18 @@ func checkForUpdate(force: Bool = false) {
             let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
             NSWorkspace.shared().open(url)
         }
+    }
+}
+
+func checkForMASReview() {
+    guard defaults[.isInMASReview] == nil else {
+        return
+    }
+    DispatchQueue.global().async {
+        let local = localVersion
+        guard let remote = remoteVersion else {
+            return
+        }
+        defaults[.isInMASReview] = local > remote
     }
 }

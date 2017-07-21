@@ -113,7 +113,7 @@
                 </customObject>
                 <menu id="OCV-Y8-x1C">
                     <items>
-                        <menuItem title="Enable Menu Bar Lyrics" id="Z7d-yp-uRx">
+                        <menuItem title="Enable Menu Bar Lyrics" tag="100" id="Z7d-yp-uRx">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <binding destination="YC0-xP-lPo" name="value" keyPath="values.MenuBarLyricsEnabled" id="5Nx-Xy-p8O">
@@ -123,7 +123,7 @@
                                 </binding>
                             </connections>
                         </menuItem>
-                        <menuItem title="Enable Karaoke Lyrics" id="GGU-uz-d9h">
+                        <menuItem title="Enable Karaoke Lyrics" tag="101" id="GGU-uz-d9h">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <binding destination="YC0-xP-lPo" name="value" keyPath="values.DesktopLyricsEnabled" id="duP-0I-KVe">
@@ -133,58 +133,58 @@
                                 </binding>
                             </connections>
                         </menuItem>
-                        <menuItem title="Show Lyrics Window" id="kyJ-kV-2Du">
+                        <menuItem title="Show Lyrics Window" tag="102" id="kyJ-kV-2Du">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="fpK-JT-GVp" kind="show" id="HOu-m8-UdM"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="yWX-1z-WqD"/>
-                        <menuItem title="Lyrics Delay Setter" id="SDr-c6-5JC">
+                        <menuItem title="Lyrics Delay Setter" tag="200" id="SDr-c6-5JC">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <outlet property="view" destination="LV9-pp-2tz" id="HgV-KT-3h0"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Search Lyrics..." id="h6D-jz-GbI">
+                        <menuItem title="Search Lyrics..." tag="201" id="h6D-jz-GbI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="Fyy-jy-wIT" kind="show" id="QlQ-Pc-nUk"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Write to iTunes" identifier="WriteToiTunes" id="kNl-ZO-aX6">
+                        <menuItem title="Write to iTunes" tag="202" identifier="WriteToiTunes" id="kNl-ZO-aX6">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="writeToiTunes:" target="Voe-Tx-rLC" id="4Gb-qk-5mT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Wrong Lyrics" identifier="WrongLyrics" id="fmS-zv-RcJ">
+                        <menuItem title="Wrong Lyrics" tag="203" identifier="WrongLyrics" id="fmS-zv-RcJ">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="wrongLyrics:" target="Voe-Tx-rLC" id="PSJ-f3-tnK"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
-                        <menuItem title="Preference..." keyEquivalent="," id="CWo-Qx-2Ut">
+                        <menuItem title="Preference..." tag="300" keyEquivalent="," id="CWo-Qx-2Ut">
                             <connections>
                                 <segue destination="dJj-XH-edl" kind="show" id="2ag-1Z-r0K"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Lhf-nJ-oOF"/>
-                        <menuItem title="About LyricsX" id="PdE-VG-JUC">
+                        <menuItem title="About LyricsX" tag="400" id="PdE-VG-JUC">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Donate..." id="EoO-ld-6Xv">
+                        <menuItem title="Donate..." tag="401" id="EoO-ld-6Xv">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="e4U-yI-muf" kind="show" id="Ssw-2c-afe"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="eB1-fb-ptE"/>
-                        <menuItem title="Quit LyricsX" keyEquivalent="q" id="RPR-IV-34T">
+                        <menuItem title="Quit LyricsX" tag="500" keyEquivalent="q" id="RPR-IV-34T">
                             <connections>
                                 <action selector="terminate:" target="Ady-hI-5gd" id="ww5-hx-ROk"/>
                             </connections>
