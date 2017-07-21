@@ -64,7 +64,12 @@ class ScrollLyricsView: NSScrollView {
         ranges = newRanges
         textView.string = lrcContent
         highlightedRange = nil
-        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: NSMakeRange(0, textView.string!.characters.count))
+        let range = NSMakeRange(0, textView.string!.characters.count)
+        let style = NSMutableParagraphStyle().with {
+            $0.alignment = .center
+        }
+        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: range)
+        textView.textStorage?.addAttribute(NSParagraphStyleAttributeName, value: style, range: range)
         needsLayout = true
     }
     

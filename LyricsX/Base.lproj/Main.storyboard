@@ -1660,6 +1660,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCj-2B-3nx">
+                                <rect key="frame" x="126" y="131" width="68" height="19"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Lyrics" id="aRw-yQ-GNX">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button toolTip="Synchronism" translatesAutoresizingMaskIntoConstraints="NO" id="d5a-4n-6k8">
                                 <rect key="frame" x="8" y="8" width="14" height="12"/>
                                 <constraints>
@@ -1681,16 +1689,19 @@ IA
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="IdM-WB-V2o" secondAttribute="trailing" constant="8" id="2nm-0G-wba"/>
+                            <constraint firstItem="WCj-2B-3nx" firstAttribute="centerY" secondItem="kbP-ZG-vEe" secondAttribute="centerY" id="4GL-QM-uBc"/>
                             <constraint firstAttribute="bottom" secondItem="IdM-WB-V2o" secondAttribute="bottom" constant="8" id="6nX-Rd-gyU"/>
                             <constraint firstItem="d5a-4n-6k8" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="8" id="OwQ-i8-Yll"/>
                             <constraint firstItem="IdM-WB-V2o" firstAttribute="top" secondItem="kbP-ZG-vEe" secondAttribute="top" constant="8" id="VG9-vR-76i"/>
                             <constraint firstItem="IdM-WB-V2o" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="8" id="VnR-Dw-Ta3"/>
+                            <constraint firstItem="WCj-2B-3nx" firstAttribute="centerX" secondItem="kbP-ZG-vEe" secondAttribute="centerX" id="qjA-WB-uCt"/>
                             <constraint firstAttribute="bottom" secondItem="d5a-4n-6k8" secondAttribute="bottom" constant="8" id="wik-HQ-e4b"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dragNDropView" destination="00o-Z8-m5E" id="kV0-Yy-bTs"/>
                         <outlet property="lyricsScrollView" destination="IdM-WB-V2o" id="c7A-VH-22w"/>
+                        <outlet property="noLyricsLabel" destination="WCj-2B-3nx" id="x9c-YY-TzD"/>
                     </connections>
                 </viewController>
                 <customObject id="50J-qv-I61" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

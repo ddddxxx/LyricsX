@@ -24,6 +24,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     
     @IBOutlet weak var dragNDropView: DragNDropView!
     @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
+    @IBOutlet weak var noLyricsLabel: NSTextField!
     
     dynamic var isTracking = true
     
@@ -49,6 +50,10 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         }
     }
     
+    override func viewWillAppear() {
+        noLyricsLabel.isHidden = AppController.shared.currentLyrics != nil
+    }
+    
     override func viewDidDisappear() {
         NotificationCenter.default.removeObserver(self)
     }
@@ -63,7 +68,9 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     
     func handleLyricsChange(_ n: Notification) {
         DispatchQueue.main.async {
-            self.lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
+            let newLyrics = AppController.shared.currentLyrics
+            self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
+            self.noLyricsLabel.isHidden = newLyrics != nil
         }
     }
     
