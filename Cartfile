@@ -1,11 +1,15 @@
-github "XQS6LB3A/LyricsProvider" "master"
+github "ddddxxx/LyricsProvider" "master"
 
-github "XQS6LB3A/GenericID"
+github "ddddxxx/GenericID"
 
-github "XQS6LB3A/SwiftyOpenCC"
+github "ddddxxx/Semver"
+
+github "ddddxxx/SwiftyOpenCC"
 
 github "SnapKit/SnapKit" ~> 3.1.2
 
 github "shpakovski/MASShortcut"
+
+github "SwiftyJSON/SwiftyJSON"
 
 github "devxoul/Then"

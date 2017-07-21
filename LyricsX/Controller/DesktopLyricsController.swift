@@ -125,7 +125,7 @@ class DesktopLyricsViewController: NSViewController {
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
             makeConstraints()
-            view.displayIfNeeded()
+            view.layoutSubtreeIfNeeded()
         })
     }
     

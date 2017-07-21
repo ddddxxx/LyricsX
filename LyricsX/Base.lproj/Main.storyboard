@@ -113,7 +113,7 @@
                 </customObject>
                 <menu id="OCV-Y8-x1C">
                     <items>
-                        <menuItem title="Enable Menu Bar Lyrics" id="Z7d-yp-uRx">
+                        <menuItem title="Enable Menu Bar Lyrics" tag="100" id="Z7d-yp-uRx">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <binding destination="YC0-xP-lPo" name="value" keyPath="values.MenuBarLyricsEnabled" id="5Nx-Xy-p8O">
@@ -123,7 +123,7 @@
                                 </binding>
                             </connections>
                         </menuItem>
-                        <menuItem title="Enable Karaoke Lyrics" id="GGU-uz-d9h">
+                        <menuItem title="Enable Karaoke Lyrics" tag="101" id="GGU-uz-d9h">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <binding destination="YC0-xP-lPo" name="value" keyPath="values.DesktopLyricsEnabled" id="duP-0I-KVe">
@@ -133,58 +133,58 @@
                                 </binding>
                             </connections>
                         </menuItem>
-                        <menuItem title="Show Lyrics Window" id="kyJ-kV-2Du">
+                        <menuItem title="Show Lyrics Window" tag="102" id="kyJ-kV-2Du">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="fpK-JT-GVp" kind="show" id="HOu-m8-UdM"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="yWX-1z-WqD"/>
-                        <menuItem title="Lyrics Delay Setter" id="SDr-c6-5JC">
+                        <menuItem title="Lyrics Delay Setter" tag="200" id="SDr-c6-5JC">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <outlet property="view" destination="LV9-pp-2tz" id="HgV-KT-3h0"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Search Lyrics..." id="h6D-jz-GbI">
+                        <menuItem title="Search Lyrics..." tag="201" id="h6D-jz-GbI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="Fyy-jy-wIT" kind="show" id="QlQ-Pc-nUk"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Write to iTunes" identifier="WriteToiTunes" id="kNl-ZO-aX6">
+                        <menuItem title="Write to iTunes" tag="202" identifier="WriteToiTunes" id="kNl-ZO-aX6">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="writeToiTunes:" target="Voe-Tx-rLC" id="4Gb-qk-5mT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Wrong Lyrics" identifier="WrongLyrics" id="fmS-zv-RcJ">
+                        <menuItem title="Wrong Lyrics" tag="203" identifier="WrongLyrics" id="fmS-zv-RcJ">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="wrongLyrics:" target="Voe-Tx-rLC" id="PSJ-f3-tnK"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
-                        <menuItem title="Preference..." keyEquivalent="," id="CWo-Qx-2Ut">
+                        <menuItem title="Preference..." tag="300" keyEquivalent="," id="CWo-Qx-2Ut">
                             <connections>
                                 <segue destination="dJj-XH-edl" kind="show" id="2ag-1Z-r0K"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Lhf-nJ-oOF"/>
-                        <menuItem title="About LyricsX" id="PdE-VG-JUC">
+                        <menuItem title="About LyricsX" tag="400" id="PdE-VG-JUC">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Donate..." id="EoO-ld-6Xv">
+                        <menuItem title="Donate..." tag="401" id="EoO-ld-6Xv">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="e4U-yI-muf" kind="show" id="Ssw-2c-afe"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="eB1-fb-ptE"/>
-                        <menuItem title="Quit LyricsX" keyEquivalent="q" id="RPR-IV-34T">
+                        <menuItem title="Quit LyricsX" tag="500" keyEquivalent="q" id="RPR-IV-34T">
                             <connections>
                                 <action selector="terminate:" target="Ady-hI-5gd" id="ww5-hx-ROk"/>
                             </connections>
@@ -330,7 +330,7 @@
                     <tabViewItems>
                         <tabViewItem identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG" userLabel="General"/>
                         <tabViewItem identifier="" image="NSFontPanel" id="8VI-6O-0Rn" userLabel="Display"/>
-                        <tabViewItem image="NSAdvanced" id="bJe-2l-VWO" userLabel="Shortcut"/>
+                        <tabViewItem image="toolbar_shortcut" id="bJe-2l-VWO" userLabel="Shortcut"/>
                         <tabViewItem image="toolbar_filter" id="xcA-tm-q8A" userLabel="Filter"/>
                         <tabViewItem image="toolbar_lab" id="uj7-lo-QuS" userLabel="Lab"/>
                     </tabViewItems>
@@ -1660,6 +1660,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCj-2B-3nx">
+                                <rect key="frame" x="126" y="131" width="68" height="19"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Lyrics" id="aRw-yQ-GNX">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button toolTip="Synchronism" translatesAutoresizingMaskIntoConstraints="NO" id="d5a-4n-6k8">
                                 <rect key="frame" x="8" y="8" width="14" height="12"/>
                                 <constraints>
@@ -1681,16 +1689,19 @@ IA
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="IdM-WB-V2o" secondAttribute="trailing" constant="8" id="2nm-0G-wba"/>
+                            <constraint firstItem="WCj-2B-3nx" firstAttribute="centerY" secondItem="kbP-ZG-vEe" secondAttribute="centerY" id="4GL-QM-uBc"/>
                             <constraint firstAttribute="bottom" secondItem="IdM-WB-V2o" secondAttribute="bottom" constant="8" id="6nX-Rd-gyU"/>
                             <constraint firstItem="d5a-4n-6k8" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="8" id="OwQ-i8-Yll"/>
                             <constraint firstItem="IdM-WB-V2o" firstAttribute="top" secondItem="kbP-ZG-vEe" secondAttribute="top" constant="8" id="VG9-vR-76i"/>
                             <constraint firstItem="IdM-WB-V2o" firstAttribute="leading" secondItem="kbP-ZG-vEe" secondAttribute="leading" constant="8" id="VnR-Dw-Ta3"/>
+                            <constraint firstItem="WCj-2B-3nx" firstAttribute="centerX" secondItem="kbP-ZG-vEe" secondAttribute="centerX" id="qjA-WB-uCt"/>
                             <constraint firstAttribute="bottom" secondItem="d5a-4n-6k8" secondAttribute="bottom" constant="8" id="wik-HQ-e4b"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dragNDropView" destination="00o-Z8-m5E" id="kV0-Yy-bTs"/>
                         <outlet property="lyricsScrollView" destination="IdM-WB-V2o" id="c7A-VH-22w"/>
+                        <outlet property="noLyricsLabel" destination="WCj-2B-3nx" id="x9c-YY-TzD"/>
                     </connections>
                 </viewController>
                 <customObject id="50J-qv-I61" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -2197,7 +2208,6 @@ IA
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSAdvanced" width="32" height="32"/>
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
@@ -2218,6 +2228,7 @@ IA
         <image name="spotify_icon" width="128" height="128"/>
         <image name="toolbar_filter" width="32" height="32"/>
         <image name="toolbar_lab" width="32" height="32"/>
+        <image name="toolbar_shortcut" width="32" height="32"/>
         <image name="vox_icon" width="128" height="128"/>
     </resources>
 </document>

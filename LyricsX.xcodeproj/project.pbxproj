@@ -13,6 +13,11 @@
 		BB1B631B1E8CD7CA004CC9E0 /* ScrollLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */; };
 		BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; };
 		BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BB34F7E61F21911700B7C484 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34F7E51F21911700B7C484 /* Updater.swift */; };
+		BB34F7E81F2197C800B7C484 /* Semver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F7E71F2197C800B7C484 /* Semver.framework */; };
+		BB34F7E91F2197C800B7C484 /* Semver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F7E71F2197C800B7C484 /* Semver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BB34F7EB1F21997B00B7C484 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F7EA1F21997B00B7C484 /* SwiftyJSON.framework */; };
+		BB34F7EC1F21997B00B7C484 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F7EA1F21997B00B7C484 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141AD1E458BA800A51775 /* AppDelegate.swift */; };
 		BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B11E458BA800A51775 /* Assets.xcassets */; };
 		BB4141B51E458BA900A51775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B31E458BA900A51775 /* Main.storyboard */; };
@@ -61,6 +66,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BB34F7EC1F21997B00B7C484 /* SwiftyJSON.framework in Embed Frameworks */,
+				BB34F7E91F2197C800B7C484 /* Semver.framework in Embed Frameworks */,
 				BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */,
 				BB4FBE761F0F1E440045A8FA /* LyricsProvider.framework in Embed Frameworks */,
 				BB5CCDA71EF2A2CB00C4FEB2 /* Then.framework in Embed Frameworks */,
@@ -90,6 +97,9 @@
 		BB0B296B1E80CB0600B1D6C9 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = Controller/AboutViewController.swift; sourceTree = "<group>"; };
 		BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollLyricsView.swift; path = View/ScrollLyricsView.swift; sourceTree = "<group>"; };
 		BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
+		BB34F7E51F21911700B7C484 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Updater.swift; path = Utility/Updater.swift; sourceTree = "<group>"; };
+		BB34F7E71F2197C800B7C484 /* Semver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Semver.framework; path = Carthage/Build/Mac/Semver.framework; sourceTree = "<group>"; };
+		BB34F7EA1F21997B00B7C484 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BB3D1E911E8A2A2A00CA5B8F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		BB4141AA1E458BA800A51775 /* LyricsX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4141AD1E458BA800A51775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +147,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB34F7EB1F21997B00B7C484 /* SwiftyJSON.framework in Frameworks */,
+				BB34F7E81F2197C800B7C484 /* Semver.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BB4FBE751F0F1E440045A8FA /* LyricsProvider.framework in Frameworks */,
 				BB5CCDA61EF2A2CB00C4FEB2 /* Then.framework in Frameworks */,
@@ -228,8 +240,10 @@
 				BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */,
 				BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */,
 				BB58B0831E82B82F00598D4F /* OpenCC.framework */,
-				BB5CCDA51EF2A2CB00C4FEB2 /* Then.framework */,
+				BB34F7E71F2197C800B7C484 /* Semver.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
+				BB34F7EA1F21997B00B7C484 /* SwiftyJSON.framework */,
+				BB5CCDA51EF2A2CB00C4FEB2 /* Then.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -253,6 +267,7 @@
 			children = (
 				BBC1D35E1E499A6D002538A2 /* Global.swift */,
 				BB9BCEB91E843157001BC54B /* Extension.swift */,
+				BB34F7E51F21911700B7C484 /* Updater.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -456,6 +471,7 @@
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
 				BBBB6EC51E86B44B003B3ED6 /* iTunes.swift in Sources */,
+				BB34F7E61F21911700B7C484 /* Updater.swift in Sources */,
 				BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */,
 				BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */,
 				BBB8DA3C1E86653700EF0A18 /* SpotifyBridge.swift in Sources */,
@@ -548,6 +564,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -591,6 +608,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};

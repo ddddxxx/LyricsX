@@ -1,9 +1,9 @@
 # LyricsX
 
-[![release](https://img.shields.io/github/release/XQS6LB3A/LyricsX.svg)](https://github.com/XQS6LB3A/LyricsX/releases)
+[![release](https://img.shields.io/github/release/ddddxxx/LyricsX.svg)](https://github.com/ddddxxx/LyricsX/releases)
 [![gitter](https://img.shields.io/gitter/room/LyricsX/Lobby.svg)](https://gitter.im/LyricsX)
 [![license](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
-[![codebeat badge](https://codebeat.co/badges/12718a7c-04f1-465d-a520-5525788f4fba)](https://codebeat.co/projects/github-com-xqs6lb3a-lyricsx-master)
+[![codebeat badge](https://codebeat.co/badges/d4ea2fbf-89a0-4490-875f-857a1568ec16)](https://codebeat.co/projects/github-com-ddddxxx-lyricsx-master)
 
 <img src="docs/img/icon.png" width="128px">
 
@@ -15,7 +15,7 @@ Coming soon...
 
 ## Installation
 
-You can download ZIP from [releases](https://github.com/XQS6LB3A/LyricsX/releases).
+You can download ZIP from [releases](https://github.com/ddddxxx/LyricsX/releases).
 
 ### Requirements
 
@@ -55,9 +55,9 @@ You can download ZIP from [releases](https://github.com/XQS6LB3A/LyricsX/release
 
 ## Open Source Libraries
 
-- [SwiftyOpenCC](https://github.com/XQS6LB3A/SwiftyOpenCC)
-- [GenericID](https://github.com/XQS6LB3A/GenericID)
-- [Semver](https://github.com/XQS6LB3A/Semver)
+- [SwiftyOpenCC](https://github.com/ddddxxx/SwiftyOpenCC)
+- [GenericID](https://github.com/ddddxxx/GenericID)
+- [Semver](https://github.com/ddddxxx/Semver)
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [SnapKit](https://github.com/SnapKit/SnapKit)
 - [Then](https://github.com/devxoul/Then)
