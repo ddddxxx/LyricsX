@@ -64,6 +64,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         sharedKeys.forEach {
             groupDefaults.bind($0, to: defaults, withKeyPath: $0)
         }
+        
+        checkForMASReview(force: true)
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {

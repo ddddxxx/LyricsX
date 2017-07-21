@@ -88,8 +88,8 @@ func checkForUpdate(force: Bool = false) {
     }
 }
 
-func checkForMASReview() {
-    guard defaults[.isInMASReview] == nil else {
+func checkForMASReview(force: Bool = false) {
+    guard force || (defaults[.isInMASReview] == nil) else {
         return
     }
     DispatchQueue.global().async {
