@@ -106,14 +106,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Menubar Action
     
     @IBAction func clickMenuBarItem(_ sender: NSStatusItem) {
-        defer {
-            MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
-        }
-        
         #if RELEASE
             checkForMASReview()
             statusBarMenu.item(withTag: 201)?.isHidden = defaults[.isInMASReview] != false
         #endif
+        
+        MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
     }
     
     @IBAction func increaseOffset(_ sender: Any?) {

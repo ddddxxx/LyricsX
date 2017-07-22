@@ -113,6 +113,13 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
             return
         }
         
+        #if RELEASE
+            checkForMASReview()
+            guard defaults[.isInMASReview] == false else {
+                return
+            }
+        #endif
+        
         if let localLyrics = Lyrics.loadFromLocal(title: title, artist: artist) {
             currentLyrics = localLyrics
         } else {
