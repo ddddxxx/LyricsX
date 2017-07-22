@@ -30,6 +30,7 @@ let defaults = UserDefaults.standard
 let groupDefaults = UserDefaults(suiteName: LyricsXGroupIdentifier)!
 
 let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
+let isFromMacAppStore = (Bundle.main.appStoreReceiptURL?.absoluteString).map(FileManager.default.fileExists) == true
 
 extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
