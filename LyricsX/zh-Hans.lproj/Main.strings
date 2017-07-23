@@ -143,6 +143,9 @@
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "关于 LyricsX";
 
+/* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
+"Piu-i2-JjD.title" = "检查更新...";
+
 /* Class = "NSTableColumn"; headerCell.title = "Keyword"; ObjectID = "QdM-iA-Hjj"; */
 "QdM-iA-Hjj.headerCell.title" = "Keyword";
 
@@ -187,6 +190,9 @@
 
 /* Class = "NSWindow"; title = "Preference"; ObjectID = "aMb-zX-bzP"; */
 "aMb-zX-bzP.title" = "偏好设置";
+
+/* Class = "NSTextFieldCell"; title = "No Lyrics"; ObjectID = "aRw-yQ-GNX"; */
+"aRw-yQ-GNX.title" = "没有歌词";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
 "bDS-Lb-m34.title" = "隐藏歌词:";
