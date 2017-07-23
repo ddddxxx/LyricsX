@@ -76,7 +76,6 @@ class PreferenceGeneralViewController: NSViewController {
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         defaults[.PreferredPlayerIndex] = sender.tag
-        groupDefaults[.PreferredPlayerIndex] = sender.tag
         if sender.tag < 0 {
             autoLaunchButton.isEnabled = false
             autoLaunchButton.state = NSOffState
