@@ -1,7 +1,7 @@
 github "SnapKit/SnapKit" "3.2.0"
 github "SwiftyJSON/SwiftyJSON" "3.1.4"
 github "ddddxxx/GenericID" "v0.1.3"
-github "ddddxxx/LyricsProvider" "0ad03fea33e7e2a27467c74a4be2232d839a1a0e"
+github "ddddxxx/LyricsProvider" "812d12ec363676ad8f673f1e359e92a8246b1291"
 github "ddddxxx/Semver" "v0.1.0"
 github "ddddxxx/SwiftyOpenCC" "v0.2.1"
 github "devxoul/Then" "2.1.0"
