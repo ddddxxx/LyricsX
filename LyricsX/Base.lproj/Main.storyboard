@@ -165,7 +165,7 @@
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
-                        <menuItem title="Preference..." tag="300" keyEquivalent="," id="CWo-Qx-2Ut">
+                        <menuItem title="Preferences..." tag="300" keyEquivalent="," id="CWo-Qx-2Ut">
                             <connections>
                                 <segue destination="dJj-XH-edl" kind="show" id="2ag-1Z-r0K"/>
                             </connections>
@@ -315,7 +315,7 @@
         <scene sceneID="TDf-75-7l1">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="dJj-XH-edl" userLabel="Preference Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Preference" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="Preference" animationBehavior="default" id="aMb-zX-bzP">
+                    <window key="window" title="Preference" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="Preferences" animationBehavior="default" id="aMb-zX-bzP">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="422" y="341" width="480" height="270"/>
@@ -623,7 +623,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="gl4-1a-4nI"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="Taking screen shot" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iMD-Wy-Bm7">
+                                <buttonCell key="cell" type="check" title="Taking a screenshot" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iMD-Wy-Bm7">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1499,7 +1499,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqN-EP-pPj">
                                 <rect key="frame" x="77" y="56" width="145" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Preferred lyrics sourse:" id="7J3-g3-cfQ">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Preferred lyrics source:" id="7J3-g3-cfQ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
