@@ -57,6 +57,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             log("Failed to set login item enabled")
         }
         
+        if !isFromMacAppStore {
+            checkForUpdate()
+        }
+        
         let sharedKeys = [
             UserDefaults.DefaultKeys.LaunchAndQuitWithPlayer.rawValue,
             UserDefaults.DefaultKeys.PreferredPlayerIndex.rawValue
@@ -106,14 +110,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Menubar Action
     
     @IBAction func clickMenuBarItem(_ sender: NSStatusItem) {
-        defer {
-            MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
-        }
-        
         #if RELEASE
             checkForMASReview()
             statusBarMenu.item(withTag: 201)?.isHidden = defaults[.isInMASReview] != false
         #endif
+        
+        statusBarMenu.item(withTag: 401)?.isHidden = isFromMacAppStore
+        
+        MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
+    }
+    
+    @IBAction func checkUpdateAction(_ sender: Any) {
+        checkForUpdate(force: true)
     }
     
     @IBAction func increaseOffset(_ sender: Any?) {

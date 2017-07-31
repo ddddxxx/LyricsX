@@ -45,45 +45,47 @@ var localVersion: Semver {
 }
 
 func checkForUpdate(force: Bool = false) {
-    let local = localVersion
-    guard let remote = remoteVersion else {
-        return
-    }
-    
-    guard remote > local else {
-        if force {
-            DispatchQueue.main.async {
-                let alert = NSAlert()
-                alert.messageText = "You're up-to-date!"
-                alert.informativeText = "LyricsX \(local) is currently the newest version available."
-                NSApp.activate(ignoringOtherApps: true)
-                alert.runModal()
+    DispatchQueue.global().async {
+        let local = localVersion
+        guard let remote = remoteVersion else {
+            return
+        }
+        
+        guard remote > local else {
+            if force {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "You're up-to-date!"
+                    alert.informativeText = "LyricsX \(local) is currently the newest version available."
+                    NSApp.activate(ignoringOtherApps: true)
+                    alert.runModal()
+                }
             }
+            return
         }
-        return
-    }
-    
-    if !force,
-        let skipVersionString = defaults[.NotifiedUpdateVersion],
-        let skipVersion = try? Semver(skipVersionString),
-        skipVersion >= remote {
-        return
-    }
-    
-    defaults[.NotifiedUpdateVersion] = remote.description
-    
-    DispatchQueue.main.async {
-        let alert = NSAlert().then {
-            $0.messageText = "A new version of LyricsX is available!"
-            $0.informativeText = "LyricsX \(remote) is now available -- you have \(localVersion). Would you like to download it now?"
-            $0.addButton(withTitle: "Download")
-            $0.addButton(withTitle: "Skip")
+        
+        if !force,
+            let skipVersionString = defaults[.NotifiedUpdateVersion],
+            let skipVersion = try? Semver(skipVersionString),
+            skipVersion >= remote {
+            return
         }
-        NSApp.activate(ignoringOtherApps: true)
-        let response = alert.runModal()
-        if response == NSAlertFirstButtonReturn {
-            let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
-            NSWorkspace.shared().open(url)
+        
+        defaults[.NotifiedUpdateVersion] = remote.description
+        
+        DispatchQueue.main.async {
+            let alert = NSAlert().then {
+                $0.messageText = "A new version of LyricsX is available!"
+                $0.informativeText = "LyricsX \(remote) is now available -- you have \(localVersion). Would you like to download it now?"
+                $0.addButton(withTitle: "Download")
+                $0.addButton(withTitle: "Skip")
+            }
+            NSApp.activate(ignoringOtherApps: true)
+            let response = alert.runModal()
+            if response == NSAlertFirstButtonReturn {
+                let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
+                NSWorkspace.shared().open(url)
+            }
         }
     }
 }

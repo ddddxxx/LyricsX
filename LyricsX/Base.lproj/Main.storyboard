@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -177,7 +177,13 @@
                                 <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Donate..." tag="401" id="EoO-ld-6Xv">
+                        <menuItem title="Check For Update..." tag="401" id="Piu-i2-JjD">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="checkUpdateAction:" target="Voe-Tx-rLC" id="Ait-5g-99F"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Donate..." tag="402" id="EoO-ld-6Xv">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <segue destination="e4U-yI-muf" kind="show" id="Ssw-2c-afe"/>
