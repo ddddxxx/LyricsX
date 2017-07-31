@@ -80,7 +80,7 @@ class KaraokeLyricsView: NSBox {
     }
     
     func displayLrc(_ firstLine: String, secondLine: String = "") {
-        var toBeHide = stackView.subviews as! [NSTextField]
+        var toBeHide = stackView.arrangedSubviews as! [NSTextField]
         var toBeShow: [NSTextField] = []
         var shouldHideAll = false
         
@@ -90,13 +90,11 @@ class KaraokeLyricsView: NSBox {
             toBeHide.remove(at: 1)
         } else {
             let label = lyricsLabel(firstLine)
-            stackView.addView(label, in: .bottom)
             toBeShow.append(label)
         }
         
         if !secondLine.isEmpty {
             let label = lyricsLabel(secondLine)
-            stackView.addView(label, in: .bottom)
             toBeShow.append(label)
         }
         
@@ -105,14 +103,21 @@ class KaraokeLyricsView: NSBox {
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
             toBeHide.forEach {
-                $0.removeFromSuperview()
+                stackView.removeArrangedSubview($0)
+                $0.isHidden = true
+                $0.alphaValue = 0
             }
             toBeShow.forEach {
+                stackView.addArrangedSubview($0)
                 $0.isHidden = false
                 $0.alphaValue = 1
             }
             isHidden = shouldHideAll
-            window?.layoutIfNeeded()
+            layoutSubtreeIfNeeded()
+        }, completionHandler: {
+            toBeHide.forEach {
+                $0.removeFromSuperview()
+            }
         })
     }
 }
