@@ -50,7 +50,7 @@
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "自动写入";
 
-/* Class = "NSTextFieldCell"; title = "Preferred lyrics sourse:"; ObjectID = "7J3-g3-cfQ"; */
+/* Class = "NSTextFieldCell"; title = "Preferred lyrics source:"; ObjectID = "7J3-g3-cfQ"; */
 "7J3-g3-cfQ.title" = "优先使用歌词源:";
 
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
@@ -80,7 +80,7 @@
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
 "CW0-AL-Z6N.title" = "捐赠";
 
-/* Class = "NSMenuItem"; title = "Preference..."; ObjectID = "CWo-Qx-2Ut"; */
+/* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
 "CWo-Qx-2Ut.title" = "偏好设置...";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "DKt-ce-wX8"; */
@@ -188,7 +188,7 @@
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
 "Z7d-yp-uRx.title" = "启用菜单栏歌词";
 
-/* Class = "NSWindow"; title = "Preference"; ObjectID = "aMb-zX-bzP"; */
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
 "aMb-zX-bzP.title" = "偏好设置";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics"; ObjectID = "aRw-yQ-GNX"; */
@@ -257,7 +257,7 @@
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
 "hsu-H9-9Bd.title" = "阴影";
 
-/* Class = "NSButtonCell"; title = "Taking screen shot"; ObjectID = "iMD-Wy-Bm7"; */
+/* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
 "iMD-Wy-Bm7.title" = "屏幕截图时";
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
