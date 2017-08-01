@@ -113,13 +113,6 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
             return
         }
         
-        #if RELEASE
-            checkForMASReview()
-            guard defaults[.isInMASReview] == false else {
-                return
-            }
-        #endif
-        
         if let localLyrics = Lyrics.loadFromLocal(title: title, artist: artist) {
             currentLyrics = localLyrics
         } else {
@@ -145,6 +138,13 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
+        #if RELEASE
+            guard defaults[.isInMASReview] == false else {
+                return
+            }
+            checkForMASReview()
+        #endif
+        
         let track = MusicPlayerManager.shared.player?.currentTrack
         guard lyrics.metadata.title == track?.name,
             lyrics.metadata.artist == track?.artist else {
