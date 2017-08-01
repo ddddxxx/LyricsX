@@ -1516,8 +1516,8 @@
                                     <menu key="menu" id="K8h-MA-FKK"/>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="6Z8-y3-1xP" name="content" keyPath="values.LyricsSources" id="kxk-Hf-J8i"/>
-                                    <binding destination="6Z8-y3-1xP" name="selectedValue" keyPath="values.PreferredLyricsSource" previousBinding="kxk-Hf-J8i" id="Sfm-Xi-juZ"/>
+                                    <binding destination="MQW-nm-dXS" name="content" keyPath="values.LyricsSources" id="XGF-CJ-w5e"/>
+                                    <binding destination="MQW-nm-dXS" name="selectedValue" keyPath="values.PreferredLyricsSource" previousBinding="XGF-CJ-w5e" id="H2x-Tx-0V4"/>
                                 </connections>
                             </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-Tg-5JV">
@@ -1530,7 +1530,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.CombinedMenubarLyrics" id="5ju-gI-GOf"/>
+                                    <binding destination="MQW-nm-dXS" name="value" keyPath="values.CombinedMenubarLyrics" id="P5p-VX-SXH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1557,7 +1557,6 @@
                 </viewController>
                 <customObject id="hIA-Hp-BDR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="MQW-nm-dXS"/>
-                <userDefaultsController id="6Z8-y3-1xP"/>
             </objects>
             <point key="canvasLocation" x="1969" y="1308"/>
         </scene>
