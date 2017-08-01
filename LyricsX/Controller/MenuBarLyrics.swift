@@ -40,6 +40,9 @@ class MenuBarLyrics: NSObject {
         defaults.addObserver(key: .MenuBarLyricsEnabled) { _ in
             self.updateStatusItem()
         }
+        defaults.addObserver(key: .CombinedMenubarLyrics) { _ in
+            self.updateStatusItem()
+        }
         updateStatusItem()
     }
     
@@ -54,16 +57,31 @@ class MenuBarLyrics: NSObject {
     }
     
     func updateStatusItem() {
-        guard defaults[.MenuBarLyricsEnabled], lyrics != "" else {
+        guard defaults[.MenuBarLyricsEnabled], !lyrics.isEmpty else {
             setImageStatusItem()
             lyricsItem = nil
             return
         }
         
-        guard defaults[.CombinedMenubarLyrics] else {
-            updateCombinedStatusItem()
-            return
+        if defaults[.CombinedMenubarLyrics] {
+            updateCombinedStatusLyrics()
+        } else {
+            updateSeparateStatusLyrics()
         }
+    }
+    
+    func updateSeparateStatusLyrics() {
+        setImageStatusItem()
+        
+        if lyricsItem == nil {
+            lyricsItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+            lyricsItem?.highlightMode = false
+        }
+        lyricsItem?.button?.title = lyrics
+    }
+    
+    func updateCombinedStatusLyrics() {
+        lyricsItem = nil
         
         setTextStatusItem(string: lyrics)
         if statusItem.isVisibe {
@@ -77,20 +95,6 @@ class MenuBarLyrics: NSObject {
             let proposed = components.joined() + "..."
             setTextStatusItem(string: proposed)
         }
-    }
-    
-    func updateCombinedStatusItem() {
-        setImageStatusItem()
-        guard lyrics != "" else {
-            lyricsItem = nil
-            return
-        }
-        
-        if lyricsItem == nil {
-            lyricsItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-            lyricsItem?.highlightMode = false
-        }
-        lyricsItem?.button?.title = lyrics
     }
     
     private func setTextStatusItem(string: String) {
