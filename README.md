@@ -11,7 +11,7 @@ LyricsX is a plugin for iTunes, Spotify and Vox, which auto search and download 
 
 ## LyricsX for iOS
 
-LyricsX for iOS is on beta stage.
+LyricsX for iOS is in beta stage.
 
 Fill in [this form](https://goo.gl/forms/yblfWFbsDZDkYqU53) for TestFlight invitation, and join the [Telegram group](https://telegram.me/LyricsXTestFlight)
 
