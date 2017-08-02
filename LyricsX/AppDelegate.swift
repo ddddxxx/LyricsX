@@ -57,10 +57,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             log("Failed to set login item enabled")
         }
         
-        if !isFromMacAppStore {
-            checkForUpdate()
-        }
-        
         let sharedKeys = [
             UserDefaults.DefaultKeys.LaunchAndQuitWithPlayer.rawValue,
             UserDefaults.DefaultKeys.PreferredPlayerIndex.rawValue
@@ -69,7 +65,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             groupDefaults.bind($0, to: defaults, withKeyPath: $0)
         }
         
-        checkForMASReview(force: true)
+        #if RELEASE
+            if !isFromMacAppStore && defaults[.isInMASReview] == false {
+                checkForUpdate()
+            }
+            checkForMASReview(force: true)
+        #endif
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -111,11 +112,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func clickMenuBarItem(_ sender: NSStatusItem) {
         #if RELEASE
+            let isInMASReview = defaults[.isInMASReview] != false
+            statusBarMenu.item(withTag: 201)?.isHidden = isInMASReview // search lyrics
+            statusBarMenu.item(withTag: 401)?.isHidden = isInMASReview || isFromMacAppStore // check for update
+            statusBarMenu.item(withTag: 402)?.isHidden = isInMASReview // donate
             checkForMASReview()
-            statusBarMenu.item(withTag: 201)?.isHidden = defaults[.isInMASReview] != false
         #endif
-        
-        statusBarMenu.item(withTag: 401)?.isHidden = isFromMacAppStore
         
         MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
     }
