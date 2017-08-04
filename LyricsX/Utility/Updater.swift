@@ -55,8 +55,8 @@ func checkForUpdate(force: Bool = false) {
             if force {
                 DispatchQueue.main.async {
                     let alert = NSAlert()
-                    alert.messageText = "You're up-to-date!"
-                    alert.informativeText = "LyricsX \(local) is currently the newest version available."
+                    alert.messageText = NSLocalizedString("You're up-to-date!", comment: "title of the update alert, when the app is up to date.")
+                    alert.informativeText = String(format: NSLocalizedString("LyricsX %@ is currently the newest version available.", comment: "informative text of the update alert, when the app is up to date. the parameter is version string of the app"), local.description)
                     NSApp.activate(ignoringOtherApps: true)
                     alert.runModal()
                 }
@@ -75,10 +75,10 @@ func checkForUpdate(force: Bool = false) {
         
         DispatchQueue.main.async {
             let alert = NSAlert().then {
-                $0.messageText = "A new version of LyricsX is available!"
-                $0.informativeText = "LyricsX \(remote) is now available -- you have \(localVersion). Would you like to download it now?"
-                $0.addButton(withTitle: "Download")
-                $0.addButton(withTitle: "Skip")
+                $0.messageText = NSLocalizedString("A new version of LyricsX is available!", comment: "title of the update alert, when the app is out of date.")
+                $0.informativeText = String(format: NSLocalizedString("LyricsX %@ is now available -- you have %@. Would you like to download it now?", comment: "informative text of the update alert, when the app is out date. the 1st parameter is new version string, the 2nd parameter is current version string"), remote.description, local.description)
+                $0.addButton(withTitle: NSLocalizedString("Download", comment: "title of download button on the update alert. Download new version of the app."))
+                $0.addButton(withTitle: NSLocalizedString("Skip", comment: "title of skip button on the update alert. Refuse to download new version of the app."))
             }
             NSApp.activate(ignoringOtherApps: true)
             let response = alert.runModal()
