@@ -35,7 +35,7 @@ class KaraokeLyricsView: NSBox {
                 $0.shadowColor = shadowColor
                 $0.shadowOffset = .zero
             }
-            for label in stackView.subviews {
+            for label in stackView.arrangedSubviews {
                 label.shadow = shadow
             }
         }
