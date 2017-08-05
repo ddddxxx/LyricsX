@@ -20,8 +20,10 @@
 
 import Cocoa
 import ServiceManagement
-import Then
+import Fabric
+import Crashlytics
 import MASShortcut
+import Then
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -38,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
+        Fabric.with([Crashlytics.self])
         
         desktopLyrics = NSStoryboard.main().instantiateController(withIdentifier: .DesktopLyricsWindow)
         desktopLyrics?.showWindow(nil)

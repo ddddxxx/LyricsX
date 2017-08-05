@@ -19,7 +19,21 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.0</string>
 	<key>CFBundleVersion</key>
-	<string>1262</string>
+	<string>1265</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>b6f597788b967cd9a94ea2a85f54c27909939b87</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
