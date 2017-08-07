@@ -120,6 +120,24 @@ class KaraokeLyricsView: NSBox {
             }
         })
     }
+    
+    // MARK: - Event
+    
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        trackingAreas.forEach(removeTrackingArea)
+        let area = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside], owner: self)
+        addTrackingArea(area)
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        animator().alphaValue = 0.1
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        animator().alphaValue = 1
+    }
+    
 }
 
 extension NSTextField {
