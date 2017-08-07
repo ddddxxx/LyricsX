@@ -40,6 +40,11 @@ class KaraokeLyricsView: NSBox {
             }
         }
     }
+    dynamic var shouldHideWithMouse = true {
+        didSet {
+            updateTrackingAreas()
+        }
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -123,11 +128,14 @@ class KaraokeLyricsView: NSBox {
     
     // MARK: - Event
     
+    var trackingArea: NSTrackingArea?
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
-        trackingAreas.forEach(removeTrackingArea)
-        let area = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside], owner: self)
-        addTrackingArea(area)
+        trackingArea.map(removeTrackingArea)
+        if shouldHideWithMouse {
+            trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside], owner: self)
+            trackingArea.map(addTrackingArea)
+        }
     }
     
     override func mouseEntered(with event: NSEvent) {
