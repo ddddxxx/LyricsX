@@ -95,6 +95,7 @@ class KaraokeLyricsView: NSBox {
             toBeHide.remove(at: 1)
         } else {
             let label = lyricsLabel(firstLine)
+            label.attributedStringValue = NSAttributedString(string: firstLine, attributes: [kCTVerticalFormsAttributeName as String: true])
             toBeShow.append(label)
         }
         
@@ -133,8 +134,24 @@ class KaraokeLyricsView: NSBox {
         super.updateTrackingAreas()
         trackingArea.map(removeTrackingArea)
         if shouldHideWithMouse {
-            trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside], owner: self)
+            trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside, .enabledDuringMouseDrag], owner: self)
             trackingArea.map(addTrackingArea)
+        }
+        mouseTest()
+    }
+    
+    func mouseTest() {
+        guard shouldHideWithMouse else {
+            animator().alphaValue = 1
+            return
+        }
+        let screenPoint = NSEvent.mouseLocation()
+        let windowPoint = window!.convertFromScreen(NSRect(origin: screenPoint, size: .zero)).origin
+        let viewPoint = convert(windowPoint, from: nil)
+        if bounds.contains(viewPoint) {
+            animator().alphaValue = 0.1
+        } else {
+            animator().alphaValue = 1
         }
     }
     
