@@ -90,15 +90,19 @@ func checkForUpdate(force: Bool = false) {
     }
 }
 
-func checkForMASReview(force: Bool = false) {
-    guard force || (defaults[.isInMASReview] == nil) else {
-        return
-    }
-    DispatchQueue.global().async {
-        let local = localVersion
-        guard let remote = remoteVersion else {
+#if IS_FOR_MAS
+    
+    func checkForMASReview(force: Bool = false) {
+        guard force || (defaults[.isInMASReview] == nil) else {
             return
         }
-        defaults[.isInMASReview] = local > remote
+        DispatchQueue.global().async {
+            let local = localVersion
+            guard let remote = remoteVersion else {
+                return
+            }
+            defaults[.isInMASReview] = local > remote
+        }
     }
-}
+    
+#endif

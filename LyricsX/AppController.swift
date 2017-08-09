@@ -138,7 +138,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        #if RELEASE
+        #if IS_FOR_MAS
             guard defaults[.isInMASReview] == false else {
                 return
             }
