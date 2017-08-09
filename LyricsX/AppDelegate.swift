@@ -20,8 +20,10 @@
 
 import Cocoa
 import ServiceManagement
-import Then
+import Fabric
+import Crashlytics
 import MASShortcut
+import Then
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -38,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
+        Fabric.with([Crashlytics.self])
         
         desktopLyrics = NSStoryboard.main().instantiateController(withIdentifier: .DesktopLyricsWindow)
         desktopLyrics?.showWindow(nil)
@@ -65,7 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             groupDefaults.bind($0, to: defaults, withKeyPath: $0)
         }
         
-        #if RELEASE
+        #if IS_FOR_MAS
             if !isFromMacAppStore && defaults[.isInMASReview] == false {
                 checkForUpdate()
             }
@@ -111,7 +114,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Menubar Action
     
     @IBAction func clickMenuBarItem(_ sender: NSStatusItem) {
-        #if RELEASE
+        #if IS_FOR_MAS
             let isInMASReview = defaults[.isInMASReview] != false
             statusBarMenu.item(withTag: 201)?.isHidden = isInMASReview // search lyrics
             statusBarMenu.item(withTag: 401)?.isHidden = isInMASReview || isFromMacAppStore // check for update
