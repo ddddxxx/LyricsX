@@ -69,10 +69,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         #if IS_FOR_MAS
-            if !isFromMacAppStore && defaults[.isInMASReview] == false {
-                checkForUpdate()
-            }
             checkForMASReview(force: true)
+        #else
+            checkForUpdate()
         #endif
     }
     
