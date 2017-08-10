@@ -6,6 +6,8 @@
 	<true/>
 	<key>PreferBilingualLyrics</key>
 	<true/>
+	<key>HideLyricsWhenMousePassBy</key>
+	<true/>
 	<key>DisableLyricsWhenPaused</key>
 	<true/>
 	<key>DisableLyricsWhenSreenShot</key>

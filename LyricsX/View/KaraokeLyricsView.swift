@@ -40,6 +40,11 @@ class KaraokeLyricsView: NSBox {
             }
         }
     }
+    dynamic var shouldHideWithMouse = true {
+        didSet {
+            updateTrackingAreas()
+        }
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -90,6 +95,7 @@ class KaraokeLyricsView: NSBox {
             toBeHide.remove(at: 1)
         } else {
             let label = lyricsLabel(firstLine)
+            label.attributedStringValue = NSAttributedString(string: firstLine, attributes: [kCTVerticalFormsAttributeName as String: true])
             toBeShow.append(label)
         }
         
@@ -120,6 +126,43 @@ class KaraokeLyricsView: NSBox {
             }
         })
     }
+    
+    // MARK: - Event
+    
+    var trackingArea: NSTrackingArea?
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        trackingArea.map(removeTrackingArea)
+        if shouldHideWithMouse {
+            trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside, .enabledDuringMouseDrag], owner: self)
+            trackingArea.map(addTrackingArea)
+        }
+        mouseTest()
+    }
+    
+    func mouseTest() {
+        guard shouldHideWithMouse else {
+            animator().alphaValue = 1
+            return
+        }
+        let screenPoint = NSEvent.mouseLocation()
+        let windowPoint = window!.convertFromScreen(NSRect(origin: screenPoint, size: .zero)).origin
+        let viewPoint = convert(windowPoint, from: nil)
+        if bounds.contains(viewPoint) {
+            animator().alphaValue = 0.1
+        } else {
+            animator().alphaValue = 1
+        }
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        animator().alphaValue = 0.1
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        animator().alphaValue = 1
+    }
+    
 }
 
 extension NSTextField {
