@@ -124,6 +124,7 @@ class KaraokeLyricsView: NSBox {
             toBeHide.forEach {
                 $0.removeFromSuperview()
             }
+            self.mouseTest()
         })
     }
     
