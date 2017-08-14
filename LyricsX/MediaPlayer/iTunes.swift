@@ -97,6 +97,10 @@ extension iTunesTrack {
     }
     
     var track: MusicTrack? {
+        guard mediaKind == .iTunesEMdKSong else {
+            return nil
+        }
+        
         guard let id = stringID,
             let name = name as? String else {
             return nil
