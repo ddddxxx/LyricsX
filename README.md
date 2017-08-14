@@ -21,7 +21,7 @@ You can download ZIP from [releases](https://github.com/ddddxxx/LyricsX/releases
 
 ### Requirements
 
-- macOS 10.10+
+- macOS 10.11+
 
 ## Features
 
