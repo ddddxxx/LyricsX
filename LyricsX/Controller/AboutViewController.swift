@@ -25,13 +25,16 @@ class AboutViewController: NSViewController {
     @IBOutlet weak var appName: NSTextField!
     @IBOutlet weak var appVersion: NSTextField!
     @IBOutlet var creditsTextView: NSTextView!
+    @IBOutlet weak var copyright: NSTextField!
     
     override func viewDidLoad() {
         let info = Bundle.main.infoDictionary!
-        appName.stringValue = info["CFBundleName"] as! String
         let shortVersion = info["CFBundleShortVersionString"] as! String
         let version = info["CFBundleVersion"] as! String
+        appName.stringValue = info["CFBundleName"] as! String
         appVersion.stringValue = "Version \(shortVersion)(\(version))"
+        copyright.stringValue = info["NSHumanReadableCopyright"] as! String
+        
         let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "rtf")!
         let credits = try! NSAttributedString(url: creditsURL, options: [:], documentAttributes: nil)
         creditsTextView.textStorage?.setAttributedString(credits)
