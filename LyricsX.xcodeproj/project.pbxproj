@@ -10,6 +10,9 @@
 		BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */; };
 		BB0B296A1E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */; };
 		BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B296B1E80CB0600B1D6C9 /* AboutViewController.swift */; };
+		BB0BE9561F444C9E0068FF67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB0BE9581F444C9E0068FF67 /* Localizable.strings */; };
+		BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */; };
+		BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95C1F44508F0068FF67 /* Fabric.framework */; };
 		BB1B631B1E8CD7CA004CC9E0 /* ScrollLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */; };
 		BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; };
 		BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -42,8 +45,6 @@
 		BB60F3091E889A1B00BA1FD2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3071E889A1B00BA1FD2 /* MainMenu.xib */; };
 		BB60F3121E889FCD00BA1FD2 /* LyricsXHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
-		BB9163371F36373F00E4E01C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9163351F36373F00E4E01C /* Fabric.framework */; };
-		BB9163381F36373F00E4E01C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9163361F36373F00E4E01C /* Crashlytics.framework */; };
 		BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BCEB91E843157001BC54B /* Extension.swift */; };
 		BBB8DA3C1E86653700EF0A18 /* SpotifyBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB8DA3B1E86653700EF0A18 /* SpotifyBridge.swift */; };
 		BBB8DA3E1E86657F00EF0A18 /* VoxBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB8DA3D1E86657F00EF0A18 /* VoxBridge.swift */; };
@@ -97,6 +98,10 @@
 		BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KaraokeLyricsView.swift; path = View/KaraokeLyricsView.swift; sourceTree = "<group>"; };
 		BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferenceFilterViewController.swift; path = Controller/Preferences/PreferenceFilterViewController.swift; sourceTree = "<group>"; };
 		BB0B296B1E80CB0600B1D6C9 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = Controller/AboutViewController.swift; sourceTree = "<group>"; };
+		BB0BE9591F444CA00068FF67 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BB0BE95A1F444CAA0068FF67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = LyricsX/Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
+		BB0BE95C1F44508F0068FF67 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = LyricsX/Frameworks/Fabric.framework; sourceTree = "<group>"; };
 		BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollLyricsView.swift; path = View/ScrollLyricsView.swift; sourceTree = "<group>"; };
 		BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
 		BB34F7E51F21911700B7C484 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Updater.swift; path = Utility/Updater.swift; sourceTree = "<group>"; };
@@ -127,8 +132,6 @@
 		BB60F30A1E889A1B00BA1FD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB60F30E1E889C5400BA1FD2 /* LyricsXHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsXHelper.entitlements; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LyricsHUDViewController.swift; path = Controller/LyricsHUDViewController.swift; sourceTree = "<group>"; };
-		BB9163351F36373F00E4E01C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		BB9163361F36373F00E4E01C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LyricsX.entitlements; path = "Supporting Files/LyricsX.entitlements"; sourceTree = "<group>"; };
 		BB9BCEB91E843157001BC54B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = Utility/Extension.swift; sourceTree = "<group>"; };
 		BBB8DA3B1E86653700EF0A18 /* SpotifyBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotifyBridge.swift; path = MediaPlayer/SpotifyBridge.swift; sourceTree = "<group>"; };
@@ -151,13 +154,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */,
+				BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */,
 				BB34F7EB1F21997B00B7C484 /* SwiftyJSON.framework in Frameworks */,
 				BB34F7E81F2197C800B7C484 /* Semver.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BB4FBE751F0F1E440045A8FA /* LyricsProvider.framework in Frameworks */,
 				BB5CCDA61EF2A2CB00C4FEB2 /* Then.framework in Frameworks */,
-				BB9163371F36373F00E4E01C /* Fabric.framework in Frameworks */,
-				BB9163381F36373F00E4E01C /* Crashlytics.framework in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
 				BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */,
 				BBE557971EC0291E00F1EC31 /* GenericID.framework in Frameworks */,
@@ -222,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				BB4141B11E458BA800A51775 /* Assets.xcassets */,
+				BB0BE9581F444C9E0068FF67 /* Localizable.strings */,
 				BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */,
 				BB4141B61E458BA900A51775 /* Info.plist */,
 				BB58B0811E82971400598D4F /* UserDefaults.plist */,
@@ -242,8 +246,8 @@
 		BB7EC7B31E4ECFC400A0AC3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BB9163361F36373F00E4E01C /* Crashlytics.framework */,
-				BB9163351F36373F00E4E01C /* Fabric.framework */,
+				BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */,
+				BB0BE95C1F44508F0068FF67 /* Fabric.framework */,
 				BBE557961EC0291E00F1EC31 /* GenericID.framework */,
 				BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */,
 				BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */,
@@ -338,6 +342,7 @@
 				BB4141CA1E46CDD700A51775 /* Embed Frameworks */,
 				BB60F3111E889FC000BA1FD2 /* Copy Helper */,
 				BB9163341F36371700E4E01C /* Fabric Script */,
+				BB0BE9531F444BE20068FF67 /* Update Localization */,
 				BBC1D5811E4AFE64008869EC /* Bump Build */,
 			);
 			buildRules = (
@@ -429,6 +434,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0BE9561F444C9E0068FF67 /* Localizable.strings in Resources */,
 				BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */,
 				BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */,
 				BB4141B51E458BA900A51775 /* Main.storyboard in Resources */,
@@ -448,9 +454,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BB9163341F36371700E4E01C /* Fabric Script */ = {
+		BB0BE9531F444BE20068FF67 /* Update Localization */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Localization";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which bartycrouch > /dev/null; then\n    # Incrementally update all Storyboards/XIBs strings files\n    bartycrouch interfaces -p \"$PROJECT_DIR/LyricsX\"\n\n    # Add new keys to Localizable.strings files from NSLocalizedString in code\n    bartycrouch code -p \"$PROJECT_DIR/LyricsX\" -l \"$PROJECT_DIR/LyricsX\" -ks\nelse\n    echo \"warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch\"\nfi";
+		};
+		BB9163341F36371700E4E01C /* Fabric Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -458,9 +478,9 @@
 			name = "Fabric Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run b6f597788b967cd9a94ea2a85f54c27909939b87 899ee2667b9979f88a8bf30432bc74cad27133acaf3e13498bc4849cd82e135a";
+			shellScript = "./LyricsX/Frameworks/Fabric.framework/run b6f597788b967cd9a94ea2a85f54c27909939b87 899ee2667b9979f88a8bf30432bc74cad27133acaf3e13498bc4849cd82e135a";
 		};
 		BBC1D5811E4AFE64008869EC /* Bump Build */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -523,6 +543,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BB0BE9581F444C9E0068FF67 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB0BE9591F444CA00068FF67 /* zh-Hans */,
+				BB0BE95A1F444CAA0068FF67 /* en */,
+			);
+			name = Localizable.strings;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BB4141B31E458BA900A51775 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -589,7 +619,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -649,6 +679,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/LyricsX/Frameworks",
 				);
 				INFOPLIST_FILE = "LyricsX/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -671,12 +702,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/LyricsX/Frameworks",
 				);
 				INFOPLIST_FILE = "LyricsX/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = IS_FOR_MAS;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -131,6 +131,9 @@
 /* Class = "NSBox"; title = "Spacing to screen edge"; ObjectID = "LDq-wS-wqc"; */
 "LDq-wS-wqc.title" = "与屏幕边缘距离";
 
+/* Class = "NSButtonCell"; title = "Mouse passing by"; ObjectID = "LH4-YZ-Qvs"; */
+"LH4-YZ-Qvs.title" = "鼠标经过时";
+
 /* Class = "NSButtonCell"; title = "Music Player is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "暂停播放时";
 

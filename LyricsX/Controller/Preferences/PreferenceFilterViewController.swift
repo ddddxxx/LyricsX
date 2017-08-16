@@ -61,7 +61,7 @@ class FilterKey: NSObject, NSCoding {
     var keyword = ""
     
     override init() {
-        keyword = NSLocalizedString("NEW_KEYWORD", comment: "")
+        keyword = NSLocalizedString("NEW_KEYWORD", comment: "default value when user adding a lyrics filter keyword")
         super.init()
     }
     
