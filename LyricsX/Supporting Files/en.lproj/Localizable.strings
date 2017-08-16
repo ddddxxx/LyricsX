@@ -1,0 +1,21 @@
+
+/* title of the update alert, when the app is out of date. */
+"A new version of LyricsX is available!" = "A new version of LyricsX is available!";
+
+/* title of download button on the update alert. Download new version of the app. */
+"Download" = "Download";
+
+/* informative text of the update alert, when the app is up to date. the parameter is version string of the app */
+"LyricsX %@ is currently the newest version available." = "LyricsX %@ is currently the newest version available.";
+
+/* informative text of the update alert, when the app is out date. the 1st parameter is new version string, the 2nd parameter is current version string */
+"LyricsX %@ is now available -- you have %@. Would you like to download it now?" = "LyricsX %1$@ is now available -- you have %2$@. Would you like to download it now?";
+
+/* No comment provided by engineer. */
+"NEW_KEYWORD" = "NEW_KEYWORD";
+
+/* title of skip button on the update alert. Refuse to download new version of the app. */
+"Skip" = "Skip";
+
+/* title of the update alert, when the app is up to date. */
+"You're up-to-date!" = "You're up-to-date!";
