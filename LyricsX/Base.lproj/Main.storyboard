@@ -659,7 +659,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.HideLyricsWhenMousePassBy" id="V3B-lp-OgL"/>
+                                    <binding destination="hHn-Lo-CwP" name="value" keyPath="values.HideLyricsWhenMousePassingBy" id="Mqo-If-qON"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -82,7 +82,7 @@ class DesktopLyricsViewController: NSViewController {
             $0.bind("textColor", to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
             $0.bind("shadowColor", to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
             $0.bind("fillColor", to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
-            $0.bind("shouldHideWithMouse", to: defaults, withKeyPath: .HideLyricsWhenMousePassBy)
+            $0.bind("shouldHideWithMouse", to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
         }
         makeConstraints()
         

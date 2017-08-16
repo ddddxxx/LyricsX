@@ -79,7 +79,7 @@ extension UserDefaults.DefaultKeys {
     
     static let CombinedMenubarLyrics: Key<Bool>         = "CombinedMenubarLyrics"
     
-    static let HideLyricsWhenMousePassBy: Key<Bool>     = "HideLyricsWhenMousePassBy"
+    static let HideLyricsWhenMousePassingBy: Key<Bool>  = "HideLyricsWhenMousePassingBy"
     static let DisableLyricsWhenPaused: Key<Bool>       = "DisableLyricsWhenPaused"
     static let DisableLyricsWhenSreenShot: Key<Bool>    = "DisableLyricsWhenSreenShot"
     
