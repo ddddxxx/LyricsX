@@ -109,6 +109,7 @@ extension UserDefaults.DefaultKeys {
     static let ShortcutOffsetIncrease: Key<String>  = "ShortcutOffsetIncrease"
     static let ShortcutOffsetDecrease: Key<String>  = "ShortcutOffsetDecrease"
     static let ShortcutWriteToiTunes: Key<String>   = "ShortcutWriteToiTunes"
+    static let ShortcutSearchLyrics: Key<String>    = "ShortcutSearchLyrics"
     static let ShortcutWrongLyrics: Key<String>     = "ShortcutWrongLyrics"
     
     // Filter

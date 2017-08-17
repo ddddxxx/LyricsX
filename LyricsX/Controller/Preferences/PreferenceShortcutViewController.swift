@@ -27,12 +27,14 @@ class PreferenceShortcutViewController: NSViewController {
     @IBOutlet weak var shortcutIncreaseOffset: MASShortcutView!
     @IBOutlet weak var shortcutDecreaseOffset: MASShortcutView!
     @IBOutlet weak var shortcutWriteToiTunes: MASShortcutView!
+    @IBOutlet weak var shortcutSearchLyrics: MASShortcutView!
     @IBOutlet weak var shortcutWrongLyrics: MASShortcutView!
     
     override func viewDidLoad() {
         shortcutIncreaseOffset.setAssociatedDefaultsKey(defaultKey: .ShortcutOffsetIncrease)
         shortcutDecreaseOffset.setAssociatedDefaultsKey(defaultKey: .ShortcutOffsetDecrease)
         shortcutWriteToiTunes.setAssociatedDefaultsKey(defaultKey: .ShortcutWriteToiTunes)
+        shortcutSearchLyrics.setAssociatedDefaultsKey(defaultKey: .ShortcutSearchLyrics)
         shortcutWrongLyrics.setAssociatedDefaultsKey(defaultKey: .ShortcutWrongLyrics)
     }
     

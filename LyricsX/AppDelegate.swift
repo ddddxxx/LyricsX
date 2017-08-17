@@ -108,6 +108,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         binder.bindShortcut(with: .ShortcutWrongLyrics) {
             self.wrongLyrics(nil)
         }
+        binder.bindShortcut(with: .ShortcutSearchLyrics) {
+            let index = self.statusBarMenu.indexOfItem(withTag: 201)
+            self.statusBarMenu.performActionForItem(at: index)
+        }
     }
     
     // MARK: - Menubar Action
