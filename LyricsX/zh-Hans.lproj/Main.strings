@@ -328,3 +328,6 @@
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
 "zhB-kd-WWG.title" = "不转换";
+
+/* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
+"kP4-4q-ed9.title" = "搜索歌词:";
