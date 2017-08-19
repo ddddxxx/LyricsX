@@ -1462,6 +1462,7 @@
                             <constraint firstItem="ZhS-BF-7UN" firstAttribute="leading" secondItem="Paz-vU-k0Z" secondAttribute="trailing" constant="8" id="MnK-HN-lKs"/>
                             <constraint firstAttribute="bottom" secondItem="Kmn-Mi-l4p" secondAttribute="bottom" constant="24" id="PMl-xq-0wi"/>
                             <constraint firstItem="xRx-86-gVx" firstAttribute="centerY" secondItem="rZM-vL-ukW" secondAttribute="centerY" id="dzF-pI-dlc"/>
+                            <constraint firstItem="Kmn-Mi-l4p" firstAttribute="top" secondItem="Paz-vU-k0Z" secondAttribute="bottom" priority="750" constant="16" id="gqg-Vu-mu0"/>
                             <constraint firstItem="ZhS-BF-7UN" firstAttribute="centerY" secondItem="Paz-vU-k0Z" secondAttribute="centerY" id="hnp-DF-O2a"/>
                             <constraint firstItem="rZM-vL-ukW" firstAttribute="top" secondItem="yOR-wI-2Wv" secondAttribute="top" constant="24" id="j7l-HV-eXc"/>
                             <constraint firstItem="92Q-NC-T3a" firstAttribute="centerY" secondItem="8LH-Ws-6CC" secondAttribute="centerY" id="js1-zR-2g2"/>
@@ -1475,6 +1476,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchLyricsLabel" destination="Uyz-8q-0bL" id="rKW-FQ-KsJ"/>
                         <outlet property="shortcutDecreaseOffset" destination="92Q-NC-T3a" id="ZS7-6f-Waj"/>
                         <outlet property="shortcutIncreaseOffset" destination="xRx-86-gVx" id="pAF-m5-rJ2"/>
                         <outlet property="shortcutSearchLyrics" destination="Axy-WJ-CRv" id="EwQ-OG-Lhg"/>

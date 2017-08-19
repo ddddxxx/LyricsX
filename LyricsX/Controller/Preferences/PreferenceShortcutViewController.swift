@@ -30,12 +30,22 @@ class PreferenceShortcutViewController: NSViewController {
     @IBOutlet weak var shortcutSearchLyrics: MASShortcutView!
     @IBOutlet weak var shortcutWrongLyrics: MASShortcutView!
     
+    @IBOutlet weak var searchLyricsLabel: NSTextField!
+    
     override func viewDidLoad() {
         shortcutIncreaseOffset.setAssociatedDefaultsKey(defaultKey: .ShortcutOffsetIncrease)
         shortcutDecreaseOffset.setAssociatedDefaultsKey(defaultKey: .ShortcutOffsetDecrease)
         shortcutWriteToiTunes.setAssociatedDefaultsKey(defaultKey: .ShortcutWriteToiTunes)
         shortcutSearchLyrics.setAssociatedDefaultsKey(defaultKey: .ShortcutSearchLyrics)
         shortcutWrongLyrics.setAssociatedDefaultsKey(defaultKey: .ShortcutWrongLyrics)
+        
+        #if IS_FOR_MAS
+            if defaults[.isInMASReview] != false {
+                searchLyricsLabel.removeFromSuperview()
+                shortcutSearchLyrics.removeFromSuperview()
+            }
+            checkForMASReview()
+        #endif
     }
     
 }
