@@ -29,9 +29,10 @@ class iTunes: MusicPlayer {
         return (_iTunes as! SBApplication).isRunning
     }
     
+    private var _currentTrack: MusicTrack?
     var currentTrack: MusicTrack? {
         guard isRunning else { return nil }
-        return _iTunes.currentTrack?.track
+        return _currentTrack
     }
     
     var playerState: MusicPlayerState {
@@ -65,7 +66,16 @@ class iTunes: MusicPlayer {
         guard let iTunes = SBApplication(bundleIdentifier: "com.apple.iTunes") else {
             return nil
         }
-        self._iTunes = iTunes
+        _iTunes = iTunes
+        
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(playerInfoChanged), name: .iTunesPlayerInfo, object: nil)
+    }
+    
+    @objc func playerInfoChanged(n: Notification) {
+        _currentTrack = _iTunes.currentTrack?.track
+        if let loc = n.userInfo?["Location"] as? String {
+            _currentTrack?.url = URL(fileURLWithPath: loc)
+        }
     }
     
 }
@@ -106,14 +116,7 @@ extension iTunesTrack {
             return nil
         }
         
-        var trackURL: URL?
-        if !isInSandbox {
-            // The property `location` of class `iTunesFileTrack` is broken, but AppleScript still works.
-            // Not work in sandbox.
-            trackURL = trackURLScript.executeAndReturnError(nil).stringValue.flatMap { URL(string: $0) }
-        }
-        
-        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration as TimeInterval?, url: trackURL)
+        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration as TimeInterval?, url: nil)
     }
 }
 
