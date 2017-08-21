@@ -67,8 +67,15 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         guard let player = MusicPlayerManager.shared.player as? iTunes else {
             return
         }
+        guard let currentLyrics = currentLyrics else {
+            assertionFailure()
+            return
+        }
         if overwrite || player.currentLyrics == nil {
-            player.currentLyrics = currentLyrics?.contentString(withMetadata: false, ID3: false, timeTag: false, translation: defaults[.WriteiTunesWithTranslation])
+            let lyrics = currentLyrics.contentString(withMetadata: false, ID3: false, timeTag: false, translation: defaults[.WriteiTunesWithTranslation])
+            let regex = try! NSRegularExpression(pattern: "\\n{3}")
+            let replaced = regex.stringByReplacingMatches(in: lyrics, range: NSRange(location: 0, length: lyrics.characters.count), withTemplate: "\n\n")
+            player.currentLyrics = replaced.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
         }
     }
     
