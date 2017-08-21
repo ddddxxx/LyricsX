@@ -68,10 +68,14 @@ class iTunes: MusicPlayer {
         }
         _iTunes = iTunes
         
+        if isRunning {
+            _currentTrack = _iTunes.currentTrack?.track
+        }
+        
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(playerInfoChanged), name: .iTunesPlayerInfo, object: nil)
     }
     
-    @objc func playerInfoChanged(n: Notification) {
+    @objc private func playerInfoChanged(n: Notification) {
         _currentTrack = _iTunes.currentTrack?.track
         if let loc = n.userInfo?["Location"] as? String {
             _currentTrack?.url = URL(fileURLWithPath: loc)
@@ -118,8 +122,4 @@ extension iTunesTrack {
         
         return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration as TimeInterval?, url: nil)
     }
-}
-
-private let trackURLScript: NSAppleScript = NSAppleScript(source: "tell application \"iTunes\" to get location of current track")!.then {
-    $0.compileAndReturnError(nil)
 }
