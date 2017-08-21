@@ -78,7 +78,7 @@ class iTunes: MusicPlayer {
     @objc private func playerInfoChanged(n: Notification) {
         _currentTrack = _iTunes.currentTrack?.track
         if let loc = n.userInfo?["Location"] as? String {
-            _currentTrack?.url = URL(fileURLWithPath: loc)
+            _currentTrack?.url = URL(string: loc)
         }
     }
     
