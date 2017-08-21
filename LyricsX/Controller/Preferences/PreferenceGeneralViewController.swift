@@ -38,7 +38,6 @@ class PreferenceGeneralViewController: NSViewController {
         switch defaults[.PreferredPlayerIndex] {
         case 0:
             preferiTunes.state = NSOnState
-            loadHomonymLrcButton.isEnabled = !isInSandbox
         case 1:
             preferSpotify.state = NSOnState
             loadHomonymLrcButton.isEnabled = false
@@ -84,12 +83,12 @@ class PreferenceGeneralViewController: NSViewController {
             autoLaunchButton.isEnabled = true
         }
         
-        if sender.tag == -1 || (!isInSandbox && sender.tag == 0) || sender.tag == 2 {
-            loadHomonymLrcButton.isEnabled = true
-        } else {
+        if sender.tag == 1 {
             loadHomonymLrcButton.isEnabled = false
             loadHomonymLrcButton.state = NSOffState
             defaults[.LoadLyricsBesideTrack] = false
+        } else {
+            loadHomonymLrcButton.isEnabled = true
         }
     }
     
