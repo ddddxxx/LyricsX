@@ -95,7 +95,7 @@ class ScrollLyricsView: NSScrollView {
         }
     }
     
-    func updateFadeEdgeMask() {
+    private func updateFadeEdgeMask() {
         let location = fadeStripWidth / frame.height
         wantsLayer = true
         layer?.mask = CAGradientLayer().then {
@@ -107,7 +107,7 @@ class ScrollLyricsView: NSScrollView {
         }
     }
     
-    func updateEdgeInset() {
+    private func updateEdgeInset() {
         guard ranges.count > 0 else {
             return
         }

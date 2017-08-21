@@ -156,7 +156,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
     }
     
-    func expandPreview() {
+    private func expandPreview() {
         let expandingHeight = -view.subviews.reduce(0) { min($0, $1.frame.minY) }
         let windowFrame = self.view.window!.frame.with {
             $0.size.height += expandingHeight
@@ -176,7 +176,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         })
     }
     
-    func updateImage() {
+    private func updateImage() {
         let index = tableView.selectedRow
         guard index >= 0 else {
             return

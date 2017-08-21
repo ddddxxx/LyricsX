@@ -51,8 +51,12 @@ let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
 let CurrentLyricsChangeNotification = "CurrentLyricsChangeNotification"
 
 extension Notification.Name {
-    static var PositionChange = Notification.Name(LyricsShouldDisplayNotification)
-    static var LyricsChange = Notification.Name(CurrentLyricsChangeNotification)
+    static let PositionChange = Notification.Name(LyricsShouldDisplayNotification)
+    static let LyricsChange = Notification.Name(CurrentLyricsChangeNotification)
+    
+    static let iTunesPlayerInfo = Notification.Name("com.apple.iTunes.playerInfo")
+    static let SpotifyPlayerInfo = Notification.Name("com.spotify.client.PlaybackStateChanged")
+    static let VoxTrackChanged = Notification.Name("com.coppertino.Vox.trackChanged")
 }
 
 // MARK: - User Defaults
@@ -109,6 +113,7 @@ extension UserDefaults.DefaultKeys {
     static let ShortcutOffsetIncrease: Key<String>  = "ShortcutOffsetIncrease"
     static let ShortcutOffsetDecrease: Key<String>  = "ShortcutOffsetDecrease"
     static let ShortcutWriteToiTunes: Key<String>   = "ShortcutWriteToiTunes"
+    static let ShortcutSearchLyrics: Key<String>    = "ShortcutSearchLyrics"
     static let ShortcutWrongLyrics: Key<String>     = "ShortcutWrongLyrics"
     
     // Filter
