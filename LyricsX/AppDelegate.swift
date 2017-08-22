@@ -148,6 +148,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let id = MusicPlayerManager.shared.player?.currentTrack?.id {
             defaults[.NoSearchingTrackIds].append(id)
         }
+        if defaults[.WriteToiTunesAutomatically] {
+            (MusicPlayerManager.shared.player as? iTunes)?.currentLyrics = ""
+        }
         AppController.shared.currentLyrics = nil
     }
     
