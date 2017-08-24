@@ -153,16 +153,16 @@
                                 <segue destination="Fyy-jy-wIT" kind="show" id="QlQ-Pc-nUk"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Write to iTunes" tag="202" identifier="WriteToiTunes" id="kNl-ZO-aX6">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="writeToiTunes:" target="Voe-Tx-rLC" id="4Gb-qk-5mT"/>
-                            </connections>
-                        </menuItem>
                         <menuItem title="Wrong Lyrics" tag="203" identifier="WrongLyrics" id="fmS-zv-RcJ">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="wrongLyrics:" target="Voe-Tx-rLC" id="PSJ-f3-tnK"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Write to iTunes" tag="202" identifier="WriteToiTunes" id="kNl-ZO-aX6">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="writeToiTunes:" target="Voe-Tx-rLC" id="4Gb-qk-5mT"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
