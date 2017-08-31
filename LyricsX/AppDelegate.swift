@@ -119,11 +119,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func clickMenuBarItem(_ sender: NSStatusItem) {
         #if IS_FOR_MAS
             let isInMASReview = defaults[.isInMASReview] != false
-            statusBarMenu.item(withTag: 201)?.isHidden = isInMASReview // search lyrics
-            statusBarMenu.item(withTag: 401)?.isHidden = isInMASReview || isFromMacAppStore // check for update
-            statusBarMenu.item(withTag: 402)?.isHidden = isInMASReview // donate
+            statusBarMenu.item(withTag: 201)?.isHidden = isInMASReview
+            // search lyrics
+            statusBarMenu.item(withTag: 401)?.isHidden = isInMASReview || isFromMacAppStore
+            // check for update
+            statusBarMenu.item(withTag: 402)?.isHidden = isInMASReview
+            // donate
             checkForMASReview()
         #endif
+        
+        statusBarMenu.item(withTag: 202)?.isHidden = MusicPlayerManager.shared.player is iTunes
+        // write to iTunes
         
         MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
     }
@@ -147,6 +153,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func wrongLyrics(_ sender: Any?) {
         if let id = MusicPlayerManager.shared.player?.currentTrack?.id {
             defaults[.NoSearchingTrackIds].append(id)
+        }
+        if defaults[.WriteToiTunesAutomatically] {
+            (MusicPlayerManager.shared.player as? iTunes)?.currentLyrics = ""
         }
         AppController.shared.currentLyrics = nil
     }
