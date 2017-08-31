@@ -62,7 +62,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         progressIndicator.isHidden = false
         let track = MusicPlayerManager.shared.player?.currentTrack
         let duration = track?.duration ?? 0
-        lyricsManager.searchLyrics(title: searchTitle, artist: searchArtist, duration: duration)
+        let title = track?.name ?? ""
+        let artist = track?.artist ?? ""
+        lyricsManager.searchLyrics(searchTitle: searchTitle, searchArtist: searchArtist, title: title, artist: artist, duration: duration)
         tableView.reloadData()
     }
     
