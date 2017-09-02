@@ -17,7 +17,9 @@ Fill in [this form](https://goo.gl/forms/yblfWFbsDZDkYqU53) for TestFlight invit
 
 ## Installation
 
-You can download ZIP from [releases](https://github.com/ddddxxx/LyricsX/releases).
+LyricsX is available on the Mac App Store.
+
+[![download on the Mac App Store](docs/img/MAS_badge.svg)](https://itunes.apple.com/us/app/lyricsx/id1254743014?mt=12)
 
 ### Requirements
 
@@ -49,11 +51,9 @@ You can download ZIP from [releases](https://github.com/ddddxxx/LyricsX/releases
 
 <img src="docs/img/preview_1.jpg" width="1280px">
 
-<img src="docs/img/preview_2.jpg" width="564px">
+<img src="docs/img/preview_2.jpg" width="1280px">
 
-<img src="docs/img/preview_3.jpg" width="652px">
-
-<img src="docs/img/preview_4.jpg" width="630px">
+<img src="docs/img/preview_3.jpg" width="1280px">
 
 ## Open Source Libraries
 
