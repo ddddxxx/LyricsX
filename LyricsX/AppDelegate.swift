@@ -128,7 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             checkForMASReview()
         #endif
         
-        statusBarMenu.item(withTag: 202)?.isHidden = MusicPlayerManager.shared.player is iTunes
+        statusBarMenu.item(withTag: 202)?.isHidden = !(MusicPlayerManager.shared.player is iTunes)
         // write to iTunes
         
         MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
