@@ -27,11 +27,11 @@ import ScriptingBridge
  */
 // The application"s top level scripting object.
 @objc protocol VoxApplication {
-    @objc optional var name: NSString? {get}
+    @objc optional var name: String? {get}
     // The name of the application.
     @objc optional var frontmost: Bool {get}
     // Is this the frontmost (active) application?
-    @objc optional var version: NSString? {get}
+    @objc optional var version: String? {get}
     // The version of the application.
     @objc optional func quit()
     // Quit an application.
@@ -47,9 +47,9 @@ import ScriptingBridge
     // Skip to the previous track in the playlist.
     @objc optional func shuffle()
     // Shuffle the tracks in the playlist.
-    @objc optional func playUrl(x: NSString)
+    @objc optional func playUrl(x: String)
     // Play specified URL.
-    @objc optional func addUrl(x: NSString)
+    @objc optional func addUrl(x: String)
     // Add specified URL to playlist
     @objc optional func rewindForward()
     // Rewind current track forward.
@@ -70,31 +70,31 @@ import ScriptingBridge
      * Vox Suite
      */
     // The application"s top-level scripting object.
-    @objc optional var tiffArtworkData: NSData {get}
+    @objc optional var tiffArtworkData: Data {get}
     // Current track artwork data in TIFF format.
     @objc optional var artworkImage: NSImage {get}
     // Current track artwork as an image.
-    @objc optional var playerState: NSInteger {get}
+    @objc optional var playerState: Int {get}
     // Player state (playing = 1, paused = 0)
-    @objc optional var track: NSString? {get}
+    @objc optional var track: String? {get}
     // Current track title.
-    @objc optional var trackUrl: NSString? {get}
+    @objc optional var trackUrl: String? {get}
     // Current track URL.
-    @objc optional var artist: NSString? {get}
+    @objc optional var artist: String? {get}
     // Current track artist.
-    @objc optional var albumArtist: NSString? {get}
+    @objc optional var albumArtist: String? {get}
     // Current track album artist.
-    @objc optional var album: NSString? {get}
+    @objc optional var album: String? {get}
     // Current track album.
-    @objc optional var uniqueID: NSString? {get}
+    @objc optional var uniqueID: String? {get}
     // Unique identifier for the current track.
-    @objc optional var currentTime: CDouble {get set}
+    @objc optional var currentTime: Double {get set}
     // The current playback position.
-    @objc optional var totalTime: CDouble {get}
+    @objc optional var totalTime: Double {get}
     // The total time of the currenty playing track.
-    @objc optional var playerVolume: CDouble {get set}
+    @objc optional var playerVolume: Double {get set}
     // Player volume (0.0 to 1.0)
-    @objc optional var repeatState: NSInteger {get set}
+    @objc optional var repeatState: Int {get set}
     // Player repeat state (none = 0, repeat one = 1, repeat all = 2)
 }
 extension SBApplication: VoxApplication{}

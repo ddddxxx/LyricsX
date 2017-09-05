@@ -90,16 +90,11 @@ extension iTunesEPlS {
     
     var state: MusicPlayerState {
         switch self {
-        case .iTunesEPlSStopped:
-            return .stopped
-        case .iTunesEPlSPlaying:
-            return .playing
-        case .iTunesEPlSPaused:
-            return .paused
-        case .iTunesEPlSFastForwarding:
-            return .fastForwarding
-        case .iTunesEPlSRewinding:
-            return .rewinding
+        case .stopped:          return .stopped
+        case .playing:          return .playing
+        case .paused:           return .paused
+        case .fastForwarding:   return .fastForwarding
+        case .rewinding:        return .rewinding
         }
     }
 }
@@ -111,15 +106,15 @@ extension iTunesTrack {
     }
     
     var track: MusicTrack? {
-        guard mediaKind == .iTunesEMdKSong else {
+        guard mediaKind == .song else {
             return nil
         }
         
         guard let id = stringID,
-            let name = name as? String else {
+            let name = name ?? nil else {
             return nil
         }
         
-        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration as TimeInterval?, url: nil)
+        return MusicTrack(id: id, name: name, album: album ?? nil, artist: artist ?? nil, duration: duration, url: nil)
     }
 }

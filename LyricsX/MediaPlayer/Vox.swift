@@ -72,12 +72,12 @@ extension VoxApplication {
         }
     }
     var track: MusicTrack? {
-        guard let id = uniqueID as? String,
-            let name = track as? String else {
+        guard let id = uniqueID ?? nil,
+            let name = track ?? nil else {
             return nil
         }
         let url = trackUrl?.flatMap { URL.init(string: $0 as String) }
         
-        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: totalTime as TimeInterval?, url: url)
+        return MusicTrack(id: id, name: name, album: album ?? nil, artist: artist ?? nil, duration: totalTime, url: url)
     }
 }
