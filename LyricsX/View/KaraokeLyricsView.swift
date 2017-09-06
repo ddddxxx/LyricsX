@@ -2,7 +2,7 @@
 //  KaraokeLyricsView.swift
 //
 //  This file is part of LyricsX
-//  Copyright (C) 2017  Xander Deng
+//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
