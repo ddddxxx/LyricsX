@@ -32,7 +32,7 @@ class iTunes: MusicPlayer {
     private var _currentTrack: MusicTrack?
     var currentTrack: MusicTrack? {
         guard isRunning else { return nil }
-        guard _iTunes.currentStreamURL == nil else { return nil }
+        guard _iTunes.currentStreamURL ?? nil == nil else { return nil }
         return _currentTrack
     }
     
