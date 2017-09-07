@@ -2,7 +2,7 @@
 //  Spotify.swift
 //
 //  This file is part of LyricsX
-//  Copyright (C) 2017  Xander Deng
+//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -66,23 +66,20 @@ class Spotify: MusicPlayer {
 extension SpotifyEPlS {
     var state: MusicPlayerState {
         switch self {
-        case .SpotifyEPlSStopped:
-            return .stopped
-        case .SpotifyEPlSPlaying:
-            return .playing
-        case .SpotifyEPlSPaused:
-            return .paused
+        case .stopped:  return .stopped
+        case .playing:  return .playing
+        case .paused:   return .paused
         }
     }
 }
 
 extension SpotifyTrack {
     var track: MusicTrack? {
-        guard let id = id?() as? String,
-            let name = name as? String else {
+        guard let id = id?(),
+            let name = name ?? nil else {
             return nil
         }
         
-        return MusicTrack(id: id, name: name, album: album as? String, artist: artist as? String, duration: duration.map({TimeInterval($0)}), url: nil)
+        return MusicTrack(id: id, name: name, album: album ?? nil, artist: artist ?? nil, duration: duration.map({TimeInterval($0)}), url: nil)
     }
 }

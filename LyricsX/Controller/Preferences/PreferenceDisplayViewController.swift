@@ -2,7 +2,7 @@
 //  PreferenceDisplayViewController.swift
 //
 //  This file is part of LyricsX
-//  Copyright (C) 2017  Xander Deng
+//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -36,6 +36,14 @@ class PreferenceDisplayViewController: NSViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidDisappear() {
+        let fontManger = NSFontManager.shared()
+        if fontManger.target === self {
+            fontManger.target = nil
+            NSFontPanel.shared().close()
+        }
+    }
+    
     override func changeFont(_ sender: Any?) {
         guard let manager = sender as? NSFontManager else {
             return
@@ -52,8 +60,8 @@ class PreferenceDisplayViewController: NSViewController {
     }
     
     @IBAction func showFontPanel(_ sender: NSButton) {
-        let fontManger: NSFontManager = NSFontManager.shared()
-        let fontPanel: NSFontPanel = NSFontPanel.shared()
+        let fontManger = NSFontManager.shared()
+        let fontPanel = NSFontPanel.shared()
         fontManger.target = self
         fontManger.setSelectedFont(font, isMultiple: false)
         fontPanel.makeKeyAndOrderFront(self)

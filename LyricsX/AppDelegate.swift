@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //
 //  This file is part of LyricsX
-//  Copyright (C) 2017  Xander Deng
+//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -128,7 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             checkForMASReview()
         #endif
         
-        statusBarMenu.item(withTag: 202)?.isHidden = MusicPlayerManager.shared.player is iTunes
+        statusBarMenu.item(withTag: 202)?.isHidden = !(MusicPlayerManager.shared.player is iTunes)
         // write to iTunes
         
         MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)

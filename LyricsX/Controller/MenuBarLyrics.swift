@@ -2,7 +2,7 @@
 //  MenuBarLyrics.swift
 //
 //  This file is part of LyricsX
-//  Copyright (C) 2017  Xander Deng
+//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -116,9 +116,43 @@ class MenuBarLyrics: NSObject {
 extension NSStatusItem {
     
     fileprivate var isVisibe: Bool {
-        let windowNumber = (button?.window?.windowNumber).map(CGWindowID.init(_:)) ?? kCGNullWindowID
-        let info = CGWindowListCopyWindowInfo([.optionOnScreenAboveWindow], windowNumber)
-        return CFArrayGetCount(info) == 0
+        guard let buttonFrame = button?.frame,
+            let frame = button?.window?.convertToScreen(buttonFrame) else {
+                return false
+        }
+        
+        let point = CGPoint(x: frame.midX, y: frame.midY)
+        guard let screen = NSScreen.screens()?.first(where: { $0.frame.contains(point) }) else {
+            return false
+        }
+        let carbonPoint = CGPoint(x: point.x, y: screen.frame.height - point.y - 1)
+        
+        guard let element = AXUIElement.copyAt(position: carbonPoint) else {
+            return false
+        }
+        
+        return getpid() == element.pid
+    }
+}
+
+extension AXUIElement {
+    
+    fileprivate static func copyAt(position: NSPoint) -> AXUIElement? {
+        var element: AXUIElement?
+        let error = AXUIElementCopyElementAtPosition(AXUIElementCreateSystemWide(), Float(position.x), Float(position.y), &element)
+        guard error == .success else {
+            return nil
+        }
+        return element
+    }
+    
+    fileprivate var pid: pid_t? {
+        var pid: pid_t = 0
+        let error = AXUIElementGetPid(self, &pid)
+        guard error == .success else {
+            return nil
+        }
+        return pid
     }
 }
 
