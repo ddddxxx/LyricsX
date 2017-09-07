@@ -37,9 +37,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let ident = playerBundleIdentifiers[index]
         musicPlayer = SBApplication(bundleIdentifier: ident)
         
-        let event = NSAppleEventManager.shared().currentAppleEvent
-        let isLaunchedAsLogInItem = event?.eventID == kAEOpenApplication && event?.paramDescriptor(forKeyword: keyAEPropData)?.enumCodeValue == keyAELaunchedAsLogInItem
-        shouldWaitForPlayerQuit = (!isLaunchedAsLogInItem) && (musicPlayer?.isRunning == true)
+        let isLaunchedByMain = (groupDefaults.object(forKey: launchHelperTime) as? Date)?.timeIntervalSinceNow ?? -11 > -10
+        shouldWaitForPlayerQuit = isLaunchedByMain && (musicPlayer?.isRunning == true)
         
         NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: .NSWorkspaceDidLaunchApplication, object: nil)
         NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: .NSWorkspaceDidTerminateApplication, object: nil)
@@ -56,10 +55,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func launchMainAndQuit() -> Never {
-        var pathComponents = (Bundle.main.bundlePath as NSString).pathComponents
-        pathComponents.removeLast(4)
-        let path = NSString.path(withComponents: pathComponents)
-        NSWorkspace.shared().launchApplication(path)
+        var host = Bundle.main.bundleURL
+        for _ in 0..<4 {
+            host.deleteLastPathComponent()
+        }
+        do {
+            try NSWorkspace.shared().launchApplication(at: host, configuration: [:])
+            NSLog("launch LyricsX succeed.")
+        } catch {
+            NSLog("launch LyricsX failed. reason: \(error)")
+        }
         NSApp.terminate(nil)
         abort() // fake invoking, just make compiler happy.
     }
@@ -77,4 +82,5 @@ let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!
 // Preference
 let PreferredPlayerIndex = "PreferredPlayerIndex"
 let LaunchAndQuitWithPlayer = "LaunchAndQuitWithPlayer"
+let launchHelperTime = "launchHelperTime"
 

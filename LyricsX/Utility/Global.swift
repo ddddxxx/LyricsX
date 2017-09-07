@@ -131,4 +131,6 @@ extension UserDefaults.DefaultKeys {
     
     //
     static let isInMASReview: Key<Bool?> =  "isInMASReview"
+    
+    static let launchHelperTime: Key<Date?> = "launchHelperTime"
 }

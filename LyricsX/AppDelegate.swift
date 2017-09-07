@@ -79,7 +79,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.synchronize()
         if defaults[.LaunchAndQuitWithPlayer] {
             let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
-            NSWorkspace.shared().launchApplication(url.path)
+            groupDefaults[.launchHelperTime] = Date()
+            do {
+                try NSWorkspace.shared().launchApplication(at: url, configuration: [:])
+                log("launch LyricsX Helper succeed.")
+            } catch {
+                log("launch LyricsX Helper failed. reason: \(error)")
+            }
         }
     }
     
