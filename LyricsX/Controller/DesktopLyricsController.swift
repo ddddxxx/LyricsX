@@ -27,7 +27,7 @@ class DesktopLyricsWindowController: NSWindowController {
     
     override func windowDidLoad() {
         window?.do {
-            if let mainScreen = NSScreen.main() {
+            if let mainScreen = NSScreen.main {
                 $0.setFrame(mainScreen.visibleFrame, display: true)
             }
             if defaults[.DisableLyricsWhenSreenShot] {
@@ -36,14 +36,14 @@ class DesktopLyricsWindowController: NSWindowController {
             $0.backgroundColor = .clear
             $0.isOpaque = false
             $0.ignoresMouseEvents = true
-            $0.level = Int(CGWindowLevelForKey(.floatingWindow))
+            $0.level = .floating
         }
         
-        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(updateWindowFrame), name: .NSWorkspaceActiveSpaceDidChange, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(updateWindowFrame), name: NSWorkspace.activeSpaceDidChangeNotification, object: nil)
     }
     
-    func updateWindowFrame() {
-        guard let mainScreen = NSScreen.main() else {
+    @objc func updateWindowFrame() {
+        guard let mainScreen = NSScreen.main else {
             return
         }
         let frame = isFullScreen() == true ? mainScreen.frame : mainScreen.visibleFrame
@@ -75,62 +75,98 @@ class DesktopLyricsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lyricsView.do {
-            let transOpt = [NSValueTransformerNameBindingOption: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-            $0.bind("fontName", to: defaults, withKeyPath: .DesktopLyricsFontName)
-            $0.bind("fontSize", to: defaults, withKeyPath: .DesktopLyricsFontSize)
-            $0.bind("textColor", to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
-            $0.bind("shadowColor", to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
-            $0.bind("fillColor", to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
-            $0.bind("shouldHideWithMouse", to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
-        }
+        addObserver()
         makeConstraints()
         
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
-            self.addObserver()
+            NotificationCenter.default.addObserver(self, selector: #selector(self.handlePositionChange), name: .PositionChange, object: nil)
         }
     }
     
+    var lyricsViewObservations: [UserDefaults.KeyValueObservation] = []
+    var chineseConverterObservation: UserDefaults.KeyValueObservation?
+    var lyricsInsetObservation: UserDefaults.KeyValueObservation?
+    
     private func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
         
-        defaults.addObserver(key: .ChineseConversionIndex, initial: true) { _, new in
-            switch new {
-            case 1:
-                self.chineseConverter = ChineseConverter(option: [.simplify])
-            case 2:
-                self.chineseConverter = ChineseConverter(option: [.traditionalize])
+        /*
+        let transOpt = [NSBindingOption.valueTransformerName: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
+        lyricsView.bind(NSBindingName("fontName"), to: defaults, withKeyPath: .DesktopLyricsFontName)
+        lyricsView.bind(NSBindingName("fontSize"), to: defaults, withKeyPath: .DesktopLyricsFontSize)
+        lyricsView.bind(NSBindingName("textColor"), to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
+        lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
+        lyricsView.bind(NSBindingName("fillColor"), to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
+        lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
+         */
+        
+        // FIXME: cocoa binding broken.
+        lyricsViewObservations += [
+            defaults.observe(.DesktopLyricsFontName, options: [.new]) { [weak self] _, change in
+                if let fontName = change.newValue {
+                    self?.lyricsView.fontName = fontName
+                }
+            },
+            defaults.observe(.DesktopLyricsFontSize, options: [.new]) { [weak self] _, change in
+                if let fontSize = change.newValue {
+                    self?.lyricsView.fontSize = fontSize
+                }
+            },
+            defaults.observe(.DesktopLyricsColor, options: [.new]) { [weak self] _, change in
+                if let textColor = change.newValue {
+                    self?.lyricsView.textColor = textColor
+                }
+            },
+            defaults.observe(.DesktopLyricsShadowColor, options: [.new]) { [weak self] _, change in
+                if let shadowColor = change.newValue {
+                    self?.lyricsView.shadowColor = shadowColor
+                }
+            },
+            defaults.observe(.DesktopLyricsBackgroundColor, options: [.new]) { [weak self] _, change in
+                if let fillColor = change.newValue {
+                    self?.lyricsView.fillColor = fillColor
+                }
+            },
+            defaults.observe(.HideLyricsWhenMousePassingBy, options: [.new]) { [weak self] _, change in
+                if let shouldHideWithMouse = change.newValue {
+                    self?.lyricsView.shouldHideWithMouse = shouldHideWithMouse
+                }
+            },
+        ]
+        
+        chineseConverterObservation = defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
+            switch change.newValue {
+            case 1?:
+                self?.chineseConverter = ChineseConverter(option: [.simplify])
+            case 2?:
+                self?.chineseConverter = ChineseConverter(option: [.traditionalize])
             default:
-                self.chineseConverter = nil
+                self?.chineseConverter = nil
             }
         }
         
-        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetTopEnabled)
-        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetBottomEnabled)
-        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetLeftEnabled)
-        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetRightEnabled)
-        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetTop)
-        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetBottom)
-        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetLeft)
-        defaults.addObserver(self, forKeyPath: .DesktopLyricsInsetRight)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard object as? UserDefaults == defaults else {
-            return
+        lyricsInsetObservation = defaults.observe(keys: [
+            .DesktopLyricsInsetTopEnabled,
+            .DesktopLyricsInsetBottomEnabled,
+            .DesktopLyricsInsetLeftEnabled,
+            .DesktopLyricsInsetRightEnabled,
+            .DesktopLyricsInsetTop,
+            .DesktopLyricsInsetBottom,
+            .DesktopLyricsInsetLeft,
+            .DesktopLyricsInsetRight,
+            ], options: []) { [weak self] in
+                NSAnimationContext.runAnimationGroup({ context in
+                    context.duration = 0.2
+                    context.allowsImplicitAnimation = true
+                    context.timingFunction = .mystery
+                    self?.makeConstraints()
+                    self?.view.layoutSubtreeIfNeeded()
+                })
         }
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 0.2
-            context.allowsImplicitAnimation = true
-            context.timingFunction = .mystery
-            makeConstraints()
-            view.layoutSubtreeIfNeeded()
-        })
     }
     
-    func handlePositionChange(_ n: Notification) {
+    @objc func handlePositionChange(_ n: Notification) {
         guard defaults[.DesktopLyricsEnabled] else {
             return
         }
@@ -143,14 +179,14 @@ class DesktopLyricsViewController: NSViewController {
         }
         currentLyricsPosition = lrc?.position ?? 0
         
-        var firstLine = lrc?.sentence ?? ""
+        var firstLine = lrc?.content ?? ""
         var secondLine: String
         if defaults[.DesktopLyricsOneLineMode] {
             secondLine = ""
         } else if defaults[.PreferBilingualLyrics] {
-            secondLine = lrc?.translation ?? next?.sentence ?? ""
+            secondLine = lrc?.translation ?? next?.content ?? ""
         } else {
-            secondLine = next?.sentence ?? ""
+            secondLine = next?.content ?? ""
         }
         
         if let converter = chineseConverter {

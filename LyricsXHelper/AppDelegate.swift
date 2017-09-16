@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         guard groupDefaults.bool(forKey: LaunchAndQuitWithPlayer) else {
-            NSApplication.shared().terminate(nil)
+            NSApplication.shared.terminate(nil)
             abort() // fake invoking, just make compiler happy.
         }
         
@@ -40,11 +40,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let isLaunchedByMain = (groupDefaults.object(forKey: launchHelperTime) as? Date)?.timeIntervalSinceNow ?? -11 > -10
         shouldWaitForPlayerQuit = isLaunchedByMain && (musicPlayer?.isRunning == true)
         
-        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: .NSWorkspaceDidLaunchApplication, object: nil)
-        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: .NSWorkspaceDidTerminateApplication, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: NSWorkspace.didLaunchApplicationNotification, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: NSWorkspace.didTerminateApplicationNotification, object: nil)
     }
     
-    func checkiTunes() {
+    @objc func checkiTunes() {
         if self.shouldWaitForPlayerQuit {
             self.shouldWaitForPlayerQuit = self.musicPlayer?.isRunning == true
             return
@@ -60,7 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             host.deleteLastPathComponent()
         }
         do {
-            try NSWorkspace.shared().launchApplication(at: host, configuration: [:])
+            try NSWorkspace.shared.launchApplication(at: host, configuration: [:])
             NSLog("launch LyricsX succeed.")
         } catch {
             NSLog("launch LyricsX failed. reason: \(error)")

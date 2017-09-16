@@ -37,14 +37,14 @@ class PreferenceGeneralViewController: NSViewController {
     override func viewDidLoad() {
         switch defaults[.PreferredPlayerIndex] {
         case 0:
-            preferiTunes.state = NSOnState
+            preferiTunes.state = .on
         case 1:
-            preferSpotify.state = NSOnState
+            preferSpotify.state = .on
             loadHomonymLrcButton.isEnabled = false
         case 2:
-            preferVox.state = NSOnState
+            preferVox.state = .on
         default:
-            preferAuto.state = NSOnState
+            preferAuto.state = .on
             autoLaunchButton.isEnabled = false
         }
         
@@ -61,7 +61,7 @@ class PreferenceGeneralViewController: NSViewController {
         openPanel.canChooseFiles = false
         openPanel.canChooseDirectories = true
         openPanel.beginSheetModal(for: self.view.window!) { result in
-            if result == NSFileHandlingPanelOKButton {
+            if result == .OK {
                 let url = openPanel.url!
                 defaults.lyricsCustomSavingPath = url
                 self.savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
@@ -77,7 +77,7 @@ class PreferenceGeneralViewController: NSViewController {
         defaults[.PreferredPlayerIndex] = sender.tag
         if sender.tag < 0 {
             autoLaunchButton.isEnabled = false
-            autoLaunchButton.state = NSOffState
+            autoLaunchButton.state = .off
             defaults[.LaunchAndQuitWithPlayer] = false
         } else {
             autoLaunchButton.isEnabled = true
@@ -85,7 +85,7 @@ class PreferenceGeneralViewController: NSViewController {
         
         if sender.tag == 1 {
             loadHomonymLrcButton.isEnabled = false
-            loadHomonymLrcButton.state = NSOffState
+            loadHomonymLrcButton.state = .off
             defaults[.LoadLyricsBesideTrack] = false
         } else {
             loadHomonymLrcButton.isEnabled = true

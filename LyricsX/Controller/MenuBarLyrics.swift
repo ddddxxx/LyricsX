@@ -32,22 +32,21 @@ class MenuBarLyrics: NSObject {
     
     private var lyrics = ""
     
+    var statusItemObservation: UserDefaults.KeyValueObservation?
+    
     private override init() {
-        statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
-        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(updateStatusItem), name: .NSWorkspaceDidActivateApplication, object: nil)
-        defaults.addObserver(key: .MenuBarLyricsEnabled) { _ in
-            self.updateStatusItem()
-        }
-        defaults.addObserver(key: .CombinedMenubarLyrics) { _ in
-            self.updateStatusItem()
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(updateStatusItem), name: NSWorkspace.didActivateApplicationNotification, object: nil)
+        statusItemObservation = defaults.observe(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: []) { [weak self] in
+            self?.updateStatusItem()
         }
         updateStatusItem()
     }
     
-    func handlePositionChange(_ n: Notification) {
-        let lrc = (n.userInfo?["lrc"] as? LyricsLine)?.sentence ?? ""
+    @objc func handlePositionChange(_ n: Notification) {
+        let lrc = (n.userInfo?["lrc"] as? LyricsLine)?.content ?? ""
         if lrc == lyrics {
             return
         }
@@ -56,7 +55,7 @@ class MenuBarLyrics: NSObject {
         updateStatusItem()
     }
     
-    func updateStatusItem() {
+    @objc func updateStatusItem() {
         guard defaults[.MenuBarLyricsEnabled], !lyrics.isEmpty else {
             setImageStatusItem()
             lyricsItem = nil
@@ -74,7 +73,7 @@ class MenuBarLyrics: NSObject {
         setImageStatusItem()
         
         if lyricsItem == nil {
-            lyricsItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+            lyricsItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
             lyricsItem?.highlightMode = false
         }
         lyricsItem?.title = lyrics
@@ -100,7 +99,7 @@ class MenuBarLyrics: NSObject {
     private func setTextStatusItem(string: String) {
         statusItem.title = string
         statusItem.image = nil
-        statusItem.length = NSVariableStatusItemLength
+        statusItem.length = NSStatusItem.variableLength
     }
     
     private func setImageStatusItem() {
@@ -122,7 +121,7 @@ extension NSStatusItem {
         }
         
         let point = CGPoint(x: frame.midX, y: frame.midY)
-        guard let screen = NSScreen.screens()?.first(where: { $0.frame.contains(point) }) else {
+        guard let screen = NSScreen.screens.first(where: { $0.frame.contains(point) }) else {
             return false
         }
         let carbonPoint = CGPoint(x: point.x, y: screen.frame.height - point.y - 1)
@@ -162,7 +161,7 @@ extension String {
         var components: [String] = []
         let range = Range(uncheckedBounds: (startIndex, endIndex))
         enumerateSubstrings(in: range, options: options) { (_, _, r, _) in
-            components.append(self[r])
+            components.append(String(self[r]))
         }
         return components
     }

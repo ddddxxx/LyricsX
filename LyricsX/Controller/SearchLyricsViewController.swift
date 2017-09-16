@@ -25,13 +25,13 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     var imageCache = NSCache<NSURL, NSImage>()
     
-    dynamic var searchArtist = ""
-    dynamic var searchTitle = "" {
+    @objc dynamic var searchArtist = ""
+    @objc dynamic var searchTitle = "" {
         didSet {
             searchButton.isEnabled = searchTitle.characters.count > 0
         }
     }
-    dynamic var selectedIndex = NSIndexSet()
+    @objc dynamic var selectedIndex = NSIndexSet()
     
     let lyricsManager = LyricsProviderManager()
     
@@ -109,11 +109,12 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
         
         switch ident {
-        case "Title":
+        // TODO: .
+        case NSUserInterfaceItemIdentifier("Title"):
             return lyricsManager.lyrics[row].idTags[.title] ?? "[lacking]"
-        case "Artist":
+        case NSUserInterfaceItemIdentifier("Artist"):
             return lyricsManager.lyrics[row].idTags[.artist] ?? "[lacking]"
-        case "Source":
+        case NSUserInterfaceItemIdentifier("Source"):
             return lyricsManager.lyrics[row].metadata.source.rawValue
         default:
             return nil
@@ -128,15 +129,15 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         if self.hideLrcPreviewConstraint?.isActive == true {
             self.expandPreview()
         }
-        self.lyricsPreviewTextView.string = self.lyricsManager.lyrics[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+        self.lyricsPreviewTextView.string = self.lyricsManager.lyrics[index].description
         self.updateImage()
     }
     
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
-        let lrcContent = lyricsManager.lyrics[rowIndexes.first!].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
-        pboard.declareTypes([NSStringPboardType, NSFilesPromisePboardType], owner: self)
-        pboard.setString(lrcContent, forType: NSStringPboardType)
-        pboard.setPropertyList(["lrc"], forType: NSFilesPromisePboardType)
+        let lrcContent = lyricsManager.lyrics[rowIndexes.first!].description
+        pboard.declareTypes([.string, .filePromise], owner: self)
+        pboard.setString(lrcContent, forType: .string)
+        pboard.setPropertyList(["lrc"], forType: .filePromise)
         return true
     }
     
@@ -145,7 +146,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             let fileName = lyricsManager.lyrics[index].fileName ?? "Unknown"
             
             let destURL = dropDestination.appendingPathComponent(fileName)
-            let lrcStr = lyricsManager.lyrics[index].contentString(withMetadata: false, ID3: true, timeTag: true, translation: true)
+            let lrcStr = lyricsManager.lyrics[index].description
             
             do {
                 try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)

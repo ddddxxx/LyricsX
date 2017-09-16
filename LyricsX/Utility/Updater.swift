@@ -82,9 +82,9 @@ func checkForUpdate(force: Bool = false) {
             }
             NSApp.activate(ignoringOtherApps: true)
             let response = alert.runModal()
-            if response == NSAlertFirstButtonReturn {
+            if response == .alertFirstButtonReturn {
                 let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
-                NSWorkspace.shared().open(url)
+                NSWorkspace.shared.open(url)
             }
         }
     }
