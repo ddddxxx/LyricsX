@@ -44,32 +44,6 @@ extension NSObject {
     }
 }
 
-extension Dictionary where Key == String, Value == Any {
-    
-    init?(contentsOf url: URL) {
-        if let data = try? Data(contentsOf: url),
-            let plist = (try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil)) as? [String: Any] {
-            self = plist
-        }
-        return nil
-    }
-    
-    func write(to url: URL) throws {
-        let data = try PropertyListSerialization.data(fromPropertyList: self, format: .xml, options: 0)
-        try data.write(to: url)
-    }
-}
-
-extension UserDefaults {
-    
-    func reset() {
-        for (key, _) in dictionaryRepresentation() {
-            removeObject(forKey: key)
-        }
-    }
-    
-}
-
 extension UserDefaults {
     
     func lyricsSavingPath() -> (URL, security: Bool)? {
@@ -217,5 +191,16 @@ extension LyricsLine {
     
     var translation: String? {
         return attachments[.translation]?.description
+    }
+}
+
+extension NSStoryboard {
+    
+    @available(macOS, obsoleted: 10.13)
+    class var main: NSStoryboard? {
+        guard let mainStoryboardName = Bundle.main.infoDictionary?["NSMainStoryboardFile"] as? String else {
+            return nil
+        }
+        return NSStoryboard(name: NSStoryboard.Name(rawValue: mainStoryboardName), bundle: .main)
     }
 }

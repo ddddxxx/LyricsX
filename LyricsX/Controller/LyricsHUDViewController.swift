@@ -34,7 +34,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
             $0.titleVisibility = .hidden
             $0.styleMask.insert(.borderless)
         }
-        let accessory = mainStoryboard.instantiateController(withIdentifier: .LyricsHUDAccessory) as! NSTitlebarAccessoryViewController
+        let accessory = NSStoryboard.main!.instantiateController(withIdentifier: .LyricsHUDAccessory) as! NSTitlebarAccessoryViewController
         accessory.layoutAttribute = .right
         view.window?.addTitlebarAccessoryViewController(accessory)
         
@@ -113,15 +113,4 @@ class LyricsHUDAccessoryViewController: NSTitlebarAccessoryViewController {
         }
     }
     
-}
-
-extension NSStoryboard {
-    
-    @available(macOS, obsoleted: 10.13)
-    var main: NSStoryboard? {
-        guard let mainStoryboardName = Bundle.main.infoDictionary?["NSMainStoryboardFile"] as? String else {
-            return nil
-        }
-        return NSStoryboard(name: NSStoryboard.Name(rawValue: mainStoryboardName), bundle: .main)
-    }
 }

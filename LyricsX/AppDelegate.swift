@@ -41,7 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         registerUserDefaults()
         Fabric.with([Crashlytics.self])
         
-        desktopLyrics = (mainStoryboard.instantiateController(withIdentifier: .DesktopLyricsWindow) as! NSWindowController)
+        desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! NSWindowController)
         desktopLyrics?.showWindow(nil)
         desktopLyrics?.window?.makeKeyAndOrderFront(nil)
         

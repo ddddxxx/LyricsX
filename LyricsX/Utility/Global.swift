@@ -32,8 +32,6 @@ let groupDefaults = UserDefaults(suiteName: LyricsXGroupIdentifier)!
 let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
 let isFromMacAppStore = (try? Bundle.main.appStoreReceiptURL?.checkResourceIsReachable()) ?? nil == true
 
-let mainStoryboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: .main)
-
 extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
 }

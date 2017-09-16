@@ -109,12 +109,11 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
         
         switch ident {
-        // TODO: .
-        case NSUserInterfaceItemIdentifier("Title"):
+        case .searchResultColumnTitle:
             return lyricsManager.lyrics[row].idTags[.title] ?? "[lacking]"
-        case NSUserInterfaceItemIdentifier("Artist"):
+        case .searchResultColumnArtist:
             return lyricsManager.lyrics[row].idTags[.artist] ?? "[lacking]"
-        case NSUserInterfaceItemIdentifier("Source"):
+        case .searchResultColumnSource:
             return lyricsManager.lyrics[row].metadata.source.rawValue
         default:
             return nil
@@ -206,4 +205,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
     }
     
+}
+
+extension NSUserInterfaceItemIdentifier {
+    fileprivate static let searchResultColumnTitle = NSUserInterfaceItemIdentifier("Title")
+    fileprivate static let searchResultColumnArtist = NSUserInterfaceItemIdentifier("Artist")
+    fileprivate static let searchResultColumnSource = NSUserInterfaceItemIdentifier("Source")
 }
