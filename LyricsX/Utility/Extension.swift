@@ -18,7 +18,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Cocoa
 import LyricsProvider
 
 extension Collection {
@@ -39,39 +39,9 @@ extension Comparable {
 
 extension NSObject {
     
-    func bind<T>(_ binding: String, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [String : Any]? = nil) {
-        bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
+    func bind<T>(_ binding: NSBindingName, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [NSBindingOption : Any]? = nil) {
+        NSObject.bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
     }
-    
-    open func addObserver<T>(_ observer: NSObject, forKeyPath keyPath: UserDefaults.DefaultKey<T>, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer? = nil) {
-        addObserver(observer, forKeyPath: keyPath.rawValue, options: options, context: context)
-    }
-}
-
-extension Dictionary where Key == String, Value == Any {
-    
-    init?(contentsOf url: URL) {
-        if let data = try? Data(contentsOf: url),
-            let plist = (try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil)) as? [String: Any] {
-            self = plist
-        }
-        return nil
-    }
-    
-    func write(to url: URL) throws {
-        let data = try PropertyListSerialization.data(fromPropertyList: self, format: .xml, options: 0)
-        try data.write(to: url)
-    }
-}
-
-extension UserDefaults {
-    
-    func reset() {
-        for (key, _) in dictionaryRepresentation() {
-            removeObject(forKey: key)
-        }
-    }
-    
 }
 
 extension UserDefaults {
@@ -188,11 +158,7 @@ extension Lyrics {
             if fileManager.fileExists(atPath: lrcFileURL.path) {
                 try fileManager.removeItem(at: lrcFileURL)
             }
-            let content = contentString(withMetadata: false,
-                                        ID3: true,
-                                        timeTag: true,
-                                        translation: true)
-            try content.write(to: lrcFileURL, atomically: true, encoding: .utf8)
+            try description.write(to: lrcFileURL, atomically: true, encoding: .utf8)
         } catch {
             log(error.localizedDescription)
             return
@@ -218,5 +184,23 @@ extension Lyrics {
         if defaults[.LyricsSmartFilterEnabled] {
             smartFiltrate()
         }
+    }
+}
+
+extension LyricsLine {
+    
+    var translation: String? {
+        return attachments[.translation]?.description
+    }
+}
+
+extension NSStoryboard {
+    
+    @available(macOS, obsoleted: 10.13)
+    class var main: NSStoryboard? {
+        guard let mainStoryboardName = Bundle.main.infoDictionary?["NSMainStoryboardFile"] as? String else {
+            return nil
+        }
+        return NSStoryboard(name: NSStoryboard.Name(rawValue: mainStoryboardName), bundle: .main)
     }
 }

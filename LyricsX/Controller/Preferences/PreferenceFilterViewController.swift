@@ -22,8 +22,8 @@ import Cocoa
 
 class PreferenceFilterViewController: NSViewController {
     
-    dynamic var directFilter = [FilterKey]()
-    dynamic var colonFilter = [FilterKey]()
+    @objc dynamic var directFilter = [FilterKey]()
+    @objc dynamic var colonFilter = [FilterKey]()
     
     override func viewDidLoad() {
         loadFilter()
@@ -58,7 +58,7 @@ class PreferenceFilterViewController: NSViewController {
 @objc(FilterKey)
 class FilterKey: NSObject, NSCoding {
     
-    var keyword = ""
+    @objc var keyword = ""
     
     override init() {
         keyword = NSLocalizedString("NEW_KEYWORD", comment: "default value when user adding a lyrics filter keyword")

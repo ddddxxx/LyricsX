@@ -48,14 +48,14 @@ class ScrollLyricsView: NSScrollView {
         
         var lrcContent = ""
         var newRanges: [(TimeInterval, NSRange)] = []
-        let enabledLrc = lyrics.lyrics.filter({ $0.enabled && !$0.sentence.isEmpty })
+        let enabledLrc = lyrics.lines.filter({ $0.enabled && !$0.content.isEmpty })
         for line in enabledLrc {
-            var lineStr = line.sentence
+            var lineStr = line.content
             if let trans = line.translation, defaults[.PreferBilingualLyrics] {
                 lineStr += "\n" + trans
             }
             let range = NSRange(location: lrcContent.characters.count, length: lineStr.characters.count)
-            newRanges.append(line.position, range)
+            newRanges.append((line.position, range))
             lrcContent += lineStr
             if line != enabledLrc.last {
                 lrcContent += "\n\n"
@@ -64,12 +64,12 @@ class ScrollLyricsView: NSScrollView {
         ranges = newRanges
         textView.string = lrcContent
         highlightedRange = nil
-        let range = NSMakeRange(0, textView.string!.characters.count)
+        let range = NSMakeRange(0, textView.string.characters.count)
         let style = NSMutableParagraphStyle().with {
             $0.alignment = .center
         }
-        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: range)
-        textView.textStorage?.addAttribute(NSParagraphStyleAttributeName, value: style, range: range)
+        textView.textStorage?.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: range)
+        textView.textStorage?.addAttribute(.paragraphStyle, value: style, range: range)
         needsLayout = true
     }
     
@@ -117,7 +117,7 @@ class ScrollLyricsView: NSScrollView {
         let bounding2 = textView.layoutManager!.boundingRect(forGlyphRange: ranges.last!.1, in: textView.textContainer!)
         let BottomInset = frame.height/2 - bounding2.height/2
         automaticallyAdjustsContentInsets = false
-        contentInsets = EdgeInsets(top: topInset, left: 0, bottom: BottomInset, right: 0)
+        contentInsets = NSEdgeInsets(top: topInset, left: 0, bottom: BottomInset, right: 0)
     }
     
     func highlight(position: TimeInterval) {
@@ -141,8 +141,8 @@ class ScrollLyricsView: NSScrollView {
             return
         }
         
-        highlightedRange.map { textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: $0) }
-        textView.textStorage?.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1), range: range)
+        highlightedRange.map { textView.textStorage?.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: $0) }
+        textView.textStorage?.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1), range: range)
         
         highlightedRange = range
     }
@@ -168,14 +168,6 @@ class ScrollLyricsView: NSScrollView {
         
         let point = NSPoint(x: 0, y: bounding.midY - frame.height / 2)
         textView.scroll(point)
-    }
-    
-}
-
-extension NSRange: Equatable {
-    
-    public static func ==(lhs: NSRange, rhs: NSRange) -> Bool {
-        return lhs.location == rhs.location && lhs.length == rhs.length
     }
     
 }

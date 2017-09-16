@@ -25,10 +25,10 @@ class KaraokeLyricsView: NSBox {
     
     private let stackView = NSStackView()
     
-    dynamic var fontName = "Helvetica Light"
-    dynamic var fontSize = 24 { didSet { updateFontSize() } }
-    dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-    dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1) {
+    @objc dynamic var fontName = "Helvetica Light"
+    @objc dynamic var fontSize = 24 { didSet { updateFontSize() } }
+    @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1) {
         didSet {
             let shadow = NSShadow().then {
                 $0.shadowBlurRadius = 3
@@ -40,7 +40,7 @@ class KaraokeLyricsView: NSBox {
             }
         }
     }
-    dynamic var shouldHideWithMouse = true {
+    @objc dynamic var shouldHideWithMouse = true {
         didSet {
             updateTrackingAreas()
         }
@@ -61,7 +61,7 @@ class KaraokeLyricsView: NSBox {
         let insetY = insetX / 3
         
         stackView.snp.remakeConstraints {
-            $0.edges.equalToSuperview().inset(EdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX))
+            $0.edges.equalToSuperview().inset(NSEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX))
         }
         
         cornerRadius = insetX / 2
@@ -75,9 +75,9 @@ class KaraokeLyricsView: NSBox {
             $0.shadowOffset = .zero
         }
         return NSTextField(labelWithString: content).then {
-            $0.bind(NSFontNameBinding, to: self, withKeyPath: #keyPath(fontName))
-            $0.bind(NSFontSizeBinding, to: self, withKeyPath: #keyPath(fontSize))
-            $0.bind(NSTextColorBinding, to: self, withKeyPath: #keyPath(textColor))
+            $0.bind(.fontName, to: self, withKeyPath: #keyPath(fontName))
+            $0.bind(.fontSize, to: self, withKeyPath: #keyPath(fontSize))
+            $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
             $0.shadow = shadow
             $0.alphaValue = 0
             $0.isHidden = true
@@ -146,7 +146,7 @@ class KaraokeLyricsView: NSBox {
             animator().alphaValue = 1
             return
         }
-        let screenPoint = NSEvent.mouseLocation()
+        let screenPoint = NSEvent.mouseLocation
         let windowPoint = window!.convertFromScreen(NSRect(origin: screenPoint, size: .zero)).origin
         let viewPoint = convert(windowPoint, from: nil)
         if bounds.contains(viewPoint) {

@@ -30,7 +30,7 @@ class DragNDropView: NSView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        register(forDraggedTypes: [NSStringPboardType, NSFilenamesPboardType])
+        registerForDraggedTypes([.string, .lrcFileURL])
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
@@ -44,14 +44,14 @@ class DragNDropView: NSView {
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         let pboard = sender.draggingPasteboard()
         
-        if pboard.types?.contains(NSStringPboardType) == true,
-            let str = pboard.string(forType: NSStringPboardType) {
+        if pboard.types?.contains(.string) == true,
+            let str = pboard.string(forType: .string) {
             dragDelegate?.dragFinished(content: str)
             return true
         }
         
-        if pboard.types?.contains(NSFilenamesPboardType) == true,
-            let files = pboard.propertyList(forType: NSFilenamesPboardType) as? [Any],
+        if pboard.types?.contains(.lrcFileURL) == true,
+            let files = pboard.propertyList(forType: .lrcFileURL) as? [Any],
             let path = files.first as? String,
             let str = try? String(contentsOf: URL(fileURLWithPath: path)) {
             dragDelegate?.dragFinished(content: str)
@@ -61,4 +61,8 @@ class DragNDropView: NSView {
         return false
     }
     
+}
+
+extension NSPasteboard.PasteboardType {
+    static let lrcFileURL = NSPasteboard.PasteboardType.fileNameType(forPathExtension: "lrc")!
 }

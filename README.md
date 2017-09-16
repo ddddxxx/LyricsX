@@ -60,7 +60,6 @@ LyricsX is available on the Mac App Store.
 - [SwiftyOpenCC](https://github.com/ddddxxx/SwiftyOpenCC)
 - [GenericID](https://github.com/ddddxxx/GenericID)
 - [Semver](https://github.com/ddddxxx/Semver)
-- [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [SnapKit](https://github.com/SnapKit/SnapKit)
 - [Then](https://github.com/devxoul/Then)
 

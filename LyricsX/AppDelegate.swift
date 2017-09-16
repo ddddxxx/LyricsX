@@ -23,13 +23,12 @@ import ServiceManagement
 import Fabric
 import Crashlytics
 import MASShortcut
-import Then
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     static var shared: AppDelegate? {
-        return NSApplication.shared().delegate as? AppDelegate
+        return NSApplication.shared.delegate as? AppDelegate
     }
     
     @IBOutlet weak var lyricsOffsetTextField: NSTextField!
@@ -42,7 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         registerUserDefaults()
         Fabric.with([Crashlytics.self])
         
-        desktopLyrics = NSStoryboard.main().instantiateController(withIdentifier: .DesktopLyricsWindow)
+        desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! NSWindowController)
         desktopLyrics?.showWindow(nil)
         desktopLyrics?.window?.makeKeyAndOrderFront(nil)
         
@@ -50,8 +49,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
         
         let controller = AppController.shared
-        lyricsOffsetStepper.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
-        lyricsOffsetTextField.bind(NSValueBinding, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSContinuouslyUpdatesValueBindingOption: true])
+        lyricsOffsetStepper.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSBindingOption.continuouslyUpdatesValue: true])
+        lyricsOffsetTextField.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
         
         setupShortcuts()
         
@@ -65,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             UserDefaults.DefaultKeys.PreferredPlayerIndex.rawValue
         ]
         sharedKeys.forEach {
-            groupDefaults.bind($0, to: defaults, withKeyPath: $0)
+            groupDefaults.bind(NSBindingName($0), to: defaults, withKeyPath: $0)
         }
         
         #if IS_FOR_MAS
@@ -79,15 +78,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.synchronize()
         if defaults[.LaunchAndQuitWithPlayer] {
             let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
-            NSWorkspace.shared().launchApplication(url.path)
+            groupDefaults[.launchHelperTime] = Date()
+            do {
+                try NSWorkspace.shared.launchApplication(at: url, configuration: [:])
+                log("launch LyricsX Helper succeed.")
+            } catch {
+                log("launch LyricsX Helper failed. reason: \(error)")
+            }
         }
     }
     
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         switch menuItem.identifier {
-        case "WriteToiTunes"?:
+        case .WriteToiTunes?:
             return MusicPlayerManager.shared.player is iTunes && AppController.shared.currentLyrics != nil
-        case "WrongLyrics"?:
+        case .WrongLyrics?:
             return AppController.shared.currentLyrics != nil
         default:
             return true
@@ -162,12 +167,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func registerUserDefaults() {
         let defaultsUrl = Bundle.main.url(forResource: "UserDefaults", withExtension: "plist")!
-        var defaults = NSDictionary(contentsOf: defaultsUrl) as! [String: AnyObject]
-        defaults["DesktopLyricsColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) as AnyObject
-        defaults["DesktopLyricsShadowColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject
-        defaults["DesktopLyricsBackgroundColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject
-        UserDefaults.standard.register(defaults: defaults)
+        let d = NSDictionary(contentsOf: defaultsUrl) as! [String: Any]
+        defaults.register(defaults: d)
+        defaults.register(defaults: [
+            .DesktopLyricsColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+            .DesktopLyricsShadowColor: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1),
+            .DesktopLyricsBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279),
+            ])
     }
+}
+
+extension NSUserInterfaceItemIdentifier {
+    
+    fileprivate static let WriteToiTunes = NSUserInterfaceItemIdentifier("WriteToiTunes")
+    fileprivate static let WrongLyrics = NSUserInterfaceItemIdentifier("WrongLyrics")
 }
 
 extension MASShortcutBinder {

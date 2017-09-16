@@ -40,9 +40,9 @@ func log(_ message: @autoclosure () -> String, file: StaticString = #file, line:
     NSLog("\(file):\(line): \(message())")
 }
 
-extension NSStoryboard.Identifiers {
-    static let DesktopLyricsWindow: ID<NSWindowController> = "DesktopLyricsWindow"
-    static let LyricsHUDAccessory: ID<LyricsHUDAccessoryViewController> = "LyricsHUDAccessory"
+extension NSStoryboard.SceneIdentifier {
+    static let DesktopLyricsWindow = NSStoryboard.SceneIdentifier("DesktopLyricsWindow")
+    static let LyricsHUDAccessory = NSStoryboard.SceneIdentifier("LyricsHUDAccessory")
 }
 
 // MARK: - Notification Name
@@ -100,12 +100,12 @@ extension UserDefaults.DefaultKeys {
     static let DesktopLyricsInsetLeft: Key<Int>         = "DesktopLyricsInsetLeft"
     static let DesktopLyricsInsetRight: Key<Int>        = "DesktopLyricsInsetRight"
     
-    static let DesktopLyricsFontName: Key<String?>      = "DesktopLyricsFontName"
+    static let DesktopLyricsFontName: Key<String>       = "DesktopLyricsFontName"
     static let DesktopLyricsFontSize: Key<Int>          = "DesktopLyricsFontSize"
     
-    static let DesktopLyricsColor: Key<NSColor>             = "DesktopLyricsColor"
-    static let DesktopLyricsShadowColor: Key<NSColor>       = "DesktopLyricsShadowColor"
-    static let DesktopLyricsBackgroundColor: Key<NSColor>   = "DesktopLyricsBackgroundColor"
+    static let DesktopLyricsColor: ArchivedKey<NSColor>             = "DesktopLyricsColor"
+    static let DesktopLyricsShadowColor: ArchivedKey<NSColor>       = "DesktopLyricsShadowColor"
+    static let DesktopLyricsBackgroundColor: ArchivedKey<NSColor>   = "DesktopLyricsBackgroundColor"
     
     static let DisplayLyricsWithTag: Key<Bool>      = "DisplayLyricsWithTag"
     
@@ -131,4 +131,6 @@ extension UserDefaults.DefaultKeys {
     
     //
     static let isInMASReview: Key<Bool?> =  "isInMASReview"
+    
+    static let launchHelperTime: Key<Date?> = "launchHelperTime"
 }

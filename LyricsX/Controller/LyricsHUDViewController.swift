@@ -26,7 +26,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
     @IBOutlet weak var noLyricsLabel: NSTextField!
     
-    dynamic var isTracking = true
+    @objc dynamic var isTracking = true
     
     override func awakeFromNib() {
         view.window?.do {
@@ -34,20 +34,18 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
             $0.titleVisibility = .hidden
             $0.styleMask.insert(.borderless)
         }
-        let accessory = NSStoryboard.main().instantiateController(withIdentifier: .LyricsHUDAccessory).then {
-            $0.layoutAttribute = .right
-        }
+        let accessory = NSStoryboard.main!.instantiateController(withIdentifier: .LyricsHUDAccessory) as! NSTitlebarAccessoryViewController
+        accessory.layoutAttribute = .right
         view.window?.addTitlebarAccessoryViewController(accessory)
         
         dragNDropView.dragDelegate = self
         lyricsScrollView.delegate = self
         lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
-        NotificationCenter.default.do {
-            $0.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
-            $0.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
-            $0.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: .NSScrollViewWillStartLiveScroll, object: lyricsScrollView)
-        }
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
+        nc.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
+        nc.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView)
     }
     
     override func viewWillAppear() {
@@ -66,7 +64,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     
     // MARK: - Handler
     
-    func handleLyricsChange(_ n: Notification) {
+    @objc func handleLyricsChange(_ n: Notification) {
         DispatchQueue.main.async {
             let newLyrics = AppController.shared.currentLyrics
             self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
@@ -74,7 +72,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         }
     }
     
-    func handlePositionChange(_ n: Notification) {
+    @objc func handlePositionChange(_ n: Notification) {
         guard var pos = n.userInfo?["position"] as? TimeInterval else {
             return
         }
@@ -93,7 +91,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         }
     }
     
-    func handleScrollViewWillStartScroll(_ n: Notification) {
+    @objc func handleScrollViewWillStartScroll(_ n: Notification) {
         isTracking = false
     }
     
@@ -108,10 +106,10 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
 class LyricsHUDAccessoryViewController: NSTitlebarAccessoryViewController {
     
     @IBAction func lockAction(_ sender: NSButton) {
-        if sender.state == NSOnState {
-            view.window?.level = Int(CGWindowLevelForKey(.modalPanelWindow))
+        if sender.state == .on {
+            view.window?.level = .modalPanel
         } else {
-            view.window?.level = Int(CGWindowLevelForKey(.normalWindow))
+            view.window?.level = .normal
         }
     }
     
