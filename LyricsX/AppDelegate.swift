@@ -167,11 +167,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func registerUserDefaults() {
         let defaultsUrl = Bundle.main.url(forResource: "UserDefaults", withExtension: "plist")!
-        var defaults = NSDictionary(contentsOf: defaultsUrl) as! [String: AnyObject]
-        defaults["DesktopLyricsColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) as AnyObject
-        defaults["DesktopLyricsShadowColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)) as AnyObject
-        defaults["DesktopLyricsBackgroundColor"] = NSKeyedArchiver.archivedData(withRootObject: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279)) as AnyObject
-        UserDefaults.standard.register(defaults: defaults)
+        let d = NSDictionary(contentsOf: defaultsUrl) as! [String: Any]
+        defaults.register(defaults: d)
+        defaults.register(defaults: [
+            .DesktopLyricsColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+            .DesktopLyricsShadowColor: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1),
+            .DesktopLyricsBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279),
+            ])
     }
 }
 
