@@ -19,8 +19,6 @@
 		BB34F7E61F21911700B7C484 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34F7E51F21911700B7C484 /* Updater.swift */; };
 		BB34F7E81F2197C800B7C484 /* Semver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F7E71F2197C800B7C484 /* Semver.framework */; };
 		BB34F7E91F2197C800B7C484 /* Semver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F7E71F2197C800B7C484 /* Semver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BB34F7EB1F21997B00B7C484 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F7EA1F21997B00B7C484 /* SwiftyJSON.framework */; };
-		BB34F7EC1F21997B00B7C484 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F7EA1F21997B00B7C484 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141AD1E458BA800A51775 /* AppDelegate.swift */; };
 		BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B11E458BA800A51775 /* Assets.xcassets */; };
 		BB4141B51E458BA900A51775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B31E458BA900A51775 /* Main.storyboard */; };
@@ -68,7 +66,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BB34F7EC1F21997B00B7C484 /* SwiftyJSON.framework in Embed Frameworks */,
 				BB34F7E91F2197C800B7C484 /* Semver.framework in Embed Frameworks */,
 				BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */,
 				BB4FBE761F0F1E440045A8FA /* LyricsProvider.framework in Embed Frameworks */,
@@ -104,7 +101,6 @@
 		BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
 		BB34F7E51F21911700B7C484 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Updater.swift; path = Utility/Updater.swift; sourceTree = "<group>"; };
 		BB34F7E71F2197C800B7C484 /* Semver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Semver.framework; path = Carthage/Build/Mac/Semver.framework; sourceTree = "<group>"; };
-		BB34F7EA1F21997B00B7C484 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BB3D1E911E8A2A2A00CA5B8F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		BB4141AA1E458BA800A51775 /* LyricsX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4141AD1E458BA800A51775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,7 +150,6 @@
 			files = (
 				BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */,
 				BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */,
-				BB34F7EB1F21997B00B7C484 /* SwiftyJSON.framework in Frameworks */,
 				BB34F7E81F2197C800B7C484 /* Semver.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BB4FBE751F0F1E440045A8FA /* LyricsProvider.framework in Frameworks */,
@@ -251,7 +246,6 @@
 				BB58B0831E82B82F00598D4F /* OpenCC.framework */,
 				BB34F7E71F2197C800B7C484 /* Semver.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
-				BB34F7EA1F21997B00B7C484 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
