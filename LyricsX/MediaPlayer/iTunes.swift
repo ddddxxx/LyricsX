@@ -54,9 +54,11 @@ class iTunes: MusicPlayer {
     
     var currentLyrics: String? {
         get {
+            guard isRunning else { return nil }
             return _iTunes.currentTrack?.lyrics as? String
         }
         set {
+            guard isRunning else { return }
             (_iTunes.currentTrack as? SBObject)?.setValue(newValue ?? "", forKey: "lyrics")
         }
     }
@@ -102,11 +104,11 @@ extension iTunesEPlS {
 
 extension iTunesTrack {
     
-    var stringID: String? {
+    private var stringID: String? {
         return id?().description
     }
     
-    var track: MusicTrack? {
+    fileprivate var track: MusicTrack? {
         guard mediaKind == .song else {
             return nil
         }
