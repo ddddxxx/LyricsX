@@ -20,7 +20,7 @@
 
 import Cocoa
 
-class PreferenceDisplayViewController: NSViewController {
+class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
     
     @IBOutlet weak var backgroundColorWell: NSColorWell!
     @IBOutlet weak var lyricsColorWell: NSColorWell!
@@ -33,7 +33,7 @@ class PreferenceDisplayViewController: NSViewController {
         let fontSize = defaults[.DesktopLyricsFontSize]
         font = NSFont(name: fontName, size: CGFloat(fontSize))
         
-        let _ = PreferenceDisplayViewController.swizzler
+        _ = PreferenceDisplayViewController.swizzler
         
         super.viewDidLoad()
     }
@@ -57,7 +57,7 @@ class PreferenceDisplayViewController: NSViewController {
         defaults[.DesktopLyricsFontSize] = Int(font.pointSize)
     }
     
-    static var swizzler: Any? = {
+    static let swizzler: () = {
         let cls = PreferenceDisplayViewController.self
         let sel = #selector(NSObject.validModesForFontPanel)
         let dummySel = #selector(PreferenceDisplayViewController.dummyValidModesForFontPanel)
@@ -67,7 +67,6 @@ class PreferenceDisplayViewController: NSViewController {
                 fatalError("failed to replace method \(sel) in \(cls)")
         }
         class_replaceMethod(cls, sel, dummyIMP, typeEncoding)
-        return nil
     }()
     
     @objc func dummyValidModesForFontPanel(_ fontPanel: NSFontPanel) -> UInt32 {
@@ -76,10 +75,11 @@ class PreferenceDisplayViewController: NSViewController {
     
     @IBAction func showFontPanel(_ sender: NSButton) {
         let fontManger = NSFontManager.shared
-        let fontPanel = NSFontPanel.shared
+        let fontPanel = fontManger.fontPanel(true)
         fontManger.target = self
         fontManger.setSelectedFont(font, isMultiple: false)
-        fontPanel.makeKeyAndOrderFront(self)
+        fontPanel?.delegate = self
+        fontPanel?.makeKeyAndOrderFront(self)
     }
     
 }
