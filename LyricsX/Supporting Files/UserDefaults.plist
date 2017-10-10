@@ -57,9 +57,9 @@
 		<string>InsertSong</string>
 		<string>SoundTrack</string>
 		<string>アニメ</string>
-		<string>www\.</string>
-		<string>\.com</string>
-		<string>\.net</string>
+		<string>www.</string>
+		<string>.com</string>
+		<string>.net</string>
 	</array>
 	<key>LyricsColonFilterKey</key>
 	<array>

@@ -169,21 +169,42 @@ extension Lyrics {
 extension Lyrics {
     
     func filtrate() {
-        guard defaults[.LyricsFilterEnabled] else {
-            return
+        var predicates = defaults[.LyricsDirectFilterKey].map { key in
+            NSPredicate { object, bindings in
+                guard let object = object as? LyricsLine else { return false }
+                return !object.content.contains(key)
+            }
         }
-        
-        let directFilter = defaults[.LyricsDirectFilterKey].joined(separator: "|")
-        let colonFilter = defaults[.LyricsColonFilterKey].joined(separator: "|")
-        let colons = [":", "：", "∶"].joined(separator: "|")
-        let pattern = "\(directFilter)|((\(colonFilter))(\(colons)))"
-        if let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) {
-            filtrate(using: regex)
+        let colonCharacterSet = CharacterSet(charactersIn: ":：∶")
+        predicates += defaults[.LyricsColonFilterKey].map { key in
+            NSPredicate { object, bindings in
+                guard let object = object as? LyricsLine else { return false }
+                return !object.content.components(separatedBy: colonCharacterSet).contains { $0.starts(with: key) }
+            }
         }
-        
         if defaults[.LyricsSmartFilterEnabled] {
-            smartFiltrate()
+            let smartPredicate = NSPredicate { (object, _) -> Bool in
+                guard let object = object as? LyricsLine else {
+                    return false
+                }
+                let content = object.content
+                if let idTagTitle = self.idTags[.title],
+                    let idTagArtist = self.idTags[.artist],
+                    content.contains(idTagTitle),
+                    content.contains(idTagArtist) {
+                    return false
+                } else if let iTunesTitle = self.metadata.title,
+                    let iTunesArtist = self.metadata.artist,
+                    content.contains(iTunesTitle),
+                    content.contains(iTunesArtist) {
+                    return false
+                }
+                return true
+            }
+            predicates.append(smartPredicate)
         }
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        filtrate(isIncluded: predicate)
     }
 }
 
