@@ -158,7 +158,7 @@ extension Lyrics {
             if fileManager.fileExists(atPath: lrcFileURL.path) {
                 try fileManager.removeItem(at: lrcFileURL)
             }
-            try description.write(to: lrcFileURL, atomically: true, encoding: .utf8)
+            try legacyDescription.write(to: lrcFileURL, atomically: true, encoding: .utf8)
         } catch {
             log(error.localizedDescription)
             return
@@ -205,13 +205,6 @@ extension Lyrics {
         }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         filtrate(isIncluded: predicate)
-    }
-}
-
-extension LyricsLine {
-    
-    var translation: String? {
-        return attachments[.translation]?.description
     }
 }
 
