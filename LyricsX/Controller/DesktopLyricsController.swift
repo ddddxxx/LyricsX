@@ -25,18 +25,25 @@ import LyricsProvider
 
 class DesktopLyricsWindowController: NSWindowController {
     
+    var disableLyricsWhenSreenShotObservation: UserDefaults.KeyValueObservation?
+    
     override func windowDidLoad() {
         window?.do {
             if let mainScreen = NSScreen.main {
                 $0.setFrame(mainScreen.visibleFrame, display: true)
             }
-            if defaults[.DisableLyricsWhenSreenShot] {
-                $0.sharingType = .none
-            }
             $0.backgroundColor = .clear
             $0.isOpaque = false
             $0.ignoresMouseEvents = true
             $0.level = .floating
+        }
+        
+        disableLyricsWhenSreenShotObservation = defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] defaults, change in
+            switch change.newValue {
+            case true?: self?.window?.sharingType = .none
+            case false?: self?.window?.sharingType = .readOnly
+            case nil: break
+            }
         }
         
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(updateWindowFrame), name: NSWorkspace.activeSpaceDidChangeNotification, object: nil)
