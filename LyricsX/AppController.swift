@@ -142,8 +142,8 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         let lrc = lyrics[position]
         
         let info = [
-            "lrc": lrc.current as Any,
-            "next": lrc.next as Any,
+            "lrc": lrc.currentLineIndex.map {lyrics.lines[$0]} as Any,
+            "next": lrc.nextLineIndex.map {lyrics.lines[$0]} as Any,
             "position": position as Any,
         ]
         NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)

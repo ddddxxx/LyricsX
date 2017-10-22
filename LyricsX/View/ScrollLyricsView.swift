@@ -23,6 +23,7 @@ import LyricsProvider
 
 protocol ScrollLyricsViewDelegate: class {
     func doubleClickLyricsLine(at position: TimeInterval)
+    func scrollWheelDidScroll()
 }
 
 class ScrollLyricsView: NSScrollView {
@@ -93,6 +94,10 @@ class ScrollLyricsView: NSScrollView {
         if let (position, _) = clickRange.first {
             delegate?.doubleClickLyricsLine(at: position)
         }
+    }
+    
+    override func scrollWheel(with event: NSEvent) {
+        delegate?.scrollWheelDidScroll()
     }
     
     private func updateFadeEdgeMask() {

@@ -128,12 +128,12 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         if self.hideLrcPreviewConstraint?.isActive == true {
             self.expandPreview()
         }
-        self.lyricsPreviewTextView.string = self.lyricsManager.lyrics[index].description
+        self.lyricsPreviewTextView.string = self.lyricsManager.lyrics[index].legacyDescription
         self.updateImage()
     }
     
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
-        let lrcContent = lyricsManager.lyrics[rowIndexes.first!].description
+        let lrcContent = lyricsManager.lyrics[rowIndexes.first!].legacyDescription
         pboard.declareTypes([.string, .filePromise], owner: self)
         pboard.setString(lrcContent, forType: .string)
         pboard.setPropertyList(["lrc"], forType: .filePromise)
@@ -145,7 +145,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             let fileName = lyricsManager.lyrics[index].fileName ?? "Unknown"
             
             let destURL = dropDestination.appendingPathComponent(fileName)
-            let lrcStr = lyricsManager.lyrics[index].description
+            let lrcStr = lyricsManager.lyrics[index].legacyDescription
             
             do {
                 try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)

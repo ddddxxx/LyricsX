@@ -1,6 +1,6 @@
 github "SnapKit/SnapKit" "3.2.0"
 github "ddddxxx/GenericID" "v0.2.1"
-github "ddddxxx/LyricsProvider" "v0.2.0"
+github "ddddxxx/LyricsProvider" "7e92f6c3c36c561734a8533511f929fea162d269"
 github "ddddxxx/Semver" "v0.1.0"
 github "ddddxxx/SwiftyOpenCC" "v0.2.1"
 github "shpakovski/MASShortcut" "2.3.6"
