@@ -62,6 +62,10 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         isTracking = true
     }
     
+    func scrollWheelDidScroll() {
+        isTracking = false
+    }
+    
     // MARK: - Handler
     
     @objc func handleLyricsChange(_ n: Notification) {
