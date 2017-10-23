@@ -80,6 +80,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         let lrc = lyricsManager.lyrics[index]
         AppController.shared.currentLyrics = lrc
+        if defaults[.WriteToiTunesAutomatically] {
+            AppController.shared.writeToiTunes(overwrite: true)
+        }
     }
     
     // MARK: - LyricsSourceDelegate
