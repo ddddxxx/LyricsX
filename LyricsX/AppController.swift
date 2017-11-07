@@ -81,7 +81,7 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
                 return content
             }.joined(separator: "\n")
             let regex = try! NSRegularExpression(pattern: "\\n{3}")
-            let replaced = regex.stringByReplacingMatches(in: lyrics, range: NSRange(location: 0, length: lyrics.characters.count), withTemplate: "\n\n")
+            let replaced = regex.stringByReplacingMatches(in: lyrics, range: NSRange(location: 0, length: lyrics.utf16.count), withTemplate: "\n\n")
             player.currentLyrics = replaced.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
         }
     }

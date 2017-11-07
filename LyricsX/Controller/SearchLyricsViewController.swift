@@ -28,7 +28,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @objc dynamic var searchArtist = ""
     @objc dynamic var searchTitle = "" {
         didSet {
-            searchButton.isEnabled = searchTitle.characters.count > 0
+            searchButton.isEnabled = searchTitle.count > 0
         }
     }
     @objc dynamic var selectedIndex = NSIndexSet()
