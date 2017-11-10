@@ -1,5 +1,7 @@
 github "ddddxxx/LyricsProvider"
 
+github "ddddxxx/MusicPlayer"
+
 github "ddddxxx/GenericID"
 
 github "ddddxxx/Semver"

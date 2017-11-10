@@ -57,6 +57,9 @@
 		BBE557971EC0291E00F1EC31 /* GenericID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE557961EC0291E00F1EC31 /* GenericID.framework */; };
 		BBE557981EC0291E00F1EC31 /* GenericID.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBE557961EC0291E00F1EC31 /* GenericID.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BBE8FC751F6BEA6200122AFA /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE8FC741F6BEA6200122AFA /* Then.swift */; };
+		BBF83E211FB5501A00D76E5B /* MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; };
+		BBF83E221FB5502000D76E5B /* MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; };
+		BBF83E231FB5502000D76E5B /* MusicPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +71,7 @@
 			files = (
 				BB34F7E91F2197C800B7C484 /* Semver.framework in Embed Frameworks */,
 				BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */,
+				BBF83E231FB5502000D76E5B /* MusicPlayer.framework in Embed Frameworks */,
 				BB4FBE761F0F1E440045A8FA /* LyricsProvider.framework in Embed Frameworks */,
 				BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */,
 				BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */,
@@ -141,6 +145,7 @@
 		BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DragNDropView.swift; path = View/DragNDropView.swift; sourceTree = "<group>"; };
 		BBE557961EC0291E00F1EC31 /* GenericID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GenericID.framework; path = Carthage/Build/Mac/GenericID.framework; sourceTree = "<group>"; };
 		BBE8FC741F6BEA6200122AFA /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
+		BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MusicPlayer.framework; path = Carthage/Build/Mac/MusicPlayer.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,9 +156,11 @@
 				BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */,
 				BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */,
 				BB34F7E81F2197C800B7C484 /* Semver.framework in Frameworks */,
+				BBF83E221FB5502000D76E5B /* MusicPlayer.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BB4FBE751F0F1E440045A8FA /* LyricsProvider.framework in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
+				BBF83E211FB5501A00D76E5B /* MusicPlayer.framework in Frameworks */,
 				BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */,
 				BBE557971EC0291E00F1EC31 /* GenericID.framework in Frameworks */,
 			);
@@ -243,6 +250,7 @@
 				BBE557961EC0291E00F1EC31 /* GenericID.framework */,
 				BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */,
 				BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */,
+				BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */,
 				BB58B0831E82B82F00598D4F /* OpenCC.framework */,
 				BB34F7E71F2197C800B7C484 /* Semver.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
