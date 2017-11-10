@@ -21,8 +21,9 @@
 import Foundation
 import AppKit
 import LyricsProvider
+import MusicPlayer
 
-class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
+class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     
     static let shared = AppController()
     
@@ -60,6 +61,8 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         MusicPlayerManager.shared.delegate = self
         lyricsManager.consumer = self
         
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
+        
         currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
     }
     
@@ -86,15 +89,19 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         }
     }
     
-    // MARK: MediaPlayerDelegate
+    // MARK: MusicPlayerManagerDelegate
     
     func runningStateChanged(isRunning: Bool) {
-        if defaults[.LaunchAndQuitWithPlayer], !isRunning {
+        if !isRunning, defaults[.LaunchAndQuitWithPlayer] {
             NSApplication.shared.terminate(nil)
         }
     }
     
-    func playerStateChanged(state: MusicPlayerState) {
+    func currentPlayerChanged(player: MusicPlayer?) {
+        currentTrackChanged(track: player?.currentTrack)
+    }
+    
+    func playbackStateChanged(state: MusicPlaybackState) {
         if state != .playing, defaults[.DisableLyricsWhenPaused] {
             NotificationCenter.default.post(name: .PositionChange, object: nil)
         }
@@ -107,8 +114,8 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         guard let track = track else {
             return
         }
-        let title = track.name
         // FIXME: deal with optional value
+        let title = track.title ?? ""
         let artist = track.artist ?? ""
         
         guard !defaults[.NoSearchingTrackIds].contains(track.id) else {
@@ -135,8 +142,11 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         }
     }
     
-    func playerPositionChanged(position: TimeInterval) {
-        guard let lyrics = currentLyrics else {
+    func playerPositionMutated(position: TimeInterval) {}
+    
+    @objc func updatePlayerPosition() {
+        guard let position = MusicPlayerManager.shared.player?.playerPosition,
+            let lyrics = currentLyrics else {
             return
         }
         let lrc = lyrics[position]
@@ -160,8 +170,8 @@ class AppController: NSObject, MusicPlayerDelegate, LyricsConsuming {
         #endif
         
         let track = MusicPlayerManager.shared.player?.currentTrack
-        guard lyrics.metadata.title == track?.name,
-            lyrics.metadata.artist == track?.artist else {
+        guard lyrics.metadata.title == track?.title ?? "",
+            lyrics.metadata.artist == track?.artist ?? "" else {
             return
         }
         
@@ -192,7 +202,7 @@ extension AppController {
         if let lrc = Lyrics(lyricsString),
             let track = MusicPlayerManager.shared.player?.currentTrack {
             lrc.metadata.source = .Import
-            lrc.metadata.title = track.name
+            lrc.metadata.title = track.title
             lrc.metadata.artist = track.artist
             currentLyrics = lrc
         }

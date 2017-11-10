@@ -19,6 +19,7 @@
 //
 
 import Cocoa
+import MusicPlayer
 
 class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragNDropDelegate {
     
