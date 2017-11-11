@@ -23,6 +23,7 @@ import ServiceManagement
 import Fabric
 import Crashlytics
 import MASShortcut
+import MusicPlayer
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

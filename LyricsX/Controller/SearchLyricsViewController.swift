@@ -20,6 +20,7 @@
 
 import Cocoa
 import LyricsProvider
+import MusicPlayer
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsConsuming {
     
@@ -51,7 +52,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         let track = MusicPlayerManager.shared.player?.currentTrack
         searchArtist = track?.artist ?? ""
-        searchTitle = track?.name ?? ""
+        searchTitle = track?.title ?? ""
         searchAction(nil)
         
         super.viewDidLoad()
@@ -62,7 +63,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         progressIndicator.isHidden = false
         let track = MusicPlayerManager.shared.player?.currentTrack
         let duration = track?.duration ?? 0
-        let title = track?.name ?? ""
+        let title = track?.title ?? ""
         let artist = track?.artist ?? ""
         lyricsManager.searchLyrics(searchTitle: searchTitle, searchArtist: searchArtist, title: title, artist: artist, duration: duration)
         tableView.reloadData()
