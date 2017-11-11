@@ -26,7 +26,7 @@ class AudirvanaPlus: MusicPlayer {
         }
         set {
             guard isRunning else { return }
-            //TODO
+            _audirvanaPlus.setPlayerPosition?(newValue)
         }
     }
     
@@ -55,7 +55,7 @@ extension AudirvanaPlusPlayerStatus {
 extension AudirvanaPlusApplication {
     var track: MusicTrack? {
         guard let name = playingTrackTitle ?? nil else {
-                return nil
+            return nil
         }
         
         //FIXME: Audirvana Plus provides no id
