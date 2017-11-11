@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045A73551FB6C08500CC2D0C /* AudirvanaPlusBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A73541FB6C08500CC2D0C /* AudirvanaPlusBridge.swift */; };
+		045A73571FB6C26D00CC2D0C /* AudirvanaPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A73561FB6C26D00CC2D0C /* AudirvanaPlus.swift */; };
 		BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */; };
 		BB0B296A1E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */; };
 		BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B296B1E80CB0600B1D6C9 /* AboutViewController.swift */; };
@@ -90,6 +92,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		045A73541FB6C08500CC2D0C /* AudirvanaPlusBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudirvanaPlusBridge.swift; path = MediaPlayer/AudirvanaPlusBridge.swift; sourceTree = "<group>"; };
+		045A73561FB6C26D00CC2D0C /* AudirvanaPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudirvanaPlus.swift; path = MediaPlayer/AudirvanaPlus.swift; sourceTree = "<group>"; };
 		BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KaraokeLyricsView.swift; path = View/KaraokeLyricsView.swift; sourceTree = "<group>"; };
 		BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferenceFilterViewController.swift; path = Controller/Preferences/PreferenceFilterViewController.swift; sourceTree = "<group>"; };
 		BB0B296B1E80CB0600B1D6C9 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = Controller/AboutViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +285,7 @@
 				BB4141D71E475DD100A51775 /* iTunesBridge.swift */,
 				BBB8DA3B1E86653700EF0A18 /* SpotifyBridge.swift */,
 				BBB8DA3D1E86657F00EF0A18 /* VoxBridge.swift */,
+				045A73541FB6C08500CC2D0C /* AudirvanaPlusBridge.swift */,
 			);
 			name = ScriptingBridge;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				BBBB6EC41E86B44B003B3ED6 /* iTunes.swift */,
 				BBBB6EC61E86C74F003B3ED6 /* Spotify.swift */,
 				BB60F2FB1E87CF9200BA1FD2 /* Vox.swift */,
+				045A73561FB6C26D00CC2D0C /* AudirvanaPlus.swift */,
 			);
 			name = MusicPlayer;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB4141C01E45B67800A51775 /* DesktopLyricsController.swift in Sources */,
+				045A73571FB6C26D00CC2D0C /* AudirvanaPlus.swift in Sources */,
 				BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */,
 				BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */,
 				BBBB6EC71E86C74F003B3ED6 /* Spotify.swift in Sources */,
@@ -505,6 +512,7 @@
 				BB1B631B1E8CD7CA004CC9E0 /* ScrollLyricsView.swift in Sources */,
 				BBD03C371E9B2C7200EFB975 /* DragNDropView.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
+				045A73551FB6C08500CC2D0C /* AudirvanaPlusBridge.swift in Sources */,
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
 				BBE8FC751F6BEA6200122AFA /* Then.swift in Sources */,
 				BBBB6EC51E86B44B003B3ED6 /* iTunes.swift in Sources */,
