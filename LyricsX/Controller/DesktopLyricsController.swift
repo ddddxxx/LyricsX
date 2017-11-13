@@ -22,6 +22,7 @@ import Cocoa
 import SnapKit
 import OpenCC
 import LyricsProvider
+import MusicPlayer
 
 class DesktopLyricsWindowController: NSWindowController {
     
@@ -174,8 +175,10 @@ class DesktopLyricsViewController: NSViewController {
     }
     
     @objc func handlePositionChange(_ n: Notification) {
-        guard defaults[.DesktopLyricsEnabled] else {
-            return
+        guard defaults[.DesktopLyricsEnabled],
+            !defaults[.DisableLyricsWhenPaused] || MusicPlayerManager.shared.player?.playbackState == .playing else {
+                lyricsView.displayLrc("", secondLine: "")
+                return
         }
         
         let lrc = n.userInfo?["lrc"] as? LyricsLine

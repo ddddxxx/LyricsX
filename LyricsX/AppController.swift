@@ -142,12 +142,9 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         }
     }
     
-    func playerPositionMutated(position: TimeInterval) {}
-    
-    @objc func updatePlayerPosition() {
-        guard let position = MusicPlayerManager.shared.player?.playerPosition,
-            let lyrics = currentLyrics else {
-            return
+    func playerPositionMutated(position: TimeInterval) {
+        guard let lyrics = currentLyrics else {
+                return
         }
         let lrc = lyrics[position]
         
@@ -155,8 +152,15 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
             "lrc": lrc.currentLineIndex.map {lyrics.lines[$0]} as Any,
             "next": lrc.nextLineIndex.map {lyrics.lines[$0]} as Any,
             "position": position as Any,
-        ]
+            ]
         NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
+    }
+    
+    @objc func updatePlayerPosition() {
+        guard let position = MusicPlayerManager.shared.player?.playerPosition else {
+            return
+        }
+        playerPositionMutated(position: position)
     }
     
     // MARK: LyricsSourceDelegate

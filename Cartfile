@@ -1,6 +1,6 @@
 github "ddddxxx/LyricsProvider"
 
-github "ddddxxx/MusicPlayer"
+github "ddddxxx/MusicPlayer" "master"
 
 github "ddddxxx/GenericID"
 
