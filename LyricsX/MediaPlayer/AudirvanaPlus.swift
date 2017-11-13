@@ -57,8 +57,12 @@ extension AudirvanaPlusApplication {
         guard let name = playingTrackTitle ?? nil else {
             return nil
         }
+        let album = playingTrackAlbum ?? nil
+        let artist = playingTrackArtist ?? nil
+        let duration = playingTrackDuration ?? nil
         
-        //FIXME: Audirvana Plus provides no id
-        return MusicTrack(id: name, name: name, album: playingTrackAlbum ?? nil, artist: playingTrackArtist ?? nil, duration: playingTrackDuration.map({TimeInterval($0)}), url: nil)
+        let id = [name, album, artist, String(duration ?? 0)].flatMap{$0}.joined(separator: ":")
+        
+        return MusicTrack(id: id, name: name, album: album, artist: artist, duration: duration.map({TimeInterval($0)}), url: nil)
     }
 }
