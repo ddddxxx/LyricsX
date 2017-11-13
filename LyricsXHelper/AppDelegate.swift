@@ -75,6 +75,7 @@ let playerBundleIdentifiers = [
     "com.apple.iTunes",
     "com.spotify.client",
     "com.coppertino.Vox",
+    "com.audirvana.Audirvana-Plus"
 ]
 
 let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!

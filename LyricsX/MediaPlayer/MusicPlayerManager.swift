@@ -60,6 +60,8 @@ class MusicPlayerManager {
             newPlayer = Spotify.shared
         case 2:
             newPlayer = Vox.shared
+        case 3:
+            newPlayer = AudirvanaPlus.shared
         default:
             newPlayer = autoSelectPlayer()
         }
@@ -127,6 +129,7 @@ class MusicPlayerManager {
             iTunes.shared,
             Spotify.shared,
             Vox.shared,
+            AudirvanaPlus.shared
         ]
         
         return players.first { $0?.playerState == .playing } ?? nil
