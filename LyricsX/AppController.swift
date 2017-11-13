@@ -147,7 +147,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         guard let lyrics = currentLyrics else {
                 return
         }
-        let lrc = lyrics[position]
+        let lrc = lyrics[position + lyrics.timeDelay]
         
         let info = [
             "lrc": lrc.currentLineIndex.map {lyrics.lines[$0]} as Any,
