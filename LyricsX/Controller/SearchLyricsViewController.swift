@@ -20,6 +20,7 @@
 
 import Cocoa
 import LyricsProvider
+import MusicPlayer
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, LyricsConsuming {
     
@@ -28,7 +29,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @objc dynamic var searchArtist = ""
     @objc dynamic var searchTitle = "" {
         didSet {
-            searchButton.isEnabled = searchTitle.characters.count > 0
+            searchButton.isEnabled = searchTitle.count > 0
         }
     }
     @objc dynamic var selectedIndex = NSIndexSet()
@@ -51,7 +52,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         let track = MusicPlayerManager.shared.player?.currentTrack
         searchArtist = track?.artist ?? ""
-        searchTitle = track?.name ?? ""
+        searchTitle = track?.title ?? ""
         searchAction(nil)
         
         super.viewDidLoad()
@@ -62,7 +63,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         progressIndicator.isHidden = false
         let track = MusicPlayerManager.shared.player?.currentTrack
         let duration = track?.duration ?? 0
-        let title = track?.name ?? ""
+        let title = track?.title ?? ""
         let artist = track?.artist ?? ""
         lyricsManager.searchLyrics(searchTitle: searchTitle, searchArtist: searchArtist, title: title, artist: artist, duration: duration)
         tableView.reloadData()
@@ -80,6 +81,9 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         let lrc = lyricsManager.lyrics[index]
         AppController.shared.currentLyrics = lrc
+        if defaults[.WriteToiTunesAutomatically] {
+            AppController.shared.writeToiTunes(overwrite: true)
+        }
     }
     
     // MARK: - LyricsSourceDelegate

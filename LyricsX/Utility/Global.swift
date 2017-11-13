@@ -20,6 +20,7 @@
 
 import Cocoa
 import GenericID
+import MusicPlayer
 
 // NOTE: to build your own product, you need to replace the team identifier to yours
 // and do the same thing in LyricsXHelper
@@ -43,6 +44,10 @@ func log(_ message: @autoclosure () -> String, file: StaticString = #file, line:
 extension NSStoryboard.SceneIdentifier {
     static let DesktopLyricsWindow = NSStoryboard.SceneIdentifier("DesktopLyricsWindow")
     static let LyricsHUDAccessory = NSStoryboard.SceneIdentifier("LyricsHUDAccessory")
+}
+
+extension MusicPlayerManager {
+    static let shared = MusicPlayerManager()
 }
 
 // MARK: - Notification Name

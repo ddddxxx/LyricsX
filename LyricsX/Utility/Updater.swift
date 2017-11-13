@@ -33,7 +33,7 @@ var remoteVersion: Semver? {
         if tag.hasPrefix("v") {
             tag.removeFirst()
         }
-        return try Semver(tag)
+        return Semver(tag)
     } catch {
         log("failed to read remote varsion: \(error)")
         return nil
@@ -43,7 +43,7 @@ var remoteVersion: Semver? {
 var localVersion: Semver {
     let info = Bundle.main.infoDictionary!
     let shortVersion = info["CFBundleShortVersionString"] as! String
-    return try! Semver(shortVersion)
+    return Semver(shortVersion)!
 }
 
 func checkForUpdate(force: Bool = false) {
@@ -68,7 +68,7 @@ func checkForUpdate(force: Bool = false) {
         
         if !force,
             let skipVersionString = defaults[.NotifiedUpdateVersion],
-            let skipVersion = try? Semver(skipVersionString),
+            let skipVersion = Semver(skipVersionString),
             skipVersion >= remote {
             return
         }

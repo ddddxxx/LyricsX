@@ -20,6 +20,7 @@
 
 import Cocoa
 import LyricsProvider
+import MusicPlayer
 
 class MenuBarLyrics: NSObject {
     
@@ -46,6 +47,11 @@ class MenuBarLyrics: NSObject {
     }
     
     @objc func handlePositionChange(_ n: Notification) {
+        guard !defaults[.DisableLyricsWhenPaused] || MusicPlayerManager.shared.player?.playbackState == .playing else {
+            lyrics = ""
+            updateStatusItem()
+            return
+        }
         let lrc = (n.userInfo?["lrc"] as? LyricsLine)?.content ?? ""
         if lrc == lyrics {
             return
