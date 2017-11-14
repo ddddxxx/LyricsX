@@ -61,7 +61,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         MusicPlayerManager.shared.delegate = self
         lyricsManager.consumer = self
         
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
+        let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: .commonModes)
         
         currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
     }
@@ -146,7 +147,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         guard let lyrics = currentLyrics else {
                 return
         }
-        let lrc = lyrics[position]
+        let lrc = lyrics[position + lyrics.timeDelay]
         
         let info = [
             "lrc": lrc.currentLineIndex.map {lyrics.lines[$0]} as Any,
