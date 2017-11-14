@@ -331,3 +331,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
 "kP4-4q-ed9.title" = "搜索歌词:";
+
+/* Class = "NSButtonCell"; title = "Audirvana Plus"; ObjectID = "epr-a0-YuQ"; */
+"epr-a0-YuQ.title" = "Audirvana Plus";
