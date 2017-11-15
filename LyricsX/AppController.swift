@@ -36,15 +36,16 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         didSet {
             currentLyrics?.filtrate()
             didChangeValue(forKey: "lyricsOffset")
-            NotificationCenter.default.post(name: .LyricsChange, object: nil)
+            NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
             if currentLyrics?.metadata.source != .Local {
                 currentLyrics?.saveToLocal()
             }
-            if currentLyrics == nil {
-                NotificationCenter.default.post(name: .PositionChange, object: nil)
-            }
         }
     }
+    
+    var currentLineIndex: Int?
+    
+    var timer: Timer?
     
     @objc dynamic var lyricsOffset: Int {
         get {
@@ -61,10 +62,10 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         MusicPlayerManager.shared.delegate = self
         lyricsManager.consumer = self
         
-        let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: .commonModes)
+        timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer!, forMode: .commonModes)
         
-        currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
+        self.currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
     }
     
     func writeToiTunes(overwrite: Bool) {
@@ -103,15 +104,17 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     }
     
     func playbackStateChanged(state: MusicPlaybackState) {
-        if state != .playing, defaults[.DisableLyricsWhenPaused] {
-            NotificationCenter.default.post(name: .PositionChange, object: nil)
+        NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+        if state == .playing {
+            timer?.fireDate = Date()
+        } else {
+            timer?.fireDate = .distantFuture
         }
     }
     
     func currentTrackChanged(track: MusicTrack?) {
         currentLyrics = nil
-        let info = ["lrc": "", "next": ""]
-        NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
+        currentLineIndex = nil
         guard let track = track else {
             return
         }
@@ -145,16 +148,13 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     
     func playerPositionMutated(position: TimeInterval) {
         guard let lyrics = currentLyrics else {
-                return
+            return
         }
-        let lrc = lyrics[position + lyrics.timeDelay]
-        
-        let info = [
-            "lrc": lrc.currentLineIndex.map {lyrics.lines[$0]} as Any,
-            "next": lrc.nextLineIndex.map {lyrics.lines[$0]} as Any,
-            "position": position as Any,
-            ]
-        NotificationCenter.default.post(name: .PositionChange, object: nil, userInfo: info)
+        let index = lyrics[position + lyrics.timeDelay].currentLineIndex
+        if currentLineIndex != index {
+            currentLineIndex = index
+            NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+        }
     }
     
     @objc func updatePlayerPosition() {

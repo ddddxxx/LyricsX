@@ -44,8 +44,8 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
-        nc.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
+        nc.addObserver(self, selector: #selector(handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
+        nc.addObserver(self, selector: #selector(handleLyricsChange), name: .currentLyricsChange, object: nil)
         nc.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView)
     }
     
@@ -71,7 +71,7 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     
     // MARK: - Handler
     
-    @objc func handleLyricsChange(_ n: Notification) {
+    @objc func handleLyricsChange() {
         DispatchQueue.main.async {
             let newLyrics = AppController.shared.currentLyrics
             self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
@@ -79,8 +79,8 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         }
     }
     
-    @objc func handlePositionChange(_ n: Notification) {
-        guard var pos = n.userInfo?["position"] as? TimeInterval else {
+    @objc func handleLyricsDisplay() {
+        guard var pos = MusicPlayerManager.shared.player?.playerPosition else {
             return
         }
         pos += AppController.shared.currentLyrics?.timeDelay ?? 0

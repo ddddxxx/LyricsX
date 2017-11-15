@@ -78,7 +78,7 @@ class DesktopLyricsViewController: NSViewController {
     
     private var chineseConverter: ChineseConverter?
     
-    var currentLyricsPosition: TimeInterval = 0
+    var currentLineIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +89,8 @@ class DesktopLyricsViewController: NSViewController {
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
-            NotificationCenter.default.addObserver(self, selector: #selector(self.handlePositionChange), name: .PositionChange, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
         }
     }
     
@@ -138,27 +139,29 @@ class DesktopLyricsViewController: NSViewController {
         }
     }
     
-    @objc func handlePositionChange(_ n: Notification) {
+    @objc func handleLyricsDisplay() {
         guard defaults[.DesktopLyricsEnabled],
-            !defaults[.DisableLyricsWhenPaused] || MusicPlayerManager.shared.player?.playbackState == .playing else {
+            !defaults[.DisableLyricsWhenPaused] || MusicPlayerManager.shared.player?.playbackState == .playing,
+            let lyrics = AppController.shared.currentLyrics,
+            let index = AppController.shared.currentLineIndex else {
+                currentLineIndex = nil
                 lyricsView.displayLrc("", secondLine: "")
                 return
         }
-        
-        let lrc = n.userInfo?["lrc"] as? LyricsLine
-        let next = n.userInfo?["next"] as? LyricsLine
-        
-        guard currentLyricsPosition != lrc?.position else {
+        guard currentLineIndex != index else {
             return
         }
-        currentLyricsPosition = lrc?.position ?? 0
+        currentLineIndex = index
         
-        var firstLine = lrc?.content ?? ""
+        let lrc = lyrics.lines[index]
+        let next = lyrics.lines[(index+1)...].first { $0.enabled }
+        
+        var firstLine = lrc.content
         var secondLine: String
         if defaults[.DesktopLyricsOneLineMode] {
             secondLine = ""
         } else if defaults[.PreferBilingualLyrics] {
-            secondLine = lrc?.translation ?? next?.content ?? ""
+            secondLine = lrc.translation ?? next?.content ?? ""
         } else {
             secondLine = next?.content ?? ""
         }
