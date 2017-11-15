@@ -99,7 +99,6 @@ class DesktopLyricsViewController: NSViewController {
     
     private func addObserver() {
         
-        /*
         let transOpt = [NSBindingOption.valueTransformerName: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
         lyricsView.bind(NSBindingName("fontName"), to: defaults, withKeyPath: .DesktopLyricsFontName)
         lyricsView.bind(NSBindingName("fontSize"), to: defaults, withKeyPath: .DesktopLyricsFontSize)
@@ -107,41 +106,6 @@ class DesktopLyricsViewController: NSViewController {
         lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
         lyricsView.bind(NSBindingName("fillColor"), to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
-         */
-        
-        // FIXME: cocoa binding broken.
-        lyricsViewObservations += [
-            defaults.observe(.DesktopLyricsFontName, options: [.new]) { [weak self] _, change in
-                if let fontName = change.newValue {
-                    self?.lyricsView.fontName = fontName
-                }
-            },
-            defaults.observe(.DesktopLyricsFontSize, options: [.new]) { [weak self] _, change in
-                if let fontSize = change.newValue {
-                    self?.lyricsView.fontSize = fontSize
-                }
-            },
-            defaults.observe(.DesktopLyricsColor, options: [.new]) { [weak self] _, change in
-                if let textColor = change.newValue {
-                    self?.lyricsView.textColor = textColor
-                }
-            },
-            defaults.observe(.DesktopLyricsShadowColor, options: [.new]) { [weak self] _, change in
-                if let shadowColor = change.newValue {
-                    self?.lyricsView.shadowColor = shadowColor
-                }
-            },
-            defaults.observe(.DesktopLyricsBackgroundColor, options: [.new]) { [weak self] _, change in
-                if let fillColor = change.newValue {
-                    self?.lyricsView.fillColor = fillColor
-                }
-            },
-            defaults.observe(.HideLyricsWhenMousePassingBy, options: [.new]) { [weak self] _, change in
-                if let shouldHideWithMouse = change.newValue {
-                    self?.lyricsView.shouldHideWithMouse = shouldHideWithMouse
-                }
-            },
-        ]
         
         chineseConverterObservation = defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
             switch change.newValue {

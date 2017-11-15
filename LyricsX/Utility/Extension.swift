@@ -40,7 +40,7 @@ extension Comparable {
 extension NSObject {
     
     func bind<T>(_ binding: NSBindingName, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [NSBindingOption : Any]? = nil) {
-        NSObject.bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
+        bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
     }
 }
 
