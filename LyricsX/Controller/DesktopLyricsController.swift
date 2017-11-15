@@ -145,7 +145,9 @@ class DesktopLyricsViewController: NSViewController {
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
                 currentLineIndex = nil
-                lyricsView.displayLrc("", secondLine: "")
+                DispatchQueue.main.async {
+                    self.lyricsView.displayLrc("", secondLine: "")
+                }
                 return
         }
         guard currentLineIndex != index else {
@@ -171,7 +173,9 @@ class DesktopLyricsViewController: NSViewController {
             secondLine = converter.convert(secondLine)
         }
         
-        lyricsView.displayLrc(firstLine, secondLine: secondLine)
+        DispatchQueue.main.async {
+            self.lyricsView.displayLrc(firstLine, secondLine: secondLine)
+        }
     }
     
     private func makeConstraints() {
