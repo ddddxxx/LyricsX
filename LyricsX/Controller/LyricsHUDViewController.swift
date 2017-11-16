@@ -27,7 +27,13 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
     @IBOutlet weak var noLyricsLabel: NSTextField!
     
-    @objc dynamic var isTracking = true
+    @objc dynamic var isTracking = true {
+        didSet {
+            if !oldValue, isTracking {
+                displayLyrics()
+            }
+        }
+    }
     
     private var observations: [NSObjectProtocol] = []
     
@@ -56,6 +62,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     
     override func viewWillAppear() {
         noLyricsLabel.isHidden = AppController.shared.currentLyrics != nil
+        displayLyrics(animation: false)
     }
     
     override func viewDidDisappear() {
@@ -74,6 +81,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
             self.noLyricsLabel.isHidden = newLyrics != nil
         }
+        displayLyrics(animation: false)
     }
     
     func displayLyrics(animation: Bool = true) {
