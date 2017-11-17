@@ -62,13 +62,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         super.init()
         playerManager.delegate = self
         lyricsManager.consumer = self
-        
-        switch defaults[.PreferredPlayerIndex] {
-        case 0: playerManager.preferredPlayerName = .itunes
-        case 1: playerManager.preferredPlayerName = .spotify
-        case 2: playerManager.preferredPlayerName = .vox
-        default: playerManager.preferredPlayerName = nil
-        }
+        playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
         
         timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
         RunLoop.current.add(timer!, forMode: .commonModes)

@@ -20,6 +20,7 @@
 
 import Cocoa
 import LyricsProvider
+import MusicPlayer
 
 extension Collection {
     
@@ -41,6 +42,18 @@ extension NSObject {
     
     func bind<T>(_ binding: NSBindingName, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [NSBindingOption : Any]? = nil) {
         bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
+    }
+}
+
+extension MusicPlayerName {
+    
+    init?(index: Int) {
+        switch index {
+        case 0: self = .itunes
+        case 1: self = .spotify
+        case 2: self = .vox
+        default: return nil
+        }
     }
 }
 
