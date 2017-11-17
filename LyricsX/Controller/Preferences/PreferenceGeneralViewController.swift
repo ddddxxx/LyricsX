@@ -50,10 +50,10 @@ class PreferenceGeneralViewController: NSViewController {
         }
         
         if let url = defaults.lyricsCustomSavingPath {
-            savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
-            savingPathPopUp.item(at: 1)?.toolTip = url.path
+            userPathMenuItem.title = url.lastPathComponent
+            userPathMenuItem.toolTip = url.path
         } else {
-            savingPathPopUp.item(at: 1)?.isHidden = true
+            userPathMenuItem.isHidden = true
         }
     }
     
@@ -65,9 +65,10 @@ class PreferenceGeneralViewController: NSViewController {
             if result == .OK {
                 let url = openPanel.url!
                 defaults.lyricsCustomSavingPath = url
-                self.savingPathPopUp.item(at: 1)?.title = url.lastPathComponent
-                self.savingPathPopUp.item(at: 1)?.toolTip = url.path
-                self.savingPathPopUp.selectItem(at: 1)
+                self.userPathMenuItem.title = url.lastPathComponent
+                self.userPathMenuItem.toolTip = url.path
+                self.userPathMenuItem.isHidden = false
+                self.savingPathPopUp.select(self.userPathMenuItem)
             } else {
                 self.savingPathPopUp.selectItem(at: 0)
             }

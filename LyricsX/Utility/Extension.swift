@@ -86,10 +86,7 @@ extension UserDefaults {
             }
         }
         set {
-            if let url = newValue,
-                let data = try? url.bookmarkData(options: [.withSecurityScope]) {
-                self[.LyricsCustomSavingPathBookmark] = data
-            }
+            self[.LyricsCustomSavingPathBookmark] = try? newValue.bookmarkData(options: [.withSecurityScope]) ?? nil
         }
     }
     
