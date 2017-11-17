@@ -50,7 +50,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
         
-        let track = MusicPlayerManager.shared.player?.currentTrack
+        let track = AppController.shared.playerManager.player?.currentTrack
         searchArtist = track?.artist ?? ""
         searchTitle = track?.title ?? ""
         searchAction(nil)
@@ -61,7 +61,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func searchAction(_ sender: Any?) {
         progressIndicator.startAnimation(nil)
         progressIndicator.isHidden = false
-        let track = MusicPlayerManager.shared.player?.currentTrack
+        let track = AppController.shared.playerManager.player?.currentTrack
         let duration = track?.duration ?? 0
         let title = track?.title ?? ""
         let artist = track?.artist ?? ""
@@ -74,7 +74,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         
-        if let id = MusicPlayerManager.shared.player?.currentTrack?.id,
+        if let id = AppController.shared.playerManager.player?.currentTrack?.id,
             let i = defaults[.NoSearchingTrackIds].index(where: { $0 == id }) {
             defaults[.NoSearchingTrackIds].remove(at: i)
         }

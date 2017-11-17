@@ -75,6 +75,15 @@ class PreferenceGeneralViewController: NSViewController {
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         defaults[.PreferredPlayerIndex] = sender.tag
+        
+        let manager = AppController.shared.playerManager
+        switch sender.tag {
+        case 0: manager.preferredPlayerName = .itunes
+        case 1: manager.preferredPlayerName = .spotify
+        case 2: manager.preferredPlayerName = .vox
+        default: manager.preferredPlayerName = nil
+        }
+        
         if sender.tag < 0 {
             autoLaunchButton.isEnabled = false
             autoLaunchButton.state = .off

@@ -28,6 +28,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     static let shared = AppController()
     
     let lyricsManager = LyricsProviderManager()
+    let playerManager = MusicPlayerManager()
     
     var currentLyrics: Lyrics? {
         willSet {
@@ -59,17 +60,24 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     
     private override init() {
         super.init()
-        MusicPlayerManager.shared.delegate = self
+        playerManager.delegate = self
         lyricsManager.consumer = self
+        
+        switch defaults[.PreferredPlayerIndex] {
+        case 0: playerManager.preferredPlayerName = .itunes
+        case 1: playerManager.preferredPlayerName = .spotify
+        case 2: playerManager.preferredPlayerName = .vox
+        default: playerManager.preferredPlayerName = nil
+        }
         
         timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
         RunLoop.current.add(timer!, forMode: .commonModes)
         
-        self.currentTrackChanged(track: MusicPlayerManager.shared.player?.currentTrack)
+        self.currentTrackChanged(track: playerManager.player?.currentTrack)
     }
     
     func writeToiTunes(overwrite: Bool) {
-        guard let player = MusicPlayerManager.shared.player as? iTunes else {
+        guard let player = playerManager.player as? iTunes else {
             return
         }
         guard let currentLyrics = currentLyrics else {
@@ -158,7 +166,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     }
     
     @objc func updatePlayerPosition() {
-        guard let position = MusicPlayerManager.shared.player?.playerPosition else {
+        guard let position = AppController.shared.playerManager.player?.playerPosition else {
             return
         }
         playerPositionMutated(position: position)
@@ -174,7 +182,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
             checkForMASReview()
         #endif
         
-        let track = MusicPlayerManager.shared.player?.currentTrack
+        let track = AppController.shared.playerManager.player?.currentTrack
         guard lyrics.metadata.title == track?.title ?? "",
             lyrics.metadata.artist == track?.artist ?? "" else {
             return
@@ -205,7 +213,7 @@ extension AppController {
     
     func importLyrics(_ lyricsString: String) {
         if let lrc = Lyrics(lyricsString),
-            let track = MusicPlayerManager.shared.player?.currentTrack {
+            let track = AppController.shared.playerManager.player?.currentTrack {
             lrc.metadata.source = .Import
             lrc.metadata.title = track.title
             lrc.metadata.artist = track.artist

@@ -85,7 +85,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     }
     
     func displayLyrics(animation: Bool = true) {
-        guard var pos = MusicPlayerManager.shared.player?.playerPosition else {
+        guard var pos = AppController.shared.playerManager.player?.playerPosition else {
             return
         }
         pos += AppController.shared.currentLyrics?.timeDelay ?? 0
@@ -109,7 +109,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     
     func doubleClickLyricsLine(at position: TimeInterval) {
         let pos = position - (AppController.shared.currentLyrics?.timeDelay ?? 0)
-        MusicPlayerManager.shared.player?.playerPosition = pos
+        AppController.shared.playerManager.player?.playerPosition = pos
         isTracking = true
     }
     

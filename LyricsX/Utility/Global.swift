@@ -46,10 +46,6 @@ extension NSStoryboard.SceneIdentifier {
     static let LyricsHUDAccessory = NSStoryboard.SceneIdentifier("LyricsHUDAccessory")
 }
 
-extension MusicPlayerManager {
-    static let shared = MusicPlayerManager()
-}
-
 // MARK: - Notification Name
 
 let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
