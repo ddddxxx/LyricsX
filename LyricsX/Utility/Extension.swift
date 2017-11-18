@@ -20,6 +20,7 @@
 
 import Cocoa
 import LyricsProvider
+import MusicPlayer
 
 extension Collection {
     
@@ -40,7 +41,19 @@ extension Comparable {
 extension NSObject {
     
     func bind<T>(_ binding: NSBindingName, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [NSBindingOption : Any]? = nil) {
-        NSObject.bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
+        bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
+    }
+}
+
+extension MusicPlayerName {
+    
+    init?(index: Int) {
+        switch index {
+        case 0: self = .itunes
+        case 1: self = .spotify
+        case 2: self = .vox
+        default: return nil
+        }
     }
 }
 
@@ -73,10 +86,7 @@ extension UserDefaults {
             }
         }
         set {
-            if let url = newValue,
-                let data = try? url.bookmarkData(options: [.withSecurityScope]) {
-                self[.LyricsCustomSavingPathBookmark] = data
-            }
+            self[.LyricsCustomSavingPathBookmark] = try? newValue.bookmarkData(options: [.withSecurityScope]) ?? nil
         }
     }
     

@@ -78,7 +78,7 @@ class DesktopLyricsViewController: NSViewController {
     
     private var chineseConverter: ChineseConverter?
     
-    var currentLyricsPosition: TimeInterval = 0
+    var currentLineIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +89,8 @@ class DesktopLyricsViewController: NSViewController {
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
-            NotificationCenter.default.addObserver(self, selector: #selector(self.handlePositionChange), name: .PositionChange, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
         }
     }
     
@@ -99,7 +100,6 @@ class DesktopLyricsViewController: NSViewController {
     
     private func addObserver() {
         
-        /*
         let transOpt = [NSBindingOption.valueTransformerName: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
         lyricsView.bind(NSBindingName("fontName"), to: defaults, withKeyPath: .DesktopLyricsFontName)
         lyricsView.bind(NSBindingName("fontSize"), to: defaults, withKeyPath: .DesktopLyricsFontSize)
@@ -107,41 +107,6 @@ class DesktopLyricsViewController: NSViewController {
         lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
         lyricsView.bind(NSBindingName("fillColor"), to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
-         */
-        
-        // FIXME: cocoa binding broken.
-        lyricsViewObservations += [
-            defaults.observe(.DesktopLyricsFontName, options: [.new]) { [weak self] _, change in
-                if let fontName = change.newValue {
-                    self?.lyricsView.fontName = fontName
-                }
-            },
-            defaults.observe(.DesktopLyricsFontSize, options: [.new]) { [weak self] _, change in
-                if let fontSize = change.newValue {
-                    self?.lyricsView.fontSize = fontSize
-                }
-            },
-            defaults.observe(.DesktopLyricsColor, options: [.new]) { [weak self] _, change in
-                if let textColor = change.newValue {
-                    self?.lyricsView.textColor = textColor
-                }
-            },
-            defaults.observe(.DesktopLyricsShadowColor, options: [.new]) { [weak self] _, change in
-                if let shadowColor = change.newValue {
-                    self?.lyricsView.shadowColor = shadowColor
-                }
-            },
-            defaults.observe(.DesktopLyricsBackgroundColor, options: [.new]) { [weak self] _, change in
-                if let fillColor = change.newValue {
-                    self?.lyricsView.fillColor = fillColor
-                }
-            },
-            defaults.observe(.HideLyricsWhenMousePassingBy, options: [.new]) { [weak self] _, change in
-                if let shouldHideWithMouse = change.newValue {
-                    self?.lyricsView.shouldHideWithMouse = shouldHideWithMouse
-                }
-            },
-        ]
         
         chineseConverterObservation = defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
             switch change.newValue {
@@ -174,27 +139,31 @@ class DesktopLyricsViewController: NSViewController {
         }
     }
     
-    @objc func handlePositionChange(_ n: Notification) {
+    @objc func handleLyricsDisplay() {
         guard defaults[.DesktopLyricsEnabled],
-            !defaults[.DisableLyricsWhenPaused] || MusicPlayerManager.shared.player?.playbackState == .playing else {
-                lyricsView.displayLrc("", secondLine: "")
+            !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
+            let lyrics = AppController.shared.currentLyrics,
+            let index = AppController.shared.currentLineIndex else {
+                currentLineIndex = nil
+                DispatchQueue.main.async {
+                    self.lyricsView.displayLrc("", secondLine: "")
+                }
                 return
         }
-        
-        let lrc = n.userInfo?["lrc"] as? LyricsLine
-        let next = n.userInfo?["next"] as? LyricsLine
-        
-        guard currentLyricsPosition != lrc?.position else {
+        guard currentLineIndex != index else {
             return
         }
-        currentLyricsPosition = lrc?.position ?? 0
+        currentLineIndex = index
         
-        var firstLine = lrc?.content ?? ""
+        let lrc = lyrics.lines[index]
+        let next = lyrics.lines[(index+1)...].first { $0.enabled }
+        
+        var firstLine = lrc.content
         var secondLine: String
         if defaults[.DesktopLyricsOneLineMode] {
             secondLine = ""
         } else if defaults[.PreferBilingualLyrics] {
-            secondLine = lrc?.translation ?? next?.content ?? ""
+            secondLine = lrc.translation ?? next?.content ?? ""
         } else {
             secondLine = next?.content ?? ""
         }
@@ -204,7 +173,9 @@ class DesktopLyricsViewController: NSViewController {
             secondLine = converter.convert(secondLine)
         }
         
-        lyricsView.displayLrc(firstLine, secondLine: secondLine)
+        DispatchQueue.main.async {
+            self.lyricsView.displayLrc(firstLine, secondLine: secondLine)
+        }
     }
     
     private func makeConstraints() {

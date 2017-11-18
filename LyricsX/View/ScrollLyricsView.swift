@@ -98,6 +98,7 @@ class ScrollLyricsView: NSScrollView {
     }
     
     override func scrollWheel(with event: NSEvent) {
+        super.scrollWheel(with: event)
         switch event.momentumPhase {
         case .began:
             delegate?.scrollWheelDidStartScroll()
@@ -106,6 +107,11 @@ class ScrollLyricsView: NSScrollView {
         default:
             break
         }
+    }
+    
+    // overriding scrollwheel method breaks trackpad responsive scrolling ability
+    override class var isCompatibleWithResponsiveScrolling: Bool {
+        return true
     }
     
     private func updateFadeEdgeMask() {

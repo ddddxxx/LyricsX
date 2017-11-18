@@ -21,19 +21,28 @@
 import Cocoa
 import MusicPlayer
 
-class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragNDropDelegate {
+class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsViewDelegate, DragNDropDelegate {
     
     @IBOutlet weak var dragNDropView: DragNDropView!
     @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
     @IBOutlet weak var noLyricsLabel: NSTextField!
     
-    @objc dynamic var isTracking = true
+    @objc dynamic var isTracking = true {
+        didSet {
+            if !oldValue, isTracking {
+                displayLyrics()
+            }
+        }
+    }
+    
+    private var observations: [NSObjectProtocol] = []
     
     override func awakeFromNib() {
         view.window?.do {
             $0.titlebarAppearsTransparent = true
             $0.titleVisibility = .hidden
             $0.styleMask.insert(.borderless)
+            $0.delegate = self
         }
         let accessory = NSStoryboard.main!.instantiateController(withIdentifier: .LyricsHUDAccessory) as! NSTitlebarAccessoryViewController
         accessory.layoutAttribute = .right
@@ -44,22 +53,63 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
         lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
-        nc.addObserver(self, selector: #selector(handleLyricsChange), name: .LyricsChange, object: nil)
-        nc.addObserver(self, selector: #selector(handleScrollViewWillStartScroll), name: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView)
+        observations += [
+            nc.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: nil) { [unowned self] _ in self.displayLyrics() },
+            nc.addObserver(forName: .currentLyricsChange, object: nil, queue: nil) { [unowned self] _ in self.lyricsChanged() },
+            nc.addObserver(forName: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView, queue: .main) { [unowned self] _ in self.isTracking = false }
+        ]
     }
     
     override func viewWillAppear() {
         noLyricsLabel.isHidden = AppController.shared.currentLyrics != nil
+        displayLyrics(animation: false)
     }
     
     override func viewDidDisappear() {
         NotificationCenter.default.removeObserver(self)
     }
     
+    deinit {
+        observations.forEach(NotificationCenter.default.removeObserver)
+    }
+    
+    // MARK: - Handler
+    
+    func lyricsChanged() {
+        DispatchQueue.main.async {
+            let newLyrics = AppController.shared.currentLyrics
+            self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
+            self.noLyricsLabel.isHidden = newLyrics != nil
+        }
+        displayLyrics(animation: false)
+    }
+    
+    func displayLyrics(animation: Bool = true) {
+        guard var pos = AppController.shared.playerManager.player?.playerPosition else {
+            return
+        }
+        pos += AppController.shared.currentLyrics?.timeDelay ?? 0
+        lyricsScrollView.highlight(position: pos)
+        guard isTracking else {
+            return
+        }
+        if animation {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.3
+                context.allowsImplicitAnimation = true
+                context.timingFunction = .mystery
+                self.lyricsScrollView.scroll(position: pos)
+            })
+        } else {
+            lyricsScrollView.scroll(position: pos)
+        }
+    }
+    
+    // MARK: ScrollLyricsViewDelegate
+    
     func doubleClickLyricsLine(at position: TimeInterval) {
         let pos = position - (AppController.shared.currentLyrics?.timeDelay ?? 0)
-        MusicPlayerManager.shared.player?.playerPosition = pos
+        AppController.shared.playerManager.player?.playerPosition = pos
         isTracking = true
     }
     
@@ -69,37 +119,10 @@ class LyricsHUDViewController: NSViewController, ScrollLyricsViewDelegate, DragN
     
     func scrollWheelDidEndScroll() {}
     
-    // MARK: - Handler
+    // MARK: NSWindowDelegate
     
-    @objc func handleLyricsChange(_ n: Notification) {
-        DispatchQueue.main.async {
-            let newLyrics = AppController.shared.currentLyrics
-            self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
-            self.noLyricsLabel.isHidden = newLyrics != nil
-        }
-    }
-    
-    @objc func handlePositionChange(_ n: Notification) {
-        guard var pos = n.userInfo?["position"] as? TimeInterval else {
-            return
-        }
-        pos += AppController.shared.currentLyrics?.timeDelay ?? 0
-        lyricsScrollView.highlight(position: pos)
-        guard isTracking else {
-            return
-        }
-        DispatchQueue.main.async {
-            NSAnimationContext.runAnimationGroup({ context in
-                context.duration = 0.3
-                context.allowsImplicitAnimation = true
-                context.timingFunction = .mystery
-                self.lyricsScrollView.scroll(position: pos)
-            })
-        }
-    }
-    
-    @objc func handleScrollViewWillStartScroll(_ n: Notification) {
-        isTracking = false
+    func windowDidResize(_ notification: Notification) {
+        displayLyrics(animation: false)
     }
     
     // MARK: DragNDropDelegate

@@ -31,38 +31,38 @@ class MenuBarLyrics: NSObject {
     var buttonImage = #imageLiteral(resourceName: "status_bar_icon")
     var buttonlength: CGFloat = 30
     
-    private var lyrics = ""
+    private var displayLyrics = ""
     
     var statusItemObservation: UserDefaults.KeyValueObservation?
     
     private override init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         super.init()
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePositionChange), name: .PositionChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(updateStatusItem), name: NSWorkspace.didActivateApplicationNotification, object: nil)
-        statusItemObservation = defaults.observe(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: []) { [weak self] in
-            self?.updateStatusItem()
+        statusItemObservation = defaults.observe(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in
+            self.updateStatusItem()
         }
-        updateStatusItem()
     }
     
-    @objc func handlePositionChange(_ n: Notification) {
-        guard !defaults[.DisableLyricsWhenPaused] || MusicPlayerManager.shared.player?.playbackState == .playing else {
-            lyrics = ""
+    @objc func handleLyricsDisplay() {
+        guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
+            let lyrics = AppController.shared.currentLyrics,
+            let index = AppController.shared.currentLineIndex else {
+            displayLyrics = ""
             updateStatusItem()
             return
         }
-        let lrc = (n.userInfo?["lrc"] as? LyricsLine)?.content ?? ""
-        if lrc == lyrics {
+        let lrc = lyrics.lines[index].content
+        if lrc == displayLyrics {
             return
         }
-        
-        lyrics = lrc
+        displayLyrics = lrc
         updateStatusItem()
     }
     
     @objc func updateStatusItem() {
-        guard defaults[.MenuBarLyricsEnabled], !lyrics.isEmpty else {
+        guard defaults[.MenuBarLyricsEnabled], !displayLyrics.isEmpty else {
             setImageStatusItem()
             lyricsItem = nil
             return
@@ -82,19 +82,19 @@ class MenuBarLyrics: NSObject {
             lyricsItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
             lyricsItem?.highlightMode = false
         }
-        lyricsItem?.title = lyrics
+        lyricsItem?.title = displayLyrics
     }
     
     func updateCombinedStatusLyrics() {
         lyricsItem = nil
         
-        setTextStatusItem(string: lyrics)
+        setTextStatusItem(string: displayLyrics)
         if statusItem.isVisibe {
             return
         }
         
         // truncation
-        var components = lyrics.components(options: [.byWords])
+        var components = displayLyrics.components(options: [.byWords])
         while !components.isEmpty, !statusItem.isVisibe {
             components.removeLast()
             let proposed = components.joined() + "..."

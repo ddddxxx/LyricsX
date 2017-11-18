@@ -92,7 +92,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         switch menuItem.identifier {
         case .WriteToiTunes?:
-            return MusicPlayerManager.shared.player is iTunes && AppController.shared.currentLyrics != nil
+            return AppController.shared.playerManager.player is iTunes && AppController.shared.currentLyrics != nil
         case .WrongLyrics?:
             return AppController.shared.currentLyrics != nil
         default:
@@ -134,7 +134,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             checkForMASReview()
         #endif
         
-        statusBarMenu.item(withTag: 202)?.isHidden = !(MusicPlayerManager.shared.player is iTunes)
+        statusBarMenu.item(withTag: 202)?.isHidden = !(AppController.shared.playerManager.player is iTunes)
         // write to iTunes
         
         MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
@@ -157,11 +157,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func wrongLyrics(_ sender: Any?) {
-        if let id = MusicPlayerManager.shared.player?.currentTrack?.id {
+        if let id = AppController.shared.playerManager.player?.currentTrack?.id {
             defaults[.NoSearchingTrackIds].append(id)
         }
         if defaults[.WriteToiTunesAutomatically] {
-            (MusicPlayerManager.shared.player as? iTunes)?.currentLyrics = ""
+            (AppController.shared.playerManager.player as? iTunes)?.currentLyrics = ""
         }
         AppController.shared.currentLyrics = nil
     }

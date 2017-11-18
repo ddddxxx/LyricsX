@@ -46,22 +46,14 @@ extension NSStoryboard.SceneIdentifier {
     static let LyricsHUDAccessory = NSStoryboard.SceneIdentifier("LyricsHUDAccessory")
 }
 
-extension MusicPlayerManager {
-    static let shared = MusicPlayerManager()
-}
-
 // MARK: - Notification Name
 
 let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
 let CurrentLyricsChangeNotification = "CurrentLyricsChangeNotification"
 
 extension Notification.Name {
-    static let PositionChange = Notification.Name(LyricsShouldDisplayNotification)
-    static let LyricsChange = Notification.Name(CurrentLyricsChangeNotification)
-    
-    static let iTunesPlayerInfo = Notification.Name("com.apple.iTunes.playerInfo")
-    static let SpotifyPlayerInfo = Notification.Name("com.spotify.client.PlaybackStateChanged")
-    static let VoxTrackChanged = Notification.Name("com.coppertino.Vox.trackChanged")
+    static let lyricsShouldDisplay = Notification.Name(LyricsShouldDisplayNotification)
+    static let currentLyricsChange = Notification.Name(CurrentLyricsChangeNotification)
 }
 
 // MARK: - User Defaults
