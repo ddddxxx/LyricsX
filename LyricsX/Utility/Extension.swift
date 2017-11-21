@@ -86,7 +86,7 @@ extension UserDefaults {
             }
         }
         set {
-            self[.LyricsCustomSavingPathBookmark] = try? newValue.bookmarkData(options: [.withSecurityScope]) ?? nil
+            self[.LyricsCustomSavingPathBookmark] = try? newValue?.bookmarkData(options: [.withSecurityScope]) ?? nil
         }
     }
     
