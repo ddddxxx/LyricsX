@@ -41,6 +41,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
             if currentLyrics?.metadata.source != .Local {
                 currentLyrics?.saveToLocal()
             }
+            currentLineIndex = nil
+            timer?.fireDate = Date()
         }
     }
     
@@ -55,6 +57,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         set {
             currentLyrics?.offset = newValue
             currentLyrics?.saveToLocal()
+            timer?.fireDate = Date()
         }
     }
     
@@ -65,6 +68,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
         
         timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
+        timer?.tolerance = 0.02
         RunLoop.current.add(timer!, forMode: .commonModes)
         
         self.currentTrackChanged(track: playerManager.player?.currentTrack)
@@ -152,10 +156,15 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         guard let lyrics = currentLyrics else {
             return
         }
-        let index = lyrics[position + lyrics.timeDelay].currentLineIndex
+        let (index, next) = lyrics[position + lyrics.timeDelay]
         if currentLineIndex != index {
             currentLineIndex = index
             NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+        }
+        if let next = next {
+            timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.timeDelay - position
+        } else {
+            timer?.fireDate = .distantFuture
         }
     }
     
