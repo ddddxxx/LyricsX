@@ -106,6 +106,12 @@ extension UserDefaults.DefaultKeys {
     
     static let DisplayLyricsWithTag: Key<Bool>      = "DisplayLyricsWithTag"
     
+    static let LyricsWindowFontName: Key<String>    = "LyricsWindowFontName"
+    static let LyricsWindowFontSize: Key<Int>       = "LyricsWindowFontSize"
+    
+    static let LyricsWindowTextColor: ArchivedKey<NSColor>          = "LyricsWindowTextColor"
+    static let LyricsWindowHighlightColor: ArchivedKey<NSColor>     = "LyricsWindowHighlightColor"
+    
     // Shortcut
     static let ShortcutOffsetIncrease: Key<String>  = "ShortcutOffsetIncrease"
     static let ShortcutOffsetDecrease: Key<String>  = "ShortcutOffsetDecrease"
