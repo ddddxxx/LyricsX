@@ -381,7 +381,7 @@
                             <constraint firstItem="ydZ-SE-AM3" firstAttribute="leading" secondItem="you-yu-77c" secondAttribute="trailing" constant="16" id="Hmq-iV-ozM"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wwb-0H-xk7" secondAttribute="trailing" constant="20" id="JWV-eT-IkY"/>
                             <constraint firstItem="JSf-5H-P7U" firstAttribute="trailing" secondItem="you-yu-77c" secondAttribute="trailing" id="KSQ-2k-tAA"/>
-                            <constraint firstItem="you-yu-77c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="40" id="LoW-h0-G1D"/>
+                            <constraint firstItem="you-yu-77c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="LoW-h0-G1D"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KcA-ys-XDa" secondAttribute="trailing" constant="20" id="Mfo-xx-RIz"/>
                             <constraint firstItem="xa7-h7-OHj" firstAttribute="top" secondItem="KcA-ys-XDa" secondAttribute="bottom" constant="8" id="O7Z-dW-eMV"/>
                             <constraint firstItem="you-yu-77c" firstAttribute="trailing" secondItem="Ium-Ya-ZzT" secondAttribute="centerX" constant="-80" id="OMR-7Z-L5p"/>
@@ -705,10 +705,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YbH-Ph-PYg">
-                                                    <rect key="frame" x="119" y="82" width="40" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="9NT-Kb-10b"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="124" y="82" width="35" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Font:" id="992-tg-edx">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -788,7 +785,7 @@
                                                 <constraint firstItem="Jji-JX-Etj" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="top" id="tfE-fe-Fse"/>
                                                 <constraint firstAttribute="bottom" secondItem="hn1-Pb-VCw" secondAttribute="bottom" constant="16" id="wFi-SG-Tg1"/>
                                                 <constraint firstItem="peK-p0-cOB" firstAttribute="trailing" secondItem="oHc-gj-4JF" secondAttribute="trailing" id="xnh-Ic-DVJ"/>
-                                                <constraint firstItem="YbH-Ph-PYg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mfE-32-ATy" secondAttribute="leading" constant="40" id="yVe-vG-UKd"/>
+                                                <constraint firstItem="YbH-Ph-PYg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mfE-32-ATy" secondAttribute="leading" constant="20" id="yVe-vG-UKd"/>
                                             </constraints>
                                         </view>
                                     </tabViewItem>
@@ -834,10 +831,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="n8x-g6-LHK">
-                                                    <rect key="frame" x="119" y="288" width="40" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="PAh-zW-fOO"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="124" y="288" width="35" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Font:" id="Cmt-it-PXW">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -846,7 +840,7 @@
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xl3-ST-k9G">
                                                     <rect key="frame" x="125" y="250" width="34" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Text:" id="Txi-D9-jjB">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Text:" id="Txi-D9-jjB">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -869,7 +863,7 @@
                                                 </colorWell>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5rv-W6-91j">
                                                     <rect key="frame" x="91" y="211" width="68" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Hightlight:" id="UfE-QU-Yhm">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Hightlight:" id="UfE-QU-Yhm">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -893,13 +887,17 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="KbD-th-ScQ" firstAttribute="leading" secondItem="c1k-Vo-HU0" secondAttribute="leading" id="41g-Mu-QwK"/>
+                                                <constraint firstItem="xl3-ST-k9G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c9t-5z-3yY" secondAttribute="leading" constant="20" id="50d-hJ-QoS"/>
                                                 <constraint firstItem="kKR-pi-EVP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c1k-Vo-HU0" secondAttribute="leading" id="9zw-rS-EhC"/>
+                                                <constraint firstAttribute="bottom" secondItem="KbD-th-ScQ" secondAttribute="bottom" constant="208" id="AbG-hf-PPm"/>
                                                 <constraint firstItem="kKR-pi-EVP" firstAttribute="trailing" secondItem="c1k-Vo-HU0" secondAttribute="trailing" id="B5y-Bo-dBd"/>
                                                 <constraint firstItem="gpR-3P-52p" firstAttribute="top" secondItem="c1k-Vo-HU0" secondAttribute="bottom" constant="16" id="FNE-wp-Kpk"/>
                                                 <constraint firstItem="kKR-pi-EVP" firstAttribute="top" secondItem="c1k-Vo-HU0" secondAttribute="top" id="K5P-cg-X0K"/>
                                                 <constraint firstItem="KbD-th-ScQ" firstAttribute="leading" secondItem="5rv-W6-91j" secondAttribute="trailing" constant="16" id="TWc-SL-R9T"/>
                                                 <constraint firstItem="n8x-g6-LHK" firstAttribute="trailing" secondItem="c9t-5z-3yY" secondAttribute="centerX" constant="-120" id="VXz-Eo-8US"/>
+                                                <constraint firstItem="5rv-W6-91j" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c9t-5z-3yY" secondAttribute="leading" constant="20" id="X57-po-sz4"/>
                                                 <constraint firstItem="gpR-3P-52p" firstAttribute="leading" secondItem="xl3-ST-k9G" secondAttribute="trailing" constant="16" id="XNq-8r-HdJ"/>
+                                                <constraint firstItem="n8x-g6-LHK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c9t-5z-3yY" secondAttribute="leading" constant="20" id="YfQ-Pi-QHL"/>
                                                 <constraint firstItem="gpR-3P-52p" firstAttribute="centerY" secondItem="xl3-ST-k9G" secondAttribute="centerY" id="a99-pd-pDq"/>
                                                 <constraint firstItem="kKR-pi-EVP" firstAttribute="bottom" secondItem="c1k-Vo-HU0" secondAttribute="bottom" id="j0N-0H-f2z"/>
                                                 <constraint firstItem="c1k-Vo-HU0" firstAttribute="top" secondItem="c9t-5z-3yY" secondAttribute="top" constant="24" id="nJ8-DU-HLI"/>
