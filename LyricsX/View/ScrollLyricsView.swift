@@ -37,6 +37,28 @@ class ScrollLyricsView: NSScrollView {
     
     var fadeStripWidth: CGFloat = 24
     
+    @objc dynamic var textColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1) {
+        didSet {
+            let range = NSMakeRange(0, textView.string.utf16.count)
+            textView.textStorage?.addAttribute(.foregroundColor, value: textColor, range: range)
+            highlightedRange.map { textView.textStorage?.addAttribute(.foregroundColor, value: highlightColor, range: $0) }
+        }
+    }
+    
+    @objc dynamic var highlightColor = #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1) {
+        didSet {
+            highlightedRange.map { textView.textStorage?.addAttribute(.foregroundColor, value: highlightColor, range: $0) }
+        }
+    }
+    
+    @objc dynamic var fontName = "Helvetica" {
+        didSet { updateFont() }
+    }
+    
+    @objc dynamic var fontSize: CGFloat = 12 {
+        didSet { updateFont() }
+    }
+    
     private var ranges: [(TimeInterval, NSRange)] = []
     private var highlightedRange: NSRange? = nil
     
@@ -67,11 +89,15 @@ class ScrollLyricsView: NSScrollView {
         textView.string = lrcContent
         highlightedRange = nil
         let range = NSMakeRange(0, textView.string.utf16.count)
+        let font = NSFont(name: fontName, size: fontSize)!
         let style = NSMutableParagraphStyle().with {
             $0.alignment = .center
         }
-        textView.textStorage?.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: range)
-        textView.textStorage?.addAttribute(.paragraphStyle, value: style, range: range)
+        textView.textStorage?.addAttributes([
+            .foregroundColor: textColor,
+            .paragraphStyle: style,
+            .font: font
+            ], range: range)
         needsLayout = true
     }
     
@@ -160,8 +186,8 @@ class ScrollLyricsView: NSScrollView {
             return
         }
         
-        highlightedRange.map { textView.textStorage?.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), range: $0) }
-        textView.textStorage?.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1), range: range)
+        highlightedRange.map { textView.textStorage?.addAttribute(.foregroundColor, value: textColor, range: $0) }
+        textView.textStorage?.addAttribute(.foregroundColor, value: highlightColor, range: range)
         
         highlightedRange = range
     }
@@ -187,6 +213,12 @@ class ScrollLyricsView: NSScrollView {
         
         let point = NSPoint(x: 0, y: bounding.midY - frame.height / 2)
         textView.scroll(point)
+    }
+    
+    func updateFont() {
+        let range = NSMakeRange(0, textView.string.utf16.count)
+        let font = NSFont(name: fontName, size: fontSize)!
+        textView.textStorage?.addAttribute(.font, value: font, range: range)
     }
     
 }

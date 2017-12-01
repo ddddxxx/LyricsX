@@ -174,6 +174,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .DesktopLyricsColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
             .DesktopLyricsShadowColor: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1),
             .DesktopLyricsBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279),
+            .LyricsWindowFontName: "Helvetica",
+            .LyricsWindowFontSize: 12,
+            .LyricsWindowTextColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1),
+            .LyricsWindowHighlightColor: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1),
             ])
     }
 }
