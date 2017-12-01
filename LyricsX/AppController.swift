@@ -154,6 +154,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     
     func playerPositionMutated(position: TimeInterval) {
         guard let lyrics = currentLyrics else {
+            NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+            timer?.fireDate = .distantFuture
             return
         }
         let (index, next) = lyrics[position + lyrics.timeDelay]
