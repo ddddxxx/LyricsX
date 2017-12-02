@@ -1,8 +1,7 @@
 # LyricsX
 
 [![release](https://img.shields.io/github/release/ddddxxx/LyricsX.svg)](https://github.com/ddddxxx/LyricsX/releases)
-[![gitter](https://img.shields.io/gitter/room/LyricsX/Lobby.svg)](https://gitter.im/LyricsX)
-[![license](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
+[![Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://telegram.me/LyricsXTestFlight)
 [![codebeat badge](https://codebeat.co/badges/d4ea2fbf-89a0-4490-875f-857a1568ec16)](https://codebeat.co/projects/github-com-ddddxxx-lyricsx-master)
 
 <img src="docs/img/icon.png" width="128px">
@@ -13,7 +12,7 @@ LyricsX is a plugin for iTunes, Spotify and Vox, which auto search and download 
 
 LyricsX for iOS is in beta stage.
 
-Fill in [this form](https://goo.gl/forms/yblfWFbsDZDkYqU53) for TestFlight invitation, and join the [Telegram group](https://telegram.me/LyricsXTestFlight)
+Fill in [this form](https://goo.gl/forms/yblfWFbsDZDkYqU53) for TestFlight invitation, and join the [Telegram group](https://telegram.me/LyricsXTestFlight).
 
 ## Installation
 
