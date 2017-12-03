@@ -22,18 +22,14 @@ import Cocoa
 
 class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
     
-    var karaokeFont: NSFont!
-    var hudFont: NSFont!
+    var karaokeFont = NSFont(name: defaults[.DesktopLyricsFontName], size: CGFloat(defaults[.DesktopLyricsFontSize])) ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
+    var hudFont = NSFont(name: defaults[.LyricsWindowFontName], size: CGFloat(defaults[.LyricsWindowFontSize])) ?? NSFont.labelFont(ofSize: CGFloat(defaults[.LyricsWindowFontSize]))
     
     // TODO: ugly code
     var isSettingKaraokeFont = true
     
     override func viewDidLoad() {
-        karaokeFont = NSFont(name: defaults[.DesktopLyricsFontName]!, size: CGFloat(defaults[.DesktopLyricsFontSize]))
-        hudFont = NSFont(name: defaults[.LyricsWindowFontName]!, size: CGFloat(defaults[.LyricsWindowFontSize]))
-        
         _ = PreferenceDisplayViewController.swizzler
-        
         super.viewDidLoad()
     }
     
