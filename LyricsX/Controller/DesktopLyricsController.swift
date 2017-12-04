@@ -175,6 +175,38 @@ class DesktopLyricsViewController: NSViewController {
         
         DispatchQueue.main.async {
             self.lyricsView.displayLrc(firstLine, secondLine: secondLine)
+            if let upperTextField = self.lyricsView.displayLine1,
+                let timeline = lrc.attachments[.timetag] as? LyricsLineAttachmentTimeLine,
+                let position = AppController.shared.playerManager.player?.playerPosition {
+                let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
+                let rectArr = upperTextField.rectArray
+                var keyTimes: [TimeInterval] = []
+                var values: [CGFloat] = []
+                for tag in timeline.tags {
+                    let dt = tag.timeTag + lrc.position - timeDelay - position
+                    guard dt >= 0 else { continue }
+                    if tag.index == 0 {
+                        keyTimes.append(dt)
+                        values.append(0)
+                    } else if tag.index <= rectArr.count {
+                        keyTimes.append(dt)
+                        values.append(rectArr[tag.index - 1].maxX)
+                    }
+                }
+                if let duration = timeline.duration,
+                    let width = rectArr.last?.maxX {
+                    keyTimes.append(duration + lrc.position - timeDelay - position)
+                    values.append(width)
+                }
+                guard let duration = keyTimes.last else { return }
+                let animation = CAKeyframeAnimation()
+                animation.keyTimes = keyTimes.map { ($0 / duration) as NSNumber }
+                animation.values = values
+                animation.keyPath = "bounds.size.width"
+                animation.duration = duration
+                upperTextField.dyeRect.layer?.add(animation, forKey: "inlineProgress")
+            }
+
         }
     }
     
