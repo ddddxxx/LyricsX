@@ -120,17 +120,17 @@ extension NSTextField {
     func rectArrayForAllCharacters() -> [NSRect] {
         let layoutManager = NSLayoutManager()
         let textStorage = NSTextStorage(attributedString: attributedStringValue)
-        let textContainer = NSTextContainer(containerSize: frame.size)
+        var containerSize = frame.size
+        // the imitated text container clip its content whereas text field does not.
+        // expand container size to avoid clipping.
+        containerSize.width = .infinity
+        let textContainer = NSTextContainer(containerSize: containerSize)
         
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
-        return stringValue.indices.dropLast().map { index in
-            var rectCount = 0
-            let range = index..<stringValue.index(after: index)
-            let nsrange = NSRange(range, in: stringValue)
-            let rectArray = layoutManager.rectArray(forCharacterRange: nsrange, withinSelectedCharacterRange: NSRange(), in: textContainer, rectCount: &rectCount)
-            let arr = Array(UnsafeBufferPointer(start: rectArray, count: rectCount))
-            return arr.first ?? NSRect()
+        return stringValue.indices.map { index in
+            let range = NSRange(index...index, in: stringValue)
+            return layoutManager.boundingRect(forGlyphRange: range, in: textContainer)
         }
     }
 }

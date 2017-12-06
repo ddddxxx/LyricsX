@@ -179,31 +179,36 @@ class DesktopLyricsViewController: NSViewController {
                 let timeline = lrc.attachments[.timetag] as? LyricsLineAttachmentTimeLine,
                 let position = AppController.shared.playerManager.player?.playerPosition {
                 let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
-                let rectArr = upperTextField.rectArray
-                var keyTimes: [TimeInterval] = []
-                var values: [CGFloat] = []
-                for tag in timeline.tags {
+                let rectArray = upperTextField.rectArray
+                
+                var map = timeline.tags.map { tag -> (TimeInterval, CGFloat) in
                     let dt = tag.timeTag + lrc.position - timeDelay - position
-                    guard dt >= 0 else { continue }
-                    if tag.index == 0 {
-                        keyTimes.append(dt)
-                        values.append(0)
-                    } else if tag.index <= rectArr.count {
-                        keyTimes.append(dt)
-                        values.append(rectArr[tag.index - 1].maxX)
+                    let progress = tag.index == 0 ? 0 : rectArray[min(tag.index, rectArray.count) - 1].maxX
+                    return (dt, progress)
+                }
+                guard let i = map.index(where: { $0.0 > 0 }) else {
+                    upperTextField.dyeRect.frame = upperTextField.bounds
+                    return
+                }
+                if i > 0 {
+                    let progress = map[i-1].1 + CGFloat(map[i-1].0) * (map[i].1 - map[i-1].1) / CGFloat(map[i].0 - map[i-1].0)
+                    map.replaceSubrange(..<i, with: [(0, progress)])
+                }
+                if let duration = timeline.duration {
+                    let progress = rectArray.last!.maxX
+                    let dt = duration + lrc.position - timeDelay - position
+                    if dt > map.last!.0 {
+                        map.append((dt, progress))
                     }
                 }
-                if let duration = timeline.duration,
-                    let width = rectArr.last?.maxX {
-                    keyTimes.append(duration + lrc.position - timeDelay - position)
-                    values.append(width)
-                }
-                guard let duration = keyTimes.last else { return }
+                let duration = map.last!.0
                 let animation = CAKeyframeAnimation()
-                animation.keyTimes = keyTimes.map { ($0 / duration) as NSNumber }
-                animation.values = values
+                animation.keyTimes = map.map { ($0.0 / duration) as NSNumber }
+                animation.values = map.map { $0.1 }
                 animation.keyPath = "bounds.size.width"
                 animation.duration = duration
+                animation.fillMode = kCAFillModeForwards
+                animation.isRemovedOnCompletion = false
                 upperTextField.dyeRect.layer?.add(animation, forKey: "inlineProgress")
             }
 
