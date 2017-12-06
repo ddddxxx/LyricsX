@@ -81,10 +81,10 @@ class KaraokeLyricsView: NSBox {
             $0.bind(.fontName, to: self, withKeyPath: #keyPath(fontName))
             $0.bind(.fontSize, to: self, withKeyPath: #keyPath(fontSize))
             $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
+            $0.bind(.init("dyeColor"), to: self, withKeyPath: #keyPath(shadowColor))
             $0.shadow = shadow
             $0.alphaValue = 0
             $0.isHidden = true
-            $0.dyeColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         }
     }
     

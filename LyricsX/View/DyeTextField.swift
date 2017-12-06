@@ -26,7 +26,7 @@ class DyeTextField: NSTextField {
     
     let dyeMaskTextField = NSTextField(labelWithString: "")
     
-    var dyeColor: NSColor? {
+    @objc dynamic var dyeColor: NSColor? {
         get {
             return dyeRect.layer?.backgroundColor.flatMap(NSColor.init(cgColor:))
         }
