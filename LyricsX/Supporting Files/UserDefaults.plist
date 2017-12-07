@@ -17,7 +17,7 @@
 	<key>DesktopLyricsInsetBottom</key>
 	<integer>20</integer>
 	<key>DesktopLyricsFontName</key>
-	<string>Helvetica Light</string>
+	<string>Optima-Regular</string>
 	<key>DesktopLyricsFontSize</key>
 	<integer>24</integer>
 	<key>LyricsFilterEnabled</key>
