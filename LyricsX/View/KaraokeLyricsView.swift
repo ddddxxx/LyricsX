@@ -25,8 +25,7 @@ class KaraokeLyricsView: NSBox {
     
     private let stackView = NSStackView()
     
-    @objc dynamic var fontName = "Helvetica Light"
-    @objc dynamic var fontSize = 24 { didSet { updateFontSize() } }
+    @objc dynamic var font = NSFont.labelFont(ofSize: 24) { didSet { updateFontSize() } }
     @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1) {
         didSet {
@@ -57,7 +56,7 @@ class KaraokeLyricsView: NSBox {
     }
     
     private func updateFontSize() {
-        let insetX = CGFloat(fontSize)
+        let insetX = font.pointSize
         let insetY = insetX / 3
         
         stackView.snp.remakeConstraints {
@@ -75,8 +74,7 @@ class KaraokeLyricsView: NSBox {
             $0.shadowOffset = .zero
         }
         return NSTextField(labelWithString: content).then {
-            $0.bind(.fontName, to: self, withKeyPath: #keyPath(fontName))
-            $0.bind(.fontSize, to: self, withKeyPath: #keyPath(fontSize))
+            $0.bind(.font, to: self, withKeyPath: #keyPath(font))
             $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
             $0.shadow = shadow
             $0.alphaValue = 0

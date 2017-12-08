@@ -94,21 +94,25 @@ class DesktopLyricsViewController: NSViewController {
         }
     }
     
-    var lyricsViewObservations: [UserDefaults.KeyValueObservation] = []
-    var chineseConverterObservation: UserDefaults.KeyValueObservation?
-    var lyricsInsetObservation: UserDefaults.KeyValueObservation?
+    var defaultObservations: [UserDefaults.KeyValueObservation] = []
     
     private func addObserver() {
         
         let transOpt = [NSBindingOption.valueTransformerName: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind(NSBindingName("fontName"), to: defaults, withKeyPath: .DesktopLyricsFontName)
-        lyricsView.bind(NSBindingName("fontSize"), to: defaults, withKeyPath: .DesktopLyricsFontSize)
         lyricsView.bind(NSBindingName("textColor"), to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
         lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
         lyricsView.bind(NSBindingName("fillColor"), to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
         
-        chineseConverterObservation = defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
+        defaultObservations += [defaults.observe(keys: [
+            .DesktopLyricsFontName,
+            .DesktopLyricsFontSize,
+            .DesktopLyricsFontNameFallback
+        ], options: [.initial]) { [weak self] in
+            self?.lyricsView.font = defaults.desktopLyricsFont
+        }]
+        
+        defaultObservations += [defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
             switch change.newValue {
             case 1?:
                 self?.chineseConverter = ChineseConverter(option: [.simplify])
@@ -117,9 +121,9 @@ class DesktopLyricsViewController: NSViewController {
             default:
                 self?.chineseConverter = nil
             }
-        }
+        }]
         
-        lyricsInsetObservation = defaults.observe(keys: [
+        defaultObservations += [defaults.observe(keys: [
             .DesktopLyricsInsetTopEnabled,
             .DesktopLyricsInsetBottomEnabled,
             .DesktopLyricsInsetLeftEnabled,
@@ -136,7 +140,7 @@ class DesktopLyricsViewController: NSViewController {
                     self?.makeConstraints()
                     self?.view.layoutSubtreeIfNeeded()
                 })
-        }
+        }]
     }
     
     @objc func handleLyricsDisplay() {

@@ -56,6 +56,8 @@ extension Notification.Name {
     static let currentLyricsChange = Notification.Name(CurrentLyricsChangeNotification)
 }
 
+let fontNameFallbackCountMax = 1
+
 // MARK: - User Defaults
 
 extension UserDefaults.DefaultKeys {
@@ -99,15 +101,15 @@ extension UserDefaults.DefaultKeys {
     
     static let DesktopLyricsFontName: Key<String>       = "DesktopLyricsFontName"
     static let DesktopLyricsFontSize: Key<Int>          = "DesktopLyricsFontSize"
+    static let DesktopLyricsFontNameFallback: Key<[String]> = "DesktopLyricsFontNameFallback"
     
     static let DesktopLyricsColor: ArchivedKey<NSColor>             = "DesktopLyricsColor"
     static let DesktopLyricsShadowColor: ArchivedKey<NSColor>       = "DesktopLyricsShadowColor"
     static let DesktopLyricsBackgroundColor: ArchivedKey<NSColor>   = "DesktopLyricsBackgroundColor"
     
-    static let DisplayLyricsWithTag: Key<Bool>      = "DisplayLyricsWithTag"
-    
     static let LyricsWindowFontName: Key<String>    = "LyricsWindowFontName"
     static let LyricsWindowFontSize: Key<Int>       = "LyricsWindowFontSize"
+    static let LyricsWindowFontNameFallback: Key<[String]>  = "LyricsWindowFontNameFallback"
     
     static let LyricsWindowTextColor: ArchivedKey<NSColor>          = "LyricsWindowTextColor"
     static let LyricsWindowHighlightColor: ArchivedKey<NSColor>     = "LyricsWindowHighlightColor"
