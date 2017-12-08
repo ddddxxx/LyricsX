@@ -20,6 +20,10 @@
 	<string>Optima-Regular</string>
 	<key>DesktopLyricsFontSize</key>
 	<integer>24</integer>
+	<key>LyricsWindowFontName</key>
+	<string>Helvetica</string>
+	<key>LyricsWindowFontSize</key>
+	<string>13</string>
 	<key>LyricsFilterEnabled</key>
 	<true/>
 	<key>LyricsSmartFilterEnabled</key>
