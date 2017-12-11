@@ -74,7 +74,7 @@ class DesktopLyricsWindowController: NSWindowController {
 
 class DesktopLyricsViewController: NSViewController {
     
-    @IBOutlet weak var lyricsView: KaraokeLyricsView!
+    private var lyricsView = KaraokeLyricsView(frame: .zero)
     
     private var chineseConverter: ChineseConverter?
     
@@ -82,6 +82,7 @@ class DesktopLyricsViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(lyricsView)
         
         addObserver()
         makeConstraints()
