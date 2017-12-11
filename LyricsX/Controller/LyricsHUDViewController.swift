@@ -52,11 +52,10 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         lyricsScrollView.delegate = self
         lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
-        let transOpt = [NSBindingOption.valueTransformerName: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsScrollView.bind(NSBindingName("fontName"), to: defaults, withKeyPath: .LyricsWindowFontName)
-        lyricsScrollView.bind(NSBindingName("fontSize"), to: defaults, withKeyPath: .LyricsWindowFontSize)
-        lyricsScrollView.bind(NSBindingName("textColor"), to: defaults, withKeyPath: .LyricsWindowTextColor, options: transOpt)
-        lyricsScrollView.bind(NSBindingName("highlightColor"), to: defaults, withKeyPath: .LyricsWindowHighlightColor, options: transOpt)
+        lyricsScrollView.bind(NSBindingName("fontName"), to: defaults, withDefaultName: .LyricsWindowFontName)
+        lyricsScrollView.bind(NSBindingName("fontSize"), to: defaults, withDefaultName: .LyricsWindowFontSize)
+        lyricsScrollView.bind(NSBindingName("textColor"), to: defaults, withDefaultName: .LyricsWindowTextColor)
+        lyricsScrollView.bind(NSBindingName("highlightColor"), to: defaults, withDefaultName: .LyricsWindowHighlightColor)
         
         let nc = NotificationCenter.default
         observations += [

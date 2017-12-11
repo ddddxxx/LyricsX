@@ -83,13 +83,12 @@ class DesktopLyricsWindowController: NSWindowController {
     
     private func addObserver() {
         
-        let transOpt = [NSBindingOption.valueTransformerName: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind(NSBindingName("textColor"), to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
-        lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
-        lyricsView.bind(NSBindingName("fillColor"), to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
-        lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
+        lyricsView.bind(NSBindingName("textColor"), to: defaults, withDefaultName: .DesktopLyricsColor)
+        lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withDefaultName: .DesktopLyricsShadowColor)
+        lyricsView.bind(NSBindingName("fillColor"), to: defaults, withDefaultName: .DesktopLyricsBackgroundColor)
+        lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withDefaultName: .HideLyricsWhenMousePassingBy)
         
-        window?.contentView?.bind(.hidden, to: defaults, withKeyPath: .DesktopLyricsEnabled, options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        window?.contentView?.bind(.hidden, to: defaults, withDefaultName: .DesktopLyricsEnabled, options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
         
         defaultObservations += [defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] defaults, change in
             switch change.newValue {

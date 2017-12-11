@@ -40,8 +40,14 @@ extension Comparable {
 
 extension NSObject {
     
-    func bind<T>(_ binding: NSBindingName, to observable: Any, withKeyPath keyPath: UserDefaults.DefaultKey<T>, options: [NSBindingOption : Any]? = nil) {
-        bind(binding, to: observable, withKeyPath: keyPath.rawValue, options: options)
+    func bind<T>(_ binding: NSBindingName, to observable: UserDefaults, withDefaultName defaultName: UserDefaults.DefaultKey<T>, options: [NSBindingOption : Any] = [:]) {
+        bind(binding, to: observable, withKeyPath: defaultName.rawValue, options: options)
+    }
+    
+    func bind<T>(_ binding: NSBindingName, to observable: UserDefaults, withDefaultName defaultName: UserDefaults.ArchivedKey<T>, options: [NSBindingOption : Any] = [:]) {
+        var options = options
+        options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
+        bind(binding, to: observable, withKeyPath: defaultName.rawValue, options: options)
     }
 }
 
