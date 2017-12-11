@@ -4,8 +4,6 @@
 <dict>
 	<key>DesktopLyricsEnabled</key>
 	<true/>
-	<key>PreferBilingualLyrics</key>
-	<true/>
 	<key>HideLyricsWhenMousePassingBy</key>
 	<true/>
 	<key>DisableLyricsWhenPaused</key>
