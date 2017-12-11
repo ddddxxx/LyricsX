@@ -280,22 +280,13 @@
         <!--Desktop Lyrics View Controller-->
         <scene sceneID="aqq-eh-K59">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="Mpu-mB-dfa" userLabel="Desktop Lyrics View Controller" customClass="DesktopLyricsViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController showSeguePresentationStyle="single" id="Mpu-mB-dfa" userLabel="Desktop Lyrics View Controller" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="Jim-N9-wko">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <binding destination="cTu-hR-jwk" name="hidden" keyPath="values.DesktopLyricsEnabled" id="Nzd-F3-fIy">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
                     </view>
                 </viewController>
-                <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="AB5-cL-Rpb"/>
-                <userDefaultsController id="cTu-hR-jwk"/>
             </objects>
             <point key="canvasLocation" x="1281" y="-352"/>
         </scene>

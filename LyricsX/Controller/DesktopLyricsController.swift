@@ -26,7 +26,13 @@ import MusicPlayer
 
 class DesktopLyricsWindowController: NSWindowController {
     
-    var disableLyricsWhenSreenShotObservation: UserDefaults.KeyValueObservation?
+    private var lyricsView = KaraokeLyricsView(frame: .zero)
+    
+    private var chineseConverter: ChineseConverter?
+    
+    var currentLineIndex: Int?
+    
+    var defaultObservations: [UserDefaults.KeyValueObservation] = []
     
     override func windowDidLoad() {
         window?.do {
@@ -39,12 +45,16 @@ class DesktopLyricsWindowController: NSWindowController {
             $0.level = .floating
         }
         
-        disableLyricsWhenSreenShotObservation = defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] defaults, change in
-            switch change.newValue {
-            case true?: self?.window?.sharingType = .none
-            case false?: self?.window?.sharingType = .readOnly
-            case nil: break
-            }
+        window?.contentView?.addSubview(lyricsView)
+        
+        addObserver()
+        makeConstraints()
+        
+        lyricsView.displayLrc("LyricsX")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.lyricsView.displayLrc("")
+            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
         }
         
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(updateWindowFrame), name: NSWorkspace.activeSpaceDidChangeNotification, object: nil)
@@ -70,32 +80,6 @@ class DesktopLyricsWindowController: NSWindowController {
         }
         return true
     }
-}
-
-class DesktopLyricsViewController: NSViewController {
-    
-    private var lyricsView = KaraokeLyricsView(frame: .zero)
-    
-    private var chineseConverter: ChineseConverter?
-    
-    var currentLineIndex: Int?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(lyricsView)
-        
-        addObserver()
-        makeConstraints()
-        
-        lyricsView.displayLrc("LyricsX")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.lyricsView.displayLrc("")
-            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
-        }
-    }
-    
-    var defaultObservations: [UserDefaults.KeyValueObservation] = []
     
     private func addObserver() {
         
@@ -104,6 +88,16 @@ class DesktopLyricsViewController: NSViewController {
         lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
         lyricsView.bind(NSBindingName("fillColor"), to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
+        
+        window?.contentView?.bind(.hidden, to: defaults, withKeyPath: .DesktopLyricsEnabled, options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        
+        defaultObservations += [defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] defaults, change in
+            switch change.newValue {
+            case true?: self?.window?.sharingType = .none
+            case false?: self?.window?.sharingType = .readOnly
+            case nil: break
+            }
+        }]
         
         defaultObservations += [defaults.observe(keys: [
             .DesktopLyricsFontName,
@@ -139,7 +133,7 @@ class DesktopLyricsViewController: NSViewController {
                     context.allowsImplicitAnimation = true
                     context.timingFunction = .mystery
                     self?.makeConstraints()
-                    self?.view.layoutSubtreeIfNeeded()
+                    self?.window?.layoutIfNeeded()
                 })
         }]
     }
