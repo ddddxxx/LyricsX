@@ -57,6 +57,25 @@ extension MusicPlayerName {
     }
 }
 
+extension NSFont {
+    
+    convenience init?(name fontName: String, size fontSize: CGFloat, fallback fallbackNames: [String]) {
+        let cascadeList = fallbackNames.flatMap { NSFontDescriptor.init(name: $0, size: fontSize).matchingFontDescriptor(withMandatoryKeys: [.name, .size]) }
+        let descriptor = NSFontDescriptor(fontAttributes: [.name: fontName, .cascadeList: cascadeList])
+        self.init(descriptor: descriptor, size: fontSize)
+    }
+}
+
+extension UserDefaults {
+    
+    var desktopLyricsFont: NSFont {
+        return NSFont.init(name: self[.DesktopLyricsFontName],
+                           size: CGFloat(self[.DesktopLyricsFontSize]),
+                           fallback: self[.DesktopLyricsFontNameFallback])
+            ?? NSFont.systemFont(ofSize: CGFloat(self[.DesktopLyricsFontSize]))
+    }
+}
+
 extension UserDefaults {
     
     func lyricsSavingPath() -> (URL, security: Bool)? {

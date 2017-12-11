@@ -167,17 +167,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func registerUserDefaults() {
+        let currentLang = NSLocale.preferredLanguages.first!
+        let isZh = currentLang.hasPrefix("zh") || currentLang.hasPrefix("yue")
+        let isHant = isZh && (currentLang.contains("-Hant") || currentLang.contains("-HK"))
+        
         let defaultsUrl = Bundle.main.url(forResource: "UserDefaults", withExtension: "plist")!
-        let d = NSDictionary(contentsOf: defaultsUrl) as! [String: Any]
-        defaults.register(defaults: d)
+        let dict = NSDictionary(contentsOf: defaultsUrl) as! [String: Any]
+        defaults.register(defaults: dict)
         defaults.register(defaults: [
             .DesktopLyricsColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
             .DesktopLyricsShadowColor: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1),
             .DesktopLyricsBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279),
-            .LyricsWindowFontName: "Helvetica",
-            .LyricsWindowFontSize: 12,
             .LyricsWindowTextColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1),
             .LyricsWindowHighlightColor: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1),
+            .PreferBilingualLyrics: isZh,
+            .ChineseConversionIndex: isHant ? 2 : 0,
             ])
     }
 }

@@ -25,8 +25,7 @@ class KaraokeLyricsView: NSBox {
     
     private let stackView = NSStackView()
     
-    @objc dynamic var fontName = "Helvetica Light"
-    @objc dynamic var fontSize = 24 { didSet { updateFontSize() } }
+    @objc dynamic var font = NSFont.labelFont(ofSize: 24) { didSet { updateFontSize() } }
     @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1) {
         didSet {
@@ -46,6 +45,9 @@ class KaraokeLyricsView: NSBox {
         }
     }
     
+    var displayLine1: DyeTextField?
+    var displayLine2: DyeTextField?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         isHidden = true
@@ -57,7 +59,7 @@ class KaraokeLyricsView: NSBox {
     }
     
     private func updateFontSize() {
-        let insetX = CGFloat(fontSize)
+        let insetX = font.pointSize
         let insetY = insetX / 3
         
         stackView.snp.remakeConstraints {
@@ -67,17 +69,17 @@ class KaraokeLyricsView: NSBox {
         cornerRadius = insetX / 2
     }
     
-    private func lyricsLabel(_ content: String) -> NSTextField {
+    private func lyricsLabel(_ content: String) -> DyeTextField {
         // TODO: reuse label
         let shadow = NSShadow().then {
             $0.shadowBlurRadius = 3
             $0.shadowColor = shadowColor
             $0.shadowOffset = .zero
         }
-        return NSTextField(labelWithString: content).then {
-            $0.bind(.fontName, to: self, withKeyPath: #keyPath(fontName))
-            $0.bind(.fontSize, to: self, withKeyPath: #keyPath(fontSize))
+        return DyeTextField(string: content).then {
+            $0.bind(.font, to: self, withKeyPath: #keyPath(font))
             $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
+            $0.bind(.init("dyeColor"), to: self, withKeyPath: #keyPath(shadowColor))
             $0.shadow = shadow
             $0.alphaValue = 0
             $0.isHidden = true
@@ -85,22 +87,28 @@ class KaraokeLyricsView: NSBox {
     }
     
     func displayLrc(_ firstLine: String, secondLine: String = "") {
-        var toBeHide = stackView.arrangedSubviews as! [NSTextField]
-        var toBeShow: [NSTextField] = []
+        var toBeHide = stackView.arrangedSubviews as! [DyeTextField]
+        var toBeShow: [DyeTextField] = []
         var shouldHideAll = false
         
         if firstLine.isEmpty {
+            displayLine1 = nil
             shouldHideAll = true
         } else if toBeHide.count == 2, toBeHide[1].stringValue == firstLine {
+            displayLine1 = toBeHide[1]
             toBeHide.remove(at: 1)
         } else {
             let label = lyricsLabel(firstLine)
+            displayLine1 = label
             toBeShow.append(label)
         }
         
         if !secondLine.isEmpty {
             let label = lyricsLabel(secondLine)
+            displayLine2 = label
             toBeShow.append(label)
+        } else {
+            displayLine2 = nil
         }
         
         NSAnimationContext.runAnimationGroup({ context in

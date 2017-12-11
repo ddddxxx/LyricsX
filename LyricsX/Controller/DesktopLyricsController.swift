@@ -94,21 +94,25 @@ class DesktopLyricsViewController: NSViewController {
         }
     }
     
-    var lyricsViewObservations: [UserDefaults.KeyValueObservation] = []
-    var chineseConverterObservation: UserDefaults.KeyValueObservation?
-    var lyricsInsetObservation: UserDefaults.KeyValueObservation?
+    var defaultObservations: [UserDefaults.KeyValueObservation] = []
     
     private func addObserver() {
         
         let transOpt = [NSBindingOption.valueTransformerName: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind(NSBindingName("fontName"), to: defaults, withKeyPath: .DesktopLyricsFontName)
-        lyricsView.bind(NSBindingName("fontSize"), to: defaults, withKeyPath: .DesktopLyricsFontSize)
         lyricsView.bind(NSBindingName("textColor"), to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
         lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
         lyricsView.bind(NSBindingName("fillColor"), to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
         lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
         
-        chineseConverterObservation = defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
+        defaultObservations += [defaults.observe(keys: [
+            .DesktopLyricsFontName,
+            .DesktopLyricsFontSize,
+            .DesktopLyricsFontNameFallback
+        ], options: [.initial]) { [weak self] in
+            self?.lyricsView.font = defaults.desktopLyricsFont
+        }]
+        
+        defaultObservations += [defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
             switch change.newValue {
             case 1?:
                 self?.chineseConverter = ChineseConverter(option: [.simplify])
@@ -117,9 +121,9 @@ class DesktopLyricsViewController: NSViewController {
             default:
                 self?.chineseConverter = nil
             }
-        }
+        }]
         
-        lyricsInsetObservation = defaults.observe(keys: [
+        defaultObservations += [defaults.observe(keys: [
             .DesktopLyricsInsetTopEnabled,
             .DesktopLyricsInsetBottomEnabled,
             .DesktopLyricsInsetLeftEnabled,
@@ -136,7 +140,7 @@ class DesktopLyricsViewController: NSViewController {
                     self?.makeConstraints()
                     self?.view.layoutSubtreeIfNeeded()
                 })
-        }
+        }]
     }
     
     @objc func handleLyricsDisplay() {
@@ -175,6 +179,43 @@ class DesktopLyricsViewController: NSViewController {
         
         DispatchQueue.main.async {
             self.lyricsView.displayLrc(firstLine, secondLine: secondLine)
+            if let upperTextField = self.lyricsView.displayLine1,
+                let timeline = lrc.attachments[.timetag] as? LyricsLineAttachmentTimeLine,
+                let position = AppController.shared.playerManager.player?.playerPosition {
+                let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
+                let rectArray = upperTextField.rectArray
+                
+                var map = timeline.tags.map { tag -> (TimeInterval, CGFloat) in
+                    let dt = tag.timeTag + lrc.position - timeDelay - position
+                    let progress = tag.index == 0 ? 0 : rectArray[min(tag.index, rectArray.count) - 1].maxX
+                    return (dt, progress)
+                }
+                guard let i = map.index(where: { $0.0 > 0 }) else {
+                    upperTextField.dyeRect.frame = upperTextField.bounds
+                    return
+                }
+                if i > 0 {
+                    let progress = map[i-1].1 + CGFloat(map[i-1].0) * (map[i].1 - map[i-1].1) / CGFloat(map[i].0 - map[i-1].0)
+                    map.replaceSubrange(..<i, with: [(0, progress)])
+                }
+                if let duration = timeline.duration {
+                    let progress = rectArray.last!.maxX
+                    let dt = duration + lrc.position - timeDelay - position
+                    if dt > map.last!.0 {
+                        map.append((dt, progress))
+                    }
+                }
+                let duration = map.last!.0
+                let animation = CAKeyframeAnimation()
+                animation.keyTimes = map.map { ($0.0 / duration) as NSNumber }
+                animation.values = map.map { $0.1 }
+                animation.keyPath = "bounds.size.width"
+                animation.duration = duration
+                animation.fillMode = kCAFillModeForwards
+                animation.isRemovedOnCompletion = false
+                upperTextField.dyeRect.layer?.add(animation, forKey: "inlineProgress")
+            }
+
         }
     }
     

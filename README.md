@@ -28,7 +28,7 @@ LyricsX is available on the Mac App Store.
 
 - Work perfectly with iTunes, Spotify and Vox.
 - Automatically search & download live lyrics.
-- Display lyrics on desktop and menubar. you can customize font, color and position for desktop lyrics.
+- Display lyrics on desktop and menubar. you can customize font, color and position.
 - Adjust lyrics offset on status menu.
 - Navigate the song with lyrics - Double click a line to jump to specific position.
 - Drag & Drop to import/export lyrics file.
