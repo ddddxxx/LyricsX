@@ -258,7 +258,7 @@
         <!--Desktop Lyrics Window Controller-->
         <scene sceneID="nf6-bn-z8A">
             <objects>
-                <windowController storyboardIdentifier="DesktopLyricsWindow" showSeguePresentationStyle="single" id="N3z-4I-Oeu" userLabel="Desktop Lyrics Window Controller" customClass="DesktopLyricsWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="DesktopLyricsWindow" showSeguePresentationStyle="single" id="N3z-4I-Oeu" userLabel="Desktop Lyrics Window Controller" customClass="KaraokeLyricsWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="fhu-ba-Lnu">
                         <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

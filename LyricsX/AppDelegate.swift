@@ -36,13 +36,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
     
-    var desktopLyrics: NSWindowController?
+    var desktopLyrics: KaraokeLyricsWindowController?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         Fabric.with([Crashlytics.self])
         
-        desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! NSWindowController)
+        desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! KaraokeLyricsWindowController)
         desktopLyrics?.showWindow(nil)
         desktopLyrics?.window?.makeKeyAndOrderFront(nil)
         

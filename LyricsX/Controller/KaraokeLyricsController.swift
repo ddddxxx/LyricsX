@@ -1,5 +1,5 @@
 //
-//  DesktopLyricsController.swift
+//  KaraokeLyricsController.swift
 //
 //  This file is part of LyricsX
 //  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
@@ -24,7 +24,7 @@ import OpenCC
 import LyricsProvider
 import MusicPlayer
 
-class DesktopLyricsWindowController: NSWindowController {
+class KaraokeLyricsWindowController: NSWindowController {
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
     
@@ -104,7 +104,7 @@ class DesktopLyricsWindowController: NSWindowController {
         notifications += [NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
             if let mainScreen = NSScreen.main {
                 let frame = isFullScreen() == true ? mainScreen.frame : mainScreen.visibleFrame
-                self?.window?.setFrame(frame, display: true, animate: true)
+                self?.window?.setFrame(frame, display: false, animate: true)
             }
         }]
     }

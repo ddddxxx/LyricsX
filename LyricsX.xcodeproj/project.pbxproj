@@ -23,7 +23,7 @@
 		BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141AD1E458BA800A51775 /* AppDelegate.swift */; };
 		BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B11E458BA800A51775 /* Assets.xcassets */; };
 		BB4141B51E458BA900A51775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B31E458BA900A51775 /* Main.storyboard */; };
-		BB4141C01E45B67800A51775 /* DesktopLyricsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141BF1E45B67800A51775 /* DesktopLyricsController.swift */; };
+		BB4141C01E45B67800A51775 /* KaraokeLyricsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141BF1E45B67800A51775 /* KaraokeLyricsController.swift */; };
 		BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; };
 		BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB4919361F00CD800054EA09 /* PreferenceShortcutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4919351F00CD800054EA09 /* PreferenceShortcutViewController.swift */; };
@@ -106,7 +106,7 @@
 		BB4141B11E458BA800A51775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		BB4141B41E458BA900A51775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB4141B61E458BA900A51775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB4141BF1E45B67800A51775 /* DesktopLyricsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesktopLyricsController.swift; sourceTree = "<group>"; };
+		BB4141BF1E45B67800A51775 /* KaraokeLyricsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KaraokeLyricsController.swift; sourceTree = "<group>"; };
 		BB4141C61E46CDD200A51775 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/Mac/SnapKit.framework; sourceTree = "<group>"; };
 		BB4919351F00CD800054EA09 /* PreferenceShortcutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceShortcutViewController.swift; sourceTree = "<group>"; };
 		BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LyricsProvider.framework; path = Carthage/Build/Mac/LyricsProvider.framework; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				BBC7C5561E6AEA4500E3EC4F /* Preferences */,
-				BB4141BF1E45B67800A51775 /* DesktopLyricsController.swift */,
+				BB4141BF1E45B67800A51775 /* KaraokeLyricsController.swift */,
 				BBC1D57F1E4AE3B9008869EC /* MenuBarLyrics.swift */,
 				BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */,
 				BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */,
@@ -474,7 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB7365B41FD51E0E007EFFF7 /* DyeTextField.swift in Sources */,
-				BB4141C01E45B67800A51775 /* DesktopLyricsController.swift in Sources */,
+				BB4141C01E45B67800A51775 /* KaraokeLyricsController.swift in Sources */,
 				BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */,
 				BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */,
 				BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */,
