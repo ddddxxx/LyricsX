@@ -28,8 +28,6 @@ class DesktopLyricsWindowController: NSWindowController {
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
     
-    private var chineseConverter: ChineseConverter?
-    
     var currentLineIndex: Int?
     
     var defaultObservations: [UserDefaults.KeyValueObservation] = []
@@ -82,16 +80,6 @@ class DesktopLyricsWindowController: NSWindowController {
                 .DesktopLyricsFontNameFallback
             ], options: [.initial]) { [weak self] in
                 self?.lyricsView.font = defaults.desktopLyricsFont
-            },
-            defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
-                switch change.newValue {
-                case 1?:
-                    self?.chineseConverter = ChineseConverter(option: [.simplify])
-                case 2?:
-                    self?.chineseConverter = ChineseConverter(option: [.traditionalize])
-                default:
-                    self?.chineseConverter = nil
-                }
             },
             defaults.observe(keys: [
                 .DesktopLyricsInsetTopEnabled,
@@ -150,7 +138,7 @@ class DesktopLyricsWindowController: NSWindowController {
             secondLine = next?.content ?? ""
         }
         
-        if let converter = chineseConverter {
+        if let converter = ChineseConverter.shared {
             firstLine = converter.convert(firstLine)
             secondLine = converter.convert(secondLine)
         }
