@@ -22,6 +22,7 @@ import Foundation
 import AppKit
 import LyricsProvider
 import MusicPlayer
+import OpenCC
 
 class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     
@@ -75,26 +76,25 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     }
     
     func writeToiTunes(overwrite: Bool) {
-        guard let player = playerManager.player as? iTunes else {
+        guard let player = playerManager.player as? iTunes,
+            let currentLyrics = currentLyrics,
+            overwrite || player.currentLyrics?.isEmpty != false else {
             return
         }
-        guard let currentLyrics = currentLyrics else {
-            assertionFailure()
-            return
+        var content = currentLyrics.lines.map { line in
+            var content = line.content
+            if defaults[.WriteiTunesWithTranslation],
+                let translation = line.translation {
+                content += "\n" + translation
+            }
+            return content
+        }.joined(separator: "\n")
+        let regex = try! NSRegularExpression(pattern: "\\n{3}")
+        content = regex.stringByReplacingMatches(in: content, range: NSRange(location: 0, length: content.utf16.count), withTemplate: "\n\n").trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
+        if let converter = ChineseConverter.shared {
+            content = converter.convert(content)
         }
-        if overwrite || player.currentLyrics == nil {
-            let lyrics = currentLyrics.lines.map { line in
-                var content = line.content
-                if defaults[.WriteiTunesWithTranslation],
-                    let translation = line.translation {
-                    content += "\n" + translation
-                }
-                return content
-            }.joined(separator: "\n")
-            let regex = try! NSRegularExpression(pattern: "\\n{3}")
-            let replaced = regex.stringByReplacingMatches(in: lyrics, range: NSRange(location: 0, length: lyrics.utf16.count), withTemplate: "\n\n")
-            player.currentLyrics = replaced.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
-        }
+        player.currentLyrics = content
     }
     
     // MARK: MusicPlayerManagerDelegate

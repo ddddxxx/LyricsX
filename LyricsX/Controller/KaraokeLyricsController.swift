@@ -1,5 +1,5 @@
 //
-//  DesktopLyricsController.swift
+//  KaraokeLyricsController.swift
 //
 //  This file is part of LyricsX
 //  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
@@ -24,9 +24,14 @@ import OpenCC
 import LyricsProvider
 import MusicPlayer
 
-class DesktopLyricsWindowController: NSWindowController {
+class KaraokeLyricsWindowController: NSWindowController {
     
-    var disableLyricsWhenSreenShotObservation: UserDefaults.KeyValueObservation?
+    private var lyricsView = KaraokeLyricsView(frame: .zero)
+    
+    var currentLineIndex: Int?
+    
+    var defaultObservations: [UserDefaults.KeyValueObservation] = []
+    var notifications: [NSObjectProtocol] = []
     
     override func windowDidLoad() {
         window?.do {
@@ -37,51 +42,10 @@ class DesktopLyricsWindowController: NSWindowController {
             $0.isOpaque = false
             $0.ignoresMouseEvents = true
             $0.level = .floating
+            $0.collectionBehavior = [.canJoinAllSpaces, .stationary]
         }
         
-        disableLyricsWhenSreenShotObservation = defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] defaults, change in
-            switch change.newValue {
-            case true?: self?.window?.sharingType = .none
-            case false?: self?.window?.sharingType = .readOnly
-            case nil: break
-            }
-        }
-        
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(updateWindowFrame), name: NSWorkspace.activeSpaceDidChangeNotification, object: nil)
-    }
-    
-    @objc func updateWindowFrame() {
-        guard let mainScreen = NSScreen.main else {
-            return
-        }
-        let frame = isFullScreen() == true ? mainScreen.frame : mainScreen.visibleFrame
-        window?.setFrame(frame, display: true, animate: true)
-    }
-    
-    func isFullScreen() -> Bool? {
-        guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
-            return nil
-        }
-        for info in windowInfoList {
-            if info[kCGWindowOwnerName as String] as? String == "Window Server",
-                info[kCGWindowName as String] as? String == "Menubar" {
-                return false
-            }
-        }
-        return true
-    }
-}
-
-class DesktopLyricsViewController: NSViewController {
-    
-    @IBOutlet weak var lyricsView: KaraokeLyricsView!
-    
-    private var chineseConverter: ChineseConverter?
-    
-    var currentLineIndex: Int?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        window?.contentView?.addSubview(lyricsView)
         
         addObserver()
         makeConstraints()
@@ -94,52 +58,54 @@ class DesktopLyricsViewController: NSViewController {
         }
     }
     
-    var defaultObservations: [UserDefaults.KeyValueObservation] = []
-    
     private func addObserver() {
+        lyricsView.bind(NSBindingName("textColor"), to: defaults, withDefaultName: .DesktopLyricsColor)
+        lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withDefaultName: .DesktopLyricsShadowColor)
+        lyricsView.bind(NSBindingName("fillColor"), to: defaults, withDefaultName: .DesktopLyricsBackgroundColor)
+        lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withDefaultName: .HideLyricsWhenMousePassingBy)
         
-        let transOpt = [NSBindingOption.valueTransformerName: NSValueTransformerName.keyedUnarchiveFromDataTransformerName]
-        lyricsView.bind(NSBindingName("textColor"), to: defaults, withKeyPath: .DesktopLyricsColor, options: transOpt)
-        lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withKeyPath: .DesktopLyricsShadowColor, options: transOpt)
-        lyricsView.bind(NSBindingName("fillColor"), to: defaults, withKeyPath: .DesktopLyricsBackgroundColor, options: transOpt)
-        lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withKeyPath: .HideLyricsWhenMousePassingBy)
+        window?.contentView?.bind(.hidden, to: defaults, withDefaultName: .DesktopLyricsEnabled, options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
         
-        defaultObservations += [defaults.observe(keys: [
-            .DesktopLyricsFontName,
-            .DesktopLyricsFontSize,
-            .DesktopLyricsFontNameFallback
-        ], options: [.initial]) { [weak self] in
-            self?.lyricsView.font = defaults.desktopLyricsFont
-        }]
-        
-        defaultObservations += [defaults.observe(.ChineseConversionIndex, options: [.new]) { [weak self] _, change in
-            switch change.newValue {
-            case 1?:
-                self?.chineseConverter = ChineseConverter(option: [.simplify])
-            case 2?:
-                self?.chineseConverter = ChineseConverter(option: [.traditionalize])
-            default:
-                self?.chineseConverter = nil
+        defaultObservations += [
+            defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] defaults, change in
+                switch change.newValue {
+                case true?: self?.window?.sharingType = .none
+                case false?: self?.window?.sharingType = .readOnly
+                case nil: break
+                }
+            },
+            defaults.observe(keys: [
+                .DesktopLyricsFontName,
+                .DesktopLyricsFontSize,
+                .DesktopLyricsFontNameFallback
+            ], options: [.initial]) { [weak self] in
+                self?.lyricsView.font = defaults.desktopLyricsFont
+            },
+            defaults.observe(keys: [
+                .DesktopLyricsInsetTopEnabled,
+                .DesktopLyricsInsetBottomEnabled,
+                .DesktopLyricsInsetLeftEnabled,
+                .DesktopLyricsInsetRightEnabled,
+                .DesktopLyricsInsetTop,
+                .DesktopLyricsInsetBottom,
+                .DesktopLyricsInsetLeft,
+                .DesktopLyricsInsetRight,
+                ], options: []) { [weak self] in
+                    NSAnimationContext.runAnimationGroup({ context in
+                        context.duration = 0.2
+                        context.allowsImplicitAnimation = true
+                        context.timingFunction = .mystery
+                        self?.makeConstraints()
+                        self?.window?.layoutIfNeeded()
+                    })
             }
-        }]
+        ]
         
-        defaultObservations += [defaults.observe(keys: [
-            .DesktopLyricsInsetTopEnabled,
-            .DesktopLyricsInsetBottomEnabled,
-            .DesktopLyricsInsetLeftEnabled,
-            .DesktopLyricsInsetRightEnabled,
-            .DesktopLyricsInsetTop,
-            .DesktopLyricsInsetBottom,
-            .DesktopLyricsInsetLeft,
-            .DesktopLyricsInsetRight,
-            ], options: []) { [weak self] in
-                NSAnimationContext.runAnimationGroup({ context in
-                    context.duration = 0.2
-                    context.allowsImplicitAnimation = true
-                    context.timingFunction = .mystery
-                    self?.makeConstraints()
-                    self?.view.layoutSubtreeIfNeeded()
-                })
+        notifications += [NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
+            if let mainScreen = NSScreen.main {
+                let frame = isFullScreen() == true ? mainScreen.frame : mainScreen.visibleFrame
+                self?.window?.setFrame(frame, display: false, animate: true)
+            }
         }]
     }
     
@@ -172,7 +138,7 @@ class DesktopLyricsViewController: NSViewController {
             secondLine = next?.content ?? ""
         }
         
-        if let converter = chineseConverter {
+        if let converter = ChineseConverter.shared {
             firstLine = converter.convert(firstLine)
             secondLine = converter.convert(secondLine)
         }
@@ -250,4 +216,17 @@ class DesktopLyricsViewController: NSViewController {
         }
     }
     
+}
+
+func isFullScreen() -> Bool? {
+    guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
+        return nil
+    }
+    for info in windowInfoList {
+        if info[kCGWindowOwnerName as String] as? String == "Window Server",
+            info[kCGWindowName as String] as? String == "Menubar" {
+            return false
+        }
+    }
+    return true
 }

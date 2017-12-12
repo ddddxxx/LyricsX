@@ -29,9 +29,6 @@
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
 "CWo-Qx-2Ut.title" = "偏好设置...";
 
-/* Class = "NSBox"; title = "Box"; ObjectID = "DKt-ce-wX8"; */
-"DKt-ce-wX8.title" = "Box";
-
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
 "EoO-ld-6Xv.title" = "捐赠...";
 

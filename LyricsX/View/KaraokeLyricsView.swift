@@ -23,7 +23,10 @@ import SnapKit
 
 class KaraokeLyricsView: NSBox {
     
-    private let stackView = NSStackView()
+    private let stackView = NSStackView().then {
+        $0.orientation = .vertical
+        $0.alignment = .centerX
+    }
     
     @objc dynamic var font = NSFont.labelFont(ofSize: 24) { didSet { updateFontSize() } }
     @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -48,14 +51,18 @@ class KaraokeLyricsView: NSBox {
     var displayLine1: DyeTextField?
     var displayLine2: DyeTextField?
     
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        boxType = .custom
+        borderType = .grooveBorder
+        borderWidth = 0
+        cornerRadius = 12
+        contentView = stackView
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        isHidden = true
-        stackView.orientation = .vertical
-        stackView.alignment = .centerX
         contentView = stackView
-        
-        updateFontSize()
     }
     
     private func updateFontSize() {

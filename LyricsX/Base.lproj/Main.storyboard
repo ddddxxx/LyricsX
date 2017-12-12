@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -259,7 +258,7 @@
         <!--Desktop Lyrics Window Controller-->
         <scene sceneID="nf6-bn-z8A">
             <objects>
-                <windowController storyboardIdentifier="DesktopLyricsWindow" showSeguePresentationStyle="single" id="N3z-4I-Oeu" userLabel="Desktop Lyrics Window Controller" customClass="DesktopLyricsWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="DesktopLyricsWindow" showSeguePresentationStyle="single" id="N3z-4I-Oeu" userLabel="Desktop Lyrics Window Controller" customClass="KaraokeLyricsWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="fhu-ba-Lnu">
                         <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -281,36 +280,13 @@
         <!--Desktop Lyrics View Controller-->
         <scene sceneID="aqq-eh-K59">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="Mpu-mB-dfa" userLabel="Desktop Lyrics View Controller" customClass="DesktopLyricsViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController showSeguePresentationStyle="single" id="Mpu-mB-dfa" userLabel="Desktop Lyrics View Controller" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="Jim-N9-wko">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <box fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="DKt-ce-wX8" customClass="KaraokeLyricsView" customModule="LyricsX" customModuleProvider="target">
-                                <rect key="frame" x="175" y="20" width="130" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="Z6w-NG-DTp">
-                                    <rect key="frame" x="0.0" y="0.0" width="130" height="46"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                            </box>
-                        </subviews>
-                        <connections>
-                            <binding destination="cTu-hR-jwk" name="hidden" keyPath="values.DesktopLyricsEnabled" id="Nzd-F3-fIy">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
                     </view>
-                    <connections>
-                        <outlet property="lyricsView" destination="DKt-ce-wX8" id="OnU-jX-f4C"/>
-                    </connections>
                 </viewController>
-                <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="AB5-cL-Rpb"/>
-                <userDefaultsController id="cTu-hR-jwk"/>
             </objects>
             <point key="canvasLocation" x="1281" y="-352"/>
         </scene>
