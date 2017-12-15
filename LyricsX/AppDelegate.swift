@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
         
         let controller = AppController.shared
-        lyricsOffsetStepper.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [NSBindingOption.continuouslyUpdatesValue: true])
+        lyricsOffsetStepper.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
         lyricsOffsetTextField.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
         
         setupShortcuts()
