@@ -10,19 +10,18 @@ import OpenCC
 
 extension ChineseConverter {
     
-    static var shared: ChineseConverter? = {
+    static var shared: ChineseConverter? {
         _ = ChineseConverter.observer
-        return nil
-    }()
+        return _shared
+    }
     
-    private static let observer = defaults.observe(.ChineseConversionIndex, options: [.new]) { _, change in
+    private static var _shared: ChineseConverter?
+    
+    private static let observer = defaults.observe(.ChineseConversionIndex, options: [.new, .initial]) { _, change in
         switch change.newValue {
-        case 1?:
-            ChineseConverter.shared = ChineseConverter(option: [.simplify])
-        case 2?:
-            ChineseConverter.shared = ChineseConverter(option: [.traditionalize])
-        default:
-            ChineseConverter.shared = nil
+        case 1?: ChineseConverter._shared = ChineseConverter(option: [.simplify])
+        case 2?: ChineseConverter._shared = ChineseConverter(option: [.traditionalize])
+        default: ChineseConverter._shared = nil
         }
     }
 }
