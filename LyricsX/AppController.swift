@@ -39,7 +39,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             currentLyrics?.filtrate()
             didChangeValue(forKey: "lyricsOffset")
             NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
-            if currentLyrics?.metadata.localURL != nil {
+            if currentLyrics?.metadata.localURL == nil {
                 currentLyrics?.saveToLocal()
             }
             currentLineIndex = nil

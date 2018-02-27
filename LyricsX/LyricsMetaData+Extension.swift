@@ -23,12 +23,12 @@ extension Lyrics.MetaData {
     }
     
     var title: String? {
-        get { return data[.title] as? String }
+        get { return request?.title ?? data[.title] as? String }
         set { data[.title] = newValue }
     }
     
     var artist: String? {
-        get { return data[.artist] as? String }
+        get { return request?.artist ?? data[.artist] as? String }
         set { data[.artist] = newValue }
     }
 }
