@@ -154,7 +154,7 @@ extension Lyrics {
             return nil
         }
         
-        lrc.metadata.source = .Local
+        lrc.metadata.localURL = lrcFileURL
         lrc.metadata.title = title
         lrc.metadata.artist = artist
         return lrc
@@ -194,6 +194,7 @@ extension Lyrics {
                 try fileManager.removeItem(at: lrcFileURL)
             }
             try legacyDescription.write(to: lrcFileURL, atomically: true, encoding: .utf8)
+            metadata.localURL = lrcFileURL
         } catch {
             log(error.localizedDescription)
             return

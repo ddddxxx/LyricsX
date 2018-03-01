@@ -24,7 +24,7 @@ import LyricsProvider
 import MusicPlayer
 import OpenCC
 
-class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
+class AppController: NSObject, MusicPlayerManagerDelegate {
     
     static let shared = AppController()
     
@@ -39,13 +39,15 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
             currentLyrics?.filtrate()
             didChangeValue(forKey: "lyricsOffset")
             NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
-            if currentLyrics?.metadata.source != .Local {
+            if currentLyrics?.metadata.localURL == nil {
                 currentLyrics?.saveToLocal()
             }
             currentLineIndex = nil
             timer?.fireDate = Date()
         }
     }
+    
+    var searchTask: LyricsSearchTask?
     
     var currentLineIndex: Int?
     
@@ -65,7 +67,6 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
     private override init() {
         super.init()
         playerManager.delegate = self
-        lyricsManager.consumer = self
         playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
         
         timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
@@ -137,7 +138,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
             let lrcURL = track.url?.deletingPathExtension().appendingPathExtension("lrc"),
             let lrcContents = try? String(contentsOf: lrcURL, encoding: String.Encoding.utf8),
             let lyrics = Lyrics(lrcContents) {
-            lyrics.metadata.source = .Local
+            lyrics.metadata.localURL = lrcURL
             lyrics.metadata.title = title
             lyrics.metadata.artist = artist
             currentLyrics = lyrics
@@ -148,7 +149,10 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
             currentLyrics = localLyrics
         } else {
             let duration = track.duration ?? 0
-            lyricsManager.iFeelLucky(title: title, artist: artist, duration: duration)
+            let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist), title: title, artist: artist, duration: duration, limit: 5, timeout: 10)
+            let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
+            searchTask = task
+            task.resume()
         }
     }
     
@@ -194,10 +198,10 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         }
         
         func shoudReplace(_ from: Lyrics, to: Lyrics) -> Bool {
-            if (from.metadata.source.rawValue == defaults[.PreferredLyricsSource]) != (to.metadata.source.rawValue == defaults[.PreferredLyricsSource]) {
-                return to.metadata.source.rawValue == defaults[.PreferredLyricsSource]
+            if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) != (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
+                return to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]
             }
-            return to > from
+            return to.quality > from.quality
         }
         
         if let current = currentLyrics, !shoudReplace(current, to: lyrics) {
@@ -205,10 +209,9 @@ class AppController: NSObject, MusicPlayerManagerDelegate, LyricsConsuming {
         }
         
         currentLyrics = lyrics
-    }
-    
-    func fetchCompleted(result: [Lyrics]) {
-        if defaults[.WriteToiTunesAutomatically] {
+        
+        if searchTask?.progress.isFinished == true,
+            defaults[.WriteToiTunesAutomatically] {
             writeToiTunes(overwrite: true)
         }
     }
@@ -219,7 +222,6 @@ extension AppController {
     func importLyrics(_ lyricsString: String) {
         if let lrc = Lyrics(lyricsString),
             let track = AppController.shared.playerManager.player?.currentTrack {
-            lrc.metadata.source = .Import
             lrc.metadata.title = track.title
             lrc.metadata.artist = track.artist
             currentLyrics = lrc

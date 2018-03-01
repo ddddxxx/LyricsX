@@ -30,18 +30,8 @@ class KaraokeLyricsView: NSBox {
     
     @objc dynamic var font = NSFont.labelFont(ofSize: 24) { didSet { updateFontSize() } }
     @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-    @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1) {
-        didSet {
-            let shadow = NSShadow().then {
-                $0.shadowBlurRadius = 3
-                $0.shadowColor = shadowColor
-                $0.shadowOffset = .zero
-            }
-            for label in stackView.arrangedSubviews {
-                label.shadow = shadow
-            }
-        }
-    }
+    @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)
+    
     @objc dynamic var shouldHideWithMouse = true {
         didSet {
             updateTrackingAreas()
@@ -78,16 +68,11 @@ class KaraokeLyricsView: NSBox {
     
     private func lyricsLabel(_ content: String) -> DyeTextField {
         // TODO: reuse label
-        let shadow = NSShadow().then {
-            $0.shadowBlurRadius = 3
-            $0.shadowColor = shadowColor
-            $0.shadowOffset = .zero
-        }
         return DyeTextField(string: content).then {
             $0.bind(.font, to: self, withKeyPath: #keyPath(font))
             $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
             $0.bind(.init("dyeColor"), to: self, withKeyPath: #keyPath(shadowColor))
-            $0.shadow = shadow
+            $0.bind(.init("_shadowColor"), to: self, withKeyPath: #keyPath(shadowColor))
             $0.alphaValue = 0
             $0.isHidden = true
         }
@@ -157,14 +142,9 @@ class KaraokeLyricsView: NSBox {
     }
     
     private func mouseTest() {
-        guard shouldHideWithMouse else {
-            animator().alphaValue = 1
-            return
-        }
-        let screenPoint = NSEvent.mouseLocation
-        let windowPoint = window!.convertFromScreen(NSRect(origin: screenPoint, size: .zero)).origin
-        let viewPoint = convert(windowPoint, from: nil)
-        if bounds.contains(viewPoint) {
+        if shouldHideWithMouse,
+            let point = NSEvent.mouseLocation(in: self),
+            bounds.contains(point) {
             animator().alphaValue = 0.1
         } else {
             animator().alphaValue = 1
@@ -181,22 +161,29 @@ class KaraokeLyricsView: NSBox {
     
 }
 
-extension NSTextField {
+extension NSEvent {
     
-    @available(macOS, obsoleted: 10.12)
-    convenience init(labelWithString stringValue: String) {
-        self.init()
-        self.stringValue = stringValue
-        isEditable = false
-        isSelectable = false
-        textColor = .labelColor
-        backgroundColor = .controlColor
-        drawsBackground = false
-        isBezeled = false
-        alignment = .natural
-        font = NSFont.systemFont(ofSize: NSFont.systemFontSize(for: controlSize))
-        lineBreakMode = .byClipping
-        cell?.isScrollable = true
-        cell?.wraps = false
+    class func mouseLocation(in view: NSView) -> NSPoint? {
+        guard let window = view.window else { return nil }
+        let windowLocation = window.convertFromScreen(NSRect(origin: NSEvent.mouseLocation, size: .zero)).origin
+        return view.convert(windowLocation, from: nil)
+    }
+}
+
+extension DyeTextField {
+    
+    @objc dynamic var _shadowColor: NSColor? {
+        get {
+            return shadow?.shadowColor
+        }
+        set {
+            shadow = newValue.map { color in
+                NSShadow().then {
+                    $0.shadowBlurRadius = 3
+                    $0.shadowColor = color
+                    $0.shadowOffset = .zero
+                }
+            }
+        }
     }
 }
