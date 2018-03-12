@@ -133,21 +133,56 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             return
         }
         
-        // Load lyrics beside current track.
-        if defaults[.LoadLyricsBesideTrack],
-            let lrcURL = track.url?.deletingPathExtension().appendingPathExtension("lrc"),
-            let lrcContents = try? String(contentsOf: lrcURL, encoding: String.Encoding.utf8),
-            let lyrics = Lyrics(lrcContents) {
-            lyrics.metadata.localURL = lrcURL
-            lyrics.metadata.title = title
-            lyrics.metadata.artist = artist
-            currentLyrics = lyrics
-            return
+        var candidateLyricsURL: [(URL, Bool)] = []  // (fileURLWithoutExtension, isSecurityScoped)
+        
+        if defaults[.LoadLyricsBesideTrack] {
+            if let fileName = track.url?.deletingPathExtension() {
+                candidateLyricsURL += [
+                    (fileName.appendingPathExtension("lrcx"), false),
+                    (fileName.appendingPathExtension("lrc"), false),
+                ]
+            }
+        }
+        if let (url, security) = defaults.lyricsSavingPath() {
+            let titleForReading = title.replacingOccurrences(of: "/", with: "&")
+            let artistForReading = artist.replacingOccurrences(of: "/", with: "&")
+            let fileName = url.appendingPathComponent("\(titleForReading) - \(artistForReading)")
+            candidateLyricsURL += [
+                (fileName.appendingPathExtension("lrcx"), security),
+                (fileName.appendingPathExtension("lrc"), security),
+            ]
         }
         
-        if let localLyrics = Lyrics.loadFromLocal(title: title, artist: artist) {
-            currentLyrics = localLyrics
-        } else {
+        for (url, security) in candidateLyricsURL {
+            if security {
+                guard url.startAccessingSecurityScopedResource() else {
+                    continue
+                }
+            }
+            defer {
+                if security {
+                    url.stopAccessingSecurityScopedResource()
+                }
+            }
+            
+            if let lrcContents = try? String(contentsOf: url, encoding: String.Encoding.utf8),
+                let lyrics = Lyrics(lrcContents) {
+                lyrics.metadata.localURL = url
+                lyrics.metadata.title = title
+                lyrics.metadata.artist = artist
+                currentLyrics = lyrics
+                break
+            }
+        }
+        
+        #if IS_FOR_MAS
+            guard defaults[.isInMASReview] == false else {
+                return
+            }
+            checkForMASReview()
+        #endif
+        
+        if currentLyrics == nil || currentLyrics?.metadata.localURL?.pathExtension == "lrc" {
             let duration = track.duration ?? 0
             let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist), title: title, artist: artist, duration: duration, limit: 5, timeout: 10)
             let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
@@ -184,13 +219,6 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        #if IS_FOR_MAS
-            guard defaults[.isInMASReview] == false else {
-                return
-            }
-            checkForMASReview()
-        #endif
-        
         let track = AppController.shared.playerManager.player?.currentTrack
         guard lyrics.metadata.title == track?.title ?? "",
             lyrics.metadata.artist == track?.artist ?? "" else {
