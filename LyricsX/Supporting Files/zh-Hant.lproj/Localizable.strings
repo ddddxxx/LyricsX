@@ -1,20 +1,20 @@
 /* title of the update alert, when the app is out of date. */
-"A new version of LyricsX is available!" = "新版本的 LyricsX 已经发布！";
+"A new version of LyricsX is available!" = "A new version of LyricsX is available!";
 
 /* title of download button on the update alert. Download new version of the app. */
-"Download" = "现在下载";
+"Download" = "Download";
 
 /* informative text of the update alert, when the app is up to date. the parameter is version string of the app */
-"LyricsX %@ is currently the newest version available." = "您使用的 LyricsX %@ 已经是最新版本。";
+"LyricsX %@ is currently the newest version available." = "LyricsX %@ is currently the newest version available.";
 
 /* informative text of the update alert, when the app is out date. the 1st parameter is new version string, the 2nd parameter is current version string */
-"LyricsX %@ is now available -- you have %@. Would you like to download it now?" = "LyricsX %1$@ 可供下载，您现在的版本是 %2$@。要现在下载吗？";
+"LyricsX %@ is now available -- you have %@. Would you like to download it now?" = "LyricsX %1$@ is now available -- you have %2$@. Would you like to download it now?";
 
 /* default value when user adding a lyrics filter keyword */
 "NEW_KEYWORD" = "NEW_KEYWORD";
 
 /* title of skip button on the update alert. Refuse to download new version of the app. */
-"Skip" = "跳过此版本";
+"Skip" = "Skip";
 
 /* title of the update alert, when the app is up to date. */
-"You're up-to-date!" = "已是最新版本！";
+"You're up-to-date!" = "You're up-to-date!";
