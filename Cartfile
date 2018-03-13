@@ -1,4 +1,4 @@
-github "ddddxxx/LyricsProvider" == 0.3.0
+github "ddddxxx/LyricsProvider" == 0.3.1
 
 github "ddddxxx/MusicPlayer" "master"
 
