@@ -83,7 +83,7 @@ class KaraokeLyricsView: NSBox {
         var toBeShow: [DyeTextField] = []
         var shouldHideAll = false
         
-        if firstLine.isEmpty {
+        if firstLine.trimmingCharacters(in: .whitespaces).isEmpty {
             displayLine1 = nil
             shouldHideAll = true
         } else if toBeHide.count == 2, toBeHide[1].stringValue == firstLine {
@@ -95,7 +95,7 @@ class KaraokeLyricsView: NSBox {
             toBeShow.append(label)
         }
         
-        if !secondLine.isEmpty {
+        if !secondLine.trimmingCharacters(in: .whitespaces).isEmpty {
             let label = lyricsLabel(secondLine)
             displayLine2 = label
             toBeShow.append(label)
