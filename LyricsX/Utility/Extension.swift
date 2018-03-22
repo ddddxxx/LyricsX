@@ -64,6 +64,7 @@ extension MusicPlayerName {
         case 0: self = .itunes
         case 1: self = .spotify
         case 2: self = .vox
+        case 3: self = .audirvana
         default: return nil
         }
     }

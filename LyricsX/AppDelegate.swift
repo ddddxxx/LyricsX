@@ -166,6 +166,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             let vc = NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
             searchLyricsWindow = NSWindow(contentViewController: vc)
+            searchLyricsWindow.title = NSLocalizedString("Search Lyrics", comment: "window title")
             searchLyricsVC = vc
         }
         searchLyricsWindow.makeKeyAndOrderFront(nil)

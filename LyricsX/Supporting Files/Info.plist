@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.3</string>
+	<string>1.3.0-beta</string>
 	<key>CFBundleVersion</key>
-	<string>1569</string>
+	<string>1581</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
