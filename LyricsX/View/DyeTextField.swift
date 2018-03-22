@@ -98,10 +98,6 @@ class DyeTextField: NSTextField {
         ]
     }
     
-    deinit {
-        observations.forEach { $0.invalidate() }
-    }
-    
     // MARK: -
     
     override func layout() {

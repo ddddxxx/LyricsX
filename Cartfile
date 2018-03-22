@@ -1,13 +1,13 @@
-github "ddddxxx/LyricsProvider" "a5160ee"
+github "ddddxxx/LyricsProvider" == 0.3.2
 
-github "ddddxxx/MusicPlayer" "master"
+github "ddddxxx/MusicPlayer" == 0.1.1
 
-github "ddddxxx/GenericID"
+github "ddddxxx/GenericID" == 0.3.0
 
 github "ddddxxx/Semver"
 
 github "ddddxxx/SwiftyOpenCC"
 
-github "SnapKit/SnapKit" ~> 3.1.2
+github "SnapKit/SnapKit" ~> 4.0.0
 
 github "shpakovski/MASShortcut"

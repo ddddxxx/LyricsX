@@ -33,11 +33,11 @@ class PreferenceShortcutViewController: NSViewController {
     @IBOutlet weak var searchLyricsLabel: NSTextField!
     
     override func viewDidLoad() {
-        shortcutIncreaseOffset.setAssociatedDefaultsKey(defaultKey: .ShortcutOffsetIncrease)
-        shortcutDecreaseOffset.setAssociatedDefaultsKey(defaultKey: .ShortcutOffsetDecrease)
-        shortcutWriteToiTunes.setAssociatedDefaultsKey(defaultKey: .ShortcutWriteToiTunes)
-        shortcutSearchLyrics.setAssociatedDefaultsKey(defaultKey: .ShortcutSearchLyrics)
-        shortcutWrongLyrics.setAssociatedDefaultsKey(defaultKey: .ShortcutWrongLyrics)
+        shortcutIncreaseOffset.setAssociatedDefaultsKey(defaultsKey: .ShortcutOffsetIncrease)
+        shortcutDecreaseOffset.setAssociatedDefaultsKey(defaultsKey: .ShortcutOffsetDecrease)
+        shortcutWriteToiTunes.setAssociatedDefaultsKey(defaultsKey: .ShortcutWriteToiTunes)
+        shortcutSearchLyrics.setAssociatedDefaultsKey(defaultsKey: .ShortcutSearchLyrics)
+        shortcutWrongLyrics.setAssociatedDefaultsKey(defaultsKey: .ShortcutWrongLyrics)
         
         #if IS_FOR_MAS
             if defaults[.isInMASReview] != false {
@@ -52,7 +52,7 @@ class PreferenceShortcutViewController: NSViewController {
 
 extension MASShortcutView {
     
-    func setAssociatedDefaultsKey<T>(defaultKey: UserDefaults.DefaultKey<T>) {
-        associatedUserDefaultsKey = defaultKey.rawValue
+    func setAssociatedDefaultsKey<T>(defaultsKey: UserDefaults.DefaultsKey<T>) {
+        associatedUserDefaultsKey = defaultsKey.key
     }
 }

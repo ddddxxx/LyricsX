@@ -1,0 +1,5 @@
+files:
+  - source: /LyricsX/Supporting Files/en.lproj/*.strings
+    translation: /LyricsX/Supporting Files/%osx_code%/%original_file_name%
+  - source: LyricsX/en.lproj/*.strings
+    translation: /LyricsX/%osx_code%/%original_file_name%

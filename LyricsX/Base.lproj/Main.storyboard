@@ -148,7 +148,7 @@
                         <menuItem title="Search Lyrics..." tag="201" id="h6D-jz-GbI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <segue destination="Fyy-jy-wIT" kind="show" id="QlQ-Pc-nUk"/>
+                                <action selector="searchLyrics:" target="Voe-Tx-rLC" id="RV2-uD-OF7"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Wrong Lyrics" tag="203" identifier="WrongLyrics" id="fmS-zv-RcJ">
@@ -454,31 +454,10 @@ IA
             </objects>
             <point key="canvasLocation" x="1281" y="654"/>
         </scene>
-        <!--Search Lyrics Window Controller-->
-        <scene sceneID="Ihc-TO-az9">
-            <objects>
-                <windowController showSeguePresentationStyle="single" id="Fyy-jy-wIT" userLabel="Search Lyrics Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Search Lyrics" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="SearchLyrics" animationBehavior="default" id="y4a-GW-tEh">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="396" y="387" width="600" height="175"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
-                        <connections>
-                            <outlet property="delegate" destination="Fyy-jy-wIT" id="7Rx-JI-pNv"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="hFt-BA-jFS" kind="relationship" relationship="window.shadowedContentViewController" id="OtW-3b-4H7"/>
-                    </connections>
-                </windowController>
-                <customObject id="HI9-LY-hte" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="667" y="1094"/>
-        </scene>
         <!--Search Lyrics View Controller-->
         <scene sceneID="uyG-Ma-t9Z">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="hFt-BA-jFS" userLabel="Search Lyrics View Controller" customClass="SearchLyricsViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchLyricsViewController" showSeguePresentationStyle="single" id="hFt-BA-jFS" userLabel="Search Lyrics View Controller" customClass="SearchLyricsViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="icq-QQ-RTZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="175"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -770,7 +749,7 @@ IA
                 </viewController>
                 <customObject id="VAB-OA-vI2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="667" y="1424"/>
+            <point key="canvasLocation" x="667" y="1073"/>
         </scene>
         <!--About Window Controller-->
         <scene sceneID="Hdl-QT-VuU">

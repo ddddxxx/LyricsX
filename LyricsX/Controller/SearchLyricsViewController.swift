@@ -49,15 +49,22 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBOutlet var normalConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
         
+        autoFillSearchFieldAndSearch()
+    }
+    
+    func autoFillSearchFieldAndSearch() {
         let track = AppController.shared.playerManager.player?.currentTrack
-        searchArtist = track?.artist ?? ""
-        searchTitle = track?.title ?? ""
-        searchAction(nil)
-        
-        super.viewDidLoad()
+        let artist = track?.artist ?? ""
+        let title = track?.title ?? ""
+        if (searchArtist, searchTitle) != (artist, title) {
+            (searchArtist, searchTitle) = (artist, title)
+            searchAction(nil)
+        }
     }
     
     @IBAction func searchAction(_ sender: Any?) {
@@ -147,12 +154,12 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         if self.hideLrcPreviewConstraint?.isActive == true {
             self.expandPreview()
         }
-        self.lyricsPreviewTextView.string = self.searchResult[index].legacyDescription
+        self.lyricsPreviewTextView.string = self.searchResult[index].description
         self.updateImage()
     }
     
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
-        let lrcContent = searchResult[rowIndexes.first!].legacyDescription
+        let lrcContent = searchResult[rowIndexes.first!].description
         pboard.declareTypes([.string, .filePromise], owner: self)
         pboard.setString(lrcContent, forType: .string)
         pboard.setPropertyList(["lrc"], forType: .filePromise)
@@ -164,7 +171,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             let fileName = searchResult[index].fileName ?? "Unknown"
             
             let destURL = dropDestination.appendingPathComponent(fileName)
-            let lrcStr = searchResult[index].legacyDescription
+            let lrcStr = searchResult[index].description
             
             do {
                 try lrcStr.write(to: destURL, atomically: true, encoding: .utf8)

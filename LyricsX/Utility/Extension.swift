@@ -40,14 +40,20 @@ extension Comparable {
 
 extension NSObject {
     
-    func bind<T>(_ binding: NSBindingName, to observable: UserDefaults, withDefaultName defaultName: UserDefaults.DefaultKey<T>, options: [NSBindingOption : Any] = [:]) {
-        bind(binding, to: observable, withKeyPath: defaultName.rawValue, options: options)
-    }
-    
-    func bind<T>(_ binding: NSBindingName, to observable: UserDefaults, withDefaultName defaultName: UserDefaults.ArchivedKey<T>, options: [NSBindingOption : Any] = [:]) {
+    func bind<T>(_ binding: NSBindingName, to observable: UserDefaults, withDefaultName defaultName: UserDefaults.DefaultsKey<T>, options: [NSBindingOption : Any] = [:]) {
         var options = options
-        options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
-        bind(binding, to: observable, withKeyPath: defaultName.rawValue, options: options)
+        if let t = defaultName.valueTransformer {
+            switch t {
+            case is UserDefaults.KeyedArchiveValueTransformer:
+                options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
+            case is UserDefaults.ArchiveValueTransformer:
+                options[.valueTransformerName] = NSValueTransformerName.unarchiveFromDataTransformerName
+            default:
+                break
+            }
+        }
+        
+        bind(binding, to: observable, withKeyPath: defaultName.key, options: options)
     }
 }
 
@@ -124,41 +130,12 @@ extension Lyrics {
             let artist = metadata.artist?.replacingOccurrences(of: "/", with: "&") else {
             return nil
         }
-        return "\(title) - \(artist).lrc"
+        return "\(title) - \(artist).lrcx"
     }
     
 }
 
 extension Lyrics {
-    
-    static func loadFromLocal(title: String, artist: String) -> Lyrics? {
-        guard let (url, security) = defaults.lyricsSavingPath() else {
-            return nil
-        }
-        if security {
-            guard url.startAccessingSecurityScopedResource() else {
-                return nil
-            }
-        }
-        defer {
-            if security {
-                url.stopAccessingSecurityScopedResource()
-            }
-        }
-        let titleForReading: String = title.replacingOccurrences(of: "/", with: "&")
-        let artistForReading: String = artist.replacingOccurrences(of: "/", with: "&")
-        let lrcFileURL = url.appendingPathComponent("\(titleForReading) - \(artistForReading).lrc")
-        
-        guard let lrcContents = try? String(contentsOf: lrcFileURL, encoding: String.Encoding.utf8),
-            let lrc = Lyrics(lrcContents) else {
-            return nil
-        }
-        
-        lrc.metadata.localURL = lrcFileURL
-        lrc.metadata.title = title
-        lrc.metadata.artist = artist
-        return lrc
-    }
     
     func saveToLocal() {
         guard let (url, security) = defaults.lyricsSavingPath() else {
@@ -193,7 +170,7 @@ extension Lyrics {
             if fileManager.fileExists(atPath: lrcFileURL.path) {
                 try fileManager.removeItem(at: lrcFileURL)
             }
-            try legacyDescription.write(to: lrcFileURL, atomically: true, encoding: .utf8)
+            try description.write(to: lrcFileURL, atomically: true, encoding: .utf8)
             metadata.localURL = lrcFileURL
         } catch {
             log(error.localizedDescription)
