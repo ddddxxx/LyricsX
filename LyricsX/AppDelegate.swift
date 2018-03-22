@@ -61,8 +61,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let sharedKeys = [
-            UserDefaults.DefaultKeys.LaunchAndQuitWithPlayer.rawValue,
-            UserDefaults.DefaultKeys.PreferredPlayerIndex.rawValue
+            UserDefaults.DefaultsKeys.LaunchAndQuitWithPlayer.key,
+            UserDefaults.DefaultsKeys.PreferredPlayerIndex.key
         ]
         sharedKeys.forEach {
             groupDefaults.bind(NSBindingName($0), to: defaults, withKeyPath: $0)
@@ -194,7 +194,7 @@ extension NSUserInterfaceItemIdentifier {
 
 extension MASShortcutBinder {
     
-    func bindShortcut<T>(with defaultKay: UserDefaults.DefaultKey<T>, to action: @escaping () -> Void) {
-        bindShortcut(withDefaultsKey: defaultKay.rawValue, toAction: action)
+    func bindShortcut<T>(with defaultsKay: UserDefaults.DefaultsKey<T>, to action: @escaping () -> Void) {
+        bindShortcut(withDefaultsKey: defaultsKay.key, toAction: action)
     }
 }

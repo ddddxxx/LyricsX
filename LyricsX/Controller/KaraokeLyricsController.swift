@@ -23,6 +23,7 @@ import SnapKit
 import OpenCC
 import LyricsProvider
 import MusicPlayer
+import GenericID
 
 class KaraokeLyricsWindowController: NSWindowController {
     
@@ -30,7 +31,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     var currentLineIndex: Int?
     
-    var defaultObservations: [UserDefaults.KeyValueObservation] = []
+    var defaultObservations: [DefaultsObservation] = []
     var notifications: [NSObjectProtocol] = []
     
     override func windowDidLoad() {
@@ -69,9 +70,8 @@ class KaraokeLyricsWindowController: NSWindowController {
         defaultObservations += [
             defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] defaults, change in
                 switch change.newValue {
-                case true?: self?.window?.sharingType = .none
-                case false?: self?.window?.sharingType = .readOnly
-                case nil: break
+                case true: self?.window?.sharingType = .none
+                case false: self?.window?.sharingType = .readOnly
                 }
             },
             defaults.observe(keys: [

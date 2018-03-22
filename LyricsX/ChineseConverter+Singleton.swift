@@ -19,9 +19,9 @@ extension ChineseConverter {
     
     private static let observer = defaults.observe(.ChineseConversionIndex, options: [.new, .initial]) { _, change in
         switch change.newValue {
-        case 1?: ChineseConverter._shared = ChineseConverter(option: [.simplify])
-        case 2?: ChineseConverter._shared = ChineseConverter(option: [.traditionalize])
-        default: ChineseConverter._shared = nil
+        case 1: ChineseConverter._shared = ChineseConverter(option: [.simplify])
+        case 2: ChineseConverter._shared = ChineseConverter(option: [.traditionalize])
+        case 0, _: ChineseConverter._shared = nil
         }
     }
 }

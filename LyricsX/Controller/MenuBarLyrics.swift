@@ -21,6 +21,7 @@
 import Cocoa
 import LyricsProvider
 import MusicPlayer
+import GenericID
 
 class MenuBarLyrics: NSObject {
     
@@ -33,7 +34,7 @@ class MenuBarLyrics: NSObject {
     
     private var displayLyrics = ""
     
-    var statusItemObservation: UserDefaults.KeyValueObservation?
+    var statusItemObservation: DefaultsObservation?
     
     private override init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
