@@ -14,6 +14,9 @@
 /* default value when user adding a lyrics filter keyword */
 "NEW_KEYWORD" = "NEW_KEYWORD";
 
+/* window title */
+"Search Lyrics" = "搜索歌词";
+
 /* title of skip button on the update alert. Refuse to download new version of the app. */
 "Skip" = "跳过此版本";
 
