@@ -85,8 +85,9 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             let newLyrics = AppController.shared.currentLyrics
             self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
             self.noLyricsLabel.isHidden = newLyrics != nil
+            self.displayLyrics(animation: false)
         }
-        displayLyrics(animation: false)
+        
     }
     
     func displayLyrics(animation: Bool = true) {
