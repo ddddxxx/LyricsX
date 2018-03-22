@@ -1,6 +1,6 @@
-github "ddddxxx/LyricsProvider" == 0.3.1
+github "ddddxxx/LyricsProvider" == 0.3.2
 
-github "ddddxxx/MusicPlayer" "master"
+github "ddddxxx/MusicPlayer" == 0.1.1
 
 github "ddddxxx/GenericID"
 
