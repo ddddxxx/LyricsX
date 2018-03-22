@@ -184,3 +184,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
 "UfE-QU-Yhm.title" = "高亮:";
+
+/* Class = "NSButtonCell"; title = "Audirvana"; ObjectID = "m2S-vK-wBN"; */
+"m2S-vK-wBN.title" = "Audirvana";

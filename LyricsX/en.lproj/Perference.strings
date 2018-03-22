@@ -184,3 +184,6 @@
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
 "zhB-kd-WWG.title" = "No Conversion";
+
+/* Class = "NSButtonCell"; title = "Audirvana"; ObjectID = "m2S-vK-wBN"; */
+"m2S-vK-wBN.title" = "Audirvana";
