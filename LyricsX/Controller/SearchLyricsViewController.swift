@@ -49,15 +49,22 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBOutlet var normalConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
         
+        autoFillSearchFieldAndSearch()
+    }
+    
+    func autoFillSearchFieldAndSearch() {
         let track = AppController.shared.playerManager.player?.currentTrack
-        searchArtist = track?.artist ?? ""
-        searchTitle = track?.title ?? ""
-        searchAction(nil)
-        
-        super.viewDidLoad()
+        let artist = track?.artist ?? ""
+        let title = track?.title ?? ""
+        if (searchArtist, searchTitle) != (artist, title) {
+            (searchArtist, searchTitle) = (artist, title)
+            searchAction(nil)
+        }
     }
     
     @IBAction func searchAction(_ sender: Any?) {

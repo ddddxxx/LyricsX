@@ -38,6 +38,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var desktopLyrics: KaraokeLyricsWindowController?
     
+    weak var searchLyricsVC: SearchLyricsViewController?
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         Fabric.with([Crashlytics.self])
@@ -154,6 +156,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func writeToiTunes(_ sender: Any?) {
         AppController.shared.writeToiTunes(overwrite: true)
+    }
+    
+    @IBAction func searchLyrics(_ sender: Any?) {
+        let searchLyricsWindow: NSWindow
+        if let vc = searchLyricsVC {
+            searchLyricsWindow = vc.view.window!
+            vc.autoFillSearchFieldAndSearch()
+        } else {
+            let vc = NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
+            searchLyricsWindow = NSWindow(contentViewController: vc)
+            searchLyricsVC = vc
+        }
+        searchLyricsWindow.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     @IBAction func wrongLyrics(_ sender: Any?) {
