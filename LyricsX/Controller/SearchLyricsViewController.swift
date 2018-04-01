@@ -167,7 +167,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     func tableView(_ tableView: NSTableView, namesOfPromisedFilesDroppedAtDestination dropDestination: URL, forDraggedRowsWith indexSet: IndexSet) -> [String] {
-        return indexSet.flatMap { index -> String? in
+        return indexSet.compactMap { index -> String? in
             let fileName = searchResult[index].fileName ?? "Unknown"
             
             let destURL = dropDestination.appendingPathComponent(fileName)

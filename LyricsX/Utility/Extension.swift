@@ -73,7 +73,7 @@ extension MusicPlayerName {
 extension NSFont {
     
     convenience init?(name fontName: String, size fontSize: CGFloat, fallback fallbackNames: [String]) {
-        let cascadeList = fallbackNames.flatMap { NSFontDescriptor.init(name: $0, size: fontSize).matchingFontDescriptor(withMandatoryKeys: [.name, .size]) }
+        let cascadeList = fallbackNames.compactMap { NSFontDescriptor.init(name: $0, size: fontSize).matchingFontDescriptor(withMandatoryKeys: [.name, .size]) }
         let descriptor = NSFontDescriptor(fontAttributes: [.name: fontName, .cascadeList: cascadeList])
         self.init(descriptor: descriptor, size: fontSize)
     }
