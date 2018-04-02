@@ -22,19 +22,10 @@ import Cocoa
 import LyricsProvider
 import MusicPlayer
 
-extension Collection {
+extension CountableRange {
     
-    var indexes: Range<Index> {
-        return startIndex..<endIndex
-    }
-}
-
-extension Comparable {
-    
-    func clamped(to limits: Range<Self>) -> Self {
-        guard limits.lowerBound <= self else { return limits.lowerBound }
-        guard limits.upperBound >= self else { return limits.upperBound }
-        return self
+    func clamp(_ v: Bound) -> Bound {
+        return Swift.min(upperBound, Swift.max(lowerBound, v))
     }
 }
 

@@ -184,7 +184,7 @@ class ScrollLyricsView: NSScrollView {
                 right = mid - 1
             }
         }
-        let range = ranges[right.clamped(to: ranges.indexes)].1
+        let range = ranges[ranges.indices.clamp(right)].1
         
         if highlightedRange == range {
             return
@@ -211,7 +211,7 @@ class ScrollLyricsView: NSScrollView {
                 right = mid - 1
             }
         }
-        let range = ranges[right.clamped(to: ranges.indexes)].1
+        let range = ranges[ranges.indices.clamp(right)].1
         
         let bounding = textView.layoutManager!.boundingRect(forGlyphRange: range, in: textView.textContainer!)
         
