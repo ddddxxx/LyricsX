@@ -47,13 +47,17 @@ class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
         }
         
         if isSettingKaraokeFont {
+            let previousFontFamily = karaokeFont.familyName
             karaokeFont = manager.convert(karaokeFont)
-            var fallback = defaults[.DesktopLyricsFontNameFallback]
-            if let index = fallback.index(of: defaults[.DesktopLyricsFontName]) {
-                fallback.remove(at: index)
+            if previousFontFamily != karaokeFont.familyName {
+                // guarantee different font family of font fallback
+                var fallback = defaults[.DesktopLyricsFontNameFallback]
+                if let index = fallback.index(of: defaults[.DesktopLyricsFontName]) {
+                    fallback.remove(at: index)
+                }
+                fallback.insert(defaults[.DesktopLyricsFontName], at: 0)
+                defaults[.DesktopLyricsFontNameFallback] = Array(fallback.prefix(fontNameFallbackCountMax))
             }
-            fallback.insert(defaults[.DesktopLyricsFontName], at: 0)
-            defaults[.DesktopLyricsFontNameFallback] = Array(fallback.prefix(fontNameFallbackCountMax))
             defaults[.DesktopLyricsFontName] = karaokeFont.fontName
             defaults[.DesktopLyricsFontSize] = Int(karaokeFont.pointSize)
         } else {
