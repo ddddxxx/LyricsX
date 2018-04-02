@@ -157,7 +157,13 @@ class KaraokeLyricsWindowController: NSWindowController {
                     return (dt, progress)
                 }
                 guard let i = map.index(where: { $0.0 > 0 }) else {
-                    upperTextField.dyeRect.frame = upperTextField.bounds
+                    // modifying frame of dyeRect has no effact. create an empty animation instead.
+                    let animation = CABasicAnimation()
+                    animation.toValue = map.last?.1
+                    animation.keyPath = "bounds.size.width"
+                    animation.fillMode = kCAFillModeForwards
+                    animation.isRemovedOnCompletion = false
+                    upperTextField.dyeRect.layer?.add(animation, forKey: "inlineProgress")
                     return
                 }
                 if i > 0 {
