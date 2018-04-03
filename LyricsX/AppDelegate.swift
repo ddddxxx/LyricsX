@@ -161,7 +161,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let vc = searchLyricsVC ?? NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
         let window = vc.view.window ?? NSWindow(contentViewController: vc)
         window.title = NSLocalizedString("Search Lyrics", comment: "window title")
-        window.isReleasedWhenClosed = true
+        // window.isReleasedWhenClosed = true
+        // this induces crash on closing, why?
         searchLyricsVC = vc
         window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
