@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -46,7 +46,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
-                        <tabViewItems/>
                         <connections>
                             <outlet property="delegate" destination="sV3-nO-PkZ" id="h5f-vw-dKt"/>
                         </connections>
@@ -72,7 +71,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="558" height="431"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box title="Preferred Music Player" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
+                            <box title="Preferred music player" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
                                 <rect key="frame" x="17" y="284" width="524" height="123"/>
                                 <view key="contentView" id="r1e-Ln-LSb">
                                     <rect key="frame" x="2" y="2" width="520" height="106"/>
@@ -480,7 +479,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="DsA-hf-RKL"/>
                                                     </constraints>
-                                                    <buttonCell key="cell" type="check" title="One line Mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5dp-p5-YmE">
+                                                    <buttonCell key="cell" type="check" title="One line mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5dp-p5-YmE">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
