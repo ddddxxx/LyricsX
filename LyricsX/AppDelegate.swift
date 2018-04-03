@@ -159,18 +159,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func searchLyrics(_ sender: Any?) {
-        let searchLyricsWindow: NSWindow?
-        if let vc = searchLyricsVC {
-            searchLyricsWindow = vc.view.window
-            vc.autoFillSearchFieldAndSearch()
-        } else {
-            let vc = NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
-            let window = NSWindow(contentViewController: vc)
-            window.title = NSLocalizedString("Search Lyrics", comment: "window title")
-            searchLyricsWindow = window
-            searchLyricsVC = vc
-        }
-        searchLyricsWindow?.makeKeyAndOrderFront(nil)
+        let vc = searchLyricsVC ?? NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
+        let window = vc.view.window ?? NSWindow(contentViewController: vc)
+        window.title = NSLocalizedString("Search Lyrics", comment: "window title")
+        window.isReleasedWhenClosed = true
+        searchLyricsVC = vc
+        window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
     
