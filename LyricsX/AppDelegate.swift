@@ -117,8 +117,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.wrongLyrics(nil)
         }
         binder.bindShortcut(with: .ShortcutSearchLyrics) {
-            let index = self.statusBarMenu.indexOfItem(withTag: 201)
-            self.statusBarMenu.performActionForItem(at: index)
+            self.searchLyrics(nil)
         }
     }
     
