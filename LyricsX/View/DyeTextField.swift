@@ -19,21 +19,11 @@
 //
 
 import Cocoa
+import SnapKit
 
 class DyeTextField: NSTextField {
     
-    let dyeRect = NSView()
-    
     let dyeMaskTextField = NSTextField(labelWithString: "")
-    
-    @objc dynamic var dyeColor: NSColor? {
-        get {
-            return dyeRect.layer?.backgroundColor.flatMap(NSColor.init(cgColor:))
-        }
-        set {
-            dyeRect.layer?.backgroundColor = newValue?.cgColor
-        }
-    }
     
     var _rectArray: [NSRect]?
     var rectArray: [NSRect] {
@@ -76,14 +66,13 @@ class DyeTextField: NSTextField {
     }
     
     func commonInit() {
-        addSubview(dyeRect)
-        
-        dyeRect.wantsLayer = true
+        addSubview(dyeMaskTextField)
+        dyeMaskTextField.snp.makeConstraints { make in
+            make.top.bottom.leading.equalToSuperview()
+        }
         dyeMaskTextField.wantsLayer = true
-        dyeRect.translatesAutoresizingMaskIntoConstraints = false
+        dyeMaskTextField.isHidden = true
         dyeMaskTextField.translatesAutoresizingMaskIntoConstraints = false
-        dyeMaskTextField.textColor = .black
-        dyeRect.layer?.mask = dyeMaskTextField.layer
         observations += [
             observe(\.stringValue, options: [.new]) { [unowned self] obj, change in
                 if let str = change.newValue {
@@ -96,18 +85,6 @@ class DyeTextField: NSTextField {
                 self._rectArray = nil
             }
         ]
-    }
-    
-    // MARK: -
-    
-    override func layout() {
-        super.layout()
-        updateDyeFrame()
-    }
-
-    func updateDyeFrame() {
-        dyeRect.frame.size.height = bounds.height
-        dyeMaskTextField.frame = bounds
     }
 }
 

@@ -157,7 +157,7 @@ class KaraokeLyricsWindowController: NSWindowController {
                     return (dt, progress)
                 }
                 guard let i = map.index(where: { $0.0 > 0 }) else {
-                    upperTextField.dyeRect.frame = upperTextField.bounds
+                    upperTextField.dyeMaskTextField.frame = upperTextField.bounds
                     return
                 }
                 if i > 0 {
@@ -179,7 +179,8 @@ class KaraokeLyricsWindowController: NSWindowController {
                 animation.duration = duration
                 animation.fillMode = kCAFillModeForwards
                 animation.isRemovedOnCompletion = false
-                upperTextField.dyeRect.layer?.add(animation, forKey: "inlineProgress")
+                upperTextField.dyeMaskTextField.isHidden = false
+                upperTextField.dyeMaskTextField.layer?.add(animation, forKey: "inlineProgress")
             }
 
         }
