@@ -73,18 +73,8 @@ class DyeTextField: NSTextField {
         dyeMaskTextField.wantsLayer = true
         dyeMaskTextField.isHidden = true
         dyeMaskTextField.translatesAutoresizingMaskIntoConstraints = false
-        observations += [
-            observe(\.stringValue, options: [.new]) { [unowned self] obj, change in
-                if let str = change.newValue {
-                    self.dyeMaskTextField.stringValue = str
-                }
-                self._rectArray = nil
-            },
-            observe(\.font, options: [.new]) { [unowned self] obj, change in
-                self.dyeMaskTextField.font = change.newValue ?? nil
-                self._rectArray = nil
-            }
-        ]
+        dyeMaskTextField.bind(.value, to: self, withKeyPath: "stringValue")
+        dyeMaskTextField.bind(.font, to: self, withKeyPath: "font")
     }
 }
 
