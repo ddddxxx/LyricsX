@@ -314,6 +314,7 @@
 				BB4141CA1E46CDD700A51775 /* Embed Frameworks */,
 				BB60F3111E889FC000BA1FD2 /* Copy Helper */,
 				BB9163341F36371700E4E01C /* Fabric Script */,
+				BBD1D91E20760A1C00BFA4A4 /* SwiftLint */,
 				BB0BE9531F444BE20068FF67 /* Update Localization */,
 				BBC1D5811E4AFE64008869EC /* Bump Build */,
 			);
@@ -470,6 +471,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+		BBD1D91E20760A1C00BFA4A4 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

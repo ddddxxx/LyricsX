@@ -40,7 +40,10 @@ class MenuBarLyrics: NSObject {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(updateStatusItem), name: NSWorkspace.didActivateApplicationNotification, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(updateStatusItem),
+                                                          name: NSWorkspace.didActivateApplicationNotification,
+                                                          object: nil)
         statusItemObservation = defaults.observe(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in
             self.updateStatusItem()
         }
@@ -116,7 +119,6 @@ class MenuBarLyrics: NSObject {
     }
 }
 
-
 // MARK: - Status Item Visibility
 
 extension NSStatusItem {
@@ -167,8 +169,8 @@ extension String {
     func components(options: String.EnumerationOptions) -> [String] {
         var components: [String] = []
         let range = Range(uncheckedBounds: (startIndex, endIndex))
-        enumerateSubstrings(in: range, options: options) { (_, _, r, _) in
-            components.append(String(self[r]))
+        enumerateSubstrings(in: range, options: options) { (_, _, range, _) in
+            components.append(String(self[range]))
         }
         return components
     }

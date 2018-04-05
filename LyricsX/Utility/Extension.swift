@@ -24,17 +24,20 @@ import MusicPlayer
 
 extension CountableRange {
     
-    func clamp(_ v: Bound) -> Bound {
-        return Swift.min(upperBound, Swift.max(lowerBound, v))
+    func clamp(_ value: Bound) -> Bound {
+        return Swift.min(upperBound, Swift.max(lowerBound, value))
     }
 }
 
 extension NSObject {
     
-    func bind<T>(_ binding: NSBindingName, to observable: UserDefaults, withDefaultName defaultName: UserDefaults.DefaultsKey<T>, options: [NSBindingOption : Any] = [:]) {
+    func bind<T>(_ binding: NSBindingName,
+                 to observable: UserDefaults,
+                 withDefaultName defaultName: UserDefaults.DefaultsKey<T>,
+                 options: [NSBindingOption: Any] = [:]) {
         var options = options
-        if let t = defaultName.valueTransformer {
-            switch t {
+        if let transformer = defaultName.valueTransformer {
+            switch transformer {
             case is UserDefaults.KeyedArchiveValueTransformer:
                 options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
             case is UserDefaults.ArchiveValueTransformer:
@@ -64,7 +67,10 @@ extension MusicPlayerName {
 extension NSFont {
     
     convenience init?(name fontName: String, size fontSize: CGFloat, fallback fallbackNames: [String]) {
-        let cascadeList = fallbackNames.compactMap { NSFontDescriptor.init(name: $0, size: fontSize).matchingFontDescriptor(withMandatoryKeys: [.name, .size]) }
+        let cascadeList = fallbackNames.compactMap {
+            NSFontDescriptor(name: $0, size: fontSize)
+                .matchingFontDescriptor(withMandatoryKeys: [.name, .size])
+        }
         let descriptor = NSFontDescriptor(fontAttributes: [.name: fontName, .cascadeList: cascadeList])
         self.init(descriptor: descriptor, size: fontSize)
     }
@@ -98,7 +104,9 @@ extension UserDefaults {
             }
             var bookmarkDataIsStale = false
             do {
-                let url = try URL(resolvingBookmarkData: data, options: [.withSecurityScope], bookmarkDataIsStale: &bookmarkDataIsStale)
+                let url = try URL(resolvingBookmarkData: data,
+                                  options: [.withSecurityScope],
+                                  bookmarkDataIsStale: &bookmarkDataIsStale)
                 guard bookmarkDataIsStale == false else {
                     return nil
                 }
@@ -175,14 +183,14 @@ extension Lyrics {
     
     func filtrate() {
         var predicates = defaults[.LyricsDirectFilterKey].map { key in
-            NSPredicate { object, bindings in
+            NSPredicate { object, _ in
                 guard let object = object as? LyricsLine else { return false }
                 return !object.content.contains(key)
             }
         }
         let colonCharacterSet = CharacterSet(charactersIn: ":：∶")
         predicates += defaults[.LyricsColonFilterKey].map { key in
-            NSPredicate { object, bindings in
+            NSPredicate { object, _ in
                 guard let object = object as? LyricsLine else { return false }
                 return !object.content.components(separatedBy: colonCharacterSet).contains { $0.starts(with: key) }
             }

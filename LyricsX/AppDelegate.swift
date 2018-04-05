@@ -44,6 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         registerUserDefaults()
         Fabric.with([Crashlytics.self])
         
+        // swiftlint:disable:next force_cast
         desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! KaraokeLyricsWindowController)
         desktopLyrics?.showWindow(nil)
         desktopLyrics?.window?.makeKeyAndOrderFront(nil)
@@ -57,8 +58,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         setupShortcuts()
         
-        NSRunningApplication.runningApplications(withBundleIdentifier: LyricsXHelperIdentifier).forEach { $0.terminate() }
-        if !SMLoginItemSetEnabled(LyricsXHelperIdentifier as CFString, defaults[.LaunchAndQuitWithPlayer]) {
+        NSRunningApplication.runningApplications(withBundleIdentifier: lyricsXHelperIdentifier).forEach { $0.terminate() }
+        if !SMLoginItemSetEnabled(lyricsXHelperIdentifier as CFString, defaults[.LaunchAndQuitWithPlayer]) {
             log("Failed to set login item enabled")
         }
         
@@ -158,6 +159,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func searchLyrics(_ sender: Any?) {
+        // swiftlint:disable:next force_cast identifier_name
         let vc = searchLyricsVC ?? NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
         let window = vc.view.window ?? NSWindow(contentViewController: vc)
         window.title = NSLocalizedString("Search Lyrics", comment: "window title")
@@ -185,8 +187,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let isHant = isZh && (currentLang.contains("-Hant") || currentLang.contains("-HK"))
         
         let defaultsUrl = Bundle.main.url(forResource: "UserDefaults", withExtension: "plist")!
-        let dict = NSDictionary(contentsOf: defaultsUrl) as! [String: Any]
-        defaults.register(defaults: dict)
+        if let dict = NSDictionary(contentsOf: defaultsUrl) as? [String: Any] {
+            defaults.register(defaults: dict)
+        }
         defaults.register(defaults: [
             .DesktopLyricsColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
             .DesktopLyricsShadowColor: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1),
@@ -194,7 +197,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .LyricsWindowTextColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1),
             .LyricsWindowHighlightColor: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1),
             .PreferBilingualLyrics: isZh,
-            .ChineseConversionIndex: isHant ? 2 : 0,
+            .ChineseConversionIndex: isHant ? 2 : 0
             ])
     }
 }

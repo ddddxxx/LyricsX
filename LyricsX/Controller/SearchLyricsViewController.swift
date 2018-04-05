@@ -77,7 +77,12 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         let duration = track?.duration ?? 0
         let title = track?.title ?? ""
         let artist = track?.artist ?? ""
-        let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist), title: title, artist: artist, duration: duration, limit: 8, timeout: 10)
+        let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist),
+                                      title: title,
+                                      artist: artist,
+                                      duration: duration,
+                                      limit: 8,
+                                      timeout: 10)
         let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
         searchTask = task
         searchRequest = req
@@ -91,8 +96,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
         
         if let id = AppController.shared.playerManager.player?.currentTrack?.id,
-            let i = defaults[.NoSearchingTrackIds].index(where: { $0 == id }) {
-            defaults[.NoSearchingTrackIds].remove(at: i)
+            let index = defaults[.NoSearchingTrackIds].index(where: { $0 == id }) {
+            defaults[.NoSearchingTrackIds].remove(at: index)
         }
         
         let lrc = searchResult[index]

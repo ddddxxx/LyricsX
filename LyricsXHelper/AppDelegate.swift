@@ -28,12 +28,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var shouldWaitForPlayerQuit = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        guard groupDefaults.bool(forKey: LaunchAndQuitWithPlayer) else {
+        guard groupDefaults.bool(forKey: launchAndQuitWithPlayer) else {
             NSApplication.shared.terminate(nil)
             abort() // fake invoking, just make compiler happy.
         }
         
-        let index = groupDefaults.integer(forKey: PreferredPlayerIndex)
+        let index = groupDefaults.integer(forKey: preferredPlayerIndex)
         let ident = playerBundleIdentifiers[index]
         musicPlayer = SBApplication(bundleIdentifier: ident)
         
@@ -78,13 +78,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 let playerBundleIdentifiers = [
     "com.apple.iTunes",
     "com.spotify.client",
-    "com.coppertino.Vox",
+    "com.coppertino.Vox"
 ]
 
 let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!
 
 // Preference
-let PreferredPlayerIndex = "PreferredPlayerIndex"
-let LaunchAndQuitWithPlayer = "LaunchAndQuitWithPlayer"
+let preferredPlayerIndex = "PreferredPlayerIndex"
+let launchAndQuitWithPlayer = "LaunchAndQuitWithPlayer"
 let launchHelperTime = "launchHelperTime"
-
