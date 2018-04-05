@@ -117,8 +117,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.wrongLyrics(nil)
         }
         binder.bindShortcut(with: .ShortcutSearchLyrics) {
-            let index = self.statusBarMenu.indexOfItem(withTag: 201)
-            self.statusBarMenu.performActionForItem(at: index)
+            self.searchLyrics(nil)
         }
     }
     
@@ -159,17 +158,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func searchLyrics(_ sender: Any?) {
-        let searchLyricsWindow: NSWindow
-        if let vc = searchLyricsVC {
-            searchLyricsWindow = vc.view.window!
-            vc.autoFillSearchFieldAndSearch()
-        } else {
-            let vc = NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
-            searchLyricsWindow = NSWindow(contentViewController: vc)
-            searchLyricsWindow.title = NSLocalizedString("Search Lyrics", comment: "window title")
-            searchLyricsVC = vc
-        }
-        searchLyricsWindow.makeKeyAndOrderFront(nil)
+        let vc = searchLyricsVC ?? NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
+        let window = vc.view.window ?? NSWindow(contentViewController: vc)
+        window.title = NSLocalizedString("Search Lyrics", comment: "window title")
+        vc.autoFillSearchFieldAndSearch()
+        // window.isReleasedWhenClosed = true
+        // this induces crash on closing, why?
+        searchLyricsVC = vc
+        window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
     

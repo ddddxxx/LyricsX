@@ -22,19 +22,10 @@ import Cocoa
 import LyricsProvider
 import MusicPlayer
 
-extension Collection {
+extension CountableRange {
     
-    var indexes: Range<Index> {
-        return startIndex..<endIndex
-    }
-}
-
-extension Comparable {
-    
-    func clamped(to limits: Range<Self>) -> Self {
-        guard limits.lowerBound <= self else { return limits.lowerBound }
-        guard limits.upperBound >= self else { return limits.upperBound }
-        return self
+    func clamp(_ v: Bound) -> Bound {
+        return Swift.min(upperBound, Swift.max(lowerBound, v))
     }
 }
 
@@ -73,7 +64,7 @@ extension MusicPlayerName {
 extension NSFont {
     
     convenience init?(name fontName: String, size fontSize: CGFloat, fallback fallbackNames: [String]) {
-        let cascadeList = fallbackNames.flatMap { NSFontDescriptor.init(name: $0, size: fontSize).matchingFontDescriptor(withMandatoryKeys: [.name, .size]) }
+        let cascadeList = fallbackNames.compactMap { NSFontDescriptor.init(name: $0, size: fontSize).matchingFontDescriptor(withMandatoryKeys: [.name, .size]) }
         let descriptor = NSFontDescriptor(fontAttributes: [.name: fontName, .cascadeList: cascadeList])
         self.init(descriptor: descriptor, size: fontSize)
     }

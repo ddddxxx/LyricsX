@@ -20,12 +20,16 @@
 
 import Cocoa
 import MusicPlayer
+import GenericID
 
 class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsViewDelegate, DragNDropDelegate {
     
     @IBOutlet weak var dragNDropView: DragNDropView!
     @IBOutlet weak var lyricsScrollView: ScrollLyricsView!
     @IBOutlet weak var noLyricsLabel: NSTextField!
+    
+    @IBOutlet weak var lyricsScrollViewTopMargin: NSLayoutConstraint!
+    @IBOutlet weak var lyricsScrollViewLeftMargin: NSLayoutConstraint!
     
     @objc dynamic var isTracking = true {
         didSet {
@@ -36,6 +40,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     }
     
     private var observations: [NSObjectProtocol] = []
+    private var defaltsObservation: DefaultsObservation?
     
     override func awakeFromNib() {
         view.window?.do {
@@ -56,6 +61,13 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         lyricsScrollView.bind(NSBindingName("fontSize"), to: defaults, withDefaultName: .LyricsWindowFontSize)
         lyricsScrollView.bind(NSBindingName("textColor"), to: defaults, withDefaultName: .LyricsWindowTextColor)
         lyricsScrollView.bind(NSBindingName("highlightColor"), to: defaults, withDefaultName: .LyricsWindowHighlightColor)
+        
+        defaltsObservation = defaults.observe(.LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] (_, change) in
+            let c = CGFloat(change.newValue)
+            self.lyricsScrollViewTopMargin.constant = c
+            self.lyricsScrollViewLeftMargin.constant = c
+            self.displayLyrics(animation: false)
+        }
         
         let nc = NotificationCenter.default
         observations += [
@@ -85,8 +97,9 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             let newLyrics = AppController.shared.currentLyrics
             self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
             self.noLyricsLabel.isHidden = newLyrics != nil
+            self.displayLyrics(animation: false)
         }
-        displayLyrics(animation: false)
+        
     }
     
     func displayLyrics(animation: Bool = true) {

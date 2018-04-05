@@ -20,7 +20,7 @@
 /* Class = "NSBox"; title = "Box"; ObjectID = "5Bt-74-pXu"; */
 "5Bt-74-pXu.title" = "Box";
 
-/* Class = "NSButtonCell"; title = "One line Mode"; ObjectID = "5dp-p5-YmE"; */
+/* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
 "5dp-p5-YmE.title" = "单行模式";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
@@ -68,7 +68,7 @@
 /* Class = "NSTextFieldCell"; title = "Auto Chinese conversion:"; ObjectID = "JPB-ag-MN7"; */
 "JPB-ag-MN7.title" = "自动中文转换:";
 
-/* Class = "NSBox"; title = "Preferred Music Player"; ObjectID = "JYR-Ed-Tax"; */
+/* Class = "NSBox"; title = "Preferred music player"; ObjectID = "JYR-Ed-Tax"; */
 "JYR-Ed-Tax.title" = "首选音乐播放器";
 
 /* Class = "NSBox"; title = "Spacing to screen edge"; ObjectID = "LDq-wS-wqc"; */
