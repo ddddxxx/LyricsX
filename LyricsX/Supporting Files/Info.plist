@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.3.0-beta</string>
 	<key>CFBundleVersion</key>
-	<string>1613</string>
+	<string>1629</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

@@ -149,44 +149,8 @@ class KaraokeLyricsWindowController: NSWindowController {
                 let timeline = lrc.attachments[.timetag] as? LyricsLineAttachmentTimeLine,
                 let position = AppController.shared.playerManager.player?.playerPosition {
                 let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
-                let rectArray = upperTextField.rectArray
-                
-                var map = timeline.tags.map { tag -> (TimeInterval, CGFloat) in
-                    let dt = tag.timeTag + lrc.position - timeDelay - position
-                    let progress = tag.index == 0 ? 0 : rectArray[min(tag.index, rectArray.count) - 1].maxX
-                    return (dt, progress)
-                }
-                guard let i = map.index(where: { $0.0 > 0 }) else {
-                    // modifying frame of dyeRect has no effact. create an empty animation instead.
-                    let animation = CABasicAnimation()
-                    animation.toValue = map.last?.1
-                    animation.keyPath = "bounds.size.width"
-                    animation.fillMode = kCAFillModeForwards
-                    animation.isRemovedOnCompletion = false
-                    upperTextField.dyeMaskTextField.layer?.add(animation, forKey: "inlineProgress")
-                    return
-                }
-                if i > 0 {
-                    let progress = map[i-1].1 + CGFloat(map[i-1].0) * (map[i].1 - map[i-1].1) / CGFloat(map[i].0 - map[i-1].0)
-                    map.replaceSubrange(..<i, with: [(0, progress)])
-                }
-                if let duration = timeline.duration {
-                    let progress = rectArray.last!.maxX
-                    let dt = duration + lrc.position - timeDelay - position
-                    if dt > map.last!.0 {
-                        map.append((dt, progress))
-                    }
-                }
-                let duration = map.last!.0
-                let animation = CAKeyframeAnimation()
-                animation.keyTimes = map.map { ($0.0 / duration) as NSNumber }
-                animation.values = map.map { $0.1 }
-                animation.keyPath = "bounds.size.width"
-                animation.duration = duration
-                animation.fillMode = kCAFillModeForwards
-                animation.isRemovedOnCompletion = false
-                upperTextField.dyeMaskTextField.isHidden = false
-                upperTextField.dyeMaskTextField.layer?.add(animation, forKey: "inlineProgress")
+                let progress = timeline.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
+                upperTextField.addProgressAnimation(color: self.lyricsView.shadowColor, progress: progress)
             }
 
         }
