@@ -3,6 +3,8 @@ disabled_rules:
 excluded:
   - Carthage
 
+line_length: 150
 identifier_name:
   excluded:
     - id
+    - nc

@@ -92,7 +92,10 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }.joined(separator: "\n")
         // swiftlint:disable:next force_try
         let regex = try! NSRegularExpression(pattern: "\\n{3}")
-        content = regex.stringByReplacingMatches(in: content, range: NSRange(location: 0, length: content.utf16.count), withTemplate: "\n\n").trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
+        content = regex.stringByReplacingMatches(in: content,
+                                                 range: NSRange(location: 0, length: content.utf16.count),
+                                                 withTemplate: "\n\n")
+            .trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
         if let converter = ChineseConverter.shared {
             content = converter.convert(content)
         }
@@ -185,7 +188,12 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         
         if currentLyrics == nil || currentLyrics?.metadata.localURL?.pathExtension == "lrc" {
             let duration = track.duration ?? 0
-            let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist), title: title, artist: artist, duration: duration, limit: 5, timeout: 10)
+            let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist),
+                                          title: title,
+                                          artist: artist,
+                                          duration: duration,
+                                          limit: 5,
+                                          timeout: 10)
             let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
             searchTask = task
             task.resume()
@@ -226,6 +234,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             return
         }
         
+        // swiftlint:disable:next identifier_name
         func shoudReplace(_ from: Lyrics, to: Lyrics) -> Bool {
             if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) != (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
                 return to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]

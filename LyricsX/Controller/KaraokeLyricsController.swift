@@ -65,10 +65,11 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.bind(NSBindingName("fillColor"), to: defaults, withDefaultName: .DesktopLyricsBackgroundColor)
         lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withDefaultName: .HideLyricsWhenMousePassingBy)
         
-        window?.contentView?.bind(.hidden, to: defaults, withDefaultName: .DesktopLyricsEnabled, options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
+        window?.contentView?.bind(.hidden, to: defaults, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
         
         defaultObservations += [
-            defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] defaults, change in
+            defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] _, change in
                 switch change.newValue {
                 case true: self?.window?.sharingType = .none
                 case false: self?.window?.sharingType = .readOnly
@@ -101,6 +102,7 @@ class KaraokeLyricsWindowController: NSWindowController {
             }
         ]
         
+        // swiftlint:disable:next discarded_notification_center_observer
         notifications += [NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
             if let mainScreen = NSScreen.main {
                 let frame = isFullScreen() == true ? mainScreen.frame : mainScreen.visibleFrame
@@ -193,11 +195,10 @@ func isFullScreen() -> Bool? {
     guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
         return nil
     }
-    for info in windowInfoList {
-        if info[kCGWindowOwnerName as String] as? String == "Window Server",
+    for info in windowInfoList where
+        info[kCGWindowOwnerName as String] as? String == "Window Server" &&
             info[kCGWindowName as String] as? String == "Menubar" {
-            return false
-        }
+                return false
     }
     return true
 }

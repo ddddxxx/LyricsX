@@ -159,7 +159,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func searchLyrics(_ sender: Any?) {
-        // swiftlint:disable:next force_cast
+        // swiftlint:disable:next force_cast identifier_name
         let vc = searchLyricsVC ?? NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
         let window = vc.view.window ?? NSWindow(contentViewController: vc)
         window.title = NSLocalizedString("Search Lyrics", comment: "window title")

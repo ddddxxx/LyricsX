@@ -41,7 +41,7 @@ class ScrollLyricsView: NSScrollView {
     
     @objc dynamic var textColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1) {
         didSet {
-            let range = NSMakeRange(0, textView.string.utf16.count)
+            let range = NSRange(location: 0, length: textView.string.utf16.count)
             textView.textStorage?.addAttribute(.foregroundColor, value: textColor, range: range)
             highlightedRange.map { textView.textStorage?.addAttribute(.foregroundColor, value: highlightColor, range: $0) }
         }
@@ -93,7 +93,7 @@ class ScrollLyricsView: NSScrollView {
         ranges = newRanges
         textView.string = lrcContent
         highlightedRange = nil
-        let range = NSMakeRange(0, textView.string.utf16.count)
+        let range = NSRange(location: 0, length: textView.string.utf16.count)
         let font = NSFont(name: fontName, size: fontSize)!
         let style = NSMutableParagraphStyle().with {
             $0.alignment = .center
@@ -221,7 +221,7 @@ class ScrollLyricsView: NSScrollView {
     }
     
     func updateFont() {
-        let range = NSMakeRange(0, textView.string.utf16.count)
+        let range = NSRange(location: 0, length: textView.string.utf16.count)
         let font = NSFont(name: fontName, size: fontSize)!
         textView.textStorage?.addAttribute(.font, value: font, range: range)
     }
