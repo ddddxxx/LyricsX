@@ -71,7 +71,7 @@ class KaraokeLyricsView: NSBox {
         return DyeTextField(string: content).then {
             $0.bind(.font, to: self, withKeyPath: #keyPath(font))
             $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
-            $0.bind(.init("dyeColor"), to: self, withKeyPath: #keyPath(shadowColor))
+            $0.dyeMaskTextField.bind(.init("textColor"), to: self, withKeyPath: #keyPath(shadowColor))
             $0.bind(.init("_shadowColor"), to: self, withKeyPath: #keyPath(shadowColor))
             $0.alphaValue = 0
             $0.isHidden = true

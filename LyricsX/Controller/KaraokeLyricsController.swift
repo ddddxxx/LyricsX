@@ -163,7 +163,7 @@ class KaraokeLyricsWindowController: NSWindowController {
                     animation.keyPath = "bounds.size.width"
                     animation.fillMode = kCAFillModeForwards
                     animation.isRemovedOnCompletion = false
-                    upperTextField.dyeRect.layer?.add(animation, forKey: "inlineProgress")
+                    upperTextField.dyeMaskTextField.layer?.add(animation, forKey: "inlineProgress")
                     return
                 }
                 if i > 0 {
@@ -185,7 +185,8 @@ class KaraokeLyricsWindowController: NSWindowController {
                 animation.duration = duration
                 animation.fillMode = kCAFillModeForwards
                 animation.isRemovedOnCompletion = false
-                upperTextField.dyeRect.layer?.add(animation, forKey: "inlineProgress")
+                upperTextField.dyeMaskTextField.isHidden = false
+                upperTextField.dyeMaskTextField.layer?.add(animation, forKey: "inlineProgress")
             }
 
         }
