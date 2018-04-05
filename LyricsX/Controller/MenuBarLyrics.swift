@@ -166,8 +166,8 @@ extension String {
     func components(options: String.EnumerationOptions) -> [String] {
         var components: [String] = []
         let range = Range(uncheckedBounds: (startIndex, endIndex))
-        enumerateSubstrings(in: range, options: options) { (_, _, r, _) in
-            components.append(String(self[r]))
+        enumerateSubstrings(in: range, options: options) { (_, _, range, _) in
+            components.append(String(self[range]))
         }
         return components
     }

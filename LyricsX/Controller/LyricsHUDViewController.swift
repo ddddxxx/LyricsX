@@ -49,6 +49,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             $0.styleMask.insert(.borderless)
             $0.delegate = self
         }
+        // swiftlint:disable:next force_cast
         let accessory = NSStoryboard.main!.instantiateController(withIdentifier: .LyricsHUDAccessory) as! NSTitlebarAccessoryViewController
         accessory.layoutAttribute = .right
         view.window?.addTitlebarAccessoryViewController(accessory)
@@ -63,9 +64,9 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         lyricsScrollView.bind(NSBindingName("highlightColor"), to: defaults, withDefaultName: .LyricsWindowHighlightColor)
         
         defaltsObservation = defaults.observe(.LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] (_, change) in
-            let c = CGFloat(change.newValue)
-            self.lyricsScrollViewTopMargin.constant = c
-            self.lyricsScrollViewLeftMargin.constant = c
+            let fontSize = CGFloat(change.newValue)
+            self.lyricsScrollViewTopMargin.constant = fontSize
+            self.lyricsScrollViewLeftMargin.constant = fontSize
             self.displayLyrics(animation: false)
         }
         

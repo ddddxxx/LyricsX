@@ -51,7 +51,7 @@ extension NSTextField {
         progressTextField.bind(.value, to: self, withKeyPath: "stringValue")
         progressTextField.bind(.font, to: self, withKeyPath: "font")
         
-        guard let i = progress.index(where: { $0.0 > 0 }) else {
+        guard let index = progress.index(where: { $0.0 > 0 }) else {
             progressTextField.snp.makeConstraints { $0.margins.equalToSuperview() }
             return
         }
@@ -59,9 +59,9 @@ extension NSTextField {
         
         let rectArray = rectArrayForAllCharacters()
         var map = progress.map { ($0.0, rectArray[rectArray.indices.clamp($0.1 - 1)].maxX) }
-        if i > 0 {
-            let progress = map[i-1].1 + CGFloat(map[i-1].0) * (map[i].1 - map[i-1].1) / CGFloat(map[i].0 - map[i-1].0)
-            map.replaceSubrange(..<i, with: [(0, progress)])
+        if index > 0 {
+            let progress = map[index-1].1 + CGFloat(map[index-1].0) * (map[index].1 - map[index-1].1) / CGFloat(map[index].0 - map[index-1].0)
+            map.replaceSubrange(..<index, with: [(0, progress)])
         }
         
         let duration = map.last!.0

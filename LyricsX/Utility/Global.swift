@@ -24,11 +24,11 @@ import MusicPlayer
 
 // NOTE: to build your own product, you need to replace the team identifier to yours
 // and do the same thing in LyricsXHelper
-let LyricsXGroupIdentifier = "3665V726AE.group.ddddxxx.LyricsX"
-let LyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
+let lyricsXGroupIdentifier = "3665V726AE.group.ddddxxx.LyricsX"
+let lyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
 
 let defaults = UserDefaults.standard
-let groupDefaults = UserDefaults(suiteName: LyricsXGroupIdentifier)!
+let groupDefaults = UserDefaults(suiteName: lyricsXGroupIdentifier)!
 
 let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
 let isFromMacAppStore = (try? Bundle.main.appStoreReceiptURL?.checkResourceIsReachable()) ?? nil == true
@@ -48,12 +48,12 @@ extension NSStoryboard.SceneIdentifier {
 
 // MARK: - Notification Name
 
-let LyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
-let CurrentLyricsChangeNotification = "CurrentLyricsChangeNotification"
+let lyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
+let currentLyricsChangeNotification = "CurrentLyricsChangeNotification"
 
 extension Notification.Name {
-    static let lyricsShouldDisplay = Notification.Name(LyricsShouldDisplayNotification)
-    static let currentLyricsChange = Notification.Name(CurrentLyricsChangeNotification)
+    static let lyricsShouldDisplay = Notification.Name(lyricsShouldDisplayNotification)
+    static let currentLyricsChange = Notification.Name(currentLyricsChangeNotification)
 }
 
 let fontNameFallbackCountMax = 1

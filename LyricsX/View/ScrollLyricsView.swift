@@ -33,6 +33,7 @@ class ScrollLyricsView: NSScrollView {
     weak var delegate: ScrollLyricsViewDelegate?
     
     private var textView: NSTextView {
+        // swiftlint:disable:next force_cast
         return documentView as! NSTextView
     }
     
@@ -164,9 +165,9 @@ class ScrollLyricsView: NSScrollView {
         let bounding1 = textView.layoutManager!.boundingRect(forGlyphRange: ranges.first!.1, in: textView.textContainer!)
         let topInset = frame.height/2 - bounding1.height/2
         let bounding2 = textView.layoutManager!.boundingRect(forGlyphRange: ranges.last!.1, in: textView.textContainer!)
-        let BottomInset = frame.height/2 - bounding2.height/2
+        let bottomInset = frame.height/2 - bounding2.height/2
         automaticallyAdjustsContentInsets = false
-        contentInsets = NSEdgeInsets(top: topInset, left: 0, bottom: BottomInset, right: 0)
+        contentInsets = NSEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
     }
     
     func highlight(position: TimeInterval) {

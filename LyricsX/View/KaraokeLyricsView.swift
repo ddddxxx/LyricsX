@@ -79,7 +79,7 @@ class KaraokeLyricsView: NSBox {
     }
     
     func displayLrc(_ firstLine: String, secondLine: String = "") {
-        var toBeHide = stackView.arrangedSubviews as! [NSTextField]
+        var toBeHide = stackView.arrangedSubviews.compactMap { $0 as? NSTextField }
         var toBeShow: [NSTextField] = []
         var shouldHideAll = false
         
@@ -172,6 +172,7 @@ extension NSEvent {
 
 extension NSTextField {
     
+    // swiftlint:disable:next identifier_name
     @objc dynamic var _shadowColor: NSColor? {
         get {
             return shadow?.shadowColor

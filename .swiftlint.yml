@@ -2,3 +2,7 @@ disabled_rules:
   - trailing_whitespace
 excluded:
   - Carthage
+
+identifier_name:
+  excluded:
+    - id
