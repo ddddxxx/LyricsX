@@ -116,7 +116,6 @@ class MenuBarLyrics: NSObject {
     }
 }
 
-
 // MARK: - Status Item Visibility
 
 extension NSStatusItem {

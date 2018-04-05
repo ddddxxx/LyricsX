@@ -194,7 +194,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .LyricsWindowTextColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1),
             .LyricsWindowHighlightColor: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1),
             .PreferBilingualLyrics: isZh,
-            .ChineseConversionIndex: isHant ? 2 : 0,
+            .ChineseConversionIndex: isHant ? 2 : 0
             ])
     }
 }

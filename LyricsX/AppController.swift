@@ -139,7 +139,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             if let fileName = track.url?.deletingPathExtension() {
                 candidateLyricsURL += [
                     (fileName.appendingPathExtension("lrcx"), false),
-                    (fileName.appendingPathExtension("lrc"), false),
+                    (fileName.appendingPathExtension("lrc"), false)
                 ]
             }
         }
@@ -149,7 +149,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             let fileName = url.appendingPathComponent("\(titleForReading) - \(artistForReading)")
             candidateLyricsURL += [
                 (fileName.appendingPathExtension("lrcx"), security),
-                (fileName.appendingPathExtension("lrc"), security),
+                (fileName.appendingPathExtension("lrc"), security)
             ]
         }
         

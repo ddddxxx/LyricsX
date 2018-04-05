@@ -61,7 +61,7 @@ class ScrollLyricsView: NSScrollView {
     }
     
     private var ranges: [(TimeInterval, NSRange)] = []
-    private var highlightedRange: NSRange? = nil
+    private var highlightedRange: NSRange?
     
     func setupTextContents(lyrics: Lyrics?) {
         guard let lyrics = lyrics else {

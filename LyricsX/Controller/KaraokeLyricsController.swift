@@ -89,7 +89,7 @@ class KaraokeLyricsWindowController: NSWindowController {
                 .DesktopLyricsInsetTop,
                 .DesktopLyricsInsetBottom,
                 .DesktopLyricsInsetLeft,
-                .DesktopLyricsInsetRight,
+                .DesktopLyricsInsetRight
                 ], options: []) { [weak self] in
                     NSAnimationContext.runAnimationGroup({ context in
                         context.duration = 0.2

@@ -78,7 +78,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 let playerBundleIdentifiers = [
     "com.apple.iTunes",
     "com.spotify.client",
-    "com.coppertino.Vox",
+    "com.coppertino.Vox"
 ]
 
 let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!
@@ -87,4 +87,3 @@ let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!
 let PreferredPlayerIndex = "PreferredPlayerIndex"
 let LaunchAndQuitWithPlayer = "LaunchAndQuitWithPlayer"
 let launchHelperTime = "launchHelperTime"
-

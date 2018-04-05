@@ -31,7 +31,7 @@ extension CountableRange {
 
 extension NSObject {
     
-    func bind<T>(_ binding: NSBindingName, to observable: UserDefaults, withDefaultName defaultName: UserDefaults.DefaultsKey<T>, options: [NSBindingOption : Any] = [:]) {
+    func bind<T>(_ binding: NSBindingName, to observable: UserDefaults, withDefaultName defaultName: UserDefaults.DefaultsKey<T>, options: [NSBindingOption: Any] = [:]) {
         var options = options
         if let t = defaultName.valueTransformer {
             switch t {
