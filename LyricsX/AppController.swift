@@ -85,7 +85,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         var content = currentLyrics.lines.map { line in
             var content = line.content
             if defaults[.WriteiTunesWithTranslation],
-                let translation = line.translation {
+                let translation = line.attachments.translation() {
                 content += "\n" + translation
             }
             return content

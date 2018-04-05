@@ -135,7 +135,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         if defaults[.DesktopLyricsOneLineMode] {
             secondLine = ""
         } else if defaults[.PreferBilingualLyrics] {
-            secondLine = lrc.translation ?? next?.content ?? ""
+            secondLine = lrc.attachments.translation() ?? next?.content ?? ""
         } else {
             secondLine = next?.content ?? ""
         }
@@ -148,10 +148,10 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.async {
             self.lyricsView.displayLrc(firstLine, secondLine: secondLine)
             if let upperTextField = self.lyricsView.displayLine1,
-                let timeline = lrc.attachments[.timetag] as? LyricsLineAttachmentTimeLine,
+                let timetag = lrc.attachments.timetag,
                 let position = AppController.shared.playerManager.player?.playerPosition {
                 let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
-                let progress = timeline.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
+                let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
                 upperTextField.addProgressAnimation(color: self.lyricsView.shadowColor, progress: progress)
             }
 
