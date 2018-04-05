@@ -29,7 +29,7 @@ var remoteVersion: Semver? {
         let data = try Data(contentsOf: url)
         let response = try JSONDecoder().decode(GitHubResponse.self, from: data)
         var tag = response.tag_name
-        guard !response.draft, !response.prerelease else { return nil }
+        guard !response.draft else { return nil }
         if tag.hasPrefix("v") {
             tag.removeFirst()
         }
@@ -54,7 +54,7 @@ func checkForUpdate(force: Bool = false) {
             return
         }
         
-        guard remote > local else {
+        guard remote > local, !remote.isPrerelease || local.isPrerelease else {
             if force {
                 DispatchQueue.main.async {
                     let alert = NSAlert()
@@ -112,6 +112,13 @@ func checkForUpdate(force: Bool = false) {
     }
     
 #endif
+
+extension Semver {
+    
+    var isPrerelease: Bool {
+        return !prerelease.isEmpty
+    }
+}
 
 struct GitHubResponse: Decodable {
     // swiftlint:disable:next identifier_name
