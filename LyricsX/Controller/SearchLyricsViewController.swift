@@ -35,7 +35,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @objc dynamic var selectedIndex = NSIndexSet()
     
     let lyricsManager = LyricsProviderManager()
-    var searchRequest: LyricsSearchRequest?
     var searchTask: LyricsSearchTask?
     var searchResult: [Lyrics] = []
     
@@ -85,7 +84,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
                                       timeout: 10)
         let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
         searchTask = task
-        searchRequest = req
         task.resume()
         tableView.reloadData()
     }
@@ -110,7 +108,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     // MARK: - LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        guard lyrics.metadata.request == searchRequest else {
+        guard lyrics.metadata.request == searchTask?.request else {
             return
         }
         if let idx = searchResult.index(where: { lyrics.quality > $0.quality }) {
