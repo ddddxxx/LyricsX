@@ -42,7 +42,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
-        Fabric.with([Crashlytics.self])
+        #if RELEASE
+            Fabric.with([Crashlytics.self])
+        #endif
         
         // swiftlint:disable:next force_cast
         desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! KaraokeLyricsWindowController)

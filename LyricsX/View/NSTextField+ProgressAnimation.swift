@@ -50,13 +50,9 @@ extension NSTextField {
         addSubview(progressTextField)
         progressTextField.bind(.value, to: self, withKeyPath: "stringValue")
         progressTextField.bind(.font, to: self, withKeyPath: "font")
+        progressTextField.snp.makeConstraints { $0.edges.equalToSuperview() }
         
-        guard let index = progress.index(where: { $0.0 > 0 }) else {
-            progressTextField.snp.makeConstraints { $0.margins.equalToSuperview() }
-            return
-        }
-        progressTextField.snp.makeConstraints { $0.top.bottom.leading.equalToSuperview()}
-        
+        guard let index = progress.index(where: { $0.0 > 0 }) else { return }
         let rectArray = rectArrayForAllCharacters()
         var map = progress.map { ($0.0, rectArray[rectArray.indices.clamp($0.1 - 1)].maxX) }
         if index > 0 {
@@ -70,8 +66,6 @@ extension NSTextField {
         animation.values = map.map { $0.1 }
         animation.keyPath = "bounds.size.width"
         animation.duration = duration
-        animation.fillMode = kCAFillModeForwards
-        animation.isRemovedOnCompletion = false
         progressTextField.layer?.add(animation, forKey: "inlineProgress")
         
         self.progressTextField?.removeFromSuperview()
