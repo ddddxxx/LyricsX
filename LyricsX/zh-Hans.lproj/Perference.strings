@@ -170,5 +170,5 @@
 /* Class = "NSButtonCell"; title = "Audirvana"; ObjectID = "m2S-vK-wBN"; */
 "m2S-vK-wBN.title" = "Audirvana";
 
-/* Class = "NSTextFieldCell"; title = "Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Use \"/\" to start a regular expression.";
+/* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
+"19E-DG-Q23.title" = "符合条件的歌词行将被过滤。使用\"/\"以开始正则表达式;
