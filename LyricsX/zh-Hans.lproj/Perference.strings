@@ -171,4 +171,4 @@
 "m2S-vK-wBN.title" = "Audirvana";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "符合条件的歌词行将被过滤。使用\"/\"以开始正则表达式;
+"19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";

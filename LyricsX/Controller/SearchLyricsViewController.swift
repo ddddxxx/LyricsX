@@ -23,7 +23,7 @@ import LyricsProvider
 import MusicPlayer
 import Crashlytics
 
-class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
     var imageCache = NSCache<NSURL, NSImage>()
     
@@ -53,14 +53,20 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
-        
-        autoFillSearchFieldAndSearch()
     }
     
-    func autoFillSearchFieldAndSearch() {
-        let track = AppController.shared.playerManager.player?.currentTrack
-        let artist = track?.artist ?? ""
-        let title = track?.title ?? ""
+    override func viewWillAppear() {
+        guard let track = AppController.shared.playerManager.player?.currentTrack else {
+            searchTask?.cancel()
+            searchTask = nil
+            searchResult = []
+            searchArtist = ""
+            searchTitle = ""
+            tableView.reloadData()
+            return
+        }
+        let artist = track.artist ?? ""
+        let title = track.title ?? ""
         if (searchArtist, searchTitle) != (artist, title) {
             (searchArtist, searchTitle) = (artist, title)
             searchAction(nil)
@@ -188,6 +194,16 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             
             return fileName
         }
+    }
+    
+    // MARK: - NSTextFieldDelegate
+    
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if commandSelector == #selector(NSResponder.insertNewline(_:)) {
+            searchAction(nil)
+            return true
+        }
+        return false
     }
     
     private func expandPreview() {

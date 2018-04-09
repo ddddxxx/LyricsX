@@ -167,7 +167,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func searchLyrics(_ sender: Any?) {
-        (searchLyricsWC.window?.contentViewController as? SearchLyricsViewController)?.autoFillSearchFieldAndSearch()
         searchLyricsWC.window?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
