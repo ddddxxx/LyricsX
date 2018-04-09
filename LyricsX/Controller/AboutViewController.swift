@@ -33,8 +33,13 @@ class AboutViewController: NSViewController {
         let info = Bundle.main.infoDictionary!
         let shortVersion = info["CFBundleShortVersionString"] as! String
         let version = info["CFBundleVersion"] as! String
+        #if IS_FOR_MAS
+            let channel = "App Store"
+        #else
+            let channel = "GitHub"
+        #endif
         appName.stringValue = info["CFBundleName"] as! String
-        appVersion.stringValue = "Version \(shortVersion)(\(version))"
+        appVersion.stringValue = "\(channel) Version \(shortVersion)(\(version))"
         copyright.stringValue = info["NSHumanReadableCopyright"] as! String
         // swiftlint:enable force_cast
         
