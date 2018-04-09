@@ -182,39 +182,19 @@ extension Lyrics {
 extension Lyrics {
     
     func filtrate() {
-        var predicates = defaults[.LyricsDirectFilterKey].map { key in
-            NSPredicate { object, _ in
-                guard let object = object as? LyricsLine else { return false }
-                return !object.content.contains(key)
-            }
-        }
-        let colonCharacterSet = CharacterSet(charactersIn: ":：∶")
-        predicates += defaults[.LyricsColonFilterKey].map { key in
-            NSPredicate { object, _ in
-                guard let object = object as? LyricsLine else { return false }
-                return !object.content.components(separatedBy: colonCharacterSet).contains { $0.starts(with: key) }
-            }
-        }
-        if defaults[.LyricsSmartFilterEnabled] {
-            let smartPredicate = NSPredicate { (object, _) -> Bool in
-                guard let object = object as? LyricsLine else {
-                    return false
+        let predicates = defaults[.LyricsFilterKeys].compactMap { (key: String) -> NSPredicate? in
+            if key.hasPrefix("/") {
+                guard let regex = try? Regex(String(key.dropFirst())) else { return nil }
+                return NSPredicate { object, _ in
+                    guard let object = object as? LyricsLine else { return false }
+                    return !regex.isMatch(object.content)
                 }
-                let content = object.content
-                if let idTagTitle = self.idTags[.title],
-                    let idTagArtist = self.idTags[.artist],
-                    content.contains(idTagTitle),
-                    content.contains(idTagArtist) {
-                    return false
-                } else if let iTunesTitle = self.metadata.title,
-                    let iTunesArtist = self.metadata.artist,
-                    content.contains(iTunesTitle),
-                    content.contains(iTunesArtist) {
-                    return false
+            } else {
+                return NSPredicate { object, _ in
+                    guard let object = object as? LyricsLine else { return false }
+                    return !object.content.contains(key)
                 }
-                return true
             }
-            predicates.append(smartPredicate)
         }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         filtrate(isIncluded: predicate)

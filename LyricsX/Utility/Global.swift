@@ -124,8 +124,7 @@ extension UserDefaults.DefaultsKeys {
     // Filter
     static let LyricsFilterEnabled      = Key<Bool>("LyricsFilterEnabled")
     static let LyricsSmartFilterEnabled = Key<Bool>("LyricsSmartFilterEnabled")
-    static let LyricsDirectFilterKey    = Key<[String]>("LyricsDirectFilterKey")
-    static let LyricsColonFilterKey     = Key<[String]>("LyricsColonFilterKey")
+    static let LyricsFilterKeys         = Key<[String]>("LyricsFilterKeys")
     
     // Lab
     static let WriteiTunesWithTranslation = Key<Bool>("WriteiTunesWithTranslation")

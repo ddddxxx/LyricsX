@@ -23,7 +23,6 @@ import Cocoa
 class PreferenceFilterViewController: NSViewController {
     
     @objc dynamic var directFilter = [FilterKey]()
-    @objc dynamic var colonFilter = [FilterKey]()
     
     override func viewDidLoad() {
         loadFilter()
@@ -34,22 +33,17 @@ class PreferenceFilterViewController: NSViewController {
     }
     
     func loadFilter() {
-        directFilter = defaults[.LyricsDirectFilterKey].map {
-            FilterKey(keyword: $0)
-        }
-        colonFilter = defaults[.LyricsColonFilterKey].map {
+        directFilter = defaults[.LyricsFilterKeys].map {
             FilterKey(keyword: $0)
         }
     }
     
     func saveFilter() {
-        defaults[.LyricsDirectFilterKey] = directFilter.map { $0.keyword }
-        defaults[.LyricsColonFilterKey] = colonFilter.map { $0.keyword }
+        defaults[.LyricsFilterKeys] = directFilter.map { $0.keyword }
     }
     
     @IBAction func resetFilterKey(_ sender: Any) {
-        defaults.remove(.LyricsDirectFilterKey)
-        defaults.remove(.LyricsColonFilterKey)
+        defaults.remove(.LyricsFilterKeys)
         loadFilter()
     }
     
