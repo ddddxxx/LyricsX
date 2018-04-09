@@ -38,7 +38,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var desktopLyrics: KaraokeLyricsWindowController?
     
-    weak var searchLyricsVC: SearchLyricsViewController?
+    lazy var searchLyricsWC: NSWindowController = {
+        // swiftlint:disable:next force_cast
+        let searchVC = NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
+        let window = NSWindow(contentViewController: searchVC)
+        window.title = NSLocalizedString("Search Lyrics", comment: "window title")
+        return NSWindowController(window: window)
+    }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
@@ -161,15 +167,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func searchLyrics(_ sender: Any?) {
-        // swiftlint:disable:next force_cast identifier_name
-        let vc = searchLyricsVC ?? NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
-        let window = vc.view.window ?? NSWindow(contentViewController: vc)
-        window.title = NSLocalizedString("Search Lyrics", comment: "window title")
-        vc.autoFillSearchFieldAndSearch()
-        // window.isReleasedWhenClosed = true
-        // this induces crash on closing, why?
-        searchLyricsVC = vc
-        window.makeKeyAndOrderFront(nil)
+        searchLyricsWC.window?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
     

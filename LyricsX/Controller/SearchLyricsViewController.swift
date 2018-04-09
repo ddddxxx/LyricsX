@@ -21,8 +21,9 @@
 import Cocoa
 import LyricsProvider
 import MusicPlayer
+import Crashlytics
 
-class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
     var imageCache = NSCache<NSURL, NSImage>()
     
@@ -52,14 +53,20 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
-        
-        autoFillSearchFieldAndSearch()
     }
     
-    func autoFillSearchFieldAndSearch() {
-        let track = AppController.shared.playerManager.player?.currentTrack
-        let artist = track?.artist ?? ""
-        let title = track?.title ?? ""
+    override func viewWillAppear() {
+        guard let track = AppController.shared.playerManager.player?.currentTrack else {
+            searchTask?.cancel()
+            searchTask = nil
+            searchResult = []
+            searchArtist = ""
+            searchTitle = ""
+            tableView.reloadData()
+            return
+        }
+        let artist = track.artist ?? ""
+        let title = track.title ?? ""
         if (searchArtist, searchTitle) != (artist, title) {
             (searchArtist, searchTitle) = (artist, title)
             searchAction(nil)
@@ -76,7 +83,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         let duration = track?.duration ?? 0
         let title = track?.title ?? ""
         let artist = track?.artist ?? ""
-        let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist),
+        let req = LyricsSearchRequest(searchTerm: .info(title: searchTitle, artist: searchArtist),
                                       title: title,
                                       artist: artist,
                                       duration: duration,
@@ -86,6 +93,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         searchTask = task
         task.resume()
         tableView.reloadData()
+        Answers.logCustomEvent(withName: "Search Lyrics Manually")
     }
     
     @IBAction func useLyricsAction(_ sender: NSButton) {
@@ -103,6 +111,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         if defaults[.WriteToiTunesAutomatically] {
             AppController.shared.writeToiTunes(overwrite: true)
         }
+        Answers.logCustomEvent(withName: "Choose Search Result", customAttributes: ["index": index])
     }
     
     // MARK: - LyricsSourceDelegate
@@ -185,6 +194,16 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             
             return fileName
         }
+    }
+    
+    // MARK: - NSTextFieldDelegate
+    
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if commandSelector == #selector(NSResponder.insertNewline(_:)) {
+            searchAction(nil)
+            return true
+        }
+        return false
     }
     
     private func expandPreview() {

@@ -486,7 +486,12 @@ IA
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="hFt-BA-jFS" name="value" keyPath="self.searchTitle" id="ZZn-fm-flm"/>
+                                            <binding destination="hFt-BA-jFS" name="value" keyPath="self.searchTitle" id="tO1-JY-abO">
+                                                <dictionary key="options">
+                                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                </dictionary>
+                                            </binding>
+                                            <outlet property="delegate" destination="hFt-BA-jFS" id="HLO-O5-6gK"/>
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GVe-a1-Feu">
@@ -505,12 +510,17 @@ IA
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="hFt-BA-jFS" name="value" keyPath="self.searchArtist" id="auR-sT-yE6"/>
+                                            <binding destination="hFt-BA-jFS" name="value" keyPath="self.searchArtist" id="YeG-7a-YAd">
+                                                <dictionary key="options">
+                                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                </dictionary>
+                                            </binding>
+                                            <outlet property="delegate" destination="hFt-BA-jFS" id="LCb-8w-3ed"/>
                                         </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Np2-88-ohs">
                                         <rect key="frame" x="535" y="2" width="49" height="19"/>
-                                        <buttonCell key="cell" type="roundTextured" title="Search" bezelStyle="texturedRounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="eb9-fE-Lgq">
+                                        <buttonCell key="cell" type="roundTextured" title="Search" bezelStyle="texturedRounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="eb9-fE-Lgq">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>

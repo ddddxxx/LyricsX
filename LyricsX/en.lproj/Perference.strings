@@ -8,17 +8,8 @@
 /* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "2XJ-b1-6M9"; */
 "2XJ-b1-6M9.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
 
-/* Class = "NSTableColumn"; headerCell.title = "Keyword"; ObjectID = "2tm-xU-Iyv"; */
-"2tm-xU-Iyv.headerCell.title" = "Keyword";
-
-/* Class = "NSTextFieldCell"; title = "Direct Filter"; ObjectID = "35G-PJ-NxC"; */
-"35G-PJ-NxC.title" = "Direct Filter";
-
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
 "3Bt-md-QNc.title" = "Lyrics";
-
-/* Class = "NSBox"; title = "Box"; ObjectID = "5Bt-74-pXu"; */
-"5Bt-74-pXu.title" = "Box";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
 "5dp-p5-YmE.title" = "One line mode";
@@ -50,17 +41,11 @@
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
 "AiM-vg-FvQ.title" = "Simplified Chinese";
 
-/* Class = "NSTextFieldCell"; title = "Colon Filter"; ObjectID = "Bhn-G2-wRp"; */
-"Bhn-G2-wRp.title" = "Colon Filter";
-
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
 "Cmt-it-PXW.title" = "Font:";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
 "EDv-ax-0hI.title" = "Load lyrics beside music file";
-
-/* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "HEI-Dn-Xny"; */
-"HEI-Dn-Xny.title" = "Text";
 
 /* Class = "NSMenuItem"; title = "Other..."; ObjectID = "HvN-Ou-h1t"; */
 "HvN-Ou-h1t.title" = "Other...";
@@ -88,9 +73,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Keyword"; ObjectID = "QdM-iA-Hjj"; */
 "QdM-iA-Hjj.headerCell.title" = "Keyword";
-
-/* Class = "NSButtonCell"; title = "Smart Filter"; ObjectID = "RMx-tR-oGb"; */
-"RMx-tR-oGb.title" = "Smart Filter";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "Text:";
@@ -155,8 +137,8 @@
 /* Class = "NSButtonCell"; title = "Spotify"; ObjectID = "jhm-dK-4Y3"; */
 "jhm-dK-4Y3.title" = "Spotify";
 
-/* Class = "NSButtonCell"; title = "Lyrics Filter"; ObjectID = "kEd-lC-aAH"; */
-"kEd-lC-aAH.title" = "Lyrics Filter";
+/* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
+"kEd-lC-aAH.title" = "Enable lyrics filter";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
 "kP4-4q-ed9.title" = "Search lyrics:";
@@ -187,3 +169,6 @@
 
 /* Class = "NSButtonCell"; title = "Audirvana"; ObjectID = "m2S-vK-wBN"; */
 "m2S-vK-wBN.title" = "Audirvana";
+
+/* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
+"19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";

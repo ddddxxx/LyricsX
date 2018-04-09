@@ -26,8 +26,11 @@
 	<true/>
 	<key>LyricsSmartFilterEnabled</key>
 	<true/>
-	<key>LyricsDirectFilterKey</key>
+	<key>LyricsFilterKeys</key>
 	<array>
+		<string>/(by|title|song|album|artist|singer|lyrics)\s*[:：∶]</string>
+		<string>/\w+(\.\w+){2}</string>
+		<string>/\d{8}</string>
 		<string>作詞</string>
 		<string>作词</string>
 		<string>作曲</string>
@@ -51,36 +54,8 @@
 		<string>片頭曲</string>
 		<string>片头曲</string>
 		<string>片尾曲</string>
-		<string>QQ</string>
-		<string>Lrc</string>
-		<string>LyricsBy</string>
-		<string>ComposedBy</string>
-		<string>CharacterSong</string>
-		<string>InsertSong</string>
 		<string>SoundTrack</string>
 		<string>アニメ</string>
-		<string>www.</string>
-		<string>.com</string>
-		<string>.net</string>
-	</array>
-	<key>LyricsColonFilterKey</key>
-	<array>
-		<string>by</string>
-		<string>title</string>
-		<string>song</string>
-		<string>album</string>
-		<string>artist</string>
-		<string>singer</string>
-		<string>lyrics</string>
-		<string>歌</string>
-		<string>唄</string>
-		<string>曲</string>
-		<string>作</string>
-		<string>唱</string>
-		<string>詞</string>
-		<string>词</string>
-		<string>編</string>
-		<string>编</string>
 	</array>
 	<key>LyricsSources</key>
 	<array>
