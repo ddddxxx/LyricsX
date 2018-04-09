@@ -21,6 +21,7 @@
 import Cocoa
 import LyricsProvider
 import MusicPlayer
+import Crashlytics
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
     
@@ -86,6 +87,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         searchTask = task
         task.resume()
         tableView.reloadData()
+        Answers.logCustomEvent(withName: "Search Lyrics Manually")
     }
     
     @IBAction func useLyricsAction(_ sender: NSButton) {
@@ -103,6 +105,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         if defaults[.WriteToiTunesAutomatically] {
             AppController.shared.writeToiTunes(overwrite: true)
         }
+        Answers.logCustomEvent(withName: "Choose Search Result", customAttributes: ["index": index])
     }
     
     // MARK: - LyricsSourceDelegate

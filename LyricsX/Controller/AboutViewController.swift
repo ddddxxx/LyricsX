@@ -19,6 +19,7 @@
 //
 
 import Cocoa
+import Crashlytics
 
 class AboutViewController: NSViewController {
     
@@ -41,6 +42,7 @@ class AboutViewController: NSViewController {
         if let credits = try? NSAttributedString(url: creditsURL, options: [:], documentAttributes: nil) {
             creditsTextView.textStorage?.setAttributedString(credits)
         }
+        Answers.logCustomEvent(withName: "View About Page")
     }
     
 }

@@ -97,6 +97,7 @@
 		BB0BE95A1F444CAA0068FF67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = LyricsX/Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		BB0BE95C1F44508F0068FF67 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = LyricsX/Frameworks/Fabric.framework; sourceTree = "<group>"; };
+		BB1A31822079351F00406E32 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollLyricsView.swift; sourceTree = "<group>"; };
 		BB335B112057BCE3003A69F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BB335B132057BD03003A69F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Perference.strings; sourceTree = "<group>"; };
@@ -241,6 +242,7 @@
 		BB7EC7B31E4ECFC400A0AC3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB1A31822079351F00406E32 /* Carbon.framework */,
 				BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */,
 				BB0BE95C1F44508F0068FF67 /* Fabric.framework */,
 				BBE557961EC0291E00F1EC31 /* GenericID.framework */,

@@ -23,6 +23,7 @@ import AppKit
 import LyricsProvider
 import MusicPlayer
 import OpenCC
+import Crashlytics
 
 class AppController: NSObject, MusicPlayerManagerDelegate {
     
@@ -175,6 +176,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                 lyrics.metadata.title = title
                 lyrics.metadata.artist = artist
                 currentLyrics = lyrics
+                Answers.logCustomEvent(withName: "Load Local Lyrics")
                 break
             }
         }
@@ -197,6 +199,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
             searchTask = task
             task.resume()
+            Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
         }
     }
     
