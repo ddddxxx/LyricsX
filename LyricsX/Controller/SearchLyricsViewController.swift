@@ -77,7 +77,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         let duration = track?.duration ?? 0
         let title = track?.title ?? ""
         let artist = track?.artist ?? ""
-        let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist),
+        let req = LyricsSearchRequest(searchTerm: .info(title: searchTitle, artist: searchArtist),
                                       title: title,
                                       artist: artist,
                                       duration: duration,
