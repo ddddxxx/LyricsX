@@ -38,6 +38,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var desktopLyrics: KaraokeLyricsWindowController?
     
+    var touchBarLyrics: Any?
+    
     lazy var searchLyricsWC: NSWindowController = {
         // swiftlint:disable:next force_cast
         let searchVC = NSStoryboard.main!.instantiateController(withIdentifier: .init("SearchLyricsViewController")) as! SearchLyricsViewController
@@ -52,6 +54,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Fabric.with([Crashlytics.self])
         #endif
         
+        let controller = AppController.shared
+        
         // swiftlint:disable:next force_cast
         desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! KaraokeLyricsWindowController)
         desktopLyrics?.showWindow(nil)
@@ -60,7 +64,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         MenuBarLyrics.shared.statusItem.target = self
         MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
         
-        let controller = AppController.shared
+        if #available(OSX 10.12.2, *) {
+            touchBarLyrics = TouchBarLyrics()
+        }
+        
         lyricsOffsetStepper.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
         lyricsOffsetTextField.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
         

@@ -72,6 +72,11 @@ extension NSTextField {
         self.progressTextField = progressTextField
     }
     
+    func removeProgressAnimation() {
+        progressTextField?.removeFromSuperview()
+        progressTextField = nil
+    }
+    
     private static var associatedObjectHandle = 0
     
     private var progressTextField: NSTextField? {
