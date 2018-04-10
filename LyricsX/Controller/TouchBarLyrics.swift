@@ -8,6 +8,7 @@
 
 import Cocoa
 import LyricsProvider
+import OpenCC
 
 @available(OSX 10.12.2, *)
 class TouchBarLyrics: NSObject, NSTouchBarDelegate {
@@ -50,12 +51,16 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
                 }
                 return
         }
+        let line = lyrics.lines[index]
+        var lyricsContent = line.content
+        if let converter = ChineseConverter.shared {
+            lyricsContent = converter.convert(lyricsContent)
+        }
         DispatchQueue.main.async {
-            let line = lyrics.lines[index]
-            self.lyricsTextField.stringValue = line.content
+            self.lyricsTextField.stringValue = lyricsContent
             if let timetag = line.attachments.timetag,
                 let position = AppController.shared.playerManager.player?.playerPosition {
-                let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
+                let timeDelay = line.lyrics?.timeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + line.position - timeDelay - position, $0.index) }
                 self.lyricsTextField.addProgressAnimation(color: #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1), progress: progress)
             }
