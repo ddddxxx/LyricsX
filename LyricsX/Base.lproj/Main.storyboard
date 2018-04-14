@@ -407,9 +407,12 @@
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WCj-2B-3nx">
-                                <rect key="frame" x="126" y="131" width="68" height="19"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Lyrics" id="aRw-yQ-GNX">
+                                <rect key="frame" x="52" y="112" width="217" height="57"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="aRw-yQ-GNX">
                                     <font key="font" metaFont="system" size="15"/>
+                                    <string key="title">No Lyrics
+
+Drag &amp; Drop to import LRC file</string>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
