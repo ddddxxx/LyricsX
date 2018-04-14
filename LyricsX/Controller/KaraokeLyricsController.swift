@@ -54,6 +54,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
+            self.handleLyricsDisplay()
             NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
         }
