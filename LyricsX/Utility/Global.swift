@@ -68,6 +68,7 @@ extension UserDefaults.DefaultsKeys {
     // Menu
     static let DesktopLyricsEnabled     = Key<Bool>("DesktopLyricsEnabled")
     static let MenuBarLyricsEnabled     = Key<Bool>("MenuBarLyricsEnabled")
+    static let TouchBarLyricsEnabled    = Key<Bool>("TouchBarLyricsEnabled")
     
     // General
     static let PreferredPlayerIndex     = Key<Int>("PreferredPlayerIndex")

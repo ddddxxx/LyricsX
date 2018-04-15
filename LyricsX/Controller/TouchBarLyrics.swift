@@ -9,6 +9,7 @@
 import Cocoa
 import LyricsProvider
 import OpenCC
+import GenericID
 
 @available(OSX 10.12.2, *)
 class TouchBarLyrics: NSObject, NSTouchBarDelegate {
@@ -20,15 +21,18 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     
     var screenLyrics = ""
     
+    var defaultsObserver: DefaultsObservation?
+    
     override init() {
         super.init()
         touchBar.delegate = self
         touchBar.defaultItemIdentifiers = [.lyrics]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
-        NSTouchBarItem.addSystemTrayItem(systemTrayItem)
-        DFRElementSetControlStripPresenceForIdentifier(.systemTrayItem, true)
-        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
+        
+        defaultsObserver = defaults.observe(.TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
+            self.systemTrayItem.setSystemTrayPresent(change.newValue)
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
@@ -75,6 +79,20 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         } else {
             return nil
         }
+    }
+}
+
+@available(OSX 10.12.2, *)
+extension NSTouchBarItem {
+    
+    func setSystemTrayPresent(_ isPresent: Bool) {
+        if isPresent {
+            NSTouchBarItem.addSystemTrayItem(self)
+        } else {
+            NSTouchBarItem.removeSystemTrayItem(self)
+        }
+        DFRElementSetControlStripPresenceForIdentifier(identifier, isPresent)
+        DFRSystemModalShowsCloseBoxWhenFrontMost(isPresent)
     }
 }
 
