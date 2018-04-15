@@ -22,6 +22,7 @@ import Cocoa
 import LyricsProvider
 import MusicPlayer
 import GenericID
+import OpenCC
 
 class MenuBarLyrics: NSObject {
     
@@ -32,7 +33,7 @@ class MenuBarLyrics: NSObject {
     var buttonImage = #imageLiteral(resourceName: "status_bar_icon")
     var buttonlength: CGFloat = 30
     
-    private var displayLyrics = ""
+    private var screenLyrics = ""
     
     var statusItemObservation: DefaultsObservation?
     
@@ -53,20 +54,23 @@ class MenuBarLyrics: NSObject {
         guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
-            displayLyrics = ""
+            screenLyrics = ""
             updateStatusItem()
             return
         }
-        let lrc = lyrics.lines[index].content
-        if lrc == displayLyrics {
+        var newScreenLyrics = lyrics.lines[index].content
+        if let converter = ChineseConverter.shared {
+            newScreenLyrics = converter.convert(newScreenLyrics)
+        }
+        if newScreenLyrics == screenLyrics {
             return
         }
-        displayLyrics = lrc
+        screenLyrics = newScreenLyrics
         updateStatusItem()
     }
     
     @objc func updateStatusItem() {
-        guard defaults[.MenuBarLyricsEnabled], !displayLyrics.isEmpty else {
+        guard defaults[.MenuBarLyricsEnabled], !screenLyrics.isEmpty else {
             setImageStatusItem()
             lyricsItem = nil
             return
@@ -86,19 +90,19 @@ class MenuBarLyrics: NSObject {
             lyricsItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
             lyricsItem?.highlightMode = false
         }
-        lyricsItem?.title = displayLyrics
+        lyricsItem?.title = screenLyrics
     }
     
     func updateCombinedStatusLyrics() {
         lyricsItem = nil
         
-        setTextStatusItem(string: displayLyrics)
+        setTextStatusItem(string: screenLyrics)
         if statusItem.isVisibe {
             return
         }
         
         // truncation
-        var components = displayLyrics.components(options: [.byWords])
+        var components = screenLyrics.components(options: [.byWords])
         while !components.isEmpty, !statusItem.isVisibe {
             components.removeLast()
             let proposed = components.joined() + "..."

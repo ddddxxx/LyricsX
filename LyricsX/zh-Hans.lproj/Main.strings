@@ -95,8 +95,8 @@
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
 "Z7d-yp-uRx.title" = "启用菜单栏歌词";
 
-/* Class = "NSTextFieldCell"; title = "No Lyrics"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "没有歌词";
+/* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
+"aRw-yQ-GNX.title" = "没有歌词\n\n拖拽以导入 LRC 歌词";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c9V-Dh-f1D"; */
 "c9V-Dh-f1D.title" = "Text Cell";

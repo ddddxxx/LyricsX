@@ -29,8 +29,6 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
     
-    var currentLineIndex: Int?
-    
     var defaultObservations: [DefaultsObservation] = []
     var notifications: [NSObjectProtocol] = []
     
@@ -54,6 +52,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
+            self.handleLyricsDisplay()
             NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
         }
@@ -116,16 +115,11 @@ class KaraokeLyricsWindowController: NSWindowController {
             !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
-                currentLineIndex = nil
                 DispatchQueue.main.async {
                     self.lyricsView.displayLrc("", secondLine: "")
                 }
                 return
         }
-        guard currentLineIndex != index else {
-            return
-        }
-        currentLineIndex = index
         
         let lrc = lyrics.lines[index]
         let next = lyrics.lines[(index+1)...].first { $0.enabled }
