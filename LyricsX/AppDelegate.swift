@@ -24,6 +24,7 @@ import Fabric
 import Crashlytics
 import MASShortcut
 import MusicPlayer
+import GenericID
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -39,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var desktopLyrics: KaraokeLyricsWindowController?
     
     var touchBarLyrics: Any?
+    var touchBarLyricsObservation: DefaultsObservation?
     
     lazy var searchLyricsWC: NSWindowController = {
         // swiftlint:disable:next force_cast
@@ -64,10 +66,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         MenuBarLyrics.shared.statusItem.target = self
         MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
         
-        if #available(OSX 10.12.2, *) {
-            touchBarLyrics = TouchBarLyrics()
-        }
-        
         lyricsOffsetStepper.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
         lyricsOffsetTextField.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
         
@@ -89,6 +87,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         #if IS_FOR_MAS
             checkForMASReview(force: true)
         #else
+            if #available(OSX 10.12.2, *) {
+                touchBarLyricsObservation = defaults.observe(.TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
+                    if change.newValue, self.touchBarLyrics == nil {
+                        self.touchBarLyrics = TouchBarLyrics()
+                    } else if !change.newValue, self.touchBarLyrics != nil {
+                        self.touchBarLyrics = nil
+                    }
+                }
+            }
             checkForUpdate()
         #endif
     }

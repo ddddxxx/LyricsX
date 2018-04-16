@@ -9,7 +9,9 @@
 import Cocoa
 import LyricsProvider
 import OpenCC
-import GenericID
+
+#if IS_FOR_MAS
+#else
 
 @available(OSX 10.12.2, *)
 class TouchBarLyrics: NSObject, NSTouchBarDelegate {
@@ -21,25 +23,20 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     
     var screenLyrics = ""
     
-    var defaultsObserver: DefaultsObservation?
-    
     override init() {
         super.init()
         touchBar.delegate = self
         touchBar.defaultItemIdentifiers = [.lyrics]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
-        
-        defaultsObserver = defaults.observe(.TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
-            self.systemTrayItem.setSystemTrayPresent(change.newValue)
-        }
+        self.systemTrayItem.setSystemTrayPresent(true)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
     }
     
     deinit {
-        NSTouchBarItem.removeSystemTrayItem(systemTrayItem)
+        self.systemTrayItem.setSystemTrayPresent(false)
     }
     
     @objc private func presentTouchBar() {
@@ -103,3 +100,5 @@ extension NSTouchBarItem.Identifier {
     
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
 }
+
+#endif
