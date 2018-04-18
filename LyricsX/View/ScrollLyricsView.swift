@@ -158,7 +158,7 @@ class ScrollLyricsView: NSScrollView {
     }
     
     private func updateEdgeInset() {
-        guard ranges.count > 0 else {
+        guard !ranges.isEmpty else {
             return
         }
         
@@ -171,7 +171,7 @@ class ScrollLyricsView: NSScrollView {
     }
     
     func highlight(position: TimeInterval) {
-        guard ranges.count > 0 else {
+        guard !ranges.isEmpty else {
             return
         }
         
@@ -198,7 +198,7 @@ class ScrollLyricsView: NSScrollView {
     }
     
     func scroll(position: TimeInterval) {
-        guard ranges.count > 0 else {
+        guard !ranges.isEmpty else {
             return
         }
         

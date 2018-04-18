@@ -37,6 +37,8 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var loadHomonymLrcButton: NSButton!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         switch defaults[.PreferredPlayerIndex] {
         case 0:
             preferiTunes.state = .on

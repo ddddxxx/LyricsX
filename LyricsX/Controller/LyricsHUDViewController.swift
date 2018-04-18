@@ -43,6 +43,8 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     private var defaltsObservation: DefaultsObservation?
     
     override func awakeFromNib() {
+        super.awakeFromNib()
+        
         view.window?.do {
             $0.titlebarAppearsTransparent = true
             $0.titleVisibility = .hidden

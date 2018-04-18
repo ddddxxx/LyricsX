@@ -25,6 +25,8 @@ class PreferenceFilterViewController: NSViewController {
     @objc dynamic var directFilter = [FilterKey]()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         loadFilter()
     }
     

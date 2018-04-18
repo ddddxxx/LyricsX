@@ -33,6 +33,8 @@ class PreferenceShortcutViewController: NSViewController {
     @IBOutlet weak var searchLyricsLabel: NSTextField!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         shortcutIncreaseOffset.setAssociatedDefaultsKey(defaultsKey: .ShortcutOffsetIncrease)
         shortcutDecreaseOffset.setAssociatedDefaultsKey(defaultsKey: .ShortcutOffsetDecrease)
         shortcutWriteToiTunes.setAssociatedDefaultsKey(defaultsKey: .ShortcutWriteToiTunes)
