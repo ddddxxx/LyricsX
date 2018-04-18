@@ -19,9 +19,9 @@
 //
 
 import Cocoa
+import Crashlytics
 import LyricsProvider
 import MusicPlayer
-import Crashlytics
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
@@ -30,7 +30,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @objc dynamic var searchArtist = ""
     @objc dynamic var searchTitle = "" {
         didSet {
-            searchButton.isEnabled = searchTitle.count > 0
+            searchButton.isEnabled = !searchTitle.isEmpty
         }
     }
     @objc dynamic var selectedIndex = NSIndexSet()
@@ -38,6 +38,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     let lyricsManager = LyricsProviderManager()
     var searchTask: LyricsSearchTask?
     var searchResult: [Lyrics] = []
+    var progressObservation: NSKeyValueObservation?
     
     @IBOutlet weak var artworkView: NSImageView!
     @IBOutlet weak var tableView: NSTableView!
@@ -77,8 +78,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         searchTask?.cancel()
         searchResult = []
         
-        progressIndicator.startAnimation(nil)
-        progressIndicator.isHidden = false
         let track = AppController.shared.playerManager.player?.currentTrack
         let duration = track?.duration ?? 0
         let title = track?.title ?? ""
@@ -92,6 +91,17 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
         searchTask = task
         task.resume()
+        progressIndicator.isHidden = false
+        progressIndicator.doubleValue = 0
+        progressObservation = task.progress.observe(\.fractionCompleted, options: [.new]) { [weak self] _, change in
+            guard let fractionCompleted = change.newValue else { return }
+            DispatchQueue.main.async {
+                self?.progressIndicator.doubleValue = fractionCompleted
+                if fractionCompleted == 1 {
+                    self?.progressIndicator.isHidden = true
+                }
+            }
+        }
         tableView.reloadData()
         Answers.logCustomEvent(withName: "Search Lyrics Manually")
     }
@@ -125,13 +135,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         } else {
             searchResult.append(lyrics)
         }
-        let isFinished = searchTask?.progress.isFinished ?? true
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            if isFinished {
-                self.progressIndicator.stopAnimation(nil)
-                self.progressIndicator.isHidden = true
-            }
         }
     }
     

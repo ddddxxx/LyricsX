@@ -29,6 +29,8 @@ class AboutViewController: NSViewController {
     @IBOutlet weak var copyright: NSTextField!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         // swiftlint:disable force_cast
         let info = Bundle.main.infoDictionary!
         let shortVersion = info["CFBundleShortVersionString"] as! String

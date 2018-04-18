@@ -19,12 +19,12 @@
 //
 
 import Cocoa
-import ServiceManagement
-import Fabric
 import Crashlytics
+import Fabric
+import GenericID
 import MASShortcut
 import MusicPlayer
-import GenericID
+import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

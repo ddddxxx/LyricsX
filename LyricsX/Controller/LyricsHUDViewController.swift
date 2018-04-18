@@ -19,8 +19,8 @@
 //
 
 import Cocoa
-import MusicPlayer
 import GenericID
+import MusicPlayer
 
 class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsViewDelegate, DragNDropDelegate {
     
@@ -43,6 +43,8 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     private var defaltsObservation: DefaultsObservation?
     
     override func awakeFromNib() {
+        super.awakeFromNib()
+        
         view.window?.do {
             $0.titlebarAppearsTransparent = true
             $0.titleVisibility = .hidden
@@ -63,7 +65,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         lyricsScrollView.bind(NSBindingName("textColor"), to: defaults, withDefaultName: .LyricsWindowTextColor)
         lyricsScrollView.bind(NSBindingName("highlightColor"), to: defaults, withDefaultName: .LyricsWindowHighlightColor)
         
-        defaltsObservation = defaults.observe(.LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] (_, change) in
+        defaltsObservation = defaults.observe(.LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] _, change in
             let fontSize = CGFloat(change.newValue)
             self.lyricsScrollViewTopMargin.constant = fontSize
             self.lyricsScrollViewLeftMargin.constant = fontSize

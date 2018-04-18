@@ -1053,10 +1053,10 @@
                                     <action selector="insert:" target="0dY-rB-aBJ" id="6n6-mw-7xL"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="12H-lM-uSV">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="12H-lM-uSV">
                                 <rect key="frame" x="18" y="348" width="466" height="14"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics lines maching following rules will be ignored. Use &quot;/&quot; to start a regular expression." id="19E-DG-Q23">
-                                    <font key="font" metaFont="system" size="11"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Lyrics lines maching following rules will be ignored. Use &quot;/&quot; to start a regular expression." id="19E-DG-Q23">
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1064,6 +1064,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="K5Z-h7-BAg" firstAttribute="leading" secondItem="Vz7-Vi-Uvh" secondAttribute="leading" id="11l-Du-OP6"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="12H-lM-uSV" secondAttribute="trailing" constant="20" id="1aD-JI-T18"/>
                             <constraint firstAttribute="bottom" secondItem="Vz7-Vi-Uvh" secondAttribute="bottom" constant="72" id="42x-R9-Xwv"/>
                             <constraint firstItem="8CL-CP-GqX" firstAttribute="leading" secondItem="K5Z-h7-BAg" secondAttribute="trailing" constant="-1" id="660-Ks-BUg"/>
                             <constraint firstItem="12H-lM-uSV" firstAttribute="leading" secondItem="XfX-or-1LJ" secondAttribute="leading" id="BZH-xK-SuH"/>

@@ -407,9 +407,12 @@
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WCj-2B-3nx">
-                                <rect key="frame" x="126" y="131" width="68" height="19"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Lyrics" id="aRw-yQ-GNX">
+                                <rect key="frame" x="52" y="112" width="217" height="57"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="aRw-yQ-GNX">
                                     <font key="font" metaFont="system" size="15"/>
+                                    <string key="title">No Lyrics
+
+Drag &amp; Drop to import LRC file</string>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -528,7 +531,7 @@ IA
                                             <action selector="searchAction:" target="hFt-BA-jFS" id="LsO-O6-hwU"/>
                                         </connections>
                                     </button>
-                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="eo9-Vx-b1i">
+                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="1" displayedWhenStopped="NO" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="eo9-Vx-b1i">
                                         <rect key="frame" x="511" y="4" width="16" height="16"/>
                                     </progressIndicator>
                                 </subviews>

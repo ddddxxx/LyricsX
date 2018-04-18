@@ -18,12 +18,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import AppKit
+import Crashlytics
+import Foundation
 import LyricsProvider
 import MusicPlayer
 import OpenCC
-import Crashlytics
 
 class AppController: NSObject, MusicPlayerManagerDelegate {
     
@@ -39,11 +39,11 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         didSet {
             currentLyrics?.filtrate()
             didChangeValue(forKey: "lyricsOffset")
+            currentLineIndex = nil
             NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
             if currentLyrics?.metadata.localURL == nil {
                 currentLyrics?.saveToLocal()
             }
-            currentLineIndex = nil
             timer?.fireDate = Date()
         }
     }

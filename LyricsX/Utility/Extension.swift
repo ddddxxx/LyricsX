@@ -79,9 +79,9 @@ extension NSFont {
 extension UserDefaults {
     
     var desktopLyricsFont: NSFont {
-        return NSFont.init(name: self[.DesktopLyricsFontName],
-                           size: CGFloat(self[.DesktopLyricsFontSize]),
-                           fallback: self[.DesktopLyricsFontNameFallback])
+        return NSFont(name: self[.DesktopLyricsFontName],
+                      size: CGFloat(self[.DesktopLyricsFontSize]),
+                      fallback: self[.DesktopLyricsFontNameFallback])
             ?? NSFont.systemFont(ofSize: CGFloat(self[.DesktopLyricsFontSize]))
     }
 }

@@ -1,5 +1,25 @@
 disabled_rules:
   - trailing_whitespace
+opt_in_rules:
+  - array_init
+  - closure_spacing
+  - contains_over_first_not_nil
+  - empty_count
+  - empty_string
+  - explicit_init
+  - first_where
+  - is_disjoint
+  - joined_default_parameter
+  - object_literal
+  - operator_usage_whitespace
+  - overridden_super_call
+  - pattern_matching_keywords
+  - prohibited_super_call
+  - sorted_first_last
+  - sorted_imports
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - yoda_condition
 excluded:
   - Carthage
 
