@@ -531,7 +531,7 @@ IA
                                             <action selector="searchAction:" target="hFt-BA-jFS" id="LsO-O6-hwU"/>
                                         </connections>
                                     </button>
-                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="eo9-Vx-b1i">
+                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="1" displayedWhenStopped="NO" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="eo9-Vx-b1i">
                                         <rect key="frame" x="511" y="4" width="16" height="16"/>
                                     </progressIndicator>
                                 </subviews>
