@@ -19,11 +19,11 @@
 //
 
 import Cocoa
-import SnapKit
-import OpenCC
+import GenericID
 import LyricsProvider
 import MusicPlayer
-import GenericID
+import OpenCC
+import SnapKit
 
 class KaraokeLyricsWindowController: NSWindowController {
     
@@ -122,7 +122,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         }
         
         let lrc = lyrics.lines[index]
-        let next = lyrics.lines[(index+1)...].first { $0.enabled }
+        let next = lyrics.lines[(index + 1)...].first { $0.enabled }
         
         var firstLine = lrc.content
         var secondLine: String

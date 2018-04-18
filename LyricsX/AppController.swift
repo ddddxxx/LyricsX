@@ -18,12 +18,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import AppKit
+import Crashlytics
+import Foundation
 import LyricsProvider
 import MusicPlayer
 import OpenCC
-import Crashlytics
 
 class AppController: NSObject, MusicPlayerManagerDelegate {
     

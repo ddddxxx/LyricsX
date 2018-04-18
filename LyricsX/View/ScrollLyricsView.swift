@@ -119,7 +119,7 @@ class ScrollLyricsView: NSScrollView {
         }
         
         let clickPoint = textView.convert(event.locationInWindow, from: nil)
-        let clickRange = ranges.filter { (_, range) in
+        let clickRange = ranges.filter { _, range in
             let bounding = textView.layoutManager!.boundingRect(forGlyphRange: range, in: textView.textContainer!)
             return bounding.contains(clickPoint)
         }
@@ -163,9 +163,9 @@ class ScrollLyricsView: NSScrollView {
         }
         
         let bounding1 = textView.layoutManager!.boundingRect(forGlyphRange: ranges.first!.1, in: textView.textContainer!)
-        let topInset = frame.height/2 - bounding1.height/2
+        let topInset = frame.height / 2 - bounding1.height / 2
         let bounding2 = textView.layoutManager!.boundingRect(forGlyphRange: ranges.last!.1, in: textView.textContainer!)
-        let bottomInset = frame.height/2 - bounding2.height/2
+        let bottomInset = frame.height / 2 - bounding2.height / 2
         automaticallyAdjustsContentInsets = false
         contentInsets = NSEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
     }

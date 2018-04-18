@@ -11,8 +11,8 @@ import LyricsProvider
 
 extension Lyrics.MetaData.Key {
     static var localURL = Lyrics.MetaData.Key("localURL")
-    static var title    = Lyrics.MetaData.Key("title")
-    static var artist   = Lyrics.MetaData.Key("artist")
+    static var title = Lyrics.MetaData.Key("title")
+    static var artist = Lyrics.MetaData.Key("artist")
 }
 
 extension Lyrics.MetaData {

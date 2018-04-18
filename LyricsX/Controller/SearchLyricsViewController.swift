@@ -19,9 +19,9 @@
 //
 
 import Cocoa
+import Crashlytics
 import LyricsProvider
 import MusicPlayer
-import Crashlytics
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
