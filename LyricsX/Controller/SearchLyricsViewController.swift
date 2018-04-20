@@ -63,6 +63,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             searchResult = []
             searchArtist = ""
             searchTitle = ""
+            artworkView.image = #imageLiteral(resourceName: "missing_artwork")
+            lyricsPreviewTextView.string = " "
             tableView.reloadData()
             return
         }
@@ -77,6 +79,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func searchAction(_ sender: Any?) {
         searchTask?.cancel()
         searchResult = []
+        artworkView.image = #imageLiteral(resourceName: "missing_artwork")
+        lyricsPreviewTextView.string = " "
         
         let track = AppController.shared.playerManager.player?.currentTrack
         let duration = track?.duration ?? 0
