@@ -34,8 +34,8 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     override func windowDidLoad() {
         window?.do {
-            if let mainScreen = NSScreen.main {
-                $0.setFrame(mainScreen.visibleFrame, display: true)
+            if let frame = $0.screen?.visibleFrame {
+                $0.setFrame(frame, display: false)
             }
             $0.backgroundColor = .clear
             $0.isOpaque = false
@@ -103,8 +103,8 @@ class KaraokeLyricsWindowController: NSWindowController {
         
         // swiftlint:disable:next discarded_notification_center_observer
         notifications += [NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            if let mainScreen = NSScreen.main {
-                let frame = isFullScreen() == true ? mainScreen.frame : mainScreen.visibleFrame
+            if let screen = self?.window?.screen {
+                let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
                 self?.window?.setFrame(frame, display: false, animate: true)
             }
         }]
