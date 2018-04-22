@@ -56,7 +56,7 @@ extension NSTextField {
         let rectArray = rectArrayForAllCharacters()
         var map = progress.map { ($0.0, rectArray[rectArray.indices.clamp($0.1 - 1)].maxX) }
         if index > 0 {
-            let progress = map[index-1].1 + CGFloat(map[index-1].0) * (map[index].1 - map[index-1].1) / CGFloat(map[index].0 - map[index-1].0)
+            let progress = map[index - 1].1 + CGFloat(map[index - 1].0) * (map[index].1 - map[index - 1].1) / CGFloat(map[index].0 - map[index - 1].0)
             map.replaceSubrange(..<index, with: [(0, progress)])
         }
         

@@ -19,11 +19,11 @@
 //
 
 import Cocoa
-import ServiceManagement
-import Fabric
 import Crashlytics
+import Fabric
 import MASShortcut
 import MusicPlayer
+import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -55,7 +55,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // swiftlint:disable:next force_cast
         desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! KaraokeLyricsWindowController)
         desktopLyrics?.showWindow(nil)
-        desktopLyrics?.window?.makeKeyAndOrderFront(nil)
         
         MenuBarLyrics.shared.statusItem.target = self
         MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
