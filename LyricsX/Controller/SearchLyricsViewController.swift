@@ -78,6 +78,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     @IBAction func searchAction(_ sender: Any?) {
         searchTask?.cancel()
+        progressObservation?.invalidate()
         searchResult = []
         artworkView.image = #imageLiteral(resourceName: "missing_artwork")
         lyricsPreviewTextView.string = " "
@@ -103,6 +104,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
                 self?.progressIndicator.doubleValue = fractionCompleted
                 if fractionCompleted == 1 {
                     self?.progressIndicator.isHidden = true
+                    self?.progressObservation?.invalidate()
                 }
             }
         }
