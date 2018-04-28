@@ -22,6 +22,9 @@ import Cocoa
 
 class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
     
+    @IBOutlet weak var fontFallbackLabel: NSTextField!
+    @IBOutlet weak var removeFontFallbackButton: NSButton!
+    
     var karaokeFont = NSFont(name: defaults[.DesktopLyricsFontName],
                              size: CGFloat(defaults[.DesktopLyricsFontSize]))
         ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
@@ -34,6 +37,7 @@ class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
     
     override func viewDidLoad() {
         _ = PreferenceDisplayViewController.swizzler
+        updateScreenFontFallback()
         super.viewDidLoad()
     }
     
@@ -43,6 +47,23 @@ class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
             fontManger.target = nil
             NSFontPanel.shared.close()
         }
+    }
+    
+    func updateScreenFontFallback() {
+        guard let fallback = defaults[.DesktopLyricsFontNameFallback].first else {
+            fontFallbackLabel.isHidden = true
+            removeFontFallbackButton.isHidden = true
+            return
+        }
+        fontFallbackLabel.isHidden = false
+        removeFontFallbackButton.isHidden = false
+        let format = NSLocalizedString("Font Fallback: %@", comment: "")
+        fontFallbackLabel.stringValue = String(format: format, arguments: [fallback])
+    }
+    
+    @IBAction func removeFontFallbackAction(_ sender: Any) {
+        defaults[.DesktopLyricsFontNameFallback].removeAll()
+        updateScreenFontFallback()
     }
     
     override func changeFont(_ sender: Any?) {
@@ -69,6 +90,7 @@ class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
             defaults[.LyricsWindowFontName] = hudFont.fontName
             defaults[.LyricsWindowFontSize] = Int(hudFont.pointSize)
         }
+        updateScreenFontFallback()
     }
     
     static let swizzler: () = {

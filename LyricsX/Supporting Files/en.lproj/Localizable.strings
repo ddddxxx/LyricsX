@@ -5,6 +5,9 @@
 /* title of download button on the update alert. Download new version of the app. */
 "Download" = "Download";
 
+/* No comment provided by engineer. */
+"Font Fallback: %@" = "Font Fallback: %@";
+
 /* informative text of the update alert, when the app is up to date. the parameter is version string of the app */
 "LyricsX %@ is currently the newest version available." = "LyricsX %@ is currently the newest version available.";
 
