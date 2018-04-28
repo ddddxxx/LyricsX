@@ -53,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
         
         // swiftlint:disable:next force_cast
-        desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! KaraokeLyricsWindowController)
+        desktopLyrics = KaraokeLyricsWindowController()
         desktopLyrics?.showWindow(nil)
         
         MenuBarLyrics.shared.statusItem.target = self

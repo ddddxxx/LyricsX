@@ -43,6 +43,7 @@ class KaraokeLyricsView: NSBox {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        wantsLayer = true
         boxType = .custom
         borderType = .grooveBorder
         borderWidth = 0
