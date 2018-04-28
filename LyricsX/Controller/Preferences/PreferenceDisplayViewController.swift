@@ -20,33 +20,22 @@
 
 import Cocoa
 
-class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
+class PreferenceDisplayViewController: NSViewController, FontSelectTextFieldDelegate {
+    
+    @IBOutlet weak var karaokeFontSelectField: FontSelectTextField!
+    @IBOutlet weak var hudFontSelectField: FontSelectTextField!
     
     @IBOutlet weak var fontFallbackLabel: NSTextField!
     @IBOutlet weak var removeFontFallbackButton: NSButton!
     
-    var karaokeFont = NSFont(name: defaults[.DesktopLyricsFontName],
-                             size: CGFloat(defaults[.DesktopLyricsFontSize]))
-        ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
-    var hudFont = NSFont(name: defaults[.LyricsWindowFontName],
-                         size: CGFloat(defaults[.LyricsWindowFontSize]))
-        ?? NSFont.labelFont(ofSize: CGFloat(defaults[.LyricsWindowFontSize]))
-    
-    // TODO: ugly code
-    var isSettingKaraokeFont = true
-    
     override func viewDidLoad() {
-        _ = PreferenceDisplayViewController.swizzler
+        karaokeFontSelectField.selectedFont = NSFont(name: defaults[.DesktopLyricsFontName],
+                                                     size: CGFloat(defaults[.DesktopLyricsFontSize]))
+            ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
+        karaokeFontSelectField.fontChangeDelegate = self
+        hudFontSelectField.fontChangeDelegate = self
         updateScreenFontFallback()
         super.viewDidLoad()
-    }
-    
-    override func viewDidDisappear() {
-        let fontManger = NSFontManager.shared
-        if fontManger.target === self {
-            fontManger.target = nil
-            NSFontPanel.shared.close()
-        }
     }
     
     func updateScreenFontFallback() {
@@ -66,59 +55,26 @@ class PreferenceDisplayViewController: NSViewController, NSWindowDelegate {
         updateScreenFontFallback()
     }
     
-    override func changeFont(_ sender: Any?) {
-        guard let manager = sender as? NSFontManager else {
-            return
-        }
-        
-        if isSettingKaraokeFont {
-            let previousFontFamily = karaokeFont.familyName
-            karaokeFont = manager.convert(karaokeFont)
-            if previousFontFamily != karaokeFont.familyName {
+    func fontChanged(from oldFont: NSFont, to newFont: NSFont, sender: FontSelectTextField) {
+        if sender === karaokeFontSelectField {
+            defaults[.DesktopLyricsFontName] = newFont.fontName
+            defaults[.DesktopLyricsFontSize] = Int(newFont.pointSize)
+            if (oldFont.familyName != nil && oldFont.familyName != newFont.familyName)
+                || oldFont.fontName != newFont.fontName {
                 // guarantee different font family of font fallback
                 var fallback = defaults[.DesktopLyricsFontNameFallback]
-                if let index = fallback.index(of: defaults[.DesktopLyricsFontName]) {
+                if let index = fallback.index(of: newFont.fontName) {
                     fallback.remove(at: index)
                 }
-                fallback.insert(defaults[.DesktopLyricsFontName], at: 0)
+                fallback.insert(oldFont.fontName, at: 0)
                 defaults[.DesktopLyricsFontNameFallback] = Array(fallback.prefix(fontNameFallbackCountMax))
+                updateScreenFontFallback()
             }
-            defaults[.DesktopLyricsFontName] = karaokeFont.fontName
-            defaults[.DesktopLyricsFontSize] = Int(karaokeFont.pointSize)
-        } else {
-            hudFont = manager.convert(hudFont)
-            defaults[.LyricsWindowFontName] = hudFont.fontName
-            defaults[.LyricsWindowFontSize] = Int(hudFont.pointSize)
+        } else if sender === hudFontSelectField {
+            defaults[.LyricsWindowFontName] = newFont.fontName
+            defaults[.LyricsWindowFontSize] = Int(newFont.pointSize)
         }
-        updateScreenFontFallback()
     }
-    
-    static let swizzler: () = {
-        let cls = PreferenceDisplayViewController.self
-        let sel = #selector(NSObject.validModesForFontPanel)
-        let dummySel = #selector(PreferenceDisplayViewController.dummyValidModesForFontPanel)
-        guard let dummyIMP = class_getMethodImplementation(cls, dummySel),
-            let dummyImpl = class_getInstanceMethod(cls, dummySel),
-            let typeEncoding = method_getTypeEncoding(dummyImpl) else {
-                fatalError("failed to replace method \(sel) in \(cls)")
-        }
-        class_replaceMethod(cls, sel, dummyIMP, typeEncoding)
-    }()
-    
-    @objc func dummyValidModesForFontPanel(_ fontPanel: NSFontPanel) -> UInt32 {
-        return NSFontPanelSizeModeMask | NSFontPanelCollectionModeMask | NSFontPanelFaceModeMask
-    }
-    
-    @IBAction func showFontPanel(_ sender: NSButton) {
-        isSettingKaraokeFont = sender.tag == 0
-        let fontManger = NSFontManager.shared
-        let fontPanel = fontManger.fontPanel(true)
-        fontManger.target = self
-        fontManger.setSelectedFont(isSettingKaraokeFont ? karaokeFont : hudFont, isMultiple: false)
-        fontPanel?.delegate = self
-        fontPanel?.makeKeyAndOrderFront(self)
-    }
-    
 }
 
 class AlphaColorWell: NSColorWell {
@@ -132,5 +88,4 @@ class AlphaColorWell: NSColorWell {
         super.deactivate()
         NSColorPanel.shared.showsAlpha = false
     }
-    
 }
