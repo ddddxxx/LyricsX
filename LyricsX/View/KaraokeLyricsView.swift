@@ -135,7 +135,8 @@ class KaraokeLyricsView: NSBox {
         super.updateTrackingAreas()
         trackingArea.map(removeTrackingArea)
         if shouldHideWithMouse {
-            trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside, .enabledDuringMouseDrag], owner: self)
+            let trackingOptions: NSTrackingArea.Options = [.mouseEnteredAndExited, .activeAlways, .assumeInside, .enabledDuringMouseDrag]
+            trackingArea = NSTrackingArea(rect: bounds, options: trackingOptions, owner: self)
             trackingArea.map(addTrackingArea)
         }
         mouseTest()

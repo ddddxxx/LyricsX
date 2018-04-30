@@ -52,7 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Fabric.with([Crashlytics.self])
         #endif
         
-        // swiftlint:disable:next force_cast
         desktopLyrics = KaraokeLyricsWindowController()
         desktopLyrics?.showWindow(nil)
         
@@ -60,8 +59,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
         
         let controller = AppController.shared
-        lyricsOffsetStepper.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
-        lyricsOffsetTextField.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
+        lyricsOffsetStepper.bind(.value,
+                                 to: controller,
+                                 withKeyPath: #keyPath(AppController.lyricsOffset),
+                                 options: [.continuouslyUpdatesValue: true])
+        lyricsOffsetTextField.bind(.value,
+                                   to: controller,
+                                   withKeyPath: #keyPath(AppController.lyricsOffset),
+                                   options: [.continuouslyUpdatesValue: true])
         
         setupShortcuts()
         

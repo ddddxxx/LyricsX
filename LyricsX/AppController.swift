@@ -239,7 +239,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         
         // swiftlint:disable:next identifier_name
         func shoudReplace(_ from: Lyrics, to: Lyrics) -> Bool {
-            if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) != (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
+            if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) !=
+                (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
                 return to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]
             }
             return to.quality > from.quality

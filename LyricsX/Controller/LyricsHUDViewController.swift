@@ -75,9 +75,15 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         let nc = NotificationCenter.default
         // swiftlint:disable discarded_notification_center_observer
         observations += [
-            nc.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: nil) { [unowned self] _ in self.displayLyrics() },
-            nc.addObserver(forName: .currentLyricsChange, object: nil, queue: nil) { [unowned self] _ in self.lyricsChanged() },
-            nc.addObserver(forName: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView, queue: .main) { [unowned self] _ in self.isTracking = false }
+            nc.addObserver(forName: .lyricsShouldDisplay,
+                           object: nil,
+                           queue: nil) { [unowned self] _ in self.displayLyrics() },
+            nc.addObserver(forName: .currentLyricsChange,
+                           object: nil,
+                           queue: nil) { [unowned self] _ in self.lyricsChanged() },
+            nc.addObserver(forName: NSScrollView.willStartLiveScrollNotification,
+                           object: lyricsScrollView,
+                           queue: .main) { [unowned self] _ in self.isTracking = false }
         ]
         // swiftlint:enable discarded_notification_center_observer
     }
