@@ -177,6 +177,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if defaults[.WriteToiTunesAutomatically] {
             (AppController.shared.playerManager.player as? iTunes)?.currentLyrics = ""
         }
+        if let url = AppController.shared.currentLyrics?.metadata.localURL {
+            try? FileManager.default.removeItem(at: url)
+        }
         AppController.shared.currentLyrics = nil
     }
     
