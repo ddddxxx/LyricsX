@@ -67,7 +67,14 @@ class KaraokeLyricsView: NSBox {
     }
     
     private func lyricsLabel(_ content: String) -> NSTextField {
-        // TODO: reuse label
+        if let v = stackView.subviews.lazy.compactMap({ $0 as? NSTextField }).first(where: { !stackView.arrangedSubviews.contains($0) }) {
+            v.alphaValue = 0
+            v.stringValue = content
+            v.removeProgressAnimation()
+            v.removeFromSuperview()
+            v.isHidden = true
+            return v
+        }
         return NSTextField(labelWithString: content).then {
             $0.bind(.font, to: self, withKeyPath: #keyPath(font))
             $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
@@ -111,6 +118,7 @@ class KaraokeLyricsView: NSBox {
                 stackView.removeArrangedSubview($0)
                 $0.isHidden = true
                 $0.alphaValue = 0
+                $0.removeProgressAnimation()
             }
             toBeShow.forEach {
                 stackView.addArrangedSubview($0)
@@ -120,9 +128,6 @@ class KaraokeLyricsView: NSBox {
             isHidden = shouldHideAll
             layoutSubtreeIfNeeded()
         }, completionHandler: {
-            toBeHide.forEach {
-                $0.removeFromSuperview()
-            }
             self.mouseTest()
         })
     }
