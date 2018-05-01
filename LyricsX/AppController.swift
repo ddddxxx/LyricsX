@@ -262,6 +262,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
 extension AppController {
     
     func importLyrics(_ lyricsString: String) {
+        // TODO: user feedback
         if let lrc = Lyrics(lyricsString),
             let track = AppController.shared.playerManager.player?.currentTrack {
             lrc.metadata.title = track.title

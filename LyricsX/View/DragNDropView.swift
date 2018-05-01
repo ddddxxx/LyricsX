@@ -50,14 +50,18 @@ class DragNDropView: NSView {
             return true
         }
         
-        if pboard.types?.contains(.fileNames) == true,
-            let files = pboard.propertyList(forType: .fileNames) as? [Any],
-            let path = files.first as? String,
-            let str = try? String(contentsOf: URL(fileURLWithPath: path)) {
-            dragDelegate?.dragFinished(content: str)
-            return true
+        do {
+            if pboard.types?.contains(.fileNames) == true,
+                let files = pboard.propertyList(forType: .fileNames) as? [Any],
+                let path = files.first as? String {
+                let str = try String(contentsOf: URL(fileURLWithPath: path))
+                dragDelegate?.dragFinished(content: str)
+                return true
+            }
+        } catch {
+            let alert = NSAlert(error: error)
+            alert.runModal()
         }
-        
         return false
     }
     
