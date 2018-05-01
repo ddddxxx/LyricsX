@@ -255,41 +255,6 @@
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
-        <!--Desktop Lyrics Window Controller-->
-        <scene sceneID="nf6-bn-z8A">
-            <objects>
-                <windowController storyboardIdentifier="DesktopLyricsWindow" showSeguePresentationStyle="single" id="N3z-4I-Oeu" userLabel="Desktop Lyrics Window Controller" customClass="KaraokeLyricsWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="fhu-ba-Lnu">
-                        <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="208" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
-                        <connections>
-                            <outlet property="delegate" destination="N3z-4I-Oeu" id="fBO-y6-cWe"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="Mpu-mB-dfa" kind="relationship" relationship="window.shadowedContentViewController" id="N2j-su-VUi"/>
-                    </connections>
-                </windowController>
-                <customObject id="y9u-wo-y4M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="UAo-xR-v4L"/>
-            </objects>
-            <point key="canvasLocation" x="667" y="-352"/>
-        </scene>
-        <!--Desktop Lyrics View Controller-->
-        <scene sceneID="aqq-eh-K59">
-            <objects>
-                <customObject id="EX0-yY-J20" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController showSeguePresentationStyle="single" id="Mpu-mB-dfa" userLabel="Desktop Lyrics View Controller" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="Jim-N9-wko">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1281" y="-352"/>
-        </scene>
         <!--Perference-->
         <scene sceneID="TYy-pe-r3R">
             <objects>

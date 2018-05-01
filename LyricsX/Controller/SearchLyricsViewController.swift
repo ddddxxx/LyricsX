@@ -228,7 +228,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
             hideLrcPreviewConstraint?.animator().isActive = false
-            view.window?.setFrame(windowFrame, display: true, animate: true)
+            view.window?.setFrame(windowFrame, display: false, animate: true)
             view.needsUpdateConstraints = true
             view.needsLayout = true
             view.layoutSubtreeIfNeeded()

@@ -43,6 +43,7 @@ class KaraokeLyricsView: NSBox {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        wantsLayer = true
         boxType = .custom
         borderType = .grooveBorder
         borderWidth = 0
@@ -50,9 +51,8 @@ class KaraokeLyricsView: NSBox {
         contentView = stackView
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        contentView = stackView
+    required init?(coder decoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func updateFontSize() {
@@ -135,7 +135,8 @@ class KaraokeLyricsView: NSBox {
         super.updateTrackingAreas()
         trackingArea.map(removeTrackingArea)
         if shouldHideWithMouse {
-            trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside, .enabledDuringMouseDrag], owner: self)
+            let trackingOptions: NSTrackingArea.Options = [.mouseEnteredAndExited, .activeAlways, .assumeInside, .enabledDuringMouseDrag]
+            trackingArea = NSTrackingArea(rect: bounds, options: trackingOptions, owner: self)
             trackingArea.map(addTrackingArea)
         }
         mouseTest()

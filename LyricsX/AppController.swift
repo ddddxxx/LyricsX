@@ -239,7 +239,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         
         // swiftlint:disable:next identifier_name
         func shoudReplace(_ from: Lyrics, to: Lyrics) -> Bool {
-            if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) != (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
+            if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) !=
+                (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
                 return to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]
             }
             return to.quality > from.quality
@@ -261,6 +262,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
 extension AppController {
     
     func importLyrics(_ lyricsString: String) {
+        // TODO: user feedback
         if let lrc = Lyrics(lyricsString),
             let track = AppController.shared.playerManager.player?.currentTrack {
             lrc.metadata.title = track.title

@@ -52,16 +52,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Fabric.with([Crashlytics.self])
         #endif
         
-        // swiftlint:disable:next force_cast
-        desktopLyrics = (NSStoryboard.main!.instantiateController(withIdentifier: .DesktopLyricsWindow) as! KaraokeLyricsWindowController)
+        desktopLyrics = KaraokeLyricsWindowController()
         desktopLyrics?.showWindow(nil)
         
         MenuBarLyrics.shared.statusItem.target = self
         MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
         
         let controller = AppController.shared
-        lyricsOffsetStepper.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
-        lyricsOffsetTextField.bind(.value, to: controller, withKeyPath: #keyPath(AppController.lyricsOffset), options: [.continuouslyUpdatesValue: true])
+        lyricsOffsetStepper.bind(.value,
+                                 to: controller,
+                                 withKeyPath: #keyPath(AppController.lyricsOffset),
+                                 options: [.continuouslyUpdatesValue: true])
+        lyricsOffsetTextField.bind(.value,
+                                   to: controller,
+                                   withKeyPath: #keyPath(AppController.lyricsOffset),
+                                   options: [.continuouslyUpdatesValue: true])
         
         setupShortcuts()
         
@@ -176,6 +181,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         if defaults[.WriteToiTunesAutomatically] {
             (AppController.shared.playerManager.player as? iTunes)?.currentLyrics = ""
+        }
+        if let url = AppController.shared.currentLyrics?.metadata.localURL {
+            try? FileManager.default.removeItem(at: url)
         }
         AppController.shared.currentLyrics = nil
     }
