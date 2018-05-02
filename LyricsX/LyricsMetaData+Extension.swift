@@ -13,6 +13,7 @@ extension Lyrics.MetaData.Key {
     static var localURL = Lyrics.MetaData.Key("localURL")
     static var title = Lyrics.MetaData.Key("title")
     static var artist = Lyrics.MetaData.Key("artist")
+    static var needsPersist = Lyrics.MetaData.Key("needsPersist")
 }
 
 extension Lyrics.MetaData {
@@ -30,5 +31,10 @@ extension Lyrics.MetaData {
     var artist: String? {
         get { return request?.artist ?? data[.artist] as? String }
         set { data[.artist] = newValue }
+    }
+    
+    var needsPersist: Bool {
+        get { return data[.needsPersist] as? Bool ?? false }
+        set { data[.needsPersist] = newValue }
     }
 }

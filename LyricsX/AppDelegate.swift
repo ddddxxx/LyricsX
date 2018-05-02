@@ -91,7 +91,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
-        UserDefaults.standard.synchronize()
+        if AppController.shared.currentLyrics?.metadata.needsPersist == true {
+            AppController.shared.currentLyrics?.persist()
+        }
         if defaults[.LaunchAndQuitWithPlayer] {
             let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
             groupDefaults[.launchHelperTime] = Date()

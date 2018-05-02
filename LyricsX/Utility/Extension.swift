@@ -137,7 +137,7 @@ extension Lyrics {
 
 extension Lyrics {
     
-    func saveToLocal() {
+    func persist() {
         guard let (url, security) = defaults.lyricsSavingPath() else {
             return
         }
@@ -172,6 +172,7 @@ extension Lyrics {
             }
             try description.write(to: lrcFileURL, atomically: true, encoding: .utf8)
             metadata.localURL = lrcFileURL
+            metadata.needsPersist = false
         } catch {
             log(error.localizedDescription)
             return

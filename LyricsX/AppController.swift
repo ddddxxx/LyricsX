@@ -41,9 +41,6 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             didChangeValue(forKey: "lyricsOffset")
             currentLineIndex = nil
             NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
-            if currentLyrics?.metadata.localURL == nil {
-                currentLyrics?.saveToLocal()
-            }
             timer?.fireDate = Date()
         }
     }
@@ -60,7 +57,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }
         set {
             currentLyrics?.offset = newValue
-            currentLyrics?.saveToLocal()
+            currentLyrics?.metadata.needsPersist = true
             timer?.fireDate = Date()
         }
     }
@@ -125,6 +122,9 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     }
     
     func currentTrackChanged(track: MusicTrack?) {
+        if currentLyrics?.metadata.needsPersist == true {
+            currentLyrics?.persist()
+        }
         currentLyrics = nil
         currentLineIndex = nil
         guard let track = track else {
@@ -250,6 +250,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             return
         }
         
+        lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
         
         if searchTask?.progress.isFinished == true,
@@ -267,6 +268,7 @@ extension AppController {
             let track = AppController.shared.playerManager.player?.currentTrack {
             lrc.metadata.title = track.title
             lrc.metadata.artist = track.artist
+            lrc.metadata.needsPersist = true
             currentLyrics = lrc
         }
     }
