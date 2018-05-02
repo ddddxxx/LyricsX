@@ -88,7 +88,7 @@ extension UserDefaults {
 
 extension UserDefaults {
     
-    func lyricsSavingPath() -> (URL, security: Bool)? {
+    func lyricsSavingPath() -> (URL, security: Bool) {
         if self[.LyricsSavingPathPopUpIndex] != 0, let path = lyricsCustomSavingPath {
             return (path, true)
         } else {
@@ -138,9 +138,7 @@ extension Lyrics {
 extension Lyrics {
     
     func persist() {
-        guard let (url, security) = defaults.lyricsSavingPath() else {
-            return
-        }
+        let (url, security) = defaults.lyricsSavingPath()
         if security {
             guard url.startAccessingSecurityScopedResource() else {
                 return

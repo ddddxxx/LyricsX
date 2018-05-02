@@ -390,6 +390,20 @@
                                     <binding destination="hHn-Lo-CwP" name="value" keyPath="values.HideLyricsWhenMousePassingBy" id="Mqo-If-qON"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="HqA-iJ-lec">
+                                <rect key="frame" x="385" y="223" width="21" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="21" id="NcW-r5-bQr"/>
+                                    <constraint firstAttribute="height" constant="18" id="hHA-Y3-yS5"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="folder" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="MR7-io-bcZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showInFinderAction:" target="d5d-dC-DK4" id="sPX-8B-XxA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="uoA-YU-YZk" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="0XK-XW-bY2"/>
@@ -417,6 +431,7 @@
                             <constraint firstItem="JYR-Ed-Tax" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="a77-8k-2YR"/>
                             <constraint firstItem="xa7-h7-OHj" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="aFT-rM-OQf"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IfW-hs-fv9" secondAttribute="trailing" constant="20" id="aJz-QN-yKH"/>
+                            <constraint firstItem="HqA-iJ-lec" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="trailing" constant="10" id="aan-F0-PIg"/>
                             <constraint firstItem="mfr-Al-Vu9" firstAttribute="top" secondItem="JYR-Ed-Tax" secondAttribute="bottom" constant="16" id="ahR-Ta-P3Z"/>
                             <constraint firstItem="IfW-hs-fv9" firstAttribute="centerY" secondItem="JSf-5H-P7U" secondAttribute="centerY" id="bf2-wU-PIH"/>
                             <constraint firstItem="KcA-ys-XDa" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="ccC-08-oWp"/>
@@ -429,6 +444,7 @@
                             <constraint firstItem="ydZ-SE-AM3" firstAttribute="centerY" secondItem="you-yu-77c" secondAttribute="centerY" id="lz5-X8-tZT"/>
                             <constraint firstItem="UQR-mH-y4R" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="mJn-RT-EXL"/>
                             <constraint firstItem="Nfb-pu-NGK" firstAttribute="leading" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="no0-rJ-DSh"/>
+                            <constraint firstItem="HqA-iJ-lec" firstAttribute="centerY" secondItem="ydZ-SE-AM3" secondAttribute="centerY" id="q8t-Qe-yJh"/>
                             <constraint firstAttribute="trailing" secondItem="Nfb-pu-NGK" secondAttribute="trailing" constant="20" id="teZ-bz-MVN"/>
                             <constraint firstItem="wwb-0H-xk7" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="u0h-UR-jmK"/>
                             <constraint firstItem="IfW-hs-fv9" firstAttribute="top" secondItem="Nfb-pu-NGK" secondAttribute="bottom" constant="16" id="uQM-qU-5Fh"/>
@@ -452,7 +468,7 @@
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="hHn-Lo-CwP"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="-412"/>
+            <point key="canvasLocation" x="1969" y="-412.5"/>
         </scene>
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
@@ -1365,6 +1381,7 @@
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="audirvana_icon" width="64" height="64"/>
+        <image name="folder" width="21" height="18"/>
         <image name="font_panel" width="22" height="20"/>
         <image name="gap_hollow_horizontal" width="18" height="14"/>
         <image name="gap_hollow_vertical" width="14" height="18"/>

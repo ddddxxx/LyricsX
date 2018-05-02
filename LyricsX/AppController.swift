@@ -148,15 +148,14 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                 ]
             }
         }
-        if let (url, security) = defaults.lyricsSavingPath() {
-            let titleForReading = title.replacingOccurrences(of: "/", with: "&")
-            let artistForReading = artist.replacingOccurrences(of: "/", with: "&")
-            let fileName = url.appendingPathComponent("\(titleForReading) - \(artistForReading)")
-            candidateLyricsURL += [
-                (fileName.appendingPathExtension("lrcx"), security),
-                (fileName.appendingPathExtension("lrc"), security)
-            ]
-        }
+        let (url, security) = defaults.lyricsSavingPath()
+        let titleForReading = title.replacingOccurrences(of: "/", with: "&")
+        let artistForReading = artist.replacingOccurrences(of: "/", with: "&")
+        let fileName = url.appendingPathComponent("\(titleForReading) - \(artistForReading)")
+        candidateLyricsURL += [
+            (fileName.appendingPathExtension("lrcx"), security),
+            (fileName.appendingPathExtension("lrc"), security)
+        ]
         
         for (url, security) in candidateLyricsURL {
             if security {

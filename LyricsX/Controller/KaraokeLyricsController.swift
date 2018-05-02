@@ -32,9 +32,17 @@ class KaraokeLyricsWindowController: NSWindowController {
     var defaultObservations: [DefaultsObservation] = []
     var notifications: [NSObjectProtocol] = []
     
+    var screen: NSScreen {
+        didSet {
+            defaults[.DesktopLyricsScreenRect] = screen.frame
+            updateWindowFrame()
+        }
+    }
+    
     init() {
-        let rect = NSScreen.main?.visibleFrame ?? .zero
-        let window = NSWindow(contentRect: rect, styleMask: .borderless, backing: .buffered, defer: true)
+        let rect = defaults[.DesktopLyricsScreenRect]
+        screen = NSScreen.screens.first { $0.frame.contains(rect) } ?? NSScreen.main!
+        let window = NSWindow(contentRect: screen.visibleFrame, styleMask: .borderless, backing: .buffered, defer: true)
         super.init(window: window)
         window.backgroundColor = .clear
         window.hasShadow = false
@@ -106,11 +114,13 @@ class KaraokeLyricsWindowController: NSWindowController {
         
         // swiftlint:disable:next discarded_notification_center_observer
         notifications += [NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            if let screen = self?.window?.screen {
-                let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
-                self?.window?.setFrame(frame, display: false, animate: true)
-            }
+            self?.updateWindowFrame()
         }]
+    }
+    
+    func updateWindowFrame() {
+        let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
+        window?.setFrame(frame, display: false, animate: true)
     }
     
     @objc func handleLyricsDisplay() {
