@@ -63,6 +63,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             searchResult = []
             searchArtist = ""
             searchTitle = ""
+            artworkView.image = #imageLiteral(resourceName: "missing_artwork")
+            lyricsPreviewTextView.string = " "
             tableView.reloadData()
             return
         }
@@ -76,7 +78,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     @IBAction func searchAction(_ sender: Any?) {
         searchTask?.cancel()
+        progressObservation?.invalidate()
         searchResult = []
+        artworkView.image = #imageLiteral(resourceName: "missing_artwork")
+        lyricsPreviewTextView.string = " "
         
         let track = AppController.shared.playerManager.player?.currentTrack
         let duration = track?.duration ?? 0
@@ -99,6 +104,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
                 self?.progressIndicator.doubleValue = fractionCompleted
                 if fractionCompleted == 1 {
                     self?.progressIndicator.isHidden = true
+                    self?.progressObservation?.invalidate()
                 }
             }
         }
@@ -222,7 +228,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
             hideLrcPreviewConstraint?.animator().isActive = false
-            view.window?.setFrame(windowFrame, display: true, animate: true)
+            view.window?.setFrame(windowFrame, display: false, animate: true)
             view.needsUpdateConstraints = true
             view.needsLayout = true
             view.layoutSubtreeIfNeeded()

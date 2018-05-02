@@ -25,7 +25,7 @@ import MusicPlayer
 extension CountableRange {
     
     func clamp(_ value: Bound) -> Bound {
-        return Swift.min(upperBound, Swift.max(lowerBound, value))
+        return Swift.min(upperBound.advanced(by: -1), Swift.max(lowerBound, value))
     }
 }
 

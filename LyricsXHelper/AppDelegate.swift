@@ -38,12 +38,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         musicPlayer = SBApplication(bundleIdentifier: ident)
         
         let event = NSAppleEventManager.shared().currentAppleEvent
-        let isLaunchedAsLoginItem = event?.eventID == kAEOpenApplication && event?.paramDescriptor(forKeyword: keyAEPropData)?.enumCodeValue == keyAELaunchedAsLogInItem
+        let isLaunchedAsLoginItem = event?.eventID == kAEOpenApplication &&
+            event?.paramDescriptor(forKeyword: keyAEPropData)?.enumCodeValue == keyAELaunchedAsLogInItem
         let isLaunchedByMain = (groupDefaults.object(forKey: launchHelperTime) as? Date).map { Date().timeIntervalSince($0) < 10 } ?? false
         shouldWaitForPlayerQuit = !isLaunchedAsLoginItem && isLaunchedByMain && (musicPlayer?.isRunning == true)
         
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: NSWorkspace.didLaunchApplicationNotification, object: nil)
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(checkiTunes), name: NSWorkspace.didTerminateApplicationNotification, object: nil)
+        let wsnc = NSWorkspace.shared.notificationCenter
+        wsnc.addObserver(self, selector: #selector(checkiTunes), name: NSWorkspace.didLaunchApplicationNotification, object: nil)
+        wsnc.addObserver(self, selector: #selector(checkiTunes), name: NSWorkspace.didTerminateApplicationNotification, object: nil)
         
         checkiTunes()
     }

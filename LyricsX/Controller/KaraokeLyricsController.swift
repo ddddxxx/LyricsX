@@ -32,19 +32,18 @@ class KaraokeLyricsWindowController: NSWindowController {
     var defaultObservations: [DefaultsObservation] = []
     var notifications: [NSObjectProtocol] = []
     
-    override func windowDidLoad() {
-        window?.do {
-            if let mainScreen = NSScreen.main {
-                $0.setFrame(mainScreen.visibleFrame, display: true)
-            }
-            $0.backgroundColor = .clear
-            $0.isOpaque = false
-            $0.ignoresMouseEvents = true
-            $0.level = .floating
-            $0.collectionBehavior = [.canJoinAllSpaces, .stationary]
-        }
+    init() {
+        let rect = NSScreen.main?.visibleFrame ?? .zero
+        let window = NSWindow(contentRect: rect, styleMask: .borderless, backing: .buffered, defer: true)
+        super.init(window: window)
+        window.backgroundColor = .clear
+        window.hasShadow = false
+        window.isOpaque = false
+        window.ignoresMouseEvents = true
+        window.level = .floating
+        window.collectionBehavior = [.canJoinAllSpaces, .stationary]
         
-        window?.contentView?.addSubview(lyricsView)
+        window.contentView?.addSubview(lyricsView)
         
         addObserver()
         makeConstraints()
@@ -56,6 +55,10 @@ class KaraokeLyricsWindowController: NSWindowController {
             NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
         }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func addObserver() {
@@ -103,8 +106,8 @@ class KaraokeLyricsWindowController: NSWindowController {
         
         // swiftlint:disable:next discarded_notification_center_observer
         notifications += [NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            if let mainScreen = NSScreen.main {
-                let frame = isFullScreen() == true ? mainScreen.frame : mainScreen.visibleFrame
+            if let screen = self?.window?.screen {
+                let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
                 self?.window?.setFrame(frame, display: false, animate: true)
             }
         }]
