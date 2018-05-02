@@ -1242,16 +1242,13 @@
         <!--Lab-->
         <scene sceneID="SoK-6E-AMw">
             <objects>
-                <viewController title="Lab" id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
+                <viewController title="Lab" id="bFk-1g-XeL" userLabel="Lab" customClass="PreferenceLabViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="uY5-7S-zG1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="227"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="239"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Tvk-yf-w4p">
+                            <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Tvk-yf-w4p">
                                 <rect key="frame" x="234" y="89" width="104" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="Wmf-HR-Jnk"/>
-                                </constraints>
                                 <buttonCell key="cell" type="check" title="Automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7Ax-7T-26K">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1260,11 +1257,8 @@
                                     <binding destination="MQW-nm-dXS" name="value" keyPath="values.WriteToiTunesAutomatically" id="s2M-GE-9K2"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IKY-aR-ZdS">
+                            <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IKY-aR-ZdS">
                                 <rect key="frame" x="234" y="111" width="118" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="tTI-SA-b7h"/>
-                                </constraints>
                                 <buttonCell key="cell" type="check" title="With translation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="jFb-kX-VbY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1281,8 +1275,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-7c-IhI">
-                                <rect key="frame" x="76" y="145" width="449" height="58"/>
+                            <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-7c-IhI">
+                                <rect key="frame" x="76" y="181" width="449" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Here are some experimental features that may not be stable enough, and may be removed in the future." id="g2u-8D-dln">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1297,7 +1291,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-31-EIX">
+                            <popUpButton verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-31-EIX">
                                 <rect key="frame" x="234" y="51" width="105" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ZxH-p4-zoD"/>
@@ -1312,11 +1306,8 @@
                                     <binding destination="MQW-nm-dXS" name="selectedValue" keyPath="values.PreferredLyricsSource" previousBinding="XGF-CJ-w5e" id="H2x-Tx-0V4"/>
                                 </connections>
                             </popUpButton>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-Tg-5JV">
+                            <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-Tg-5JV">
                                 <rect key="frame" x="234" y="22" width="284" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="NVr-Iq-ohX"/>
-                                </constraints>
                                 <buttonCell key="cell" type="check" title="Combine menubar icon with menubar lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bbd-ra-rSF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1325,9 +1316,17 @@
                                     <binding destination="MQW-nm-dXS" name="value" keyPath="values.CombinedMenubarLyrics" id="P5p-VX-SXH"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7IX-Uv-fPH">
+                                <rect key="frame" x="234" y="141" width="163" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enable Touch Bar lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="stE-wB-oXF">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IKY-aR-ZdS" secondAttribute="trailing" constant="20" id="5UF-sE-ts0"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="7IX-Uv-fPH" secondAttribute="leading" id="7af-AQ-9pT"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Tvk-yf-w4p" secondAttribute="leading" id="8Ip-8V-Nhx"/>
                             <constraint firstItem="GqQ-7c-IhI" firstAttribute="centerX" secondItem="uY5-7S-zG1" secondAttribute="centerX" id="B45-c6-kKm"/>
                             <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="trailing" secondItem="uY5-7S-zG1" secondAttribute="centerX" constant="-80" id="Bvv-K0-o1n"/>
@@ -1336,14 +1335,15 @@
                             <constraint firstItem="kqN-EP-pPj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uY5-7S-zG1" secondAttribute="leading" constant="20" id="IqT-5O-Lub"/>
                             <constraint firstItem="mNF-31-EIX" firstAttribute="top" secondItem="Tvk-yf-w4p" secondAttribute="bottom" constant="16" id="Naf-WW-rry"/>
                             <constraint firstItem="GqQ-7c-IhI" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="24" id="OTp-XT-yZH"/>
-                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="100" id="P1P-Yz-UJq"/>
                             <constraint firstItem="kqN-EP-pPj" firstAttribute="trailing" secondItem="Z5r-WZ-ZnL" secondAttribute="trailing" id="P2D-Tn-qGn"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="centerY" secondItem="Z5r-WZ-ZnL" secondAttribute="centerY" id="Pql-bZ-j9U"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dt8-Tg-5JV" secondAttribute="trailing" constant="20" id="QIl-HG-7l1"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7IX-Uv-fPH" secondAttribute="trailing" constant="20" id="QXr-TF-dwU"/>
                             <constraint firstItem="mNF-31-EIX" firstAttribute="centerY" secondItem="kqN-EP-pPj" secondAttribute="centerY" id="TID-YA-daQ"/>
                             <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uY5-7S-zG1" secondAttribute="leading" constant="20" id="Zjl-xt-6Q8"/>
+                            <constraint firstItem="7IX-Uv-fPH" firstAttribute="top" secondItem="GqQ-7c-IhI" secondAttribute="bottom" constant="24" id="aDF-8K-ahx"/>
                             <constraint firstItem="mNF-31-EIX" firstAttribute="leading" secondItem="kqN-EP-pPj" secondAttribute="trailing" constant="16" id="l9R-vf-yGY"/>
-                            <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="top" secondItem="GqQ-7c-IhI" secondAttribute="bottom" constant="16" id="lf4-bH-map"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="7IX-Uv-fPH" secondAttribute="bottom" constant="16" id="mPa-BT-VwD"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Tvk-yf-w4p" secondAttribute="trailing" constant="20" id="nVW-K7-QKb"/>
                             <constraint firstItem="Dt8-Tg-5JV" firstAttribute="top" secondItem="mNF-31-EIX" secondAttribute="bottom" constant="16" id="qZw-Kd-Bl4"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mNF-31-EIX" secondAttribute="trailing" constant="20" id="sV8-hy-S79"/>
@@ -1352,11 +1352,14 @@
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Z5r-WZ-ZnL" secondAttribute="trailing" constant="16" id="wee-My-TEI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="enableTouchBarLyricsButton" destination="7IX-Uv-fPH" id="xb4-q6-lgx"/>
+                    </connections>
                 </viewController>
                 <customObject id="hIA-Hp-BDR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="MQW-nm-dXS"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="1308"/>
+            <point key="canvasLocation" x="1969" y="1330.5"/>
         </scene>
     </scenes>
     <resources>

@@ -172,3 +172,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
 "19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";
+
+/* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "stE-wB-oXF"; */
+"stE-wB-oXF.title" = "Enable Touch Bar lyrics";
