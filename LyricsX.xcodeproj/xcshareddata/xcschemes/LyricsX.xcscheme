@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0930"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BB4141A91E458BA800A51775"
+               BuildableName = "LyricsX.app"
+               BlueprintName = "LyricsX"
+               ReferencedContainer = "container:LyricsX.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BB4141A91E458BA800A51775"
+            BuildableName = "LyricsX.app"
+            BlueprintName = "LyricsX"
+            ReferencedContainer = "container:LyricsX.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BB4141A91E458BA800A51775"
+            BuildableName = "LyricsX.app"
+            BlueprintName = "LyricsX"
+            ReferencedContainer = "container:LyricsX.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BB4141A91E458BA800A51775"
+            BuildableName = "LyricsX.app"
+            BlueprintName = "LyricsX"
+            ReferencedContainer = "container:LyricsX.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Export App"
+               scriptText = "EXPORT_OPTION_PATH=$PROJECT_DIR/ExportOptions.plist&#10;EXPORT_PATH=$PROJECT_DIR/Product&#10;&#10;# Redirect the output&#10;exec &gt; /tmp/post_archive_log.txt 2&gt;&amp;1&#10;&#10;rm -rf $EXPORT_PATH&#10;&#10;xcodebuild -exportArchive -archivePath &quot;${ARCHIVE_PATH}&quot; -exportPath &quot;${EXPORT_PATH}&quot; -exportOptionsPlist &quot;${EXPORT_OPTION_PATH}&quot;&#10;&#10;VERSION=$(/usr/libexec/PlistBuddy -c &quot;Print CFBundleShortVersionString&quot; &quot;${SOURCE_ROOT}/${INFOPLIST_FILE}&quot;)&#10;BUILD=$(/usr/libexec/PlistBuddy -c &quot;Print CFBundleVersion&quot; &quot;${SOURCE_ROOT}/${INFOPLIST_FILE}&quot;)&#10;# The build number gets automatically increased by a build phase&#10;BUILD=$((BUILD - 1))&#10;&#10;EXPORT_APP_NAME=${PRODUCT_NAME}.app&#10;EXPORT_ZIP_NAME=${PRODUCT_NAME}_${VERSION}+${BUILD}.zip&#10;&#10;cd $EXPORT_PATH&#10;zip -r &quot;${EXPORT_ZIP_NAME}&quot; &quot;${EXPORT_APP_NAME}&quot;&#10;&#10;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "BB4141A91E458BA800A51775"
+                     BuildableName = "LyricsX.app"
+                     BlueprintName = "LyricsX"
+                     ReferencedContainer = "container:LyricsX.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
+   </ArchiveAction>
+</Scheme>
