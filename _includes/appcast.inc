@@ -11,8 +11,8 @@
 						<title>{{ release.name }}</title>
 						<description><![CDATA[{{ release.body | markdownify }}]]></description>
 						<pubDate>{{ release.published_at | date_to_rfc822 }}</pubDate>
-						{%- for asset in release.assets limit:1 -%}
-							{%- assign build_nums = asset.name | replace_first:'LyricsX_','' | replace_first:'+',',' | remove_first:'.zip' | split:',' -%}
+						{% for asset in release.assets limit:1 %}
+							{%- assign build_nums = asset.name | remove_first:site.github.project_title | remove_first:'_' | replace_first:'+',',' | remove_first:'.zip' | split:',' -%}
 							{%- if build_nums.size == 2 -%}
 								{%- assign version = build_nums[1] -%}
 								{%- assign short_version = release.tag_name | remove_first:'v' -%}
@@ -24,7 +24,8 @@
 								sparkle:version="{{ version }}"
 								{% if short_version %}sparkle:shortVersionString="{{ release.tag_name | remove_first:'v' }}"{% endif %}
 								length="{{ asset.size }}"
-								type="application/octet-stream" />
+								type="application/octet-stream"
+							/>
 						{%- endfor -%}
 					</item>
 				{%- endunless -%}
