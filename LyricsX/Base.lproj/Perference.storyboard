@@ -769,7 +769,7 @@
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8e0-Af-YeJ">
                                                     <rect key="frame" x="171" y="70" width="242" height="14"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="EnT-HZ-SOz">
-                                                        <font key="font" metaFont="system" size="11"/>
+                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -830,11 +830,11 @@
                                     </tabViewItem>
                                     <tabViewItem label="Window" identifier="2" id="LbQ-p9-Zti">
                                         <view key="view" id="c9t-5z-3yY">
-                                            <rect key="frame" x="10" y="33" width="554" height="332"/>
+                                            <rect key="frame" x="10" y="33" width="554" height="344"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c1k-Vo-HU0" customClass="FontSelectTextField" customModule="LyricsX" customModuleProvider="target">
-                                                    <rect key="frame" x="173" y="286" width="260" height="22"/>
+                                                    <rect key="frame" x="173" y="298" width="260" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="QOp-Js-9L7"/>
                                                         <constraint firstAttribute="width" constant="260" id="nhH-eE-eLG"/>
@@ -846,7 +846,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="n8x-g6-LHK">
-                                                    <rect key="frame" x="124" y="288" width="35" height="17"/>
+                                                    <rect key="frame" x="124" y="300" width="35" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Font:" id="Cmt-it-PXW">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -854,7 +854,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xl3-ST-k9G">
-                                                    <rect key="frame" x="125" y="250" width="34" height="17"/>
+                                                    <rect key="frame" x="125" y="262" width="34" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Text:" id="Txi-D9-jjB">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -862,7 +862,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gpR-3P-52p" customClass="AlphaColorWell" customModule="LyricsX" customModuleProvider="target">
-                                                    <rect key="frame" x="173" y="247" width="44" height="23"/>
+                                                    <rect key="frame" x="173" y="259" width="44" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="64C-Gc-mGN"/>
                                                         <constraint firstAttribute="width" constant="44" id="ysq-Em-prD"/>
@@ -877,7 +877,7 @@
                                                     </connections>
                                                 </colorWell>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5rv-W6-91j">
-                                                    <rect key="frame" x="91" y="211" width="68" height="17"/>
+                                                    <rect key="frame" x="91" y="223" width="68" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Hightlight:" id="UfE-QU-Yhm">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -885,7 +885,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="KbD-th-ScQ" customClass="AlphaColorWell" customModule="LyricsX" customModuleProvider="target">
-                                                    <rect key="frame" x="173" y="208" width="44" height="23"/>
+                                                    <rect key="frame" x="173" y="220" width="44" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="gnE-XT-trZ"/>
                                                         <constraint firstAttribute="width" constant="44" id="tMX-My-fFS"/>
@@ -903,7 +903,6 @@
                                             <constraints>
                                                 <constraint firstItem="KbD-th-ScQ" firstAttribute="leading" secondItem="c1k-Vo-HU0" secondAttribute="leading" id="41g-Mu-QwK"/>
                                                 <constraint firstItem="xl3-ST-k9G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c9t-5z-3yY" secondAttribute="leading" constant="20" id="50d-hJ-QoS"/>
-                                                <constraint firstAttribute="bottom" secondItem="KbD-th-ScQ" secondAttribute="bottom" constant="208" id="AbG-hf-PPm"/>
                                                 <constraint firstItem="gpR-3P-52p" firstAttribute="top" secondItem="c1k-Vo-HU0" secondAttribute="bottom" constant="16" id="FNE-wp-Kpk"/>
                                                 <constraint firstItem="KbD-th-ScQ" firstAttribute="leading" secondItem="5rv-W6-91j" secondAttribute="trailing" constant="16" id="TWc-SL-R9T"/>
                                                 <constraint firstItem="n8x-g6-LHK" firstAttribute="trailing" secondItem="c9t-5z-3yY" secondAttribute="centerX" constant="-120" id="VXz-Eo-8US"/>
