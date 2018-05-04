@@ -50,6 +50,7 @@
 		BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58B0831E82B82F00598D4F /* OpenCC.framework */; };
 		BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB58B0831E82B82F00598D4F /* OpenCC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB58B0891E82CA9B00598D4F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
+		BB5D4B2D2094A1D700844D9F /* FontSelectTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D4B2C2094A1D700844D9F /* FontSelectTextField.swift */; };
 		BB60F3041E889A1B00BA1FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60F3031E889A1B00BA1FD2 /* AppDelegate.swift */; };
 		BB60F3061E889A1B00BA1FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3051E889A1B00BA1FD2 /* Assets.xcassets */; };
 		BB60F3091E889A1B00BA1FD2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3071E889A1B00BA1FD2 /* MainMenu.xib */; };
@@ -135,6 +136,7 @@
 		BB58B0811E82971400598D4F /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		BB58B0831E82B82F00598D4F /* OpenCC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCC.framework; path = Carthage/Build/Mac/OpenCC.framework; sourceTree = "<group>"; };
 		BB58B0881E82CA9B00598D4F /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		BB5D4B2C2094A1D700844D9F /* FontSelectTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectTextField.swift; sourceTree = "<group>"; };
 		BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsXHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB60F3031E889A1B00BA1FD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB60F3051E889A1B00BA1FD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				BB7365B31FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift */,
 				BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */,
 				BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */,
+				BB5D4B2C2094A1D700844D9F /* FontSelectTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -491,7 +494,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./LyricsX/Frameworks/Fabric.framework/run b6f597788b967cd9a94ea2a85f54c27909939b87 899ee2667b9979f88a8bf30432bc74cad27133acaf3e13498bc4849cd82e135a";
+			shellScript = "releaseConfig=\"Release\"\n\nif [ \"$releaseConfig\" = \"${CONFIGURATION}\" ]; then\necho \"Running Crashlytics\"\n    ./LyricsX/Frameworks/Fabric.framework/run b6f597788b967cd9a94ea2a85f54c27909939b87 899ee2667b9979f88a8bf30432bc74cad27133acaf3e13498bc4849cd82e135a\nfi\n";
 		};
 		BBC1D5811E4AFE64008869EC /* Bump Build */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -534,6 +537,7 @@
 				BB0B296C1E80CB0600B1D6C9 /* AboutViewController.swift in Sources */,
 				BBC1D5801E4AE3B9008869EC /* MenuBarLyrics.swift in Sources */,
 				BB03C8891FDF6FC000FBE0DA /* ChineseConverter+Singleton.swift in Sources */,
+				BB5D4B2D2094A1D700844D9F /* FontSelectTextField.swift in Sources */,
 				BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */,
 				BBC1D35B1E485BA7002538A2 /* AppController.swift in Sources */,
 				BB0B296A1E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift in Sources */,

@@ -87,6 +87,7 @@ extension UserDefaults.DefaultsKeys {
     static let DisableLyricsWhenSreenShot = Key<Bool>("DisableLyricsWhenSreenShot")
     
     // Display
+    static let DesktopLyricsScreenRect = Key<CGRect>.init("DesktopLyricsScreenRect", transformer: .json)
     static let DesktopLyricsOneLineMode = Key<Bool>("DesktopLyricsOneLineMode")
     
     static let DesktopLyricsInsetTopEnabled = Key<Bool>("DesktopLyricsInsetTopEnabled")
@@ -138,3 +139,5 @@ extension UserDefaults.DefaultsKeys {
     
     static let launchHelperTime = Key<Date?>("launchHelperTime")
 }
+
+extension CGRect: UDDefaultConstructible {}

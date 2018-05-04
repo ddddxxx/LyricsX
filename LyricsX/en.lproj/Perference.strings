@@ -5,9 +5,6 @@
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
 "0VO-JB-ubq.title" = "Auto";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "2XJ-b1-6M9"; */
-"2XJ-b1-6M9.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
-
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
 "3Bt-md-QNc.title" = "Lyrics";
 
@@ -34,9 +31,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "Font:";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "9vQ-yD-Q3V"; */
-"9vQ-yD-Q3V.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
 "AiM-vg-FvQ.title" = "Simplified Chinese";
@@ -113,9 +107,6 @@
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
 "d5d-dC-DK4.title" = "General";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "ePe-ju-SIB"; */
-"ePe-ju-SIB.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
-
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
 "g2u-8D-dln.title" = "Here are some experimental features that may not be stable enough, and may be removed in the future.";
 
@@ -127,9 +118,6 @@
 
 /* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
 "iMD-Wy-Bm7.title" = "Taking a screenshot";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "isF-Di-UbD"; */
-"isF-Di-UbD.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
 "jFb-kX-VbY.title" = "With translation";

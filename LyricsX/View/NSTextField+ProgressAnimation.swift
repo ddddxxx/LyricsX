@@ -51,6 +51,10 @@ extension NSTextField {
         progressTextField.bind(.value, to: self, withKeyPath: "stringValue")
         progressTextField.bind(.font, to: self, withKeyPath: "font")
         progressTextField.snp.makeConstraints { $0.edges.equalToSuperview() }
+        defer {
+            self.progressTextField?.removeFromSuperview()
+            self.progressTextField = progressTextField
+        }
         
         guard let index = progress.index(where: { $0.0 > 0 }) else { return }
         let rectArray = rectArrayForAllCharacters()
@@ -67,9 +71,11 @@ extension NSTextField {
         animation.keyPath = "bounds.size.width"
         animation.duration = duration
         progressTextField.layer?.add(animation, forKey: "inlineProgress")
-        
-        self.progressTextField?.removeFromSuperview()
-        self.progressTextField = progressTextField
+    }
+    
+    func removeProgressAnimation() {
+        progressTextField?.removeFromSuperview()
+        progressTextField = nil
     }
     
     private static var associatedObjectHandle = 0

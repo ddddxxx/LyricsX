@@ -63,6 +63,11 @@ class PreferenceGeneralViewController: NSViewController {
         }
     }
     
+    @IBAction func showInFinderAction(_ sender: Any) {
+        let url = defaults.lyricsSavingPath().0
+        NSWorkspace.shared.open(url)
+    }
+    
     @IBAction func chooseSavingPathAction(_ sender: Any) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = false

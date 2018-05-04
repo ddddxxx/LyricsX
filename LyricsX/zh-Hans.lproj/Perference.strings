@@ -5,9 +5,6 @@
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
 "0VO-JB-ubq.title" = "自动选择";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "2XJ-b1-6M9"; */
-"2XJ-b1-6M9.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
-
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
 "3Bt-md-QNc.title" = "歌词";
 
@@ -34,9 +31,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "字体:";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "9vQ-yD-Q3V"; */
-"9vQ-yD-Q3V.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
 "AiM-vg-FvQ.title" = "转换为简体中文";
@@ -154,12 +148,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
 "Cmt-it-PXW.title" = "字体:";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "ePe-ju-SIB"; */
-"ePe-ju-SIB.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@ - %{value2}@"; ObjectID = "isF-Di-UbD"; */
-"isF-Di-UbD.ibShadowedDisplayPattern" = "%{value1}@ - %{value2}@";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "文字:";
