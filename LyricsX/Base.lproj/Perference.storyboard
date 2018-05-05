@@ -122,6 +122,14 @@
                                                     <buttonCell key="cell" type="radio" title="iTunes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cRD-iF-2qo">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="QHf-PU-hBB"/>
@@ -132,6 +140,14 @@
                                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="spotify_icon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="APa-El-ZCg">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="performClick:" target="Wb5-Rf-75m" id="IBZ-3w-o6k"/>
@@ -142,6 +158,14 @@
                                                     <buttonCell key="cell" type="radio" title="Spotify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jhm-dK-4Y3">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="uP4-D4-sN6"/>
@@ -162,6 +186,14 @@
                                                     <buttonCell key="cell" type="radio" title="Vox" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oTS-3z-Tz7">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="iyh-YZ-fsB"/>
@@ -182,6 +214,14 @@
                                                     <buttonCell key="cell" type="radio" title="Audirvana" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="m2S-vK-wBN">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="mlJ-LH-hpi"/>
@@ -265,7 +305,16 @@
                                     <menu key="menu" id="5gc-ov-0H5">
                                         <items>
                                             <menuItem title="LyricsX (Default)" state="on" id="IE7-IT-oPk"/>
-                                            <menuItem title="User Path" id="hXE-OF-DFz"/>
+                                            <menuItem title="User Path" id="hXE-OF-DFz">
+                                                <attributedString key="userComments">
+                                                    <fragment content="#bc-ignore!">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="smallSystem"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </menuItem>
                                             <menuItem isSeparatorItem="YES" id="iSc-zy-02K"/>
                                             <menuItem title="Other..." id="HvN-Ou-h1t">
                                                 <connections>
@@ -768,10 +817,18 @@
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8e0-Af-YeJ">
                                                     <rect key="frame" x="171" y="70" width="242" height="14"/>
-                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="EnT-HZ-SOz">
+                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Font Fallback:" usesSingleLineMode="YES" id="EnT-HZ-SOz">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </textFieldCell>
                                                 </textField>
                                                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MzB-OZ-nJE">
@@ -985,8 +1042,24 @@
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="#bc-ignore!">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="smallSystem"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <connections>
                                                         <binding destination="0dY-rB-aBJ" name="value" keyPath="arrangedObjects.keyword" id="vBW-qd-fj4"/>
                                                     </connections>
