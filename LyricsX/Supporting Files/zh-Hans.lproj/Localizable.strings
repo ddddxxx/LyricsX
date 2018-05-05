@@ -5,16 +5,13 @@
 "Download" = "现在下载";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "Font Fallback: %@";
+"Font Fallback: %@" = "备用字体: %@";
 
 /* informative text of the update alert, when the app is up to date. the parameter is version string of the app */
 "LyricsX %@ is currently the newest version available." = "您使用的 LyricsX %@ 已经是最新版本。";
 
 /* informative text of the update alert, when the app is out date. the 1st parameter is new version string, the 2nd parameter is current version string */
 "LyricsX %@ is now available -- you have %@. Would you like to download it now?" = "LyricsX %1$@ 可供下载，您现在的版本是 %2$@。要现在下载吗？";
-
-/* default value when user adding a lyrics filter keyword */
-"NEW_KEYWORD" = "NEW_KEYWORD";
 
 /* window title */
 "Search Lyrics" = "搜索歌词";
