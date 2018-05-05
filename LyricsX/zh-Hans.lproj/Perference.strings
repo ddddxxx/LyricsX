@@ -113,7 +113,7 @@
 "jFb-kX-VbY.title" = "包含翻译";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
-"kEd-lC-aAH.title" = "Enable lyrics filter";
+"kEd-lC-aAH.title" = "启用歌词过滤";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
 "kP4-4q-ed9.title" = "搜索歌词:";
@@ -137,4 +137,4 @@
 "zhB-kd-WWG.title" = "不转换";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";
+"19E-DG-Q23.title" = "符合下列规则的歌词行将被过滤。使用 \"/\" 以启用正则表达式。";
