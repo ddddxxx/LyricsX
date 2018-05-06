@@ -1,4 +1,3 @@
-
 /* title of the update alert, when the app is out of date. */
 "A new version of LyricsX is available!" = "新版本的 LyricsX 已经发布！";
 
@@ -6,7 +5,7 @@
 "Download" = "现在下载";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "字体回退: %@";
+"Font Fallback: %@" = "备用字体: %@";
 
 /* informative text of the update alert, when the app is up to date. the parameter is version string of the app */
 "LyricsX %@ is currently the newest version available." = "您使用的 LyricsX %@ 已经是最新版本。";
