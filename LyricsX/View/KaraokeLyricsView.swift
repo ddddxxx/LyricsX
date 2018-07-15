@@ -25,7 +25,14 @@ class KaraokeLyricsView: NSBox {
     
     private let stackView = NSStackView().then {
         $0.orientation = .vertical
-        $0.alignment = .centerX
+    }
+    
+    @objc dynamic var isVertical = false {
+        didSet {
+            stackView.orientation = isVertical ? .horizontal : .vertical
+            (isVertical ? displayLine2 : displayLine1).map { stackView.insertArrangedSubview($0, at: 0) }
+            updateFontSize()
+        }
     }
     
     @objc dynamic var font = NSFont.labelFont(ofSize: 24) { didSet { updateFontSize() } }
@@ -38,8 +45,8 @@ class KaraokeLyricsView: NSBox {
         }
     }
     
-    var displayLine1: NSTextField?
-    var displayLine2: NSTextField?
+    var displayLine1: KaraokeLabel?
+    var displayLine2: KaraokeLabel?
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -56,46 +63,48 @@ class KaraokeLyricsView: NSBox {
     }
     
     private func updateFontSize() {
-        let insetX = font.pointSize
-        let insetY = insetX / 3
-        
+        var insetX = font.pointSize
+        var insetY = insetX / 3
+        if isVertical {
+            (insetX, insetY) = (insetY, insetX)
+        }
         stackView.snp.remakeConstraints {
             $0.edges.equalToSuperview().inset(NSEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX))
         }
-        
-        cornerRadius = insetX / 2
+        stackView.spacing = font.pointSize / 3
+        cornerRadius = font.pointSize / 2
     }
     
-    private func lyricsLabel(_ content: String) -> NSTextField {
-        if let v = stackView.subviews.lazy.compactMap({ $0 as? NSTextField }).first(where: { !stackView.arrangedSubviews.contains($0) }) {
+    private func lyricsLabel(_ content: String) -> KaraokeLabel {
+        if let v = stackView.subviews.lazy.compactMap({ $0 as? KaraokeLabel }).first(where: { !stackView.arrangedSubviews.contains($0) }) {
             v.alphaValue = 0
             v.stringValue = content
             v.removeProgressAnimation()
             v.removeFromSuperview()
-            v.isHidden = true
             return v
         }
-        return NSTextField(labelWithString: content).then {
+        return KaraokeLabel(labelWithString: content).then {
             $0.bind(.font, to: self, withKeyPath: #keyPath(font))
             $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
             $0.bind(.init("progressColor"), to: self, withKeyPath: #keyPath(shadowColor))
             $0.bind(.init("_shadowColor"), to: self, withKeyPath: #keyPath(shadowColor))
+            $0.bind(.init("isVertical"), to: self, withKeyPath: #keyPath(isVertical))
             $0.alphaValue = 0
-            $0.isHidden = true
         }
     }
     
     func displayLrc(_ firstLine: String, secondLine: String = "") {
-        var toBeHide = stackView.arrangedSubviews.compactMap { $0 as? NSTextField }
+        var toBeHide = stackView.arrangedSubviews.compactMap { $0 as? KaraokeLabel }
         var toBeShow: [NSTextField] = []
         var shouldHideAll = false
         
+        let index = isVertical ? 0 : 1
         if firstLine.trimmingCharacters(in: .whitespaces).isEmpty {
             displayLine1 = nil
             shouldHideAll = true
-        } else if toBeHide.count == 2, toBeHide[1].stringValue == firstLine {
-            displayLine1 = toBeHide[1]
-            toBeHide.remove(at: 1)
+        } else if toBeHide.count == 2, toBeHide[index].stringValue == firstLine {
+            displayLine1 = toBeHide[index]
+            toBeHide.remove(at: index)
         } else {
             let label = lyricsLabel(firstLine)
             displayLine1 = label
@@ -121,7 +130,11 @@ class KaraokeLyricsView: NSBox {
                 $0.removeProgressAnimation()
             }
             toBeShow.forEach {
-                stackView.addArrangedSubview($0)
+                if isVertical {
+                    stackView.insertArrangedSubview($0, at: 0)
+                } else {
+                    stackView.addArrangedSubview($0)
+                }
                 $0.isHidden = false
                 $0.alphaValue = 1
             }

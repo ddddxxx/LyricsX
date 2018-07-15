@@ -103,7 +103,7 @@ extension Regex {
 extension Regex {
     
     func enumerateMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil, using block: (_ result: MatchResult?, _ flags: NSRegularExpression.MatchingFlags, _ stop: inout Bool) -> Void) {
-        _regex.enumerateMatches(in: string, options: options, range: range ?? string.entireRange) { result, flags, stop in
+        _regex.enumerateMatches(in: string, options: options, range: range ?? string.fullRange) { result, flags, stop in
             let r = result.map { MatchResult(result: $0, in: string) }
             var s = false
             block(r, flags, &s)
@@ -112,23 +112,37 @@ extension Regex {
     }
     
     func matches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil) -> [MatchResult] {
-        return _regex.matches(in: string, options: options, range: range ?? string.entireRange).map {
+        return _regex.matches(in: string, options: options, range: range ?? string.fullRange).map {
             MatchResult(result: $0, in: string)
         }
     }
     
     func numberOfMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil) -> Int {
-        return _regex.numberOfMatches(in: string, options: options, range: range ?? string.entireRange)
+        return _regex.numberOfMatches(in: string, options: options, range: range ?? string.fullRange)
     }
     
     func firstMatch(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil) -> MatchResult? {
-        return _regex.firstMatch(in: string, options: options, range: range ?? string.entireRange).map {
+        return _regex.firstMatch(in: string, options: options, range: range ?? string.fullRange).map {
             MatchResult(result: $0, in: string)
         }
     }
     
     func isMatch(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil) -> Bool {
-        return _regex.firstMatch(in: string, options: options, range: range ?? string.entireRange) != nil
+        return _regex.firstMatch(in: string, options: options, range: range ?? string.fullRange) != nil
+    }
+}
+
+extension Regex {
+    
+    func replacingMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil, withTemplate templ: String) -> String {
+        return _regex.stringByReplacingMatches(in: string, options: options, range: range ?? string.fullRange, withTemplate: templ)
+    }
+    
+    func replaceMatches(in string: inout String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil, withTemplate templ: String) -> Int {
+        let mutableString = NSMutableString(string: string)
+        let result = _regex.replaceMatches(in: mutableString, options: options, range: range ?? mutableString.fullRange, withTemplate: templ)
+        string = mutableString as String
+        return result
     }
 }
 
@@ -159,13 +173,6 @@ extension Regex: Equatable, Hashable {
 }
 
 // MARK: -
-
-extension String {
-    
-    fileprivate var entireRange: NSRange {
-        return NSRange(location: 0, length: utf16.count)
-    }
-}
 
 private func hashCombine(seed: Int, value: Int) -> Int {
     func hashCombine32(seed: inout UInt32, value: UInt32) {

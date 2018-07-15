@@ -29,6 +29,11 @@
 		BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */; };
 		BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95C1F44508F0068FF67 /* Fabric.framework */; };
 		BB1A3185207B261500406E32 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1A3184207B261500406E32 /* Regex.swift */; };
+		BB1B2FFD20E8780A002F1AF8 /* CFExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */; };
+		BB1B2FFF20E87838002F1AF8 /* CTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B2FFE20E87838002F1AF8 /* CTExtension.swift */; };
+		BB1B300120E8788C002F1AF8 /* CGExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B300020E8788C002F1AF8 /* CGExtension.swift */; };
+		BB1B300320E878AE002F1AF8 /* StdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B300220E878AE002F1AF8 /* StdExtension.swift */; };
+		BB1B300520E87CC9002F1AF8 /* KaraokeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B300420E87CC9002F1AF8 /* KaraokeLabel.swift */; };
 		BB1B631B1E8CD7CA004CC9E0 /* ScrollLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */; };
 		BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; };
 		BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -56,7 +61,6 @@
 		BB60F3091E889A1B00BA1FD2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3071E889A1B00BA1FD2 /* MainMenu.xib */; };
 		BB60F3121E889FCD00BA1FD2 /* LyricsXHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BB6139741FCCFA6700CBD808 /* Perference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6139761FCCFA6700CBD808 /* Perference.storyboard */; };
-		BB7365B41FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7365B31FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift */; };
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
 		BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BCEB91E843157001BC54B /* Extension.swift */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
@@ -115,6 +119,11 @@
 		BB0BE95C1F44508F0068FF67 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = LyricsX/Frameworks/Fabric.framework; sourceTree = "<group>"; };
 		BB1A31822079351F00406E32 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		BB1A3184207B261500406E32 /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
+		BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFExtension.swift; sourceTree = "<group>"; };
+		BB1B2FFE20E87838002F1AF8 /* CTExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTExtension.swift; sourceTree = "<group>"; };
+		BB1B300020E8788C002F1AF8 /* CGExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGExtension.swift; sourceTree = "<group>"; };
+		BB1B300220E878AE002F1AF8 /* StdExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StdExtension.swift; sourceTree = "<group>"; };
+		BB1B300420E87CC9002F1AF8 /* KaraokeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaraokeLabel.swift; sourceTree = "<group>"; };
 		BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollLyricsView.swift; sourceTree = "<group>"; };
 		BB335B112057BCE3003A69F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BB335B132057BD03003A69F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Perference.strings; sourceTree = "<group>"; };
@@ -145,7 +154,6 @@
 		BB60F30E1E889C5400BA1FD2 /* LyricsXHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsXHelper.entitlements; sourceTree = "<group>"; };
 		BB6139751FCCFA6700CBD808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Perference.storyboard; sourceTree = "<group>"; };
 		BB6139781FCCFAC800CBD808 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Perference.strings"; sourceTree = "<group>"; };
-		BB7365B31FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField+ProgressAnimation.swift"; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
 		BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsX.entitlements; sourceTree = "<group>"; };
 		BB9BCEB91E843157001BC54B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -192,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */,
-				BB7365B31FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift */,
+				BB1B300420E87CC9002F1AF8 /* KaraokeLabel.swift */,
 				BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */,
 				BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */,
 				BB5D4B2C2094A1D700844D9F /* FontSelectTextField.swift */,
@@ -226,6 +234,7 @@
 				BBC1D35A1E485BA7002538A2 /* AppController.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
 				BB6139761FCCFA6700CBD808 /* Perference.storyboard */,
+				BB34F7E51F21911700B7C484 /* Updater.swift */,
 				BB03C8881FDF6FC000FBE0DA /* ChineseConverter+Singleton.swift */,
 				BB458C62201C5F4500740C3B /* LyricsMetaData+Extension.swift */,
 				BB063B2F1E8A93CE00A25C3E /* View */,
@@ -295,7 +304,10 @@
 				BB1A3184207B261500406E32 /* Regex.swift */,
 				BBC1D35E1E499A6D002538A2 /* Global.swift */,
 				BB9BCEB91E843157001BC54B /* Extension.swift */,
-				BB34F7E51F21911700B7C484 /* Updater.swift */,
+				BB1B300220E878AE002F1AF8 /* StdExtension.swift */,
+				BB1B300020E8788C002F1AF8 /* CGExtension.swift */,
+				BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */,
+				BB1B2FFE20E87838002F1AF8 /* CTExtension.swift */,
 				BBE8FC741F6BEA6200122AFA /* Then.swift */,
 			);
 			path = Utility;
@@ -517,20 +529,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB7365B41FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift in Sources */,
 				BB4141C01E45B67800A51775 /* KaraokeLyricsController.swift in Sources */,
 				BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */,
 				BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */,
 				BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */,
 				BB1B631B1E8CD7CA004CC9E0 /* ScrollLyricsView.swift in Sources */,
+				BB1B300520E87CC9002F1AF8 /* KaraokeLabel.swift in Sources */,
 				BBD03C371E9B2C7200EFB975 /* DragNDropView.swift in Sources */,
+				BB1B300120E8788C002F1AF8 /* CGExtension.swift in Sources */,
+				BB1B2FFD20E8780A002F1AF8 /* CFExtension.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 				BB458C63201C5F4500740C3B /* LyricsMetaData+Extension.swift in Sources */,
+				BB1B2FFF20E87838002F1AF8 /* CTExtension.swift in Sources */,
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
 				BBE8FC751F6BEA6200122AFA /* Then.swift in Sources */,
 				BB34F7E61F21911700B7C484 /* Updater.swift in Sources */,
 				BB1A3185207B261500406E32 /* Regex.swift in Sources */,
 				BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */,
+				BB1B300320E878AE002F1AF8 /* StdExtension.swift in Sources */,
 				BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */,
 				BB4919361F00CD800054EA09 /* PreferenceShortcutViewController.swift in Sources */,
 				BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */,

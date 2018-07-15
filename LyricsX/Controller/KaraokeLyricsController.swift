@@ -73,7 +73,8 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.bind(NSBindingName("textColor"), to: defaults, withDefaultName: .DesktopLyricsColor)
         lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withDefaultName: .DesktopLyricsShadowColor)
         lyricsView.bind(NSBindingName("fillColor"), to: defaults, withDefaultName: .DesktopLyricsBackgroundColor)
-        lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withDefaultName: .HideLyricsWhenMousePassingBy)
+        lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
+        lyricsView.bind(NSBindingName("isVertical"), to: defaults, withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
         
         let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
         window?.contentView?.bind(.hidden, to: defaults, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
@@ -159,9 +160,8 @@ class KaraokeLyricsWindowController: NSWindowController {
                 let position = AppController.shared.playerManager.player?.playerPosition {
                 let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
-                upperTextField.addProgressAnimation(color: self.lyricsView.shadowColor, progress: progress)
+                upperTextField.setProgressAnimation(color: self.lyricsView.shadowColor, progress: progress)
             }
-
         }
     }
     

@@ -22,13 +22,6 @@ import Cocoa
 import LyricsProvider
 import MusicPlayer
 
-extension CountableRange {
-    
-    func clamp(_ value: Bound) -> Bound {
-        return Swift.min(upperBound.advanced(by: -1), Swift.max(lowerBound, value))
-    }
-}
-
 extension NSObject {
     
     func bind<T>(_ binding: NSBindingName,
@@ -197,6 +190,26 @@ extension Lyrics {
         }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         filtrate(isIncluded: predicate)
+    }
+}
+
+extension NSTextField {
+    
+    @available(macOS, obsoleted: 10.12)
+    convenience init(labelWithString stringValue: String) {
+        self.init()
+        self.stringValue = stringValue
+        isEditable = false
+        isSelectable = false
+        textColor = .labelColor
+        backgroundColor = .controlColor
+        drawsBackground = false
+        isBezeled = false
+        alignment = .natural
+        font = NSFont.systemFont(ofSize: NSFont.systemFontSize(for: controlSize))
+        lineBreakMode = .byClipping
+        cell?.isScrollable = true
+        cell?.wraps = false
     }
 }
 

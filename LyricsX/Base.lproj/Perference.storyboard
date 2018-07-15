@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -524,23 +524,23 @@
             <objects>
                 <viewController title="Display" id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="418"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="440"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="S24-qh-mZa">
-                                <rect key="frame" x="13" y="14" width="574" height="390"/>
+                                <rect key="frame" x="13" y="14" width="574" height="412"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Karaoke" identifier="1" id="aUg-eg-K5C">
                                         <view key="view" id="mfE-32-ATy">
-                                            <rect key="frame" x="10" y="33" width="554" height="344"/>
+                                            <rect key="frame" x="10" y="33" width="554" height="366"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-Xq-2K7">
                                                     <rect key="frame" x="17" y="128" width="520" height="5"/>
                                                 </box>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="4Ap-BM-I98">
-                                                    <rect key="frame" x="171" y="145" width="110" height="18"/>
+                                                    <rect key="frame" x="171" y="167" width="110" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="DsA-hf-RKL"/>
                                                     </constraints>
@@ -588,7 +588,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <box title="Spacing to screen edge" translatesAutoresizingMaskIntoConstraints="NO" id="LDq-wS-wqc">
-                                                    <rect key="frame" x="17" y="173" width="520" height="163"/>
+                                                    <rect key="frame" x="17" y="195" width="520" height="163"/>
                                                     <view key="contentView" id="KYA-nW-Tcn">
                                                         <rect key="frame" x="2" y="2" width="516" height="146"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -845,19 +845,30 @@
                                                         <action selector="removeFontFallbackAction:" target="8JF-Og-z6E" id="g3U-4P-8DP"/>
                                                     </connections>
                                                 </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PpS-fa-1AL">
+                                                    <rect key="frame" x="171" y="145" width="106" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Vertical mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="h4G-Un-dtm">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsVerticalMode" id="hIw-IE-Hht"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="9of-o0-c02" firstAttribute="bottom" secondItem="UmX-Zf-IW4" secondAttribute="bottom" id="078-VO-Lyu"/>
                                                 <constraint firstItem="eUo-ma-3JR" firstAttribute="top" secondItem="9of-o0-c02" secondAttribute="bottom" constant="4" id="1Xi-Ee-PEG"/>
                                                 <constraint firstItem="LDq-wS-wqc" firstAttribute="leading" secondItem="mfE-32-ATy" secondAttribute="leading" constant="20" id="1vp-Bd-sws"/>
                                                 <constraint firstItem="MzB-OZ-nJE" firstAttribute="trailing" secondItem="oHc-gj-4JF" secondAttribute="trailing" constant="-4" id="6mC-bW-K8C"/>
+                                                <constraint firstItem="QfW-Xq-2K7" firstAttribute="top" secondItem="PpS-fa-1AL" secondAttribute="bottom" constant="16" id="APk-os-mQa"/>
                                                 <constraint firstAttribute="trailing" secondItem="QfW-Xq-2K7" secondAttribute="trailing" constant="17" id="C2q-88-2el"/>
                                                 <constraint firstItem="oHc-gj-4JF" firstAttribute="centerY" secondItem="YbH-Ph-PYg" secondAttribute="centerY" id="Dt5-UZ-3vt"/>
                                                 <constraint firstItem="hn1-Pb-VCw" firstAttribute="centerX" secondItem="Jji-JX-Etj" secondAttribute="centerX" id="EJt-Jg-Sfb"/>
-                                                <constraint firstItem="QfW-Xq-2K7" firstAttribute="top" secondItem="4Ap-BM-I98" secondAttribute="bottom" constant="16" id="EYM-oc-btA"/>
                                                 <constraint firstItem="9of-o0-c02" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="top" id="Fie-yT-1G3"/>
                                                 <constraint firstItem="Jji-JX-Etj" firstAttribute="top" secondItem="oHc-gj-4JF" secondAttribute="bottom" constant="32" id="IKn-KN-Evb"/>
                                                 <constraint firstItem="MzB-OZ-nJE" firstAttribute="centerY" secondItem="8e0-Af-YeJ" secondAttribute="centerY" id="L1c-zA-trp"/>
+                                                <constraint firstItem="PpS-fa-1AL" firstAttribute="leading" secondItem="4Ap-BM-I98" secondAttribute="leading" id="LiF-3U-KGM"/>
                                                 <constraint firstItem="oHc-gj-4JF" firstAttribute="leading" secondItem="4Ap-BM-I98" secondAttribute="leading" id="LjZ-hx-Ga7"/>
                                                 <constraint firstAttribute="trailing" secondItem="LDq-wS-wqc" secondAttribute="trailing" constant="20" id="PwV-jc-8S9"/>
                                                 <constraint firstItem="YbH-Ph-PYg" firstAttribute="trailing" secondItem="mfE-32-ATy" secondAttribute="centerX" constant="-120" id="QqR-Hi-jA6"/>
@@ -881,6 +892,7 @@
                                                 <constraint firstItem="hn1-Pb-VCw" firstAttribute="top" secondItem="Jji-JX-Etj" secondAttribute="bottom" constant="4" id="sgK-ob-bcJ"/>
                                                 <constraint firstItem="Jji-JX-Etj" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="top" id="tfE-fe-Fse"/>
                                                 <constraint firstAttribute="bottom" secondItem="hn1-Pb-VCw" secondAttribute="bottom" constant="16" id="wFi-SG-Tg1"/>
+                                                <constraint firstItem="PpS-fa-1AL" firstAttribute="top" secondItem="4Ap-BM-I98" secondAttribute="bottom" constant="8" id="woj-pl-tYA"/>
                                                 <constraint firstItem="YbH-Ph-PYg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mfE-32-ATy" secondAttribute="leading" constant="20" id="yVe-vG-UKd"/>
                                             </constraints>
                                         </view>

@@ -89,6 +89,7 @@ extension UserDefaults.DefaultsKeys {
     // Display
     static let DesktopLyricsScreenRect = Key<CGRect>.init("DesktopLyricsScreenRect", transformer: .json)
     static let DesktopLyricsOneLineMode = Key<Bool>("DesktopLyricsOneLineMode")
+    static let DesktopLyricsVerticalMode = Key<Bool>("DesktopLyricsVerticalMode")
     
     static let DesktopLyricsInsetTopEnabled = Key<Bool>("DesktopLyricsInsetTopEnabled")
     static let DesktopLyricsInsetBottomEnabled = Key<Bool>("DesktopLyricsInsetBottomEnabled")
