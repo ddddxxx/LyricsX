@@ -141,3 +141,6 @@
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "Vertical mode";
+
+/* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
+"ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
