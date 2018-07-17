@@ -1321,7 +1321,7 @@
             <objects>
                 <viewController title="Lab" id="bFk-1g-XeL" userLabel="Lab" sceneMemberID="viewController">
                     <view key="view" id="uY5-7S-zG1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="227"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="235"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Tvk-yf-w4p">
@@ -1358,8 +1358,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-7c-IhI">
-                                <rect key="frame" x="76" y="145" width="449" height="58"/>
+                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-7c-IhI">
+                                <rect key="frame" x="76" y="177" width="449" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Here are some experimental features that may not be stable enough, and may be removed in the future." id="g2u-8D-dln">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1402,9 +1402,24 @@
                                     <binding destination="MQW-nm-dXS" name="value" keyPath="values.CombinedMenubarLyrics" id="P5p-VX-SXH"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-fs-CDd">
+                                <rect key="frame" x="234" y="141" width="333" height="18"/>
+                                <buttonCell key="cell" type="check" title="Automatically generate furigana for Japanese lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ThQ-vA-Krb">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="MQW-nm-dXS" name="value" keyPath="values.DesktopLyricsEnableFurigana" id="xy3-gH-Q12">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="0"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IKY-aR-ZdS" secondAttribute="trailing" constant="20" id="5UF-sE-ts0"/>
+                            <constraint firstItem="rkh-fs-CDd" firstAttribute="top" secondItem="GqQ-7c-IhI" secondAttribute="bottom" constant="20" id="7ca-1l-Euu"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Tvk-yf-w4p" secondAttribute="leading" id="8Ip-8V-Nhx"/>
                             <constraint firstItem="GqQ-7c-IhI" firstAttribute="centerX" secondItem="uY5-7S-zG1" secondAttribute="centerX" id="B45-c6-kKm"/>
                             <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="trailing" secondItem="uY5-7S-zG1" secondAttribute="centerX" constant="-80" id="Bvv-K0-o1n"/>
@@ -1413,15 +1428,16 @@
                             <constraint firstItem="kqN-EP-pPj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uY5-7S-zG1" secondAttribute="leading" constant="20" id="IqT-5O-Lub"/>
                             <constraint firstItem="mNF-31-EIX" firstAttribute="top" secondItem="Tvk-yf-w4p" secondAttribute="bottom" constant="16" id="Naf-WW-rry"/>
                             <constraint firstItem="GqQ-7c-IhI" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="24" id="OTp-XT-yZH"/>
-                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="100" id="P1P-Yz-UJq"/>
                             <constraint firstItem="kqN-EP-pPj" firstAttribute="trailing" secondItem="Z5r-WZ-ZnL" secondAttribute="trailing" id="P2D-Tn-qGn"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="centerY" secondItem="Z5r-WZ-ZnL" secondAttribute="centerY" id="Pql-bZ-j9U"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dt8-Tg-5JV" secondAttribute="trailing" constant="20" id="QIl-HG-7l1"/>
                             <constraint firstItem="mNF-31-EIX" firstAttribute="centerY" secondItem="kqN-EP-pPj" secondAttribute="centerY" id="TID-YA-daQ"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="rkh-fs-CDd" secondAttribute="leading" id="WjH-ZP-2wM"/>
                             <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uY5-7S-zG1" secondAttribute="leading" constant="20" id="Zjl-xt-6Q8"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rkh-fs-CDd" secondAttribute="trailing" constant="20" id="bHs-aP-JHK"/>
                             <constraint firstItem="mNF-31-EIX" firstAttribute="leading" secondItem="kqN-EP-pPj" secondAttribute="trailing" constant="16" id="l9R-vf-yGY"/>
-                            <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="top" secondItem="GqQ-7c-IhI" secondAttribute="bottom" constant="16" id="lf4-bH-map"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Tvk-yf-w4p" secondAttribute="trailing" constant="20" id="nVW-K7-QKb"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="rkh-fs-CDd" secondAttribute="bottom" constant="16" id="ocv-tz-iBa"/>
                             <constraint firstItem="Dt8-Tg-5JV" firstAttribute="top" secondItem="mNF-31-EIX" secondAttribute="bottom" constant="16" id="qZw-Kd-Bl4"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mNF-31-EIX" secondAttribute="trailing" constant="20" id="sV8-hy-S79"/>
                             <constraint firstItem="Tvk-yf-w4p" firstAttribute="top" secondItem="IKY-aR-ZdS" secondAttribute="bottom" constant="8" id="tKi-Ka-ZTQ"/>

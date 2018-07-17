@@ -75,6 +75,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.bind(NSBindingName("fillColor"), to: defaults, withDefaultName: .DesktopLyricsBackgroundColor)
         lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
         lyricsView.bind(NSBindingName("isVertical"), to: defaults, withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
+        lyricsView.bind(NSBindingName("drawFurigana"), to: defaults, withDefaultName: .DesktopLyricsEnableFurigana)
         
         let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
         window?.contentView?.bind(.hidden, to: defaults, withDefaultName: .DesktopLyricsEnabled, options: negateOption)

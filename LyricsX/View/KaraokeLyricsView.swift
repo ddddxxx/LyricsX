@@ -35,6 +35,8 @@ class KaraokeLyricsView: NSBox {
         }
     }
     
+    @objc dynamic var drawFurigana = false
+    
     @objc dynamic var font = NSFont.labelFont(ofSize: 24) { didSet { updateFontSize() } }
     @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)
@@ -89,6 +91,7 @@ class KaraokeLyricsView: NSBox {
             $0.bind(.init("progressColor"), to: self, withKeyPath: #keyPath(shadowColor))
             $0.bind(.init("_shadowColor"), to: self, withKeyPath: #keyPath(shadowColor))
             $0.bind(.init("isVertical"), to: self, withKeyPath: #keyPath(isVertical))
+            $0.bind(.init("drawFurigana"), to: self, withKeyPath: #keyPath(drawFurigana))
             $0.alphaValue = 0
         }
     }

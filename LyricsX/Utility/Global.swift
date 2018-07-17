@@ -101,6 +101,8 @@ extension UserDefaults.DefaultsKeys {
     static let DesktopLyricsInsetLeft = Key<Int>("DesktopLyricsInsetLeft")
     static let DesktopLyricsInsetRight = Key<Int>("DesktopLyricsInsetRight")
     
+    static let DesktopLyricsEnableFurigana = Key<Bool>("DesktopLyricsEnableFurigana")
+    
     static let DesktopLyricsFontName = Key<String>("DesktopLyricsFontName")
     static let DesktopLyricsFontSize = Key<Int>("DesktopLyricsFontSize")
     static let DesktopLyricsFontNameFallback = Key<[String]>("DesktopLyricsFontNameFallback")
