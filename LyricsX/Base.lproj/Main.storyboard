@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -778,6 +778,7 @@ IA
                                                         </tableColumn>
                                                     </tableColumns>
                                                     <connections>
+                                                        <action trigger="doubleAction" selector="useLyricsAction:" target="hFt-BA-jFS" id="Iph-Br-Dus"/>
                                                         <binding destination="hFt-BA-jFS" name="selectionIndexes" keyPath="self.selectedIndex" id="IOL-ou-uDd"/>
                                                         <outlet property="dataSource" destination="hFt-BA-jFS" id="g7Z-z3-ykK"/>
                                                         <outlet property="delegate" destination="hFt-BA-jFS" id="sFU-O1-o4s"/>

@@ -112,7 +112,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         Answers.logCustomEvent(withName: "Search Lyrics Manually")
     }
     
-    @IBAction func useLyricsAction(_ sender: NSButton) {
+    @IBAction func useLyricsAction(_ sender: Any) {
         guard let index = tableView.selectedRowIndexes.first else {
             return
         }
