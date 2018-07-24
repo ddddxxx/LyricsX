@@ -62,7 +62,6 @@
 		BB60F3121E889FCD00BA1FD2 /* LyricsXHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BB6139741FCCFA6700CBD808 /* Perference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6139761FCCFA6700CBD808 /* Perference.storyboard */; };
 		BB72784A20996DE900231C63 /* PreferenceLabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72784920996DE900231C63 /* PreferenceLabViewController.swift */; };
-		BB7365B41FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7365B31FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift */; };
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
 		BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BCEB91E843157001BC54B /* Extension.swift */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
@@ -159,7 +158,6 @@
 		BB6139751FCCFA6700CBD808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Perference.storyboard; sourceTree = "<group>"; };
 		BB6139781FCCFAC800CBD808 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Perference.strings"; sourceTree = "<group>"; };
 		BB72784920996DE900231C63 /* PreferenceLabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceLabViewController.swift; sourceTree = "<group>"; };
-		BB7365B31FD51E0E007EFFF7 /* NSTextField+ProgressAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField+ProgressAnimation.swift"; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
 		BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsX.entitlements; sourceTree = "<group>"; };
 		BB9BCEB91E843157001BC54B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };

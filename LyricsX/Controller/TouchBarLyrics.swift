@@ -48,7 +48,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
             let index = AppController.shared.currentLineIndex else {
                 DispatchQueue.main.async {
                     self.lyricsTextField.stringValue = ""
-                    self.lyricsTextField.removeProgressAnimation()
+                    self.lyricsTextField.tf_removeProgressAnimation()
                 }
                 return
         }
@@ -63,7 +63,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
                 let position = AppController.shared.playerManager.player?.playerPosition {
                 let timeDelay = line.lyrics?.timeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + line.position - timeDelay - position, $0.index) }
-                self.lyricsTextField.addProgressAnimation(color: #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1), progress: progress)
+                self.lyricsTextField.tf_addProgressAnimation(color: #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1), progress: progress)
             }
         }
     }
@@ -99,6 +99,83 @@ extension NSTouchBarItem.Identifier {
     static let lyrics = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.lyrics")
     
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
+}
+
+private extension NSTextField {
+    
+    func rectArrayForAllCharacters() -> [NSRect] {
+        let layoutManager = NSLayoutManager()
+        let textStorage = NSTextStorage(attributedString: attributedStringValue)
+        var containerSize = frame.size
+        // the imitated text container clip its content whereas text field does not.
+        // expand container size to avoid clipping.
+        containerSize.width = .infinity
+        let textContainer = NSTextContainer(containerSize: containerSize)
+        
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.addTextContainer(textContainer)
+        return stringValue.indices.map { index in
+            let range = NSRange(index...index, in: stringValue)
+            return layoutManager.boundingRect(forGlyphRange: range, in: textContainer)
+        }
+    }
+}
+
+private extension NSTextField {
+    
+    func tf_addProgressAnimation(color: NSColor, progress: [(TimeInterval, Int)]) {
+        let progressTextField = NSTextField(labelWithString: stringValue)
+        progressTextField.wantsLayer = true
+        progressTextField.textColor = color
+        addSubview(progressTextField)
+        progressTextField.bind(.value, to: self, withKeyPath: "stringValue")
+        progressTextField.bind(.font, to: self, withKeyPath: "font")
+        progressTextField.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
+        guard let index = progress.index(where: { $0.0 > 0 }) else { return }
+        let rectArray = rectArrayForAllCharacters()
+        var map = progress.map { ($0.0, rectArray[rectArray.indices.clamp($0.1 - 1)].maxX) }
+        if index > 0 {
+            let progress = map[index - 1].1 + CGFloat(map[index - 1].0) * (map[index].1 - map[index - 1].1) / CGFloat(map[index].0 - map[index - 1].0)
+            map.replaceSubrange(..<index, with: [(0, progress)])
+        }
+        
+        let duration = map.last!.0
+        let animation = CAKeyframeAnimation()
+        animation.keyTimes = map.map { ($0.0 / duration) as NSNumber }
+        animation.values = map.map { $0.1 }
+        animation.keyPath = "bounds.size.width"
+        animation.duration = duration
+        progressTextField.layer?.add(animation, forKey: "inlineProgress")
+        
+        self.tf_progressTextField?.removeFromSuperview()
+        self.tf_progressTextField = progressTextField
+    }
+    
+    func tf_removeProgressAnimation() {
+        tf_progressTextField?.removeFromSuperview()
+        tf_progressTextField = nil
+    }
+    
+    private static var associatedObjectHandle = 0
+    
+    private var tf_progressTextField: NSTextField? {
+        get {
+            return objc_getAssociatedObject(self, &NSTextField.associatedObjectHandle) as? NSTextField
+        }
+        set {
+            objc_setAssociatedObject(self, &NSTextField.associatedObjectHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    @objc dynamic var tf_progressColor: NSColor? {
+        get {
+            return tf_progressTextField?.textColor
+        }
+        set {
+            tf_progressTextField?.textColor = newValue
+        }
+    }
 }
 
 #endif
