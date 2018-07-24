@@ -36,10 +36,10 @@ class PreferenceLabViewController: NSViewController {
     @IBAction func mas_enableTouchBarLyricsAction(_ sender: NSButton) {
         sender.state = .off
         let alert = NSAlert()
-        alert.messageText = "Unable to enable Touch Bar lyrics."
-        alert.informativeText = "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub."
-        alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: "Download")
+        alert.messageText = NSLocalizedString("Unable to enable Touch Bar lyrics.", comment: "alert title")
+        alert.informativeText = NSLocalizedString("Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub.", comment: "")
+        alert.addButton(withTitle: NSLocalizedString("OK", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("Download", comment: ""))
         let handler = { (response: NSApplication.ModalResponse) in
             if response == .alertSecondButtonReturn {
                 let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
