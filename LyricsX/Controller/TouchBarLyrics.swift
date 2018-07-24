@@ -45,6 +45,8 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
+        
+        lyricsTextField.bind(NSBindingName("tf_progressColor"), to: defaults, withDefaultName: .DesktopLyricsShadowColor)
     }
     
     deinit {
@@ -75,7 +77,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
                 let position = AppController.shared.playerManager.player?.playerPosition {
                 let timeDelay = line.lyrics?.timeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + line.position - timeDelay - position, $0.index) }
-                self.lyricsTextField.tf_addProgressAnimation(color: #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1), progress: progress)
+                self.lyricsTextField.tf_addProgressAnimation(progress)
             }
         }
     }
@@ -135,10 +137,10 @@ private extension NSTextField {
 
 private extension NSTextField {
     
-    func tf_addProgressAnimation(color: NSColor, progress: [(TimeInterval, Int)]) {
+    func tf_addProgressAnimation(_ progress: [(TimeInterval, Int)]) {
         let progressTextField = NSTextField(labelWithString: stringValue)
         progressTextField.wantsLayer = true
-        progressTextField.textColor = color
+        progressTextField.bind(.textColor, to: self, withKeyPath: "tf_progressColor")
         addSubview(progressTextField)
         progressTextField.bind(.value, to: self, withKeyPath: "stringValue")
         progressTextField.bind(.font, to: self, withKeyPath: "font")
@@ -169,23 +171,23 @@ private extension NSTextField {
         tf_progressTextField = nil
     }
     
-    private static var associatedObjectHandle = 0
-    
+    private static var progressTFToken = 0
     private var tf_progressTextField: NSTextField? {
         get {
-            return objc_getAssociatedObject(self, &NSTextField.associatedObjectHandle) as? NSTextField
+            return objc_getAssociatedObject(self, &NSTextField.progressTFToken) as? NSTextField
         }
         set {
-            objc_setAssociatedObject(self, &NSTextField.associatedObjectHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &NSTextField.progressTFToken, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
+    private static var progressColorToken = 0
     @objc dynamic var tf_progressColor: NSColor? {
         get {
-            return tf_progressTextField?.textColor
+            return objc_getAssociatedObject(self, &NSTextField.progressColorToken) as? NSColor
         }
         set {
-            tf_progressTextField?.textColor = newValue
+            objc_setAssociatedObject(self, &NSTextField.progressColorToken, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

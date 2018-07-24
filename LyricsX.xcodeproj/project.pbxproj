@@ -248,8 +248,8 @@
 				BB458C62201C5F4500740C3B /* LyricsMetaData+Extension.swift */,
 				BB063B2F1E8A93CE00A25C3E /* View */,
 				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
-				E9E55132207C4BFC00F9958A /* CBridge */,
 				BB7EC7B61E4ED03900A0AC3F /* Utility */,
+				E9E55132207C4BFC00F9958A /* CBridge */,
 				BB4141BC1E45B26800A51775 /* Supporting Files */,
 			);
 			path = LyricsX;
