@@ -145,3 +145,6 @@
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
 "ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
+
+/* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "stE-wB-oXF"; */
+"stE-wB-oXF.title" = "Enable Touch Bar lyrics";
