@@ -54,12 +54,7 @@ class PreferenceFilterViewController: NSViewController {
 @objc(FilterKey)
 class FilterKey: NSObject, NSCoding {
     
-    @objc var keyword = ""
-    
-    override init() {
-        keyword = NSLocalizedString("NEW_KEYWORD", comment: "default value when user adding a lyrics filter keyword")
-        super.init()
-    }
+    @objc var keyword = "keyword"
     
     init(keyword: String) {
         self.keyword = keyword

@@ -65,9 +65,6 @@
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "Music is not playing";
 
-/* Class = "NSTableColumn"; headerCell.title = "Keyword"; ObjectID = "QdM-iA-Hjj"; */
-"QdM-iA-Hjj.headerCell.title" = "Keyword";
-
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "Text:";
 
@@ -101,17 +98,11 @@
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
 "cBB-zn-Hdh.title" = "Prefer bilingual lyrics";
 
-/* Class = "NSButtonCell"; title = "iTunes"; ObjectID = "cRD-iF-2qo"; */
-"cRD-iF-2qo.title" = "iTunes";
-
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
 "d5d-dC-DK4.title" = "General";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
 "g2u-8D-dln.title" = "Here are some experimental features that may not be stable enough, and may be removed in the future.";
-
-/* Class = "NSMenuItem"; title = "User Path"; ObjectID = "hXE-OF-DFz"; */
-"hXE-OF-DFz.title" = "User Path";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
 "hsu-H9-9Bd.title" = "Shadow";
@@ -121,9 +112,6 @@
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
 "jFb-kX-VbY.title" = "With translation";
-
-/* Class = "NSButtonCell"; title = "Spotify"; ObjectID = "jhm-dK-4Y3"; */
-"jhm-dK-4Y3.title" = "Spotify";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
 "kEd-lC-aAH.title" = "Enable lyrics filter";
@@ -137,9 +125,6 @@
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
 "mo2-3C-gLY.title" = "Increase lyrics offset:";
 
-/* Class = "NSButtonCell"; title = "Vox"; ObjectID = "oTS-3z-Tz7"; */
-"oTS-3z-Tz7.title" = "Vox";
-
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
 "ppx-ob-WJc.title" = "Shortcut";
 
@@ -149,14 +134,17 @@
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
 "v63-4a-fPw.title" = "Auto launch & quit with music player";
 
-/* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "wzG-Up-fN8"; */
-"wzG-Up-fN8.title" = "Text";
-
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
 "zhB-kd-WWG.title" = "No Conversion";
 
-/* Class = "NSButtonCell"; title = "Audirvana"; ObjectID = "m2S-vK-wBN"; */
-"m2S-vK-wBN.title" = "Audirvana";
-
 /* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
 "19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";
+
+/* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
+"h4G-Un-dtm.title" = "Vertical mode";
+
+/* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
+"ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
+
+/* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
+"gGL-LB-TXI.title" = "Enable Touch Bar lyrics";

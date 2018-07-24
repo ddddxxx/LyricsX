@@ -33,6 +33,9 @@ class PreferenceDisplayViewController: NSViewController, FontSelectTextFieldDele
                                                      size: CGFloat(defaults[.DesktopLyricsFontSize]))
             ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
         karaokeFontSelectField.fontChangeDelegate = self
+        hudFontSelectField.selectedFont = NSFont(name: defaults[.LyricsWindowFontName],
+                                                 size: CGFloat(defaults[.LyricsWindowFontSize]))
+            ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
         hudFontSelectField.fontChangeDelegate = self
         updateScreenFontFallback()
         super.viewDidLoad()

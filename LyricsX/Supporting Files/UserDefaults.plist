@@ -14,6 +14,8 @@
 	<true/>
 	<key>DesktopLyricsInsetBottom</key>
 	<integer>20</integer>
+	<key>DesktopLyricsEnableFurigana</key>
+	<false/>
 	<key>DesktopLyricsFontName</key>
 	<string>Optima-Regular</string>
 	<key>DesktopLyricsFontSize</key>
