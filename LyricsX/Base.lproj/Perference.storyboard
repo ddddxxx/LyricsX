@@ -1172,21 +1172,62 @@
                 </arrayController>
                 <userDefaultsController id="QTW-Rd-aiV"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="879"/>
+            <point key="canvasLocation" x="1969" y="967"/>
         </scene>
         <!--Shortcut-->
         <scene sceneID="fM0-at-U1A">
             <objects>
                 <viewController title="Shortcut" id="ppx-ob-WJc" userLabel="Shortcut" customClass="PreferenceShortcutViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yOR-wI-2Wv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="197"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="296"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rZM-vL-ukW">
-                                <rect key="frame" x="168" y="156" width="134" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="fHF-oJ-2oH">
+                                <rect key="frame" x="125" y="255" width="177" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Show / Hide menu bar lyrics:" id="XHQ-gX-urF">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Wl2-0l-Mvk" customClass="MASShortcutView">
+                                <rect key="frame" x="308" y="254" width="120" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="gCm-k1-jk7"/>
+                                    <constraint firstAttribute="width" constant="120" id="aeH-Wb-3PE"/>
+                                    <constraint firstAttribute="height" constant="19" id="qpD-zO-7uX"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutToggleMenuBarLyrics"/>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XuJ-N7-23c">
+                                <rect key="frame" x="134" y="222" width="168" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Show / Hide karaoke lyrics:" id="lOc-OP-AcU">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BAG-Gf-bbI">
+                                <rect key="frame" x="175" y="189" width="127" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Show lyrics window:" id="TB9-Fk-WAX">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="r6F-LJ-R46" customClass="MASShortcutView">
+                                <rect key="frame" x="308" y="188" width="120" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="L2I-57-We6"/>
+                                    <constraint firstAttribute="width" constant="120" id="tTb-WG-Vk9"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutShowLyricsWindow"/>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rZM-vL-ukW">
+                                <rect key="frame" x="168" y="156" width="134" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Increase lyrics offset:" id="mo2-3C-gLY">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1200,11 +1241,8 @@
                                     <constraint firstAttribute="height" constant="19" id="m70-Qr-7Hx"/>
                                 </constraints>
                             </customView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8LH-Ws-6CC">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8LH-Ws-6CC">
                                 <rect key="frame" x="162" y="123" width="140" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="iZ2-h0-0qX"/>
-                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Decrease lyrics offset:" id="bmk-rW-Uot">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1218,11 +1256,8 @@
                                     <constraint firstAttribute="height" constant="19" id="uTu-hP-tC1"/>
                                 </constraints>
                             </customView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Paz-vU-k0Z">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Paz-vU-k0Z">
                                 <rect key="frame" x="167" y="90" width="135" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="2Ia-qf-w7S"/>
-                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Write lyrics to iTunes:" id="6We-TB-Wfc">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1236,11 +1271,8 @@
                                     <constraint firstAttribute="width" constant="120" id="qNN-Qz-KrM"/>
                                 </constraints>
                             </customView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kmn-Mi-l4p">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Kmn-Mi-l4p">
                                 <rect key="frame" x="169" y="24" width="133" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="wUK-VV-zhw"/>
-                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Mark as wrong lyrics:" id="uEb-Q5-cda">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1254,6 +1286,14 @@
                                     <constraint firstAttribute="height" constant="19" id="iDp-hN-IeG"/>
                                 </constraints>
                             </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Uyz-8q-0bL">
+                                <rect key="frame" x="216" y="57" width="86" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Search lyrics:" id="kP4-4q-ed9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Axy-WJ-CRv" customClass="MASShortcutView">
                                 <rect key="frame" x="308" y="56" width="120" height="19"/>
                                 <constraints>
@@ -1261,42 +1301,56 @@
                                     <constraint firstAttribute="height" constant="19" id="o2Q-Sw-xx7"/>
                                 </constraints>
                             </customView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uyz-8q-0bL">
-                                <rect key="frame" x="216" y="57" width="86" height="17"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="TbU-as-K5K" customClass="MASShortcutView">
+                                <rect key="frame" x="308" y="221" width="120" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="djw-Bn-Kec"/>
+                                    <constraint firstAttribute="height" constant="19" id="Lcm-Zd-hA8"/>
+                                    <constraint firstAttribute="width" constant="120" id="aR6-Uv-Nqi"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Search lyrics:" id="kP4-4q-ed9">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutToggleKaraokeLyrics"/>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="TbU-as-K5K" firstAttribute="centerY" secondItem="XuJ-N7-23c" secondAttribute="centerY" id="1N8-Cw-LNX"/>
+                            <constraint firstItem="fHF-oJ-2oH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="1xZ-ei-kj0"/>
                             <constraint firstItem="Axy-WJ-CRv" firstAttribute="leading" secondItem="Uyz-8q-0bL" secondAttribute="trailing" constant="8" id="3ei-aa-KHZ"/>
                             <constraint firstItem="l4G-ES-LlU" firstAttribute="centerY" secondItem="Kmn-Mi-l4p" secondAttribute="centerY" id="58G-dQ-WcG"/>
                             <constraint firstItem="Kmn-Mi-l4p" firstAttribute="top" secondItem="Uyz-8q-0bL" secondAttribute="bottom" constant="16" id="6ig-NT-Lph"/>
                             <constraint firstItem="Uyz-8q-0bL" firstAttribute="trailing" secondItem="rZM-vL-ukW" secondAttribute="trailing" id="74j-PQ-Xk4"/>
                             <constraint firstItem="Paz-vU-k0Z" firstAttribute="trailing" secondItem="rZM-vL-ukW" secondAttribute="trailing" id="APM-uX-ZnS"/>
                             <constraint firstItem="Uyz-8q-0bL" firstAttribute="top" secondItem="Paz-vU-k0Z" secondAttribute="bottom" constant="16" id="Aqf-Wy-FF7"/>
+                            <constraint firstItem="fHF-oJ-2oH" firstAttribute="top" secondItem="yOR-wI-2Wv" secondAttribute="top" constant="24" id="DLH-Mf-b9Q"/>
                             <constraint firstItem="Uyz-8q-0bL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="DkG-cQ-ByF"/>
                             <constraint firstItem="Kmn-Mi-l4p" firstAttribute="trailing" secondItem="rZM-vL-ukW" secondAttribute="trailing" id="ESI-UF-K8H"/>
+                            <constraint firstItem="BAG-Gf-bbI" firstAttribute="top" secondItem="XuJ-N7-23c" secondAttribute="bottom" constant="16" id="EgB-iN-MH8"/>
+                            <constraint firstItem="Wl2-0l-Mvk" firstAttribute="leading" secondItem="fHF-oJ-2oH" secondAttribute="trailing" constant="8" id="Jhh-YJ-5KP"/>
                             <constraint firstItem="Kmn-Mi-l4p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="LNd-PI-lkt"/>
                             <constraint firstItem="l4G-ES-LlU" firstAttribute="leading" secondItem="Kmn-Mi-l4p" secondAttribute="trailing" constant="8" id="LNf-No-i7b"/>
+                            <constraint firstItem="XuJ-N7-23c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="LkM-XE-8Kh"/>
+                            <constraint firstItem="BAG-Gf-bbI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="MDO-BM-0nm"/>
                             <constraint firstItem="ZhS-BF-7UN" firstAttribute="leading" secondItem="Paz-vU-k0Z" secondAttribute="trailing" constant="8" id="MnK-HN-lKs"/>
                             <constraint firstItem="8LH-Ws-6CC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="O46-kw-Kty"/>
                             <constraint firstAttribute="bottom" secondItem="Kmn-Mi-l4p" secondAttribute="bottom" constant="24" id="PMl-xq-0wi"/>
+                            <constraint firstItem="rZM-vL-ukW" firstAttribute="top" secondItem="BAG-Gf-bbI" secondAttribute="bottom" constant="16" id="QJT-Qv-Z7k"/>
+                            <constraint firstItem="rZM-vL-ukW" firstAttribute="trailing" secondItem="XuJ-N7-23c" secondAttribute="trailing" id="bAM-be-Myv"/>
                             <constraint firstItem="xRx-86-gVx" firstAttribute="centerY" secondItem="rZM-vL-ukW" secondAttribute="centerY" id="dzF-pI-dlc"/>
+                            <constraint firstItem="Wl2-0l-Mvk" firstAttribute="centerY" secondItem="fHF-oJ-2oH" secondAttribute="centerY" id="emF-hd-V2U"/>
                             <constraint firstItem="Paz-vU-k0Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="g56-W5-tJK"/>
                             <constraint firstItem="Kmn-Mi-l4p" firstAttribute="top" secondItem="Paz-vU-k0Z" secondAttribute="bottom" priority="750" constant="16" id="gqg-Vu-mu0"/>
                             <constraint firstItem="ZhS-BF-7UN" firstAttribute="centerY" secondItem="Paz-vU-k0Z" secondAttribute="centerY" id="hnp-DF-O2a"/>
-                            <constraint firstItem="rZM-vL-ukW" firstAttribute="top" secondItem="yOR-wI-2Wv" secondAttribute="top" constant="24" id="j7l-HV-eXc"/>
+                            <constraint firstItem="rZM-vL-ukW" firstAttribute="trailing" secondItem="BAG-Gf-bbI" secondAttribute="trailing" id="jqj-dm-Ul6"/>
                             <constraint firstItem="92Q-NC-T3a" firstAttribute="centerY" secondItem="8LH-Ws-6CC" secondAttribute="centerY" id="js1-zR-2g2"/>
+                            <constraint firstItem="XuJ-N7-23c" firstAttribute="top" secondItem="fHF-oJ-2oH" secondAttribute="bottom" constant="16" id="k3S-oh-bMv"/>
+                            <constraint firstItem="r6F-LJ-R46" firstAttribute="centerY" secondItem="BAG-Gf-bbI" secondAttribute="centerY" id="lT1-kS-2zy"/>
                             <constraint firstItem="92Q-NC-T3a" firstAttribute="leading" secondItem="8LH-Ws-6CC" secondAttribute="trailing" constant="8" id="mLE-HC-SDN"/>
                             <constraint firstItem="8LH-Ws-6CC" firstAttribute="trailing" secondItem="rZM-vL-ukW" secondAttribute="trailing" id="nmc-gD-W7K"/>
                             <constraint firstItem="rZM-vL-ukW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="o18-76-aw6"/>
+                            <constraint firstItem="rZM-vL-ukW" firstAttribute="trailing" secondItem="fHF-oJ-2oH" secondAttribute="trailing" id="p9z-fR-3w3"/>
+                            <constraint firstItem="r6F-LJ-R46" firstAttribute="leading" secondItem="BAG-Gf-bbI" secondAttribute="trailing" constant="8" id="pRh-9u-zpr"/>
                             <constraint firstItem="Paz-vU-k0Z" firstAttribute="top" secondItem="8LH-Ws-6CC" secondAttribute="bottom" constant="16" id="sVE-M2-NRt"/>
+                            <constraint firstItem="TbU-as-K5K" firstAttribute="leading" secondItem="XuJ-N7-23c" secondAttribute="trailing" constant="8" id="vEl-gs-1nc"/>
                             <constraint firstItem="rZM-vL-ukW" firstAttribute="trailing" secondItem="yOR-wI-2Wv" secondAttribute="centerX" id="vop-eU-AJO"/>
                             <constraint firstItem="Axy-WJ-CRv" firstAttribute="centerY" secondItem="Uyz-8q-0bL" secondAttribute="centerY" id="w6h-zl-0u2"/>
                             <constraint firstItem="xRx-86-gVx" firstAttribute="leading" secondItem="rZM-vL-ukW" secondAttribute="trailing" constant="8" id="zQi-Ou-E9R"/>
@@ -1314,7 +1368,7 @@
                 </viewController>
                 <customObject id="I0Z-pO-sVx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="510.5"/>
+            <point key="canvasLocation" x="1969" y="540"/>
         </scene>
         <!--Lab-->
         <scene sceneID="SoK-6E-AMw">
@@ -1461,7 +1515,7 @@
                 <customObject id="hIA-Hp-BDR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="MQW-nm-dXS"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="1308"/>
+            <point key="canvasLocation" x="1969" y="1390"/>
         </scene>
     </scenes>
     <resources>
@@ -1469,7 +1523,7 @@
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
-        <image name="NSStopProgressFreestandingTemplate" width="11" height="11"/>
+        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
         <image name="audirvana_icon" width="64" height="64"/>
         <image name="folder" width="21" height="18"/>
         <image name="gap_hollow_horizontal" width="18" height="14"/>
