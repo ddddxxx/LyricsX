@@ -287,7 +287,7 @@
                         <menuItem title="Show Lyrics Window" tag="102" id="kyJ-kV-2Du">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <segue destination="fpK-JT-GVp" kind="show" id="HOu-m8-UdM"/>
+                                <action selector="showLyricsHUD:" target="Voe-Tx-rLC" id="hHM-Nm-oOL"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="yWX-1z-WqD"/>
@@ -476,7 +476,7 @@
         <!--Lyrics HUD Window Controller-->
         <scene sceneID="Bwn-Z7-ydj">
             <objects>
-                <windowController storyboardIdentifier="LyricsHUD" showSeguePresentationStyle="single" id="fpK-JT-GVp" userLabel="Lyrics HUD Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="LyricsHUD" showSeguePresentationStyle="single" id="fpK-JT-GVp" userLabel="Lyrics HUD Window Controller" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="LyricsHUD" animationBehavior="default" titleVisibility="hidden" id="6aU-M0-0Jh" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

@@ -120,6 +120,9 @@ extension UserDefaults.DefaultsKeys {
     static let LyricsWindowHighlightColor = Key<NSColor>("LyricsWindowHighlightColor", transformer: .keyedArchive)
     
     // Shortcut
+    static let ShortcutToggleMenuBarLyrics = Key<String>("ShortcutToggleMenuBarLyrics")
+    static let ShortcutToggleKaraokeLyrics = Key<String>("ShortcutToggleKaraokeLyrics")
+    static let ShortcutShowLyricsWindow = Key<String>("ShortcutShowLyricsWindow")
     static let ShortcutOffsetIncrease = Key<String>("ShortcutOffsetIncrease")
     static let ShortcutOffsetDecrease = Key<String>("ShortcutOffsetDecrease")
     static let ShortcutWriteToiTunes = Key<String>("ShortcutWriteToiTunes")

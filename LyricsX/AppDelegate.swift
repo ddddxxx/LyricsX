@@ -133,19 +133,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func setupShortcuts() {
         let binder = MASShortcutBinder.shared()!
-        binder.bindShortcut(with: .ShortcutOffsetIncrease) {
+        binder.bindBoolShortcut(.ShortcutToggleMenuBarLyrics, target: .MenuBarLyricsEnabled)
+        binder.bindBoolShortcut(.ShortcutToggleKaraokeLyrics, target: .DesktopLyricsEnabled)
+        binder.bindShortcut(.ShortcutShowLyricsWindow) {
+            self.showLyricsHUD(nil)
+        }
+        binder.bindShortcut(.ShortcutOffsetIncrease) {
             self.increaseOffset(nil)
         }
-        binder.bindShortcut(with: .ShortcutOffsetDecrease) {
+        binder.bindShortcut(.ShortcutOffsetDecrease) {
             self.decreaseOffset(nil)
         }
-        binder.bindShortcut(with: .ShortcutWriteToiTunes) {
+        binder.bindShortcut(.ShortcutWriteToiTunes) {
             self.writeToiTunes(nil)
         }
-        binder.bindShortcut(with: .ShortcutWrongLyrics) {
+        binder.bindShortcut(.ShortcutWrongLyrics) {
             self.wrongLyrics(nil)
         }
-        binder.bindShortcut(with: .ShortcutSearchLyrics) {
+        binder.bindShortcut(.ShortcutSearchLyrics) {
             self.searchLyrics(nil)
         }
     }
@@ -168,6 +173,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // write to iTunes
         
         MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
+    }
+    
+    var lyricsHUD: NSWindowController?
+    
+    @IBAction func showLyricsHUD(_ sender: Any?) {
+        let controller = lyricsHUD ?? NSStoryboard.main?.instantiateController(withIdentifier: .init("LyricsHUD")) as! NSWindowController
+        controller.showWindow(nil)
+        lyricsHUD = controller
     }
     
     @IBAction func checkUpdateAction(_ sender: Any) {
@@ -233,7 +246,13 @@ extension NSUserInterfaceItemIdentifier {
 
 extension MASShortcutBinder {
     
-    func bindShortcut<T>(with defaultsKay: UserDefaults.DefaultsKey<T>, to action: @escaping () -> Void) {
+    func bindShortcut<T>(_ defaultsKay: UserDefaults.DefaultsKey<T>, to action: @escaping () -> Void) {
         bindShortcut(withDefaultsKey: defaultsKay.key, toAction: action)
+    }
+    
+    func bindBoolShortcut<T>(_ defaultsKay: UserDefaults.DefaultsKey<T>, target: UserDefaults.DefaultsKey<Bool>) {
+        bindShortcut(withDefaultsKey: defaultsKay.key) {
+            defaults[target] = !defaults[target]
+        }
     }
 }
