@@ -24,10 +24,10 @@ import MusicPlayer
 
 extension NSObject {
     
-    func bind<T>(_ binding: NSBindingName,
-                 to observable: UserDefaults,
-                 withDefaultName defaultName: UserDefaults.DefaultsKey<T>,
-                 options: [NSBindingOption: Any] = [:]) {
+    func bind(_ binding: NSBindingName,
+              to observable: UserDefaults = .standard,
+              withDefaultName defaultName: UserDefaults.DefaultsKeys,
+              options: [NSBindingOption: Any] = [:]) {
         var options = options
         if let transformer = defaultName.valueTransformer {
             switch transformer {

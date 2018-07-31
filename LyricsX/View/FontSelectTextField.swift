@@ -23,7 +23,7 @@ import SnapKit
 
 protocol FontSelectTextFieldDelegate: class {
     
-    func fontChanged(from: NSFont, to: NSFont, sender: FontSelectTextField)
+    func fontChanged(from oldFont: NSFont, to newFont: NSFont, sender: FontSelectTextField)
 }
 
 class FontSelectTextField: NSTextField, NSWindowDelegate {

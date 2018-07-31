@@ -20,6 +20,8 @@
 
 import CoreGraphics
 
+// swiftlint:disable shorthand_operator identifier_name operator_whitespace
+
 // MARK: - CGFloat
 
 extension CGFloat {

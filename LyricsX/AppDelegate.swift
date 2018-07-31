@@ -80,12 +80,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             log("Failed to set login item enabled")
         }
         
-        let sharedKeys = [
-            UserDefaults.DefaultsKeys.LaunchAndQuitWithPlayer.key,
-            UserDefaults.DefaultsKeys.PreferredPlayerIndex.key
+        let sharedKeys: [UserDefaults.DefaultsKeys] = [
+            .LaunchAndQuitWithPlayer,
+            .PreferredPlayerIndex,
         ]
         sharedKeys.forEach {
-            groupDefaults.bind(NSBindingName($0), to: defaults, withKeyPath: $0)
+            groupDefaults.bind(NSBindingName($0.key), withDefaultName: $0)
         }
         
         #if IS_FOR_MAS
@@ -178,6 +178,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var lyricsHUD: NSWindowController?
     
     @IBAction func showLyricsHUD(_ sender: Any?) {
+        // swiftlint:disable:next force_cast
         let controller = lyricsHUD ?? NSStoryboard.main?.instantiateController(withIdentifier: .init("LyricsHUD")) as! NSWindowController
         controller.showWindow(nil)
         NSApp.activate(ignoringOtherApps: true)

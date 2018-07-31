@@ -41,10 +41,7 @@ class MenuBarLyrics: NSObject {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-        NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(updateStatusItem),
-                                                          name: NSWorkspace.didActivateApplicationNotification,
-                                                          object: nil)
+        workspaceNC.addObserver(self, selector: #selector(updateStatusItem), name: NSWorkspace.didActivateApplicationNotification, object: nil)
         statusItemObservation = defaults.observe(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in
             self.updateStatusItem()
         }
