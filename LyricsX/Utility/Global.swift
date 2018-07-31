@@ -88,7 +88,7 @@ extension UserDefaults.DefaultsKeys {
     static let DisableLyricsWhenSreenShot = Key<Bool>("DisableLyricsWhenSreenShot")
     
     // Display
-    static let DesktopLyricsScreenRect = Key<CGRect>.init("DesktopLyricsScreenRect", transformer: .json)
+    static let DesktopLyricsScreenRect = Key<CGRect>("DesktopLyricsScreenRect", transformer: .json)
     static let DesktopLyricsOneLineMode = Key<Bool>("DesktopLyricsOneLineMode")
     static let DesktopLyricsVerticalMode = Key<Bool>("DesktopLyricsVerticalMode")
     

@@ -44,7 +44,7 @@ class FontSelectTextField: NSTextField, NSWindowDelegate {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         _ = FontSelectTextField.swizzler
-        let btn = NSButton.init(frame: .zero).then { btn in
+        let btn = NSButton(frame: .zero).then { btn in
             btn.bezelStyle = .regularSquare
             btn.setButtonType(.momentaryPushIn)
             btn.isBordered = false

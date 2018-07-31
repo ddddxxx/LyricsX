@@ -97,4 +97,3 @@ extension CFStringTokenizer: IteratorProtocol, Sequence {
         return nextToken()
     }
 }
-
