@@ -239,13 +239,9 @@
 		BB4141AC1E458BA800A51775 /* LyricsX */ = {
 			isa = PBXGroup;
 			children = (
-				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
-				BBC1D35A1E485BA7002538A2 /* AppController.swift */,
 				BB4141B31E458BA900A51775 /* Main.storyboard */,
 				BB6139761FCCFA6700CBD808 /* Perference.storyboard */,
-				BB34F7E51F21911700B7C484 /* Updater.swift */,
-				BB03C8881FDF6FC000FBE0DA /* ChineseConverter+Singleton.swift */,
-				BB458C62201C5F4500740C3B /* LyricsMetaData+Extension.swift */,
+				E9C49A8E2110490700159ADC /* Component */,
 				BB063B2F1E8A93CE00A25C3E /* View */,
 				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
 				BB7EC7B61E4ED03900A0AC3F /* Utility */,
@@ -346,6 +342,18 @@
 				BB60F30A1E889A1B00BA1FD2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9C49A8E2110490700159ADC /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				BB4141AD1E458BA800A51775 /* AppDelegate.swift */,
+				BBC1D35A1E485BA7002538A2 /* AppController.swift */,
+				BB34F7E51F21911700B7C484 /* Updater.swift */,
+				BB03C8881FDF6FC000FBE0DA /* ChineseConverter+Singleton.swift */,
+				BB458C62201C5F4500740C3B /* LyricsMetaData+Extension.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		E9E55132207C4BFC00F9958A /* CBridge */ = {
