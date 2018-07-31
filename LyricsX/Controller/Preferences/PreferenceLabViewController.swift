@@ -25,11 +25,12 @@ class PreferenceLabViewController: NSViewController {
     @IBOutlet weak var enableTouchBarLyricsButton: NSButton!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         #if IS_FOR_MAS
             enableTouchBarLyricsButton.target = self
             enableTouchBarLyricsButton.action = #selector(mas_enableTouchBarLyricsAction)
         #else
-            enableTouchBarLyricsButton.bind(.value, to: defaults, withDefaultName: .TouchBarLyricsEnabled)
+            enableTouchBarLyricsButton.bind(.value, withDefaultName: .TouchBarLyricsEnabled)
         #endif
     }
     

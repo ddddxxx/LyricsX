@@ -29,6 +29,7 @@ let lyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
 
 let defaults = UserDefaults.standard
 let groupDefaults = UserDefaults(suiteName: lyricsXGroupIdentifier)!
+let workspaceNC = NSWorkspace.shared.notificationCenter
 
 let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
 let isFromMacAppStore = (try? Bundle.main.appStoreReceiptURL?.checkResourceIsReachable()) ?? nil == true
@@ -88,7 +89,7 @@ extension UserDefaults.DefaultsKeys {
     static let DisableLyricsWhenSreenShot = Key<Bool>("DisableLyricsWhenSreenShot")
     
     // Display
-    static let DesktopLyricsScreenRect = Key<CGRect>.init("DesktopLyricsScreenRect", transformer: .json)
+    static let DesktopLyricsScreenRect = Key<CGRect>("DesktopLyricsScreenRect", transformer: .json)
     static let DesktopLyricsOneLineMode = Key<Bool>("DesktopLyricsOneLineMode")
     static let DesktopLyricsVerticalMode = Key<Bool>("DesktopLyricsVerticalMode")
     
@@ -120,6 +121,9 @@ extension UserDefaults.DefaultsKeys {
     static let LyricsWindowHighlightColor = Key<NSColor>("LyricsWindowHighlightColor", transformer: .keyedArchive)
     
     // Shortcut
+    static let ShortcutToggleMenuBarLyrics = Key<String>("ShortcutToggleMenuBarLyrics")
+    static let ShortcutToggleKaraokeLyrics = Key<String>("ShortcutToggleKaraokeLyrics")
+    static let ShortcutShowLyricsWindow = Key<String>("ShortcutShowLyricsWindow")
     static let ShortcutOffsetIncrease = Key<String>("ShortcutOffsetIncrease")
     static let ShortcutOffsetDecrease = Key<String>("ShortcutOffsetDecrease")
     static let ShortcutWriteToiTunes = Key<String>("ShortcutWriteToiTunes")

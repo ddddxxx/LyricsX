@@ -81,12 +81,14 @@ extension CFStringTokenizer {
     }
     
     func currentTokenAttribute(_ attribute: Attribute) -> NSString? {
+        // swiftlint:disable:next force_cast
         return CFStringTokenizerCopyCurrentTokenAttribute(self, attribute.rawValue) as! NSString?
     }
     
     func currentSubTokens() -> [CFStringTokenizerTokenType] {
         let arr = NSMutableArray()
         CFStringTokenizerGetCurrentSubTokens(self, nil, 0, arr as CFMutableArray)
+        // swiftlint:disable:next force_cast
         return arr as! [CFStringTokenizerTokenType]
     }
 }
@@ -97,4 +99,3 @@ extension CFStringTokenizer: IteratorProtocol, Sequence {
         return nextToken()
     }
 }
-

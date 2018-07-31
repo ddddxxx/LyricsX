@@ -18,14 +18,18 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreText
+import Foundation
 
 // MARK: - CTRubyAnnotation
 
 extension CTRubyAnnotation {
     
-    static func create(_ str: NSString, position: CTRubyPosition = .before, alignment: CTRubyAlignment = .auto, overhang: CTRubyOverhang = .auto, sizeFactor: CGFloat = 0.5) -> CTRubyAnnotation {
+    static func create(_ str: NSString,
+                       position: CTRubyPosition = .before,
+                       alignment: CTRubyAlignment = .auto,
+                       overhang: CTRubyOverhang = .auto,
+                       sizeFactor: CGFloat = 0.5) -> CTRubyAnnotation {
         let str = NSString(string: str)
         let count = Int(CTRubyPosition.count.rawValue)
         let text = UnsafeMutablePointer<Unmanaged<CFString>?>.allocate(capacity: count)
@@ -42,6 +46,7 @@ extension CTRubyAnnotation {
 extension CTFrame {
     
     var lines: [CTLine] {
+        // swiftlint:disable:next force_cast
         return CTFrameGetLines(self) as! [CTLine]
     }
     
@@ -72,6 +77,7 @@ extension CTLine {
     }
     
     var glyphRuns: [CTRun] {
+        // swiftlint:disable:next force_cast
         return CTLineGetGlyphRuns(self) as! [CTRun]
     }
     

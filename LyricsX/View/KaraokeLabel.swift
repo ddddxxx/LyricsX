@@ -153,10 +153,10 @@ class KaraokeLabel: NSTextField {
     
     // TODO: multi-line
     private lazy var progressLayer: CALayer = {
-        let l = CALayer()
+        let pLayer = CALayer()
         wantsLayer = true
-        layer?.addSublayer(l)
-        return l
+        layer?.addSublayer(pLayer)
+        return pLayer
     }()
     
     @objc dynamic var progressColor: NSColor? {

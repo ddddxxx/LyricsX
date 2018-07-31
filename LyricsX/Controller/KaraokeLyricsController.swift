@@ -70,15 +70,15 @@ class KaraokeLyricsWindowController: NSWindowController {
     }
     
     private func addObserver() {
-        lyricsView.bind(NSBindingName("textColor"), to: defaults, withDefaultName: .DesktopLyricsColor)
-        lyricsView.bind(NSBindingName("shadowColor"), to: defaults, withDefaultName: .DesktopLyricsShadowColor)
-        lyricsView.bind(NSBindingName("fillColor"), to: defaults, withDefaultName: .DesktopLyricsBackgroundColor)
-        lyricsView.bind(NSBindingName("shouldHideWithMouse"), to: defaults, withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
-        lyricsView.bind(NSBindingName("isVertical"), to: defaults, withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
-        lyricsView.bind(NSBindingName("drawFurigana"), to: defaults, withDefaultName: .DesktopLyricsEnableFurigana)
+        lyricsView.bind(NSBindingName("textColor"), withDefaultName: .DesktopLyricsColor)
+        lyricsView.bind(NSBindingName("shadowColor"), withDefaultName: .DesktopLyricsShadowColor)
+        lyricsView.bind(NSBindingName("fillColor"), withDefaultName: .DesktopLyricsBackgroundColor)
+        lyricsView.bind(NSBindingName("shouldHideWithMouse"), withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
+        lyricsView.bind(NSBindingName("isVertical"), withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
+        lyricsView.bind(NSBindingName("drawFurigana"), withDefaultName: .DesktopLyricsEnableFurigana)
         
         let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
-        window?.contentView?.bind(.hidden, to: defaults, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
+        window?.contentView?.bind(.hidden, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
         
         defaultObservations += [
             defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] _, change in
@@ -115,7 +115,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         ]
         
         // swiftlint:disable:next discarded_notification_center_observer
-        notifications += [NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
+        notifications += [workspaceNC.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
             self?.updateWindowFrame()
         }]
     }

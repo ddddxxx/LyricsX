@@ -78,12 +78,12 @@ class KaraokeLyricsView: NSBox {
     }
     
     private func lyricsLabel(_ content: String) -> KaraokeLabel {
-        if let v = stackView.subviews.lazy.compactMap({ $0 as? KaraokeLabel }).first(where: { !stackView.arrangedSubviews.contains($0) }) {
-            v.alphaValue = 0
-            v.stringValue = content
-            v.removeProgressAnimation()
-            v.removeFromSuperview()
-            return v
+        if let view = stackView.subviews.lazy.compactMap({ $0 as? KaraokeLabel }).first(where: { !stackView.arrangedSubviews.contains($0) }) {
+            view.alphaValue = 0
+            view.stringValue = content
+            view.removeProgressAnimation()
+            view.removeFromSuperview()
+            return view
         }
         return KaraokeLabel(labelWithString: content).then {
             $0.bind(.font, to: self, withKeyPath: #keyPath(font))

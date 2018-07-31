@@ -102,7 +102,10 @@ extension Regex {
 
 extension Regex {
     
-    func enumerateMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil, using block: (_ result: MatchResult?, _ flags: NSRegularExpression.MatchingFlags, _ stop: inout Bool) -> Void) {
+    func enumerateMatches(in string: String,
+                          options: NSRegularExpression.MatchingOptions = [],
+                          range: NSRange? = nil,
+                          using block: (_ result: MatchResult?, _ flags: NSRegularExpression.MatchingFlags, _ stop: inout Bool) -> Void) {
         _regex.enumerateMatches(in: string, options: options, range: range ?? string.fullRange) { result, flags, stop in
             let r = result.map { MatchResult(result: $0, in: string) }
             var s = false
@@ -134,11 +137,17 @@ extension Regex {
 
 extension Regex {
     
-    func replacingMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil, withTemplate templ: String) -> String {
+    func replacingMatches(in string: String,
+                          options: NSRegularExpression.MatchingOptions = [],
+                          range: NSRange? = nil,
+                          withTemplate templ: String) -> String {
         return _regex.stringByReplacingMatches(in: string, options: options, range: range ?? string.fullRange, withTemplate: templ)
     }
     
-    func replaceMatches(in string: inout String, options: NSRegularExpression.MatchingOptions = [], range: NSRange? = nil, withTemplate templ: String) -> Int {
+    func replaceMatches(in string: inout String,
+                        options: NSRegularExpression.MatchingOptions = [],
+                        range: NSRange? = nil,
+                        withTemplate templ: String) -> Int {
         let mutableString = NSMutableString(string: string)
         let result = _regex.replaceMatches(in: mutableString, options: options, range: range ?? mutableString.fullRange, withTemplate: templ)
         string = mutableString as String

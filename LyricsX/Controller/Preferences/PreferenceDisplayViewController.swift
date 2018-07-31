@@ -29,13 +29,9 @@ class PreferenceDisplayViewController: NSViewController, FontSelectTextFieldDele
     @IBOutlet weak var removeFontFallbackButton: NSButton!
     
     override func viewDidLoad() {
-        karaokeFontSelectField.selectedFont = NSFont(name: defaults[.DesktopLyricsFontName],
-                                                     size: CGFloat(defaults[.DesktopLyricsFontSize]))
-            ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
+        karaokeFontSelectField.selectedFont = defaults.desktopLyricsFont
         karaokeFontSelectField.fontChangeDelegate = self
-        hudFontSelectField.selectedFont = NSFont(name: defaults[.LyricsWindowFontName],
-                                                 size: CGFloat(defaults[.LyricsWindowFontSize]))
-            ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
+        hudFontSelectField.selectedFont = defaults.lyricsWindowFont
         hudFontSelectField.fontChangeDelegate = self
         updateScreenFontFallback()
         super.viewDidLoad()
