@@ -1240,6 +1240,9 @@
                                     <constraint firstAttribute="width" constant="120" id="IMs-tc-Ug3"/>
                                     <constraint firstAttribute="height" constant="19" id="m70-Qr-7Hx"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutOffsetIncrease"/>
+                                </userDefinedRuntimeAttributes>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8LH-Ws-6CC">
                                 <rect key="frame" x="162" y="123" width="140" height="17"/>
@@ -1255,6 +1258,9 @@
                                     <constraint firstAttribute="width" constant="120" id="Ual-Pp-5ip"/>
                                     <constraint firstAttribute="height" constant="19" id="uTu-hP-tC1"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutOffsetDecrease"/>
+                                </userDefinedRuntimeAttributes>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Paz-vU-k0Z">
                                 <rect key="frame" x="167" y="90" width="135" height="17"/>
@@ -1270,6 +1276,9 @@
                                     <constraint firstAttribute="height" constant="19" id="Zoc-wc-dp9"/>
                                     <constraint firstAttribute="width" constant="120" id="qNN-Qz-KrM"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutWriteToiTunes"/>
+                                </userDefinedRuntimeAttributes>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Kmn-Mi-l4p">
                                 <rect key="frame" x="169" y="24" width="133" height="17"/>
@@ -1285,6 +1294,9 @@
                                     <constraint firstAttribute="width" constant="120" id="8Vz-YA-8cs"/>
                                     <constraint firstAttribute="height" constant="19" id="iDp-hN-IeG"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutWrongLyrics"/>
+                                </userDefinedRuntimeAttributes>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Uyz-8q-0bL">
                                 <rect key="frame" x="216" y="57" width="86" height="17"/>
@@ -1300,6 +1312,9 @@
                                     <constraint firstAttribute="width" constant="120" id="lZA-iT-VA9"/>
                                     <constraint firstAttribute="height" constant="19" id="o2Q-Sw-xx7"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutSearchLyrics"/>
+                                </userDefinedRuntimeAttributes>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="TbU-as-K5K" customClass="MASShortcutView">
                                 <rect key="frame" x="308" y="221" width="120" height="19"/>
@@ -1359,11 +1374,7 @@
                     </view>
                     <connections>
                         <outlet property="searchLyricsLabel" destination="Uyz-8q-0bL" id="rKW-FQ-KsJ"/>
-                        <outlet property="shortcutDecreaseOffset" destination="92Q-NC-T3a" id="ZS7-6f-Waj"/>
-                        <outlet property="shortcutIncreaseOffset" destination="xRx-86-gVx" id="pAF-m5-rJ2"/>
-                        <outlet property="shortcutSearchLyrics" destination="Axy-WJ-CRv" id="EwQ-OG-Lhg"/>
-                        <outlet property="shortcutWriteToiTunes" destination="ZhS-BF-7UN" id="J7G-Ub-B2q"/>
-                        <outlet property="shortcutWrongLyrics" destination="l4G-ES-LlU" id="SQL-gX-wr4"/>
+                        <outlet property="shortcutSearchLyrics" destination="Axy-WJ-CRv" id="Lgp-iH-f8z"/>
                     </connections>
                 </viewController>
                 <customObject id="I0Z-pO-sVx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
