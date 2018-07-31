@@ -180,6 +180,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showLyricsHUD(_ sender: Any?) {
         let controller = lyricsHUD ?? NSStoryboard.main?.instantiateController(withIdentifier: .init("LyricsHUD")) as! NSWindowController
         controller.showWindow(nil)
+        NSApp.activate(ignoringOtherApps: true)
         lyricsHUD = controller
     }
     
