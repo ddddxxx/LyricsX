@@ -40,9 +40,6 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         }
     }
     
-    private var observations: [NSObjectProtocol] = []
-    private var defaltsObservation: DefaultsObservation?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -66,27 +63,16 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         lyricsScrollView.bind(NSBindingName("textColor"), withDefaultName: .LyricsWindowTextColor)
         lyricsScrollView.bind(NSBindingName("highlightColor"), withDefaultName: .LyricsWindowHighlightColor)
         
-        defaltsObservation = defaults.observe(.LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] _, change in
+        observeDefaults(key: .LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] _, change in
             let fontSize = CGFloat(change.newValue)
             self.lyricsScrollViewTopMargin.constant = fontSize
             self.lyricsScrollViewLeftMargin.constant = fontSize
             self.displayLyrics(animation: false)
         }
         
-        let nc = NotificationCenter.default
-        // swiftlint:disable discarded_notification_center_observer
-        observations += [
-            nc.addObserver(forName: .lyricsShouldDisplay,
-                           object: nil,
-                           queue: nil) { [unowned self] _ in self.displayLyrics() },
-            nc.addObserver(forName: .currentLyricsChange,
-                           object: nil,
-                           queue: nil) { [unowned self] _ in self.lyricsChanged() },
-            nc.addObserver(forName: NSScrollView.willStartLiveScrollNotification,
-                           object: lyricsScrollView,
-                           queue: .main) { [unowned self] _ in self.isTracking = false }
-        ]
-        // swiftlint:enable discarded_notification_center_observer
+        observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.displayLyrics() }
+        observeNotification(name: .currentLyricsChange) { [unowned self] _ in self.lyricsChanged() }
+        observeNotification(name: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView, queue: .main) { [unowned self] _ in self.isTracking = false }
         
         Answers.logCustomEvent(withName: "Show Lyrics Window")
     }
@@ -94,10 +80,6 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     override func viewWillAppear() {
         noLyricsLabel.isHidden = AppController.shared.currentLyrics != nil
         displayLyrics(animation: false)
-    }
-    
-    deinit {
-        observations.forEach(NotificationCenter.default.removeObserver)
     }
     
     // MARK: - Handler

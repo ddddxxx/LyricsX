@@ -35,16 +35,13 @@ class MenuBarLyrics: NSObject {
     
     private var screenLyrics = ""
     
-    var statusItemObservation: DefaultsObservation?
-    
     private override init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         super.init()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-        workspaceNC.addObserver(self, selector: #selector(updateStatusItem), name: NSWorkspace.didActivateApplicationNotification, object: nil)
-        statusItemObservation = defaults.observe(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in
-            self.updateStatusItem()
-        }
+        
+        observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.handleLyricsDisplay() }
+        observeNotification(center: workspaceNC, name: NSWorkspace.didActivateApplicationNotification) { [unowned self] _ in self.updateStatusItem() }
+        observeDefaults(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }
     }
     
     @objc func handleLyricsDisplay() {

@@ -40,7 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var desktopLyrics: KaraokeLyricsWindowController?
     
     var touchBarLyrics: Any?
-    var touchBarLyricsObservation: DefaultsObservation?
     
     lazy var searchLyricsWC: NSWindowController = {
         // swiftlint:disable:next force_cast
@@ -92,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             checkForMASReview(force: true)
         #else
             if #available(OSX 10.12.2, *) {
-                touchBarLyricsObservation = defaults.observe(.TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
+                observeDefaults(key: .TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
                     if change.newValue, self.touchBarLyrics == nil {
                         self.touchBarLyrics = TouchBarLyrics()
                     } else if !change.newValue, self.touchBarLyrics != nil {

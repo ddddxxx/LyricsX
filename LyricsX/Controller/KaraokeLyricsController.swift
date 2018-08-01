@@ -29,9 +29,6 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
     
-    var defaultObservations: [DefaultsObservation] = []
-    var notifications: [NSObjectProtocol] = []
-    
     var screen: NSScreen {
         didSet {
             defaults[.DesktopLyricsScreenRect] = screen.frame
@@ -60,8 +57,12 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
             self.handleLyricsDisplay()
-            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
+            self.observeNotification(name: .lyricsShouldDisplay, using: { [unowned self] _ in
+                self.handleLyricsDisplay()
+            })
+            self.observeNotification(name: .currentLyricsChange, using: { [unowned self] _ in
+                self.handleLyricsDisplay()
+            })
         }
     }
     
@@ -80,44 +81,42 @@ class KaraokeLyricsWindowController: NSWindowController {
         let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
         window?.contentView?.bind(.hidden, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
         
-        defaultObservations += [
-            defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] _, change in
-                switch change.newValue {
-                case true: self?.window?.sharingType = .none
-                case false: self?.window?.sharingType = .readOnly
-                }
-            },
-            defaults.observe(keys: [
-                .DesktopLyricsFontName,
-                .DesktopLyricsFontSize,
-                .DesktopLyricsFontNameFallback
-            ], options: [.initial]) { [weak self] in
-                self?.lyricsView.font = defaults.desktopLyricsFont
-            },
-            defaults.observe(keys: [
-                .DesktopLyricsInsetTopEnabled,
-                .DesktopLyricsInsetBottomEnabled,
-                .DesktopLyricsInsetLeftEnabled,
-                .DesktopLyricsInsetRightEnabled,
-                .DesktopLyricsInsetTop,
-                .DesktopLyricsInsetBottom,
-                .DesktopLyricsInsetLeft,
-                .DesktopLyricsInsetRight
-                ], options: []) { [weak self] in
-                    NSAnimationContext.runAnimationGroup({ context in
-                        context.duration = 0.2
-                        context.allowsImplicitAnimation = true
-                        context.timingFunction = .mystery
-                        self?.makeConstraints()
-                        self?.window?.layoutIfNeeded()
-                    })
-            }
-        ]
         
-        // swiftlint:disable:next discarded_notification_center_observer
-        notifications += [workspaceNC.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.updateWindowFrame()
-        }]
+        observeDefaults(key: .DisableLyricsWhenSreenShot, options: [.new, .initial]) { [unowned self] _, change in
+            switch change.newValue {
+            case true: self.window?.sharingType = .none
+            case false: self.window?.sharingType = .readOnly
+            }
+        }
+        observeDefaults(keys: [
+            .DesktopLyricsFontName,
+            .DesktopLyricsFontSize,
+            .DesktopLyricsFontNameFallback
+        ], options: [.initial]) { [unowned self] in
+            self.lyricsView.font = defaults.desktopLyricsFont
+        }
+        observeDefaults(keys: [
+            .DesktopLyricsInsetTopEnabled,
+            .DesktopLyricsInsetBottomEnabled,
+            .DesktopLyricsInsetLeftEnabled,
+            .DesktopLyricsInsetRightEnabled,
+            .DesktopLyricsInsetTop,
+            .DesktopLyricsInsetBottom,
+            .DesktopLyricsInsetLeft,
+            .DesktopLyricsInsetRight
+            ]) { [unowned self] in
+                NSAnimationContext.runAnimationGroup({ context in
+                    context.duration = 0.2
+                    context.allowsImplicitAnimation = true
+                    context.timingFunction = .mystery
+                    self.makeConstraints()
+                    self.window?.layoutIfNeeded()
+                })
+        }
+        
+        observeNotification(center: workspaceNC, name: NSWorkspace.activeSpaceDidChangeNotification, queue: .main) { [unowned self] _ in
+            self.updateWindowFrame()
+        }
     }
     
     func updateWindowFrame() {
