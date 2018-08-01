@@ -71,12 +71,12 @@ class KaraokeLyricsWindowController: NSWindowController {
     }
     
     private func addObserver() {
-        lyricsView.bind(NSBindingName("textColor"), withDefaultName: .DesktopLyricsColor)
-        lyricsView.bind(NSBindingName("shadowColor"), withDefaultName: .DesktopLyricsShadowColor)
-        lyricsView.bind(NSBindingName("fillColor"), withDefaultName: .DesktopLyricsBackgroundColor)
-        lyricsView.bind(NSBindingName("shouldHideWithMouse"), withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
-        lyricsView.bind(NSBindingName("isVertical"), withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
-        lyricsView.bind(NSBindingName("drawFurigana"), withDefaultName: .DesktopLyricsEnableFurigana)
+        lyricsView.bind(\.textColor, withDefaultName: .DesktopLyricsColor)
+        lyricsView.bind(\.shadowColor, withDefaultName: .DesktopLyricsShadowColor)
+        lyricsView.bind(\.fillColor, withDefaultName: .DesktopLyricsBackgroundColor)
+        lyricsView.bind(\.shouldHideWithMouse, withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
+        lyricsView.bind(\.isVertical, withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
+        lyricsView.bind(\.drawFurigana, withDefaultName: .DesktopLyricsEnableFurigana)
         
         let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
         window?.contentView?.bind(.hidden, withDefaultName: .DesktopLyricsEnabled, options: negateOption)

@@ -46,7 +46,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
         
-        lyricsTextField.bind(NSBindingName("tfProgressColor"), withDefaultName: .DesktopLyricsShadowColor)
+        lyricsTextField.bind(\.tfProgressColor, withUnmatchedDefaultName: .DesktopLyricsShadowColor)
     }
     
     deinit {

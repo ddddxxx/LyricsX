@@ -23,8 +23,8 @@ import GenericID
 
 private class NotificationObservationToken {
     
-    var center: NotificationCenter
-    var token: NSObjectProtocol
+    var center: NotificationCenter?
+    var token: NSObjectProtocol?
     
     init(center: NotificationCenter, token: NSObjectProtocol) {
         self.center = center
@@ -32,7 +32,9 @@ private class NotificationObservationToken {
     }
     
     func invalidate() {
-        center.removeObserver(token)
+        token.map { center?.removeObserver($0) }
+        center = nil
+        token = nil
     }
     
     deinit {
@@ -61,7 +63,7 @@ extension NSObject {
         autoDestruction.add(NotificationObservationToken(center: center, token: token))
     }
     
-    func observeObject<Value>(_ object: NSObject, keyPath: KeyPath<NSObject, Value>, options: NSKeyValueObservingOptions, changeHandler: @escaping (NSObject, NSKeyValueObservedChange<Value>) -> Void) {
+    func observeObject<Target: NSObject, Value>(_ object: Target, keyPath: KeyPath<Target, Value>, options: NSKeyValueObservingOptions, changeHandler: @escaping (NSObject, NSKeyValueObservedChange<Value>) -> Void) {
         let token = object.observe(keyPath, options: options, changeHandler: changeHandler)
         autoDestruction.add(token)
     }
@@ -81,3 +83,62 @@ extension NSObject {
         autoDestruction.add(token)
     }
 }
+
+/// MARK: Binding
+
+protocol KeyPathBinding {}
+
+extension NSObject {
+    
+    func bind(_ binding: NSBindingName,
+              to observable: UserDefaults = .standard,
+              withDefaultName defaultName: UserDefaults.DefaultsKeys,
+              options: [NSBindingOption: Any] = [:]) {
+        var options = options
+        if let transformer = defaultName.valueTransformer {
+            switch transformer {
+            case is UserDefaults.KeyedArchiveValueTransformer:
+                options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
+            case is UserDefaults.ArchiveValueTransformer:
+                options[.valueTransformerName] = NSValueTransformerName.unarchiveFromDataTransformerName
+            default:
+                break
+            }
+        }
+        
+        bind(binding, to: observable, withKeyPath: defaultName.key, options: options)
+    }
+}
+
+extension KeyPathBinding {
+    
+    func bind<Target, Value>(_ binding: KeyPath<Self, Value>,
+                             to observable: Target,
+                             withKeyPath keyPath: KeyPath<Target, Value>,
+                             options: [NSBindingOption : Any] = [:]) {
+        (self as! NSObject).bind(NSBindingName(binding._kvcKeyPathString!), to: observable, withKeyPath: keyPath._kvcKeyPathString!, options: options)
+    }
+    
+    func bind<Target, Value>(_ binding: KeyPath<Self, Value?>,
+                             to observable: Target,
+                             withKeyPath keyPath: KeyPath<Target, Value>,
+                             options: [NSBindingOption : Any] = [:]) {
+        (self as! NSObject).bind(NSBindingName(binding._kvcKeyPathString!), to: observable, withKeyPath: keyPath._kvcKeyPathString!, options: options)
+    }
+    
+    func bind<Value>(_ binding: KeyPath<Self, Value>,
+                     to defaults: UserDefaults = .standard,
+                     withDefaultName defaultName: UserDefaults.DefaultsKey<Value>,
+                     options: [NSBindingOption : Any] = [:]) {
+        (self as! NSObject).bind(NSBindingName(binding._kvcKeyPathString!), to: defaults, withDefaultName: defaultName, options: options)
+    }
+    
+    func bind<Value>(_ binding: KeyPath<Self, Value>,
+                     to defaults: UserDefaults = .standard,
+                     withUnmatchedDefaultName defaultName: UserDefaults.DefaultsKeys,
+                     options: [NSBindingOption : Any] = [:]) {
+        (self as! NSObject).bind(NSBindingName(binding._kvcKeyPathString!), to: defaults, withDefaultName: defaultName, options: options)
+    }
+}
+
+extension NSObject: KeyPathBinding {}

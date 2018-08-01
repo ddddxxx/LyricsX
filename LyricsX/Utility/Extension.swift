@@ -22,28 +22,6 @@ import Cocoa
 import LyricsProvider
 import MusicPlayer
 
-extension NSObject {
-    
-    func bind(_ binding: NSBindingName,
-              to observable: UserDefaults = .standard,
-              withDefaultName defaultName: UserDefaults.DefaultsKeys,
-              options: [NSBindingOption: Any] = [:]) {
-        var options = options
-        if let transformer = defaultName.valueTransformer {
-            switch transformer {
-            case is UserDefaults.KeyedArchiveValueTransformer:
-                options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
-            case is UserDefaults.ArchiveValueTransformer:
-                options[.valueTransformerName] = NSValueTransformerName.unarchiveFromDataTransformerName
-            default:
-                break
-            }
-        }
-        
-        bind(binding, to: observable, withKeyPath: defaultName.key, options: options)
-    }
-}
-
 extension MusicPlayerName {
     
     init?(index: Int) {

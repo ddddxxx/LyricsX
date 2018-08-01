@@ -86,12 +86,12 @@ class KaraokeLyricsView: NSBox {
             return view
         }
         return KaraokeLabel(labelWithString: content).then {
-            $0.bind(.font, to: self, withKeyPath: #keyPath(font))
-            $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
-            $0.bind(.init("progressColor"), to: self, withKeyPath: #keyPath(shadowColor))
-            $0.bind(.init("_shadowColor"), to: self, withKeyPath: #keyPath(shadowColor))
-            $0.bind(.init("isVertical"), to: self, withKeyPath: #keyPath(isVertical))
-            $0.bind(.init("drawFurigana"), to: self, withKeyPath: #keyPath(drawFurigana))
+            $0.bind(\.font, to: self, withKeyPath: \.font)
+            $0.bind(\.textColor, to: self, withKeyPath: \.textColor)
+            $0.bind(\.progressColor, to: self, withKeyPath: \.shadowColor)
+            $0.bind(\._shadowColor, to: self, withKeyPath: \.shadowColor)
+            $0.bind(\.isVertical, to: self, withKeyPath: \.isVertical)
+            $0.bind(\.drawFurigana, to: self, withKeyPath: \.drawFurigana)
             $0.alphaValue = 0
         }
     }

@@ -58,10 +58,10 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         lyricsScrollView.delegate = self
         lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
-        lyricsScrollView.bind(NSBindingName("fontName"), withDefaultName: .LyricsWindowFontName)
-        lyricsScrollView.bind(NSBindingName("fontSize"), withDefaultName: .LyricsWindowFontSize)
-        lyricsScrollView.bind(NSBindingName("textColor"), withDefaultName: .LyricsWindowTextColor)
-        lyricsScrollView.bind(NSBindingName("highlightColor"), withDefaultName: .LyricsWindowHighlightColor)
+        lyricsScrollView.bind(\.fontName, withDefaultName: .LyricsWindowFontName)
+        lyricsScrollView.bind(\.fontSize, withUnmatchedDefaultName: .LyricsWindowFontSize)
+        lyricsScrollView.bind(\.textColor, withDefaultName: .LyricsWindowTextColor)
+        lyricsScrollView.bind(\.highlightColor, withDefaultName: .LyricsWindowHighlightColor)
         
         observeDefaults(key: .LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] _, change in
             let fontSize = CGFloat(change.newValue)
