@@ -75,7 +75,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
             self.lyricsTextField.stringValue = lyricsContent
             if let timetag = line.attachments.timetag,
                 let position = AppController.shared.playerManager.player?.playerPosition {
-                let timeDelay = line.lyrics?.timeDelay ?? 0
+                let timeDelay = line.lyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + line.position - timeDelay - position, $0.index) }
                 self.lyricsTextField.tf_addProgressAnimation(progress)
             }

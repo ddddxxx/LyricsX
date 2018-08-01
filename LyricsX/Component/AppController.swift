@@ -205,13 +205,13 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             timer?.fireDate = .distantFuture
             return
         }
-        let (index, next) = lyrics[position + lyrics.timeDelay]
+        let (index, next) = lyrics[position + lyrics.adjustedTimeDelay]
         if currentLineIndex != index {
             currentLineIndex = index
             NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
         }
         if let next = next {
-            timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.timeDelay - position
+            timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.adjustedTimeDelay - position
         } else {
             timer?.fireDate = .distantFuture
         }

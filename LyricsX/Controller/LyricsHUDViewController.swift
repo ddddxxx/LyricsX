@@ -116,7 +116,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         guard var pos = AppController.shared.playerManager.player?.playerPosition else {
             return
         }
-        pos += AppController.shared.currentLyrics?.timeDelay ?? 0
+        pos += AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
         lyricsScrollView.highlight(position: pos)
         guard isTracking else {
             return
@@ -136,7 +136,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     // MARK: ScrollLyricsViewDelegate
     
     func doubleClickLyricsLine(at position: TimeInterval) {
-        let pos = position - (AppController.shared.currentLyrics?.timeDelay ?? 0)
+        let pos = position - (AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0)
         AppController.shared.playerManager.player?.playerPosition = pos
         isTracking = true
         Answers.logCustomEvent(withName: "Seek to Lyrics Line")

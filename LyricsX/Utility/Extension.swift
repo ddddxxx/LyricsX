@@ -199,6 +199,17 @@ extension Lyrics {
     }
 }
 
+extension Lyrics {
+    
+    var adjustedOffset: Int {
+        return offset + defaults[.GlobalLyricsOffset]
+    }
+    
+    var adjustedTimeDelay: TimeInterval {
+        return TimeInterval(adjustedOffset) / 1000
+    }
+}
+
 extension NSTextField {
     
     @available(macOS, obsoleted: 10.12)

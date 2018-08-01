@@ -142,6 +142,8 @@ extension UserDefaults.DefaultsKeys {
     static let LyricsSources = Key<[String]>("LyricsSources")
     static let PreferredLyricsSource = Key<String?>("PreferredLyricsSource")
     
+    static let GlobalLyricsOffset = Key<Int>("GlobalLyricsOffset")
+    
     //
     static let isInMASReview = Key<Bool?>("isInMASReview")
     

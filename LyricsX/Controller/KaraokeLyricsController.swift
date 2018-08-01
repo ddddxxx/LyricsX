@@ -159,7 +159,7 @@ class KaraokeLyricsWindowController: NSWindowController {
             if let upperTextField = self.lyricsView.displayLine1,
                 let timetag = lrc.attachments.timetag,
                 let position = AppController.shared.playerManager.player?.playerPosition {
-                let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
+                let timeDelay = AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
                 upperTextField.setProgressAnimation(color: self.lyricsView.shadowColor, progress: progress)
             }
