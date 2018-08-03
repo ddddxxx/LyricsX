@@ -779,7 +779,6 @@ IA
                                                     </tableColumns>
                                                     <connections>
                                                         <action trigger="doubleAction" selector="useLyricsAction:" target="hFt-BA-jFS" id="Iph-Br-Dus"/>
-                                                        <binding destination="hFt-BA-jFS" name="selectionIndexes" keyPath="self.selectedIndex" id="IOL-ou-uDd"/>
                                                         <outlet property="dataSource" destination="hFt-BA-jFS" id="g7Z-z3-ykK"/>
                                                         <outlet property="delegate" destination="hFt-BA-jFS" id="sFU-O1-o4s"/>
                                                     </connections>

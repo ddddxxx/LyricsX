@@ -33,7 +33,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             searchButton.isEnabled = !searchTitle.isEmpty
         }
     }
-    @objc dynamic var selectedIndex = NSIndexSet()
     
     let lyricsManager = LyricsProviderManager()
     var searchTask: LyricsSearchTask?
@@ -44,6 +43,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var searchButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
+    // NSTextView doesn't support weak references
     @IBOutlet var lyricsPreviewTextView: NSTextView!
     
     @IBOutlet weak var hideLrcPreviewConstraint: NSLayoutConstraint?
