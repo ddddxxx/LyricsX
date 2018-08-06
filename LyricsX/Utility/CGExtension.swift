@@ -19,6 +19,7 @@
 //
 
 import CoreGraphics
+import QuartzCore
 
 // swiftlint:disable shorthand_operator identifier_name operator_whitespace
 
@@ -328,13 +329,17 @@ extension CGRect {
 
 extension CGAffineTransform {
     
-    // MARK: init
+    // MARK: creat
+    
+    init() {
+        self = .identity
+    }
     
     static func translate(x: CGFloat = 0, y: CGFloat = 0) -> CGAffineTransform {
         return CGAffineTransform(translationX: x, y: y)
     }
     
-    static func scale(x: CGFloat = 0, y: CGFloat = 0) -> CGAffineTransform {
+    static func scale(x: CGFloat = 1, y: CGFloat = 1) -> CGAffineTransform {
         return CGAffineTransform(scaleX: x, y: y)
     }
     
@@ -356,41 +361,168 @@ extension CGAffineTransform {
         return t2.concatenating(self)
     }
     
+    mutating func invert() {
+        self = inverted()
+    }
+    
     mutating func transform(by t2: CGAffineTransform) {
         self = transformed(by: t2)
     }
     
     mutating func translateBy(x: CGFloat = 0, y: CGFloat = 0) {
-        self = self.translatedBy(x: x, y: y)
+        self = translatedBy(x: x, y: y)
     }
     
-    mutating func scaleBy(x: CGFloat = 0, y: CGFloat = 0) {
-        self = self.scaledBy(x: x, y: y)
+    mutating func scaleBy(x: CGFloat = 1, y: CGFloat = 1) {
+        self = scaledBy(x: x, y: y)
     }
     
     mutating func rotate(by angle: CGFloat) {
-        self = self.rotated(by: angle)
-    }
-    
-    mutating func invert() {
-        self = self.inverted()
+        self = rotated(by: angle)
     }
     
     // MARK: operator
     
-    public static func * (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
+    static func *(lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
         return lhs.concatenating(rhs)
     }
     
-    public static func *= (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
+    static func *=(lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
         lhs = lhs * rhs
     }
     
-    public static func / (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
+    static func /(lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
         return lhs.concatenating(rhs.inverted())
     }
     
-    public static func /= (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
+    static func /=(lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
         lhs = lhs / rhs
+    }
+}
+
+// MARK: - CATransform3D
+
+extension CATransform3D {
+    
+    var cameraDistance: CGFloat {
+        get {
+            return -1 / m34
+        }
+        set {
+            m34 = -1 / newValue
+        }
+    }
+    
+    // MAKE: creat
+    
+    static var identity: CATransform3D {
+        return CATransform3DIdentity
+    }
+    
+    init() {
+        self = CATransform3DIdentity
+    }
+    
+    static func translation(x tx: CGFloat = 0, y ty: CGFloat = 0, z tz: CGFloat = 0) -> CATransform3D {
+        return CATransform3DMakeTranslation(tx, ty, tz)
+    }
+    
+    static func scale(x sx: CGFloat = 1, y sy: CGFloat = 1, z sz: CGFloat = 1) -> CATransform3D {
+        return CATransform3DMakeScale(sx, sy, sz)
+    }
+    
+    static func rotation(angle: CGFloat, x: CGFloat = 0, y: CGFloat = 0, z: CGFloat = 0) -> CATransform3D {
+        return CATransform3DMakeRotation(angle, x, y, z)
+    }
+    
+    // MARK: affine
+    
+    init(_ affineTransform: CGAffineTransform) {
+        self = CATransform3DMakeAffineTransform(affineTransform)
+    }
+    
+    var isAffine: Bool {
+        return CATransform3DIsAffine(self)
+    }
+    
+    var affineTransform: CGAffineTransform {
+        return CATransform3DGetAffineTransform(self)
+    }
+    
+    // MARK: transform
+    
+    var inverse: CATransform3D {
+        return CATransform3DInvert(self)
+    }
+    
+    func translatedBy(x tx: CGFloat = 0, y ty: CGFloat = 0, z tz: CGFloat = 0) -> CATransform3D {
+        return CATransform3DTranslate(self, tx, ty, tz)
+    }
+    
+    func scaledBy(x sx: CGFloat = 1, y sy: CGFloat = 1, z sz: CGFloat = 1) -> CATransform3D {
+        return CATransform3DScale(self, sx, sy, sz)
+    }
+    
+    func rotatedBy(angle: CGFloat, x: CGFloat = 0, y: CGFloat = 0, z: CGFloat = 0) -> CATransform3D {
+        return CATransform3DRotate(self, angle, x, y, z)
+    }
+    
+    func transformed(by t2: CATransform3D) -> CATransform3D {
+        return CATransform3DConcat(t2, self)
+    }
+    
+    func concatenating(_ t2: CATransform3D) -> CATransform3D {
+        return CATransform3DConcat(self, t2)
+    }
+    
+    // MARK: mutate
+    
+    mutating func inverte() {
+        self = inverse
+    }
+    
+    mutating func scaleBy(x sx: CGFloat = 1, y sy: CGFloat = 1, z sz: CGFloat = 1) {
+        self = scaledBy(x: sx, y: sy, z: sz)
+    }
+    
+    mutating func rotateBy(angle: CGFloat, x: CGFloat, y: CGFloat, z: CGFloat) {
+        self = rotatedBy(angle: angle, x: x, y: y, z: z)
+    }
+    
+    mutating func transforme(by t2: CATransform3D) {
+        self = transformed(by: t2)
+    }
+    
+    mutating func translateBy(x tx: CGFloat = 0, y ty: CGFloat = 0, z tz: CGFloat = 0) {
+        self = translatedBy(x: tx, y: ty, z: tz)
+    }
+    
+    mutating func concat(_ t2: CATransform3D) {
+        self = concatenating(t2)
+    }
+    
+    // MARK: operator
+    
+    static func *(lhs: CATransform3D, rhs: CATransform3D) -> CATransform3D {
+        return lhs.concatenating(rhs)
+    }
+    
+    static func *=(lhs: inout CATransform3D, rhs: CATransform3D) {
+        lhs = lhs * rhs
+    }
+    
+    static func /(lhs: CATransform3D, rhs: CATransform3D) -> CATransform3D {
+        return lhs.concatenating(rhs.inverse)
+    }
+    
+    static func /=(lhs: inout CATransform3D, rhs: CATransform3D) {
+        lhs = lhs / rhs
+    }
+}
+
+extension CATransform3D: Equatable {
+    
+    public static func == (lhs: CATransform3D, rhs: CATransform3D) -> Bool {
+        return CATransform3DEqualToTransform(lhs, rhs)
     }
 }
