@@ -110,34 +110,34 @@ extension NSObject {
     }
 }
 
-extension KeyPathBinding {
+extension KeyPathBinding where Self: NSObject {
     
     func bind<Target, Value>(_ binding: KeyPath<Self, Value>,
                              to observable: Target,
                              withKeyPath keyPath: KeyPath<Target, Value>,
                              options: [NSBindingOption : Any] = [:]) {
-        (self as! NSObject).bind(NSBindingName(binding._kvcKeyPathString!), to: observable, withKeyPath: keyPath._kvcKeyPathString!, options: options)
+        self.bind(NSBindingName(binding._kvcKeyPathString!), to: observable, withKeyPath: keyPath._kvcKeyPathString!, options: options)
     }
     
     func bind<Target, Value>(_ binding: KeyPath<Self, Value?>,
                              to observable: Target,
                              withKeyPath keyPath: KeyPath<Target, Value>,
                              options: [NSBindingOption : Any] = [:]) {
-        (self as! NSObject).bind(NSBindingName(binding._kvcKeyPathString!), to: observable, withKeyPath: keyPath._kvcKeyPathString!, options: options)
+        self.bind(NSBindingName(binding._kvcKeyPathString!), to: observable, withKeyPath: keyPath._kvcKeyPathString!, options: options)
     }
     
     func bind<Value>(_ binding: KeyPath<Self, Value>,
                      to defaults: UserDefaults = .standard,
                      withDefaultName defaultName: UserDefaults.DefaultsKey<Value>,
                      options: [NSBindingOption : Any] = [:]) {
-        (self as! NSObject).bind(NSBindingName(binding._kvcKeyPathString!), to: defaults, withDefaultName: defaultName, options: options)
+        self.bind(NSBindingName(binding._kvcKeyPathString!), to: defaults, withDefaultName: defaultName, options: options)
     }
     
     func bind<Value>(_ binding: KeyPath<Self, Value>,
                      to defaults: UserDefaults = .standard,
                      withUnmatchedDefaultName defaultName: UserDefaults.DefaultsKeys,
                      options: [NSBindingOption : Any] = [:]) {
-        (self as! NSObject).bind(NSBindingName(binding._kvcKeyPathString!), to: defaults, withDefaultName: defaultName, options: options)
+        self.bind(NSBindingName(binding._kvcKeyPathString!), to: defaults, withDefaultName: defaultName, options: options)
     }
 }
 
