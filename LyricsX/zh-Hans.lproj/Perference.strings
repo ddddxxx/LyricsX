@@ -140,10 +140,10 @@
 "19E-DG-Q23.title" = "符合下列规则的歌词行将被过滤。使用 \"/\" 以启用正则表达式。";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
-"h4G-Un-dtm.title" = "Vertical mode";
+"h4G-Un-dtm.title" = "竖排模式";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
+"ThQ-vA-Krb.title" = "自动为日文生成注音";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
 "gGL-LB-TXI.title" = "Enable Touch Bar lyrics";
