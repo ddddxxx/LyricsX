@@ -229,6 +229,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         defaults.register(defaults: [
             .DesktopLyricsColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+            .DesktopLyricsProgressColor: #colorLiteral(red: 0.1985405816, green: 1, blue: 0.8664234302, alpha: 1),
             .DesktopLyricsShadowColor: #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1),
             .DesktopLyricsBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279),
             .LyricsWindowTextColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1),

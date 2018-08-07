@@ -39,7 +39,8 @@ class KaraokeLyricsView: NSBox {
     
     @objc dynamic var font = NSFont.labelFont(ofSize: 24) { didSet { updateFontSize() } }
     @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-    @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)
+    @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
+    @objc dynamic var progressColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
     
     @objc dynamic var shouldHideWithMouse = true {
         didSet {
@@ -88,7 +89,7 @@ class KaraokeLyricsView: NSBox {
         return KaraokeLabel(labelWithString: content).then {
             $0.bind(\.font, to: self, withKeyPath: \.font)
             $0.bind(\.textColor, to: self, withKeyPath: \.textColor)
-            $0.bind(\.progressColor, to: self, withKeyPath: \.shadowColor)
+            $0.bind(\.progressColor, to: self, withKeyPath: \.progressColor)
             $0.bind(\._shadowColor, to: self, withKeyPath: \.shadowColor)
             $0.bind(\.isVertical, to: self, withKeyPath: \.isVertical)
             $0.bind(\.drawFurigana, to: self, withKeyPath: \.drawFurigana)

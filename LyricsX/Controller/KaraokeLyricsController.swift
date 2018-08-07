@@ -72,6 +72,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private func addObserver() {
         lyricsView.bind(\.textColor, withDefaultName: .DesktopLyricsColor)
+        lyricsView.bind(\.progressColor, withDefaultName: .DesktopLyricsProgressColor)
         lyricsView.bind(\.shadowColor, withDefaultName: .DesktopLyricsShadowColor)
         lyricsView.bind(\.fillColor, withDefaultName: .DesktopLyricsBackgroundColor)
         lyricsView.bind(\.shouldHideWithMouse, withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
@@ -160,7 +161,7 @@ class KaraokeLyricsWindowController: NSWindowController {
                 let position = AppController.shared.playerManager.player?.playerPosition {
                 let timeDelay = AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
-                upperTextField.setProgressAnimation(color: self.lyricsView.shadowColor, progress: progress)
+                upperTextField.setProgressAnimation(color: self.lyricsView.progressColor, progress: progress)
             }
         }
     }
