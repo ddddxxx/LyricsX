@@ -146,16 +146,16 @@
 "ThQ-vA-Krb.title" = "自动为日文生成注音";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "Enable Touch Bar lyrics";
+"gGL-LB-TXI.title" = "启用触控栏歌词";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
-"TB9-Fk-WAX.title" = "Show lyrics window:";
+"TB9-Fk-WAX.title" = "显示歌词窗口:";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "Show / Hide menu bar lyrics:";
+"XHQ-gX-urF.title" = "显示/隐藏菜单栏歌词:";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "Show / Hide karaoke lyrics:";
+"lOc-OP-AcU.title" = "显示/隐藏逐行歌词:";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
-"XuN-vs-cgI.title" = "Progress";
+"XuN-vs-cgI.title" = "进度";
