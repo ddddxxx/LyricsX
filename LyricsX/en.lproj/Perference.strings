@@ -157,3 +157,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
 "lOc-OP-AcU.title" = "Show / Hide karaoke lyrics:";
+
+/* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
+"XuN-vs-cgI.title" = "Progress";

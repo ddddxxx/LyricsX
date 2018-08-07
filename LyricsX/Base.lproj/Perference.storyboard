@@ -7,6 +7,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Preference Window Controller-->
@@ -524,71 +525,20 @@
             <objects>
                 <viewController title="Display" id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="440"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="446"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="S24-qh-mZa">
-                                <rect key="frame" x="13" y="14" width="574" height="412"/>
+                                <rect key="frame" x="13" y="14" width="574" height="418"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Karaoke" identifier="1" id="aUg-eg-K5C">
                                         <view key="view" id="mfE-32-ATy">
-                                            <rect key="frame" x="10" y="33" width="554" height="366"/>
+                                            <rect key="frame" x="10" y="33" width="554" height="372"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-Xq-2K7">
-                                                    <rect key="frame" x="17" y="128" width="520" height="5"/>
-                                                </box>
-                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="4Ap-BM-I98">
-                                                    <rect key="frame" x="171" y="167" width="110" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="DsA-hf-RKL"/>
-                                                    </constraints>
-                                                    <buttonCell key="cell" type="check" title="One line mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5dp-p5-YmE">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsOneLineMode" id="CJN-wB-olf"/>
-                                                    </connections>
-                                                </button>
-                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oHc-gj-4JF" customClass="FontSelectTextField" customModule="LyricsX" customModuleProvider="target">
-                                                    <rect key="frame" x="173" y="92" width="260" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="DX7-6I-0lO"/>
-                                                        <constraint firstAttribute="width" constant="260" id="co2-Ou-lic"/>
-                                                    </constraints>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" usesSingleLineMode="YES" id="bQQ-3N-RVe">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Jji-JX-Etj">
-                                                    <rect key="frame" x="255" y="37" width="44" height="23"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="23" id="6aR-mO-asm"/>
-                                                        <constraint firstAttribute="width" constant="44" id="UaC-IT-rDc"/>
-                                                    </constraints>
-                                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsColor" id="4j3-XC-g9Q">
-                                                            <dictionary key="options">
-                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </colorWell>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eUo-ma-3JR">
-                                                    <rect key="frame" x="355" y="16" width="53" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shadow" id="hsu-H9-9Bd">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                                 <box title="Spacing to screen edge" translatesAutoresizingMaskIntoConstraints="NO" id="LDq-wS-wqc">
-                                                    <rect key="frame" x="17" y="195" width="520" height="163"/>
+                                                    <rect key="frame" x="17" y="201" width="520" height="163"/>
                                                     <view key="contentView" id="KYA-nW-Tcn">
                                                         <rect key="frame" x="2" y="2" width="516" height="146"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -761,62 +711,54 @@
                                                         </constraints>
                                                     </view>
                                                 </box>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eGr-gm-cw0">
-                                                    <rect key="frame" x="135" y="16" width="77" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Background" id="Uer-qJ-3T9">
+                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="4Ap-BM-I98">
+                                                    <rect key="frame" x="171" y="173" width="110" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="DsA-hf-RKL"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="check" title="One line mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5dp-p5-YmE">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsOneLineMode" id="CJN-wB-olf"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PpS-fa-1AL">
+                                                    <rect key="frame" x="171" y="151" width="106" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Vertical mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="h4G-Un-dtm">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsVerticalMode" id="hIw-IE-Hht"/>
+                                                    </connections>
+                                                </button>
+                                                <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-Xq-2K7">
+                                                    <rect key="frame" x="17" y="134" width="520" height="5"/>
+                                                </box>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YbH-Ph-PYg">
-                                                    <rect key="frame" x="124" y="94" width="35" height="17"/>
+                                                    <rect key="frame" x="124" y="100" width="35" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Font:" id="992-tg-edx">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="UmX-Zf-IW4" customClass="AlphaColorWell" customModule="LyricsX" customModuleProvider="target">
-                                                    <rect key="frame" x="151" y="37" width="44" height="23"/>
+                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oHc-gj-4JF" customClass="FontSelectTextField" customModule="LyricsX" customModuleProvider="target">
+                                                    <rect key="frame" x="173" y="98" width="260" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="7cO-iK-9Gc"/>
-                                                        <constraint firstAttribute="height" constant="23" id="chG-6R-Z5S"/>
+                                                        <constraint firstAttribute="height" constant="22" id="DX7-6I-0lO"/>
+                                                        <constraint firstAttribute="width" constant="260" id="co2-Ou-lic"/>
                                                     </constraints>
-                                                    <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <connections>
-                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsBackgroundColor" id="jsB-V5-Kpy">
-                                                            <dictionary key="options">
-                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </colorWell>
-                                                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="9of-o0-c02">
-                                                    <rect key="frame" x="359" y="37" width="44" height="23"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="23" id="IVk-YW-XgR"/>
-                                                        <constraint firstAttribute="width" constant="44" id="x8l-nc-rXQ"/>
-                                                    </constraints>
-                                                    <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsShadowColor" id="RMb-tR-oEG">
-                                                            <dictionary key="options">
-                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </colorWell>
-                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hn1-Pb-VCw">
-                                                    <rect key="frame" x="257" y="16" width="40" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics" id="3Bt-md-QNc">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" usesSingleLineMode="YES" id="bQQ-3N-RVe">
                                                         <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8e0-Af-YeJ">
-                                                    <rect key="frame" x="171" y="70" width="242" height="14"/>
+                                                    <rect key="frame" x="171" y="76" width="242" height="14"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Font Fallback:" usesSingleLineMode="YES" id="EnT-HZ-SOz">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -832,7 +774,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MzB-OZ-nJE">
-                                                    <rect key="frame" x="419" y="72" width="10" height="10"/>
+                                                    <rect key="frame" x="419" y="78" width="10" height="10"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="Jaj-ac-utp"/>
                                                         <constraint firstAttribute="width" secondItem="MzB-OZ-nJE" secondAttribute="height" multiplier="1:1" id="odr-aj-kbU"/>
@@ -845,53 +787,144 @@
                                                         <action selector="removeFontFallbackAction:" target="8JF-Og-z6E" id="g3U-4P-8DP"/>
                                                     </connections>
                                                 </button>
-                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PpS-fa-1AL">
-                                                    <rect key="frame" x="171" y="145" width="106" height="18"/>
-                                                    <buttonCell key="cell" type="check" title="Vertical mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="h4G-Un-dtm">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="48" horizontalStackHuggingPriority="1000" verticalStackHuggingPriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7NZ-kA-J7G">
+                                                    <rect key="frame" x="117" y="37" width="320" height="23"/>
+                                                    <subviews>
+                                                        <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="UmX-Zf-IW4" customClass="AlphaColorWell" customModule="LyricsX" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="44" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="3QB-cR-AjK"/>
+                                                                <constraint firstAttribute="width" constant="44" id="LL6-cN-Jln"/>
+                                                            </constraints>
+                                                            <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <connections>
+                                                                <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsBackgroundColor" id="jsB-V5-Kpy">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
+                                                        </colorWell>
+                                                        <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Jji-JX-Etj">
+                                                            <rect key="frame" x="92" y="0.0" width="44" height="23"/>
+                                                            <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <connections>
+                                                                <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsColor" id="4j3-XC-g9Q">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
+                                                        </colorWell>
+                                                        <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="wBm-l5-p6q">
+                                                            <rect key="frame" x="184" y="0.0" width="44" height="23"/>
+                                                            <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <connections>
+                                                                <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsProgressColor" id="0l4-H1-ez5">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
+                                                        </colorWell>
+                                                        <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="9of-o0-c02" customClass="AlphaColorWell" customModule="LyricsX" customModuleProvider="target">
+                                                            <rect key="frame" x="276" y="0.0" width="44" height="23"/>
+                                                            <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <connections>
+                                                                <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsShadowColor" id="RMb-tR-oEG">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
+                                                        </colorWell>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="wBm-l5-p6q" firstAttribute="width" secondItem="UmX-Zf-IW4" secondAttribute="width" id="4Nr-sf-xUp"/>
+                                                        <constraint firstItem="Jji-JX-Etj" firstAttribute="width" secondItem="UmX-Zf-IW4" secondAttribute="width" id="PaI-VD-rzo"/>
+                                                        <constraint firstItem="9of-o0-c02" firstAttribute="height" secondItem="UmX-Zf-IW4" secondAttribute="height" id="Qjr-3C-v3m"/>
+                                                        <constraint firstItem="Jji-JX-Etj" firstAttribute="height" secondItem="UmX-Zf-IW4" secondAttribute="height" id="jCN-tX-uyK"/>
+                                                        <constraint firstItem="wBm-l5-p6q" firstAttribute="height" secondItem="UmX-Zf-IW4" secondAttribute="height" id="rKr-Fr-uxB"/>
+                                                        <constraint firstItem="9of-o0-c02" firstAttribute="width" secondItem="UmX-Zf-IW4" secondAttribute="width" id="wJ9-vb-14J"/>
+                                                    </constraints>
+                                                    <visibilityPriorities>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                    </visibilityPriorities>
+                                                    <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                    </customSpacing>
+                                                </stackView>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eGr-gm-cw0">
+                                                    <rect key="frame" x="101" y="16" width="77" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Background" id="Uer-qJ-3T9">
                                                         <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DesktopLyricsVerticalMode" id="hIw-IE-Hht"/>
-                                                    </connections>
-                                                </button>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hn1-Pb-VCw">
+                                                    <rect key="frame" x="211" y="16" width="40" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lyrics" id="3Bt-md-QNc">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="foe-PF-jhi">
+                                                    <rect key="frame" x="294" y="16" width="58" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Progress" id="XuN-vs-cgI">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eUo-ma-3JR">
+                                                    <rect key="frame" x="389" y="16" width="53" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shadow" id="hsu-H9-9Bd">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="9of-o0-c02" firstAttribute="bottom" secondItem="UmX-Zf-IW4" secondAttribute="bottom" id="078-VO-Lyu"/>
-                                                <constraint firstItem="eUo-ma-3JR" firstAttribute="top" secondItem="9of-o0-c02" secondAttribute="bottom" constant="4" id="1Xi-Ee-PEG"/>
+                                                <constraint firstItem="eGr-gm-cw0" firstAttribute="top" secondItem="7NZ-kA-J7G" secondAttribute="bottom" constant="4" id="1JI-Yj-Xyy"/>
                                                 <constraint firstItem="LDq-wS-wqc" firstAttribute="leading" secondItem="mfE-32-ATy" secondAttribute="leading" constant="20" id="1vp-Bd-sws"/>
+                                                <constraint firstItem="foe-PF-jhi" firstAttribute="centerX" secondItem="wBm-l5-p6q" secondAttribute="centerX" id="4Yo-Ub-qDG"/>
                                                 <constraint firstItem="MzB-OZ-nJE" firstAttribute="trailing" secondItem="oHc-gj-4JF" secondAttribute="trailing" constant="-4" id="6mC-bW-K8C"/>
+                                                <constraint firstAttribute="bottom" secondItem="hn1-Pb-VCw" secondAttribute="bottom" constant="16" id="6uR-3l-smQ"/>
                                                 <constraint firstItem="QfW-Xq-2K7" firstAttribute="top" secondItem="PpS-fa-1AL" secondAttribute="bottom" constant="16" id="APk-os-mQa"/>
                                                 <constraint firstAttribute="trailing" secondItem="QfW-Xq-2K7" secondAttribute="trailing" constant="17" id="C2q-88-2el"/>
+                                                <constraint firstItem="eUo-ma-3JR" firstAttribute="top" secondItem="7NZ-kA-J7G" secondAttribute="bottom" constant="4" id="CYN-el-lyL"/>
                                                 <constraint firstItem="oHc-gj-4JF" firstAttribute="centerY" secondItem="YbH-Ph-PYg" secondAttribute="centerY" id="Dt5-UZ-3vt"/>
-                                                <constraint firstItem="hn1-Pb-VCw" firstAttribute="centerX" secondItem="Jji-JX-Etj" secondAttribute="centerX" id="EJt-Jg-Sfb"/>
-                                                <constraint firstItem="9of-o0-c02" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="top" id="Fie-yT-1G3"/>
-                                                <constraint firstItem="Jji-JX-Etj" firstAttribute="top" secondItem="oHc-gj-4JF" secondAttribute="bottom" constant="32" id="IKn-KN-Evb"/>
+                                                <constraint firstItem="eGr-gm-cw0" firstAttribute="centerX" secondItem="UmX-Zf-IW4" secondAttribute="centerX" id="GBL-hY-93o"/>
+                                                <constraint firstItem="hn1-Pb-VCw" firstAttribute="top" secondItem="7NZ-kA-J7G" secondAttribute="bottom" constant="4" id="ItK-eR-Y2n"/>
                                                 <constraint firstItem="MzB-OZ-nJE" firstAttribute="centerY" secondItem="8e0-Af-YeJ" secondAttribute="centerY" id="L1c-zA-trp"/>
+                                                <constraint firstItem="hn1-Pb-VCw" firstAttribute="centerX" secondItem="Jji-JX-Etj" secondAttribute="centerX" id="LLk-8a-oY8"/>
                                                 <constraint firstItem="PpS-fa-1AL" firstAttribute="leading" secondItem="4Ap-BM-I98" secondAttribute="leading" id="LiF-3U-KGM"/>
                                                 <constraint firstItem="oHc-gj-4JF" firstAttribute="leading" secondItem="4Ap-BM-I98" secondAttribute="leading" id="LjZ-hx-Ga7"/>
                                                 <constraint firstAttribute="trailing" secondItem="LDq-wS-wqc" secondAttribute="trailing" constant="20" id="PwV-jc-8S9"/>
                                                 <constraint firstItem="YbH-Ph-PYg" firstAttribute="trailing" secondItem="mfE-32-ATy" secondAttribute="centerX" constant="-120" id="QqR-Hi-jA6"/>
-                                                <constraint firstItem="Jji-JX-Etj" firstAttribute="bottom" secondItem="UmX-Zf-IW4" secondAttribute="bottom" id="Qqd-bj-0jd"/>
                                                 <constraint firstItem="8e0-Af-YeJ" firstAttribute="top" secondItem="oHc-gj-4JF" secondAttribute="bottom" constant="8" id="UjI-zl-b6P"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Ap-BM-I98" secondAttribute="trailing" constant="20" id="VML-Rt-ljC"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oHc-gj-4JF" secondAttribute="trailing" constant="40" id="WlT-m8-ajQ"/>
                                                 <constraint firstItem="oHc-gj-4JF" firstAttribute="top" secondItem="QfW-Xq-2K7" secondAttribute="bottom" constant="16" id="X3c-kH-vYL"/>
+                                                <constraint firstItem="7NZ-kA-J7G" firstAttribute="centerX" secondItem="mfE-32-ATy" secondAttribute="centerX" id="aNQ-PY-cIr"/>
                                                 <constraint firstItem="MzB-OZ-nJE" firstAttribute="leading" secondItem="8e0-Af-YeJ" secondAttribute="trailing" constant="8" id="bJL-hr-hFU"/>
                                                 <constraint firstItem="LDq-wS-wqc" firstAttribute="top" secondItem="mfE-32-ATy" secondAttribute="top" constant="8" id="bkF-Ky-oAS"/>
-                                                <constraint firstItem="eUo-ma-3JR" firstAttribute="centerX" secondItem="9of-o0-c02" secondAttribute="centerX" id="ftx-LM-GIE"/>
-                                                <constraint firstItem="eGr-gm-cw0" firstAttribute="centerX" secondItem="UmX-Zf-IW4" secondAttribute="centerX" id="fvE-2Z-c9x"/>
-                                                <constraint firstItem="eGr-gm-cw0" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="bottom" constant="4" id="g6B-aT-f3z"/>
-                                                <constraint firstItem="Jji-JX-Etj" firstAttribute="leading" secondItem="UmX-Zf-IW4" secondAttribute="trailing" constant="60" id="gGM-c5-vGV"/>
-                                                <constraint firstItem="Jji-JX-Etj" firstAttribute="centerX" secondItem="mfE-32-ATy" secondAttribute="centerX" id="hzs-g5-Fvg"/>
                                                 <constraint firstItem="QfW-Xq-2K7" firstAttribute="leading" secondItem="mfE-32-ATy" secondAttribute="leading" constant="17" id="lC4-sX-Yps"/>
                                                 <constraint firstItem="oHc-gj-4JF" firstAttribute="leading" secondItem="YbH-Ph-PYg" secondAttribute="trailing" constant="16" id="mka-R9-7xT"/>
-                                                <constraint firstItem="9of-o0-c02" firstAttribute="leading" secondItem="Jji-JX-Etj" secondAttribute="trailing" constant="60" id="n2p-Jh-EwU"/>
+                                                <constraint firstItem="eUo-ma-3JR" firstAttribute="centerX" secondItem="9of-o0-c02" secondAttribute="centerX" id="nSQ-Bh-ylt"/>
                                                 <constraint firstItem="4Ap-BM-I98" firstAttribute="top" secondItem="LDq-wS-wqc" secondAttribute="bottom" constant="16" id="pWO-vs-KTL"/>
                                                 <constraint firstItem="8e0-Af-YeJ" firstAttribute="leading" secondItem="oHc-gj-4JF" secondAttribute="leading" id="qyV-f4-c4e"/>
-                                                <constraint firstItem="hn1-Pb-VCw" firstAttribute="top" secondItem="Jji-JX-Etj" secondAttribute="bottom" constant="4" id="sgK-ob-bcJ"/>
-                                                <constraint firstItem="Jji-JX-Etj" firstAttribute="top" secondItem="UmX-Zf-IW4" secondAttribute="top" id="tfE-fe-Fse"/>
-                                                <constraint firstAttribute="bottom" secondItem="hn1-Pb-VCw" secondAttribute="bottom" constant="16" id="wFi-SG-Tg1"/>
+                                                <constraint firstItem="7NZ-kA-J7G" firstAttribute="top" secondItem="8e0-Af-YeJ" secondAttribute="bottom" constant="16" id="tgm-Vf-3MJ"/>
+                                                <constraint firstItem="foe-PF-jhi" firstAttribute="top" secondItem="7NZ-kA-J7G" secondAttribute="bottom" constant="4" id="u1l-bR-zjq"/>
                                                 <constraint firstItem="PpS-fa-1AL" firstAttribute="top" secondItem="4Ap-BM-I98" secondAttribute="bottom" constant="8" id="woj-pl-tYA"/>
                                                 <constraint firstItem="YbH-Ph-PYg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mfE-32-ATy" secondAttribute="leading" constant="20" id="yVe-vG-UKd"/>
                                             </constraints>
@@ -1534,7 +1567,7 @@
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
-        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+        <image name="NSStopProgressFreestandingTemplate" width="11" height="11"/>
         <image name="audirvana_icon" width="64" height="64"/>
         <image name="folder" width="21" height="18"/>
         <image name="gap_hollow_horizontal" width="18" height="14"/>

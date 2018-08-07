@@ -25,6 +25,7 @@ class AboutViewController: NSViewController {
     
     @IBOutlet weak var appName: NSTextField!
     @IBOutlet weak var appVersion: NSTextField!
+    // NSTextView doesn't support weak references
     @IBOutlet var creditsTextView: NSTextView!
     @IBOutlet weak var copyright: NSTextField!
     

@@ -110,6 +110,7 @@ extension UserDefaults.DefaultsKeys {
     static let DesktopLyricsFontNameFallback = Key<[String]>("DesktopLyricsFontNameFallback")
     
     static let DesktopLyricsColor = Key<NSColor>("DesktopLyricsColor", transformer: .keyedArchive)
+    static let DesktopLyricsProgressColor = Key<NSColor>("DesktopLyricsProgressColor", transformer: .keyedArchive)
     static let DesktopLyricsShadowColor = Key<NSColor>("DesktopLyricsShadowColor", transformer: .keyedArchive)
     static let DesktopLyricsBackgroundColor = Key<NSColor>("DesktopLyricsBackgroundColor", transformer: .keyedArchive)
     
@@ -141,6 +142,8 @@ extension UserDefaults.DefaultsKeys {
     
     static let LyricsSources = Key<[String]>("LyricsSources")
     static let PreferredLyricsSource = Key<String?>("PreferredLyricsSource")
+    
+    static let GlobalLyricsOffset = Key<Int>("GlobalLyricsOffset")
     
     //
     static let isInMASReview = Key<Bool?>("isInMASReview")

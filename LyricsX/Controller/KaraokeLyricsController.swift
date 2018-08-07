@@ -29,9 +29,6 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
     
-    var defaultObservations: [DefaultsObservation] = []
-    var notifications: [NSObjectProtocol] = []
-    
     var screen: NSScreen {
         didSet {
             defaults[.DesktopLyricsScreenRect] = screen.frame
@@ -60,8 +57,12 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
             self.handleLyricsDisplay()
-            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
+            self.observeNotification(name: .lyricsShouldDisplay, using: { [unowned self] _ in
+                self.handleLyricsDisplay()
+            })
+            self.observeNotification(name: .currentLyricsChange, using: { [unowned self] _ in
+                self.handleLyricsDisplay()
+            })
         }
     }
     
@@ -70,54 +71,53 @@ class KaraokeLyricsWindowController: NSWindowController {
     }
     
     private func addObserver() {
-        lyricsView.bind(NSBindingName("textColor"), withDefaultName: .DesktopLyricsColor)
-        lyricsView.bind(NSBindingName("shadowColor"), withDefaultName: .DesktopLyricsShadowColor)
-        lyricsView.bind(NSBindingName("fillColor"), withDefaultName: .DesktopLyricsBackgroundColor)
-        lyricsView.bind(NSBindingName("shouldHideWithMouse"), withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
-        lyricsView.bind(NSBindingName("isVertical"), withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
-        lyricsView.bind(NSBindingName("drawFurigana"), withDefaultName: .DesktopLyricsEnableFurigana)
+        lyricsView.bind(\.textColor, withDefaultName: .DesktopLyricsColor)
+        lyricsView.bind(\.progressColor, withDefaultName: .DesktopLyricsProgressColor)
+        lyricsView.bind(\.shadowColor, withDefaultName: .DesktopLyricsShadowColor)
+        lyricsView.bind(\.fillColor, withDefaultName: .DesktopLyricsBackgroundColor)
+        lyricsView.bind(\.shouldHideWithMouse, withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
+        lyricsView.bind(\.isVertical, withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
+        lyricsView.bind(\.drawFurigana, withDefaultName: .DesktopLyricsEnableFurigana)
         
         let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
         window?.contentView?.bind(.hidden, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
         
-        defaultObservations += [
-            defaults.observe(.DisableLyricsWhenSreenShot, options: [.new, .initial]) { [weak self] _, change in
-                switch change.newValue {
-                case true: self?.window?.sharingType = .none
-                case false: self?.window?.sharingType = .readOnly
-                }
-            },
-            defaults.observe(keys: [
-                .DesktopLyricsFontName,
-                .DesktopLyricsFontSize,
-                .DesktopLyricsFontNameFallback
-            ], options: [.initial]) { [weak self] in
-                self?.lyricsView.font = defaults.desktopLyricsFont
-            },
-            defaults.observe(keys: [
-                .DesktopLyricsInsetTopEnabled,
-                .DesktopLyricsInsetBottomEnabled,
-                .DesktopLyricsInsetLeftEnabled,
-                .DesktopLyricsInsetRightEnabled,
-                .DesktopLyricsInsetTop,
-                .DesktopLyricsInsetBottom,
-                .DesktopLyricsInsetLeft,
-                .DesktopLyricsInsetRight
-                ], options: []) { [weak self] in
-                    NSAnimationContext.runAnimationGroup({ context in
-                        context.duration = 0.2
-                        context.allowsImplicitAnimation = true
-                        context.timingFunction = .mystery
-                        self?.makeConstraints()
-                        self?.window?.layoutIfNeeded()
-                    })
-            }
-        ]
         
-        // swiftlint:disable:next discarded_notification_center_observer
-        notifications += [workspaceNC.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.updateWindowFrame()
-        }]
+        observeDefaults(key: .DisableLyricsWhenSreenShot, options: [.new, .initial]) { [unowned self] _, change in
+            switch change.newValue {
+            case true: self.window?.sharingType = .none
+            case false: self.window?.sharingType = .readOnly
+            }
+        }
+        observeDefaults(keys: [
+            .DesktopLyricsFontName,
+            .DesktopLyricsFontSize,
+            .DesktopLyricsFontNameFallback
+        ], options: [.initial]) { [unowned self] in
+            self.lyricsView.font = defaults.desktopLyricsFont
+        }
+        observeDefaults(keys: [
+            .DesktopLyricsInsetTopEnabled,
+            .DesktopLyricsInsetBottomEnabled,
+            .DesktopLyricsInsetLeftEnabled,
+            .DesktopLyricsInsetRightEnabled,
+            .DesktopLyricsInsetTop,
+            .DesktopLyricsInsetBottom,
+            .DesktopLyricsInsetLeft,
+            .DesktopLyricsInsetRight
+            ]) { [unowned self] in
+                NSAnimationContext.runAnimationGroup({ context in
+                    context.duration = 0.2
+                    context.allowsImplicitAnimation = true
+                    context.timingFunction = .mystery
+                    self.makeConstraints()
+                    self.window?.layoutIfNeeded()
+                })
+        }
+        
+        observeNotification(center: workspaceNC, name: NSWorkspace.activeSpaceDidChangeNotification, queue: .main) { [unowned self] _ in
+            self.updateWindowFrame()
+        }
     }
     
     func updateWindowFrame() {
@@ -159,9 +159,9 @@ class KaraokeLyricsWindowController: NSWindowController {
             if let upperTextField = self.lyricsView.displayLine1,
                 let timetag = lrc.attachments.timetag,
                 let position = AppController.shared.playerManager.player?.playerPosition {
-                let timeDelay = AppController.shared.currentLyrics?.timeDelay ?? 0
+                let timeDelay = AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
-                upperTextField.setProgressAnimation(color: self.lyricsView.shadowColor, progress: progress)
+                upperTextField.setProgressAnimation(color: self.lyricsView.progressColor, progress: progress)
             }
         }
     }
