@@ -23,9 +23,10 @@ import Cocoa
 class PreferenceFilterViewController: NSViewController {
     
     @objc dynamic var directFilter = [FilterKey]()
-    @objc dynamic var colonFilter = [FilterKey]()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         loadFilter()
     }
     
@@ -34,22 +35,17 @@ class PreferenceFilterViewController: NSViewController {
     }
     
     func loadFilter() {
-        directFilter = defaults[.LyricsDirectFilterKey].map {
-            FilterKey(keyword: $0)
-        }
-        colonFilter = defaults[.LyricsColonFilterKey].map {
+        directFilter = defaults[.LyricsFilterKeys].map {
             FilterKey(keyword: $0)
         }
     }
     
     func saveFilter() {
-        defaults[.LyricsDirectFilterKey] = directFilter.map { $0.keyword }
-        defaults[.LyricsColonFilterKey] = colonFilter.map { $0.keyword }
+        defaults[.LyricsFilterKeys] = directFilter.map { $0.keyword }
     }
     
     @IBAction func resetFilterKey(_ sender: Any) {
-        defaults.remove(.LyricsDirectFilterKey)
-        defaults.remove(.LyricsColonFilterKey)
+        defaults.remove(.LyricsFilterKeys)
         loadFilter()
     }
     
@@ -58,12 +54,7 @@ class PreferenceFilterViewController: NSViewController {
 @objc(FilterKey)
 class FilterKey: NSObject, NSCoding {
     
-    @objc var keyword = ""
-    
-    override init() {
-        keyword = NSLocalizedString("NEW_KEYWORD", comment: "default value when user adding a lyrics filter keyword")
-        super.init()
-    }
+    @objc var keyword = "keyword"
     
     init(keyword: String) {
         self.keyword = keyword

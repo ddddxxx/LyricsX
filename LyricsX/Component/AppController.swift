@@ -18,8 +18,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import AppKit
+import Crashlytics
+import Foundation
 import LyricsProvider
 import MusicPlayer
 import OpenCC
@@ -38,11 +39,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         didSet {
             currentLyrics?.filtrate()
             didChangeValue(forKey: "lyricsOffset")
-            NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
-            if currentLyrics?.metadata.localURL == nil {
-                currentLyrics?.saveToLocal()
-            }
             currentLineIndex = nil
+            NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
             timer?.fireDate = Date()
         }
     }
@@ -59,7 +57,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }
         set {
             currentLyrics?.offset = newValue
-            currentLyrics?.saveToLocal()
+            currentLyrics?.metadata.needsPersist = true
             timer?.fireDate = Date()
         }
     }
@@ -91,11 +89,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             return content
         }.joined(separator: "\n")
         // swiftlint:disable:next force_try
-        let regex = try! NSRegularExpression(pattern: "\\n{3}")
-        content = regex.stringByReplacingMatches(in: content,
-                                                 range: NSRange(location: 0, length: content.utf16.count),
-                                                 withTemplate: "\n\n")
-            .trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
+        let regex = try! Regex("\\n{3}")
+        _ = regex.replaceMatches(in: &content, withTemplate: "\n\n")
         if let converter = ChineseConverter.shared {
             content = converter.convert(content)
         }
@@ -124,6 +119,9 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     }
     
     func currentTrackChanged(track: MusicTrack?) {
+        if currentLyrics?.metadata.needsPersist == true {
+            currentLyrics?.persist()
+        }
         currentLyrics = nil
         currentLineIndex = nil
         guard let track = track else {
@@ -147,15 +145,14 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                 ]
             }
         }
-        if let (url, security) = defaults.lyricsSavingPath() {
-            let titleForReading = title.replacingOccurrences(of: "/", with: "&")
-            let artistForReading = artist.replacingOccurrences(of: "/", with: "&")
-            let fileName = url.appendingPathComponent("\(titleForReading) - \(artistForReading)")
-            candidateLyricsURL += [
-                (fileName.appendingPathExtension("lrcx"), security),
-                (fileName.appendingPathExtension("lrc"), security)
-            ]
-        }
+        let (url, security) = defaults.lyricsSavingPath()
+        let titleForReading = title.replacingOccurrences(of: "/", with: "&")
+        let artistForReading = artist.replacingOccurrences(of: "/", with: "&")
+        let fileName = url.appendingPathComponent("\(titleForReading) - \(artistForReading)")
+        candidateLyricsURL += [
+            (fileName.appendingPathExtension("lrcx"), security),
+            (fileName.appendingPathExtension("lrc"), security)
+        ]
         
         for (url, security) in candidateLyricsURL {
             if security {
@@ -175,6 +172,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                 lyrics.metadata.title = title
                 lyrics.metadata.artist = artist
                 currentLyrics = lyrics
+                Answers.logCustomEvent(withName: "Load Local Lyrics")
                 break
             }
         }
@@ -197,6 +195,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
             searchTask = task
             task.resume()
+            Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
         }
     }
     
@@ -206,13 +205,13 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             timer?.fireDate = .distantFuture
             return
         }
-        let (index, next) = lyrics[position + lyrics.timeDelay]
+        let (index, next) = lyrics[position + lyrics.adjustedTimeDelay]
         if currentLineIndex != index {
             currentLineIndex = index
             NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
         }
         if let next = next {
-            timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.timeDelay - position
+            timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.adjustedTimeDelay - position
         } else {
             timer?.fireDate = .distantFuture
         }
@@ -236,7 +235,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         
         // swiftlint:disable:next identifier_name
         func shoudReplace(_ from: Lyrics, to: Lyrics) -> Bool {
-            if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) != (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
+            if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) !=
+                (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
                 return to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]
             }
             return to.quality > from.quality
@@ -246,6 +246,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             return
         }
         
+        lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
         
         if searchTask?.progress.isFinished == true,
@@ -258,10 +259,12 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
 extension AppController {
     
     func importLyrics(_ lyricsString: String) {
+        // TODO: user feedback
         if let lrc = Lyrics(lyricsString),
             let track = AppController.shared.playerManager.player?.currentTrack {
             lrc.metadata.title = track.title
             lrc.metadata.artist = track.artist
+            lrc.metadata.needsPersist = true
             currentLyrics = lrc
         }
     }

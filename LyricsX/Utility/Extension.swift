@@ -22,35 +22,6 @@ import Cocoa
 import LyricsProvider
 import MusicPlayer
 
-extension CountableRange {
-    
-    func clamp(_ value: Bound) -> Bound {
-        return Swift.min(upperBound, Swift.max(lowerBound, value))
-    }
-}
-
-extension NSObject {
-    
-    func bind<T>(_ binding: NSBindingName,
-                 to observable: UserDefaults,
-                 withDefaultName defaultName: UserDefaults.DefaultsKey<T>,
-                 options: [NSBindingOption: Any] = [:]) {
-        var options = options
-        if let transformer = defaultName.valueTransformer {
-            switch transformer {
-            case is UserDefaults.KeyedArchiveValueTransformer:
-                options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
-            case is UserDefaults.ArchiveValueTransformer:
-                options[.valueTransformerName] = NSValueTransformerName.unarchiveFromDataTransformerName
-            default:
-                break
-            }
-        }
-        
-        bind(binding, to: observable, withKeyPath: defaultName.key, options: options)
-    }
-}
-
 extension MusicPlayerName {
     
     init?(index: Int) {
@@ -79,16 +50,22 @@ extension NSFont {
 extension UserDefaults {
     
     var desktopLyricsFont: NSFont {
-        return NSFont.init(name: self[.DesktopLyricsFontName],
-                           size: CGFloat(self[.DesktopLyricsFontSize]),
-                           fallback: self[.DesktopLyricsFontNameFallback])
+        return NSFont(name: self[.DesktopLyricsFontName],
+                      size: CGFloat(self[.DesktopLyricsFontSize]),
+                      fallback: self[.DesktopLyricsFontNameFallback])
             ?? NSFont.systemFont(ofSize: CGFloat(self[.DesktopLyricsFontSize]))
+    }
+    
+    var lyricsWindowFont: NSFont {
+        return NSFont(name: defaults[.LyricsWindowFontName],
+                      size: CGFloat(defaults[.LyricsWindowFontSize]))
+            ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
     }
 }
 
 extension UserDefaults {
     
-    func lyricsSavingPath() -> (URL, security: Bool)? {
+    func lyricsSavingPath() -> (URL, security: Bool) {
         if self[.LyricsSavingPathPopUpIndex] != 0, let path = lyricsCustomSavingPath {
             return (path, true)
         } else {
@@ -137,10 +114,8 @@ extension Lyrics {
 
 extension Lyrics {
     
-    func saveToLocal() {
-        guard let (url, security) = defaults.lyricsSavingPath() else {
-            return
-        }
+    func persist() {
+        let (url, security) = defaults.lyricsSavingPath()
         if security {
             guard url.startAccessingSecurityScopedResource() else {
                 return
@@ -172,6 +147,7 @@ extension Lyrics {
             }
             try description.write(to: lrcFileURL, atomically: true, encoding: .utf8)
             metadata.localURL = lrcFileURL
+            metadata.needsPersist = false
         } catch {
             log(error.localizedDescription)
             return
@@ -182,42 +158,53 @@ extension Lyrics {
 extension Lyrics {
     
     func filtrate() {
-        var predicates = defaults[.LyricsDirectFilterKey].map { key in
-            NSPredicate { object, _ in
-                guard let object = object as? LyricsLine else { return false }
-                return !object.content.contains(key)
-            }
-        }
-        let colonCharacterSet = CharacterSet(charactersIn: ":：∶")
-        predicates += defaults[.LyricsColonFilterKey].map { key in
-            NSPredicate { object, _ in
-                guard let object = object as? LyricsLine else { return false }
-                return !object.content.components(separatedBy: colonCharacterSet).contains { $0.starts(with: key) }
-            }
-        }
-        if defaults[.LyricsSmartFilterEnabled] {
-            let smartPredicate = NSPredicate { (object, _) -> Bool in
-                guard let object = object as? LyricsLine else {
-                    return false
+        let predicates = defaults[.LyricsFilterKeys].compactMap { (key: String) -> NSPredicate? in
+            if key.hasPrefix("/") {
+                guard let regex = try? Regex(String(key.dropFirst())) else { return nil }
+                return NSPredicate { object, _ in
+                    guard let object = object as? LyricsLine else { return false }
+                    return !regex.isMatch(object.content)
                 }
-                let content = object.content
-                if let idTagTitle = self.idTags[.title],
-                    let idTagArtist = self.idTags[.artist],
-                    content.contains(idTagTitle),
-                    content.contains(idTagArtist) {
-                    return false
-                } else if let iTunesTitle = self.metadata.title,
-                    let iTunesArtist = self.metadata.artist,
-                    content.contains(iTunesTitle),
-                    content.contains(iTunesArtist) {
-                    return false
+            } else {
+                return NSPredicate { object, _ in
+                    guard let object = object as? LyricsLine else { return false }
+                    return !object.content.contains(key)
                 }
-                return true
             }
-            predicates.append(smartPredicate)
         }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         filtrate(isIncluded: predicate)
+    }
+}
+
+extension Lyrics {
+    
+    var adjustedOffset: Int {
+        return offset + defaults[.GlobalLyricsOffset]
+    }
+    
+    var adjustedTimeDelay: TimeInterval {
+        return TimeInterval(adjustedOffset) / 1000
+    }
+}
+
+extension NSTextField {
+    
+    @available(macOS, obsoleted: 10.12)
+    convenience init(labelWithString stringValue: String) {
+        self.init()
+        self.stringValue = stringValue
+        isEditable = false
+        isSelectable = false
+        textColor = .labelColor
+        backgroundColor = .controlColor
+        drawsBackground = false
+        isBezeled = false
+        alignment = .natural
+        font = NSFont.systemFont(ofSize: NSFont.systemFontSize(for: controlSize))
+        lineBreakMode = .byClipping
+        cell?.isScrollable = true
+        cell?.wraps = false
     }
 }
 

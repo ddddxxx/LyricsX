@@ -5,20 +5,29 @@
 /* title of download button on the update alert. Download new version of the app. */
 "Download" = "Download";
 
+/* No comment provided by engineer. */
+"Font Fallback: %@" = "Font Fallback: %@";
+
 /* informative text of the update alert, when the app is up to date. the parameter is version string of the app */
 "LyricsX %@ is currently the newest version available." = "LyricsX %@ is currently the newest version available.";
 
 /* informative text of the update alert, when the app is out date. the 1st parameter is new version string, the 2nd parameter is current version string */
 "LyricsX %@ is now available -- you have %@. Would you like to download it now?" = "LyricsX %1$@ is now available -- you have %2$@. Would you like to download it now?";
 
-/* default value when user adding a lyrics filter keyword */
-"NEW_KEYWORD" = "NEW_KEYWORD";
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* window title */
 "Search Lyrics" = "Search Lyrics";
 
 /* title of skip button on the update alert. Refuse to download new version of the app. */
 "Skip" = "Skip";
+
+/* No comment provided by engineer. */
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub.";
+
+/* alert title */
+"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
 
 /* title of the update alert, when the app is up to date. */
 "You're up-to-date!" = "You're up-to-date!";

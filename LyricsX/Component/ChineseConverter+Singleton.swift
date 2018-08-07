@@ -1,5 +1,5 @@
 //
-//  PreferenceShortcutViewController.swift
+//  ChineseConverter+Singleton.swift
 //
 //  This file is part of LyricsX
 //  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
@@ -18,26 +18,22 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Cocoa
-import GenericID
-import MASShortcut
+import OpenCC
 
-class PreferenceShortcutViewController: NSViewController {
+extension ChineseConverter {
     
-    @IBOutlet weak var shortcutSearchLyrics: MASShortcutView!
-    
-    @IBOutlet weak var searchLyricsLabel: NSTextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        #if IS_FOR_MAS
-            if defaults[.isInMASReview] != false {
-                searchLyricsLabel.removeFromSuperview()
-                shortcutSearchLyrics.removeFromSuperview()
-            }
-            checkForMASReview()
-        #endif
+    static var shared: ChineseConverter? {
+        _ = ChineseConverter.observer
+        return _shared
     }
     
+    private static var _shared: ChineseConverter?
+    
+    private static let observer = defaults.observe(.ChineseConversionIndex, options: [.new, .initial]) { _, change in
+        switch change.newValue {
+        case 1: ChineseConverter._shared = ChineseConverter(option: [.simplify])
+        case 2: ChineseConverter._shared = ChineseConverter(option: [.traditionalize])
+        case 0, _: ChineseConverter._shared = nil
+        }
+    }
 }

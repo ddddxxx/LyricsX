@@ -19,30 +19,31 @@
 //
 
 import Cocoa
+import Crashlytics
 import LyricsProvider
 import MusicPlayer
 
-class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
     var imageCache = NSCache<NSURL, NSImage>()
     
     @objc dynamic var searchArtist = ""
     @objc dynamic var searchTitle = "" {
         didSet {
-            searchButton.isEnabled = searchTitle.count > 0
+            searchButton.isEnabled = !searchTitle.isEmpty
         }
     }
-    @objc dynamic var selectedIndex = NSIndexSet()
     
     let lyricsManager = LyricsProviderManager()
-    var searchRequest: LyricsSearchRequest?
     var searchTask: LyricsSearchTask?
     var searchResult: [Lyrics] = []
+    var progressObservation: NSKeyValueObservation?
     
     @IBOutlet weak var artworkView: NSImageView!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var searchButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
+    // NSTextView doesn't support weak references
     @IBOutlet var lyricsPreviewTextView: NSTextView!
     
     @IBOutlet weak var hideLrcPreviewConstraint: NSLayoutConstraint?
@@ -53,14 +54,22 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
         normalConstraint.isActive = false
-        
-        autoFillSearchFieldAndSearch()
     }
     
-    func autoFillSearchFieldAndSearch() {
-        let track = AppController.shared.playerManager.player?.currentTrack
-        let artist = track?.artist ?? ""
-        let title = track?.title ?? ""
+    override func viewWillAppear() {
+        guard let track = AppController.shared.playerManager.player?.currentTrack else {
+            searchTask?.cancel()
+            searchTask = nil
+            searchResult = []
+            searchArtist = ""
+            searchTitle = ""
+            artworkView.image = #imageLiteral(resourceName: "missing_artwork")
+            lyricsPreviewTextView.string = " "
+            tableView.reloadData()
+            return
+        }
+        let artist = track.artist ?? ""
+        let title = track.title ?? ""
         if (searchArtist, searchTitle) != (artist, title) {
             (searchArtist, searchTitle) = (artist, title)
             searchAction(nil)
@@ -69,15 +78,16 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     @IBAction func searchAction(_ sender: Any?) {
         searchTask?.cancel()
+        progressObservation?.invalidate()
         searchResult = []
+        artworkView.image = #imageLiteral(resourceName: "missing_artwork")
+        lyricsPreviewTextView.string = " "
         
-        progressIndicator.startAnimation(nil)
-        progressIndicator.isHidden = false
         let track = AppController.shared.playerManager.player?.currentTrack
         let duration = track?.duration ?? 0
         let title = track?.title ?? ""
         let artist = track?.artist ?? ""
-        let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist),
+        let req = LyricsSearchRequest(searchTerm: .info(title: searchTitle, artist: searchArtist),
                                       title: title,
                                       artist: artist,
                                       duration: duration,
@@ -85,12 +95,24 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
                                       timeout: 10)
         let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
         searchTask = task
-        searchRequest = req
         task.resume()
+        progressIndicator.isHidden = false
+        progressIndicator.doubleValue = 0
+        progressObservation = task.progress.observe(\.fractionCompleted, options: [.new]) { [weak self] _, change in
+            guard let fractionCompleted = change.newValue else { return }
+            DispatchQueue.main.async {
+                self?.progressIndicator.doubleValue = fractionCompleted
+                if fractionCompleted == 1 {
+                    self?.progressIndicator.isHidden = true
+                    self?.progressObservation?.invalidate()
+                }
+            }
+        }
         tableView.reloadData()
+        Answers.logCustomEvent(withName: "Search Lyrics Manually")
     }
     
-    @IBAction func useLyricsAction(_ sender: NSButton) {
+    @IBAction func useLyricsAction(_ sender: Any) {
         guard let index = tableView.selectedRowIndexes.first else {
             return
         }
@@ -105,12 +127,13 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         if defaults[.WriteToiTunesAutomatically] {
             AppController.shared.writeToiTunes(overwrite: true)
         }
+        Answers.logCustomEvent(withName: "Choose Search Result", customAttributes: ["index": index])
     }
     
     // MARK: - LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        guard lyrics.metadata.request == searchRequest else {
+        guard lyrics.metadata.request == searchTask?.request else {
             return
         }
         if let idx = searchResult.index(where: { lyrics.quality > $0.quality }) {
@@ -118,13 +141,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         } else {
             searchResult.append(lyrics)
         }
-        let isFinished = searchTask?.progress.isFinished ?? true
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            if isFinished {
-                self.progressIndicator.stopAnimation(nil)
-                self.progressIndicator.isHidden = true
-            }
         }
     }
     
@@ -189,6 +207,16 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
     }
     
+    // MARK: - NSTextFieldDelegate
+    
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if commandSelector == #selector(NSResponder.insertNewline(_:)) {
+            searchAction(nil)
+            return true
+        }
+        return false
+    }
+    
     private func expandPreview() {
         let expandingHeight = -view.subviews.reduce(0) { min($0, $1.frame.minY) }
         let windowFrame = self.view.window!.frame.with {
@@ -200,7 +228,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             context.allowsImplicitAnimation = true
             context.timingFunction = .mystery
             hideLrcPreviewConstraint?.animator().isActive = false
-            view.window?.setFrame(windowFrame, display: true, animate: true)
+            view.window?.setFrame(windowFrame, display: false, animate: true)
             view.needsUpdateConstraints = true
             view.needsLayout = true
             view.layoutSubtreeIfNeeded()

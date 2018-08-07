@@ -19,8 +19,9 @@
 //
 
 import Cocoa
-import MusicPlayer
+import Crashlytics
 import GenericID
+import MusicPlayer
 
 class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsViewDelegate, DragNDropDelegate {
     
@@ -39,10 +40,9 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         }
     }
     
-    private var observations: [NSObjectProtocol] = []
-    private var defaltsObservation: DefaultsObservation?
-    
     override func awakeFromNib() {
+        super.awakeFromNib()
+        
         view.window?.do {
             $0.titlebarAppearsTransparent = true
             $0.titleVisibility = .hidden
@@ -58,35 +58,28 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         lyricsScrollView.delegate = self
         lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
-        lyricsScrollView.bind(NSBindingName("fontName"), to: defaults, withDefaultName: .LyricsWindowFontName)
-        lyricsScrollView.bind(NSBindingName("fontSize"), to: defaults, withDefaultName: .LyricsWindowFontSize)
-        lyricsScrollView.bind(NSBindingName("textColor"), to: defaults, withDefaultName: .LyricsWindowTextColor)
-        lyricsScrollView.bind(NSBindingName("highlightColor"), to: defaults, withDefaultName: .LyricsWindowHighlightColor)
+        lyricsScrollView.bind(\.fontName, withDefaultName: .LyricsWindowFontName)
+        lyricsScrollView.bind(\.fontSize, withUnmatchedDefaultName: .LyricsWindowFontSize)
+        lyricsScrollView.bind(\.textColor, withDefaultName: .LyricsWindowTextColor)
+        lyricsScrollView.bind(\.highlightColor, withDefaultName: .LyricsWindowHighlightColor)
         
-        defaltsObservation = defaults.observe(.LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] (_, change) in
+        observeDefaults(key: .LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] _, change in
             let fontSize = CGFloat(change.newValue)
             self.lyricsScrollViewTopMargin.constant = fontSize
             self.lyricsScrollViewLeftMargin.constant = fontSize
             self.displayLyrics(animation: false)
         }
         
-        let nc = NotificationCenter.default
-        // swiftlint:disable discarded_notification_center_observer
-        observations += [
-            nc.addObserver(forName: .lyricsShouldDisplay, object: nil, queue: nil) { [unowned self] _ in self.displayLyrics() },
-            nc.addObserver(forName: .currentLyricsChange, object: nil, queue: nil) { [unowned self] _ in self.lyricsChanged() },
-            nc.addObserver(forName: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView, queue: .main) { [unowned self] _ in self.isTracking = false }
-        ]
-        // swiftlint:enable discarded_notification_center_observer
+        observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.displayLyrics() }
+        observeNotification(name: .currentLyricsChange) { [unowned self] _ in self.lyricsChanged() }
+        observeNotification(name: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView, queue: .main) { [unowned self] _ in self.isTracking = false }
+        
+        Answers.logCustomEvent(withName: "Show Lyrics Window")
     }
     
     override func viewWillAppear() {
         noLyricsLabel.isHidden = AppController.shared.currentLyrics != nil
         displayLyrics(animation: false)
-    }
-    
-    deinit {
-        observations.forEach(NotificationCenter.default.removeObserver)
     }
     
     // MARK: - Handler
@@ -105,7 +98,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         guard var pos = AppController.shared.playerManager.player?.playerPosition else {
             return
         }
-        pos += AppController.shared.currentLyrics?.timeDelay ?? 0
+        pos += AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
         lyricsScrollView.highlight(position: pos)
         guard isTracking else {
             return
@@ -125,9 +118,10 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     // MARK: ScrollLyricsViewDelegate
     
     func doubleClickLyricsLine(at position: TimeInterval) {
-        let pos = position - (AppController.shared.currentLyrics?.timeDelay ?? 0)
+        let pos = position - (AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0)
         AppController.shared.playerManager.player?.playerPosition = pos
         isTracking = true
+        Answers.logCustomEvent(withName: "Seek to Lyrics Line")
     }
     
     func scrollWheelDidStartScroll() {

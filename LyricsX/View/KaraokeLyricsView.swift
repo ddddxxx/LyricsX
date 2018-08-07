@@ -25,12 +25,22 @@ class KaraokeLyricsView: NSBox {
     
     private let stackView = NSStackView().then {
         $0.orientation = .vertical
-        $0.alignment = .centerX
     }
+    
+    @objc dynamic var isVertical = false {
+        didSet {
+            stackView.orientation = isVertical ? .horizontal : .vertical
+            (isVertical ? displayLine2 : displayLine1).map { stackView.insertArrangedSubview($0, at: 0) }
+            updateFontSize()
+        }
+    }
+    
+    @objc dynamic var drawFurigana = false
     
     @objc dynamic var font = NSFont.labelFont(ofSize: 24) { didSet { updateFontSize() } }
     @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-    @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1)
+    @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
+    @objc dynamic var progressColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
     
     @objc dynamic var shouldHideWithMouse = true {
         didSet {
@@ -38,11 +48,12 @@ class KaraokeLyricsView: NSBox {
         }
     }
     
-    var displayLine1: NSTextField?
-    var displayLine2: NSTextField?
+    var displayLine1: KaraokeLabel?
+    var displayLine2: KaraokeLabel?
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        wantsLayer = true
         boxType = .custom
         borderType = .grooveBorder
         borderWidth = 0
@@ -50,45 +61,54 @@ class KaraokeLyricsView: NSBox {
         contentView = stackView
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        contentView = stackView
+    required init?(coder decoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func updateFontSize() {
-        let insetX = font.pointSize
-        let insetY = insetX / 3
-        
+        var insetX = font.pointSize
+        var insetY = insetX / 3
+        if isVertical {
+            (insetX, insetY) = (insetY, insetX)
+        }
         stackView.snp.remakeConstraints {
             $0.edges.equalToSuperview().inset(NSEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX))
         }
-        
-        cornerRadius = insetX / 2
+        stackView.spacing = font.pointSize / 3
+        cornerRadius = font.pointSize / 2
     }
     
-    private func lyricsLabel(_ content: String) -> NSTextField {
-        // TODO: reuse label
-        return NSTextField(labelWithString: content).then {
-            $0.bind(.font, to: self, withKeyPath: #keyPath(font))
-            $0.bind(.textColor, to: self, withKeyPath: #keyPath(textColor))
-            $0.bind(.init("progressColor"), to: self, withKeyPath: #keyPath(shadowColor))
-            $0.bind(.init("_shadowColor"), to: self, withKeyPath: #keyPath(shadowColor))
+    private func lyricsLabel(_ content: String) -> KaraokeLabel {
+        if let view = stackView.subviews.lazy.compactMap({ $0 as? KaraokeLabel }).first(where: { !stackView.arrangedSubviews.contains($0) }) {
+            view.alphaValue = 0
+            view.stringValue = content
+            view.removeProgressAnimation()
+            view.removeFromSuperview()
+            return view
+        }
+        return KaraokeLabel(labelWithString: content).then {
+            $0.bind(\.font, to: self, withKeyPath: \.font)
+            $0.bind(\.textColor, to: self, withKeyPath: \.textColor)
+            $0.bind(\.progressColor, to: self, withKeyPath: \.progressColor)
+            $0.bind(\._shadowColor, to: self, withKeyPath: \.shadowColor)
+            $0.bind(\.isVertical, to: self, withKeyPath: \.isVertical)
+            $0.bind(\.drawFurigana, to: self, withKeyPath: \.drawFurigana)
             $0.alphaValue = 0
-            $0.isHidden = true
         }
     }
     
     func displayLrc(_ firstLine: String, secondLine: String = "") {
-        var toBeHide = stackView.arrangedSubviews.compactMap { $0 as? NSTextField }
+        var toBeHide = stackView.arrangedSubviews.compactMap { $0 as? KaraokeLabel }
         var toBeShow: [NSTextField] = []
         var shouldHideAll = false
         
+        let index = isVertical ? 0 : 1
         if firstLine.trimmingCharacters(in: .whitespaces).isEmpty {
             displayLine1 = nil
             shouldHideAll = true
-        } else if toBeHide.count == 2, toBeHide[1].stringValue == firstLine {
-            displayLine1 = toBeHide[1]
-            toBeHide.remove(at: 1)
+        } else if toBeHide.count == 2, toBeHide[index].stringValue == firstLine {
+            displayLine1 = toBeHide[index]
+            toBeHide.remove(at: index)
         } else {
             let label = lyricsLabel(firstLine)
             displayLine1 = label
@@ -111,18 +131,20 @@ class KaraokeLyricsView: NSBox {
                 stackView.removeArrangedSubview($0)
                 $0.isHidden = true
                 $0.alphaValue = 0
+                $0.removeProgressAnimation()
             }
             toBeShow.forEach {
-                stackView.addArrangedSubview($0)
+                if isVertical {
+                    stackView.insertArrangedSubview($0, at: 0)
+                } else {
+                    stackView.addArrangedSubview($0)
+                }
                 $0.isHidden = false
                 $0.alphaValue = 1
             }
             isHidden = shouldHideAll
             layoutSubtreeIfNeeded()
         }, completionHandler: {
-            toBeHide.forEach {
-                $0.removeFromSuperview()
-            }
             self.mouseTest()
         })
     }
@@ -135,7 +157,8 @@ class KaraokeLyricsView: NSBox {
         super.updateTrackingAreas()
         trackingArea.map(removeTrackingArea)
         if shouldHideWithMouse {
-            trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .assumeInside, .enabledDuringMouseDrag], owner: self)
+            let trackingOptions: NSTrackingArea.Options = [.mouseEnteredAndExited, .activeAlways, .assumeInside, .enabledDuringMouseDrag]
+            trackingArea = NSTrackingArea(rect: bounds, options: trackingOptions, owner: self)
             trackingArea.map(addTrackingArea)
         }
         mouseTest()

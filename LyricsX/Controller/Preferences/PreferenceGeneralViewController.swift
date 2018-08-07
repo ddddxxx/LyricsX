@@ -37,6 +37,8 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var loadHomonymLrcButton: NSButton!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         switch defaults[.PreferredPlayerIndex] {
         case 0:
             preferiTunes.state = .on
@@ -59,6 +61,11 @@ class PreferenceGeneralViewController: NSViewController {
         } else {
             userPathMenuItem.isHidden = true
         }
+    }
+    
+    @IBAction func showInFinderAction(_ sender: Any) {
+        let url = defaults.lyricsSavingPath().0
+        NSWorkspace.shared.open(url)
     }
     
     @IBAction func chooseSavingPathAction(_ sender: Any) {

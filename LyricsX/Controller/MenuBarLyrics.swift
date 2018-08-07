@@ -19,9 +19,10 @@
 //
 
 import Cocoa
+import GenericID
 import LyricsProvider
 import MusicPlayer
-import GenericID
+import OpenCC
 
 class MenuBarLyrics: NSObject {
     
@@ -32,41 +33,38 @@ class MenuBarLyrics: NSObject {
     var buttonImage = #imageLiteral(resourceName: "status_bar_icon")
     var buttonlength: CGFloat = 30
     
-    private var displayLyrics = ""
-    
-    var statusItemObservation: DefaultsObservation?
+    private var screenLyrics = ""
     
     private override init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         super.init()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-        NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(updateStatusItem),
-                                                          name: NSWorkspace.didActivateApplicationNotification,
-                                                          object: nil)
-        statusItemObservation = defaults.observe(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in
-            self.updateStatusItem()
-        }
+        
+        observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.handleLyricsDisplay() }
+        observeNotification(center: workspaceNC, name: NSWorkspace.didActivateApplicationNotification) { [unowned self] _ in self.updateStatusItem() }
+        observeDefaults(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }
     }
     
     @objc func handleLyricsDisplay() {
         guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
-            displayLyrics = ""
+            screenLyrics = ""
             updateStatusItem()
             return
         }
-        let lrc = lyrics.lines[index].content
-        if lrc == displayLyrics {
+        var newScreenLyrics = lyrics.lines[index].content
+        if let converter = ChineseConverter.shared {
+            newScreenLyrics = converter.convert(newScreenLyrics)
+        }
+        if newScreenLyrics == screenLyrics {
             return
         }
-        displayLyrics = lrc
+        screenLyrics = newScreenLyrics
         updateStatusItem()
     }
     
     @objc func updateStatusItem() {
-        guard defaults[.MenuBarLyricsEnabled], !displayLyrics.isEmpty else {
+        guard defaults[.MenuBarLyricsEnabled], !screenLyrics.isEmpty else {
             setImageStatusItem()
             lyricsItem = nil
             return
@@ -86,19 +84,19 @@ class MenuBarLyrics: NSObject {
             lyricsItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
             lyricsItem?.highlightMode = false
         }
-        lyricsItem?.title = displayLyrics
+        lyricsItem?.title = screenLyrics
     }
     
     func updateCombinedStatusLyrics() {
         lyricsItem = nil
         
-        setTextStatusItem(string: displayLyrics)
+        setTextStatusItem(string: screenLyrics)
         if statusItem.isVisibe {
             return
         }
         
         // truncation
-        var components = displayLyrics.components(options: [.byWords])
+        var components = screenLyrics.components(options: [.byWords])
         while !components.isEmpty, !statusItem.isVisibe {
             components.removeLast()
             let proposed = components.joined() + "..."
@@ -169,7 +167,7 @@ extension String {
     func components(options: String.EnumerationOptions) -> [String] {
         var components: [String] = []
         let range = Range(uncheckedBounds: (startIndex, endIndex))
-        enumerateSubstrings(in: range, options: options) { (_, _, range, _) in
+        enumerateSubstrings(in: range, options: options) { _, _, range, _ in
             components.append(String(self[range]))
         }
         return components

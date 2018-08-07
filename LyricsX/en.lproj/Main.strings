@@ -1,27 +1,6 @@
 
-/* Class = "NSTextFieldCell"; title = "Copyright © 2017 Xander Deng."; ObjectID = "0X5-3L-Uzo"; */
-"0X5-3L-Uzo.title" = "Copyright © 2017 Xander Deng.";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1Uc-zV-55H"; */
-"1Uc-zV-55H.title" = "Text Cell";
-
-/* Class = "NSMenuItem"; title = "Close"; ObjectID = "1fM-ec-bJX"; */
-"1fM-ec-bJX.title" = "Close";
-
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
 "1xI-G4-Fsc.headerCell.title" = "Source";
-
-/* Class = "NSMenuItem"; title = "Quit Application"; ObjectID = "2jf-zU-489"; */
-"2jf-zU-489.title" = "Quit Application";
-
-/* Class = "NSWindow"; title = "Lyrics"; ObjectID = "6aU-M0-0Jh"; */
-"6aU-M0-0Jh.title" = "Lyrics";
-
-/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
-"AYu-sK-qS6.title" = "Main Menu";
-
-/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "CDj-ot-3DR"; */
-"CDj-ot-3DR.title" = "Edit";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
 "CW0-AL-Z6N.title" = "Donate";
@@ -47,18 +26,6 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
 "IFz-XQ-DHf.title" = "Lyrics Offset:";
 
-/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "Jbz-xE-Ntb"; */
-"Jbz-xE-Ntb.title" = "Redo";
-
-/* Class = "NSMenu"; title = "Application"; ObjectID = "L37-wq-P3U"; */
-"L37-wq-P3U.title" = "Application";
-
-/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "Nxv-i6-pWj"; */
-"Nxv-i6-pWj.title" = "Minimize";
-
-/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "PHb-rX-39I"; */
-"PHb-rX-39I.title" = "Copy";
-
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "About LyricsX";
 
@@ -71,44 +38,11 @@
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
 "RPR-IV-34T.title" = "Quit LyricsX";
 
-/* Class = "NSMenuItem"; title = "Lyrics Delay Setter"; ObjectID = "SDr-c6-5JC"; */
-"SDr-c6-5JC.title" = "Lyrics Delay Setter";
-
-/* Class = "NSMenu"; title = "Window"; ObjectID = "Ubz-IV-XOU"; */
-"Ubz-IV-XOU.title" = "Window";
-
-/* Class = "NSTextFieldCell"; title = "ms"; ObjectID = "VQG-Pf-NsG"; */
-"VQG-Pf-NsG.title" = "ms";
-
-/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "VUf-dC-81X"; */
-"VUf-dC-81X.title" = "Paste";
-
-/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "X70-gA-VCs"; */
-"X70-gA-VCs.title" = "Undo";
-
-/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "XQC-Z5-ZbS"; */
-"XQC-Z5-ZbS.title" = "Hide Others";
-
-/* Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "YFT-fb-xcH"; */
-"YFT-fb-xcH.title" = "Paste and Match Style";
-
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
 "Z7d-yp-uRx.title" = "Enable Menu Bar Lyrics";
 
-/* Class = "NSTextFieldCell"; title = "No Lyrics"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "No Lyrics";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c9V-Dh-f1D"; */
-"c9V-Dh-f1D.title" = "Text Cell";
-
-/* Class = "NSMenuItem"; title = "Window"; ObjectID = "cda-cm-Apk"; */
-"cda-cm-Apk.title" = "Window";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "cnE-64-D67"; */
-"cnE-64-D67.title" = "Text Cell";
-
-/* Class = "NSMenuItem"; title = "Hide Application"; ObjectID = "csd-w7-kJw"; */
-"csd-w7-kJw.title" = "Hide Application";
+/* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
+"aRw-yQ-GNX.title" = "No Lyrics\n\nDrag & Drop to import LRC file";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
 "d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
@@ -116,20 +50,11 @@
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
 "eb9-fE-Lgq.title" = "Search";
 
-/* Class = "NSWindow"; title = "Window"; ObjectID = "fhu-ba-Lnu"; */
-"fhu-ba-Lnu.title" = "Window";
-
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
 "fmS-zv-RcJ.title" = "Wrong Lyrics";
 
-/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "gPf-oY-cYP"; */
-"gPf-oY-cYP.title" = "Select All";
-
 /* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
 "h6D-jz-GbI.title" = "Search Lyrics...";
-
-/* Class = "NSMenu"; title = "Edit"; ObjectID = "hin-8a-QBn"; */
-"hin-8a-QBn.title" = "Edit";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
 "jWT-S5-YXM.headerCell.title" = "Title";
@@ -143,20 +68,5 @@
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
 "l8J-1r-dIZ.title" = "Artist:";
 
-/* Class = "NSTextFieldCell"; title = "AppName"; ObjectID = "m4c-y5-n5Z"; */
-"m4c-y5-n5Z.title" = "AppName";
-
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
 "o52-Z0-lue.title" = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.";
-
-/* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "tMS-HS-dqi"; */
-"tMS-HS-dqi.title" = "Version";
-
-/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uP6-6j-RSc"; */
-"uP6-6j-RSc.title" = "Cut";
-
-/* Class = "NSMenuItem"; title = "Application"; ObjectID = "vHn-zU-YCm"; */
-"vHn-zU-YCm.title" = "Application";
-
-/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "wvJ-8O-0Hq"; */
-"wvJ-8O-0Hq.title" = "0";
