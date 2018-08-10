@@ -139,11 +139,11 @@ private extension NSTextField {
     
     func tf_addProgressAnimation(_ progress: [(TimeInterval, Int)]) {
         let progressTextField = NSTextField(labelWithString: stringValue)
-        progressTextField.wantsLayer = true
-        progressTextField.bind(.textColor, to: self, withKeyPath: "tfProgressColor")
         addSubview(progressTextField)
-        progressTextField.bind(.value, to: self, withKeyPath: "stringValue")
-        progressTextField.bind(.font, to: self, withKeyPath: "font")
+        progressTextField.wantsLayer = true
+        progressTextField.bind(\.textColor, to: self, withKeyPath: \.tfProgressColor)
+        progressTextField.bind(\.stringValue, to: self, withKeyPath: \.stringValue)
+        progressTextField.bind(\.font, to: self, withKeyPath: \.font)
         progressTextField.snp.makeConstraints { $0.edges.equalToSuperview() }
         
         guard let index = progress.index(where: { $0.0 > 0 }) else { return }
