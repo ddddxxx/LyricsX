@@ -71,5 +71,7 @@
 	</array>
 	<key>PreferredLyricsSource</key>
 	<string>Auto</string>
+	<key>GlobalLyricsOffset</key>
+	<integer>0</integer>
 </dict>
 </plist>

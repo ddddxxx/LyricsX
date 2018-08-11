@@ -160,3 +160,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
 "XuN-vs-cgI.title" = "Progress";
+
+/* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
+"slB-q7-1dB.title" = "Global offset (ms):";
