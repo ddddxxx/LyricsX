@@ -23,9 +23,6 @@ import Foundation
 extension CountableRange {
     
     func clamp(_ value: Bound) -> Bound {
-        if upperBound == lowerBound {
-            return upperBound
-        }
         return Swift.min(upperBound.advanced(by: -1), Swift.max(lowerBound, value))
     }
 }
