@@ -260,15 +260,19 @@ extension AppController {
     
     func importLyrics(_ lyricsString: String) throws {
         guard let lrc = Lyrics(lyricsString) else {
-            // TODO: throws
-            return
+            let errorInfo = [
+                NSLocalizedDescriptionKey: "Invalid lyric file",
+                NSLocalizedRecoverySuggestionErrorKey: "Please try another one."
+            ]
+            let error = NSError(domain: lyricsXErrorDomain, code: 0, userInfo: errorInfo)
+            throw error
         }
         guard let track = AppController.shared.playerManager.player?.currentTrack else {
             let errorInfo = [
                 NSLocalizedDescriptionKey: "No music playing",
                 NSLocalizedRecoverySuggestionErrorKey: "Play a music and try again."
             ]
-            let error = NSError(domain: "ddddxxx.LyricsX", code: 0, userInfo: errorInfo)
+            let error = NSError(domain: lyricsXErrorDomain, code: 0, userInfo: errorInfo)
             throw error
         }
         lrc.metadata.title = track.title
