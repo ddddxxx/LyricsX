@@ -150,7 +150,7 @@ class ScrollLyricsView: NSScrollView {
         wantsLayer = true
         layer?.mask = CAGradientLayer().then {
             $0.frame = bounds
-            $0.colors = [#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor]
+            $0.colors = [#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0), #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)] as [CGColor]
             $0.locations = [0, location as NSNumber, (1 - location) as NSNumber, 1]
             $0.startPoint = .zero
             $0.endPoint = CGPoint(x: 0, y: 1)
@@ -185,7 +185,7 @@ class ScrollLyricsView: NSScrollView {
                 right = mid - 1
             }
         }
-        let range = ranges[ranges.indices.clamp(right)].1
+        let range = ranges[right.clamped(to: ranges.indices)].1
         
         if highlightedRange == range {
             return
@@ -212,7 +212,7 @@ class ScrollLyricsView: NSScrollView {
                 right = mid - 1
             }
         }
-        let range = ranges[ranges.indices.clamp(right)].1
+        let range = ranges[right.clamped(to: ranges.indices)].1
         
         let bounding = textView.layoutManager!.boundingRect(forGlyphRange: range, in: textView.textContainer!)
         
