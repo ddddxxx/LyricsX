@@ -138,17 +138,13 @@ private extension NSTextField {
 private extension NSTextField {
     
     func tf_addProgressAnimation(_ progress: [(TimeInterval, Int)]) {
-        let progressTextField = NSTextField(labelWithString: stringValue)
-        addSubview(progressTextField)
-        progressTextField.wantsLayer = true
-        progressTextField.bind(\.textColor, to: self, withKeyPath: \.tfProgressColor)
-        progressTextField.bind(\.stringValue, to: self, withKeyPath: \.stringValue)
-        progressTextField.bind(\.font, to: self, withKeyPath: \.font)
-        progressTextField.snp.makeConstraints { $0.edges.equalToSuperview() }
         
         guard let index = progress.index(where: { $0.0 > 0 }) else { return }
         let rectArray = rectArrayForAllCharacters()
-        var map = progress.map { ($0.0, rectArray[rectArray.indices.clamp($0.1 - 1)].maxX) }
+        guard !rectArray.isEmpty else {
+            return
+        }
+        var map = progress.map { ($0.0, rectArray[($0.1 - 1).clamped(to: rectArray.indices)].maxX) }
         if index > 0 {
             let progress = map[index - 1].1 + CGFloat(map[index - 1].0) * (map[index].1 - map[index - 1].1) / CGFloat(map[index].0 - map[index - 1].0)
             map.replaceSubrange(..<index, with: [(0, progress)])
@@ -160,6 +156,14 @@ private extension NSTextField {
         animation.values = map.map { $0.1 }
         animation.keyPath = "bounds.size.width"
         animation.duration = duration
+        
+        let progressTextField = NSTextField(labelWithString: stringValue)
+        addSubview(progressTextField)
+        progressTextField.wantsLayer = true
+        progressTextField.bind(\.textColor, to: self, withKeyPath: \.tfProgressColor)
+        progressTextField.bind(\.stringValue, to: self, withKeyPath: \.stringValue)
+        progressTextField.bind(\.font, to: self, withKeyPath: \.font)
+        progressTextField.snp.makeConstraints { $0.edges.equalToSuperview() }
         progressTextField.layer?.add(animation, forKey: "inlineProgress")
         
         self.tfProgressTextField?.removeFromSuperview()

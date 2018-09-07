@@ -258,14 +258,26 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
 
 extension AppController {
     
-    func importLyrics(_ lyricsString: String) {
-        // TODO: user feedback
-        if let lrc = Lyrics(lyricsString),
-            let track = AppController.shared.playerManager.player?.currentTrack {
-            lrc.metadata.title = track.title
-            lrc.metadata.artist = track.artist
-            lrc.metadata.needsPersist = true
-            currentLyrics = lrc
+    func importLyrics(_ lyricsString: String) throws {
+        guard let lrc = Lyrics(lyricsString) else {
+            let errorInfo = [
+                NSLocalizedDescriptionKey: "Invalid lyric file",
+                NSLocalizedRecoverySuggestionErrorKey: "Please try another one."
+            ]
+            let error = NSError(domain: lyricsXErrorDomain, code: 0, userInfo: errorInfo)
+            throw error
         }
+        guard let track = AppController.shared.playerManager.player?.currentTrack else {
+            let errorInfo = [
+                NSLocalizedDescriptionKey: "No music playing",
+                NSLocalizedRecoverySuggestionErrorKey: "Play a music and try again."
+            ]
+            let error = NSError(domain: lyricsXErrorDomain, code: 0, userInfo: errorInfo)
+            throw error
+        }
+        lrc.metadata.title = track.title
+        lrc.metadata.artist = track.artist
+        lrc.metadata.needsPersist = true
+        currentLyrics = lrc
     }
 }

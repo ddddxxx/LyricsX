@@ -34,7 +34,7 @@
         <!--Preference View Controller-->
         <scene sceneID="DwI-HE-QiS">
             <objects>
-                <tabViewController showSeguePresentationStyle="single" tabStyle="toolbar" id="sV3-nO-PkZ" userLabel="Preference View Controller" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" tabStyle="toolbar" id="sV3-nO-PkZ" userLabel="Preference View Controller" customClass="PreferenceViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" image="NSPreferencesGeneral" id="E3f-78-EMG" userLabel="General"/>
                         <tabViewItem identifier="" image="NSFontPanel" id="8VI-6O-0Rn" userLabel="Display"/>

@@ -35,7 +35,7 @@ extension CTRubyAnnotation {
         let text = UnsafeMutablePointer<Unmanaged<CFString>?>.allocate(capacity: count)
         defer { text.deallocate() }
         text.initialize(repeating: nil, count: count)
-        let pos = (0..<count).clamp(Int(position.rawValue))
+        let pos = Int(position.rawValue).clamped(to: 0..<count)
         text[pos] = Unmanaged.passUnretained(str)
         return CTRubyAnnotationCreate(alignment, overhang, sizeFactor, text)
     }

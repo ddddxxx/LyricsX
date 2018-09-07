@@ -26,6 +26,7 @@ import MusicPlayer
 // and do the same thing in LyricsXHelper
 let lyricsXGroupIdentifier = "3665V726AE.group.ddddxxx.LyricsX"
 let lyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
+let lyricsXErrorDomain = "ddddxxx.LyricsX"
 
 let defaults = UserDefaults.standard
 let groupDefaults = UserDefaults(suiteName: lyricsXGroupIdentifier)!

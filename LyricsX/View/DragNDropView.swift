@@ -57,12 +57,19 @@ class DragNDropView: NSView {
                 let str = try String(contentsOf: URL(fileURLWithPath: path))
                 dragDelegate?.dragFinished(content: str)
                 return true
+            } else {
+                let errorInfo = [
+                    NSLocalizedDescriptionKey: "Fail to import lyrics",
+                    NSLocalizedFailureReasonErrorKey: "The file couldn’t be opened."
+                ]
+                let error = NSError(domain: lyricsXErrorDomain, code: 0, userInfo: errorInfo)
+                throw error
             }
         } catch {
             let alert = NSAlert(error: error)
             alert.runModal()
+            return false
         }
-        return false
     }
     
 }
