@@ -44,7 +44,7 @@ private class NotificationObservationToken {
 
 extension NSObject {
     
-    private static var autoDestructionTokens: Void = ()
+    private static var autoDestructionTokens: Void?
     
     // using [Any] causes unexpected destruction, use NSMutableArray instead.
     private var autoDestruction: NSMutableArray {
