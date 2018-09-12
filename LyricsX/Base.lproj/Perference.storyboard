@@ -1369,6 +1369,9 @@
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isRemovedDuringMASReview" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Axy-WJ-CRv" customClass="MASShortcutView">
                                 <rect key="frame" x="308" y="56" width="120" height="19"/>
@@ -1378,6 +1381,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutSearchLyrics"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isRemovedDuringMASReview" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="TbU-as-K5K" customClass="MASShortcutView">
@@ -1436,10 +1440,6 @@
                             <constraint firstItem="8LH-Ws-6CC" firstAttribute="top" secondItem="rZM-vL-ukW" secondAttribute="bottom" constant="16" id="za1-YD-BRY"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="searchLyricsLabel" destination="Uyz-8q-0bL" id="rKW-FQ-KsJ"/>
-                        <outlet property="shortcutSearchLyrics" destination="Axy-WJ-CRv" id="Lgp-iH-f8z"/>
-                    </connections>
                 </viewController>
                 <customObject id="I0Z-pO-sVx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

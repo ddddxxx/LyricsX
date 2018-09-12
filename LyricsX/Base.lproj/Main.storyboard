@@ -287,7 +287,7 @@
                         <menuItem title="Show Lyrics Window" tag="102" id="kyJ-kV-2Du">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="showLyricsHUD:" target="Voe-Tx-rLC" id="hHM-Nm-oOL"/>
+                                <action selector="showLyricsHUD:" target="Ady-hI-5gd" id="hHM-Nm-oOL"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="yWX-1z-WqD"/>
@@ -307,20 +307,23 @@
                         </menuItem>
                         <menuItem title="Search Lyrics..." tag="201" id="h6D-jz-GbI">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenDuringMASReview" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="searchLyrics:" target="Voe-Tx-rLC" id="RV2-uD-OF7"/>
+                                <action selector="searchLyrics:" target="Ady-hI-5gd" id="RV2-uD-OF7"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Wrong Lyrics" tag="203" identifier="WrongLyrics" id="fmS-zv-RcJ">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="wrongLyrics:" target="Voe-Tx-rLC" id="PSJ-f3-tnK"/>
+                                <action selector="wrongLyrics:" target="Ady-hI-5gd" id="PSJ-f3-tnK"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Write to iTunes" tag="202" identifier="WriteToiTunes" id="kNl-ZO-aX6">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="writeToiTunes:" target="Voe-Tx-rLC" id="4Gb-qk-5mT"/>
+                                <action selector="writeToiTunes:" target="Ady-hI-5gd" id="4Gb-qk-5mT"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Gb0-Hc-403"/>
@@ -338,12 +341,19 @@
                         </menuItem>
                         <menuItem title="Check For Update..." tag="401" id="Piu-i2-JjD">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenInMASVersion" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenDuringMASReview" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="checkUpdateAction:" target="Voe-Tx-rLC" id="Ait-5g-99F"/>
+                                <action selector="checkUpdateAction:" target="Ady-hI-5gd" id="Ait-5g-99F"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Donate..." tag="402" id="EoO-ld-6Xv">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenDuringMASReview" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <segue destination="e4U-yI-muf" kind="show" id="Ssw-2c-afe"/>
                             </connections>

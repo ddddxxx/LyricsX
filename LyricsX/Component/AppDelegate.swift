@@ -60,8 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         desktopLyrics = KaraokeLyricsWindowController()
         desktopLyrics?.showWindow(nil)
         
-        MenuBarLyrics.shared.statusItem.target = self
-        MenuBarLyrics.shared.statusItem.action = #selector(clickMenuBarItem)
+        MenuBarLyrics.shared.statusItem.menu = statusBarMenu
         
         lyricsOffsetStepper.bind(.value,
                                  to: controller,
@@ -134,45 +133,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let binder = MASShortcutBinder.shared()!
         binder.bindBoolShortcut(.ShortcutToggleMenuBarLyrics, target: .MenuBarLyricsEnabled)
         binder.bindBoolShortcut(.ShortcutToggleKaraokeLyrics, target: .DesktopLyricsEnabled)
-        binder.bindShortcut(.ShortcutShowLyricsWindow) {
-            self.showLyricsHUD(nil)
-        }
-        binder.bindShortcut(.ShortcutOffsetIncrease) {
-            self.increaseOffset(nil)
-        }
-        binder.bindShortcut(.ShortcutOffsetDecrease) {
-            self.decreaseOffset(nil)
-        }
-        binder.bindShortcut(.ShortcutWriteToiTunes) {
-            self.writeToiTunes(nil)
-        }
-        binder.bindShortcut(.ShortcutWrongLyrics) {
-            self.wrongLyrics(nil)
-        }
-        binder.bindShortcut(.ShortcutSearchLyrics) {
-            self.searchLyrics(nil)
-        }
+        binder.bindShortcut(.ShortcutShowLyricsWindow, to: self.showLyricsHUD)
+        binder.bindShortcut(.ShortcutOffsetIncrease, to: self.increaseOffset)
+        binder.bindShortcut(.ShortcutOffsetDecrease, to: self.decreaseOffset)
+        binder.bindShortcut(.ShortcutWriteToiTunes, to: self.writeToiTunes)
+        binder.bindShortcut(.ShortcutWrongLyrics, to: self.wrongLyrics)
+        binder.bindShortcut(.ShortcutSearchLyrics, to: self.searchLyrics)
     }
     
     // MARK: - Menubar Action
-    
-    @IBAction func clickMenuBarItem(_ sender: NSStatusItem) {
-        #if IS_FOR_MAS
-            let isInMASReview = defaults[.isInMASReview] != false
-            statusBarMenu.item(withTag: 201)?.isHidden = isInMASReview
-            // search lyrics
-            statusBarMenu.item(withTag: 401)?.isHidden = isInMASReview || isFromMacAppStore
-            // check for update
-            statusBarMenu.item(withTag: 402)?.isHidden = isInMASReview
-            // donate
-            checkForMASReview()
-        #endif
-        
-        statusBarMenu.item(withTag: 202)?.isHidden = !(AppController.shared.playerManager.player is iTunes)
-        // write to iTunes
-        
-        MenuBarLyrics.shared.statusItem.popUpMenu(statusBarMenu)
-    }
     
     var lyricsHUD: NSWindowController?
     
@@ -250,6 +219,12 @@ extension MASShortcutBinder {
     
     func bindShortcut<T>(_ defaultsKay: UserDefaults.DefaultsKey<T>, to action: @escaping () -> Void) {
         bindShortcut(withDefaultsKey: defaultsKay.key, toAction: action)
+    }
+    
+    func bindShortcut<T, U>(_ defaultsKay: UserDefaults.DefaultsKey<T>, to action: @escaping (U?) -> Void) {
+        bindShortcut(withDefaultsKey: defaultsKay.key) {
+            action(nil)
+        }
     }
     
     func bindBoolShortcut<T>(_ defaultsKay: UserDefaults.DefaultsKey<T>, target: UserDefaults.DefaultsKey<Bool>) {

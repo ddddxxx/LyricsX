@@ -22,6 +22,54 @@ import Cocoa
 import LyricsProvider
 import MusicPlayer
 
+extension NSMenuItem {
+    
+    @objc var isHiddenInMASVersion: Bool {
+        get {
+            // fake getter. we only need its setter in IB.
+            return true
+        }
+        set {
+            #if IS_FOR_MAS
+            if newValue, isFromMacAppStore {
+                isHidden = true
+            }
+            #endif
+        }
+    }
+    
+    @objc var isHiddenDuringMASReview: Bool {
+        get {
+            // fake getter. we only need its setter in IB.
+            return true
+        }
+        set {
+            #if IS_FOR_MAS
+            if newValue, defaults[.isInMASReview] != false {
+                isHidden = true
+            }
+            #endif
+        }
+    }
+}
+
+extension NSView {
+    
+    @objc var isRemovedDuringMASReview: Bool {
+        get {
+            // fake getter. we only need its setter in IB.
+            return true
+        }
+        set {
+            #if IS_FOR_MAS
+            if newValue, defaults[.isInMASReview] != false {
+                removeFromSuperview()
+            }
+            #endif
+        }
+    }
+}
+
 extension MusicPlayerName {
     
     init?(index: Int) {
