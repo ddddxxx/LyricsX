@@ -27,7 +27,7 @@ import MusicPlayer
 import ServiceManagement
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     
     static var shared: AppDelegate? {
         return NSApplication.shared.delegate as? AppDelegate
@@ -61,6 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         desktopLyrics?.showWindow(nil)
         
         MenuBarLyrics.shared.statusItem.menu = statusBarMenu
+        statusBarMenu.delegate = self
         
         lyricsOffsetStepper.bind(.value,
                                  to: controller,
@@ -118,17 +119,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        switch menuItem.identifier {
-        case .WriteToiTunes?:
-            return AppController.shared.playerManager.player is iTunes && AppController.shared.currentLyrics != nil
-        case .WrongLyrics?:
-            return AppController.shared.currentLyrics != nil
-        default:
-            return true
-        }
-    }
-    
     private func setupShortcuts() {
         let binder = MASShortcutBinder.shared()!
         binder.bindBoolShortcut(.ShortcutToggleMenuBarLyrics, target: .MenuBarLyricsEnabled)
@@ -139,6 +129,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         binder.bindShortcut(.ShortcutWriteToiTunes, to: self.writeToiTunes)
         binder.bindShortcut(.ShortcutWrongLyrics, to: self.wrongLyrics)
         binder.bindShortcut(.ShortcutSearchLyrics, to: self.searchLyrics)
+    }
+    
+    // MARK: - NSMenuDelegate
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        menu.iterateItem { item in
+            guard let identifier = item.identifier else { return }
+            switch identifier {
+            case .WriteToiTunes:
+                item.isEnabled = AppController.shared.playerManager.player is iTunes && AppController.shared.currentLyrics != nil
+            case .LyricsMenu:
+                item.isEnabled = AppController.shared.currentLyrics != nil
+            default:
+                break
+            }
+        }
     }
     
     // MARK: - Menubar Action
@@ -163,6 +169,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func decreaseOffset(_ sender: Any?) {
         AppController.shared.lyricsOffset -= 100
+    }
+    
+    @IBAction func showCurrentLyricsInFinder(_ sender: Any?) {
+        guard let lyrics = AppController.shared.currentLyrics,
+            let url = lyrics.metadata.localURL else {
+            return
+        }
+        if lyrics.metadata.needsPersist {
+            lyrics.persist()
+        }
+        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
     @IBAction func writeToiTunes(_ sender: Any?) {
@@ -209,10 +226,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
+extension NSMenu {
+    
+    func iterateItem(recursive: Bool = true, _ block: (NSMenuItem) -> Void) {
+        for item in items {
+            block(item)
+            if recursive, item.hasSubmenu {
+                item.submenu?.iterateItem(block)
+            }
+        }
+    }
+}
+
 extension NSUserInterfaceItemIdentifier {
     
-    fileprivate static let WriteToiTunes = NSUserInterfaceItemIdentifier("WriteToiTunes")
-    fileprivate static let WrongLyrics = NSUserInterfaceItemIdentifier("WrongLyrics")
+    fileprivate static let WriteToiTunes = NSUserInterfaceItemIdentifier("MainMenu.WriteToiTunes")
+    fileprivate static let LyricsMenu = NSUserInterfaceItemIdentifier("MainMenu.Lyrics")
 }
 
 extension MASShortcutBinder {
