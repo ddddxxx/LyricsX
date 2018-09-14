@@ -94,7 +94,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
 }
 
 @available(OSX 10.12.2, *)
-extension NSTouchBarItem {
+private extension NSTouchBarItem {
     
     func setSystemTrayPresent(_ isPresent: Bool) {
         if isPresent {
@@ -102,18 +102,47 @@ extension NSTouchBarItem {
         } else {
             NSTouchBarItem.removeSystemTrayItem(self)
         }
-        DFRElementSetControlStripPresenceForIdentifier(identifier, isPresent)
-        DFRSystemModalShowsCloseBoxWhenFrontMost(isPresent)
+        DFRElementSetControlStripPresenceForIdentifier?(identifier, isPresent)
+        DFRSystemModalShowsCloseBoxWhenFrontMost?(isPresent)
     }
 }
 
 @available(OSX 10.12.2, *)
-extension NSTouchBarItem.Identifier {
+private extension NSTouchBarItem.Identifier {
     
     static let lyrics = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.lyrics")
     
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
 }
+
+// MARK: DFRFoundation API
+
+private let DFRFoundationPath = "/System/Library/PrivateFrameworks/DFRFoundation.framework/Versions/A/DFRFoundation"
+
+@available(OSX 10.12.2, *)
+private typealias DFRElementSetControlStripPresenceForIdentifierType = @convention(c) (NSTouchBarItem.Identifier, Bool) -> Void
+
+@available(OSX 10.12.2, *)
+private typealias DFRSystemModalShowsCloseBoxWhenFrontMostType = @convention(c) (Bool) -> Void
+
+@available(OSX 10.12.2, *)
+private let (DFRElementSetControlStripPresenceForIdentifier, DFRSystemModalShowsCloseBoxWhenFrontMost): (DFRElementSetControlStripPresenceForIdentifierType?, DFRSystemModalShowsCloseBoxWhenFrontMostType?) = {
+    guard let handle = dlopen(DFRFoundationPath, RTLD_LAZY) else {
+        return (nil, nil)
+    }
+    defer {
+        dlclose(handle)
+    }
+    let f1 = dlsym(handle, "DFRElementSetControlStripPresenceForIdentifier")?.do {
+        unsafeBitCast($0, to: DFRElementSetControlStripPresenceForIdentifierType.self)
+    }
+    let f2 = dlsym(handle, "DFRSystemModalShowsCloseBoxWhenFrontMost")?.do {
+        unsafeBitCast($0, to: DFRSystemModalShowsCloseBoxWhenFrontMostType.self)
+    }
+    return (f1, f2)
+}()
+
+// MARK: - NSTextField + Progress
 
 private extension NSTextField {
     
