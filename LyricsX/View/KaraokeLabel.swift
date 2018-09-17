@@ -24,46 +24,45 @@ class KaraokeLabel: NSTextField {
     
     @objc dynamic var isVertical = false {
         didSet {
-            invalidateContent()
+            clearCache()
             invalidateIntrinsicContentSize()
         }
     }
     
     @objc dynamic var drawFurigana = false {
         didSet {
-            invalidateContent()
+            clearCache()
             invalidateIntrinsicContentSize()
         }
     }
     
     override var attributedStringValue: NSAttributedString {
         didSet {
-            invalidateContent()
+            clearCache()
         }
     }
     
     override var stringValue: String {
         didSet {
-            invalidateContent()
+            clearCache()
         }
     }
     
     @objc override dynamic var font: NSFont? {
         didSet {
-            invalidateContent()
+            clearCache()
         }
     }
     
     @objc override dynamic var textColor: NSColor? {
         didSet {
-            invalidateContent()
+            clearCache()
         }
     }
     
-    private var isContentInvalid = false
-    
-    private func invalidateContent() {
-        isContentInvalid = true
+    private func clearCache() {
+        _attrString = nil
+        _ctFrame = nil
         needsLayout = true
         needsDisplay = true
         removeProgressAnimation()
@@ -71,7 +70,7 @@ class KaraokeLabel: NSTextField {
     
     private var _attrString: NSAttributedString?
     private var attrString: NSAttributedString {
-        if !isContentInvalid, let attrString = _attrString {
+        if let attrString = _attrString {
             return attrString
         }
         let attrString = NSMutableAttributedString(attributedString: attributedStringValue)
@@ -82,7 +81,13 @@ class KaraokeLabel: NSTextField {
         for tokenType in tokenizer {
             guard tokenType.contains(.isCJWordMask) else { continue }
             let range = tokenizer.currentTokenRange()
-            attrString.addAttributes([.verticalGlyphForm: isVertical], range: range)
+            if isVertical {
+                let attr: [NSAttributedStringKey : Any] = [
+                    .verticalGlyphForm: true,
+                    .baselineOffset: (font?.pointSize ?? 24) * 0.25,
+                ]
+                attrString.addAttributes(attr, range: range)
+            }
             
             guard shouldDrawFurigana else { continue }
             let tokenStr = string.substring(with: range) as NSString
@@ -103,7 +108,7 @@ class KaraokeLabel: NSTextField {
     
     private var _ctFrame: CTFrame?
     private var ctFrame: CTFrame {
-        if !isContentInvalid, let ctFrame = _ctFrame {
+        if let ctFrame = _ctFrame {
             return ctFrame
         }
         layoutSubtreeIfNeeded()
