@@ -172,14 +172,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     @IBAction func showCurrentLyricsInFinder(_ sender: Any?) {
-        guard let lyrics = AppController.shared.currentLyrics,
-            let url = lyrics.metadata.localURL else {
+        guard let lyrics = AppController.shared.currentLyrics else {
             return
         }
         if lyrics.metadata.needsPersist {
             lyrics.persist()
         }
-        NSWorkspace.shared.activateFileViewerSelecting([url])
+        if let url = lyrics.metadata.localURL {
+            NSWorkspace.shared.activateFileViewerSelecting([url])
+        }
     }
     
     @IBAction func writeToiTunes(_ sender: Any?) {
