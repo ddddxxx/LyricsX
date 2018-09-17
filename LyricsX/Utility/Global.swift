@@ -93,16 +93,10 @@ extension UserDefaults.DefaultsKeys {
     static let DesktopLyricsScreenRect = Key<CGRect>("DesktopLyricsScreenRect", transformer: .json)
     static let DesktopLyricsOneLineMode = Key<Bool>("DesktopLyricsOneLineMode")
     static let DesktopLyricsVerticalMode = Key<Bool>("DesktopLyricsVerticalMode")
+    static let DesktopLyricsDraggable = Key<Bool>("DesktopLyricsDraggable")
     
-    static let DesktopLyricsInsetTopEnabled = Key<Bool>("DesktopLyricsInsetTopEnabled")
-    static let DesktopLyricsInsetBottomEnabled = Key<Bool>("DesktopLyricsInsetBottomEnabled")
-    static let DesktopLyricsInsetLeftEnabled = Key<Bool>("DesktopLyricsInsetLeftEnabled")
-    static let DesktopLyricsInsetRightEnabled = Key<Bool>("DesktopLyricsInsetRightEnabled")
-    
-    static let DesktopLyricsInsetTop = Key<Int>("DesktopLyricsInsetTop")
-    static let DesktopLyricsInsetBottom = Key<Int>("DesktopLyricsInsetBottom")
-    static let DesktopLyricsInsetLeft = Key<Int>("DesktopLyricsInsetLeft")
-    static let DesktopLyricsInsetRight = Key<Int>("DesktopLyricsInsetRight")
+    static let DesktopLyricsXPositionFactor = Key<CGFloat>("DesktopLyricsXPositionFactor")
+    static let DesktopLyricsYPositionFactor = Key<CGFloat>("DesktopLyricsYPositionFactor")
     
     static let DesktopLyricsEnableFurigana = Key<Bool>("DesktopLyricsEnableFurigana")
     
@@ -152,4 +146,5 @@ extension UserDefaults.DefaultsKeys {
     static let launchHelperTime = Key<Date?>("launchHelperTime")
 }
 
+extension CGFloat: UDDefaultConstructible {}
 extension CGRect: UDDefaultConstructible {}
