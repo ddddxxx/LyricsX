@@ -35,10 +35,9 @@ extension Comparable {
     }
 }
 
-// TODO: remove CountableRange for swift 4.2
-extension Strideable where Stride: SignedInteger {
+extension Strideable {
     
-    func clamped(to limit: CountableRange<Self>) -> Self {
+    func clamped(to limit: Range<Self>) -> Self {
         let upperBound = limit.upperBound.advanced(by: -1)
         return min(max(self, limit.lowerBound), upperBound)
     }
