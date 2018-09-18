@@ -265,9 +265,3 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     
 }
-
-extension NSUserInterfaceItemIdentifier {
-    fileprivate static let searchResultColumnTitle = NSUserInterfaceItemIdentifier("Title")
-    fileprivate static let searchResultColumnArtist = NSUserInterfaceItemIdentifier("Artist")
-    fileprivate static let searchResultColumnSource = NSUserInterfaceItemIdentifier("Source")
-}

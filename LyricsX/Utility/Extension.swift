@@ -22,54 +22,6 @@ import Cocoa
 import LyricsProvider
 import MusicPlayer
 
-extension NSMenuItem {
-    
-    @objc var isHiddenInMASVersion: Bool {
-        get {
-            // fake getter. we only need its setter in IB.
-            return true
-        }
-        set {
-            #if IS_FOR_MAS
-            if newValue, isFromMacAppStore {
-                isHidden = true
-            }
-            #endif
-        }
-    }
-    
-    @objc var isHiddenDuringMASReview: Bool {
-        get {
-            // fake getter. we only need its setter in IB.
-            return true
-        }
-        set {
-            #if IS_FOR_MAS
-            if newValue, defaults[.isInMASReview] != false {
-                isHidden = true
-            }
-            #endif
-        }
-    }
-}
-
-extension NSView {
-    
-    @objc var isRemovedDuringMASReview: Bool {
-        get {
-            // fake getter. we only need its setter in IB.
-            return true
-        }
-        set {
-            #if IS_FOR_MAS
-            if newValue, defaults[.isInMASReview] != false {
-                removeFromSuperview()
-            }
-            #endif
-        }
-    }
-}
-
 extension MusicPlayerName {
     
     init?(index: Int) {
@@ -177,7 +129,7 @@ extension Lyrics {
         let fileManager = FileManager.default
         
         do {
-            var isDir = ObjCBool(false)
+            var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: url.path, isDirectory: &isDir) {
                 if !isDir.boolValue {
                     return
@@ -233,44 +185,5 @@ extension Lyrics {
     
     var adjustedTimeDelay: TimeInterval {
         return TimeInterval(adjustedOffset) / 1000
-    }
-}
-
-extension NSTextField {
-    
-    @available(macOS, obsoleted: 10.12)
-    convenience init(labelWithString stringValue: String) {
-        self.init()
-        self.stringValue = stringValue
-        isEditable = false
-        isSelectable = false
-        textColor = .labelColor
-        backgroundColor = .controlColor
-        drawsBackground = false
-        isBezeled = false
-        alignment = .natural
-        font = NSFont.systemFont(ofSize: NSFont.systemFontSize(for: controlSize))
-        lineBreakMode = .byClipping
-        cell?.isScrollable = true
-        cell?.wraps = false
-    }
-}
-
-extension NSStoryboard {
-    
-    @available(macOS, obsoleted: 10.13)
-    class var main: NSStoryboard? {
-        guard let mainStoryboardName = Bundle.main.infoDictionary?["NSMainStoryboardFile"] as? String else {
-            return nil
-        }
-        return NSStoryboard(name: NSStoryboard.Name(rawValue: mainStoryboardName), bundle: .main)
-    }
-}
-
-extension NSAnimationContext {
-    
-    @available(macOS, obsoleted: 10.12)
-    class func runAnimationGroup(_ changes: (NSAnimationContext) -> Void) {
-        runAnimationGroup(changes, completionHandler: nil)
     }
 }

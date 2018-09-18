@@ -82,7 +82,7 @@ class KaraokeLabel: NSTextField {
             guard tokenType.contains(.isCJWordMask) else { continue }
             let range = tokenizer.currentTokenRange()
             if isVertical {
-                let attr: [NSAttributedStringKey : Any] = [
+                let attr: [NSAttributedStringKey: Any] = [
                     .verticalGlyphForm: true,
                     .baselineOffset: (font?.pointSize ?? 24) * 0.25,
                 ]

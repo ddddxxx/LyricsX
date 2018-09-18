@@ -241,12 +241,6 @@ extension NSMenu {
     }
 }
 
-extension NSUserInterfaceItemIdentifier {
-    
-    fileprivate static let WriteToiTunes = NSUserInterfaceItemIdentifier("MainMenu.WriteToiTunes")
-    fileprivate static let LyricsMenu = NSUserInterfaceItemIdentifier("MainMenu.Lyrics")
-}
-
 extension MASShortcutBinder {
     
     func bindShortcut<T>(_ defaultsKay: UserDefaults.DefaultsKey<T>, to action: @escaping () -> Void) {

@@ -1,5 +1,6 @@
 disabled_rules:
   - trailing_whitespace
+  - trailing_comma
 opt_in_rules:
   - array_init
   - closure_spacing

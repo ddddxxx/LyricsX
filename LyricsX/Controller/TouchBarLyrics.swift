@@ -119,6 +119,7 @@ private extension NSTouchBarItem.Identifier {
 
 private let DFRFoundationPath = "/System/Library/PrivateFrameworks/DFRFoundation.framework/Versions/A/DFRFoundation"
 
+// swiftlint:disable type_name identifier_name
 @available(OSX 10.12.2, *)
 private typealias DFRElementSetControlStripPresenceForIdentifierType = @convention(c) (NSTouchBarItem.Identifier, Bool) -> Void
 
@@ -126,7 +127,8 @@ private typealias DFRElementSetControlStripPresenceForIdentifierType = @conventi
 private typealias DFRSystemModalShowsCloseBoxWhenFrontMostType = @convention(c) (Bool) -> Void
 
 @available(OSX 10.12.2, *)
-private let (DFRElementSetControlStripPresenceForIdentifier, DFRSystemModalShowsCloseBoxWhenFrontMost): (DFRElementSetControlStripPresenceForIdentifierType?, DFRSystemModalShowsCloseBoxWhenFrontMostType?) = {
+private let (DFRElementSetControlStripPresenceForIdentifier, DFRSystemModalShowsCloseBoxWhenFrontMost):
+    (DFRElementSetControlStripPresenceForIdentifierType?, DFRSystemModalShowsCloseBoxWhenFrontMostType?) = {
     guard let handle = dlopen(DFRFoundationPath, RTLD_LAZY) else {
         return (nil, nil)
     }
@@ -141,6 +143,8 @@ private let (DFRElementSetControlStripPresenceForIdentifier, DFRSystemModalShows
     }
     return (f1, f2)
 }()
+
+// swiftlint:enable type_name identifier_name
 
 // MARK: - NSTextField + Progress
 

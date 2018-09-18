@@ -22,6 +22,8 @@ import Cocoa
 import GenericID
 import MusicPlayer
 
+let fontNameFallbackCountMax = 1
+
 // NOTE: to build your own product, you need to replace the team identifier to yours
 // and do the same thing in LyricsXHelper
 let lyricsXGroupIdentifier = "3665V726AE.group.ddddxxx.LyricsX"
@@ -39,8 +41,21 @@ extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
 }
 
-func log(_ message: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) {
-    NSLog("\(file):\(line): \(message())")
+func log(_ message: @autoclosure () -> String, file: String = #file, line: UInt = #line) {
+    let fileName = (file as NSString).lastPathComponent
+    // Adding prefix to distinguish from ton of AppleEvent error log.
+    NSLog("CustomLog:\(fileName):\(line): \(message())")
+}
+
+// MARK: - Identifier
+
+extension NSUserInterfaceItemIdentifier {
+    static let WriteToiTunes = NSUserInterfaceItemIdentifier("MainMenu.WriteToiTunes")
+    static let LyricsMenu = NSUserInterfaceItemIdentifier("MainMenu.Lyrics")
+    
+    static let searchResultColumnTitle = NSUserInterfaceItemIdentifier("SearchResult.TableColumn.Title")
+    static let searchResultColumnArtist = NSUserInterfaceItemIdentifier("SearchResult.TableColumn.Artist")
+    static let searchResultColumnSource = NSUserInterfaceItemIdentifier("SearchResult.TableColumn.Source")
 }
 
 extension NSStoryboard.SceneIdentifier {
@@ -48,17 +63,12 @@ extension NSStoryboard.SceneIdentifier {
     static let LyricsHUDAccessory = NSStoryboard.SceneIdentifier("LyricsHUDAccessory")
 }
 
-// MARK: - Notification Name
-
-let lyricsShouldDisplayNotification = "LyricsShouldDisplayNotification"
-let currentLyricsChangeNotification = "CurrentLyricsChangeNotification"
+// MARK: Notification Name
 
 extension Notification.Name {
-    static let lyricsShouldDisplay = Notification.Name(lyricsShouldDisplayNotification)
-    static let currentLyricsChange = Notification.Name(currentLyricsChangeNotification)
+    static let lyricsShouldDisplay = Notification.Name("LyricsShouldDisplayNotification")
+    static let currentLyricsChange = Notification.Name("CurrentLyricsChangeNotification")
 }
-
-let fontNameFallbackCountMax = 1
 
 // MARK: - User Defaults
 

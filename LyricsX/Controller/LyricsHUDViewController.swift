@@ -72,7 +72,9 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         
         observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.displayLyrics() }
         observeNotification(name: .currentLyricsChange) { [unowned self] _ in self.lyricsChanged() }
-        observeNotification(name: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView, queue: .main) { [unowned self] _ in self.isTracking = false }
+        observeNotification(name: NSScrollView.willStartLiveScrollNotification,
+                            object: lyricsScrollView,
+                            queue: .main) { [unowned self] _ in self.isTracking = false }
         
         Answers.logCustomEvent(withName: "Show Lyrics Window")
     }
