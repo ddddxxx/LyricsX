@@ -32,7 +32,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     var screen: NSScreen {
         didSet {
             defaults[.DesktopLyricsScreenRect] = screen.frame
-            updateWindowFrame()
+            updateWindowFrame(animate: false)
         }
     }
     
@@ -40,12 +40,12 @@ class KaraokeLyricsWindowController: NSWindowController {
         let rect = defaults[.DesktopLyricsScreenRect]
         screen = NSScreen.screens.first { $0.frame.contains(rect) } ?? NSScreen.screens[0]
         let window = NSWindow(contentRect: screen.visibleFrame, styleMask: .borderless, backing: .buffered, defer: true)
-        super.init(window: window)
         window.backgroundColor = .clear
         window.hasShadow = false
         window.isOpaque = false
         window.level = .floating
         window.collectionBehavior = [.canJoinAllSpaces, .stationary]
+        super.init(window: window)
         
         window.contentView?.addSubview(lyricsView)
         
@@ -101,13 +101,13 @@ class KaraokeLyricsWindowController: NSWindowController {
         }
         
         observeNotification(center: workspaceNC, name: NSWorkspace.activeSpaceDidChangeNotification, queue: .main) { [unowned self] _ in
-            self.updateWindowFrame()
+            self.updateWindowFrame(animate: true)
         }
     }
     
-    func updateWindowFrame() {
+    func updateWindowFrame(animate: Bool) {
         let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
-        window?.setFrame(frame, display: false, animate: true)
+        window?.setFrame(frame, display: false, animate: animate)
     }
     
     @objc func handleLyricsDisplay() {
@@ -153,8 +153,8 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private func makeConstraints() {
         lyricsView.snp.remakeConstraints { make in
-            make.centerX.equalToSuperview().multipliedBy(defaults[.DesktopLyricsXPositionFactor] * 2)
-            make.centerY.equalToSuperview().multipliedBy(defaults[.DesktopLyricsYPositionFactor] * 2)
+            make.centerX.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsXPositionFactor] * 2)
+            make.centerY.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsYPositionFactor] * 2)
         }
     }
     
@@ -170,22 +170,31 @@ class KaraokeLyricsWindowController: NSWindowController {
     override func mouseDragged(with event: NSEvent) {
         guard defaults[.DesktopLyricsDraggable],
             let vecToCenter = vecToCenter,
-            let bounds = window?.contentView?.bounds else {
+            let window = window else {
             return
         }
-        let center = event.locationInWindow + vecToCenter
+        let bounds = window.frame
+        var center = event.locationInWindow + vecToCenter
+        let centerInScreen = window.convertToScreen(CGRect(origin: center, size: .zero)).origin
+        if let screen = NSScreen.screens.first(where: { $0.frame.contains(centerInScreen) }),
+            screen != window.screen {
+            self.screen = screen
+            center = window.convertFromScreen(CGRect(origin: centerInScreen, size: .zero)).origin
+            return
+        }
+        
         var xFactor = (center.x / bounds.width).clamped(to: 0...1)
         var yFactor = (1 - center.y / bounds.height).clamped(to: 0...1)
-        if abs(center.x - bounds.midX) < 8 {
+        if abs(center.x - bounds.width / 2) < 8 {
             xFactor = 0.5
         }
-        if abs(center.y - bounds.midY) < 8 {
+        if abs(center.y - bounds.height / 2) < 8 {
             yFactor = 0.5
         }
         defaults[.DesktopLyricsXPositionFactor] = xFactor
         defaults[.DesktopLyricsYPositionFactor] = yFactor
         makeConstraints()
-        window?.layoutIfNeeded()
+        window.layoutIfNeeded()
     }
     
 }
@@ -200,4 +209,16 @@ func isFullScreen() -> Bool? {
                 return false
     }
     return true
+}
+
+extension ConstraintMakerEditable {
+    
+    @discardableResult
+    func safeMultipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+        var factor = amount.constraintMultiplierTargetValue
+        if factor.isZero {
+            factor = .leastNonzeroMagnitude
+        }
+        return multipliedBy(factor)
+    }
 }
