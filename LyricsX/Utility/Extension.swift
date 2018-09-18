@@ -266,3 +266,11 @@ extension NSStoryboard {
         return NSStoryboard(name: NSStoryboard.Name(rawValue: mainStoryboardName), bundle: .main)
     }
 }
+
+extension NSAnimationContext {
+    
+    @available(macOS, obsoleted: 10.12)
+    class func runAnimationGroup(_ changes: (NSAnimationContext) -> Void) {
+        runAnimationGroup(changes, completionHandler: nil)
+    }
+}

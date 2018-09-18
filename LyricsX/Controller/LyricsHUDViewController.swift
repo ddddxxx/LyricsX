@@ -104,12 +104,12 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             return
         }
         if animation {
-            NSAnimationContext.runAnimationGroup({ context in
+            NSAnimationContext.runAnimationGroup { context in
                 context.duration = 0.3
                 context.allowsImplicitAnimation = true
                 context.timingFunction = .mystery
                 self.lyricsScrollView.scroll(position: pos)
-            })
+            }
         } else {
             lyricsScrollView.scroll(position: pos)
         }
