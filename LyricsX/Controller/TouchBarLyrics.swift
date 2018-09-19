@@ -29,11 +29,9 @@ import OpenCC
 class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     
     let touchBar = NSTouchBar()
-    let systemTrayItem = NSCustomTouchBarItem(identifier: .systemTrayItem)
+    private let systemTrayItem = NSCustomTouchBarItem(identifier: .systemTrayItem)
     
-    var lyricsTextField = NSTextField(labelWithString: "")
-    
-    var screenLyrics = ""
+    private var lyricsTextField = NSTextField(labelWithString: "")
     
     override init() {
         super.init()
@@ -57,7 +55,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         NSTouchBar.presentSystemModalFunctionBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
     }
     
-    @objc func handleLyricsDisplay() {
+    @objc private func handleLyricsDisplay() {
         guard let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
                 DispatchQueue.main.async {

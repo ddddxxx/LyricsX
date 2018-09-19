@@ -29,7 +29,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
     
-    var screen: NSScreen {
+    private var screen: NSScreen {
         didSet {
             defaults[.DesktopLyricsScreenRect] = screen.frame
             updateWindowFrame(animate: false)
@@ -105,12 +105,12 @@ class KaraokeLyricsWindowController: NSWindowController {
         }
     }
     
-    func updateWindowFrame(animate: Bool) {
+    private func updateWindowFrame(animate: Bool) {
         let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
         window?.setFrame(frame, display: false, animate: animate)
     }
     
-    @objc func handleLyricsDisplay() {
+    @objc private func handleLyricsDisplay() {
         guard defaults[.DesktopLyricsEnabled],
             !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
             let lyrics = AppController.shared.currentLyrics,
@@ -160,7 +160,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     // MARK: Dragging
     
-    var vecToCenter: CGVector?
+    private var vecToCenter: CGVector?
     
     override func mouseDown(with event: NSEvent) {
         let location = lyricsView.convert(event.locationInWindow, from: nil)
@@ -199,19 +199,17 @@ class KaraokeLyricsWindowController: NSWindowController {
     
 }
 
-func isFullScreen() -> Bool? {
+private func isFullScreen() -> Bool? {
     guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
         return nil
     }
-    for info in windowInfoList where
+    return !windowInfoList.contains { info in
         info[kCGWindowOwnerName as String] as? String == "Window Server" &&
-            info[kCGWindowName as String] as? String == "Menubar" {
-                return false
+            info[kCGWindowName as String] as? String == "Menubar"
     }
-    return true
 }
 
-extension ConstraintMakerEditable {
+private extension ConstraintMakerEditable {
     
     @discardableResult
     func safeMultipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {

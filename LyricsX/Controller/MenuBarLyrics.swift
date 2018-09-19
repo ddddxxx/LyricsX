@@ -44,7 +44,7 @@ class MenuBarLyrics: NSObject {
         observeDefaults(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }
     }
     
-    @objc func handleLyricsDisplay() {
+    @objc private func handleLyricsDisplay() {
         guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
@@ -63,7 +63,7 @@ class MenuBarLyrics: NSObject {
         updateStatusItem()
     }
     
-    @objc func updateStatusItem() {
+    @objc private func updateStatusItem() {
         guard defaults[.MenuBarLyricsEnabled], !screenLyrics.isEmpty else {
             setImageStatusItem()
             lyricsItem = nil
@@ -77,7 +77,7 @@ class MenuBarLyrics: NSObject {
         }
     }
     
-    func updateSeparateStatusLyrics() {
+    private func updateSeparateStatusLyrics() {
         setImageStatusItem()
         
         if lyricsItem == nil {
@@ -87,7 +87,7 @@ class MenuBarLyrics: NSObject {
         lyricsItem?.title = screenLyrics
     }
     
-    func updateCombinedStatusLyrics() {
+    private func updateCombinedStatusLyrics() {
         lyricsItem = nil
         
         setTextStatusItem(string: screenLyrics)
@@ -119,9 +119,9 @@ class MenuBarLyrics: NSObject {
 
 // MARK: - Status Item Visibility
 
-extension NSStatusItem {
+private extension NSStatusItem {
     
-    fileprivate var isVisibe: Bool {
+    var isVisibe: Bool {
         guard let buttonFrame = button?.frame,
             let frame = button?.window?.convertToScreen(buttonFrame) else {
                 return false
@@ -141,9 +141,9 @@ extension NSStatusItem {
     }
 }
 
-extension AXUIElement {
+private extension AXUIElement {
     
-    fileprivate static func copyAt(position: NSPoint) -> AXUIElement? {
+    static func copyAt(position: NSPoint) -> AXUIElement? {
         var element: AXUIElement?
         let error = AXUIElementCopyElementAtPosition(AXUIElementCreateSystemWide(), Float(position.x), Float(position.y), &element)
         guard error == .success else {
@@ -152,7 +152,7 @@ extension AXUIElement {
         return element
     }
     
-    fileprivate var pid: pid_t? {
+    var pid: pid_t? {
         var pid: pid_t = 0
         let error = AXUIElementGetPid(self, &pid)
         guard error == .success else {
@@ -162,7 +162,7 @@ extension AXUIElement {
     }
 }
 
-extension String {
+private extension String {
     
     func components(options: String.EnumerationOptions) -> [String] {
         var components: [String] = []

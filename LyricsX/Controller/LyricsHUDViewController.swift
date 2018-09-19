@@ -86,7 +86,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     
     // MARK: - Handler
     
-    func lyricsChanged() {
+    private func lyricsChanged() {
         DispatchQueue.main.async {
             let newLyrics = AppController.shared.currentLyrics
             self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
@@ -96,7 +96,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         
     }
     
-    func displayLyrics(animation: Bool = true) {
+    private func displayLyrics(animation: Bool = true) {
         guard var pos = AppController.shared.playerManager.player?.playerPosition else {
             return
         }
