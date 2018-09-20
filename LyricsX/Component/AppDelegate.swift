@@ -24,7 +24,6 @@ import Fabric
 import GenericID
 import MASShortcut
 import MusicPlayer
-import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
@@ -75,9 +74,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         setupShortcuts()
         
         NSRunningApplication.runningApplications(withBundleIdentifier: lyricsXHelperIdentifier).forEach { $0.terminate() }
-        if !SMLoginItemSetEnabled(lyricsXHelperIdentifier as CFString, defaults[.LaunchAndQuitWithPlayer]) {
-            log("Failed to set login item enabled")
-        }
         
         let sharedKeys: [UserDefaults.DefaultsKeys] = [
             .LaunchAndQuitWithPlayer,

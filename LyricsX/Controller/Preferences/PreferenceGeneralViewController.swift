@@ -20,6 +20,7 @@
 
 import Cocoa
 import MusicPlayer
+import ServiceManagement
 
 class PreferenceGeneralViewController: NSViewController {
     
@@ -60,6 +61,13 @@ class PreferenceGeneralViewController: NSViewController {
             userPathMenuItem.toolTip = url.path
         } else {
             userPathMenuItem.isHidden = true
+        }
+    }
+    
+    @IBAction func toggleAutoLaunchAction(_ sender: NSButton) {
+        let enabled = sender.state == .on
+        if !SMLoginItemSetEnabled(lyricsXHelperIdentifier as CFString, enabled) {
+            log("Failed to set login item enabled")
         }
     }
     
