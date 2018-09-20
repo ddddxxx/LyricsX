@@ -76,6 +76,8 @@
 		BBE8FC751F6BEA6200122AFA /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE8FC741F6BEA6200122AFA /* Then.swift */; };
 		BBF83E221FB5502000D76E5B /* MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; };
 		BBF83E231FB5502000D76E5B /* MusicPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E914528021539BD500BD2220 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E914527F21539BD500BD2220 /* Sparkle.framework */; };
+		E914528121539BD500BD2220 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E914527F21539BD500BD2220 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E91F76EB21211B8D00755698 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F76EA21211B8D00755698 /* PreferenceViewController.swift */; };
 		E97593E42150F47900D80616 /* BackwardCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E32150F47800D80616 /* BackwardCompatible.swift */; };
 		E97593E62150F6FB00D80616 /* InterfaceBuilderInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E52150F6FB00D80616 /* InterfaceBuilderInspection.swift */; };
@@ -97,6 +99,7 @@
 				BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */,
 				BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */,
 				BBE557981EC0291E00F1EC31 /* GenericID.framework in Embed Frameworks */,
+				E914528121539BD500BD2220 /* Sparkle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,6 +177,7 @@
 		BBE557961EC0291E00F1EC31 /* GenericID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GenericID.framework; path = Carthage/Build/Mac/GenericID.framework; sourceTree = "<group>"; };
 		BBE8FC741F6BEA6200122AFA /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MusicPlayer.framework; path = Carthage/Build/Mac/MusicPlayer.framework; sourceTree = "<group>"; };
+		E914527F21539BD500BD2220 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E91F76EA21211B8D00755698 /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		E97593E32150F47800D80616 /* BackwardCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackwardCompatible.swift; sourceTree = "<group>"; };
 		E97593E52150F6FB00D80616 /* InterfaceBuilderInspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderInspection.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BB4FBE751F0F1E440045A8FA /* LyricsProvider.framework in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
+				E914528021539BD500BD2220 /* Sparkle.framework in Frameworks */,
 				BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */,
 				BBE557971EC0291E00F1EC31 /* GenericID.framework in Frameworks */,
 			);
@@ -293,6 +298,7 @@
 				BB58B0831E82B82F00598D4F /* OpenCC.framework */,
 				BB34F7E71F2197C800B7C484 /* Semver.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
+				E914527F21539BD500BD2220 /* Sparkle.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

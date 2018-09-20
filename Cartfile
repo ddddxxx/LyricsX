@@ -11,3 +11,5 @@ github "ddddxxx/SwiftyOpenCC"
 github "SnapKit/SnapKit" ~> 4.0.0
 
 github "shpakovski/MASShortcut"
+
+github "sparkle-project/Sparkle"
