@@ -110,5 +110,9 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>https://ddddxxx.github.io/LyricsX/appcast.xml</string>
 </dict>
 </plist>
