@@ -48,37 +48,51 @@ extension NSObject {
     
     // using [Any] causes unexpected destruction, use NSMutableArray instead.
     private var autoDestruction: NSMutableArray {
-        get {
-            if let arr = objc_getAssociatedObject(self, &NSObject.autoDestructionTokens) as? NSMutableArray {
-                return arr
-            }
-            let arr = NSMutableArray()
-            objc_setAssociatedObject(self, &NSObject.autoDestructionTokens, arr, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        if let arr = objc_getAssociatedObject(self, &NSObject.autoDestructionTokens) as? NSMutableArray {
             return arr
         }
+        let arr = NSMutableArray()
+        objc_setAssociatedObject(self, &NSObject.autoDestructionTokens, arr, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return arr
     }
     
-    func observeNotification(center: NotificationCenter = .default, name: NSNotification.Name, object: Any? = nil, queue: OperationQueue? = nil, using: @escaping (Notification) -> Void) {
+    func observeNotification(center: NotificationCenter = .default,
+                             name: NSNotification.Name,
+                             object: Any? = nil,
+                             queue: OperationQueue? = nil,
+                             using: @escaping (Notification) -> Void) {
         let token = center.addObserver(forName: name, object: object, queue: queue, using: using)
         autoDestruction.add(NotificationObservationToken(center: center, token: token))
     }
     
-    func observeObject<Target: NSObject, Value>(_ object: Target, keyPath: KeyPath<Target, Value>, options: NSKeyValueObservingOptions, changeHandler: @escaping (NSObject, NSKeyValueObservedChange<Value>) -> Void) {
+    func observeObject<Target: NSObject, Value>(_ object: Target,
+                                                keyPath: KeyPath<Target, Value>,
+                                                options: NSKeyValueObservingOptions,
+                                                changeHandler: @escaping (NSObject, NSKeyValueObservedChange<Value>) -> Void) {
         let token = object.observe(keyPath, options: options, changeHandler: changeHandler)
         autoDestruction.add(token)
     }
     
-    func observeDefaults<T>(_ defaults: UserDefaults = .standard, key: UserDefaults.DefaultsKeys.Key<T>, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (UserDefaults, UserDefaults.DefaultsObservedChange<T>) -> Void) {
+    func observeDefaults<T>(_ defaults: UserDefaults = .standard,
+                            key: UserDefaults.DefaultsKeys.Key<T>,
+                            options: NSKeyValueObservingOptions = [],
+                            changeHandler: @escaping (UserDefaults, UserDefaults.DefaultsObservedChange<T>) -> Void) {
         let token = defaults.observe(key, options: options, changeHandler: changeHandler)
         autoDestruction.add(token)
     }
     
-    func observeDefaults<T: UDDefaultConstructible>(_ defaults: UserDefaults = .standard, key: UserDefaults.DefaultsKeys.Key<T>, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (UserDefaults, UserDefaults.ConstructedDefaultsObservedChange<T>) -> Void) {
+    func observeDefaults<T: UDDefaultConstructible>(_ defaults: UserDefaults = .standard,
+                                                    key: UserDefaults.DefaultsKeys.Key<T>,
+                                                    options: NSKeyValueObservingOptions = [],
+                                                    changeHandler: @escaping (UserDefaults, UserDefaults.ConstructedDefaultsObservedChange<T>) -> Void) {
         let token = defaults.observe(key, options: options, changeHandler: changeHandler)
         autoDestruction.add(token)
     }
     
-    func observeDefaults(_ defaults: UserDefaults = .standard, keys: [UserDefaults.DefaultsKeys], options: NSKeyValueObservingOptions = [], changeHandler: @escaping () -> Void) {
+    func observeDefaults(_ defaults: UserDefaults = .standard,
+                         keys: [UserDefaults.DefaultsKeys],
+                         options: NSKeyValueObservingOptions = [],
+                         changeHandler: @escaping () -> Void) {
         let token = defaults.observe(keys: keys, options: options, changeHandler: changeHandler)
         autoDestruction.add(token)
     }
@@ -115,28 +129,28 @@ extension KeyPathBinding where Self: NSObject {
     func bind<Target, Value>(_ binding: KeyPath<Self, Value>,
                              to observable: Target,
                              withKeyPath keyPath: KeyPath<Target, Value>,
-                             options: [NSBindingOption : Any] = [:]) {
+                             options: [NSBindingOption: Any] = [:]) {
         self.bind(NSBindingName(binding._kvcKeyPathString!), to: observable, withKeyPath: keyPath._kvcKeyPathString!, options: options)
     }
     
     func bind<Target, Value>(_ binding: KeyPath<Self, Value?>,
                              to observable: Target,
                              withKeyPath keyPath: KeyPath<Target, Value>,
-                             options: [NSBindingOption : Any] = [:]) {
+                             options: [NSBindingOption: Any] = [:]) {
         self.bind(NSBindingName(binding._kvcKeyPathString!), to: observable, withKeyPath: keyPath._kvcKeyPathString!, options: options)
     }
     
     func bind<Value>(_ binding: KeyPath<Self, Value>,
                      to defaults: UserDefaults = .standard,
                      withDefaultName defaultName: UserDefaults.DefaultsKey<Value>,
-                     options: [NSBindingOption : Any] = [:]) {
+                     options: [NSBindingOption: Any] = [:]) {
         self.bind(NSBindingName(binding._kvcKeyPathString!), to: defaults, withDefaultName: defaultName, options: options)
     }
     
     func bind<Value>(_ binding: KeyPath<Self, Value>,
                      to defaults: UserDefaults = .standard,
                      withUnmatchedDefaultName defaultName: UserDefaults.DefaultsKeys,
-                     options: [NSBindingOption : Any] = [:]) {
+                     options: [NSBindingOption: Any] = [:]) {
         self.bind(NSBindingName(binding._kvcKeyPathString!), to: defaults, withDefaultName: defaultName, options: options)
     }
 }

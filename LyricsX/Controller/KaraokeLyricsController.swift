@@ -29,24 +29,23 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
     
-    var screen: NSScreen {
+    private var screen: NSScreen {
         didSet {
             defaults[.DesktopLyricsScreenRect] = screen.frame
-            updateWindowFrame()
+            updateWindowFrame(animate: false)
         }
     }
     
     init() {
         let rect = defaults[.DesktopLyricsScreenRect]
-        screen = NSScreen.screens.first { $0.frame.contains(rect) } ?? NSScreen.main!
+        screen = NSScreen.screens.first { $0.frame.contains(rect) } ?? NSScreen.screens[0]
         let window = NSWindow(contentRect: screen.visibleFrame, styleMask: .borderless, backing: .buffered, defer: true)
-        super.init(window: window)
         window.backgroundColor = .clear
         window.hasShadow = false
         window.isOpaque = false
-        window.ignoresMouseEvents = true
         window.level = .floating
         window.collectionBehavior = [.canJoinAllSpaces, .stationary]
+        super.init(window: window)
         
         window.contentView?.addSubview(lyricsView)
         
@@ -75,13 +74,11 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.bind(\.progressColor, withDefaultName: .DesktopLyricsProgressColor)
         lyricsView.bind(\.shadowColor, withDefaultName: .DesktopLyricsShadowColor)
         lyricsView.bind(\.fillColor, withDefaultName: .DesktopLyricsBackgroundColor)
-        lyricsView.bind(\.shouldHideWithMouse, withDefaultName: .HideLyricsWhenMousePassingBy, options: [.nullPlaceholder: false])
         lyricsView.bind(\.isVertical, withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
         lyricsView.bind(\.drawFurigana, withDefaultName: .DesktopLyricsEnableFurigana)
         
         let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
         window?.contentView?.bind(.hidden, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
-        
         
         observeDefaults(key: .DisableLyricsWhenSreenShot, options: [.new, .initial]) { [unowned self] _, change in
             switch change.newValue {
@@ -90,42 +87,30 @@ class KaraokeLyricsWindowController: NSWindowController {
             }
         }
         observeDefaults(keys: [
+            .HideLyricsWhenMousePassingBy,
+            .DesktopLyricsDraggable
+        ], options: [.initial]) {
+            self.lyricsView.shouldHideWithMouse = defaults[.HideLyricsWhenMousePassingBy] && !defaults[.DesktopLyricsDraggable]
+        }
+        observeDefaults(keys: [
             .DesktopLyricsFontName,
             .DesktopLyricsFontSize,
             .DesktopLyricsFontNameFallback
         ], options: [.initial]) { [unowned self] in
             self.lyricsView.font = defaults.desktopLyricsFont
         }
-        observeDefaults(keys: [
-            .DesktopLyricsInsetTopEnabled,
-            .DesktopLyricsInsetBottomEnabled,
-            .DesktopLyricsInsetLeftEnabled,
-            .DesktopLyricsInsetRightEnabled,
-            .DesktopLyricsInsetTop,
-            .DesktopLyricsInsetBottom,
-            .DesktopLyricsInsetLeft,
-            .DesktopLyricsInsetRight
-            ]) { [unowned self] in
-                NSAnimationContext.runAnimationGroup({ context in
-                    context.duration = 0.2
-                    context.allowsImplicitAnimation = true
-                    context.timingFunction = .mystery
-                    self.makeConstraints()
-                    self.window?.layoutIfNeeded()
-                })
-        }
         
         observeNotification(center: workspaceNC, name: NSWorkspace.activeSpaceDidChangeNotification, queue: .main) { [unowned self] _ in
-            self.updateWindowFrame()
+            self.updateWindowFrame(animate: true)
         }
     }
     
-    func updateWindowFrame() {
+    private func updateWindowFrame(animate: Bool) {
         let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
-        window?.setFrame(frame, display: false, animate: true)
+        window?.setFrame(frame, display: false, animate: animate)
     }
     
-    @objc func handleLyricsDisplay() {
+    @objc private func handleLyricsDisplay() {
         guard defaults[.DesktopLyricsEnabled],
             !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
             let lyrics = AppController.shared.currentLyrics,
@@ -168,45 +153,70 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private func makeConstraints() {
         lyricsView.snp.remakeConstraints { make in
-            let top = defaults[.DesktopLyricsInsetTop]
-            let bottom = defaults[.DesktopLyricsInsetBottom]
-            let left = defaults[.DesktopLyricsInsetLeft]
-            let right = defaults[.DesktopLyricsInsetRight]
-            
-            switch (defaults[.DesktopLyricsInsetTopEnabled], defaults[.DesktopLyricsInsetBottomEnabled]) {
-            case (true, true):
-                make.centerY.equalToSuperview().offset(top - bottom)
-            case (true, false):
-                make.top.equalToSuperview().offset(top)
-            case (false, true):
-                make.bottom.equalToSuperview().offset(-bottom)
-            default:
-                make.centerY.equalToSuperview()
-            }
-            
-            switch (defaults[.DesktopLyricsInsetLeftEnabled], defaults[.DesktopLyricsInsetRightEnabled]) {
-            case (true, true):
-                make.centerX.equalToSuperview().offset(left - right)
-            case (true, false):
-                make.left.equalToSuperview().offset(left)
-            case (false, true):
-                make.right.equalToSuperview().offset(-right)
-            default:
-                make.centerX.equalToSuperview()
-            }
+            make.centerX.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsXPositionFactor] * 2)
+            make.centerY.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsYPositionFactor] * 2)
         }
+    }
+    
+    // MARK: Dragging
+    
+    private var vecToCenter: CGVector?
+    
+    override func mouseDown(with event: NSEvent) {
+        let location = lyricsView.convert(event.locationInWindow, from: nil)
+        vecToCenter = CGVector(from: location, to: lyricsView.bounds.center)
+    }
+    
+    override func mouseDragged(with event: NSEvent) {
+        guard defaults[.DesktopLyricsDraggable],
+            let vecToCenter = vecToCenter,
+            let window = window else {
+            return
+        }
+        let bounds = window.frame
+        var center = event.locationInWindow + vecToCenter
+        let centerInScreen = window.convertToScreen(CGRect(origin: center, size: .zero)).origin
+        if let screen = NSScreen.screens.first(where: { $0.frame.contains(centerInScreen) }),
+            screen != window.screen {
+            self.screen = screen
+            center = window.convertFromScreen(CGRect(origin: centerInScreen, size: .zero)).origin
+            return
+        }
+        
+        var xFactor = (center.x / bounds.width).clamped(to: 0...1)
+        var yFactor = (1 - center.y / bounds.height).clamped(to: 0...1)
+        if abs(center.x - bounds.width / 2) < 8 {
+            xFactor = 0.5
+        }
+        if abs(center.y - bounds.height / 2) < 8 {
+            yFactor = 0.5
+        }
+        defaults[.DesktopLyricsXPositionFactor] = xFactor
+        defaults[.DesktopLyricsYPositionFactor] = yFactor
+        makeConstraints()
+        window.layoutIfNeeded()
     }
     
 }
 
-func isFullScreen() -> Bool? {
+private func isFullScreen() -> Bool? {
     guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
         return nil
     }
-    for info in windowInfoList where
+    return !windowInfoList.contains { info in
         info[kCGWindowOwnerName as String] as? String == "Window Server" &&
-            info[kCGWindowName as String] as? String == "Menubar" {
-                return false
+            info[kCGWindowName as String] as? String == "Menubar"
     }
-    return true
+}
+
+private extension ConstraintMakerEditable {
+    
+    @discardableResult
+    func safeMultipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+        var factor = amount.constraintMultiplierTargetValue
+        if factor.isZero {
+            factor = .leastNonzeroMagnitude
+        }
+        return multipliedBy(factor)
+    }
 }

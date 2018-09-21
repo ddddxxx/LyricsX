@@ -53,9 +53,6 @@
 /* Class = "NSBox"; title = "Preferred music player"; ObjectID = "JYR-Ed-Tax"; */
 "JYR-Ed-Tax.title" = "Preferred music player";
 
-/* Class = "NSBox"; title = "Spacing to screen edge"; ObjectID = "LDq-wS-wqc"; */
-"LDq-wS-wqc.title" = "Spacing to screen edge";
-
 /* Class = "NSButtonCell"; title = "Mouse passing by"; ObjectID = "LH4-YZ-Qvs"; */
 "LH4-YZ-Qvs.title" = "Mouse passing by";
 
@@ -163,3 +160,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
 "slB-q7-1dB.title" = "Global offset (ms):";
+
+/* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
+"T7p-MT-Mrh.title" = "Draggable";

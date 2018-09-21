@@ -70,3 +70,9 @@
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
 "o52-Z0-lue.title" = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.";
+
+/* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
+"DNi-vI-MTr.title" = "Show In Finder";
+
+/* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
+"hxE-X4-sJh.title" = "Lyrics";

@@ -77,7 +77,8 @@
 		BBF83E221FB5502000D76E5B /* MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; };
 		BBF83E231FB5502000D76E5B /* MusicPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E91F76EB21211B8D00755698 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F76EA21211B8D00755698 /* PreferenceViewController.swift */; };
-		E9E55130207C4B7700F9958A /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E5512F207C4B7600F9958A /* DFRFoundation.framework */; };
+		E97593E42150F47900D80616 /* Polyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E32150F47800D80616 /* Polyfill.swift */; };
+		E97593E62150F6FB00D80616 /* IBInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E52150F6FB00D80616 /* IBInspection.swift */; };
 		E9E55138207C4CB000F9958A /* TouchBarLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E55137207C4CB000F9958A /* TouchBarLyrics.swift */; };
 		E9EBDA2521115A150019FDF9 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EBDA2421115A150019FDF9 /* Observation.swift */; };
 /* End PBXBuildFile section */
@@ -174,6 +175,8 @@
 		BBE8FC741F6BEA6200122AFA /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MusicPlayer.framework; path = Carthage/Build/Mac/MusicPlayer.framework; sourceTree = "<group>"; };
 		E91F76EA21211B8D00755698 /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
+		E97593E32150F47800D80616 /* Polyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polyfill.swift; sourceTree = "<group>"; };
+		E97593E52150F6FB00D80616 /* IBInspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBInspection.swift; sourceTree = "<group>"; };
 		E9E5512F207C4B7600F9958A /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		E9E55131207C4BC700F9958A /* TouchBarPrivateAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivateAPI.h; sourceTree = "<group>"; };
 		E9E55133207C4C2700F9958A /* LyricsX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LyricsX-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -186,7 +189,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9E55130207C4B7700F9958A /* DFRFoundation.framework in Frameworks */,
 				BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */,
 				BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */,
 				BB34F7E81F2197C800B7C484 /* Semver.framework in Frameworks */,
@@ -313,14 +315,16 @@
 		BB7EC7B61E4ED03900A0AC3F /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				BB1A3184207B261500406E32 /* Regex.swift */,
 				BBC1D35E1E499A6D002538A2 /* Global.swift */,
+				E97593E32150F47800D80616 /* Polyfill.swift */,
+				E97593E52150F6FB00D80616 /* IBInspection.swift */,
 				BB9BCEB91E843157001BC54B /* Extension.swift */,
 				BB1B300220E878AE002F1AF8 /* StdExtension.swift */,
 				BB1B300020E8788C002F1AF8 /* CGExtension.swift */,
 				BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */,
 				BB1B2FFE20E87838002F1AF8 /* CTExtension.swift */,
 				E9EBDA2421115A150019FDF9 /* Observation.swift */,
+				BB1A3184207B261500406E32 /* Regex.swift */,
 				BBE8FC741F6BEA6200122AFA /* Then.swift */,
 			);
 			path = Utility;
@@ -566,8 +570,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB4141C01E45B67800A51775 /* KaraokeLyricsController.swift in Sources */,
+				E97593E42150F47900D80616 /* Polyfill.swift in Sources */,
 				BB72784A20996DE900231C63 /* PreferenceLabViewController.swift in Sources */,
 				BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */,
+				E97593E62150F6FB00D80616 /* IBInspection.swift in Sources */,
 				BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */,
 				BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */,
 				E9E55138207C4CB000F9958A /* TouchBarLyrics.swift in Sources */,

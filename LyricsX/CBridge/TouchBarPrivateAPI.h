@@ -23,10 +23,6 @@
 
 #import <AppKit/AppKit.h>
 
-extern void DFRElementSetControlStripPresenceForIdentifier(NSTouchBarItemIdentifier, BOOL);
-
-extern void DFRSystemModalShowsCloseBoxWhenFrontMost(BOOL);
-
 @interface NSTouchBarItem (PrivateMethods)
 
 + (void)addSystemTrayItem:(NSTouchBarItem *)item;

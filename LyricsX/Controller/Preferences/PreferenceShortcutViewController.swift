@@ -24,20 +24,4 @@ import MASShortcut
 
 class PreferenceShortcutViewController: NSViewController {
     
-    @IBOutlet weak var shortcutSearchLyrics: MASShortcutView!
-    
-    @IBOutlet weak var searchLyricsLabel: NSTextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        #if IS_FOR_MAS
-            if defaults[.isInMASReview] != false {
-                searchLyricsLabel.removeFromSuperview()
-                shortcutSearchLyrics.removeFromSuperview()
-            }
-            checkForMASReview()
-        #endif
-    }
-    
 }

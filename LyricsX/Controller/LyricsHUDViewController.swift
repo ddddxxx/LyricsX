@@ -72,7 +72,9 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         
         observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.displayLyrics() }
         observeNotification(name: .currentLyricsChange) { [unowned self] _ in self.lyricsChanged() }
-        observeNotification(name: NSScrollView.willStartLiveScrollNotification, object: lyricsScrollView, queue: .main) { [unowned self] _ in self.isTracking = false }
+        observeNotification(name: NSScrollView.willStartLiveScrollNotification,
+                            object: lyricsScrollView,
+                            queue: .main) { [unowned self] _ in self.isTracking = false }
         
         Answers.logCustomEvent(withName: "Show Lyrics Window")
     }
@@ -84,7 +86,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     
     // MARK: - Handler
     
-    func lyricsChanged() {
+    private func lyricsChanged() {
         DispatchQueue.main.async {
             let newLyrics = AppController.shared.currentLyrics
             self.lyricsScrollView.setupTextContents(lyrics: newLyrics)
@@ -94,7 +96,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         
     }
     
-    func displayLyrics(animation: Bool = true) {
+    private func displayLyrics(animation: Bool = true) {
         guard var pos = AppController.shared.playerManager.player?.playerPosition else {
             return
         }
@@ -104,12 +106,12 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             return
         }
         if animation {
-            NSAnimationContext.runAnimationGroup({ context in
+            NSAnimationContext.runAnimationGroup { context in
                 context.duration = 0.3
                 context.allowsImplicitAnimation = true
                 context.timingFunction = .mystery
                 self.lyricsScrollView.scroll(position: pos)
-            })
+            }
         } else {
             lyricsScrollView.scroll(position: pos)
         }

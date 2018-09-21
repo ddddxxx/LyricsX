@@ -23,21 +23,34 @@ import Foundation
 
 // MARK: - CTRubyAnnotation
 
+extension NSAttributedStringKey {
+    
+    static let rubyAnnotation = kCTRubyAnnotationAttributeName as NSAttributedStringKey
+    
+    /// kCTRubyAnnotationSizeFactorAttributeName
+    static let rubyAnnotationSizeFactor = NSAttributedStringKey("CTRubyAnnotationSizeFactor")
+}
+
 extension CTRubyAnnotation {
     
-    static func create(_ str: NSString,
+    static func create(_ string: NSString,
                        position: CTRubyPosition = .before,
                        alignment: CTRubyAlignment = .auto,
                        overhang: CTRubyOverhang = .auto,
-                       sizeFactor: CGFloat = 0.5) -> CTRubyAnnotation {
-        let str = NSString(string: str)
-        let count = Int(CTRubyPosition.count.rawValue)
-        let text = UnsafeMutablePointer<Unmanaged<CFString>?>.allocate(capacity: count)
-        defer { text.deallocate() }
-        text.initialize(repeating: nil, count: count)
-        let pos = Int(position.rawValue).clamped(to: 0..<count)
-        text[pos] = Unmanaged.passUnretained(str)
-        return CTRubyAnnotationCreate(alignment, overhang, sizeFactor, text)
+                       attributes: [NSAttributedStringKey: Any] = [:]) -> CTRubyAnnotation {
+        if #available(OSX 10.12, *) {
+            return CTRubyAnnotationCreateWithAttributes(alignment, overhang, position, string as CFString, attributes as CFDictionary)
+        } else {
+            let string = NSString(string: string)
+            let count = Int(CTRubyPosition.count.rawValue)
+            let text = UnsafeMutablePointer<Unmanaged<CFString>?>.allocate(capacity: count)
+            let sizeFactor = attributes[.rubyAnnotationSizeFactor] as? NSNumber as? CGFloat ?? 0.5
+            defer { text.deallocate() }
+            text.initialize(repeating: nil, count: count)
+            let pos = Int(position.rawValue).clamped(to: 0..<count)
+            text[pos] = Unmanaged.passUnretained(string)
+            return CTRubyAnnotationCreate(alignment, overhang, sizeFactor, text)
+        }
     }
 }
 
