@@ -142,7 +142,7 @@ class KaraokeLabel: NSTextField {
     override func draw(_ dirtyRect: NSRect) {
         let context = NSGraphicsContext.current!.cgContext
         context.textMatrix = .identity
-        context.translateBy(x: 0, y: dirtyRect.height)
+        context.translateBy(x: 0, y: bounds.height)
         context.scaleBy(x: 1.0, y: -1.0)
         CTFrameDraw(ctFrame, context)
     }
