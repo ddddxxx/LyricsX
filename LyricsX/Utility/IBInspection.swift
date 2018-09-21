@@ -1,5 +1,5 @@
 //
-//  InterfaceBuilderInspection.swift
+//  IBInspection.swift
 //
 //  This file is part of LyricsX
 //  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
@@ -20,14 +20,13 @@
 
 import Cocoa
 
+// These trait can be customized with Interface Builder.
+
 extension NSMenuItem {
     
     @IBInspectable
     var isHiddenInMASVersion: Bool {
-        get {
-            // fake getter. we only need its setter in IB.
-            return true
-        }
+        get { return true }
         set {
             #if IS_FOR_MAS
             if newValue, isFromMacAppStore {
@@ -39,10 +38,7 @@ extension NSMenuItem {
     
     @IBInspectable
     var isHiddenDuringMASReview: Bool {
-        get {
-            // fake getter. we only need its setter in IB.
-            return true
-        }
+        get { return true }
         set {
             #if IS_FOR_MAS
             if newValue, defaults[.isInMASReview] != false {
@@ -57,10 +53,7 @@ extension NSView {
     
     @IBInspectable
     var isRemovedDuringMASReview: Bool {
-        get {
-            // fake getter. we only need its setter in IB.
-            return true
-        }
+        get { return true }
         set {
             #if IS_FOR_MAS
             if newValue, defaults[.isInMASReview] != false {

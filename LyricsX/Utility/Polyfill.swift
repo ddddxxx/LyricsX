@@ -1,5 +1,5 @@
 //
-//  BackwardCompatible.swift
+//  Polyfill.swift
 //
 //  This file is part of LyricsX
 //  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
@@ -19,6 +19,11 @@
 //
 
 import Cocoa
+
+// Not actual polyfills. Despite the `obsoleted` mark, these implementation in
+// fact shadows the system provided methods.
+
+// MARK: - 10.12
 
 extension NSTextField {
     
@@ -40,6 +45,16 @@ extension NSTextField {
     }
 }
 
+extension NSAnimationContext {
+    
+    @available(macOS, obsoleted: 10.12)
+    class func runAnimationGroup(_ changes: (NSAnimationContext) -> Void) {
+        runAnimationGroup(changes, completionHandler: nil)
+    }
+}
+
+// MARK: - 10.13
+
 extension NSStoryboard {
     
     @available(macOS, obsoleted: 10.13)
@@ -48,13 +63,5 @@ extension NSStoryboard {
             return nil
         }
         return NSStoryboard(name: NSStoryboard.Name(rawValue: mainStoryboardName), bundle: .main)
-    }
-}
-
-extension NSAnimationContext {
-    
-    @available(macOS, obsoleted: 10.12)
-    class func runAnimationGroup(_ changes: (NSAnimationContext) -> Void) {
-        runAnimationGroup(changes, completionHandler: nil)
     }
 }
