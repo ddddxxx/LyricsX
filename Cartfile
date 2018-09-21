@@ -10,6 +10,6 @@ github "ddddxxx/SwiftyOpenCC"
 
 github "ddddxxx/TouchBarHelper"
 
-github "SnapKit/SnapKit" ~> 4.0.0
+github "SnapKit/SnapKit"
 
 github "shpakovski/MASShortcut"
