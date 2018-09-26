@@ -78,26 +78,19 @@ class KaraokeLabel: NSTextField {
         let shouldDrawFurigana = drawFurigana && string.dominantLanguage == "ja"
         let tokenizer = CFStringTokenizer.create(string)
         for tokenType in tokenizer where tokenType.contains(.isCJWordMask) {
-            let range = tokenizer.currentTokenRange()
             if isVertical {
+                let tokenRange = tokenizer.currentTokenRange()
                 let attr: [NSAttributedStringKey: Any] = [
                     .verticalGlyphForm: true,
                     .baselineOffset: (font?.pointSize ?? 24) * 0.25,
                 ]
-                attrString.addAttributes(attr, range: range)
+                attrString.addAttributes(attr, range: tokenRange)
             }
-            
             guard shouldDrawFurigana else { continue }
-            let tokenStr = string.substring(with: range) as NSString
-            if let latin = tokenizer.currentTokenAttribute(.latinTranscription),
-                let katakana = latin.applyingTransform(.latinToKatakana, reverse: false) as NSString?,
-                let hiragana = latin.applyingTransform(.latinToHiragana, reverse: false) as NSString?,
-                katakana.length > 0,
-                katakana != tokenStr,
-                hiragana != tokenStr {
+            if let (furigana, range) = tokenizer.currentFuriganaAnnotation(in: string) {
                 var attr: [NSAttributedStringKey: Any] = [.rubyAnnotationSizeFactor: 0.5]
                 attr[.foregroundColor] = textColor // Set ruby text color but it seems doesn't work.
-                let annotation = CTRubyAnnotation.create(hiragana, attributes: attr)
+                let annotation = CTRubyAnnotation.create(furigana, attributes: attr)
                 attrString.addAttribute(.rubyAnnotation, value: annotation, range: range)
             }
         }
