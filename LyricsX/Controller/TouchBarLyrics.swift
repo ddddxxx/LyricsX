@@ -52,7 +52,11 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     }
     
     @objc private func presentTouchBar() {
-        NSTouchBar.presentSystemModalFunctionBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
+        if #available(OSX 10.14, *) {
+            NSTouchBar.presentSystemModalTouchBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
+        } else {
+            NSTouchBar.presentSystemModalFunctionBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
+        }
     }
     
     @objc private func handleLyricsDisplay() {

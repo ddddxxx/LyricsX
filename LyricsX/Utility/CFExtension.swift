@@ -91,6 +91,46 @@ extension CFStringTokenizer {
         // swiftlint:disable:next force_cast
         return arr as! [CFStringTokenizerTokenType]
     }
+    
+    func currentFuriganaAnnotation(in string: NSString) -> (NSString, NSRange)? {
+        let range = currentTokenRange()
+        let tokenStr = string.substring(with: range) as NSString
+        guard let latin = currentTokenAttribute(.latinTranscription),
+            let katakana = latin.applyingTransform(.latinToKatakana, reverse: false) as NSString?,
+            let hiragana = latin.applyingTransform(.latinToHiragana, reverse: false) as NSString?,
+            katakana.length > 0,
+            katakana != tokenStr,
+            hiragana != tokenStr else {
+                return nil
+        }
+        let prefixLength = tokenStr.commonPrefixLength(with: hiragana)
+        let suffixLength = tokenStr.commonSuffixLength(with: hiragana)
+        let trimmedRange = NSRange(location: prefixLength,
+                                   length: hiragana.length - prefixLength - suffixLength)
+        let trimmedString = hiragana.substring(with: trimmedRange) as NSString
+        let rangeToAnnotate = NSRange(location: range.location + prefixLength,
+                                      length: range.length - prefixLength - suffixLength)
+        return (trimmedString, rangeToAnnotate)
+    }
+}
+
+private extension NSString {
+    
+    func commonPrefixLength(with string: NSString) -> Int {
+        var i = 0
+        while i < length, i < string.length, character(at: i) == string.character(at: i) {
+            i += 1
+        }
+        return i
+    }
+    
+    func commonSuffixLength(with string: NSString) -> Int {
+        var i = 0
+        while i < length, i < string.length, character(at: length - 1 - i) == string.character(at: string.length - 1 - i) {
+            i += 1
+        }
+        return i
+    }
 }
 
 extension CFStringTokenizer: IteratorProtocol, Sequence {
