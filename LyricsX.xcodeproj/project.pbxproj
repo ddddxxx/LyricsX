@@ -81,6 +81,7 @@
 		E97593E62150F6FB00D80616 /* IBInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E52150F6FB00D80616 /* IBInspection.swift */; };
 		E97AFB55215CAF4400AF74CD /* TouchBarHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97AFB54215CAF4400AF74CD /* TouchBarHelper.framework */; };
 		E97AFB56215CAF4400AF74CD /* TouchBarHelper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E97AFB54215CAF4400AF74CD /* TouchBarHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E97AFB59215CBF0300AF74CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E97AFB5B215CBF0300AF74CD /* InfoPlist.strings */; };
 		E9E55138207C4CB000F9958A /* TouchBarLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E55137207C4CB000F9958A /* TouchBarLyrics.swift */; };
 		E9EBDA2521115A150019FDF9 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EBDA2421115A150019FDF9 /* Observation.swift */; };
 /* End PBXBuildFile section */
@@ -181,6 +182,8 @@
 		E97593E32150F47800D80616 /* Polyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polyfill.swift; sourceTree = "<group>"; };
 		E97593E52150F6FB00D80616 /* IBInspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBInspection.swift; sourceTree = "<group>"; };
 		E97AFB54215CAF4400AF74CD /* TouchBarHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TouchBarHelper.framework; path = Carthage/Build/Mac/TouchBarHelper.framework; sourceTree = "<group>"; };
+		E97AFB5A215CBF0300AF74CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E97AFB5C215CBF0500AF74CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E9E5512F207C4B7600F9958A /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		E9E55137207C4CB000F9958A /* TouchBarLyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarLyrics.swift; sourceTree = "<group>"; };
 		E9EBDA2421115A150019FDF9 /* Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 			children = (
 				BB4141B11E458BA800A51775 /* Assets.xcassets */,
 				BB0BE9581F444C9E0068FF67 /* Localizable.strings */,
+				E97AFB5B215CBF0300AF74CD /* InfoPlist.strings */,
 				BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */,
 				BB4141B61E458BA900A51775 /* Info.plist */,
 				BB58B0811E82971400598D4F /* UserDefaults.plist */,
@@ -481,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB0BE9561F444C9E0068FF67 /* Localizable.strings in Resources */,
+				E97AFB59215CBF0300AF74CD /* InfoPlist.strings in Resources */,
 				BB6139741FCCFA6700CBD808 /* Perference.storyboard in Resources */,
 				BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */,
 				BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */,
@@ -646,6 +651,15 @@
 				BB335B132057BD03003A69F8 /* en */,
 			);
 			name = Perference.storyboard;
+			sourceTree = "<group>";
+		};
+		E97AFB5B215CBF0300AF74CD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E97AFB5A215CBF0300AF74CD /* en */,
+				E97AFB5C215CBF0500AF74CD /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
