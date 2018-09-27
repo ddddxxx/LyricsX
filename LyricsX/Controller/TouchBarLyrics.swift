@@ -21,6 +21,7 @@
 import Cocoa
 import LyricsProvider
 import OpenCC
+import TouchBarHelper
 
 #if IS_FOR_MAS
 #else
@@ -39,7 +40,9 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         touchBar.defaultItemIdentifiers = [.lyrics]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
-        self.systemTrayItem.setSystemTrayPresent(true)
+        systemTrayItem.addSystemTray()
+        DFRElementSetControlStripPresenceForIdentifier(systemTrayItem.identifier, true)
+        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
@@ -48,7 +51,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     }
     
     deinit {
-        self.systemTrayItem.setSystemTrayPresent(false)
+        self.systemTrayItem.removeSystemTray()
     }
     
     @objc private func presentTouchBar() {
@@ -96,57 +99,12 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
 }
 
 @available(OSX 10.12.2, *)
-private extension NSTouchBarItem {
-    
-    func setSystemTrayPresent(_ isPresent: Bool) {
-        if isPresent {
-            NSTouchBarItem.addSystemTrayItem(self)
-        } else {
-            NSTouchBarItem.removeSystemTrayItem(self)
-        }
-        DFRElementSetControlStripPresenceForIdentifier?(identifier, isPresent)
-        DFRSystemModalShowsCloseBoxWhenFrontMost?(isPresent)
-    }
-}
-
-@available(OSX 10.12.2, *)
 private extension NSTouchBarItem.Identifier {
     
     static let lyrics = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.lyrics")
     
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
 }
-
-// MARK: DFRFoundation API
-
-private let DFRFoundationPath = "/System/Library/PrivateFrameworks/DFRFoundation.framework/Versions/A/DFRFoundation"
-
-// swiftlint:disable type_name identifier_name
-@available(OSX 10.12.2, *)
-private typealias DFRElementSetControlStripPresenceForIdentifierType = @convention(c) (NSTouchBarItem.Identifier, Bool) -> Void
-
-@available(OSX 10.12.2, *)
-private typealias DFRSystemModalShowsCloseBoxWhenFrontMostType = @convention(c) (Bool) -> Void
-
-@available(OSX 10.12.2, *)
-private let (DFRElementSetControlStripPresenceForIdentifier, DFRSystemModalShowsCloseBoxWhenFrontMost):
-    (DFRElementSetControlStripPresenceForIdentifierType?, DFRSystemModalShowsCloseBoxWhenFrontMostType?) = {
-    guard let handle = dlopen(DFRFoundationPath, RTLD_LAZY) else {
-        return (nil, nil)
-    }
-    defer {
-        dlclose(handle)
-    }
-    let f1 = dlsym(handle, "DFRElementSetControlStripPresenceForIdentifier")?.do {
-        unsafeBitCast($0, to: DFRElementSetControlStripPresenceForIdentifierType.self)
-    }
-    let f2 = dlsym(handle, "DFRSystemModalShowsCloseBoxWhenFrontMost")?.do {
-        unsafeBitCast($0, to: DFRSystemModalShowsCloseBoxWhenFrontMostType.self)
-    }
-    return (f1, f2)
-}()
-
-// swiftlint:enable type_name identifier_name
 
 // MARK: - NSTextField + Progress
 

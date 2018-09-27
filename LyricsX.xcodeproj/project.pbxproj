@@ -79,6 +79,8 @@
 		E91F76EB21211B8D00755698 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F76EA21211B8D00755698 /* PreferenceViewController.swift */; };
 		E97593E42150F47900D80616 /* Polyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E32150F47800D80616 /* Polyfill.swift */; };
 		E97593E62150F6FB00D80616 /* IBInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E52150F6FB00D80616 /* IBInspection.swift */; };
+		E97AFB55215CAF4400AF74CD /* TouchBarHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97AFB54215CAF4400AF74CD /* TouchBarHelper.framework */; };
+		E97AFB56215CAF4400AF74CD /* TouchBarHelper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E97AFB54215CAF4400AF74CD /* TouchBarHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E9E55138207C4CB000F9958A /* TouchBarLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E55137207C4CB000F9958A /* TouchBarLyrics.swift */; };
 		E9EBDA2521115A150019FDF9 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EBDA2421115A150019FDF9 /* Observation.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +96,7 @@
 				BB58B0851E82B82F00598D4F /* OpenCC.framework in Embed Frameworks */,
 				BBF83E231FB5502000D76E5B /* MusicPlayer.framework in Embed Frameworks */,
 				BB4FBE761F0F1E440045A8FA /* LyricsProvider.framework in Embed Frameworks */,
+				E97AFB56215CAF4400AF74CD /* TouchBarHelper.framework in Embed Frameworks */,
 				BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */,
 				BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */,
 				BBE557981EC0291E00F1EC31 /* GenericID.framework in Embed Frameworks */,
@@ -177,9 +180,8 @@
 		E91F76EA21211B8D00755698 /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		E97593E32150F47800D80616 /* Polyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polyfill.swift; sourceTree = "<group>"; };
 		E97593E52150F6FB00D80616 /* IBInspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBInspection.swift; sourceTree = "<group>"; };
+		E97AFB54215CAF4400AF74CD /* TouchBarHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TouchBarHelper.framework; path = Carthage/Build/Mac/TouchBarHelper.framework; sourceTree = "<group>"; };
 		E9E5512F207C4B7600F9958A /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
-		E9E55131207C4BC700F9958A /* TouchBarPrivateAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivateAPI.h; sourceTree = "<group>"; };
-		E9E55133207C4C2700F9958A /* LyricsX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LyricsX-Bridging-Header.h"; sourceTree = "<group>"; };
 		E9E55137207C4CB000F9958A /* TouchBarLyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarLyrics.swift; sourceTree = "<group>"; };
 		E9EBDA2421115A150019FDF9 /* Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +197,7 @@
 				BBF83E221FB5502000D76E5B /* MusicPlayer.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BB4FBE751F0F1E440045A8FA /* LyricsProvider.framework in Frameworks */,
+				E97AFB55215CAF4400AF74CD /* TouchBarHelper.framework in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
 				BB58B0841E82B82F00598D4F /* OpenCC.framework in Frameworks */,
 				BBE557971EC0291E00F1EC31 /* GenericID.framework in Frameworks */,
@@ -251,7 +254,6 @@
 				BB063B2F1E8A93CE00A25C3E /* View */,
 				BB7EC7B41E4ECFFB00A0AC3F /* Controller */,
 				BB7EC7B61E4ED03900A0AC3F /* Utility */,
-				E9E55132207C4BFC00F9958A /* CBridge */,
 				BB4141BC1E45B26800A51775 /* Supporting Files */,
 			);
 			path = LyricsX;
@@ -293,6 +295,7 @@
 				BB58B0831E82B82F00598D4F /* OpenCC.framework */,
 				BB34F7E71F2197C800B7C484 /* Semver.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
+				E97AFB54215CAF4400AF74CD /* TouchBarHelper.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -364,15 +367,6 @@
 				BB458C62201C5F4500740C3B /* LyricsMetaData+Extension.swift */,
 			);
 			path = Component;
-			sourceTree = "<group>";
-		};
-		E9E55132207C4BFC00F9958A /* CBridge */ = {
-			isa = PBXGroup;
-			children = (
-				E9E55131207C4BC700F9958A /* TouchBarPrivateAPI.h */,
-				E9E55133207C4C2700F9958A /* LyricsX-Bridging-Header.h */,
-			);
-			path = CBridge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -796,7 +790,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
-				SWIFT_OBJC_BRIDGING_HEADER = "LyricsX/CBridge/LyricsX-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
 			};
@@ -822,7 +815,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = IS_FOR_MAS;
-				SWIFT_OBJC_BRIDGING_HEADER = "LyricsX/CBridge/LyricsX-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
 			};
