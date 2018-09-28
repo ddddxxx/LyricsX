@@ -220,7 +220,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             .PreferBilingualLyrics: isZh,
             .ChineseConversionIndex: isHant ? 2 : 0,
             .DesktopLyricsXPositionFactor: 0.5,
-            .DesktopLyricsYPositionFactor: 0.95,
+            .DesktopLyricsYPositionFactor: 0.9,
             ])
     }
 }
