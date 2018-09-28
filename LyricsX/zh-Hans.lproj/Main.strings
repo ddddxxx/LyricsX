@@ -71,7 +71,7 @@
 "o52-Z0-lue.title" = "如果您认为 LyricsX 对您有所帮助，并愿意支持软件的维护，可以扫描下方的二维码向我捐赠。";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "Show In Finder";
+"DNi-vI-MTr.title" = "在 Finder 中显示";
 
 /* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
-"hxE-X4-sJh.title" = "Lyrics";
+"hxE-X4-sJh.title" = "歌词";
