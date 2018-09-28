@@ -54,5 +54,3 @@ extension CGPoint: Then {}
 extension CGRect: Then {}
 extension CGSize: Then {}
 extension CGVector: Then {}
-
-extension UnsafeMutableRawPointer: Then {}
