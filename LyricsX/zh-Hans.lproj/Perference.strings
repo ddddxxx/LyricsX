@@ -161,4 +161,4 @@
 "slB-q7-1dB.title" = "全局歌词偏移 (ms):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "Draggable";
+"T7p-MT-Mrh.title" = "允许拖放";
