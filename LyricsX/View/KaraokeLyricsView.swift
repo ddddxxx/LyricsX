@@ -126,7 +126,7 @@ class KaraokeLyricsView: NSBox {
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.25
             context.allowsImplicitAnimation = true
-            context.timingFunction = .mystery
+            context.timingFunction = .swiftOut
             toBeHide.forEach {
                 stackView.removeArrangedSubview($0)
                 $0.isHidden = true

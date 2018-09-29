@@ -8,6 +8,8 @@ github "ddddxxx/Semver"
 
 github "ddddxxx/SwiftyOpenCC"
 
-github "SnapKit/SnapKit" ~> 4.0.0
+github "ddddxxx/TouchBarHelper"
+
+github "SnapKit/SnapKit"
 
 github "shpakovski/MASShortcut"
