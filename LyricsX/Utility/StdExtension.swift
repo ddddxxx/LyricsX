@@ -38,7 +38,7 @@ extension Comparable {
 extension Strideable {
     
     func clamped(to limit: Range<Self>) -> Self {
-        guard !range.isEmpty else {
+        guard !limit.isEmpty else {
             preconditionFailure("Range cannot be empty")
         }
         let upperBound = limit.upperBound.advanced(by: -1)
