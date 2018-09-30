@@ -119,12 +119,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let binder = MASShortcutBinder.shared()!
         binder.bindBoolShortcut(.ShortcutToggleMenuBarLyrics, target: .MenuBarLyricsEnabled)
         binder.bindBoolShortcut(.ShortcutToggleKaraokeLyrics, target: .DesktopLyricsEnabled)
-        binder.bindShortcut(.ShortcutShowLyricsWindow, to: self.showLyricsHUD)
-        binder.bindShortcut(.ShortcutOffsetIncrease, to: self.increaseOffset)
-        binder.bindShortcut(.ShortcutOffsetDecrease, to: self.decreaseOffset)
-        binder.bindShortcut(.ShortcutWriteToiTunes, to: self.writeToiTunes)
-        binder.bindShortcut(.ShortcutWrongLyrics, to: self.wrongLyrics)
-        binder.bindShortcut(.ShortcutSearchLyrics, to: self.searchLyrics)
+        binder.bindShortcut(.ShortcutShowLyricsWindow, to: #selector(showLyricsHUD))
+        binder.bindShortcut(.ShortcutOffsetIncrease, to: #selector(increaseOffset))
+        binder.bindShortcut(.ShortcutOffsetDecrease, to: #selector(decreaseOffset))
+        binder.bindShortcut(.ShortcutWriteToiTunes, to: #selector(writeToiTunes))
+        binder.bindShortcut(.ShortcutWrongLyrics, to: #selector(wrongLyrics))
+        binder.bindShortcut(.ShortcutSearchLyrics, to: #selector(searchLyrics))
     }
     
     // MARK: - NSMenuDelegate
@@ -243,15 +243,16 @@ extension MASShortcutBinder {
         bindShortcut(withDefaultsKey: defaultsKay.key, toAction: action)
     }
     
-    func bindShortcut<T, U>(_ defaultsKay: UserDefaults.DefaultsKey<T>, to action: @escaping (U?) -> Void) {
-        bindShortcut(withDefaultsKey: defaultsKay.key) {
-            action(nil)
-        }
-    }
-    
     func bindBoolShortcut<T>(_ defaultsKay: UserDefaults.DefaultsKey<T>, target: UserDefaults.DefaultsKey<Bool>) {
         bindShortcut(withDefaultsKey: defaultsKay.key) {
             defaults[target] = !defaults[target]
+        }
+    }
+    
+    func bindShortcut<T>(_ defaultsKay: UserDefaults.DefaultsKey<T>, to action: Selector) {
+        bindShortcut(defaultsKay) {
+            let target = NSApplication.shared.target(forAction: action) as AnyObject?
+            _ = target?.perform(action, with: self)
         }
     }
 }
