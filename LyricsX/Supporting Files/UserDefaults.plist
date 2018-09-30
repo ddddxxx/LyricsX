@@ -59,18 +59,6 @@
 		<string>SoundTrack</string>
 		<string>アニメ</string>
 	</array>
-	<key>LyricsSources</key>
-	<array>
-		<string>Auto</string>
-		<string>163</string>
-		<string>Xiami</string>
-		<string>Gecimi</string>
-		<string>TTPod</string>
-		<string>QQMusic</string>
-		<string>Kugou</string>
-	</array>
-	<key>PreferredLyricsSource</key>
-	<string>Auto</string>
 	<key>GlobalLyricsOffset</key>
 	<integer>0</integer>
 </dict>

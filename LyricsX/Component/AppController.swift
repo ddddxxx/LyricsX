@@ -232,23 +232,12 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             lyrics.metadata.artist == track?.artist ?? "" else {
             return
         }
-        
-        // swiftlint:disable:next identifier_name
-        func shoudReplace(_ from: Lyrics, to: Lyrics) -> Bool {
-            if (from.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) !=
-                (to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]) {
-                return to.metadata.source?.rawValue == defaults[.PreferredLyricsSource]
-            }
-            return to.quality > from.quality
-        }
-        
-        if let current = currentLyrics, !shoudReplace(current, to: lyrics) {
+        if let current = currentLyrics, current.quality >= lyrics.quality {
             return
         }
-        
         lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
-        
+
         if searchTask?.progress.isFinished == true,
             defaults[.WriteToiTunesAutomatically] {
             writeToiTunes(overwrite: true)
