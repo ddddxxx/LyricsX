@@ -1,7 +1,7 @@
 github "SnapKit/SnapKit" "4.0.1"
 github "ddddxxx/GenericID" "v0.3.0"
 github "ddddxxx/LyricsProvider" "v0.4.3"
-github "ddddxxx/MusicPlayer" "v0.1.1"
+github "ddddxxx/MusicPlayer" "v0.2.0"
 github "ddddxxx/Semver" "v0.1.2"
 github "ddddxxx/SwiftyOpenCC" "v0.2.2"
 github "ddddxxx/TouchBarHelper" "v1.0.0"
