@@ -8,5 +8,7 @@
 	<array>
 		<string>$(TeamIdentifierPrefix)group.ddddxxx.LyricsX</string>
 	</array>
+	<key>com.apple.security.automation.apple-events</key>
+	<true/>
 </dict>
 </plist>
