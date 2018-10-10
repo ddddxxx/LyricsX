@@ -567,11 +567,11 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="LM5-Vb-sGT"/>
                                 </constraints>
                                 <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="mini" horizontal="YES" id="I0t-r3-nYK">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="mini" horizontal="YES" id="I0t-r3-nYK">
                                     <rect key="frame" x="-100" y="-100" width="87" height="11"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="mini" horizontal="NO" id="BuP-Au-Ruu">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="mini" horizontal="NO" id="BuP-Au-Ruu">
                                     <rect key="frame" x="-100" y="-100" width="14" height="264"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -817,11 +817,11 @@ IA
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="TUa-AY-N9g"/>
                                         </constraints>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="wh1-5U-gVg">
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="wh1-5U-gVg">
                                             <rect key="frame" x="0.0" y="184" width="399" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="drD-x2-h4Y">
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="drD-x2-h4Y">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -887,11 +887,11 @@ IA
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="uht-5l-gZY"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="gf0-uJ-7Mf">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="gf0-uJ-7Mf">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="gNp-w1-80P">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="gNp-w1-80P">
                                     <rect key="frame" x="584" y="0.0" width="16" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1033,7 +1033,7 @@ IA
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="SY5-cn-UXd">
                                 <rect key="frame" x="0.0" y="180" width="300" height="5"/>
                             </box>
-                            <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5X9-bS-DKD">
+                            <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="5X9-bS-DKD">
                                 <rect key="frame" x="0.0" y="42" width="300" height="140"/>
                                 <clipView key="contentView" drawsBackground="NO" id="XIB-fT-5rI">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="140"/>
@@ -1053,11 +1053,11 @@ IA
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="50M-CA-dlO"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="IqI-vO-eog">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="IqI-vO-eog">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="8L8-Ts-4ej">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="8L8-Ts-4ej">
                                     <rect key="frame" x="284" y="0.0" width="16" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

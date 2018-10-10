@@ -19,9 +19,6 @@
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "自动写入";
 
-/* Class = "NSTextFieldCell"; title = "Preferred lyrics source:"; ObjectID = "7J3-g3-cfQ"; */
-"7J3-g3-cfQ.title" = "优先使用歌词源:";
-
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
 "8JF-Og-z6E.title" = "显示";
 
