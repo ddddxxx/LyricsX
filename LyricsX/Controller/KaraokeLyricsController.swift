@@ -81,10 +81,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         window?.contentView?.bind(.hidden, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
         
         observeDefaults(key: .DisableLyricsWhenSreenShot, options: [.new, .initial]) { [unowned self] _, change in
-            switch change.newValue {
-            case true: self.window?.sharingType = .none
-            case false: self.window?.sharingType = .readOnly
-            }
+            self.window?.sharingType = change.newValue ? .none : .readOnly
         }
         observeDefaults(keys: [
             .HideLyricsWhenMousePassingBy,
@@ -106,7 +103,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     }
     
     private func updateWindowFrame(animate: Bool) {
-        let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
+        let frame = screen.isFullScreen ? screen.frame : screen.visibleFrame
         window?.setFrame(frame, display: false, animate: animate)
     }
     
@@ -199,13 +196,21 @@ class KaraokeLyricsWindowController: NSWindowController {
     
 }
 
-private func isFullScreen() -> Bool? {
-    guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
-        return nil
-    }
-    return !windowInfoList.contains { info in
-        info[kCGWindowOwnerName as String] as? String == "Window Server" &&
-            info[kCGWindowName as String] as? String == "Menubar"
+private extension NSScreen {
+    
+    var isFullScreen: Bool {
+        guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
+            return false
+        }
+        return !windowInfoList.contains { info in
+            guard info[kCGWindowOwnerName as String] as? String == "Window Server",
+                info[kCGWindowName as String] as? String == "Menubar",
+                let boundsDict = info[kCGWindowBounds as String] as? NSDictionary as CFDictionary?,
+                let bounds = CGRect(dictionaryRepresentation: boundsDict) else {
+                    return false
+            }
+            return frame.contains(bounds)
+        }
     }
 }
 
