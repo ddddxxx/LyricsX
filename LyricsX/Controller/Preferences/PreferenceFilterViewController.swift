@@ -56,6 +56,10 @@ class FilterKey: NSObject, NSCoding {
     
     @objc var keyword = "keyword"
     
+    override init() {
+        super.init()
+    }
+    
     init(keyword: String) {
         self.keyword = keyword
         super.init()
