@@ -101,7 +101,6 @@ extension UserDefaults.DefaultsKeys {
     static let DisableLyricsWhenSreenShot = Key<Bool>("DisableLyricsWhenSreenShot")
     
     // Display
-    static let DesktopLyricsScreenRect = Key<CGRect>("DesktopLyricsScreenRect", transformer: .json)
     static let DesktopLyricsOneLineMode = Key<Bool>("DesktopLyricsOneLineMode")
     static let DesktopLyricsVerticalMode = Key<Bool>("DesktopLyricsVerticalMode")
     static let DesktopLyricsDraggable = Key<Bool>("DesktopLyricsDraggable")
@@ -155,4 +154,3 @@ extension UserDefaults.DefaultsKeys {
 }
 
 extension CGFloat: UDDefaultConstructible {}
-extension CGRect: UDDefaultConstructible {}
