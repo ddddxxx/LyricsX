@@ -136,6 +136,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard lyrics.metadata.request == searchTask?.request else {
             return
         }
+        lyrics.metadata.needsPersist = true
         if let idx = searchResult.index(where: { lyrics.quality > $0.quality }) {
             searchResult.insert(lyrics, at: idx)
         } else {
