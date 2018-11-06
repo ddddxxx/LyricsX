@@ -1,0 +1,77 @@
+/* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
+"1xI-G4-Fsc.headerCell.title" = "来源";
+
+/* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
+"CW0-AL-Z6N.title" = "捐赠";
+
+/* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
+"CWo-Qx-2Ut.title" = "偏好设置...";
+
+/* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
+"EoO-ld-6Xv.title" = "捐赠...";
+
+/* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
+"FMI-7E-tCo.title" = "歌曲:";
+
+/* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
+"GGU-uz-d9h.title" = "启用逐行歌词";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
+"Gza-SX-MCH.ibShadowedToolTip" = "置顶";
+
+/* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
+"HMU-fa-17B.headerCell.title" = "艺人";
+
+/* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
+"IFz-XQ-DHf.title" = "歌词偏移:";
+
+/* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
+"PdE-VG-JUC.title" = "关于 LyricsX";
+
+/* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
+"Piu-i2-JjD.title" = "检查更新...";
+
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
+"RGl-MT-MQb.title" = "使用";
+
+/* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
+"RPR-IV-34T.title" = "退出 LyricsX";
+
+/* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
+"Z7d-yp-uRx.title" = "启用菜单栏歌词";
+
+/* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
+"aRw-yQ-GNX.title" = "没有歌词\n\n拖拽以导入 LRC 歌词";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
+"d5a-4n-6k8.ibShadowedToolTip" = "同步";
+
+/* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
+"eb9-fE-Lgq.title" = "搜索";
+
+/* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
+"fmS-zv-RcJ.title" = "错误的歌词";
+
+/* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
+"h6D-jz-GbI.title" = "搜索歌词...";
+
+/* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
+"jWT-S5-YXM.headerCell.title" = "歌曲";
+
+/* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
+"kNl-ZO-aX6.title" = "写入歌词到 iTunes";
+
+/* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
+"kyJ-kV-2Du.title" = "显示歌词窗口";
+
+/* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
+"l8J-1r-dIZ.title" = "艺人:";
+
+/* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
+"o52-Z0-lue.title" = "如果您认为 LyricsX 对您有所帮助，并愿意支持软件的维护，可以扫描下方的二维码向我捐赠。";
+
+/* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
+"DNi-vI-MTr.title" = "在 Finder 中显示";
+
+/* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
+"hxE-X4-sJh.title" = "歌词";
