@@ -26,7 +26,7 @@
 "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "タッチバーの歌詞は、Mac App Storeのバージョンではサポートされていません。 GitHubから最新バージョンをダウンロードしてください。";
 
 /* alert title */
-"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
+"Unable to enable Touch Bar lyrics." = "タッチバーの歌詞を有効にすることができません。";
 
 /* title of the update alert, when the app is up to date. */
-"You're up-to-date!" = "You're up-to-date!";
+"You're up-to-date!" = "最新のバージョンです!";
