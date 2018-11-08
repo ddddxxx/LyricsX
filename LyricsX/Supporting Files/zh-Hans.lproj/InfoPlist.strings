@@ -1,1 +1,1 @@
-"NSAppleEventsUsageDescription" = "LyricsX needs to know what song you're currently playing, to show lyrics accordingly.";
+"NSAppleEventsUsageDescription" = "LyricsX 需要获取当前播放的音乐，并据此展示歌词";
