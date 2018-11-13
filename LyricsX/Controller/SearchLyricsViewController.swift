@@ -118,7 +118,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
         
         if let id = AppController.shared.playerManager.player?.currentTrack?.id,
-            let index = defaults[.NoSearchingTrackIds].index(where: { $0 == id }) {
+            let index = defaults[.NoSearchingTrackIds].firstIndex(of: id) {
             defaults[.NoSearchingTrackIds].remove(at: index)
         }
         
@@ -136,6 +136,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard lyrics.metadata.request == searchTask?.request else {
             return
         }
+        lyrics.metadata.needsPersist = true
         if let idx = searchResult.index(where: { lyrics.quality > $0.quality }) {
             searchResult.insert(lyrics, at: idx)
         } else {

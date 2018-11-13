@@ -184,6 +184,10 @@
 		E97AFB54215CAF4400AF74CD /* TouchBarHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TouchBarHelper.framework; path = Carthage/Build/Mac/TouchBarHelper.framework; sourceTree = "<group>"; };
 		E97AFB5A215CBF0300AF74CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E97AFB5C215CBF0500AF74CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E9AAA388219564F50006EBC2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E9AAA389219565010006EBC2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9AAA38A219565080006EBC2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Perference.strings; sourceTree = "<group>"; };
+		E9AAA38B2195650D0006EBC2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		E9E5512F207C4B7600F9958A /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		E9E55137207C4CB000F9958A /* TouchBarLyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarLyrics.swift; sourceTree = "<group>"; };
 		E9EBDA2421115A150019FDF9 /* Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
@@ -472,6 +476,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				ja,
 			);
 			mainGroup = BB4141A11E458BA800A51775;
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
@@ -627,6 +632,7 @@
 			children = (
 				BB0BE9591F444CA00068FF67 /* zh-Hans */,
 				BB0BE95A1F444CAA0068FF67 /* en */,
+				E9AAA389219565010006EBC2 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -637,6 +643,7 @@
 				BB4141B41E458BA900A51775 /* Base */,
 				BB3D1E911E8A2A2A00CA5B8F /* zh-Hans */,
 				BB335B112057BCE3003A69F8 /* en */,
+				E9AAA38B2195650D0006EBC2 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -655,6 +662,7 @@
 				BB6139751FCCFA6700CBD808 /* Base */,
 				BB6139781FCCFAC800CBD808 /* zh-Hans */,
 				BB335B132057BD03003A69F8 /* en */,
+				E9AAA38A219565080006EBC2 /* ja */,
 			);
 			name = Perference.storyboard;
 			sourceTree = "<group>";
@@ -664,6 +672,7 @@
 			children = (
 				E97AFB5A215CBF0300AF74CD /* en */,
 				E97AFB5C215CBF0500AF74CD /* zh-Hans */,
+				E9AAA388219564F50006EBC2 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

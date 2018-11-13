@@ -27,30 +27,26 @@ import SnapKit
 
 class KaraokeLyricsWindowController: NSWindowController {
     
+    static private let windowFrame = NSWindow.FrameAutosaveName("KaraokeWindow")
+    
     private var lyricsView = KaraokeLyricsView(frame: .zero)
     
-    private var screen: NSScreen {
-        didSet {
-            defaults[.DesktopLyricsScreenRect] = screen.frame
-            updateWindowFrame(animate: false)
-        }
-    }
-    
     init() {
-        let rect = defaults[.DesktopLyricsScreenRect]
-        screen = NSScreen.screens.first { $0.frame.contains(rect) } ?? NSScreen.screens[0]
-        let window = NSWindow(contentRect: screen.visibleFrame, styleMask: .borderless, backing: .buffered, defer: true)
+        let window = NSWindow(contentRect: .zero, styleMask: .borderless, backing: .buffered, defer: true)
         window.backgroundColor = .clear
         window.hasShadow = false
         window.isOpaque = false
         window.level = .floating
         window.collectionBehavior = [.canJoinAllSpaces, .stationary]
+        window.setFrameUsingName(KaraokeLyricsWindowController.windowFrame, force: true)
         super.init(window: window)
         
         window.contentView?.addSubview(lyricsView)
         
         addObserver()
         makeConstraints()
+        
+        updateWindowFrame(animate: false)
         
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -81,10 +77,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         window?.contentView?.bind(.hidden, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
         
         observeDefaults(key: .DisableLyricsWhenSreenShot, options: [.new, .initial]) { [unowned self] _, change in
-            switch change.newValue {
-            case true: self.window?.sharingType = .none
-            case false: self.window?.sharingType = .readOnly
-            }
+            self.window?.sharingType = change.newValue ? .none : .readOnly
         }
         observeDefaults(keys: [
             .HideLyricsWhenMousePassingBy,
@@ -100,14 +93,19 @@ class KaraokeLyricsWindowController: NSWindowController {
             self.lyricsView.font = defaults.desktopLyricsFont
         }
         
+        observeNotification(name: NSApplication.didChangeScreenParametersNotification, queue: .main) { [unowned self] _ in
+            self.updateWindowFrame(animate: true)
+        }
         observeNotification(center: workspaceNC, name: NSWorkspace.activeSpaceDidChangeNotification, queue: .main) { [unowned self] _ in
             self.updateWindowFrame(animate: true)
         }
     }
     
-    private func updateWindowFrame(animate: Bool) {
-        let frame = isFullScreen() == true ? screen.frame : screen.visibleFrame
+    private func updateWindowFrame(toScreen: NSScreen? = nil, animate: Bool) {
+        let screen = toScreen ?? window?.screen ?? NSScreen.screens[0]
+        let frame = screen.isFullScreen ? screen.frame : screen.visibleFrame
         window?.setFrame(frame, display: false, animate: animate)
+        window?.saveFrame(usingName: KaraokeLyricsWindowController.windowFrame)
     }
     
     @objc private func handleLyricsDisplay() {
@@ -178,7 +176,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         let centerInScreen = window.convertToScreen(CGRect(origin: center, size: .zero)).origin
         if let screen = NSScreen.screens.first(where: { $0.frame.contains(centerInScreen) }),
             screen != window.screen {
-            self.screen = screen
+            updateWindowFrame(toScreen: screen, animate: false)
             center = window.convertFromScreen(CGRect(origin: centerInScreen, size: .zero)).origin
             return
         }
@@ -199,13 +197,21 @@ class KaraokeLyricsWindowController: NSWindowController {
     
 }
 
-private func isFullScreen() -> Bool? {
-    guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
-        return nil
-    }
-    return !windowInfoList.contains { info in
-        info[kCGWindowOwnerName as String] as? String == "Window Server" &&
-            info[kCGWindowName as String] as? String == "Menubar"
+private extension NSScreen {
+    
+    var isFullScreen: Bool {
+        guard let windowInfoList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
+            return false
+        }
+        return !windowInfoList.contains { info in
+            guard info[kCGWindowOwnerName as String] as? String == "Window Server",
+                info[kCGWindowName as String] as? String == "Menubar",
+                let boundsDict = info[kCGWindowBounds as String] as? NSDictionary as CFDictionary?,
+                let bounds = CGRect(dictionaryRepresentation: boundsDict) else {
+                    return false
+            }
+            return frame.contains(bounds)
+        }
     }
 }
 

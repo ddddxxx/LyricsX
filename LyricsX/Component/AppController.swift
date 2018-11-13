@@ -268,5 +268,8 @@ extension AppController {
         lrc.metadata.artist = track.artist
         lrc.metadata.needsPersist = true
         currentLyrics = lrc
+        if let index = defaults[.NoSearchingTrackIds].firstIndex(of: track.id) {
+            defaults[.NoSearchingTrackIds].remove(at: index)
+        }
     }
 }

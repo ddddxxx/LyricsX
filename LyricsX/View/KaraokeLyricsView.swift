@@ -168,14 +168,14 @@ class KaraokeLyricsView: NSBox {
         if shouldHideWithMouse,
             let point = NSEvent.mouseLocation(in: self),
             bounds.contains(point) {
-            animator().alphaValue = 0.1
+            animator().alphaValue = 0
         } else {
             animator().alphaValue = 1
         }
     }
     
     override func mouseEntered(with event: NSEvent) {
-        animator().alphaValue = 0.1
+        animator().alphaValue = 0
     }
     
     override func mouseExited(with event: NSEvent) {
