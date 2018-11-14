@@ -163,10 +163,8 @@ extension MatchResult: Equatable, Hashable {
         return lhs.captures.elementsEqual(rhs.captures, by: ==)
     }
     
-    var hashValue: Int {
-        return captures.reduce(0) { r, e in
-            hashCombine(seed: r, value: e?.hashValue ?? 0)
-        }
+    public func hash(into hasher: inout Hasher) {
+        captures.forEach { hasher.combine($0) }
     }
 }
 
@@ -176,35 +174,7 @@ extension Regex: Equatable, Hashable {
         return lhs._regex == rhs._regex
     }
     
-    var hashValue: Int {
-        return _regex.hashValue
-    }
-}
-
-// MARK: -
-
-private func hashCombine(seed: Int, value: Int) -> Int {
-    func hashCombine32(seed: inout UInt32, value: UInt32) {
-        seed ^= (value &+ 0x9e3779b9 &+ (seed<<6) &+ (seed>>2))
-    }
-    func hashCombine64(seed: inout UInt64, value: UInt64) {
-        let mul: UInt64 = 0x9ddfea08eb382d69
-        var a = (value ^ seed) &* mul
-        a ^= (a >> 47)
-        var b = (seed ^ a) &* mul
-        b ^= (b >> 47)
-        seed = b &* mul
-    }
-    
-    if MemoryLayout<Int>.size == 64 {
-        var us = UInt64(UInt(bitPattern: seed))
-        let uv = UInt64(UInt(bitPattern: value))
-        hashCombine64(seed: &us, value: uv)
-        return Int(truncatingIfNeeded: Int64(bitPattern: us))
-    } else {
-        var us = UInt32(UInt(bitPattern: seed))
-        let uv = UInt32(UInt(bitPattern: value))
-        hashCombine32(seed: &us, value: uv)
-        return Int(truncatingIfNeeded: Int32(bitPattern: us))
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(_regex)
     }
 }
