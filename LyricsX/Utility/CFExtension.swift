@@ -94,43 +94,47 @@ extension CFStringTokenizer {
     
     func currentFuriganaAnnotation(in string: NSString) -> (NSString, NSRange)? {
         let range = currentTokenRange()
-        let tokenStr = string.substring(with: range) as NSString
+        let tokenStr = string.substring(with: range)
         guard let latin = currentTokenAttribute(.latinTranscription),
-            let katakana = latin.applyingTransform(.latinToKatakana, reverse: false) as NSString?,
-            let hiragana = latin.applyingTransform(.latinToHiragana, reverse: false) as NSString?,
-            katakana.length > 0,
+            let hiragana = latin.applyingTransform(.latinToHiragana, reverse: false),
+            let katakana = latin.applyingTransform(.hiraganaToKatakana, reverse: false),
+            !katakana.isEmpty,
             katakana != tokenStr,
             hiragana != tokenStr else {
                 return nil
         }
-        let prefixLength = tokenStr.commonPrefixLength(with: hiragana)
-        let suffixLength = tokenStr.commonSuffixLength(with: hiragana)
-        let trimmedRange = NSRange(location: prefixLength,
-                                   length: hiragana.length - prefixLength - suffixLength)
-        let trimmedString = hiragana.substring(with: trimmedRange) as NSString
-        let rangeToAnnotate = NSRange(location: range.location + prefixLength,
-                                      length: range.length - prefixLength - suffixLength)
-        return (trimmedString, rangeToAnnotate)
+        let (rangeToAnnotate, rangeInAnnotation) = rangeOfUncommonContent(tokenStr, hiragana)!
+        let annotation = String(hiragana[rangeInAnnotation]) as NSString
+        var nsrangeToAnnotate = NSRange(rangeToAnnotate, in: tokenStr)
+        nsrangeToAnnotate.location += range.location
+        return (annotation, nsrangeToAnnotate)
     }
 }
 
-private extension NSString {
-    
-    func commonPrefixLength(with string: NSString) -> Int {
-        var i = 0
-        while i < length, i < string.length, character(at: i) == string.character(at: i) {
-            i += 1
+private func rangeOfUncommonContent(_ s1: String, _ s2: String) -> (Range<String.Index>, Range<String.Index>)? {
+    guard s1 != s2 else {
+        return nil
+    }
+    var (l1, l2) = (s1.startIndex, s2.startIndex)
+    while s1[l1] == s2[l2] {
+        guard let nl1 = s1.index(l1, offsetBy: 1, limitedBy: s1.endIndex),
+            let nl2 = s2.index(l2, offsetBy: 1, limitedBy: s2.endIndex) else {
+                break
         }
-        return i
+        (l1, l2) = (nl1, nl2)
     }
     
-    func commonSuffixLength(with string: NSString) -> Int {
-        var i = 0
-        while i < length, i < string.length, character(at: length - 1 - i) == string.character(at: string.length - 1 - i) {
-            i += 1
+    var (r1, r2) = (s1.endIndex, s2.endIndex)
+    while s1[r1] == s2[r2] {
+        guard let nr1 = s1.index(r1, offsetBy: -1, limitedBy: s1.startIndex),
+            let nr2 = s2.index(r2, offsetBy: -1, limitedBy: s2.startIndex) else {
+                break
         }
-        return i
+        (r1, r2) = (nr1, nr2)
     }
+    let range1 = (l1...r1).relative(to: s1.indices)
+    let range2 = (l2...r2).relative(to: s1.indices)
+    return (range1, range2)
 }
 
 extension CFStringTokenizer: IteratorProtocol, Sequence {
