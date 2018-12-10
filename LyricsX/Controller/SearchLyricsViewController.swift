@@ -57,6 +57,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     override func viewWillAppear() {
+        self.reloadKeyword()
+    }
+    
+    func reloadKeyword() {
         guard let track = AppController.shared.playerManager.player?.currentTrack else {
             searchTask?.cancel()
             searchTask = nil
