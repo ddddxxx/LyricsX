@@ -97,7 +97,7 @@ extension CFStringTokenizer {
         let tokenStr = string.substring(with: range)
         guard let latin = currentTokenAttribute(.latinTranscription),
             let hiragana = latin.applyingTransform(.latinToHiragana, reverse: false),
-            let katakana = latin.applyingTransform(.hiraganaToKatakana, reverse: false),
+            let katakana = hiragana.applyingTransform(.hiraganaToKatakana, reverse: false),
             !katakana.isEmpty,
             katakana != tokenStr,
             hiragana != tokenStr else {
@@ -112,7 +112,7 @@ extension CFStringTokenizer {
 }
 
 private func rangeOfUncommonContent(_ s1: String, _ s2: String) -> (Range<String.Index>, Range<String.Index>)? {
-    guard s1 != s2 else {
+    guard s1 != s2, !s1.isEmpty, !s2.isEmpty else {
         return nil
     }
     var (l1, l2) = (s1.startIndex, s2.startIndex)
@@ -125,15 +125,16 @@ private func rangeOfUncommonContent(_ s1: String, _ s2: String) -> (Range<String
     }
     
     var (r1, r2) = (s1.endIndex, s2.endIndex)
-    while s1[r1] == s2[r2] {
+    repeat {
         guard let nr1 = s1.index(r1, offsetBy: -1, limitedBy: s1.startIndex),
             let nr2 = s2.index(r2, offsetBy: -1, limitedBy: s2.startIndex) else {
                 break
         }
         (r1, r2) = (nr1, nr2)
-    }
+    } while s1[r1] == s2[r2]
+    
     let range1 = (l1...r1).relative(to: s1.indices)
-    let range2 = (l2...r2).relative(to: s1.indices)
+    let range2 = (l2...r2).relative(to: s2.indices)
     return (range1, range2)
 }
 
