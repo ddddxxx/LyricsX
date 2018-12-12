@@ -95,15 +95,12 @@ extension CFStringTokenizer {
     func currentFuriganaAnnotation(in string: NSString) -> (NSString, NSRange)? {
         let range = currentTokenRange()
         let tokenStr = string.substring(with: range)
-        guard let latin = currentTokenAttribute(.latinTranscription),
+        guard tokenStr.unicodeScalars.contains(where: CharacterSet.kanji.contains),
+            let latin = currentTokenAttribute(.latinTranscription),
             let hiragana = latin.applyingTransform(.latinToHiragana, reverse: false),
-            let katakana = hiragana.applyingTransform(.hiraganaToKatakana, reverse: false),
-            !katakana.isEmpty,
-            katakana != tokenStr,
-            hiragana != tokenStr else {
+            let (rangeToAnnotate, rangeInAnnotation) = rangeOfUncommonContent(tokenStr, hiragana) else {
                 return nil
         }
-        let (rangeToAnnotate, rangeInAnnotation) = rangeOfUncommonContent(tokenStr, hiragana)!
         let annotation = String(hiragana[rangeInAnnotation]) as NSString
         var nsrangeToAnnotate = NSRange(rangeToAnnotate, in: tokenStr)
         nsrangeToAnnotate.location += range.location
