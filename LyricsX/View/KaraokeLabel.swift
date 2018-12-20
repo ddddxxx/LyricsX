@@ -89,7 +89,7 @@ class KaraokeLabel: NSTextField {
             guard shouldDrawFurigana else { continue }
             if let (furigana, range) = tokenizer.currentFuriganaAnnotation(in: string) {
                 var attr: [NSAttributedStringKey: Any] = [.rubyAnnotationSizeFactor: 0.5]
-                attr[.foregroundColor] = textColor // Set ruby text color but it seems doesn't work.
+                attr[.ctForegroundColor] = textColor
                 let annotation = CTRubyAnnotation.create(furigana, attributes: attr)
                 attrString.addAttribute(.rubyAnnotation, value: annotation, range: range)
             }

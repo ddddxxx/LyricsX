@@ -29,6 +29,8 @@ extension NSAttributedStringKey {
     
     /// kCTRubyAnnotationSizeFactorAttributeName
     static let rubyAnnotationSizeFactor = NSAttributedStringKey("CTRubyAnnotationSizeFactor")
+    
+    static let ctForegroundColor = kCTForegroundColorAttributeName as NSAttributedStringKey
 }
 
 extension CTRubyAnnotation {
