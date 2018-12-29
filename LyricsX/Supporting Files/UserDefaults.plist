@@ -32,7 +32,9 @@
 	<array>
 		<string>/(by|title|song|album|artist|singer|lyrics)\s*[:：∶]</string>
 		<string>/\w+(\.\w+){2}</string>
+		<string>/^\s*//\s*$</string>
 		<string>/\d{8}</string>
+		<string>/^\.$</string>
 		<string>作詞</string>
 		<string>作词</string>
 		<string>作曲</string>
