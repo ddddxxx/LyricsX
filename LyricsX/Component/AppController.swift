@@ -45,7 +45,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }
     }
     
-    var searchTask: LyricsSearchTask?
+    var searchProgress: Progress?
     
     var currentLineIndex: Int?
     
@@ -192,9 +192,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                                           duration: duration,
                                           limit: 5,
                                           timeout: 10)
-            let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
-            searchTask = task
-            task.resume()
+            searchProgress = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
             Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
         }
     }
@@ -238,7 +236,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
 
-        if searchTask?.progress.isFinished == true,
+        if searchProgress?.isFinished == true,
             defaults[.WriteToiTunesAutomatically] {
             writeToiTunes(overwrite: true)
         }
