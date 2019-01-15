@@ -77,7 +77,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     func writeToiTunes(overwrite: Bool) {
         guard let player = playerManager.player as? iTunes,
             let currentLyrics = currentLyrics,
-            overwrite || player.currentLyrics?.isEmpty != false else {
+            overwrite || player.currentTrack?.lyrics?.isEmpty != false else {
             return
         }
         var content = currentLyrics.lines.map { line in
@@ -94,7 +94,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         if let converter = ChineseConverter.shared {
             content = converter.convert(content)
         }
-        player.currentLyrics = content
+        player.currentTrack?.setLyrics(content)
     }
     
     // MARK: MusicPlayerManagerDelegate

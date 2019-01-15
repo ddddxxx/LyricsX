@@ -35,6 +35,25 @@ extension MusicPlayerName {
     }
 }
 
+extension MusicTrack {
+    
+    var lyrics: String? {
+        guard let originalTrack = originalTrack,
+            originalTrack.responds(to: Selector(("lyrics"))) else {
+            return nil
+        }
+        return originalTrack.value(forKey: "lyrics") as? String
+    }
+    
+    func setLyrics(_ lyrics: String) {
+        guard let originalTrack = originalTrack,
+            originalTrack.responds(to: Selector(("setLyrics:"))) else {
+                return
+        }
+        originalTrack.setValue(lyrics, forKey: "lyrics")
+    }
+}
+
 extension NSFont {
     
     convenience init?(name fontName: String, size fontSize: CGFloat, fallback fallbackNames: [String]) {
