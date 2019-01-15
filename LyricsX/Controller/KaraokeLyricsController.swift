@@ -122,19 +122,25 @@ class KaraokeLyricsWindowController: NSWindowController {
         let lrc = lyrics.lines[index]
         let next = lyrics.lines[(index + 1)...].first { $0.enabled }
         
+        let languageCode = lyrics.metadata.translationLanguages.first
+        
         var firstLine = lrc.content
         var secondLine: String
         if defaults[.DesktopLyricsOneLineMode] {
             secondLine = ""
         } else if defaults[.PreferBilingualLyrics] {
-            secondLine = lrc.attachments.translation() ?? next?.content ?? ""
+            secondLine = lrc.attachments.translation(languageCode: languageCode) ?? next?.content ?? ""
         } else {
             secondLine = next?.content ?? ""
         }
         
         if let converter = ChineseConverter.shared {
-            firstLine = converter.convertIfNeeded(firstLine)
-            secondLine = converter.convertIfNeeded(secondLine)
+            if lyrics.metadata.language?.hasPrefix("zh") == true {
+                firstLine = converter.convert(firstLine)
+            }
+            if languageCode?.hasPrefix("zh") == true {
+                secondLine = converter.convert(secondLine)
+            }
         }
         
         DispatchQueue.main.async {

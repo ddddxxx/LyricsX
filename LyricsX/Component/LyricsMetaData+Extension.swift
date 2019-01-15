@@ -26,6 +26,8 @@ extension Lyrics.MetaData.Key {
     static var title = Lyrics.MetaData.Key("title")
     static var artist = Lyrics.MetaData.Key("artist")
     static var needsPersist = Lyrics.MetaData.Key("needsPersist")
+    static var language = Lyrics.MetaData.Key("language")
+    static var translationLanguages = Lyrics.MetaData.Key("translationLanguages")
 }
 
 extension Lyrics.MetaData {
@@ -48,5 +50,15 @@ extension Lyrics.MetaData {
     var needsPersist: Bool {
         get { return data[.needsPersist] as? Bool ?? false }
         set { data[.needsPersist] = newValue }
+    }
+    
+    var language: String? {
+        get { return data[.language] as? String }
+        set { data[.language] = newValue }
+    }
+    
+    var translationLanguages: [String] {
+        get { return data[.language] as? [String] ?? [] }
+        set { data[.language] = newValue }
     }
 }

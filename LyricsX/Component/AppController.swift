@@ -38,6 +38,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }
         didSet {
             currentLyrics?.filtrate()
+            currentLyrics?.recognizeLanguage()
             didChangeValue(forKey: "lyricsOffset")
             currentLineIndex = nil
             NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
@@ -80,20 +81,26 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             overwrite || player.currentTrack?.lyrics?.isEmpty != false else {
             return
         }
-        var content = currentLyrics.lines.map { line in
+        var content = currentLyrics.lines.map { line -> String in
             var content = line.content
-            if defaults[.WriteiTunesWithTranslation],
-                let translation = line.attachments.translation() {
-                content += "\n" + translation
+            if let converter = ChineseConverter.shared {
+                content = converter.convert(content)
+            }
+            if defaults[.WriteiTunesWithTranslation] {
+                // TODO: tagged translation
+                let code = currentLyrics.metadata.translationLanguages.first
+                if var translation = line.attachments.translation(languageCode: code) {
+                    if let converter = ChineseConverter.shared {
+                        translation = converter.convert(translation)
+                    }
+                    content += "\n" + translation
+                }
             }
             return content
         }.joined(separator: "\n")
         // swiftlint:disable:next force_try
         let regex = try! Regex("\\n{3}")
         _ = regex.replaceMatches(in: &content, withTemplate: "\n\n")
-        if let converter = ChineseConverter.shared {
-            content = converter.convertIfNeeded(content)
-        }
         player.currentTrack?.setLyrics(content)
     }
     

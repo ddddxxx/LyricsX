@@ -53,8 +53,8 @@ class MenuBarLyrics: NSObject {
             return
         }
         var newScreenLyrics = lyrics.lines[index].content
-        if let converter = ChineseConverter.shared {
-            newScreenLyrics = converter.convertIfNeeded(newScreenLyrics)
+        if let converter = ChineseConverter.shared, lyrics.metadata.language?.hasPrefix("zh") == true {
+            newScreenLyrics = converter.convert(newScreenLyrics)
         }
         if newScreenLyrics == screenLyrics {
             return
