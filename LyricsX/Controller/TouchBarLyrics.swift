@@ -19,9 +19,9 @@
 //
 
 import Cocoa
+import DFRPrivate
 import LyricsProvider
 import OpenCC
-import TouchBarHelper
 
 #if IS_FOR_MAS
 #else
@@ -32,7 +32,9 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     let touchBar = NSTouchBar()
     private let systemTrayItem = NSCustomTouchBarItem(identifier: .systemTrayItem)
     
-    private var lyricsTextField = NSTextField(labelWithString: "")
+    private var lyricsTextField = KaraokeLabel(labelWithString: "")
+    
+    @objc dynamic var progressColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
     
     override init() {
         super.init()
@@ -40,26 +42,22 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         touchBar.defaultItemIdentifiers = [.lyrics]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
-        systemTrayItem.addSystemTray()
-        DFRElementSetControlStripPresenceForIdentifier(systemTrayItem.identifier, true)
-        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
+        systemTrayItem.addToSystemTray()
+        systemTrayItem.setControlStripPresence(true)
+        NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(true)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
         
-        lyricsTextField.bind(\.tfProgressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
+        bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
     }
     
     deinit {
-        self.systemTrayItem.removeSystemTray()
+        self.systemTrayItem.removeFromSystemTray()
     }
     
     @objc private func presentTouchBar() {
-        if #available(OSX 10.14, *) {
-            NSTouchBar.presentSystemModalTouchBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
-        } else {
-            NSTouchBar.presentSystemModalFunctionBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
-        }
+        touchBar.presentAsSystemModal(forItemIdentifier: .systemTrayItem)
     }
     
     @objc private func handleLyricsDisplay() {
@@ -67,13 +65,14 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
             let index = AppController.shared.currentLineIndex else {
                 DispatchQueue.main.async {
                     self.lyricsTextField.stringValue = ""
-                    self.lyricsTextField.tf_removeProgressAnimation()
+                    self.lyricsTextField.removeProgressAnimation()
                 }
                 return
         }
         let line = lyrics.lines[index]
         var lyricsContent = line.content
-        if let converter = ChineseConverter.shared {
+        if let converter = ChineseConverter.shared,
+            lyrics.metadata.language?.hasPrefix("zh") == true {
             lyricsContent = converter.convert(lyricsContent)
         }
         DispatchQueue.main.async {
@@ -82,7 +81,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
                 let position = AppController.shared.playerManager.player?.playerPosition {
                 let timeDelay = line.lyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + line.position - timeDelay - position, $0.index) }
-                self.lyricsTextField.tf_addProgressAnimation(progress)
+                self.lyricsTextField.setProgressAnimation(color: self.progressColor, progress: progress)
             }
         }
     }
@@ -90,7 +89,12 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         if identifier == .lyrics {
             let item = NSCustomTouchBarItem(identifier: identifier)
-            item.view = lyricsTextField
+            item.view.addSubview(lyricsTextField)
+            lyricsTextField.snp.makeConstraints { make in
+                make.top.bottom.right.equalToSuperview()
+                // For some reason the left edge get clipped without the offset.
+                make.left.equalToSuperview().offset(4)
+            }
             return item
         } else {
             return nil
@@ -104,89 +108,6 @@ private extension NSTouchBarItem.Identifier {
     static let lyrics = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.lyrics")
     
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
-}
-
-// MARK: - NSTextField + Progress
-
-private extension NSTextField {
-    
-    func rectArrayForAllCharacters() -> [NSRect] {
-        let layoutManager = NSLayoutManager()
-        let textStorage = NSTextStorage(attributedString: attributedStringValue)
-        var containerSize = frame.size
-        // the imitated text container clip its content whereas text field does not.
-        // expand container size to avoid clipping.
-        containerSize.width = .infinity
-        let textContainer = NSTextContainer(containerSize: containerSize)
-        
-        textStorage.addLayoutManager(layoutManager)
-        layoutManager.addTextContainer(textContainer)
-        return stringValue.indices.map { index in
-            let range = NSRange(index...index, in: stringValue)
-            return layoutManager.boundingRect(forGlyphRange: range, in: textContainer)
-        }
-    }
-}
-
-private extension NSTextField {
-    
-    func tf_addProgressAnimation(_ progress: [(TimeInterval, Int)]) {
-        
-        guard let index = progress.index(where: { $0.0 > 0 }) else { return }
-        let rectArray = rectArrayForAllCharacters()
-        guard !rectArray.isEmpty else {
-            return
-        }
-        var map = progress.map { ($0.0, rectArray[($0.1 - 1).clamped(to: rectArray.indices)].maxX) }
-        if index > 0 {
-            let progress = map[index - 1].1 + CGFloat(map[index - 1].0) * (map[index].1 - map[index - 1].1) / CGFloat(map[index].0 - map[index - 1].0)
-            map.replaceSubrange(..<index, with: [(0, progress)])
-        }
-        
-        let duration = map.last!.0
-        let animation = CAKeyframeAnimation()
-        animation.keyTimes = map.map { ($0.0 / duration) as NSNumber }
-        animation.values = map.map { $0.1 }
-        animation.keyPath = "bounds.size.width"
-        animation.duration = duration
-        
-        let progressTextField = NSTextField(labelWithString: stringValue)
-        addSubview(progressTextField)
-        progressTextField.wantsLayer = true
-        progressTextField.bind(\.textColor, to: self, withKeyPath: \.tfProgressColor)
-        progressTextField.bind(\.stringValue, to: self, withKeyPath: \.stringValue)
-        progressTextField.bind(\.font, to: self, withKeyPath: \.font)
-        progressTextField.snp.makeConstraints { $0.edges.equalToSuperview() }
-        progressTextField.layer?.add(animation, forKey: "inlineProgress")
-        
-        self.tfProgressTextField?.removeFromSuperview()
-        self.tfProgressTextField = progressTextField
-    }
-    
-    func tf_removeProgressAnimation() {
-        tfProgressTextField?.removeFromSuperview()
-        tfProgressTextField = nil
-    }
-    
-    private static var progressTFToken = 0
-    private var tfProgressTextField: NSTextField? {
-        get {
-            return objc_getAssociatedObject(self, &NSTextField.progressTFToken) as? NSTextField
-        }
-        set {
-            objc_setAssociatedObject(self, &NSTextField.progressTFToken, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-    
-    private static var progressColorToken = 0
-    @objc dynamic var tfProgressColor: NSColor? {
-        get {
-            return objc_getAssociatedObject(self, &NSTextField.progressColorToken) as? NSColor
-        }
-        set {
-            objc_setAssociatedObject(self, &NSTextField.progressColorToken, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
 }
 
 #endif

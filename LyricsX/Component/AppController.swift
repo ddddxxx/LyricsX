@@ -38,6 +38,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }
         didSet {
             currentLyrics?.filtrate()
+            currentLyrics?.recognizeLanguage()
             didChangeValue(forKey: "lyricsOffset")
             currentLineIndex = nil
             NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
@@ -45,7 +46,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }
     }
     
-    var searchTask: LyricsSearchTask?
+    var searchProgress: Progress?
     
     var currentLineIndex: Int?
     
@@ -77,24 +78,30 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     func writeToiTunes(overwrite: Bool) {
         guard let player = playerManager.player as? iTunes,
             let currentLyrics = currentLyrics,
-            overwrite || player.currentLyrics?.isEmpty != false else {
+            overwrite || player.currentTrack?.lyrics?.isEmpty != false else {
             return
         }
-        var content = currentLyrics.lines.map { line in
+        var content = currentLyrics.lines.map { line -> String in
             var content = line.content
-            if defaults[.WriteiTunesWithTranslation],
-                let translation = line.attachments.translation() {
-                content += "\n" + translation
+            if let converter = ChineseConverter.shared {
+                content = converter.convert(content)
+            }
+            if defaults[.WriteiTunesWithTranslation] {
+                // TODO: tagged translation
+                let code = currentLyrics.metadata.translationLanguages.first
+                if var translation = line.attachments.translation(languageCode: code) {
+                    if let converter = ChineseConverter.shared {
+                        translation = converter.convert(translation)
+                    }
+                    content += "\n" + translation
+                }
             }
             return content
         }.joined(separator: "\n")
         // swiftlint:disable:next force_try
         let regex = try! Regex("\\n{3}")
         _ = regex.replaceMatches(in: &content, withTemplate: "\n\n")
-        if let converter = ChineseConverter.shared {
-            content = converter.convert(content)
-        }
-        player.currentLyrics = content
+        player.currentTrack?.setLyrics(content)
     }
     
     // MARK: MusicPlayerManagerDelegate
@@ -192,9 +199,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                                           duration: duration,
                                           limit: 5,
                                           timeout: 10)
-            let task = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
-            searchTask = task
-            task.resume()
+            searchProgress = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
             Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
         }
     }
@@ -238,7 +243,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
 
-        if searchTask?.progress.isFinished == true,
+        if searchProgress?.isFinished == true,
             defaults[.WriteToiTunesAutomatically] {
             writeToiTunes(overwrite: true)
         }

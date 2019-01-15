@@ -75,9 +75,12 @@ class ScrollLyricsView: NSScrollView {
         var lrcContent = ""
         var newRanges: [(TimeInterval, NSRange)] = []
         let enabledLrc = lyrics.lines.filter({ $0.enabled && !$0.content.isEmpty })
+        let languageCode = lyrics.metadata.translationLanguages.first
+        
         for line in enabledLrc {
             var lineStr = line.content
-            if var trans = line.attachments.translation(), defaults[.PreferBilingualLyrics] {
+            if var trans = line.attachments.translation(languageCode: languageCode), defaults[.PreferBilingualLyrics],
+                languageCode?.hasPrefix("zh") == true {
                 if let converter = ChineseConverter.shared {
                     trans = converter.convert(trans)
                 }
