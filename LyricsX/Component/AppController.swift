@@ -92,7 +92,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         let regex = try! Regex("\\n{3}")
         _ = regex.replaceMatches(in: &content, withTemplate: "\n\n")
         if let converter = ChineseConverter.shared {
-            content = converter.convert(content)
+            content = converter.convertIfNeeded(content)
         }
         player.currentTrack?.setLyrics(content)
     }

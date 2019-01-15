@@ -79,7 +79,7 @@ class ScrollLyricsView: NSScrollView {
             var lineStr = line.content
             if var trans = line.attachments.translation(), defaults[.PreferBilingualLyrics] {
                 if let converter = ChineseConverter.shared {
-                    trans = converter.convert(trans)
+                    trans = converter.convertIfNeeded(trans)
                 }
                 lineStr += "\n" + trans
             }

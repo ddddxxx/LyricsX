@@ -133,8 +133,8 @@ class KaraokeLyricsWindowController: NSWindowController {
         }
         
         if let converter = ChineseConverter.shared {
-            firstLine = converter.convert(firstLine)
-            secondLine = converter.convert(secondLine)
+            firstLine = converter.convertIfNeeded(firstLine)
+            secondLine = converter.convertIfNeeded(secondLine)
         }
         
         DispatchQueue.main.async {

@@ -36,4 +36,13 @@ extension ChineseConverter {
         case 0, _: ChineseConverter._shared = nil
         }
     }
+    
+    func convertIfNeeded(_ text: String) -> String {
+        let lan = (text as NSString).dominantLanguage ?? ""
+        if lan.hasPrefix("zh") {
+            return convert(text)
+        } else {
+            return text
+        }
+    }
 }

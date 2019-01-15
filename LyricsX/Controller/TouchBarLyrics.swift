@@ -76,7 +76,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         let line = lyrics.lines[index]
         var lyricsContent = line.content
         if let converter = ChineseConverter.shared {
-            lyricsContent = converter.convert(lyricsContent)
+            lyricsContent = converter.convertIfNeeded(lyricsContent)
         }
         DispatchQueue.main.async {
             self.lyricsTextField.stringValue = lyricsContent
