@@ -19,9 +19,9 @@
 //
 
 import Cocoa
-import DFRPrivate
 import LyricsProvider
 import OpenCC
+import TouchBarHelper
 
 #if IS_FOR_MAS
 #else
@@ -42,9 +42,9 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         touchBar.defaultItemIdentifiers = [.lyrics]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
-        systemTrayItem.addToSystemTray()
-        systemTrayItem.setControlStripPresence(true)
-        NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(true)
+        systemTrayItem.addSystemTray()
+        DFRElementSetControlStripPresenceForIdentifier(systemTrayItem.identifier, true)
+        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
@@ -53,11 +53,15 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     }
     
     deinit {
-        self.systemTrayItem.removeFromSystemTray()
+        self.systemTrayItem.removeSystemTray()
     }
     
     @objc private func presentTouchBar() {
-        touchBar.presentAsSystemModal(forItemIdentifier: .systemTrayItem)
+        if #available(OSX 10.14, *) {
+            NSTouchBar.presentSystemModalTouchBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
+        } else {
+            NSTouchBar.presentSystemModalFunctionBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
+        }
     }
     
     @objc private func handleLyricsDisplay() {
