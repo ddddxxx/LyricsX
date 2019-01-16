@@ -24,6 +24,7 @@ import Fabric
 import GenericID
 import MASShortcut
 import MusicPlayer
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
@@ -95,7 +96,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                     }
                 }
             }
-            checkForUpdate()
         #endif
     }
     
@@ -156,7 +156,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     @IBAction func checkUpdateAction(_ sender: Any) {
-        checkForUpdate(force: true)
+        SUUpdater.shared()?.checkForUpdates(sender)
     }
     
     @IBAction func increaseOffset(_ sender: Any?) {
