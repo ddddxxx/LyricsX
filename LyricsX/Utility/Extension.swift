@@ -33,6 +33,15 @@ extension MusicPlayerName {
         default: return nil
         }
     }
+    
+    var icon: NSImage {
+        switch self {
+        case .itunes:   return #imageLiteral(resourceName: "iTunes_icon")
+        case .spotify:  return #imageLiteral(resourceName: "spotify_icon")
+        case .vox:      return #imageLiteral(resourceName: "vox_icon")
+        case .audirvana: return #imageLiteral(resourceName: "audirvana_icon")
+        }
+    }
 }
 
 extension MusicTrack {
