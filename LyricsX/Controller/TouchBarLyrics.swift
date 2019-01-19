@@ -21,7 +21,7 @@
 import Cocoa
 import LyricsProvider
 import OpenCC
-import TouchBarHelper
+import DFRPrivate
 
 #if IS_FOR_MAS
 #else
@@ -40,31 +40,27 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         touchBar.defaultItemIdentifiers = [.flexibleSpace, .lyrics, .flexibleSpace]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
-        systemTrayItem.addSystemTray()
-        DFRElementSetControlStripPresenceForIdentifier(systemTrayItem.identifier, true)
-        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
+        systemTrayItem.addToSystemTray()
+        systemTrayItem.setControlStripPresence(true)
+        NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(true)
         
         lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
         
         let nc = NSUserNotificationCenter.default
         nc.observeNotification(name: NSApplication.didBecomeActiveNotification) { _ in
-            DFRElementSetControlStripPresenceForIdentifier(self.systemTrayItem.identifier, false)
+            self.systemTrayItem.setControlStripPresence(false)
         }
         nc.observeNotification(name: NSApplication.didResignActiveNotification) { _ in
-            DFRElementSetControlStripPresenceForIdentifier(self.systemTrayItem.identifier, true)
+            self.systemTrayItem.setControlStripPresence(true)
         }
     }
     
     deinit {
-        self.systemTrayItem.removeSystemTray()
+        self.systemTrayItem.removeFromSystemTray()
     }
     
     @objc private func presentTouchBar() {
-        if #available(OSX 10.14, *) {
-            NSTouchBar.presentSystemModalTouchBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
-        } else {
-            NSTouchBar.presentSystemModalFunctionBar(touchBar, systemTrayItemIdentifier: .systemTrayItem)
-        }
+        touchBar.presentAsSystemModal(for: systemTrayItem)
     }
     
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
