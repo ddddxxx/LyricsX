@@ -33,6 +33,15 @@ extension MusicPlayerName {
         default: return nil
         }
     }
+    
+    var icon: NSImage {
+        switch self {
+        case .itunes:   return #imageLiteral(resourceName: "iTunes_icon")
+        case .spotify:  return #imageLiteral(resourceName: "spotify_icon")
+        case .vox:      return #imageLiteral(resourceName: "vox_icon")
+        case .audirvana: return #imageLiteral(resourceName: "audirvana_icon")
+        }
+    }
 }
 
 extension MusicTrack {
@@ -213,5 +222,16 @@ extension Lyrics {
     
     var adjustedTimeDelay: TimeInterval {
         return TimeInterval(adjustedOffset) / 1000
+    }
+}
+
+extension NSImage {
+    
+    func scaled(to size: NSSize) -> NSImage {
+        return NSImage(size: size, flipped: false) { rect in
+            let srcRect = NSRect(origin: .zero, size: self.size)
+            self.draw(in: rect, from: srcRect, operation: .copy, fraction: 1)
+            return true
+        }
     }
 }

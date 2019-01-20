@@ -19,9 +19,9 @@
 //
 
 import Cocoa
-import DFRPrivate
 import LyricsProvider
 import OpenCC
+import DFRPrivate
 
 #if IS_FOR_MAS
 #else
@@ -32,24 +32,27 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     let touchBar = NSTouchBar()
     private let systemTrayItem = NSCustomTouchBarItem(identifier: .systemTrayItem)
     
-    private var lyricsTextField = KaraokeLabel(labelWithString: "")
-    
-    @objc dynamic var progressColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
+    private var lyricsItem = TouchBarLyricsItem(identifier: .lyrics)
     
     override init() {
         super.init()
         touchBar.delegate = self
-        touchBar.defaultItemIdentifiers = [.lyrics]
+        touchBar.defaultItemIdentifiers = [.currentPlaying, .fixedSpaceSmall, .lyrics, .flexibleSpace]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
         systemTrayItem.addToSystemTray()
         systemTrayItem.setControlStripPresence(true)
         NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(true)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
+        lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
         
-        bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
+        let nc = NSUserNotificationCenter.default
+        nc.observeNotification(name: NSApplication.didBecomeActiveNotification) { _ in
+            self.systemTrayItem.setControlStripPresence(false)
+        }
+        nc.observeNotification(name: NSApplication.didResignActiveNotification) { _ in
+            self.systemTrayItem.setControlStripPresence(true)
+        }
     }
     
     deinit {
@@ -57,46 +60,16 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     }
     
     @objc private func presentTouchBar() {
-        touchBar.presentAsSystemModal(forItemIdentifier: .systemTrayItem)
-    }
-    
-    @objc private func handleLyricsDisplay() {
-        guard let lyrics = AppController.shared.currentLyrics,
-            let index = AppController.shared.currentLineIndex else {
-                DispatchQueue.main.async {
-                    self.lyricsTextField.stringValue = ""
-                    self.lyricsTextField.removeProgressAnimation()
-                }
-                return
-        }
-        let line = lyrics.lines[index]
-        var lyricsContent = line.content
-        if let converter = ChineseConverter.shared,
-            lyrics.metadata.language?.hasPrefix("zh") == true {
-            lyricsContent = converter.convert(lyricsContent)
-        }
-        DispatchQueue.main.async {
-            self.lyricsTextField.stringValue = lyricsContent
-            if let timetag = line.attachments.timetag,
-                let position = AppController.shared.playerManager.player?.playerPosition {
-                let timeDelay = line.lyrics?.adjustedTimeDelay ?? 0
-                let progress = timetag.tags.map { ($0.timeTag + line.position - timeDelay - position, $0.index) }
-                self.lyricsTextField.setProgressAnimation(color: self.progressColor, progress: progress)
-            }
-        }
+        touchBar.presentAsSystemModal(for: systemTrayItem)
     }
     
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
-        if identifier == .lyrics {
-            let item = NSCustomTouchBarItem(identifier: identifier)
-            item.view.addSubview(lyricsTextField)
-            lyricsTextField.snp.makeConstraints { make in
-                make.top.bottom.right.equalToSuperview()
-                // For some reason the left edge get clipped without the offset.
-                make.left.equalToSuperview().offset(4)
-            }
-            return item
-        } else {
+        switch identifier {
+        case .lyrics:
+            return TouchBarLyricsItem(identifier: identifier)
+        case .currentPlaying:
+            return TouchBarCurrentPlayingItem(identifier: identifier)
+        default:
             return nil
         }
     }
@@ -106,6 +79,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
 private extension NSTouchBarItem.Identifier {
     
     static let lyrics = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.lyrics")
+    static let currentPlaying = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.currentPlaying")
     
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
 }

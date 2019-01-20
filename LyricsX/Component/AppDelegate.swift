@@ -24,9 +24,10 @@ import Fabric
 import GenericID
 import MASShortcut
 import MusicPlayer
+import Sparkle
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarProvider {
     
     static var shared: AppDelegate? {
         return NSApplication.shared.delegate as? AppDelegate
@@ -39,6 +40,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     var desktopLyrics: KaraokeLyricsWindowController?
     
     var touchBarLyrics: Any?
+    
+    @available(OSX 10.12.2, *)
+    var touchBar: NSTouchBar? {
+        return (self.touchBarLyrics as! TouchBarLyrics?)?.touchBar
+    }
     
     lazy var searchLyricsWC: NSWindowController = {
         // swiftlint:disable:next force_cast
@@ -95,7 +101,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                     }
                 }
             }
-            checkForUpdate()
         #endif
     }
     
@@ -156,7 +161,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     @IBAction func checkUpdateAction(_ sender: Any) {
-        checkForUpdate(force: true)
+        SUUpdater.shared()?.checkForUpdates(sender)
     }
     
     @IBAction func increaseOffset(_ sender: Any?) {

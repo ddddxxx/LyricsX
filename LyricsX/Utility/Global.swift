@@ -69,6 +69,7 @@ extension NSStoryboard.SceneIdentifier {
 extension Notification.Name {
     static let lyricsShouldDisplay = Notification.Name("LyricsShouldDisplayNotification")
     static let currentLyricsChange = Notification.Name("CurrentLyricsChangeNotification")
+    static let currentTrackChange = Notification.Name("CurrentTrackChangeNotification")
 }
 
 // MARK: - User Defaults
@@ -91,6 +92,7 @@ extension UserDefaults.DefaultsKeys {
     static let LyricsCustomSavingPathBookmark = Key<Data?>("LyricsCustomSavingPathBookmark")
     static let LoadLyricsBesideTrack = Key<Bool>("LoadLyricsBesideTrack")
     
+    static let StrictSearchEnabled = Key<Bool>("StrictSearchEnabled")
     static let PreferBilingualLyrics = Key<Bool>("PreferBilingualLyrics")
     static let ChineseConversionIndex = Key<Int>("ChineseConversionIndex")
     
