@@ -46,11 +46,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         
         lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
         
-        let nc = NSUserNotificationCenter.default
-        nc.observeNotification(name: NSApplication.didBecomeActiveNotification) { _ in
-            self.systemTrayItem.setControlStripPresence(false)
-        }
-        nc.observeNotification(name: NSApplication.didResignActiveNotification) { _ in
+        NSUserNotificationCenter.default.observeNotification(name: NSApplication.didBecomeActiveNotification) { _ in
             self.systemTrayItem.setControlStripPresence(true)
         }
     }

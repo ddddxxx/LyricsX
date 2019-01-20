@@ -52,12 +52,15 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
             self.handleLyricsDisplay()
-            self.observeNotification(name: .lyricsShouldDisplay, using: { [unowned self] _ in
+            self.observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in
                 self.handleLyricsDisplay()
-            })
-            self.observeNotification(name: .currentLyricsChange, using: { [unowned self] _ in
+            }
+            self.observeNotification(name: .currentLyricsChange) { [unowned self] _ in
                 self.handleLyricsDisplay()
-            })
+            }
+            self.observeDefaults(keys: [.PreferBilingualLyrics, .DesktopLyricsOneLineMode]) { [unowned self] in
+                self.handleLyricsDisplay()
+            }
         }
     }
     

@@ -39,13 +39,8 @@ class TouchBarLyricsItem: NSCustomTouchBarItem {
     }
     
     func commonInit() {
-        view.addSubview(lyricsTextField)
-        lyricsTextField.snp.makeConstraints { make in
-            make.top.bottom.right.equalToSuperview()
-            // For some reason the left edge get clipped without the offset.
-            make.left.equalToSuperview().offset(4)
-        }
-        lyricsTextField.alignment = .center
+        view = lyricsTextField
+        handleLyricsDisplay()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
     }
