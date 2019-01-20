@@ -224,3 +224,14 @@ extension Lyrics {
         return TimeInterval(adjustedOffset) / 1000
     }
 }
+
+extension NSImage {
+    
+    func scaled(to size: NSSize) -> NSImage {
+        return NSImage(size: size, flipped: false) { rect in
+            let srcRect = NSRect(origin: .zero, size: self.size)
+            self.draw(in: rect, from: srcRect, operation: .copy, fraction: 1)
+            return true
+        }
+    }
+}

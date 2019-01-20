@@ -125,6 +125,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     }
     
     func currentTrackChanged(track: MusicTrack?) {
+        NotificationCenter.default.post(name: .currentTrackChange, object: nil)
         if currentLyrics?.metadata.needsPersist == true {
             currentLyrics?.persist()
         }
