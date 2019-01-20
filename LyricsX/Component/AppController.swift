@@ -239,6 +239,9 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             lyrics.metadata.artist == track?.artist ?? "" else {
             return
         }
+        if defaults[.StrictSearchEnabled] && !lyrics.isMatched() {
+            return
+        }
         if let current = currentLyrics, current.quality >= lyrics.quality {
             return
         }

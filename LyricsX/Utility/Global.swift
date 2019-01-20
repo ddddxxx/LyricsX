@@ -92,6 +92,7 @@ extension UserDefaults.DefaultsKeys {
     static let LyricsCustomSavingPathBookmark = Key<Data?>("LyricsCustomSavingPathBookmark")
     static let LoadLyricsBesideTrack = Key<Bool>("LoadLyricsBesideTrack")
     
+    static let StrictSearchEnabled = Key<Bool>("StrictSearchEnabled")
     static let PreferBilingualLyrics = Key<Bool>("PreferBilingualLyrics")
     static let ChineseConversionIndex = Key<Int>("ChineseConversionIndex")
     
