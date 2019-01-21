@@ -40,6 +40,7 @@ class TouchBarLyricsItem: NSCustomTouchBarItem {
     
     func commonInit() {
         view = lyricsTextField
+        customizationLabel = "Lyrics"
         handleLyricsDisplay()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)

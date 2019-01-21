@@ -1271,7 +1271,7 @@
             <objects>
                 <viewController title="Lab" id="bFk-1g-XeL" userLabel="Lab" customClass="PreferenceLabViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="uY5-7S-zG1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="228"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="257"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Tvk-yf-w4p">
@@ -1303,7 +1303,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-7c-IhI">
-                                <rect key="frame" x="76" y="170" width="449" height="34"/>
+                                <rect key="frame" x="76" y="199" width="449" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Here are some experimental features that may not be stable enough, and may be removed in the future." id="g2u-8D-dln">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1321,7 +1321,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-fs-CDd">
-                                <rect key="frame" x="234" y="134" width="333" height="18"/>
+                                <rect key="frame" x="234" y="163" width="333" height="18"/>
                                 <buttonCell key="cell" type="check" title="Automatically generate furigana for Japanese lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ThQ-vA-Krb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1335,14 +1335,26 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QO9-t0-epx">
-                                <rect key="frame" x="234" y="104" width="163" height="18"/>
+                                <rect key="frame" x="234" y="133" width="163" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Touch Bar lyrics" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gGL-LB-TXI">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O5b-RV-0T6">
+                                <rect key="frame" x="250" y="99" width="165" height="32"/>
+                                <buttonCell key="cell" type="push" title="Customize TouchBar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zQK-i2-2Nc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="customizeTouchBarAction:" target="bFk-1g-XeL" id="KdX-Am-dpB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="O5b-RV-0T6" firstAttribute="leading" secondItem="QO9-t0-epx" secondAttribute="leading" constant="20" id="44Y-Ha-UD3"/>
+                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="O5b-RV-0T6" secondAttribute="bottom" constant="16" id="4Cj-9f-fxU"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IKY-aR-ZdS" secondAttribute="trailing" constant="20" id="5UF-sE-ts0"/>
                             <constraint firstItem="rkh-fs-CDd" firstAttribute="top" secondItem="GqQ-7c-IhI" secondAttribute="bottom" constant="20" id="7ca-1l-Euu"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="leading" secondItem="Tvk-yf-w4p" secondAttribute="leading" id="8Ip-8V-Nhx"/>
@@ -1351,6 +1363,7 @@
                             <constraint firstItem="QO9-t0-epx" firstAttribute="leading" secondItem="rkh-fs-CDd" secondAttribute="leading" id="CWc-F4-Q7y"/>
                             <constraint firstAttribute="bottom" secondItem="Dt8-Tg-5JV" secondAttribute="bottom" constant="24" id="FKR-Kz-0Dz"/>
                             <constraint firstItem="Dt8-Tg-5JV" firstAttribute="leading" secondItem="IKY-aR-ZdS" secondAttribute="leading" id="H4F-3n-tYj"/>
+                            <constraint firstItem="O5b-RV-0T6" firstAttribute="top" secondItem="QO9-t0-epx" secondAttribute="bottom" constant="8" id="M2Q-my-aeu"/>
                             <constraint firstItem="GqQ-7c-IhI" firstAttribute="top" secondItem="uY5-7S-zG1" secondAttribute="top" constant="24" id="OTp-XT-yZH"/>
                             <constraint firstItem="IKY-aR-ZdS" firstAttribute="centerY" secondItem="Z5r-WZ-ZnL" secondAttribute="centerY" id="Pql-bZ-j9U"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dt8-Tg-5JV" secondAttribute="trailing" constant="20" id="QIl-HG-7l1"/>
@@ -1358,7 +1371,6 @@
                             <constraint firstItem="Dt8-Tg-5JV" firstAttribute="top" secondItem="Tvk-yf-w4p" secondAttribute="bottom" constant="16" id="XeS-Xf-0Vl"/>
                             <constraint firstItem="Z5r-WZ-ZnL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uY5-7S-zG1" secondAttribute="leading" constant="20" id="Zjl-xt-6Q8"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rkh-fs-CDd" secondAttribute="trailing" constant="20" id="bHs-aP-JHK"/>
-                            <constraint firstItem="IKY-aR-ZdS" firstAttribute="top" secondItem="QO9-t0-epx" secondAttribute="bottom" constant="16" id="i06-mU-Y9r"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Tvk-yf-w4p" secondAttribute="trailing" constant="20" id="nVW-K7-QKb"/>
                             <constraint firstItem="Tvk-yf-w4p" firstAttribute="top" secondItem="IKY-aR-ZdS" secondAttribute="bottom" constant="8" id="tKi-Ka-ZTQ"/>
                             <constraint firstItem="GqQ-7c-IhI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uY5-7S-zG1" secondAttribute="leading" constant="75" id="tiw-jZ-dmo"/>

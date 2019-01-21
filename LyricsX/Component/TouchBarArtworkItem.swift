@@ -22,7 +22,7 @@ import AppKit
 import MusicPlayer
 
 @available(OSX 10.12.2, *)
-class TouchBarCurrentPlayingItem: NSCustomTouchBarItem {
+class TouchBarArtworkItem: NSCustomTouchBarItem {
     
     override init(identifier: NSTouchBarItem.Identifier) {
         super.init(identifier: identifier)
@@ -36,7 +36,7 @@ class TouchBarCurrentPlayingItem: NSCustomTouchBarItem {
 
     func commonInit() {
         viewController = TouchBarArtworkViewController()
-        customizationLabel = "Current Playing Item"
+        customizationLabel = "Artwork"
     }
 }
 

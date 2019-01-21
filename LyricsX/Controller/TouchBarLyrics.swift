@@ -37,7 +37,9 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     override init() {
         super.init()
         touchBar.delegate = self
-        touchBar.defaultItemIdentifiers = [.currentPlaying, .fixedSpaceSmall, .lyrics, .flexibleSpace]
+        touchBar.defaultItemIdentifiers = [.currentPlaying, .lyrics, .flexibleSpace]
+        touchBar.customizationIdentifier = .main
+        touchBar.customizationAllowedItemIdentifiers = [.currentPlaying, .lyrics, .flexibleSpace]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
         systemTrayItem.addToSystemTray()
@@ -64,7 +66,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         case .lyrics:
             return TouchBarLyricsItem(identifier: identifier)
         case .currentPlaying:
-            return TouchBarCurrentPlayingItem(identifier: identifier)
+            return TouchBarArtworkItem(identifier: identifier)
         default:
             return nil
         }
@@ -78,6 +80,11 @@ private extension NSTouchBarItem.Identifier {
     static let currentPlaying = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.currentPlaying")
     
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
+}
+
+@available(OSX 10.12.2, *)
+extension NSTouchBar.CustomizationIdentifier {
+    static let main = NSTouchBar.CustomizationIdentifier("ddddxxx.LyricsX.touchBar.customization.main")
 }
 
 #endif

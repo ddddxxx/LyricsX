@@ -162,3 +162,6 @@
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
 "As7-rZ-u6c.title" = "Strict Search";
+
+/* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
+"zQK-i2-2Nc.title" = "Customize TouchBar";
