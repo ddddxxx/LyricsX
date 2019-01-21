@@ -138,7 +138,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         let title = track.title ?? ""
         let artist = track.artist ?? ""
         
-        guard !defaults[.NoSearchingTrackIds].contains(track.id) else {
+        guard !defaults[.NoSearchingTrackIds].contains(track.id),
+            !defaults[.NoSearchingAlbumNames].contains(track.album ?? "") else {
             return
         }
         
@@ -280,6 +281,9 @@ extension AppController {
         currentLyrics = lrc
         if let index = defaults[.NoSearchingTrackIds].firstIndex(of: track.id) {
             defaults[.NoSearchingTrackIds].remove(at: index)
+        }
+        if let index = defaults[.NoSearchingAlbumNames].firstIndex(of: track.album ?? "") {
+            defaults[.NoSearchingAlbumNames].remove(at: index)
         }
     }
 }

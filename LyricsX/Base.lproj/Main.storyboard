@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -328,6 +328,9 @@
                                         <connections>
                                             <action selector="wrongLyrics:" target="Ady-hI-5gd" id="PSJ-f3-tnK"/>
                                         </connections>
+                                    </menuItem>
+                                    <menuItem title="Wrong Lyrics for Album" id="hgd-IJ-u14">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Write to iTunes" tag="202" identifier="MainMenu.WriteToiTunes" id="kNl-ZO-aX6">
                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -1177,7 +1180,7 @@ IA
         </scene>
     </scenes>
     <resources>
-        <image name="NSApplicationIcon" width="128" height="128"/>
+        <image name="NSApplicationIcon" width="32" height="32"/>
         <image name="donate_alipay" width="200" height="200"/>
         <image name="hud_button_lock_off" width="11" height="11"/>
         <image name="hud_button_lock_on" width="11" height="11"/>

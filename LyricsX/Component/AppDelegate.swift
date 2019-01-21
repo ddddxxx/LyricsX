@@ -208,6 +208,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
         AppController.shared.currentLyrics = nil
     }
     
+    @IBAction func doNotSearchLyricsForThisAlbum(_ sender: Any?) {
+        guard let track = AppController.shared.playerManager.player?.currentTrack,
+            let album = track.album else {
+            return
+        }
+        defaults[.NoSearchingAlbumNames].append(album)
+        if defaults[.WriteToiTunesAutomatically] {
+            track.setLyrics("")
+        }
+        if let url = AppController.shared.currentLyrics?.metadata.localURL {
+            try? FileManager.default.removeItem(at: url)
+        }
+        AppController.shared.currentLyrics = nil
+    }
+    
     func registerUserDefaults() {
         let currentLang = NSLocale.preferredLanguages.first!
         let isZh = currentLang.hasPrefix("zh") || currentLang.hasPrefix("yue")
