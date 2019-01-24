@@ -75,3 +75,6 @@
 
 /* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
 "hxE-X4-sJh.title" = "歌詞";
+
+/* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
+"hgd-IJ-u14.title" = "Disable Lyrics for Entire Album";
