@@ -168,3 +168,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
 "rSD-qR-EXA.title" = "Search result match the exact search term";
+
+/* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
+"WfA-pe-S5D.title" = "Language (Requires Restart):";

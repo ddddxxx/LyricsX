@@ -155,6 +155,8 @@ extension UserDefaults.DefaultsKeys {
     static let isInMASReview = Key<Bool?>("isInMASReview")
     
     static let launchHelperTime = Key<Date?>("launchHelperTime")
+    
+    static let AppleLanguages = Key<[String]>("AppleLanguages")
 }
 
 extension CGFloat: UDDefaultConstructible {}
