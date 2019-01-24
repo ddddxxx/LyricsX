@@ -47,55 +47,6 @@ var localVersion: Semver {
     return Semver(shortVersion)!
 }
 
-func checkForUpdate(force: Bool = false) {
-    DispatchQueue.global().async {
-        let local = localVersion
-        guard let remote = remoteVersion else {
-            return
-        }
-        
-        guard remote > local, !remote.isPrerelease || local.isPrerelease else {
-            if force {
-                DispatchQueue.main.async {
-                    let alert = NSAlert()
-                    alert.messageText = NSLocalizedString("You're up-to-date!", comment: "title of the update alert, when the app is up to date.")
-                    // swiftlint:disable:next line_length
-                    alert.informativeText = String(format: NSLocalizedString("LyricsX %@ is currently the newest version available.", comment: "informative text of the update alert, when the app is up to date. the parameter is version string of the app"), local.description)
-                    NSApp.activate(ignoringOtherApps: true)
-                    alert.runModal()
-                }
-            }
-            return
-        }
-        
-        if !force,
-            let skipVersionString = defaults[.NotifiedUpdateVersion],
-            let skipVersion = Semver(skipVersionString),
-            skipVersion >= remote {
-            return
-        }
-        
-        defaults[.NotifiedUpdateVersion] = remote.description
-        
-        DispatchQueue.main.async {
-            let alert = NSAlert().then {
-                // swiftlint:disable line_length
-                $0.messageText = NSLocalizedString("A new version of LyricsX is available!", comment: "title of the update alert, when the app is out of date.")
-                $0.informativeText = String(format: NSLocalizedString("LyricsX %@ is now available -- you have %@. Would you like to download it now?", comment: "informative text of the update alert, when the app is out date. the 1st parameter is new version string, the 2nd parameter is current version string"), remote.description, local.description)
-                $0.addButton(withTitle: NSLocalizedString("Download", comment: "title of download button on the update alert. Download new version of the app."))
-                $0.addButton(withTitle: NSLocalizedString("Skip", comment: "title of skip button on the update alert. Refuse to download new version of the app."))
-                // swiftlint:enable line_length
-            }
-            NSApp.activate(ignoringOtherApps: true)
-            let response = alert.runModal()
-            if response == .alertFirstButtonReturn {
-                let url = URL(string: "https://github.com/XQS6LB3A/LyricsX/releases")!
-                NSWorkspace.shared.open(url)
-            }
-        }
-    }
-}
-
 #if IS_FOR_MAS
     
     func checkForMASReview(force: Bool = false) {

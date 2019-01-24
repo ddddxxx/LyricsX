@@ -89,6 +89,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
             groupDefaults.bind(NSBindingName($0.key), withDefaultName: $0)
         }
         
+        SUUpdater.shared()?.checkForUpdatesInBackground()
+        
         #if IS_FOR_MAS
             checkForMASReview(force: true)
         #else
