@@ -1,17 +1,8 @@
-/* title of the update alert, when the app is out of date. */
-"A new version of LyricsX is available!" = "新バージョンのLyricsXが利用可能になりました！";
-
 /* title of download button on the update alert. Download new version of the app. */
 "Download" = "ダウンロード";
 
 /* No comment provided by engineer. */
 "Font Fallback: %@" = "フォント フォールバック: %@";
-
-/* informative text of the update alert, when the app is up to date. the parameter is version string of the app */
-"LyricsX %@ is currently the newest version available." = "現在使用しているLyricsX %@ はすでに最新のバージョンです。";
-
-/* informative text of the update alert, when the app is out date. the 1st parameter is new version string, the 2nd parameter is current version string */
-"LyricsX %@ is now available -- you have %@. Would you like to download it now?" = "LyricsX %1$@ がダウンロードできました（現在のバージョンは %2$@）。今すぐダウンロードしますか？";
 
 /* No comment provided by engineer. */
 "OK" = "はい";
@@ -19,14 +10,8 @@
 /* window title */
 "Search Lyrics" = "歌詞を検索";
 
-/* title of skip button on the update alert. Refuse to download new version of the app. */
-"Skip" = "スキップ";
-
 /* No comment provided by engineer. */
 "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "タッチバーの歌詞は、Mac App Storeのバージョンではサポートされていません。 GitHubから最新バージョンをダウンロードしてください。";
 
 /* alert title */
 "Unable to enable Touch Bar lyrics." = "タッチバーの歌詞を有効にすることができません。";
-
-/* title of the update alert, when the app is up to date. */
-"You're up-to-date!" = "最新のバージョンです!";
