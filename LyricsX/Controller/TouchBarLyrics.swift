@@ -23,9 +23,6 @@ import LyricsProvider
 import OpenCC
 import DFRPrivate
 
-#if IS_FOR_MAS
-#else
-
 @available(OSX 10.12.2, *)
 class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     
@@ -86,5 +83,3 @@ private extension NSTouchBarItem.Identifier {
 extension NSTouchBar.CustomizationIdentifier {
     static let main = NSTouchBar.CustomizationIdentifier("ddddxxx.LyricsX.touchBar.customization.main")
 }
-
-#endif
