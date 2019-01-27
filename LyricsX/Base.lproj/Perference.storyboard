@@ -1387,6 +1387,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="customizeTouchBarAction:" target="bFk-1g-XeL" id="KdX-Am-dpB"/>
+                                    <binding destination="MQW-nm-dXS" name="enabled" keyPath="values.TouchBarLyricsEnabled" id="4KJ-jO-YGM"/>
                                 </connections>
                             </button>
                         </subviews>
