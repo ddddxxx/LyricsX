@@ -24,7 +24,11 @@ import Fabric
 import GenericID
 import MASShortcut
 import MusicPlayer
+
+#if IS_FOR_MAS
+#else
 import Sparkle
+#endif
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarProvider {
@@ -89,20 +93,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
             groupDefaults.bind(NSBindingName($0.key), withDefaultName: $0)
         }
         
-        SUUpdater.shared()?.checkForUpdatesInBackground()
-        
         #if IS_FOR_MAS
-            checkForMASReview(force: true)
+        checkForMASReview(force: true)
         #else
-            if #available(OSX 10.12.2, *) {
-                observeDefaults(key: .TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
-                    if change.newValue, self.touchBarLyrics == nil {
-                        self.touchBarLyrics = TouchBarLyrics()
-                    } else if !change.newValue, self.touchBarLyrics != nil {
-                        self.touchBarLyrics = nil
-                    }
+        SUUpdater.shared()?.checkForUpdatesInBackground()
+        if #available(OSX 10.12.2, *) {
+            observeDefaults(key: .TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
+                if change.newValue, self.touchBarLyrics == nil {
+                    self.touchBarLyrics = TouchBarLyrics()
+                } else if !change.newValue, self.touchBarLyrics != nil {
+                    self.touchBarLyrics = nil
                 }
             }
+        }
         #endif
     }
     
@@ -163,7 +166,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
     }
     
     @IBAction func checkUpdateAction(_ sender: Any) {
+        #if IS_FOR_MAS
+        assert(false, "should not be there")
+        #else
         SUUpdater.shared()?.checkForUpdates(sender)
+        #endif
     }
     
     @IBAction func increaseOffset(_ sender: Any?) {
