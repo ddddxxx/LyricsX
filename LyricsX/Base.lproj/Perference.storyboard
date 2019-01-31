@@ -1387,7 +1387,15 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="customizeTouchBarAction:" target="bFk-1g-XeL" id="KdX-Am-dpB"/>
-                                    <binding destination="MQW-nm-dXS" name="enabled" keyPath="values.TouchBarLyricsEnabled" id="4KJ-jO-YGM"/>
+                                    <binding destination="MQW-nm-dXS" name="enabled" keyPath="values.TouchBarLyricsEnabled" id="mj8-ra-cil">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                            <integer key="NSNullPlaceholder" value="0"/>
+                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
                         </subviews>
