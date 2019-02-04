@@ -77,7 +77,7 @@ class FontSelectTextField: NSTextField, NSWindowDelegate {
         fontPanel?.makeKeyAndOrderFront(self)
     }
     
-    override func changeFont(_ sender: Any?) {
+    @objc func changeFont(_ sender: Any?) {
         guard let manager = sender as? NSFontManager else {
             return
         }
@@ -92,7 +92,7 @@ class FontSelectTextField: NSTextField, NSWindowDelegate {
     
     private static let swizzler: Void = {
         let cls = FontSelectTextField.self
-        let sel = #selector(NSObject.validModesForFontPanel)
+        let sel = Selector(("validModesForFontPanel"))
         let dummySel = #selector(FontSelectTextField.dummyValidModesForFontPanel)
         guard let dummyIMP = class_getMethodImplementation(cls, dummySel),
             let dummyImpl = class_getInstanceMethod(cls, dummySel),

@@ -62,6 +62,6 @@ extension NSStoryboard {
         guard let mainStoryboardName = Bundle.main.infoDictionary?["NSMainStoryboardFile"] as? String else {
             return nil
         }
-        return NSStoryboard(name: NSStoryboard.Name(rawValue: mainStoryboardName), bundle: .main)
+        return NSStoryboard(name: NSStoryboard.Name(mainStoryboardName), bundle: .main)
     }
 }

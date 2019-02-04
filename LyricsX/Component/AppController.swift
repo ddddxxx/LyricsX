@@ -69,9 +69,9 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         
         timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
         timer?.tolerance = 0.02
-        RunLoop.current.add(timer!, forMode: .commonModes)
+        RunLoop.current.add(timer!, forMode: .common)
         
-        self.currentTrackChanged(track: playerManager.player?.currentTrack)
+        currentTrackChanged(track: playerManager.player?.currentTrack)
     }
     
     func writeToiTunes(overwrite: Bool) {
@@ -226,7 +226,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     }
     
     @objc func updatePlayerPosition() {
-        guard let position = AppController.shared.playerManager.player?.playerPosition else {
+        guard let position = playerManager.player?.playerPosition else {
             return
         }
         playerPositionMutated(position: position)
@@ -235,7 +235,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     // MARK: LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        let track = AppController.shared.playerManager.player?.currentTrack
+        let track = playerManager.player?.currentTrack
         guard lyrics.metadata.title == track?.title ?? "",
             lyrics.metadata.artist == track?.artist ?? "" else {
             return
@@ -267,7 +267,7 @@ extension AppController {
             let error = NSError(domain: lyricsXErrorDomain, code: 0, userInfo: errorInfo)
             throw error
         }
-        guard let track = AppController.shared.playerManager.player?.currentTrack else {
+        guard let track = playerManager.player?.currentTrack else {
             let errorInfo = [
                 NSLocalizedDescriptionKey: "No music playing",
                 NSLocalizedRecoverySuggestionErrorKey: "Play a music and try again."

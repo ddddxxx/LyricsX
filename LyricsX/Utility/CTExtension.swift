@@ -23,14 +23,14 @@ import Foundation
 
 // MARK: - CTRubyAnnotation
 
-extension NSAttributedStringKey {
+extension NSAttributedString.Key {
     
-    static let rubyAnnotation = kCTRubyAnnotationAttributeName as NSAttributedStringKey
+    static let rubyAnnotation = kCTRubyAnnotationAttributeName as NSAttributedString.Key
     
     /// kCTRubyAnnotationSizeFactorAttributeName
-    static let rubyAnnotationSizeFactor = NSAttributedStringKey("CTRubyAnnotationSizeFactor")
+    static let rubyAnnotationSizeFactor = NSAttributedString.Key("CTRubyAnnotationSizeFactor")
     
-    static let ctForegroundColor = kCTForegroundColorAttributeName as NSAttributedStringKey
+    static let ctForegroundColor = kCTForegroundColorAttributeName as NSAttributedString.Key
 }
 
 extension CTRubyAnnotation {
@@ -39,7 +39,7 @@ extension CTRubyAnnotation {
                        position: CTRubyPosition = .before,
                        alignment: CTRubyAlignment = .auto,
                        overhang: CTRubyOverhang = .auto,
-                       attributes: [NSAttributedStringKey: Any] = [:]) -> CTRubyAnnotation {
+                       attributes: [NSAttributedString.Key: Any] = [:]) -> CTRubyAnnotation {
         if #available(OSX 10.12, *) {
             return CTRubyAnnotationCreateWithAttributes(alignment, overhang, position, string as CFString, attributes as CFDictionary)
         } else {
