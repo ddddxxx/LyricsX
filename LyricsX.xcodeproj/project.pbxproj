@@ -250,7 +250,6 @@
 		BB4919351F00CD800054EA09 /* PreferenceShortcutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceShortcutViewController.swift; sourceTree = "<group>"; };
 		BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LyricsProvider.framework; path = Carthage/Build/Mac/LyricsProvider.framework; sourceTree = "<group>"; };
 		BB5078AD22014C3900B695C3 /* LyricsX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsX.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB5078AE22014C3900B695C3 /* LyricsX copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LyricsX copy-Info.plist"; path = "/Users/dengxiang/Developer/LyricsX/LyricsX copy-Info.plist"; sourceTree = "<absolute>"; };
 		BB5863F221EFFD9F0084D2C0 /* TouchBarLyricsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarLyricsItem.swift; sourceTree = "<group>"; };
 		BB58640221F2A8570084D2C0 /* DFRPrivate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRPrivate.framework; path = Carthage/Build/Mac/DFRPrivate.framework; sourceTree = "<group>"; };
 		BB58640621F2B7500084D2C0 /* TouchBarArtworkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarArtworkItem.swift; sourceTree = "<group>"; };
@@ -361,7 +360,6 @@
 				BB4141AC1E458BA800A51775 /* LyricsX */,
 				BB60F3021E889A1B00BA1FD2 /* LyricsXHelper */,
 				BB4141AB1E458BA800A51775 /* Products */,
-				BB5078AE22014C3900B695C3 /* LyricsX copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
