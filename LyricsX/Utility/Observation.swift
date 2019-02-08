@@ -81,7 +81,7 @@ extension NSObject {
         autoDestruction.add(token)
     }
     
-    func observeDefaults<T: UDDefaultConstructible>(_ defaults: UserDefaults = .standard,
+    func observeDefaults<T: DefaultConstructible>(_ defaults: UserDefaults = .standard,
                                                     key: UserDefaults.DefaultsKeys.Key<T>,
                                                     options: NSKeyValueObservingOptions = [],
                                                     changeHandler: @escaping (UserDefaults, UserDefaults.ConstructedDefaultsObservedChange<T>) -> Void) {
@@ -109,17 +109,9 @@ extension NSObject {
               withDefaultName defaultName: UserDefaults.DefaultsKeys,
               options: [NSBindingOption: Any] = [:]) {
         var options = options
-        if let transformer = defaultName.valueTransformer {
-            switch transformer {
-            case is UserDefaults.KeyedArchiveValueTransformer:
-                options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
-            case is UserDefaults.ArchiveValueTransformer:
-                options[.valueTransformerName] = NSValueTransformerName.unarchiveFromDataTransformerName
-            default:
-                break
-            }
+        if defaultName.valueTransformer != nil {
+            options[.valueTransformerName] = NSValueTransformerName.keyedUnarchiveFromDataTransformerName
         }
-        
         bind(binding, to: observable, withKeyPath: defaultName.key, options: options)
     }
 }

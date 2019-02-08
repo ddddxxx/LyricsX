@@ -159,4 +159,4 @@ extension UserDefaults.DefaultsKeys {
     static let AppleLanguages = Key<[String]>("AppleLanguages")
 }
 
-extension CGFloat: UDDefaultConstructible {}
+extension CGFloat: DefaultConstructible {}
