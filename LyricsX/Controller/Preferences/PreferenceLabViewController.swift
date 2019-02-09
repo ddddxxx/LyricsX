@@ -53,4 +53,12 @@ class PreferenceLabViewController: NSViewController {
             handler(alert.runModal())
         }
     }
+    
+    @IBAction func customizeTouchBarAction(_ sender: NSButton) {
+        if #available(OSX 10.12.2, *) {
+            NSApplication.shared.toggleTouchBarCustomizationPalette(sender)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }

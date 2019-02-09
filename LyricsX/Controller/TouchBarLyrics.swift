@@ -23,9 +23,6 @@ import LyricsProvider
 import OpenCC
 import DFRPrivate
 
-#if IS_FOR_MAS
-#else
-
 @available(OSX 10.12.2, *)
 class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     
@@ -37,7 +34,9 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     override init() {
         super.init()
         touchBar.delegate = self
-        touchBar.defaultItemIdentifiers = [.currentPlaying, .fixedSpaceSmall, .lyrics, .flexibleSpace]
+        touchBar.defaultItemIdentifiers = [.currentPlaying, .lyrics, .flexibleSpace]
+        touchBar.customizationIdentifier = .main
+        touchBar.customizationAllowedItemIdentifiers = [.currentPlaying, .lyrics, .flexibleSpace]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
         systemTrayItem.addToSystemTray()
@@ -46,11 +45,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         
         lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
         
-        let nc = NSUserNotificationCenter.default
-        nc.observeNotification(name: NSApplication.didBecomeActiveNotification) { _ in
-            self.systemTrayItem.setControlStripPresence(false)
-        }
-        nc.observeNotification(name: NSApplication.didResignActiveNotification) { _ in
+        NSUserNotificationCenter.default.observeNotification(name: NSApplication.didBecomeActiveNotification) { _ in
             self.systemTrayItem.setControlStripPresence(true)
         }
     }
@@ -68,7 +63,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         case .lyrics:
             return TouchBarLyricsItem(identifier: identifier)
         case .currentPlaying:
-            return TouchBarCurrentPlayingItem(identifier: identifier)
+            return TouchBarArtworkItem(identifier: identifier)
         default:
             return nil
         }
@@ -84,4 +79,7 @@ private extension NSTouchBarItem.Identifier {
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
 }
 
-#endif
+@available(OSX 10.12.2, *)
+extension NSTouchBar.CustomizationIdentifier {
+    static let main = NSTouchBar.CustomizationIdentifier("ddddxxx.LyricsX.touchBar.customization.main")
+}

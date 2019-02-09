@@ -80,7 +80,7 @@ class KaraokeLabel: NSTextField {
         for tokenType in tokenizer where tokenType.contains(.isCJWordMask) {
             if isVertical {
                 let tokenRange = tokenizer.currentTokenRange()
-                let attr: [NSAttributedStringKey: Any] = [
+                let attr: [NSAttributedString.Key: Any] = [
                     .verticalGlyphForm: true,
                     .baselineOffset: (font?.pointSize ?? 24) * 0.25,
                 ]
@@ -88,7 +88,7 @@ class KaraokeLabel: NSTextField {
             }
             guard shouldDrawFurigana else { continue }
             if let (furigana, range) = tokenizer.currentFuriganaAnnotation(in: string) {
-                var attr: [NSAttributedStringKey: Any] = [.rubyAnnotationSizeFactor: 0.5]
+                var attr: [NSAttributedString.Key: Any] = [.rubyAnnotationSizeFactor: 0.5]
                 attr[.ctForegroundColor] = textColor
                 let annotation = CTRubyAnnotation.create(furigana, attributes: attr)
                 attrString.addAttribute(.rubyAnnotation, value: annotation, range: range)

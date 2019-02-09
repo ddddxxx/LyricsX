@@ -24,7 +24,11 @@ import Fabric
 import GenericID
 import MASShortcut
 import MusicPlayer
+
+#if IS_FOR_MAS
+#else
 import Sparkle
+#endif
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarProvider {
@@ -90,17 +94,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
         }
         
         #if IS_FOR_MAS
-            checkForMASReview(force: true)
+        checkForMASReview(force: true)
         #else
-            if #available(OSX 10.12.2, *) {
-                observeDefaults(key: .TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
-                    if change.newValue, self.touchBarLyrics == nil {
-                        self.touchBarLyrics = TouchBarLyrics()
-                    } else if !change.newValue, self.touchBarLyrics != nil {
-                        self.touchBarLyrics = nil
-                    }
+        SUUpdater.shared()?.checkForUpdatesInBackground()
+        if #available(OSX 10.12.2, *) {
+            observeDefaults(key: .TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
+                if change.newValue, self.touchBarLyrics == nil {
+                    self.touchBarLyrics = TouchBarLyrics()
+                } else if !change.newValue, self.touchBarLyrics != nil {
+                    self.touchBarLyrics = nil
                 }
             }
+        }
         #endif
     }
     
@@ -161,7 +166,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
     }
     
     @IBAction func checkUpdateAction(_ sender: Any) {
+        #if IS_FOR_MAS
+        assert(false, "should not be there")
+        #else
         SUUpdater.shared()?.checkForUpdates(sender)
+        #endif
     }
     
     @IBAction func increaseOffset(_ sender: Any?) {
@@ -199,6 +208,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
             return
         }
         defaults[.NoSearchingTrackIds].append(track.id)
+        if defaults[.WriteToiTunesAutomatically] {
+            track.setLyrics("")
+        }
+        if let url = AppController.shared.currentLyrics?.metadata.localURL {
+            try? FileManager.default.removeItem(at: url)
+        }
+        AppController.shared.currentLyrics = nil
+    }
+    
+    @IBAction func doNotSearchLyricsForThisAlbum(_ sender: Any?) {
+        guard let track = AppController.shared.playerManager.player?.currentTrack,
+            let album = track.album else {
+            return
+        }
+        defaults[.NoSearchingAlbumNames].append(album)
         if defaults[.WriteToiTunesAutomatically] {
             track.setLyrics("")
         }

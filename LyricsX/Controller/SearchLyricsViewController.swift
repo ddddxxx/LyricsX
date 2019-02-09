@@ -121,9 +121,13 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         
-        if let id = AppController.shared.playerManager.player?.currentTrack?.id,
-            let index = defaults[.NoSearchingTrackIds].firstIndex(of: id) {
-            defaults[.NoSearchingTrackIds].remove(at: index)
+        if let track = AppController.shared.playerManager.player?.currentTrack {
+            if let index = defaults[.NoSearchingTrackIds].firstIndex(of: track.id) {
+                defaults[.NoSearchingTrackIds].remove(at: index)
+            }
+            if let index = defaults[.NoSearchingAlbumNames].firstIndex(of: track.album ?? "") {
+                defaults[.NoSearchingAlbumNames].remove(at: index)
+            }
         }
         
         let lrc = searchResult[index]

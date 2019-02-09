@@ -37,6 +37,8 @@ class PreferenceGeneralViewController: NSViewController {
     
     @IBOutlet weak var loadHomonymLrcButton: NSButton!
     
+    @IBOutlet weak var languagePopUp: NSPopUpButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +63,11 @@ class PreferenceGeneralViewController: NSViewController {
             userPathMenuItem.toolTip = url.path
         } else {
             userPathMenuItem.isHidden = true
+        }
+        
+        for lan in supportedLanguages {
+            let str = Locale(identifier: lan).localizedString(forLanguageCode: lan)!
+            languagePopUp.addItem(withTitle: str)
         }
     }
     
@@ -93,6 +100,15 @@ class PreferenceGeneralViewController: NSViewController {
             }
         }
     }
+    @IBAction func chooseLanguageAction(_ sender: NSPopUpButton) {
+        guard let item = sender.selectedItem else { return }
+        let idx = sender.index(of: item)
+        let code = supportedLanguages[idx]
+        var lans = defaults[.AppleLanguages]
+        lans.removeAll { $0 == code }
+        lans.insert(code, at: 0)
+        defaults[.AppleLanguages] = lans
+    }
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         defaults[.PreferredPlayerIndex] = sender.tag
@@ -116,3 +132,9 @@ class PreferenceGeneralViewController: NSViewController {
     }
     
 }
+
+let supportedLanguages = [
+    "en",
+    "zh-Hans",
+    "ja",
+]

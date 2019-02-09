@@ -42,7 +42,7 @@ class DragNDropView: NSView {
     }
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        let pboard = sender.draggingPasteboard()
+        let pboard = sender.draggingPasteboard
         
         if pboard.types?.contains(.string) == true,
             let str = pboard.string(forType: .string) {

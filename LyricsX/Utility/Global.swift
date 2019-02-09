@@ -32,6 +32,7 @@ let lyricsXErrorDomain = "ddddxxx.LyricsX"
 
 let defaults = UserDefaults.standard
 let groupDefaults = UserDefaults(suiteName: lyricsXGroupIdentifier)!
+let defaultNC = NotificationCenter.default
 let workspaceNC = NSWorkspace.shared.notificationCenter
 
 let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
@@ -78,6 +79,7 @@ extension UserDefaults.DefaultsKeys {
     
     static let NotifiedUpdateVersion = Key<String?>("NotifiedUpdateVersion")
     static let NoSearchingTrackIds = Key<[String]>("NoSearchingTrackIds")
+    static let NoSearchingAlbumNames = Key<[String]>("NoSearchingAlbumNames")
     
     // Menu
     static let DesktopLyricsEnabled = Key<Bool>("DesktopLyricsEnabled")
@@ -153,6 +155,8 @@ extension UserDefaults.DefaultsKeys {
     static let isInMASReview = Key<Bool?>("isInMASReview")
     
     static let launchHelperTime = Key<Date?>("launchHelperTime")
+    
+    static let AppleLanguages = Key<[String]>("AppleLanguages")
 }
 
-extension CGFloat: UDDefaultConstructible {}
+extension CGFloat: DefaultConstructible {}

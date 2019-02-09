@@ -52,12 +52,15 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
             self.handleLyricsDisplay()
-            self.observeNotification(name: .lyricsShouldDisplay, using: { [unowned self] _ in
+            self.observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in
                 self.handleLyricsDisplay()
-            })
-            self.observeNotification(name: .currentLyricsChange, using: { [unowned self] _ in
+            }
+            self.observeNotification(name: .currentLyricsChange) { [unowned self] _ in
                 self.handleLyricsDisplay()
-            })
+            }
+            self.observeDefaults(keys: [.PreferBilingualLyrics, .DesktopLyricsOneLineMode]) { [unowned self] in
+                self.handleLyricsDisplay()
+            }
         }
     }
     
@@ -157,8 +160,12 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private func makeConstraints() {
         lyricsView.snp.remakeConstraints { make in
-            make.centerX.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsXPositionFactor] * 2)
-            make.centerY.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsYPositionFactor] * 2)
+            make.centerX.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsXPositionFactor] * 2).priority(.low)
+            make.centerY.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsYPositionFactor] * 2).priority(.low)
+            make.leading.greaterThanOrEqualToSuperview()
+            make.trailing.lessThanOrEqualToSuperview()
+            make.top.greaterThanOrEqualToSuperview()
+            make.bottom.lessThanOrEqualToSuperview()
         }
     }
     

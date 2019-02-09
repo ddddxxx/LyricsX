@@ -161,4 +161,13 @@
 "T7p-MT-Mrh.title" = "允许拖放";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "Strict Search";
+"As7-rZ-u6c.title" = "精确搜索";
+
+/* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
+"zQK-i2-2Nc.title" = "自定义 TouchBar";
+
+/* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
+"rSD-qR-EXA.title" = "搜索结果完全匹配关键词";
+
+/* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
+"WfA-pe-S5D.title" = "语言 (需要重启):";
