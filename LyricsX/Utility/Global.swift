@@ -30,6 +30,8 @@ let lyricsXGroupIdentifier = "3665V726AE.group.ddddxxx.LyricsX"
 let lyricsXHelperIdentifier = "ddddxxx.LyricsXHelper"
 let lyricsXErrorDomain = "ddddxxx.LyricsX"
 
+let crowdinProjectURL = URL(string: "https://crowdin.com/project/lyricsx")!
+
 let defaults = UserDefaults.standard
 let groupDefaults = UserDefaults(suiteName: lyricsXGroupIdentifier)!
 let defaultNC = NotificationCenter.default
