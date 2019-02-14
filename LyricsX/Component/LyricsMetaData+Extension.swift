@@ -58,7 +58,7 @@ extension Lyrics.MetaData {
     }
     
     var translationLanguages: [String] {
-        get { return data[.language] as? [String] ?? [] }
-        set { data[.language] = newValue }
+        get { return data[.translationLanguages] as? [String] ?? [] }
+        set { data[.translationLanguages] = newValue }
     }
 }
