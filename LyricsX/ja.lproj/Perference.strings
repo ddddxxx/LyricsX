@@ -161,7 +161,7 @@
 "T7p-MT-Mrh.title" = "ドラッグを有効にする";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "Strict Search";
+"As7-rZ-u6c.title" = "厳密な検索";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
 "zQK-i2-2Nc.title" = "Customize TouchBar";
