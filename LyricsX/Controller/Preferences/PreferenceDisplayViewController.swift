@@ -62,7 +62,7 @@ class PreferenceDisplayViewController: NSViewController, FontSelectTextFieldDele
                 || oldFont.fontName != newFont.fontName {
                 // guarantee different font family of font fallback
                 var fallback = defaults[.DesktopLyricsFontNameFallback]
-                if let index = fallback.index(of: newFont.fontName) {
+                if let index = fallback.firstIndex(of: newFont.fontName) {
                     fallback.remove(at: index)
                 }
                 fallback.insert(oldFont.fontName, at: 0)

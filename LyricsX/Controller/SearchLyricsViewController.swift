@@ -145,7 +145,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         lyrics.metadata.needsPersist = true
-        if let idx = searchResult.index(where: { lyrics.quality > $0.quality }) {
+        if let idx = searchResult.firstIndex(where: { lyrics.quality > $0.quality }) {
             searchResult.insert(lyrics, at: idx)
         } else {
             searchResult.append(lyrics)
