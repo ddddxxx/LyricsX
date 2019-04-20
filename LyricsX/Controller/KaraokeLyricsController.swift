@@ -72,7 +72,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.bind(\.textColor, withDefaultName: .DesktopLyricsColor)
         lyricsView.bind(\.progressColor, withDefaultName: .DesktopLyricsProgressColor)
         lyricsView.bind(\.shadowColor, withDefaultName: .DesktopLyricsShadowColor)
-        lyricsView.bind(\.fillColor, withDefaultName: .DesktopLyricsBackgroundColor)
+        lyricsView.bind(\.backgroundColor, withDefaultName: .DesktopLyricsBackgroundColor)
         lyricsView.bind(\.isVertical, withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
         lyricsView.bind(\.drawFurigana, withDefaultName: .DesktopLyricsEnableFurigana)
         

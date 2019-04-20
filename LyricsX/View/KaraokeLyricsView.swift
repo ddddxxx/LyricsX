@@ -21,11 +21,10 @@
 import Cocoa
 import SnapKit
 
-class KaraokeLyricsView: NSBox {
+class KaraokeLyricsView: NSView {
     
-    private let stackView = NSStackView().then {
-        $0.orientation = .vertical
-    }
+    private let backgroundView: NSView
+    private let stackView: NSStackView
     
     @objc dynamic var isVertical = false {
         didSet {
@@ -41,6 +40,11 @@ class KaraokeLyricsView: NSBox {
     @objc dynamic var textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     @objc dynamic var shadowColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
     @objc dynamic var progressColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
+    @objc dynamic var backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6018835616) {
+        didSet {
+            backgroundView.layer?.backgroundColor = backgroundColor.cgColor
+        }
+    }
     
     @objc dynamic var shouldHideWithMouse = true {
         didSet {
@@ -52,13 +56,19 @@ class KaraokeLyricsView: NSBox {
     var displayLine2: KaraokeLabel?
     
     override init(frame frameRect: NSRect) {
+        stackView = NSStackView(frame: frameRect)
+        stackView.orientation = .vertical
+        stackView.autoresizingMask = [.width, .height]
+        backgroundView = NSView() //NSVisualEffectView(frame: frameRect)
+//        backgroundView.material = .dark
+//        backgroundView.state = .active
+        backgroundView.autoresizingMask = [.width, .height]
+        backgroundView.wantsLayer = true
         super.init(frame: frameRect)
         wantsLayer = true
-        boxType = .custom
-        borderType = .grooveBorder
-        borderWidth = 0
-        cornerRadius = 12
-        contentView = stackView
+        addSubview(backgroundView)
+        backgroundView.addSubview(stackView)
+        backgroundView.layer?.cornerRadius = 12
     }
     
     required init?(coder decoder: NSCoder) {
@@ -75,7 +85,8 @@ class KaraokeLyricsView: NSBox {
             $0.edges.equalToSuperview().inset(NSEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX))
         }
         stackView.spacing = font.pointSize / 3
-        cornerRadius = font.pointSize / 2
+        backgroundView.layer?.cornerRadius = font.pointSize / 2
+//        cornerRadius = font.pointSize / 2
     }
     
     private func lyricsLabel(_ content: String) -> KaraokeLabel {
