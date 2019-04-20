@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -758,7 +758,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <binding destination="hHn-Lo-CwP" name="value" keyPath="values.DisableLyricsWhenPaused" id="23Z-LD-4b3"/>
+                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DisableLyricsWhenPaused" id="Nq1-di-mCe"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="xa7-h7-OHj">
@@ -768,7 +768,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <binding destination="hHn-Lo-CwP" name="value" keyPath="values.DisableLyricsWhenSreenShot" id="O5h-wv-Lku"/>
+                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.DisableLyricsWhenSreenShot" id="5Nn-1W-Vlt"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IfW-hs-fv9">
@@ -778,7 +778,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <binding destination="hHn-Lo-CwP" name="value" keyPath="values.HideLyricsWhenMousePassingBy" id="Mqo-If-qON"/>
+                                                        <binding destination="Nm6-oq-wpY" name="value" keyPath="values.HideLyricsWhenMousePassingBy" id="LcZ-1f-hkk"/>
                                                     </connections>
                                                 </button>
                                                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="2or-e7-HZb">
@@ -1456,12 +1456,12 @@
         <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
         <image name="audirvana_icon" width="64" height="64"/>
         <image name="folder" width="21" height="18"/>
-        <image name="iTunes_icon" width="128" height="128"/>
+        <image name="iTunes_icon" width="64" height="64"/>
         <image name="now_playing_icon" width="64" height="64"/>
-        <image name="spotify_icon" width="128" height="128"/>
+        <image name="spotify_icon" width="64" height="64"/>
         <image name="toolbar_filter" width="32" height="32"/>
         <image name="toolbar_lab" width="32" height="32"/>
         <image name="toolbar_shortcut" width="32" height="32"/>
-        <image name="vox_icon" width="128" height="128"/>
+        <image name="vox_icon" width="64" height="64"/>
     </resources>
 </document>
