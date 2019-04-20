@@ -331,6 +331,9 @@
                                     </menuItem>
                                     <menuItem title="Disable Lyrics for Entire Album" id="hgd-IJ-u14">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="doNotSearchLyricsForThisAlbum:" target="Ady-hI-5gd" id="ms3-BC-e8g"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Write to iTunes" tag="202" identifier="MainMenu.WriteToiTunes" id="kNl-ZO-aX6">
                                         <modifierMask key="keyEquivalentModifierMask"/>

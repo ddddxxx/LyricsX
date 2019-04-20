@@ -138,8 +138,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         let title = track.title ?? ""
         let artist = track.artist ?? ""
         
-        guard !defaults[.NoSearchingTrackIds].contains(track.id),
-            !defaults[.NoSearchingAlbumNames].contains(track.album ?? "") else {
+        guard !defaults[.NoSearchingTrackIds].contains(track.id) else {
             return
         }
         
@@ -195,6 +194,10 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             }
             checkForMASReview()
         #endif
+        
+        if let album = track.album, defaults[.NoSearchingAlbumNames].contains(album) {
+            return
+        }
         
         let duration = track.duration ?? 0
         let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist),
