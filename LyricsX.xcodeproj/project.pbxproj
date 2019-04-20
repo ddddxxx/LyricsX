@@ -130,6 +130,8 @@
 		BB60F3091E889A1B00BA1FD2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3071E889A1B00BA1FD2 /* MainMenu.xib */; };
 		BB60F3121E889FCD00BA1FD2 /* LyricsXHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BB6139741FCCFA6700CBD808 /* Perference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6139761FCCFA6700CBD808 /* Perference.storyboard */; };
+		BB63C24C226AFCE7008CFFBB /* Dictionary in Resources */ = {isa = PBXBuildFile; fileRef = BB63C24B226AFCE7008CFFBB /* Dictionary */; };
+		BB63C24D226AFCE7008CFFBB /* Dictionary in Resources */ = {isa = PBXBuildFile; fileRef = BB63C24B226AFCE7008CFFBB /* Dictionary */; };
 		BB72784A20996DE900231C63 /* PreferenceLabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72784920996DE900231C63 /* PreferenceLabViewController.swift */; };
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
 		BB89089E21ED69410078F522 /* Lyrics+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB89089D21ED69410078F522 /* Lyrics+Language.swift */; };
@@ -266,6 +268,7 @@
 		BB60F30E1E889C5400BA1FD2 /* LyricsXHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsXHelper.entitlements; sourceTree = "<group>"; };
 		BB6139751FCCFA6700CBD808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Perference.storyboard; sourceTree = "<group>"; };
 		BB6139781FCCFAC800CBD808 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Perference.strings"; sourceTree = "<group>"; };
+		BB63C24B226AFCE7008CFFBB /* Dictionary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dictionary; sourceTree = "<group>"; };
 		BB72784920996DE900231C63 /* PreferenceLabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceLabViewController.swift; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
 		BB89089D21ED69410078F522 /* Lyrics+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lyrics+Language.swift"; sourceTree = "<group>"; };
@@ -391,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				BB4141B11E458BA800A51775 /* Assets.xcassets */,
+				BB63C24B226AFCE7008CFFBB /* Dictionary */,
 				BB0BE9581F444C9E0068FF67 /* Localizable.strings */,
 				E97AFB5B215CBF0300AF74CD /* InfoPlist.strings */,
 				BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */,
@@ -581,7 +585,7 @@
 					BB4141A91E458BA800A51775 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3665V726AE;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -602,7 +606,7 @@
 					BB60F3001E889A1B00BA1FD2 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3665V726AE;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -620,7 +624,7 @@
 			};
 			buildConfigurationList = BB4141A51E458BA800A51775 /* Build configuration list for PBXProject "LyricsX" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -646,6 +650,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB63C24C226AFCE7008CFFBB /* Dictionary in Resources */,
 				BB0BE9561F444C9E0068FF67 /* Localizable.strings in Resources */,
 				E97AFB59215CBF0300AF74CD /* InfoPlist.strings in Resources */,
 				BB6139741FCCFA6700CBD808 /* Perference.storyboard in Resources */,
@@ -660,6 +665,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB63C24D226AFCE7008CFFBB /* Dictionary in Resources */,
 				BB50789522014C3900B695C3 /* Localizable.strings in Resources */,
 				BB50789622014C3900B695C3 /* InfoPlist.strings in Resources */,
 				BB50789722014C3900B695C3 /* Perference.storyboard in Resources */,
@@ -1078,6 +1084,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1103,6 +1110,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1174,6 +1182,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsXHelper;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1191,6 +1200,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsXHelper;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

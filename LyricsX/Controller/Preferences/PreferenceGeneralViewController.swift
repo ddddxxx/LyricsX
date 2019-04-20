@@ -110,6 +110,10 @@ class PreferenceGeneralViewController: NSViewController {
         defaults[.AppleLanguages] = lans
     }
     
+    @IBAction func helpTranslateAction(_ sender: NSButton) {
+        NSWorkspace.shared.open(crowdinProjectURL)
+    }
+    
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         defaults[.PreferredPlayerIndex] = sender.tag
         AppController.shared.playerManager.preferredPlayerName = MusicPlayerName(index: sender.tag)

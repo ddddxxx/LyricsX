@@ -183,7 +183,7 @@ class KaraokeLabel: NSTextField {
         mask.contents = img.cgImage(forProposedRect: nil, context: nil, hints: nil)
         progressLayer.mask = mask
 
-        guard let index = progress.index(where: { $0.0 > 0 }) else { return }
+        guard let index = progress.firstIndex(where: { $0.0 > 0 }) else { return }
         var map = progress.map { ($0.0, line.offset(charIndex: $0.1)) }
         if index > 0 {
             let progress = map[index - 1].1 + CGFloat(map[index - 1].0) * (map[index].1 - map[index - 1].1) / CGFloat(map[index].0 - map[index - 1].0)

@@ -45,7 +45,8 @@ extension Lyrics {
             if let lan = (line.content as NSString).dominantLanguage {
                 lyricsLanguageSet.add(lan)
             }
-            if let transLan = line.attachments.translation() {
+            if let trans = line.attachments.translation(),
+                let transLan = (trans as NSString).dominantLanguage {
                 translationLanguageSet.add(transLan)
             }
         }

@@ -215,6 +215,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
             try? FileManager.default.removeItem(at: url)
         }
         AppController.shared.currentLyrics = nil
+        AppController.shared.searchProgress?.cancel()
     }
     
     @IBAction func doNotSearchLyricsForThisAlbum(_ sender: Any?) {
