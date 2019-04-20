@@ -171,3 +171,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
 "WfA-pe-S5D.title" = "言語 (再起動が必要):";
+
+/* Class = "NSButtonCell"; title = "Help translate LyricsX"; ObjectID = "oiH-T7-agJ"; */
+"oiH-T7-agJ.title" = "Help translate LyricsX";
