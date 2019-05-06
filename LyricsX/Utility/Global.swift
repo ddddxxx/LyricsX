@@ -24,7 +24,7 @@ import MusicPlayer
 
 let fontNameFallbackCountMax = 1
 // 7 days. after this period of time since the app built, the app is not considered as "in review".
-let masReviewPeriodLimit = 60 * 60 * 24 * 7
+let masReviewPeriodLimit: TimeInterval = 60 * 60 * 24 * 7
 
 // NOTE: to build your own product, you need to replace the team identifier to yours
 // and do the same thing in LyricsXHelper
