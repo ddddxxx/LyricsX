@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.4.5</string>
 	<key>CFBundleVersion</key>
-	<string>2110</string>
+	<string>2116</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -42,6 +42,8 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>LX_BUILD_TIME</key>
+	<integer>1557135268</integer>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>

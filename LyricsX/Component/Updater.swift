@@ -50,6 +50,13 @@ var localVersion: Semver {
 #if IS_FOR_MAS
     
     func checkForMASReview(force: Bool = false) {
+        if let buildTime = Bundle.main.infoDictionary?["LX_BUILD_TIME"] as? Double {
+            let dt = Date().timeIntervalSince1970 - buildTime
+            if dt > masReviewPeriodLimit {
+                defaults[.isInMASReview] = false
+                return
+            }
+        }
         guard force || (defaults[.isInMASReview] == nil) else {
             return
         }
