@@ -26,5 +26,18 @@
 		<string>com.audirvana.Audirvana-Plus</string>
 		<string>ddddxxx.LyricsXHelper</string>
 	</array>
+	<key>com.apple.security.scripting-targets</key>
+	<dict>
+		<key>com.apple.iTunes</key>
+		<array>
+			<string>com.apple.iTunes.playback</string>
+			<string>com.apple.iTunes.library.read</string>
+		</array>
+		<key>com.spotify.client</key>
+		<array>
+			<string>com.spotify.playback</string>
+			<string>com.spotify.library</string>
+		</array>
+	</dict>
 </dict>
 </plist>
