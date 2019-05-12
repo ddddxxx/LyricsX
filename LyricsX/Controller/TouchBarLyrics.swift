@@ -34,9 +34,9 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     override init() {
         super.init()
         touchBar.delegate = self
-        touchBar.defaultItemIdentifiers = [.currentPlaying, .lyrics, .flexibleSpace]
+        touchBar.defaultItemIdentifiers = [.currentArtwork, .fixedSpaceSmall, .playbackControl, .fixedSpaceSmall, .lyrics, .flexibleSpace]
         touchBar.customizationIdentifier = .main
-        touchBar.customizationAllowedItemIdentifiers = [.currentPlaying, .lyrics, .flexibleSpace]
+        touchBar.customizationAllowedItemIdentifiers = [.currentArtwork, .playbackControl, .lyrics, .fixedSpaceSmall, .fixedSpaceLarge, .flexibleSpace]
         
         systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
         systemTrayItem.addToSystemTray()
@@ -62,8 +62,16 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
         switch identifier {
         case .lyrics:
             return TouchBarLyricsItem(identifier: identifier)
-        case .currentPlaying:
-            return TouchBarArtworkItem(identifier: identifier)
+        case .playbackControl:
+            let item = NSCustomTouchBarItem(identifier: identifier)
+            item.viewController = TouchBarPlaybackControlViewController()
+            item.customizationLabel = "Playback Control"
+            return item
+        case .currentArtwork:
+            let item = NSCustomTouchBarItem(identifier: identifier)
+            item.viewController = TouchBarArtworkViewController()
+            item.customizationLabel = "Artwork"
+            return item
         default:
             return nil
         }
@@ -74,7 +82,8 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
 private extension NSTouchBarItem.Identifier {
     
     static let lyrics = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.lyrics")
-    static let currentPlaying = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.currentPlaying")
+    static let currentArtwork = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.currentArtwork")
+    static let playbackControl = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.playbackControl")
     
     static let systemTrayItem = NSTouchBarItem.Identifier("ddddxxx.LyricsX.touchBar.systemTrayItem")
 }
