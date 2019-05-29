@@ -38,19 +38,19 @@
 "RPR-IV-34T.title" = "Zamknij LyricsX";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "Enable Menu Bar Lyrics";
+"Z7d-yp-uRx.title" = "Włącz tekst w pasku menu";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "No Lyrics\n\nDrag & Drop to import LRC file";
+"aRw-yQ-GNX.title" = "Brak tekstu\n\nPrzeciągnij tu plik LRC żeby zaimportować";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
 "d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
-"eb9-fE-Lgq.title" = "Search";
+"eb9-fE-Lgq.title" = "Szukaj";
 
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
-"fmS-zv-RcJ.title" = "Wrong Lyrics";
+"fmS-zv-RcJ.title" = "Zły tekst";
 
 /* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
 "h6D-jz-GbI.title" = "Search Lyrics...";
