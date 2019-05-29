@@ -29,13 +29,13 @@
 "PdE-VG-JUC.title" = "O LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "Check For Update...";
+"Piu-i2-JjD.title" = "Sprawdź dostępność aktualizacji";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "Apply";
+"RGl-MT-MQb.title" = "Zastosuj";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "Quit LyricsX";
+"RPR-IV-34T.title" = "Zamknij LyricsX";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
 "Z7d-yp-uRx.title" = "Enable Menu Bar Lyrics";
