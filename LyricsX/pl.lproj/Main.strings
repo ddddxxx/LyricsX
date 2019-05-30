@@ -53,28 +53,28 @@
 "fmS-zv-RcJ.title" = "Zły tekst";
 
 /* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
-"h6D-jz-GbI.title" = "Search Lyrics...";
+"h6D-jz-GbI.title" = "Szukaj tekstu...";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
-"jWT-S5-YXM.headerCell.title" = "Title";
+"jWT-S5-YXM.headerCell.title" = "Tytuł";
 
 /* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
-"kNl-ZO-aX6.title" = "Write to iTunes";
+"kNl-ZO-aX6.title" = "Zapisz w iTunes";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
-"kyJ-kV-2Du.title" = "Show Lyrics Window";
+"kyJ-kV-2Du.title" = "Pokaż okno z tekstem";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
-"l8J-1r-dIZ.title" = "Artist:";
+"l8J-1r-dIZ.title" = "Wykonawca:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.";
+"o52-Z0-lue.title" = "Jeśli podoba Ci się LyricsX i chciałbyś mnie wesprzeć kubkiem kawy potrzebnym do pracy nad oprogramowaniem, możesz zeskanować poniższy kod QR i przesłać wsparcie.";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "Show In Finder";
+"DNi-vI-MTr.title" = "Pokaż w Finderze";
 
 /* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
-"hxE-X4-sJh.title" = "Lyrics";
+"hxE-X4-sJh.title" = "Tekst";
 
 /* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
-"hgd-IJ-u14.title" = "Disable Lyrics for Entire Album";
+"hgd-IJ-u14.title" = "Wyłącz tekst dla całego albumu";
