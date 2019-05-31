@@ -35,7 +35,7 @@
 "Cmt-it-PXW.title" = "Czcionka:";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
-"EDv-ax-0hI.title" = "Load lyrics beside music file";
+"EDv-ax-0hI.title" = "Szukaj tekstu w folderze z utworem";
 
 /* Class = "NSMenuItem"; title = "Other..."; ObjectID = "HvN-Ou-h1t"; */
 "HvN-Ou-h1t.title" = "Inna...";
