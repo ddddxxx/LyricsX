@@ -1,176 +1,176 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "歌詞ファイルの保存先:";
+"0M7-ao-0jb.title" = "Miejsce zapisu tekstów:";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
-"0VO-JB-ubq.title" = "自動設定";
+"0VO-JB-ubq.title" = "Auto";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
-"3Bt-md-QNc.title" = "歌詞";
+"3Bt-md-QNc.title" = "Tekst";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
-"5dp-p5-YmE.title" = "一行モード";
+"5dp-p5-YmE.title" = "Jedna linia";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
-"6FU-j0-FTV.title" = "繁体字中国語に変換";
+"6FU-j0-FTV.title" = "Chiński (Tradycyjny)";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "iTunesに書き込む:";
+"6We-TB-Wfc.title" = "Zapisz tekst w iTunes:";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
-"7Ax-7T-26K.title" = "自動的に書き込み";
+"7Ax-7T-26K.title" = "Automatycznie";
 
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
-"8JF-Og-z6E.title" = "表示";
+"8JF-Og-z6E.title" = "Wyświetlanie";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "iTunesに書き込む:";
+"8Sx-vb-5pB.title" = "Zapisz tekst w iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "フォント:";
+"992-tg-edx.title" = "Czcionka:";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
-"AiM-vg-FvQ.title" = "簡体字中国語に変換";
+"AiM-vg-FvQ.title" = "Chiński (Uproszczony)";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
-"Cmt-it-PXW.title" = "フォント:";
+"Cmt-it-PXW.title" = "Czcionka:";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
-"EDv-ax-0hI.title" = "同じ名前の歌詞を読み込む";
+"EDv-ax-0hI.title" = "Szukaj tekstu w folderze z utworem";
 
 /* Class = "NSMenuItem"; title = "Other..."; ObjectID = "HvN-Ou-h1t"; */
-"HvN-Ou-h1t.title" = "その他...";
+"HvN-Ou-h1t.title" = "Inna...";
 
 /* Class = "NSMenuItem"; title = "LyricsX (Default)"; ObjectID = "IE7-IT-oPk"; */
-"IE7-IT-oPk.title" = "LyricsX (既定値)";
+"IE7-IT-oPk.title" = "LyricsX (domyślna)";
 
 /* Class = "NSTextFieldCell"; title = "Auto Chinese conversion:"; ObjectID = "JPB-ag-MN7"; */
-"JPB-ag-MN7.title" = "自動中国語変換:";
+"JPB-ag-MN7.title" = "Automatyczna konwersja Chińskiego:";
 
 /* Class = "NSBox"; title = "Preferred music player"; ObjectID = "JYR-Ed-Tax"; */
-"JYR-Ed-Tax.title" = "デフォルトプレーヤー";
+"JYR-Ed-Tax.title" = "Wybrany odtwarzacz";
 
 /* Class = "NSButtonCell"; title = "Mouse passing by"; ObjectID = "LH4-YZ-Qvs"; */
-"LH4-YZ-Qvs.title" = "マウスが通過する時";
+"LH4-YZ-Qvs.title" = "Gdy najedziesz myszką";
 
 /* Class = "NSTabViewItem"; label = "Window"; ObjectID = "LbQ-p9-Zti"; */
-"LbQ-p9-Zti.label" = "ウィンドウ";
+"LbQ-p9-Zti.label" = "Okno";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
-"NLl-9L-0gZ.title" = "一時停止中";
+"NLl-9L-0gZ.title" = "Muzyka nie gra";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
-"Txi-D9-jjB.title" = "テキスト:";
+"Txi-D9-jjB.title" = "Tekst:";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
-"Uer-qJ-3T9.title" = "背景";
+"Uer-qJ-3T9.title" = "Tło";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
-"UfE-QU-Yhm.title" = "ハイライト:";
+"UfE-QU-Yhm.title" = "Podświetlenie:";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "リセット";
+"XUF-aM-ZmS.title" = "Wyczyść";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "環境設定";
+"aMb-zX-bzP.title" = "Ustawienia";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
-"aUg-eg-K5C.label" = "カラオケ";
+"aUg-eg-K5C.label" = "Karaoke";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "歌詞を非表示:";
+"bDS-Lb-m34.title" = "Wyłącz tekst gdy:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
-"bFk-1g-XeL.title" = "実験室";
+"bFk-1g-XeL.title" = "Lab";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "メニューバーのアイコンと歌詞を結合する";
+"bbd-ra-rSF.title" = "Połącz ikonę z napisami w pasku menu";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "歌詞のオフセットを減らす:";
+"bmk-rW-Uot.title" = "Zmniejsz opóźnienie tekstów:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "二か国語の歌詞を優先する";
+"cBB-zn-Hdh.title" = "Preferuj dwu-języczne teksty";
 
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
-"d5d-dC-DK4.title" = "一般";
+"d5d-dC-DK4.title" = "Ogólne";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "ここにいくつかの実験的な機能があります、これらの機能は十分に安定しておらず、今後削除される可能性があります。";
+"g2u-8D-dln.title" = "Tu znajdziesz eksperymentalne funkcje, które mogą nie działać stabilnie i mogą być usunięte w przyszłości.";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
-"hsu-H9-9Bd.title" = "影";
+"hsu-H9-9Bd.title" = "Cień";
 
 /* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
-"iMD-Wy-Bm7.title" = "スクリーンショットを撮る";
+"iMD-Wy-Bm7.title" = "Robię zrzut ekranu";
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
-"jFb-kX-VbY.title" = "翻訳付き";
+"jFb-kX-VbY.title" = "Z tłumaczeniem";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
-"kEd-lC-aAH.title" = "歌詞フィルタを有効にする";
+"kEd-lC-aAH.title" = "Włącz filtr tekstu";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
-"kP4-4q-ed9.title" = "歌詞を検索:";
+"kP4-4q-ed9.title" = "Wyszukaj teksty:";
 
 /* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
-"lN1-gG-AVq.title" = "フィルタ";
+"lN1-gG-AVq.title" = "Filtr";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
-"mo2-3C-gLY.title" = "歌詞のオフセットを増やす:";
+"mo2-3C-gLY.title" = "Zwiększ opóźnienie tekstów:";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
-"ppx-ob-WJc.title" = "ショートカット";
+"ppx-ob-WJc.title" = "Skrót";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "間違った歌詞としてマークする:";
+"uEb-Q5-cda.title" = "Oznacz jako zły tekst:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "プレーヤーの状態に応じて自動起動・終了";
+"v63-4a-fPw.title" = "Automatycznie włączaj i wyłączaj z wybranym odtwarzaczem";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "変換しない";
+"zhB-kd-WWG.title" = "Bez tłumaczenia";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "次の規則を満たす歌詞行がフィルタリングされます。 「/ 」を使用して正規表現を有効にします。";
+"19E-DG-Q23.title" = "Linia tekstu zawierająca poniższe reguły będzie ignorowana. Zacznij od \"/\" by użyć wyrażeń regularnych (regex).";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
-"h4G-Un-dtm.title" = "垂直モード";
+"h4G-Un-dtm.title" = "Tryb pionowy";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "日本語歌詞のふりがなを自動的に生成します";
+"ThQ-vA-Krb.title" = "Automatycznie generuj znaki (Furigana) dla Japońskich tekstów";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "タッチバー歌詞を有効にする";
+"gGL-LB-TXI.title" = "Włącz tekst na Touch Bar";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
-"TB9-Fk-WAX.title" = "歌詞ウィンドウを表示:";
+"TB9-Fk-WAX.title" = "Pokaż okno z tekstem:";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "メニューバー歌詞を表示/非表示:";
+"XHQ-gX-urF.title" = "Pokaż / Ukryj tekst w pasku menu:";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "カラオケ歌詞を表示/非表示:";
+"lOc-OP-AcU.title" = "Pokaż / Ukryj tekst trybie karaoke:";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
-"XuN-vs-cgI.title" = "進行状況";
+"XuN-vs-cgI.title" = "Postęp";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "グローバル オフセット (ミリ秒):";
+"slB-q7-1dB.title" = "Przesunięcie całości (ms):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "ドラッグを有効にする";
+"T7p-MT-Mrh.title" = "Przeciągane";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "厳密な検索";
+"As7-rZ-u6c.title" = "Strict Search";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
-"zQK-i2-2Nc.title" = "TouchBarをカスタマイズ";
+"zQK-i2-2Nc.title" = "Personalizuj TouchBar";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "検索結果は正確な検索語と一致にする";
+"rSD-qR-EXA.title" = "Search result match the exact search term";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "言語 (再起動が必要):";
+"WfA-pe-S5D.title" = "Język (wymaga restartu):";
 
 /* Class = "NSButtonCell"; title = "Help translate LyricsX"; ObjectID = "oiH-T7-agJ"; */
-"oiH-T7-agJ.title" = "LyricsXの翻訳に協力する";
+"oiH-T7-agJ.title" = "Pomóż tłumaczyć LyricsX";

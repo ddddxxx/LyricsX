@@ -47,7 +47,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
     
     @available(OSX 10.12.2, *)
     var touchBar: NSTouchBar? {
+        #if IS_FOR_MAS
         return (self.touchBarLyrics as! TouchBarLyrics?)?.touchBar
+        #else
+        return nil
+        #endif
     }
     
     lazy var searchLyricsWC: NSWindowController = {

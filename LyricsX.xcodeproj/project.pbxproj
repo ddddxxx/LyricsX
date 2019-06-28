@@ -284,6 +284,8 @@
 		BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceDisplayViewController.swift; sourceTree = "<group>"; };
 		BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceGeneralViewController.swift; sourceTree = "<group>"; };
 		BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragNDropView.swift; sourceTree = "<group>"; };
+		BBD2E35B22B780FC00410259 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
+		BBD2E35C22B780FC00410259 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Perference.strings; sourceTree = "<group>"; };
 		BBE557961EC0291E00F1EC31 /* GenericID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GenericID.framework; path = Carthage/Build/Mac/GenericID.framework; sourceTree = "<group>"; };
 		BBE8FC741F6BEA6200122AFA /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MusicPlayer.framework; path = Carthage/Build/Mac/MusicPlayer.framework; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 				Base,
 				"zh-Hans",
 				ja,
+				pl,
 			);
 			mainGroup = BB4141A11E458BA800A51775;
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
@@ -967,6 +970,7 @@
 				BB3D1E911E8A2A2A00CA5B8F /* zh-Hans */,
 				BB335B112057BCE3003A69F8 /* en */,
 				E9AAA38B2195650D0006EBC2 /* ja */,
+				BBD2E35B22B780FC00410259 /* pl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -986,6 +990,7 @@
 				BB6139781FCCFAC800CBD808 /* zh-Hans */,
 				BB335B132057BD03003A69F8 /* en */,
 				E9AAA38A219565080006EBC2 /* ja */,
+				BBD2E35C22B780FC00410259 /* pl */,
 			);
 			name = Perference.storyboard;
 			sourceTree = "<group>";

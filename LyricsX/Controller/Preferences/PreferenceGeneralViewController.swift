@@ -68,6 +68,9 @@ class PreferenceGeneralViewController: NSViewController {
         for lan in supportedLanguages {
             let str = Locale(identifier: lan).localizedString(forLanguageCode: lan)!
             languagePopUp.addItem(withTitle: str)
+            if lan == defaults[.AppleLanguages].first {
+                languagePopUp.selectItem(withTitle: str)
+            }
         }
     }
     
@@ -141,4 +144,5 @@ let supportedLanguages = [
     "en",
     "zh-Hans",
     "ja",
+    "pl",
 ]

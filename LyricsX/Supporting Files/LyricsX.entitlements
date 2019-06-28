@@ -21,9 +21,11 @@
 	<key>com.apple.security.temporary-exception.apple-events</key>
 	<array>
 		<string>com.apple.iTunes</string>
+		<string>com.apple.Music</string>
 		<string>com.spotify.client</string>
 		<string>com.coppertino.Vox</string>
 		<string>com.audirvana.Audirvana-Plus</string>
+		<string>com.audirvana.Audirvana</string>
 		<string>ddddxxx.LyricsXHelper</string>
 	</array>
 	<key>com.apple.security.scripting-targets</key>
