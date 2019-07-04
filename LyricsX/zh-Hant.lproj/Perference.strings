@@ -35,7 +35,7 @@
 "Cmt-it-PXW.title" = "字型：";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
-"EDv-ax-0hI.title" = "Load lyrics beside music file";
+"EDv-ax-0hI.title" = "讀取同名的歌詞檔案";
 
 /* Class = "NSMenuItem"; title = "Other..."; ObjectID = "HvN-Ou-h1t"; */
 "HvN-Ou-h1t.title" = "其他⋯";
@@ -77,64 +77,64 @@
 "aUg-eg-K5C.label" = "卡拉OK";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "Disable lyrics when:";
+"bDS-Lb-m34.title" = "隱藏歌詞：";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
-"bFk-1g-XeL.title" = "Lab";
+"bFk-1g-XeL.title" = "實驗功能";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "Combine menubar icon with menubar lyrics";
+"bbd-ra-rSF.title" = "將選單列圖示與歌詞顯示合併";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "Decrease lyrics offset:";
+"bmk-rW-Uot.title" = "延遲顯示歌詞：";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "Prefer bilingual lyrics";
+"cBB-zn-Hdh.title" = "優先使用雙語歌詞";
 
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
-"d5d-dC-DK4.title" = "General";
+"d5d-dC-DK4.title" = "一般";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "Here are some experimental features that may not be stable enough, and may be removed in the future.";
+"g2u-8D-dln.title" = "這裡有一些實驗中的功能，這些功能不會那麼穩定，也有可能在日後被刪除。";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
-"hsu-H9-9Bd.title" = "Shadow";
+"hsu-H9-9Bd.title" = "陰影";
 
 /* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
-"iMD-Wy-Bm7.title" = "Taking a screenshot";
+"iMD-Wy-Bm7.title" = "螢幕截圖時";
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
-"jFb-kX-VbY.title" = "With translation";
+"jFb-kX-VbY.title" = "包含翻譯";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
-"kEd-lC-aAH.title" = "Enable lyrics filter";
+"kEd-lC-aAH.title" = "啟用歌詞過濾";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
-"kP4-4q-ed9.title" = "Search lyrics:";
+"kP4-4q-ed9.title" = "搜尋歌詞：";
 
 /* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
-"lN1-gG-AVq.title" = "Filter";
+"lN1-gG-AVq.title" = "歌詞過濾";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
-"mo2-3C-gLY.title" = "Increase lyrics offset:";
+"mo2-3C-gLY.title" = "提前顯示歌詞：";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
-"ppx-ob-WJc.title" = "Shortcut";
+"ppx-ob-WJc.title" = "快速鍵";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "Mark as wrong lyrics:";
+"uEb-Q5-cda.title" = "標記為錯誤的歌詞：";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "Auto launch & quit with music player";
+"v63-4a-fPw.title" = "跟隨播放器啟動及結束";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "No Conversion";
+"zhB-kd-WWG.title" = "不轉換";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";
+"19E-DG-Q23.title" = "符合下列規則的關鍵字將不會顯示在歌詞中，請使用 \"/\" 來定義正則表達式。";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
-"h4G-Un-dtm.title" = "Vertical mode";
+"h4G-Un-dtm.title" = "竪排模式";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
 "ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
