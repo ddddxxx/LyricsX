@@ -26,46 +26,46 @@
 "IFz-XQ-DHf.title" = "時間軸微調：";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
-"PdE-VG-JUC.title" = "About LyricsX";
+"PdE-VG-JUC.title" = "關於 LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "Check For Update...";
+"Piu-i2-JjD.title" = "檢查更新⋯";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "Apply";
+"RGl-MT-MQb.title" = "套用";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "Quit LyricsX";
+"RPR-IV-34T.title" = "結束 LyricsX";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "Enable Menu Bar Lyrics";
+"Z7d-yp-uRx.title" = "啟用選單列歌詞";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "No Lyrics\n\nDrag & Drop to import LRC file";
+"aRw-yQ-GNX.title" = "沒有歌詞資訊\n\n請拖放來輸入 LRC 檔案";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
-"d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
+"d5a-4n-6k8.ibShadowedToolTip" = "同步";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
-"eb9-fE-Lgq.title" = "Search";
+"eb9-fE-Lgq.title" = "搜尋";
 
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
-"fmS-zv-RcJ.title" = "Wrong Lyrics";
+"fmS-zv-RcJ.title" = "目前歌詞有誤";
 
 /* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
-"h6D-jz-GbI.title" = "Search Lyrics...";
+"h6D-jz-GbI.title" = "搜尋歌詞⋯";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
-"jWT-S5-YXM.headerCell.title" = "Title";
+"jWT-S5-YXM.headerCell.title" = "歌曲";
 
 /* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
-"kNl-ZO-aX6.title" = "Write to iTunes";
+"kNl-ZO-aX6.title" = "將歌詞輸入 iTunes";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
-"kyJ-kV-2Du.title" = "Show Lyrics Window";
+"kyJ-kV-2Du.title" = "顯示歌詞視窗";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
-"l8J-1r-dIZ.title" = "Artist:";
+"l8J-1r-dIZ.title" = "藝人：";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
 "o52-Z0-lue.title" = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.";
