@@ -71,10 +71,10 @@
 "o52-Z0-lue.title" = "如果你用 LyricsX 用得還算開心，願意請我喝杯咖啡好讓我可以繼續維護這個軟體的話，你可以掃描下面的 QR code 來贊助我，感謝。";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "Show In Finder";
+"DNi-vI-MTr.title" = "顯示於 Finder";
 
 /* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
-"hxE-X4-sJh.title" = "Lyrics";
+"hxE-X4-sJh.title" = "歌詞";
 
 /* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
-"hgd-IJ-u14.title" = "Disable Lyrics for Entire Album";
+"hgd-IJ-u14.title" = "停用整張專輯的歌詞";
