@@ -61,7 +61,7 @@ class TouchBarLyrics: NSObject, NSTouchBarDelegate {
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         switch identifier {
         case .lyrics:
-            return TouchBarLyricsItem(identifier: identifier)
+            return lyricsItem
         case .playbackControl:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.viewController = TouchBarPlaybackControlViewController()
