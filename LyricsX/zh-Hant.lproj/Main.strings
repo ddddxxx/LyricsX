@@ -1,29 +1,29 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
-"1xI-G4-Fsc.headerCell.title" = "Source";
+"1xI-G4-Fsc.headerCell.title" = "來源";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
-"CW0-AL-Z6N.title" = "Donate";
+"CW0-AL-Z6N.title" = "贊助";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
-"CWo-Qx-2Ut.title" = "Preferences...";
+"CWo-Qx-2Ut.title" = "偏好設定⋯";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
-"EoO-ld-6Xv.title" = "Donate...";
+"EoO-ld-6Xv.title" = "贊助⋯";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
-"FMI-7E-tCo.title" = "Title:";
+"FMI-7E-tCo.title" = "歌曲：";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
-"GGU-uz-d9h.title" = "Enable Karaoke Lyrics";
+"GGU-uz-d9h.title" = "啟用卡拉OK歌詞";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
-"Gza-SX-MCH.ibShadowedToolTip" = "Always on top";
+"Gza-SX-MCH.ibShadowedToolTip" = "畫面置頂";
 
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
-"HMU-fa-17B.headerCell.title" = "Artist";
+"HMU-fa-17B.headerCell.title" = "藝人";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
-"IFz-XQ-DHf.title" = "Lyrics Offset:";
+"IFz-XQ-DHf.title" = "時間軸微調：";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "About LyricsX";
