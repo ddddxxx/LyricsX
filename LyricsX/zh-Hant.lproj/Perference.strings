@@ -1,20 +1,20 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "Lyrics saving path:";
+"0M7-ao-0jb.title" = "歌詞儲存路徑：";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
-"0VO-JB-ubq.title" = "Auto";
+"0VO-JB-ubq.title" = "自動切換";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
-"3Bt-md-QNc.title" = "Lyrics";
+"3Bt-md-QNc.title" = "歌詞";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
-"5dp-p5-YmE.title" = "One line mode";
+"5dp-p5-YmE.title" = "單行模式";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
-"6FU-j0-FTV.title" = "Traditional Chinese";
+"6FU-j0-FTV.title" = "轉換為正體中文";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "Write lyrics to iTunes:";
+"6We-TB-Wfc.title" = "將歌詞輸入 iTunes：";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "Automatically";
@@ -23,25 +23,25 @@
 "8JF-Og-z6E.title" = "Display";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "Write lyrics to iTunes:";
+"8Sx-vb-5pB.title" = "將歌詞輸入 iTunes：";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "Font:";
+"992-tg-edx.title" = "字型：";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
-"AiM-vg-FvQ.title" = "Simplified Chinese";
+"AiM-vg-FvQ.title" = "轉換為簡體中文";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
-"Cmt-it-PXW.title" = "Font:";
+"Cmt-it-PXW.title" = "字型：";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
 "EDv-ax-0hI.title" = "Load lyrics beside music file";
 
 /* Class = "NSMenuItem"; title = "Other..."; ObjectID = "HvN-Ou-h1t"; */
-"HvN-Ou-h1t.title" = "Other...";
+"HvN-Ou-h1t.title" = "其他⋯";
 
 /* Class = "NSMenuItem"; title = "LyricsX (Default)"; ObjectID = "IE7-IT-oPk"; */
-"IE7-IT-oPk.title" = "LyricsX (Default)";
+"IE7-IT-oPk.title" = "LyricsX (預設)";
 
 /* Class = "NSTextFieldCell"; title = "Auto Chinese conversion:"; ObjectID = "JPB-ag-MN7"; */
 "JPB-ag-MN7.title" = "Auto Chinese conversion:";
