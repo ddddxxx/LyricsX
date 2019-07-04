@@ -5,7 +5,7 @@
 "CW0-AL-Z6N.title" = "Wesprzyj nas";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
-"CWo-Qx-2Ut.title" = "Ustawienia";
+"CWo-Qx-2Ut.title" = "Ustawienia...";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
 "EoO-ld-6Xv.title" = "Wesprzyj nas...";
@@ -29,7 +29,7 @@
 "PdE-VG-JUC.title" = "O LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "Sprawdź dostępność aktualizacji";
+"Piu-i2-JjD.title" = "Sprawdź dostępność aktualizacji...";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
 "RGl-MT-MQb.title" = "Zastosuj";
