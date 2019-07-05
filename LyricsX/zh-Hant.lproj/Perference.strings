@@ -140,7 +140,7 @@
 "ThQ-vA-Krb.title" = "自動為日文歌詞生成日文注音";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "啟用Touch Bar歌詞";
+"gGL-LB-TXI.title" = "啟用Touch Bar 歌詞";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
 "TB9-Fk-WAX.title" = "顯示歌詞視窗";
