@@ -24,7 +24,7 @@ import ScriptingBridge
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var musicPlayer: SBApplication?
+    var musicPlayers: [SBApplication] = []
     var shouldWaitForPlayerQuit = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -35,27 +35,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let index = groupDefaults.integer(forKey: preferredPlayerIndex)
         let ident = playerBundleIdentifiers[index]
-        musicPlayer = SBApplication(bundleIdentifier: ident)
+        musicPlayers = ident.compactMap(SBApplication.init)
         
         let event = NSAppleEventManager.shared().currentAppleEvent
         let isLaunchedAsLoginItem = event?.eventID == kAEOpenApplication &&
             event?.paramDescriptor(forKeyword: keyAEPropData)?.enumCodeValue == keyAELaunchedAsLogInItem
         let isLaunchedByMain = (groupDefaults.object(forKey: launchHelperTime) as? Date).map { Date().timeIntervalSince($0) < 10 } ?? false
-        shouldWaitForPlayerQuit = !isLaunchedAsLoginItem && isLaunchedByMain && (musicPlayer?.isRunning == true)
+        shouldWaitForPlayerQuit = !isLaunchedAsLoginItem && isLaunchedByMain && musicPlayers.contains { $0.isRunning }
         
         let wsnc = NSWorkspace.shared.notificationCenter
-        wsnc.addObserver(self, selector: #selector(checkiTunes), name: NSWorkspace.didLaunchApplicationNotification, object: nil)
-        wsnc.addObserver(self, selector: #selector(checkiTunes), name: NSWorkspace.didTerminateApplicationNotification, object: nil)
+        wsnc.addObserver(self, selector: #selector(checkTargetApplication), name: NSWorkspace.didLaunchApplicationNotification, object: nil)
+        wsnc.addObserver(self, selector: #selector(checkTargetApplication), name: NSWorkspace.didTerminateApplicationNotification, object: nil)
         
-        checkiTunes()
+//        wsnc.addObserver(forName: NSWorkspace.didLaunchApplicationNotification, object: nil, queue: nil) { n in
+//            let bundleID = n.userInfo?["NSApplicationBundleIdentifier"] as? String
+//        }
+        
+        checkTargetApplication()
     }
     
-    @objc func checkiTunes() {
-        if self.shouldWaitForPlayerQuit {
-            self.shouldWaitForPlayerQuit = self.musicPlayer?.isRunning == true
+    @objc func checkTargetApplication() {
+        let isRunning = musicPlayers.contains { $0.isRunning }
+        if shouldWaitForPlayerQuit {
+            shouldWaitForPlayerQuit = isRunning
             return
-        }
-        if self.musicPlayer?.isRunning == true {
+        } else if isRunning {
             self.launchMainAndQuit()
         }
     }
@@ -78,9 +82,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 let playerBundleIdentifiers = [
-    "com.apple.iTunes",
-    "com.spotify.client",
-    "com.coppertino.Vox"
+    ["com.apple.Music", "com.apple.iTunes"],
+    ["com.spotify.client"],
+    ["com.coppertino.Vox"],
+    ["com.audirvana.Audirvana", "com.audirvana.Audirvana-Plus"]
 ]
 
 let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!
