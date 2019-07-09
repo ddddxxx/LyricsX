@@ -1,17 +1,17 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
-"1xI-G4-Fsc.headerCell.title" = "Source";
+"1xI-G4-Fsc.headerCell.title" = "منبع";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
-"CW0-AL-Z6N.title" = "Donate";
+"CW0-AL-Z6N.title" = "کمک مالی";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
-"CWo-Qx-2Ut.title" = "Preferences...";
+"CWo-Qx-2Ut.title" = "تنظیمات...";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
-"EoO-ld-6Xv.title" = "Donate...";
+"EoO-ld-6Xv.title" = "کمک مالی...";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
-"FMI-7E-tCo.title" = "Title:";
+"FMI-7E-tCo.title" = "عنوان:";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
 "GGU-uz-d9h.title" = "Enable Karaoke Lyrics";
