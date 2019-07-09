@@ -68,64 +68,64 @@
 "UfE-QU-Yhm.title" = "Hightlight:";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "Reset";
+"XUF-aM-ZmS.title" = "ریست";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "Preferences";
+"aMb-zX-bzP.title" = "تنظیمات";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
-"aUg-eg-K5C.label" = "Karaoke";
+"aUg-eg-K5C.label" = "کاراکویه";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "Disable lyrics when:";
+"bDS-Lb-m34.title" = "غیرفعال سازی نمایش متن هنگامی که:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
-"bFk-1g-XeL.title" = "Lab";
+"bFk-1g-XeL.title" = "آزمایشگاه";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "Combine menubar icon with menubar lyrics";
+"bbd-ra-rSF.title" = "تلفیق آیکون منو با ترانه منو";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "Decrease lyrics offset:";
+"bmk-rW-Uot.title" = "کم کردن فاصله متن ترانه:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "Prefer bilingual lyrics";
+"cBB-zn-Hdh.title" = "نمایش متن ترانه دو زبانه (در صورت وجود)";
 
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
-"d5d-dC-DK4.title" = "General";
+"d5d-dC-DK4.title" = "عمومی";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
 "g2u-8D-dln.title" = "Here are some experimental features that may not be stable enough, and may be removed in the future.";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
-"hsu-H9-9Bd.title" = "Shadow";
+"hsu-H9-9Bd.title" = "سایه";
 
 /* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
-"iMD-Wy-Bm7.title" = "Taking a screenshot";
+"iMD-Wy-Bm7.title" = "گرفتن عکس از صفحه";
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
-"jFb-kX-VbY.title" = "With translation";
+"jFb-kX-VbY.title" = "با ترجمه";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
-"kEd-lC-aAH.title" = "Enable lyrics filter";
+"kEd-lC-aAH.title" = "فعالسازی فیلتر بر روی ترانه ها";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
-"kP4-4q-ed9.title" = "Search lyrics:";
+"kP4-4q-ed9.title" = "جستجوی ترانه:";
 
 /* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
-"lN1-gG-AVq.title" = "Filter";
+"lN1-gG-AVq.title" = "فیلتر";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
-"mo2-3C-gLY.title" = "Increase lyrics offset:";
+"mo2-3C-gLY.title" = "افزایش فاصله متن ترانه:";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
-"ppx-ob-WJc.title" = "Shortcut";
+"ppx-ob-WJc.title" = "میانبر";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "Mark as wrong lyrics:";
+"uEb-Q5-cda.title" = "انتخاب به عنوان متن اشتباه:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "Auto launch & quit with music player";
+"v63-4a-fPw.title" = "باز و بسته شدن خودکار همراه با آهنگ";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
 "zhB-kd-WWG.title" = "No Conversion";
