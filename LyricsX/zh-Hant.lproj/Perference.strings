@@ -56,7 +56,7 @@
 "LbQ-p9-Zti.label" = "視窗";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
-"NLl-9L-0gZ.title" = "音樂並未播放時";
+"NLl-9L-0gZ.title" = "未播放音樂時";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "文字：";
@@ -77,7 +77,7 @@
 "aUg-eg-K5C.label" = "卡拉OK";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "隱藏歌詞：";
+"bDS-Lb-m34.title" = "下列狀況時隱藏歌詞：";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
 "bFk-1g-XeL.title" = "實驗功能";
