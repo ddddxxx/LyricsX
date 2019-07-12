@@ -2,16 +2,16 @@
 "Download" = "Download";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "Font Fallback: %@";
+"Font Fallback: %@" = "Schriftart-Fallback: %@";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* window title */
-"Search Lyrics" = "Search Lyrics";
+"Search Lyrics" = "Songtexte suchen";
 
 /* No comment provided by engineer. */
-"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub.";
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "TouchBar-Songtexte werden nicht in der Mac App Store-Version unterstützt. Bitte laden Sie die entsprechende Version von GitHub herunter.";
 
 /* alert title */
-"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
+"Unable to enable Touch Bar lyrics." = "TouchBar-Songtexte können nicht aktiviert werden.";
