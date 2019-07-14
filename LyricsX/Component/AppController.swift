@@ -40,7 +40,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             currentLyrics?.recognizeLanguage()
             didChangeValue(forKey: "lyricsOffset")
             currentLineIndex = nil
-            NotificationCenter.default.post(name: .currentLyricsChange, object: nil)
+            postNotification(name: .currentLyricsChange)
             timer?.fireDate = Date()
         }
     }
@@ -117,7 +117,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     }
     
     func playbackStateChanged(state: MusicPlaybackState) {
-        NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+        postNotification(name: .lyricsShouldDisplay)
         if state == .playing {
             timer?.fireDate = Date()
         } else {
@@ -126,7 +126,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     }
     
     func currentTrackChanged(track: MusicTrack?) {
-        NotificationCenter.default.post(name: .currentTrackChange, object: nil)
+        postNotification(name: .currentTrackChange)
         if currentLyrics?.metadata.needsPersist == true {
             currentLyrics?.persist()
         }
@@ -214,14 +214,14 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     
     func playerPositionMutated(position: TimeInterval) {
         guard let lyrics = currentLyrics else {
-            NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+            postNotification(name: .lyricsShouldDisplay)
             timer?.fireDate = .distantFuture
             return
         }
         let (index, next) = lyrics[position + lyrics.adjustedTimeDelay]
         if currentLineIndex != index {
             currentLineIndex = index
-            NotificationCenter.default.post(name: .lyricsShouldDisplay, object: nil)
+            postNotification(name: .lyricsShouldDisplay)
         }
         if let next = next {
             timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.adjustedTimeDelay - position
