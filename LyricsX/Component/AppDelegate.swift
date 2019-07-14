@@ -31,7 +31,7 @@ import Sparkle
 #endif
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarProvider {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     
     static var shared: AppDelegate? {
         return NSApplication.shared.delegate as? AppDelegate
@@ -43,15 +43,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
     
     var desktopLyrics: KaraokeLyricsWindowController?
     
-    var touchBarLyrics: Any?
+    var _touchBarLyrics: Any?
     
     @available(OSX 10.12.2, *)
-    var touchBar: NSTouchBar? {
-        #if IS_FOR_MAS
-        return (self.touchBarLyrics as! TouchBarLyrics?)?.touchBar
-        #else
-        return nil
-        #endif
+    var touchBarLyrics: TouchBarLyrics? {
+        return self._touchBarLyrics as! TouchBarLyrics?
     }
     
     lazy var searchLyricsWC: NSWindowController = {
@@ -104,9 +100,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSTouchBarPr
         if #available(OSX 10.12.2, *) {
             observeDefaults(key: .TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
                 if change.newValue, self.touchBarLyrics == nil {
-                    self.touchBarLyrics = TouchBarLyrics()
+                    self._touchBarLyrics = TouchBarLyrics()
                 } else if !change.newValue, self.touchBarLyrics != nil {
-                    self.touchBarLyrics = nil
+                    self._touchBarLyrics = nil
                 }
             }
         }
