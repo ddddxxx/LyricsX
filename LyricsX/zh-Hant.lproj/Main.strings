@@ -68,7 +68,7 @@
 "l8J-1r-dIZ.title" = "藝人：";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "如果你用 LyricsX 用得還算開心，願意請我喝杯咖啡好讓我可以繼續維護這個軟體的話，你可以掃描下面的 QR code 來贊助我，感謝。";
+"o52-Z0-lue.title" = "如果你 LyricsX 用得還算開心，願意請杯咖啡好讓我可以繼續維護這個軟體的話，你可以掃描下面的 QR code 來贊助我，感謝。";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
 "DNi-vI-MTr.title" = "顯示於 Finder";
