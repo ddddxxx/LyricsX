@@ -155,7 +155,7 @@
 "XuN-vs-cgI.title" = "進度";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "整體歌詞偏移 (ms)：";
+"slB-q7-1dB.title" = "全體歌詞時間軸偏移 (ms)：";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
 "T7p-MT-Mrh.title" = "可拖放";
