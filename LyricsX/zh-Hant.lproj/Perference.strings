@@ -167,7 +167,7 @@
 "zQK-i2-2Nc.title" = "自訂 Touch Bar 歌詞";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "搜尋結果完整符合關鍵歌詞";
+"rSD-qR-EXA.title" = "搜尋結果需要完全符合關鍵字";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
 "WfA-pe-S5D.title" = "語言 (需要重新啟動)：";
