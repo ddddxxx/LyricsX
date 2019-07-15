@@ -140,25 +140,25 @@
 "ThQ-vA-Krb.title" = "自動為日文歌詞生成日文注音";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "啟用Touch Bar 歌詞";
+"gGL-LB-TXI.title" = "啟用 Touch Bar 歌詞";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
-"TB9-Fk-WAX.title" = "顯示歌詞視窗";
+"TB9-Fk-WAX.title" = "顯示歌詞視窗：";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "顯示/隱藏選單列歌詞";
+"XHQ-gX-urF.title" = "顯示 / 隱藏選單列歌詞";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "顯示/隱藏逐行歌詞";
+"lOc-OP-AcU.title" = "顯示 / 隱藏卡拉OK歌詞：";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
 "XuN-vs-cgI.title" = "進度";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "整體歌詞偏移(ms):";
+"slB-q7-1dB.title" = "整體歌詞偏移 (ms)：";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "可移動";
+"T7p-MT-Mrh.title" = "可拖放";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
 "As7-rZ-u6c.title" = "精確搜尋";
@@ -170,7 +170,7 @@
 "rSD-qR-EXA.title" = "搜尋結果完整符合關鍵歌詞";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "語言(需要重新啟動):";
+"WfA-pe-S5D.title" = "語言 (需要重新啟動)：";
 
 /* Class = "NSButtonCell"; title = "Help translate LyricsX"; ObjectID = "oiH-T7-agJ"; */
 "oiH-T7-agJ.title" = "協助翻譯 LyricsX";
