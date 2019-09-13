@@ -620,6 +620,7 @@
 					};
 					BB50786222014C3900B695C3 = {
 						DevelopmentTeam = 3665V726AE;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 					};
 					BB60F3001E889A1B00BA1FD2 = {
@@ -1228,6 +1229,7 @@
 				PRODUCT_NAME = LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = IS_FOR_MAS;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1255,6 +1257,7 @@
 				PRODUCT_NAME = LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = IS_FOR_MAS;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
