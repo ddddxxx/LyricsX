@@ -261,6 +261,16 @@
 		BB58B0811E82971400598D4F /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		BB58B0831E82B82F00598D4F /* OpenCC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCC.framework; path = Carthage/Build/Mac/OpenCC.framework; sourceTree = "<group>"; };
 		BB58B0881E82CA9B00598D4F /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		BB5C552F232B5D1B00448FC0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		BB5C5530232B5D1B00448FC0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Perference.strings; sourceTree = "<group>"; };
+		BB5C5531232B5D7200448FC0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB5C5532232B5D7500448FC0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB5C5533232B5D7800448FC0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB5C5534232B5D7A00448FC0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB5C5535232B5E6B00448FC0 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Main.strings; sourceTree = "<group>"; };
+		BB5C5536232B5E6B00448FC0 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Perference.strings; sourceTree = "<group>"; };
+		BB5C5537232B5EAA00448FC0 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB5C5538232B5EAE00448FC0 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BB5D4B2C2094A1D700844D9F /* FontSelectTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectTextField.swift; sourceTree = "<group>"; };
 		BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsXHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB60F3031E889A1B00BA1FD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -641,6 +651,8 @@
 				"zh-Hans",
 				ja,
 				pl,
+				de,
+				fa,
 			);
 			mainGroup = BB4141A11E458BA800A51775;
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
@@ -959,6 +971,9 @@
 				BB0BE9591F444CA00068FF67 /* zh-Hans */,
 				BB0BE95A1F444CAA0068FF67 /* en */,
 				E9AAA389219565010006EBC2 /* ja */,
+				BB5C5531232B5D7200448FC0 /* pl */,
+				BB5C5532232B5D7500448FC0 /* de */,
+				BB5C5537232B5EAA00448FC0 /* fa */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -971,6 +986,8 @@
 				BB335B112057BCE3003A69F8 /* en */,
 				E9AAA38B2195650D0006EBC2 /* ja */,
 				BBD2E35B22B780FC00410259 /* pl */,
+				BB5C552F232B5D1B00448FC0 /* de */,
+				BB5C5535232B5E6B00448FC0 /* fa */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -991,6 +1008,8 @@
 				BB335B132057BD03003A69F8 /* en */,
 				E9AAA38A219565080006EBC2 /* ja */,
 				BBD2E35C22B780FC00410259 /* pl */,
+				BB5C5530232B5D1B00448FC0 /* de */,
+				BB5C5536232B5E6B00448FC0 /* fa */,
 			);
 			name = Perference.storyboard;
 			sourceTree = "<group>";
@@ -1001,6 +1020,9 @@
 				E97AFB5A215CBF0300AF74CD /* en */,
 				E97AFB5C215CBF0500AF74CD /* zh-Hans */,
 				E9AAA388219564F50006EBC2 /* ja */,
+				BB5C5533232B5D7800448FC0 /* pl */,
+				BB5C5534232B5D7A00448FC0 /* de */,
+				BB5C5538232B5EAE00448FC0 /* fa */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
