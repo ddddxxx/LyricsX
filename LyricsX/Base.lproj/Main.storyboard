@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -304,7 +304,7 @@
                                 <outlet property="view" destination="LV9-pp-2tz" id="HgV-KT-3h0"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Search Lyrics..." tag="201" id="h6D-jz-GbI">
+                        <menuItem title="Search Lyrics..." tag="201" identifier="MainMenu.SearchLyrics" id="h6D-jz-GbI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenDuringMASReview" value="YES"/>
@@ -313,7 +313,7 @@
                                 <action selector="searchLyrics:" target="Ady-hI-5gd" id="RV2-uD-OF7"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Lyrics" identifier="MainMenu.Lyrics" id="hxE-X4-sJh">
+                        <menuItem title="Lyrics" tag="202" identifier="MainMenu.Lyrics" id="hxE-X4-sJh">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="Lyrics" id="Wcz-DR-zeg">
                                 <items>
@@ -1184,10 +1184,10 @@ IA
     </scenes>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
-        <image name="donate_alipay" width="200" height="200"/>
+        <image name="donate_alipay" width="100" height="100"/>
         <image name="hud_button_lock_off" width="11" height="11"/>
         <image name="hud_button_lock_on" width="11" height="11"/>
         <image name="hud_button_sync_button" width="14" height="12"/>
-        <image name="missing_artwork" width="800" height="800"/>
+        <image name="missing_artwork" width="400" height="400"/>
     </resources>
 </document>

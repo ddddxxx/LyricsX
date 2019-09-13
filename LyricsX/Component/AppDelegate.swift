@@ -31,7 +31,7 @@ import Sparkle
 #endif
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenuDelegate {
     
     static var shared: AppDelegate? {
         return NSApplication.shared.delegate as? AppDelegate
@@ -139,18 +139,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     
     // MARK: - NSMenuDelegate
     
-    func menuNeedsUpdate(_ menu: NSMenu) {
-        menu.iterateItem { item in
-            guard let identifier = item.identifier else { return }
-            switch identifier {
-            case .WriteToiTunes:
-                item.isEnabled = AppController.shared.playerManager.player is iTunes && AppController.shared.currentLyrics != nil
-            case .LyricsMenu:
-                item.isEnabled = AppController.shared.currentLyrics != nil
-            default:
-                break
-            }
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        switch menuItem.action {
+        case #selector(writeToiTunes(_:))?:
+            return AppController.shared.playerManager.player is iTunes && AppController.shared.currentLyrics != nil
+        case #selector(searchLyrics(_:))?:
+            let track = AppController.shared.playerManager.player?.currentTrack
+            let enabled = track != nil
+            return enabled
+        default:
+            return true
         }
+    }
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        menu.item(withTag: 202)?.isEnabled = AppController.shared.currentLyrics != nil
     }
     
     // MARK: - Menubar Action
@@ -254,18 +257,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             .DesktopLyricsXPositionFactor: 0.5,
             .DesktopLyricsYPositionFactor: 0.9,
             ])
-    }
-}
-
-extension NSMenu {
-    
-    func iterateItem(recursive: Bool = true, _ block: (NSMenuItem) -> Void) {
-        for item in items {
-            block(item)
-            if recursive, item.hasSubmenu {
-                item.submenu?.iterateItem(block)
-            }
-        }
     }
 }
 
