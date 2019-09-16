@@ -33,10 +33,12 @@ class TouchBarArtworkViewController: NSViewController {
     
     override func viewDidLoad() {
         reloadImage()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadImage), name: .currentTrackChange, object: nil)
+        observeNotification(name: .currentTrackChange) { [unowned self] _ in
+            self.reloadImage()
+        }
     }
     
-    @objc func reloadImage() {
+    func reloadImage() {
         guard let player = AppController.shared.playerManager.player else {
             artworkView.image = nil
             return

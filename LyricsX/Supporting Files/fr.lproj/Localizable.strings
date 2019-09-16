@@ -1,0 +1,17 @@
+/* title of download button on the update alert. Download new version of the app. */
+"Download" = "Download";
+
+/* No comment provided by engineer. */
+"Font Fallback: %@" = "Font Fallback: %@";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* window title */
+"Search Lyrics" = "Search Lyrics";
+
+/* No comment provided by engineer. */
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub.";
+
+/* alert title */
+"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";

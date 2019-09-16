@@ -1,0 +1,17 @@
+/* title of download button on the update alert. Download new version of the app. */
+"Download" = "下載";
+
+/* No comment provided by engineer. */
+"Font Fallback: %@" = "備用字體：%@";
+
+/* No comment provided by engineer. */
+"OK" = "確定";
+
+/* window title */
+"Search Lyrics" = "搜尋歌詞";
+
+/* No comment provided by engineer. */
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar 歌詞不支援 Mac App Store 的版本，請前往 Github 下載。";
+
+/* alert title */
+"Unable to enable Touch Bar lyrics." = "無法啟用 Touch Bar 歌詞";

@@ -1,0 +1,17 @@
+/* title of download button on the update alert. Download new version of the app. */
+"Download" = "دانلود";
+
+/* No comment provided by engineer. */
+"Font Fallback: %@" = "فونت جایگزین: %@";
+
+/* No comment provided by engineer. */
+"OK" = "تایید";
+
+/* window title */
+"Search Lyrics" = "جستجو ترانه";
+
+/* No comment provided by engineer. */
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "نمایش متن ترانه در تاچ بار در نسخه دانلود از استور پشتیبانی نمی شود. لطفا از نسخه موجود در گیت هاب استفاده کنید.";
+
+/* alert title */
+"Unable to enable Touch Bar lyrics." = "نمایش متن ترانه در تاچ بار فعال نشد.";

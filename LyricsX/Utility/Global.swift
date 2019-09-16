@@ -56,8 +56,9 @@ func log(_ message: @autoclosure () -> String, file: String = #file, line: UInt 
 // MARK: - Identifier
 
 extension NSUserInterfaceItemIdentifier {
-    static let WriteToiTunes = NSUserInterfaceItemIdentifier("MainMenu.WriteToiTunes")
-    static let LyricsMenu = NSUserInterfaceItemIdentifier("MainMenu.Lyrics")
+//    static let WriteToiTunes = NSUserInterfaceItemIdentifier("MainMenu.WriteToiTunes")
+//    static let SearchLyrics = NSUserInterfaceItemIdentifier("MainMenu.SearchLyrics")
+//    static let LyricsMenu = NSUserInterfaceItemIdentifier("MainMenu.Lyrics")
     
     static let searchResultColumnTitle = NSUserInterfaceItemIdentifier("SearchResult.TableColumn.Title")
     static let searchResultColumnArtist = NSUserInterfaceItemIdentifier("SearchResult.TableColumn.Artist")

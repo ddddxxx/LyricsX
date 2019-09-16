@@ -32,7 +32,9 @@ private class NotificationObservationToken {
     }
     
     func invalidate() {
-        token.map { center?.removeObserver($0) }
+        if let center = center, let token = token {
+            center.removeObserver(token)
+        }
         center = nil
         token = nil
     }
@@ -54,6 +56,12 @@ extension NSObject {
         let arr = NSMutableArray()
         objc_setAssociatedObject(self, &NSObject.autoDestructionTokens, arr, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return arr
+    }
+    
+    func postNotification(center: NotificationCenter = .default,
+                          name: NSNotification.Name,
+                          userInfo: [String: Any] = [:]) {
+        center.post(name: name, object: self, userInfo: userInfo)
     }
     
     func observeNotification(center: NotificationCenter = .default,

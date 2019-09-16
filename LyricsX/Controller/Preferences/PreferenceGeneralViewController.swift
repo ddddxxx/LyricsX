@@ -145,4 +145,6 @@ let supportedLanguages = [
     "zh-Hans",
     "ja",
     "pl",
+    "de",
+    "fa",
 ]

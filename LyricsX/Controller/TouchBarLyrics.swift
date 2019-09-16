@@ -24,44 +24,91 @@ import OpenCC
 import DFRPrivate
 
 @available(OSX 10.12.2, *)
-class TouchBarLyrics: NSObject, NSTouchBarDelegate {
+class TouchBarSystemModalController: NSObject, NSTouchBarDelegate {
     
-    let touchBar = NSTouchBar()
-    private let systemTrayItem = NSCustomTouchBarItem(identifier: .systemTrayItem)
-    
-    private var lyricsItem = TouchBarLyricsItem(identifier: .lyrics)
+    var touchBar: NSTouchBar?
+    var systemTrayItem: NSCustomTouchBarItem?
     
     override init() {
         super.init()
-        touchBar.delegate = self
-        touchBar.defaultItemIdentifiers = [.currentArtwork, .fixedSpaceSmall, .playbackControl, .fixedSpaceSmall, .lyrics, .flexibleSpace]
-        touchBar.customizationIdentifier = .main
-        touchBar.customizationAllowedItemIdentifiers = [.currentArtwork, .playbackControl, .lyrics, .fixedSpaceSmall, .fixedSpaceLarge, .flexibleSpace]
-        
-        systemTrayItem.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(presentTouchBar))
-        systemTrayItem.addToSystemTray()
-        systemTrayItem.setControlStripPresence(true)
-        NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(true)
-        
-        lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
-        
-        NSUserNotificationCenter.default.observeNotification(name: NSApplication.didBecomeActiveNotification) { _ in
-            self.systemTrayItem.setControlStripPresence(true)
+        loadTouchBar()
+        touchBar?.delegate = self
+        touchBarDidLoad()
+        showInControlStrip()
+    }
+    
+    /// customization point
+    func loadTouchBar() {
+        if touchBar == nil {
+            touchBar = NSTouchBar()
         }
     }
     
-    deinit {
-        self.systemTrayItem.removeFromSystemTray()
+    /// customization point
+    func touchBarDidLoad() {
+        
     }
     
-    @objc private func presentTouchBar() {
-        touchBar.presentAsSystemModal(for: systemTrayItem)
+    @objc func showInControlStrip() {
+        systemTrayItem?.addToSystemTray()
+        systemTrayItem?.setControlStripPresence(true)
+        NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(true)
+    }
+    
+    @objc func removeFromControlStrip() {
+        dismiss()
+        systemTrayItem?.removeFromSystemTray()
+    }
+    
+    @objc func present() {
+        if let touchBar = self.touchBar, let systemTrayItem = self.systemTrayItem {
+            touchBar.presentAsSystemModal(for: systemTrayItem)
+        }
+    }
+    
+    @objc func minimize() {
+        touchBar?.minimizeSystemModal()
+    }
+    
+    @objc func dismiss() {
+        touchBar?.dismissSystemModal()
+    }
+}
+
+@available(OSX 10.12.2, *)
+class TouchBarLyrics: TouchBarSystemModalController {
+    
+    private var lyricsItem = TouchBarLyricsItem(identifier: .lyrics)
+    
+    override func touchBarDidLoad() {
+        touchBar?.defaultItemIdentifiers = [.currentArtwork, .fixedSpaceSmall, .playbackControl, .fixedSpaceSmall, .lyrics, .flexibleSpace, .otherItemsProxy]
+        touchBar?.customizationIdentifier = .main
+        touchBar?.customizationAllowedItemIdentifiers = [.currentArtwork, .playbackControl, .lyrics, .fixedSpaceSmall, .fixedSpaceLarge, .flexibleSpace, .otherItemsProxy]
+        
+        systemTrayItem = NSCustomTouchBarItem(identifier: .systemTrayItem)
+        systemTrayItem?.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(present))
+        
+        lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
+        
+        self.observeNotification(name: NSApplication.willBecomeActiveNotification) { [unowned self] _ in
+            self.removeFromControlStrip()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                NSApp.touchBar = self.touchBar
+            }
+        }
+        
+        self.observeNotification(name: NSApplication.didResignActiveNotification) { [unowned self] _ in
+            NSApp.touchBar = nil
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                self.showInControlStrip()
+            }
+        }
     }
     
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         switch identifier {
         case .lyrics:
-            return TouchBarLyricsItem(identifier: identifier)
+            return lyricsItem
         case .playbackControl:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.viewController = TouchBarPlaybackControlViewController()
