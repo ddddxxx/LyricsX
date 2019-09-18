@@ -24,12 +24,15 @@ import LyricsCore
 import PlaybackControl
 import OpenCC
 import SnapKit
+import CombineX
 
 class KaraokeLyricsWindowController: NSWindowController {
     
     static private let windowFrame = NSWindow.FrameAutosaveName("KaraokeWindow")
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     init() {
         let window = NSWindow(contentRect: .zero, styleMask: .borderless, backing: .buffered, defer: true)
@@ -51,13 +54,9 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
-            self.handleLyricsDisplay()
-            self.observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in
+            AppController.shared.$currentLyrics.sink { _ in
                 self.handleLyricsDisplay()
-            }
-            self.observeNotification(name: .currentLyricsChange) { [unowned self] _ in
-                self.handleLyricsDisplay()
-            }
+            }.store(in: &self.cancelBag)
             self.observeDefaults(keys: [.PreferBilingualLyrics, .DesktopLyricsOneLineMode]) { [unowned self] in
                 self.handleLyricsDisplay()
             }

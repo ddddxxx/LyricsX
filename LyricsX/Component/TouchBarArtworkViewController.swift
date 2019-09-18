@@ -20,31 +20,29 @@
 
 import AppKit
 import PlaybackControl
+import CombineX
 
 class TouchBarArtworkViewController: NSViewController {
     
     let artworkView = NSImageView()
     
-    var observation: NSObjectProtocol?
+    private var cancelBag = Set<AnyCancellable>()
     
     override func loadView() {
         view = artworkView
     }
     
     override func viewDidLoad() {
-        reloadImage()
-        observeNotification(name: .currentTrackChange) { [unowned self] _ in
-            self.reloadImage()
-        }
-    }
-    
-    func reloadImage() {
-        guard let player = AppController.shared.playerManager.player else {
-            artworkView.image = nil
-            return
-        }
-        let image = player.currentTrack?.artwork ?? player.icon
-        artworkView.image = image?.scaled(to: NSSize(width: 28, height: 28))
+        AppController.shared.playerManager.$player
+            .map {
+                ($0?.$currentTrack).map(AnyPublisher.init) ?? Just(nil).eraseToAnyPublisher()
+            }
+            .switchToLatest()
+            .map {
+                $0?.artwork ?? AppController.shared.playerManager.player?.icon
+            }
+            .assign(to: \.image, on: artworkView)
+            .store(in: &cancelBag)
     }
 }
 

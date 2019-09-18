@@ -20,6 +20,7 @@
 
 import AppKit
 import OpenCC
+import CombineX
 
 @available(OSX 10.12.2, *)
 class TouchBarLyricsItem: NSCustomTouchBarItem {
@@ -27,6 +28,8 @@ class TouchBarLyricsItem: NSCustomTouchBarItem {
     private var lyricsTextField = KaraokeLabel(labelWithString: "")
     
     @objc dynamic var progressColor = #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1)
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     override init(identifier: NSTouchBarItem.Identifier) {
         super.init(identifier: identifier)
@@ -43,7 +46,9 @@ class TouchBarLyricsItem: NSCustomTouchBarItem {
         customizationLabel = "Lyrics"
         handleLyricsDisplay()
         defaultNC.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-        defaultNC.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .currentLyricsChange, object: nil)
+        AppController.shared.$currentLyrics.sink { _ in
+            self.handleLyricsDisplay()
+        }.store(in: &cancelBag)
     }
     
     @objc func handleLyricsDisplay() {

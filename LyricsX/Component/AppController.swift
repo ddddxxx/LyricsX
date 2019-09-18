@@ -32,16 +32,14 @@ class AppController: NSObject {
     let lyricsManager = LyricsProviderManager()
     let playerManager = MusicPlayerManager()
     
+    @CombineX.Published
     var currentLyrics: Lyrics? {
         willSet {
             willChangeValue(forKey: "lyricsOffset")
         }
         didSet {
-            currentLyrics?.filtrate()
-            currentLyrics?.recognizeLanguage()
             didChangeValue(forKey: "lyricsOffset")
             currentLineIndex = nil
-            postNotification(name: .currentLyricsChange)
             timer?.fireDate = Date()
         }
     }
@@ -143,7 +141,6 @@ class AppController: NSObject {
     }
     
     func currentTrackChanged(track: MusicTrack?) {
-        postNotification(name: .currentTrackChange)
         if currentLyrics?.metadata.needsPersist == true {
             currentLyrics?.persist()
         }
@@ -197,6 +194,8 @@ class AppController: NSObject {
                 lyrics.metadata.localURL = url
                 lyrics.metadata.title = title
                 lyrics.metadata.artist = artist
+                lyrics.filtrate()
+                lyrics.recognizeLanguage()
                 currentLyrics = lyrics
                 Answers.logCustomEvent(withName: "Load Local Lyrics")
                 if needsSearching {
@@ -272,6 +271,8 @@ class AppController: NSObject {
         if let current = currentLyrics, current.quality >= lyrics.quality {
             return
         }
+        lyrics.filtrate()
+        lyrics.recognizeLanguage()
         lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
     }
@@ -298,6 +299,8 @@ extension AppController {
         }
         lrc.metadata.title = track.title
         lrc.metadata.artist = track.artist
+        lrc.filtrate()
+        lrc.recognizeLanguage()
         lrc.metadata.needsPersist = true
         currentLyrics = lrc
         if let index = defaults[.NoSearchingTrackIds].firstIndex(of: track.id) {

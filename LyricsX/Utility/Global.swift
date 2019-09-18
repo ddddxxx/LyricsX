@@ -74,8 +74,6 @@ extension NSStoryboard.SceneIdentifier {
 
 extension Notification.Name {
     static let lyricsShouldDisplay = Notification.Name("LyricsShouldDisplayNotification")
-    static let currentLyricsChange = Notification.Name("CurrentLyricsChangeNotification")
-    static let currentTrackChange = Notification.Name("CurrentTrackChangeNotification")
 }
 
 // MARK: - User Defaults

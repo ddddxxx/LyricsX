@@ -22,6 +22,7 @@ import Cocoa
 import Crashlytics
 import GenericID
 import PlaybackControl
+import CombineX
 
 class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsViewDelegate, DragNDropDelegate {
     
@@ -39,6 +40,8 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             }
         }
     }
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,8 +73,11 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             self.displayLyrics(animation: false)
         }
         
+        AppController.shared.$currentLyrics.sink { _ in
+            self.lyricsChanged()
+        }.store(in: &cancelBag)
+        
         observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.displayLyrics() }
-        observeNotification(name: .currentLyricsChange) { [unowned self] _ in self.lyricsChanged() }
         observeNotification(name: NSScrollView.willStartLiveScrollNotification,
                             object: lyricsScrollView,
                             queue: .main) { [unowned self] _ in self.isTracking = false }

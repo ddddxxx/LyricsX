@@ -137,6 +137,8 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         guard lyrics.metadata.request == searchRequest else {
             return
         }
+        lyrics.filtrate()
+        lyrics.recognizeLanguage()
         lyrics.metadata.needsPersist = true
         if let idx = searchResult.firstIndex(where: { lyrics.quality > $0.quality }) {
             searchResult.insert(lyrics, at: idx)
