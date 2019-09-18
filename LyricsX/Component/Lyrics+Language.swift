@@ -19,7 +19,7 @@
 //
 
 import Foundation
-import LyricsProvider
+import LyricsCore
 
 private extension NSCountedSet {
     

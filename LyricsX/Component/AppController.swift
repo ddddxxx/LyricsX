@@ -20,9 +20,10 @@
 
 import AppKit
 import Crashlytics
-import LyricsProvider
+import LyricsService
 import MusicPlayer
 import OpenCC
+import CombineX
 
 class AppController: NSObject, MusicPlayerManagerDelegate {
     
@@ -46,7 +47,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     }
     
     var searchRequest: LyricsSearchRequest?
-    var searchProgress: Progress?
+    var searchCanceller: AnyCancellable?
     
     var currentLineIndex: Int?
     
@@ -132,6 +133,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }
         currentLyrics = nil
         currentLineIndex = nil
+        searchCanceller?.cancel()
         guard let track = track else {
             return
         }
@@ -208,7 +210,11 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                                       limit: 5,
                                       timeout: 10)
         searchRequest = req
-        searchProgress = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
+        searchCanceller = lyricsManager.lyricsPublisher(request: req).sink(receiveCompletion: { _ in
+            if defaults[.WriteToiTunesAutomatically] {
+                self.writeToiTunes(overwrite: true)
+            }
+        }, receiveValue: self.lyricsReceived)
         Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
     }
     
@@ -252,11 +258,6 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         }
         lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
-
-        if searchProgress?.isFinished == true,
-            defaults[.WriteToiTunesAutomatically] {
-            writeToiTunes(overwrite: true)
-        }
     }
 }
 

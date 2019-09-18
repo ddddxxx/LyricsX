@@ -20,7 +20,7 @@
 
 import Cocoa
 import GenericID
-import LyricsProvider
+import LyricsCore
 import MusicPlayer
 import OpenCC
 import SnapKit

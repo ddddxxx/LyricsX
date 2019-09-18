@@ -47,8 +47,6 @@
 		BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB458C63201C5F4500740C3B /* LyricsMetaData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB458C62201C5F4500740C3B /* LyricsMetaData+Extension.swift */; };
 		BB4919361F00CD800054EA09 /* PreferenceShortcutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4919351F00CD800054EA09 /* PreferenceShortcutViewController.swift */; };
-		BB4FBE751F0F1E440045A8FA /* LyricsProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */; };
-		BB4FBE761F0F1E440045A8FA /* LyricsProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB50786422014C3900B695C3 /* KaraokeLyricsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141BF1E45B67800A51775 /* KaraokeLyricsController.swift */; };
 		BB50786522014C3900B695C3 /* Polyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E32150F47800D80616 /* Polyfill.swift */; };
 		BB50786622014C3900B695C3 /* PreferenceLabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72784920996DE900231C63 /* PreferenceLabViewController.swift */; };
@@ -91,7 +89,6 @@
 		BB50788D22014C3900B695C3 /* DFRPrivate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58640221F2A8570084D2C0 /* DFRPrivate.framework */; };
 		BB50788E22014C3900B695C3 /* MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; };
 		BB50788F22014C3900B695C3 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; };
-		BB50789022014C3900B695C3 /* LyricsProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */; };
 		BB50789122014C3900B695C3 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; };
 		BB50789522014C3900B695C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB0BE9581F444C9E0068FF67 /* Localizable.strings */; };
 		BB50789622014C3900B695C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E97AFB5B215CBF0300AF74CD /* InfoPlist.strings */; };
@@ -102,7 +99,6 @@
 		BB50789B22014C3900B695C3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
 		BB50789D22014C3900B695C3 /* DFRPrivate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB58640221F2A8570084D2C0 /* DFRPrivate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB5078A022014C3900B695C3 /* MusicPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BB5078A122014C3900B695C3 /* LyricsProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB5078A222014C3900B695C3 /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB5078A322014C3900B695C3 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB5078A622014C3900B695C3 /* LyricsXHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -131,6 +127,11 @@
 		BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F2C232FB3AF00A3879E /* GenericID */; };
 		BBB03F30232FB40400A3879E /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F2F232FB40400A3879E /* Semver */; };
 		BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F392331D8A800A3879E /* OpenCC */; };
+		BBB03F3D2331DACD00A3879E /* LyricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F3C2331DACD00A3879E /* LyricsKit */; };
+		BBB03F3F2331DBB000A3879E /* GenericID in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F3E2331DBB000A3879E /* GenericID */; };
+		BBB03F412331DBB000A3879E /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F402331DBB000A3879E /* Semver */; };
+		BBB03F432331DBB000A3879E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F422331DBB000A3879E /* OpenCC */; };
+		BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F442331DBB000A3879E /* LyricsKit */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
 		BBC1D35B1E485BA7002538A2 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* AppController.swift */; };
 		BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* Global.swift */; };
@@ -159,7 +160,6 @@
 				BB58640521F2A85A0084D2C0 /* DFRPrivate.framework in Embed Frameworks */,
 				BBF83E231FB5502000D76E5B /* MusicPlayer.framework in Embed Frameworks */,
 				BB5078B022014CAA00B695C3 /* Sparkle.framework in Embed Frameworks */,
-				BB4FBE761F0F1E440045A8FA /* LyricsProvider.framework in Embed Frameworks */,
 				BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */,
 				BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */,
 			);
@@ -174,7 +174,6 @@
 			files = (
 				BB50789D22014C3900B695C3 /* DFRPrivate.framework in Embed Frameworks */,
 				BB5078A022014C3900B695C3 /* MusicPlayer.framework in Embed Frameworks */,
-				BB5078A122014C3900B695C3 /* LyricsProvider.framework in Embed Frameworks */,
 				BB5078A222014C3900B695C3 /* MASShortcut.framework in Embed Frameworks */,
 				BB5078A322014C3900B695C3 /* SnapKit.framework in Embed Frameworks */,
 			);
@@ -235,7 +234,6 @@
 		BB4141C61E46CDD200A51775 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/Mac/SnapKit.framework; sourceTree = "<group>"; };
 		BB458C62201C5F4500740C3B /* LyricsMetaData+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LyricsMetaData+Extension.swift"; sourceTree = "<group>"; };
 		BB4919351F00CD800054EA09 /* PreferenceShortcutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceShortcutViewController.swift; sourceTree = "<group>"; };
-		BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LyricsProvider.framework; path = Carthage/Build/Mac/LyricsProvider.framework; sourceTree = "<group>"; };
 		BB5078AD22014C3900B695C3 /* LyricsX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyricsX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5863F221EFFD9F0084D2C0 /* TouchBarLyricsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarLyricsItem.swift; sourceTree = "<group>"; };
 		BB58640221F2A8570084D2C0 /* DFRPrivate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRPrivate.framework; path = Carthage/Build/Mac/DFRPrivate.framework; sourceTree = "<group>"; };
@@ -306,10 +304,10 @@
 				BBF83E221FB5502000D76E5B /* MusicPlayer.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */,
-				BB4FBE751F0F1E440045A8FA /* LyricsProvider.framework in Frameworks */,
 				BBB03F30232FB40400A3879E /* Semver in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
 				BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */,
+				BBB03F3D2331DACD00A3879E /* LyricsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,12 +315,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB03F432331DBB000A3879E /* OpenCC in Frameworks */,
 				BB50788A22014C3900B695C3 /* Crashlytics.framework in Frameworks */,
 				BB50788B22014C3900B695C3 /* Fabric.framework in Frameworks */,
 				BB50788D22014C3900B695C3 /* DFRPrivate.framework in Frameworks */,
+				BBB03F3F2331DBB000A3879E /* GenericID in Frameworks */,
+				BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */,
 				BB50788E22014C3900B695C3 /* MusicPlayer.framework in Frameworks */,
+				BBB03F412331DBB000A3879E /* Semver in Frameworks */,
 				BB50788F22014C3900B695C3 /* SnapKit.framework in Frameworks */,
-				BB50789022014C3900B695C3 /* LyricsProvider.framework in Frameworks */,
 				BB50789122014C3900B695C3 /* MASShortcut.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +414,6 @@
 				BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */,
 				BB58640221F2A8570084D2C0 /* DFRPrivate.framework */,
 				BB0BE95C1F44508F0068FF67 /* Fabric.framework */,
-				BB4FBE741F0F1E440045A8FA /* LyricsProvider.framework */,
 				BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */,
 				BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
@@ -522,6 +522,7 @@
 				BBB03F2C232FB3AF00A3879E /* GenericID */,
 				BBB03F2F232FB40400A3879E /* Semver */,
 				BBB03F392331D8A800A3879E /* OpenCC */,
+				BBB03F3C2331DACD00A3879E /* LyricsKit */,
 			);
 			productName = LyricsX;
 			productReference = BB4141AA1E458BA800A51775 /* LyricsX.app */;
@@ -546,6 +547,12 @@
 			dependencies = (
 			);
 			name = "LyricsX MAS";
+			packageProductDependencies = (
+				BBB03F3E2331DBB000A3879E /* GenericID */,
+				BBB03F402331DBB000A3879E /* Semver */,
+				BBB03F422331DBB000A3879E /* OpenCC */,
+				BBB03F442331DBB000A3879E /* LyricsKit */,
+			);
 			productName = LyricsX;
 			productReference = BB5078AD22014C3900B695C3 /* LyricsX.app */;
 			productType = "com.apple.product-type.application";
@@ -639,6 +646,7 @@
 				BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */,
 				BBB03F2E232FB40400A3879E /* XCRemoteSwiftPackageReference "Semver" */,
 				BBB03F382331D8A800A3879E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */,
+				BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */,
 			);
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
 			projectDirPath = "";
@@ -1375,6 +1383,14 @@
 				minimumVersion = 1.0.1;
 			};
 		};
+		BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ddddxxx/LyricsKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1392,6 +1408,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BBB03F382331D8A800A3879E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */;
 			productName = OpenCC;
+		};
+		BBB03F3C2331DACD00A3879E /* LyricsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */;
+			productName = LyricsKit;
+		};
+		BBB03F3E2331DBB000A3879E /* GenericID */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */;
+			productName = GenericID;
+		};
+		BBB03F402331DBB000A3879E /* Semver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBB03F2E232FB40400A3879E /* XCRemoteSwiftPackageReference "Semver" */;
+			productName = Semver;
+		};
+		BBB03F422331DBB000A3879E /* OpenCC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBB03F382331D8A800A3879E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */;
+			productName = OpenCC;
+		};
+		BBB03F442331DBB000A3879E /* LyricsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */;
+			productName = LyricsKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

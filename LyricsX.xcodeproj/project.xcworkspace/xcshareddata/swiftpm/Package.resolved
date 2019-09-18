@@ -2,12 +2,75 @@
   "object": {
     "pins": [
       {
+        "package": "CombineX",
+        "repositoryURL": "https://github.com/cx-org/CombineX",
+        "state": {
+          "branch": "master",
+          "revision": "6239d172a1c900a2438d3fbec91b3999a5d6d9f2",
+          "version": null
+        }
+      },
+      {
+        "package": "CXFoundation",
+        "repositoryURL": "https://github.com/cx-org/CXFoundation",
+        "state": {
+          "branch": "master",
+          "revision": "0878bb1bdfacfd4f74fe6c0329efec1a245392cf",
+          "version": null
+        }
+      },
+      {
         "package": "GenericID",
         "repositoryURL": "https://github.com/ddddxxx/GenericID.git",
         "state": {
           "branch": null,
           "revision": "42c61a3a266f61448800f237199ad39e6083060b",
           "version": "0.5.0"
+        }
+      },
+      {
+        "package": "Gzip",
+        "repositoryURL": "https://github.com/1024jp/GzipSwift",
+        "state": {
+          "branch": null,
+          "revision": "7d428aa5ce561cb4338ce245293d852326a86dfe",
+          "version": "5.0.0"
+        }
+      },
+      {
+        "package": "LyricsKit",
+        "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
+        "state": {
+          "branch": "master",
+          "revision": "d6f4f8b01ce0913cbcdbca77dccc577c20eb4bc2",
+          "version": null
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
+          "version": "8.0.2"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
+          "version": "2.2.0"
+        }
+      },
+      {
+        "package": "Regex",
+        "repositoryURL": "https://github.com/ddddxxx/Regex",
+        "state": {
+          "branch": null,
+          "revision": "be99b43cbcd958ef54b8316ea1a0cf82e525ad54",
+          "version": "0.1.0"
         }
       },
       {

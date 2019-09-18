@@ -20,8 +20,9 @@
 
 import Cocoa
 import Crashlytics
-import LyricsProvider
+import LyricsService
 import MusicPlayer
+import CombineX
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
@@ -36,7 +37,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     let lyricsManager = LyricsProviderManager()
     var searchRequest: LyricsSearchRequest?
-    var searchProgress: Progress?
+    var searchCanceller: AnyCancellable?
     var searchResult: [Lyrics] = []
     var progressObservation: NSKeyValueObservation?
     
@@ -63,8 +64,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     func reloadKeyword() {
         guard let track = AppController.shared.playerManager.player?.currentTrack else {
-            searchProgress?.cancel()
-            searchProgress = nil
+            searchCanceller?.cancel()
             searchResult = []
             searchArtist = ""
             searchTitle = ""
@@ -82,7 +82,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     @IBAction func searchAction(_ sender: Any?) {
-        searchProgress?.cancel()
+        searchCanceller?.cancel()
         progressObservation?.invalidate()
         searchResult = []
         artworkView.image = #imageLiteral(resourceName: "missing_artwork")
@@ -99,19 +99,12 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
                                       limit: 8,
                                       timeout: 10)
         searchRequest = req
-        searchProgress = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
-        progressIndicator.isHidden = false
-        progressIndicator.doubleValue = 0
-        progressObservation = searchProgress?.observe(\.fractionCompleted, options: [.new]) { [weak self] _, change in
-            guard let fractionCompleted = change.newValue else { return }
+        searchCanceller = lyricsManager.lyricsPublisher(request: req).sink(receiveCompletion: { _ in
             DispatchQueue.main.async {
-                self?.progressIndicator.doubleValue = fractionCompleted
-                if fractionCompleted == 1 {
-                    self?.progressIndicator.isHidden = true
-                    self?.progressObservation?.invalidate()
-                }
+                self.progressIndicator.stopAnimation(nil)
             }
-        }
+        }, receiveValue: self.lyricsReceived)
+        progressIndicator.startAnimation(nil)
         tableView.reloadData()
         Answers.logCustomEvent(withName: "Search Lyrics Manually")
     }
