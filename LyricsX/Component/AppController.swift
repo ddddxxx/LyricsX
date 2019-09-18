@@ -21,11 +21,11 @@
 import AppKit
 import Crashlytics
 import LyricsService
-import MusicPlayer
+import PlaybackControl
 import OpenCC
 import CombineX
 
-class AppController: NSObject, MusicPlayerManagerDelegate {
+class AppController: NSObject {
     
     static let shared = AppController()
     
@@ -53,6 +53,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     
     var timer: Timer?
     
+    private var cancelBag = Set<AnyCancellable>()
+    
     @objc dynamic var lyricsOffset: Int {
         get {
             return currentLyrics?.offset ?? 0
@@ -66,14 +68,37 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     
     private override init() {
         super.init()
-        playerManager.delegate = self
+//        playerManager.delegate = self
         playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
         
         timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
         timer?.tolerance = 0.02
         RunLoop.current.add(timer!, forMode: .common)
         
-        currentTrackChanged(track: playerManager.player?.currentTrack)
+        playerManager.$player
+            .map {
+                ($0?.$currentTrack).map(AnyPublisher.init) ?? Just(nil).eraseToAnyPublisher()
+            }
+            .switchToLatest()
+            .sink(receiveValue: self.currentTrackChanged)
+            .store(in: &cancelBag)
+        
+        playerManager.$player
+            .map {
+                ($0?.$playbackState).map(AnyPublisher.init) ?? Just(.stopped).eraseToAnyPublisher()
+            }
+            .switchToLatest()
+            .sink(receiveValue: self.playbackStateChanged)
+            .store(in: &cancelBag)
+            
+        playerManager.$player
+            .compactMap { $0?.$isRunning }
+            .switchToLatest()
+            .sink { isRunning in
+                if !isRunning, defaults[.LaunchAndQuitWithPlayer] {
+                    NSApplication.shared.terminate(nil)
+                }
+            }.store(in: &cancelBag)
     }
     
     func writeToiTunes(overwrite: Bool) {
@@ -107,23 +132,14 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     
     // MARK: MusicPlayerManagerDelegate
     
-    func runningStateChanged(isRunning: Bool) {
-        if !isRunning, defaults[.LaunchAndQuitWithPlayer] {
-            NSApplication.shared.terminate(nil)
-        }
-    }
-    
-    func currentPlayerChanged(player: MusicPlayer?) {
-        currentTrackChanged(track: player?.currentTrack)
-    }
-    
-    func playbackStateChanged(state: MusicPlaybackState) {
+    func playbackStateChanged(state: PlaybackState) {
         postNotification(name: .lyricsShouldDisplay)
-        if state == .playing {
+        if state.isPlaying {
             timer?.fireDate = Date()
         } else {
             timer?.fireDate = .distantFuture
         }
+        playerPositionMutated(position: state.time)
     }
     
     func currentTrackChanged(track: MusicTrack?) {
@@ -237,7 +253,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
     }
     
     @objc func updatePlayerPosition() {
-        guard let position = playerManager.player?.playerPosition else {
+        guard let position = playerManager.player?.playbackTime else {
             return
         }
         playerPositionMutated(position: position)

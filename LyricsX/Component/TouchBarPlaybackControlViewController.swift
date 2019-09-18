@@ -19,7 +19,7 @@
 //
 
 import AppKit
-import MusicPlayer
+import PlaybackControl
 import SnapKit
 
 @available(OSX 10.12.2, *)
@@ -56,8 +56,8 @@ class TouchBarPlaybackControlViewController: NSViewController {
         guard let player = AppController.shared.playerManager.player else {
             return
         }
-        if player.playerPosition > 5 {
-            player.playerPosition = 0
+        if player.playbackTime > 5 {
+            player.playbackTime = 0
         } else {
             player.skipToPreviousItem()
         }

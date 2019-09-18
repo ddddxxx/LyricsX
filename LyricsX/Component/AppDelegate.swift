@@ -23,7 +23,7 @@ import Crashlytics
 import Fabric
 import GenericID
 import MASShortcut
-import MusicPlayer
+import PlaybackControl
 
 #if IS_FOR_MAS
 #else

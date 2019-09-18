@@ -56,6 +56,15 @@
         }
       },
       {
+        "package": "PlaybackControl",
+        "repositoryURL": "https://github.com/ddddxxx/PlaybackControl.git",
+        "state": {
+          "branch": "master",
+          "revision": "f8b3cdacea1bea7ce1e38ec1e55a28edc22b1a5c",
+          "version": null
+        }
+      },
+      {
         "package": "Quick",
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {

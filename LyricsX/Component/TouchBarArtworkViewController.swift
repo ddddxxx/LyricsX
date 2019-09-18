@@ -19,7 +19,7 @@
 //
 
 import AppKit
-import MusicPlayer
+import PlaybackControl
 
 class TouchBarArtworkViewController: NSViewController {
     

@@ -21,7 +21,7 @@
 import Cocoa
 import Crashlytics
 import GenericID
-import MusicPlayer
+import PlaybackControl
 
 class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsViewDelegate, DragNDropDelegate {
     
@@ -97,7 +97,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     }
     
     private func displayLyrics(animation: Bool = true) {
-        guard var pos = AppController.shared.playerManager.player?.playerPosition else {
+        guard var pos = AppController.shared.playerManager.player?.playbackTime else {
             return
         }
         pos += AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
@@ -121,7 +121,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     
     func doubleClickLyricsLine(at position: TimeInterval) {
         let pos = position - (AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0)
-        AppController.shared.playerManager.player?.playerPosition = pos
+        AppController.shared.playerManager.player?.playbackTime = pos
         isTracking = true
         Answers.logCustomEvent(withName: "Seek to Lyrics Line")
     }

@@ -19,7 +19,7 @@
 //
 
 import Cocoa
-import MusicPlayer
+import PlaybackControl
 import ServiceManagement
 
 class PreferenceGeneralViewController: NSViewController {

@@ -87,7 +87,6 @@
 		BB50788A22014C3900B695C3 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */; };
 		BB50788B22014C3900B695C3 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95C1F44508F0068FF67 /* Fabric.framework */; };
 		BB50788D22014C3900B695C3 /* DFRPrivate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58640221F2A8570084D2C0 /* DFRPrivate.framework */; };
-		BB50788E22014C3900B695C3 /* MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; };
 		BB50788F22014C3900B695C3 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; };
 		BB50789122014C3900B695C3 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; };
 		BB50789522014C3900B695C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB0BE9581F444C9E0068FF67 /* Localizable.strings */; };
@@ -98,7 +97,6 @@
 		BB50789A22014C3900B695C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B31E458BA900A51775 /* Main.storyboard */; };
 		BB50789B22014C3900B695C3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
 		BB50789D22014C3900B695C3 /* DFRPrivate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB58640221F2A8570084D2C0 /* DFRPrivate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BB5078A022014C3900B695C3 /* MusicPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB5078A222014C3900B695C3 /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB5078A322014C3900B695C3 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB5078A622014C3900B695C3 /* LyricsXHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = BB60F3011E889A1B00BA1FD2 /* LyricsXHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -132,6 +130,8 @@
 		BBB03F412331DBB000A3879E /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F402331DBB000A3879E /* Semver */; };
 		BBB03F432331DBB000A3879E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F422331DBB000A3879E /* OpenCC */; };
 		BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F442331DBB000A3879E /* LyricsKit */; };
+		BBB03F482331E78300A3879E /* PlaybackControl in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F472331E78300A3879E /* PlaybackControl */; };
+		BBB03F4A2331E78C00A3879E /* PlaybackControl in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F492331E78C00A3879E /* PlaybackControl */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
 		BBC1D35B1E485BA7002538A2 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* AppController.swift */; };
 		BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* Global.swift */; };
@@ -140,8 +140,6 @@
 		BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */; };
 		BBD03C371E9B2C7200EFB975 /* DragNDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */; };
 		BBE8FC751F6BEA6200122AFA /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE8FC741F6BEA6200122AFA /* Then.swift */; };
-		BBF83E221FB5502000D76E5B /* MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; };
-		BBF83E231FB5502000D76E5B /* MusicPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E91F76EB21211B8D00755698 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F76EA21211B8D00755698 /* PreferenceViewController.swift */; };
 		E97593E42150F47900D80616 /* Polyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E32150F47800D80616 /* Polyfill.swift */; };
 		E97593E62150F6FB00D80616 /* IBInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E52150F6FB00D80616 /* IBInspection.swift */; };
@@ -158,7 +156,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BB58640521F2A85A0084D2C0 /* DFRPrivate.framework in Embed Frameworks */,
-				BBF83E231FB5502000D76E5B /* MusicPlayer.framework in Embed Frameworks */,
 				BB5078B022014CAA00B695C3 /* Sparkle.framework in Embed Frameworks */,
 				BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */,
 				BB4141C91E46CDD700A51775 /* SnapKit.framework in Embed Frameworks */,
@@ -173,7 +170,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BB50789D22014C3900B695C3 /* DFRPrivate.framework in Embed Frameworks */,
-				BB5078A022014C3900B695C3 /* MusicPlayer.framework in Embed Frameworks */,
 				BB5078A222014C3900B695C3 /* MASShortcut.framework in Embed Frameworks */,
 				BB5078A322014C3900B695C3 /* SnapKit.framework in Embed Frameworks */,
 			);
@@ -277,7 +273,6 @@
 		BBD2E35B22B780FC00410259 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
 		BBD2E35C22B780FC00410259 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Perference.strings; sourceTree = "<group>"; };
 		BBE8FC741F6BEA6200122AFA /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
-		BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MusicPlayer.framework; path = Carthage/Build/Mac/MusicPlayer.framework; sourceTree = "<group>"; };
 		E914527F21539BD500BD2220 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E91F76EA21211B8D00755698 /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		E97593E32150F47800D80616 /* Polyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polyfill.swift; sourceTree = "<group>"; };
@@ -301,13 +296,13 @@
 				BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */,
 				BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */,
 				BB58640421F2A85A0084D2C0 /* DFRPrivate.framework in Frameworks */,
-				BBF83E221FB5502000D76E5B /* MusicPlayer.framework in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */,
 				BBB03F30232FB40400A3879E /* Semver in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
 				BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */,
 				BBB03F3D2331DACD00A3879E /* LyricsKit in Frameworks */,
+				BBB03F482331E78300A3879E /* PlaybackControl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,12 +311,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB03F432331DBB000A3879E /* OpenCC in Frameworks */,
+				BBB03F4A2331E78C00A3879E /* PlaybackControl in Frameworks */,
 				BB50788A22014C3900B695C3 /* Crashlytics.framework in Frameworks */,
 				BB50788B22014C3900B695C3 /* Fabric.framework in Frameworks */,
 				BB50788D22014C3900B695C3 /* DFRPrivate.framework in Frameworks */,
 				BBB03F3F2331DBB000A3879E /* GenericID in Frameworks */,
 				BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */,
-				BB50788E22014C3900B695C3 /* MusicPlayer.framework in Frameworks */,
 				BBB03F412331DBB000A3879E /* Semver in Frameworks */,
 				BB50788F22014C3900B695C3 /* SnapKit.framework in Frameworks */,
 				BB50789122014C3900B695C3 /* MASShortcut.framework in Frameworks */,
@@ -415,7 +410,6 @@
 				BB58640221F2A8570084D2C0 /* DFRPrivate.framework */,
 				BB0BE95C1F44508F0068FF67 /* Fabric.framework */,
 				BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */,
-				BBF83E201FB5501A00D76E5B /* MusicPlayer.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
 				E914527F21539BD500BD2220 /* Sparkle.framework */,
 			);
@@ -523,6 +517,7 @@
 				BBB03F2F232FB40400A3879E /* Semver */,
 				BBB03F392331D8A800A3879E /* OpenCC */,
 				BBB03F3C2331DACD00A3879E /* LyricsKit */,
+				BBB03F472331E78300A3879E /* PlaybackControl */,
 			);
 			productName = LyricsX;
 			productReference = BB4141AA1E458BA800A51775 /* LyricsX.app */;
@@ -552,6 +547,7 @@
 				BBB03F402331DBB000A3879E /* Semver */,
 				BBB03F422331DBB000A3879E /* OpenCC */,
 				BBB03F442331DBB000A3879E /* LyricsKit */,
+				BBB03F492331E78C00A3879E /* PlaybackControl */,
 			);
 			productName = LyricsX;
 			productReference = BB5078AD22014C3900B695C3 /* LyricsX.app */;
@@ -647,6 +643,7 @@
 				BBB03F2E232FB40400A3879E /* XCRemoteSwiftPackageReference "Semver" */,
 				BBB03F382331D8A800A3879E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */,
 				BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */,
+				BBB03F462331E78300A3879E /* XCRemoteSwiftPackageReference "PlaybackControl" */,
 			);
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
 			projectDirPath = "";
@@ -1391,6 +1388,14 @@
 				kind = branch;
 			};
 		};
+		BBB03F462331E78300A3879E /* XCRemoteSwiftPackageReference "PlaybackControl" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ddddxxx/PlaybackControl.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1433,6 +1438,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */;
 			productName = LyricsKit;
+		};
+		BBB03F472331E78300A3879E /* PlaybackControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBB03F462331E78300A3879E /* XCRemoteSwiftPackageReference "PlaybackControl" */;
+			productName = PlaybackControl;
+		};
+		BBB03F492331E78C00A3879E /* PlaybackControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBB03F462331E78300A3879E /* XCRemoteSwiftPackageReference "PlaybackControl" */;
+			productName = PlaybackControl;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

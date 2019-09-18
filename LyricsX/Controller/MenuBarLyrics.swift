@@ -21,7 +21,7 @@
 import Cocoa
 import GenericID
 import LyricsCore
-import MusicPlayer
+import PlaybackControl
 import OpenCC
 
 class MenuBarLyrics: NSObject {
@@ -45,7 +45,7 @@ class MenuBarLyrics: NSObject {
     }
     
     @objc private func handleLyricsDisplay() {
-        guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
+        guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState.isPlaying == true,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
             screenLyrics = ""

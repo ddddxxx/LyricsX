@@ -21,7 +21,7 @@
 import Cocoa
 import GenericID
 import LyricsCore
-import MusicPlayer
+import PlaybackControl
 import OpenCC
 import SnapKit
 
@@ -113,7 +113,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     @objc private func handleLyricsDisplay() {
         guard defaults[.DesktopLyricsEnabled],
-            !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
+            !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState.isPlaying == true,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
                 DispatchQueue.main.async {
@@ -156,7 +156,7 @@ class KaraokeLyricsWindowController: NSWindowController {
             self.lyricsView.displayLrc(firstLine, secondLine: secondLine)
             if let upperTextField = self.lyricsView.displayLine1,
                 let timetag = lrc.attachments.timetag,
-                let position = AppController.shared.playerManager.player?.playerPosition {
+                let position = AppController.shared.playerManager.player?.playbackTime {
                 let timeDelay = AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
                 upperTextField.setProgressAnimation(color: self.lyricsView.progressColor, progress: progress)
