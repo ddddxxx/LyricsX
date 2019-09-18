@@ -73,11 +73,15 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             self.displayLyrics(animation: false)
         }
         
-        AppController.shared.$currentLyrics.sink { _ in
-            self.lyricsChanged()
-        }.store(in: &cancelBag)
+        AppController.shared.$currentLyrics
+            .sink { _ in
+                self.lyricsChanged()
+            }.store(in: &cancelBag)
+        AppController.shared.$currentLineIndex
+            .sink { _ in
+                self.displayLyrics()
+            }.store(in: &cancelBag)
         
-        observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.displayLyrics() }
         observeNotification(name: NSScrollView.willStartLiveScrollNotification,
                             object: lyricsScrollView,
                             queue: .main) { [unowned self] _ in self.isTracking = false }
@@ -99,7 +103,6 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             self.noLyricsLabel.isHidden = newLyrics != nil
             self.displayLyrics(animation: false)
         }
-        
     }
     
     private func displayLyrics(animation: Bool = true) {

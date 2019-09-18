@@ -20,6 +20,7 @@
 
 import AppKit
 import OpenCC
+import LyricsCore
 import CombineX
 
 @available(OSX 10.12.2, *)
@@ -44,16 +45,15 @@ class TouchBarLyricsItem: NSCustomTouchBarItem {
     func commonInit() {
         view = lyricsTextField
         customizationLabel = "Lyrics"
-        handleLyricsDisplay()
-        defaultNC.addObserver(self, selector: #selector(self.handleLyricsDisplay), name: .lyricsShouldDisplay, object: nil)
-        AppController.shared.$currentLyrics.sink { _ in
-            self.handleLyricsDisplay()
-        }.store(in: &cancelBag)
+        AppController.shared.$currentLyrics
+            .combineLatest(AppController.shared.$currentLineIndex)
+            .sink(receiveValue: self.handleLyricsDisplay)
+            .store(in: &cancelBag)
     }
     
-    @objc func handleLyricsDisplay() {
-        guard let lyrics = AppController.shared.currentLyrics,
-            let index = AppController.shared.currentLineIndex else {
+    private func handleLyricsDisplay(lyrics: Lyrics?, index: Int?) {
+        guard let lyrics = lyrics,
+            let index = index else {
                 DispatchQueue.main.async {
                     self.lyricsTextField.stringValue = ""
                     self.lyricsTextField.removeProgressAnimation()

@@ -54,9 +54,12 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
-            AppController.shared.$currentLyrics.sink { _ in
-                self.handleLyricsDisplay()
-            }.store(in: &self.cancelBag)
+            AppController.shared.$currentLyrics
+                .combineLatest(AppController.shared.$currentLineIndex)
+                .receive(on: DispatchQueue.global().cx)
+                .sink { _ in
+                    self.handleLyricsDisplay()
+                }.store(in: &self.cancelBag)
             self.observeDefaults(keys: [.PreferBilingualLyrics, .DesktopLyricsOneLineMode]) { [unowned self] in
                 self.handleLyricsDisplay()
             }

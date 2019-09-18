@@ -44,10 +44,11 @@ class AppController: NSObject {
         }
     }
     
+    @CombineX.Published
+    var currentLineIndex: Int?
+    
     var searchRequest: LyricsSearchRequest?
     var searchCanceller: AnyCancellable?
-    
-    var currentLineIndex: Int?
     
     var timer: Timer?
     
@@ -131,7 +132,6 @@ class AppController: NSObject {
     // MARK: MusicPlayerManagerDelegate
     
     func playbackStateChanged(state: PlaybackState) {
-        postNotification(name: .lyricsShouldDisplay)
         if state.isPlaying {
             timer?.fireDate = Date()
         } else {
@@ -235,14 +235,12 @@ class AppController: NSObject {
     
     func playerPositionMutated(position: TimeInterval) {
         guard let lyrics = currentLyrics else {
-            postNotification(name: .lyricsShouldDisplay)
             timer?.fireDate = .distantFuture
             return
         }
         let (index, next) = lyrics[position + lyrics.adjustedTimeDelay]
         if currentLineIndex != index {
             currentLineIndex = index
-            postNotification(name: .lyricsShouldDisplay)
         }
         if let next = next {
             timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.adjustedTimeDelay - position
