@@ -47,21 +47,21 @@
         }
       },
       {
+        "package": "MusicPlayer",
+        "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
+        "state": {
+          "branch": "combine",
+          "revision": "4979533bab3a1d57764e5e67c86d7b860aaa356d",
+          "version": null
+        }
+      },
+      {
         "package": "Nimble",
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
           "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
           "version": "8.0.2"
-        }
-      },
-      {
-        "package": "PlaybackControl",
-        "repositoryURL": "https://github.com/ddddxxx/PlaybackControl.git",
-        "state": {
-          "branch": "master",
-          "revision": "f8b3cdacea1bea7ce1e38ec1e55a28edc22b1a5c",
-          "version": null
         }
       },
       {

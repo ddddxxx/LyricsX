@@ -21,7 +21,7 @@
 import AppKit
 import Crashlytics
 import LyricsService
-import PlaybackControl
+import MusicPlayer
 import OpenCC
 import CombineX
 
@@ -30,7 +30,7 @@ class AppController: NSObject {
     static let shared = AppController()
     
     let lyricsManager = LyricsProviderManager()
-    let playerManager = MusicPlayerManager()
+    let playerManager = MusicPlayerControllerManager()
     
     @CombineX.Published
     var currentLyrics: Lyrics? {

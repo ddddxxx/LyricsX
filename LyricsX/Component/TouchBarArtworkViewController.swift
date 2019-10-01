@@ -19,7 +19,7 @@
 //
 
 import AppKit
-import PlaybackControl
+import MusicPlayer
 import CombineX
 
 class TouchBarArtworkViewController: NSViewController {
@@ -46,7 +46,7 @@ class TouchBarArtworkViewController: NSViewController {
     }
 }
 
-extension MusicPlayer {
+extension MusicPlayerController {
     
     var icon: NSImage? {
         switch self {

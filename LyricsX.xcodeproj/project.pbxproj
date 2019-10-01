@@ -122,6 +122,8 @@
 		BB7EC7B21E4E018C00A0AC3F /* LyricsHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */; };
 		BB89089E21ED69410078F522 /* Lyrics+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB89089D21ED69410078F522 /* Lyrics+Language.swift */; };
 		BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BCEB91E843157001BC54B /* Extension.swift */; };
+		BB9C3D8323435A5700860698 /* MusicPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = BB9C3D8223435A5700860698 /* MusicPlayer */; };
+		BB9C3D8523435A6300860698 /* MusicPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = BB9C3D8423435A6300860698 /* MusicPlayer */; };
 		BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F2C232FB3AF00A3879E /* GenericID */; };
 		BBB03F30232FB40400A3879E /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F2F232FB40400A3879E /* Semver */; };
 		BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F392331D8A800A3879E /* OpenCC */; };
@@ -130,8 +132,6 @@
 		BBB03F412331DBB000A3879E /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F402331DBB000A3879E /* Semver */; };
 		BBB03F432331DBB000A3879E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F422331DBB000A3879E /* OpenCC */; };
 		BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F442331DBB000A3879E /* LyricsKit */; };
-		BBB03F482331E78300A3879E /* PlaybackControl in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F472331E78300A3879E /* PlaybackControl */; };
-		BBB03F4A2331E78C00A3879E /* PlaybackControl in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F492331E78C00A3879E /* PlaybackControl */; };
 		BBB9AAE31E57EE880078F91A /* SearchLyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */; };
 		BBC1D35B1E485BA7002538A2 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* AppController.swift */; };
 		BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* Global.swift */; };
@@ -296,13 +296,13 @@
 				BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */,
 				BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */,
 				BB58640421F2A85A0084D2C0 /* DFRPrivate.framework in Frameworks */,
+				BB9C3D8323435A5700860698 /* MusicPlayer in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */,
 				BBB03F30232FB40400A3879E /* Semver in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
 				BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */,
 				BBB03F3D2331DACD00A3879E /* LyricsKit in Frameworks */,
-				BBB03F482331E78300A3879E /* PlaybackControl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,13 +311,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB03F432331DBB000A3879E /* OpenCC in Frameworks */,
-				BBB03F4A2331E78C00A3879E /* PlaybackControl in Frameworks */,
 				BB50788A22014C3900B695C3 /* Crashlytics.framework in Frameworks */,
 				BB50788B22014C3900B695C3 /* Fabric.framework in Frameworks */,
 				BB50788D22014C3900B695C3 /* DFRPrivate.framework in Frameworks */,
 				BBB03F3F2331DBB000A3879E /* GenericID in Frameworks */,
 				BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */,
 				BBB03F412331DBB000A3879E /* Semver in Frameworks */,
+				BB9C3D8523435A6300860698 /* MusicPlayer in Frameworks */,
 				BB50788F22014C3900B695C3 /* SnapKit.framework in Frameworks */,
 				BB50789122014C3900B695C3 /* MASShortcut.framework in Frameworks */,
 			);
@@ -517,7 +517,7 @@
 				BBB03F2F232FB40400A3879E /* Semver */,
 				BBB03F392331D8A800A3879E /* OpenCC */,
 				BBB03F3C2331DACD00A3879E /* LyricsKit */,
-				BBB03F472331E78300A3879E /* PlaybackControl */,
+				BB9C3D8223435A5700860698 /* MusicPlayer */,
 			);
 			productName = LyricsX;
 			productReference = BB4141AA1E458BA800A51775 /* LyricsX.app */;
@@ -547,7 +547,7 @@
 				BBB03F402331DBB000A3879E /* Semver */,
 				BBB03F422331DBB000A3879E /* OpenCC */,
 				BBB03F442331DBB000A3879E /* LyricsKit */,
-				BBB03F492331E78C00A3879E /* PlaybackControl */,
+				BB9C3D8423435A6300860698 /* MusicPlayer */,
 			);
 			productName = LyricsX;
 			productReference = BB5078AD22014C3900B695C3 /* LyricsX.app */;
@@ -643,7 +643,7 @@
 				BBB03F2E232FB40400A3879E /* XCRemoteSwiftPackageReference "Semver" */,
 				BBB03F382331D8A800A3879E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */,
 				BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */,
-				BBB03F462331E78300A3879E /* XCRemoteSwiftPackageReference "PlaybackControl" */,
+				BB9C3D8123435A5700860698 /* XCRemoteSwiftPackageReference "MusicPlayer" */,
 			);
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
 			projectDirPath = "";
@@ -1356,6 +1356,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BB9C3D8123435A5700860698 /* XCRemoteSwiftPackageReference "MusicPlayer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ddddxxx/MusicPlayer";
+			requirement = {
+				branch = combine;
+				kind = branch;
+			};
+		};
 		BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ddddxxx/GenericID.git";
@@ -1388,17 +1396,19 @@
 				kind = branch;
 			};
 		};
-		BBB03F462331E78300A3879E /* XCRemoteSwiftPackageReference "PlaybackControl" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ddddxxx/PlaybackControl.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BB9C3D8223435A5700860698 /* MusicPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB9C3D8123435A5700860698 /* XCRemoteSwiftPackageReference "MusicPlayer" */;
+			productName = MusicPlayer;
+		};
+		BB9C3D8423435A6300860698 /* MusicPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB9C3D8123435A5700860698 /* XCRemoteSwiftPackageReference "MusicPlayer" */;
+			productName = MusicPlayer;
+		};
 		BBB03F2C232FB3AF00A3879E /* GenericID */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */;
@@ -1438,16 +1448,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */;
 			productName = LyricsKit;
-		};
-		BBB03F472331E78300A3879E /* PlaybackControl */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BBB03F462331E78300A3879E /* XCRemoteSwiftPackageReference "PlaybackControl" */;
-			productName = PlaybackControl;
-		};
-		BBB03F492331E78C00A3879E /* PlaybackControl */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BBB03F462331E78300A3879E /* XCRemoteSwiftPackageReference "PlaybackControl" */;
-			productName = PlaybackControl;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

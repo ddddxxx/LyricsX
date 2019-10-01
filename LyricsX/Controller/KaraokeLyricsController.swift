@@ -21,7 +21,7 @@
 import Cocoa
 import GenericID
 import LyricsCore
-import PlaybackControl
+import MusicPlayer
 import OpenCC
 import SnapKit
 import CombineX

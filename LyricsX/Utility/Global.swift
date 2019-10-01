@@ -20,7 +20,7 @@
 
 import Cocoa
 import GenericID
-import PlaybackControl
+import MusicPlayer
 
 let fontNameFallbackCountMax = 1
 // 7 days. after this period of time since the app built, the app is not considered as "in review".

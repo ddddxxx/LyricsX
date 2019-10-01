@@ -19,7 +19,7 @@
 //
 
 import AppKit
-import PlaybackControl
+import MusicPlayer
 import SnapKit
 
 @available(OSX 10.12.2, *)

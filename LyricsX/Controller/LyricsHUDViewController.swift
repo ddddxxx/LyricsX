@@ -21,7 +21,7 @@
 import Cocoa
 import Crashlytics
 import GenericID
-import PlaybackControl
+import MusicPlayer
 import CombineX
 
 class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsViewDelegate, DragNDropDelegate {
