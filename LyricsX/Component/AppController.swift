@@ -40,7 +40,7 @@ class AppController: NSObject {
         didSet {
             didChangeValue(forKey: "lyricsOffset")
             currentLineIndex = nil
-            timer?.fireDate = Date()
+            scheduleCurrentLineCheck(playbackTime: playerManager.player?.playbackTime ?? 0)
         }
     }
     
@@ -49,8 +49,6 @@ class AppController: NSObject {
     
     var searchRequest: LyricsSearchRequest?
     var searchCanceller: AnyCancellable?
-    
-    var timer: Timer?
     
     private var cancelBag = Set<AnyCancellable>()
     
@@ -61,25 +59,22 @@ class AppController: NSObject {
         set {
             currentLyrics?.offset = newValue
             currentLyrics?.metadata.needsPersist = true
-            timer?.fireDate = Date()
+            scheduleCurrentLineCheck(playbackTime: playerManager.player?.playbackTime ?? 0)
         }
     }
     
     private override init() {
         super.init()
-//        playerManager.delegate = self
         playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
-        
-        timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
-        timer?.tolerance = 0.02
-        RunLoop.current.add(timer!, forMode: .common)
         
         playerManager.$player
             .map {
                 ($0?.$currentTrack).map(AnyPublisher.init) ?? Just(nil).eraseToAnyPublisher()
             }
             .switchToLatest()
-            .sink(receiveValue: self.currentTrackChanged)
+            .sink { [unowned self] track in
+                 self.currentTrackChanged(track: track)
+            }
             .store(in: &cancelBag)
         
         playerManager.$player
@@ -87,7 +82,9 @@ class AppController: NSObject {
                 ($0?.$playbackState).map(AnyPublisher.init) ?? Just(.stopped).eraseToAnyPublisher()
             }
             .switchToLatest()
-            .sink(receiveValue: self.playbackStateChanged)
+            .sink { [unowned self] state in
+                self.scheduleCurrentLineCheck(playbackTime: state.time)
+            }
             .store(in: &cancelBag)
             
         playerManager.$player
@@ -98,6 +95,26 @@ class AppController: NSObject {
                     NSApplication.shared.terminate(nil)
                 }
             }.store(in: &cancelBag)
+    }
+    
+    var currentLineCheckSchedule: Cancellable?
+    func scheduleCurrentLineCheck(playbackTime: TimeInterval) {
+        currentLineCheckSchedule?.cancel()
+        guard let lyrics = currentLyrics else {
+            return
+        }
+        
+        let (index, next) = lyrics[playbackTime + lyrics.adjustedTimeDelay]
+        if currentLineIndex != index {
+            currentLineIndex = index
+        }
+        if let next = next {
+            let dt = lyrics.lines[next].position - playbackTime - lyrics.adjustedTimeDelay
+            let q = DispatchQueue.global().cx
+            currentLineCheckSchedule = q.schedule(after: q.now.advanced(by: .seconds(dt)), interval: .seconds(42), tolerance: .milliseconds(20)) { [unowned self] in
+                self.scheduleCurrentLineCheck(playbackTime: self.playerManager.player?.playbackTime ?? 0)
+            }
+        }
     }
     
     func writeToiTunes(overwrite: Bool) {
@@ -127,17 +144,6 @@ class AppController: NSObject {
         let regex = try! Regex("\\n{3}")
         _ = regex.replaceMatches(in: &content, withTemplate: "\n\n")
         player.currentTrack?.setLyrics(content)
-    }
-    
-    // MARK: MusicPlayerManagerDelegate
-    
-    func playbackStateChanged(state: PlaybackState) {
-        if state.isPlaying {
-            timer?.fireDate = Date()
-        } else {
-            timer?.fireDate = .distantFuture
-        }
-        playerPositionMutated(position: state.time)
     }
     
     func currentTrackChanged(track: MusicTrack?) {
@@ -225,35 +231,15 @@ class AppController: NSObject {
                                       limit: 5,
                                       timeout: 10)
         searchRequest = req
-        searchCanceller = lyricsManager.lyricsPublisher(request: req).sink(receiveCompletion: { _ in
-            if defaults[.WriteToiTunesAutomatically] {
-                self.writeToiTunes(overwrite: true)
-            }
-        }, receiveValue: self.lyricsReceived)
+        searchCanceller = lyricsManager.lyricsPublisher(request: req)
+            .sink(receiveCompletion: { [unowned self] _ in
+                if defaults[.WriteToiTunesAutomatically] {
+                    self.writeToiTunes(overwrite: true)
+                }
+            }, receiveValue: { [unowned self] lyrics in
+                self.lyricsReceived(lyrics: lyrics)
+            })
         Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
-    }
-    
-    func playerPositionMutated(position: TimeInterval) {
-        guard let lyrics = currentLyrics else {
-            timer?.fireDate = .distantFuture
-            return
-        }
-        let (index, next) = lyrics[position + lyrics.adjustedTimeDelay]
-        if currentLineIndex != index {
-            currentLineIndex = index
-        }
-        if let next = next {
-            timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.adjustedTimeDelay - position
-        } else {
-            timer?.fireDate = .distantFuture
-        }
-    }
-    
-    @objc func updatePlayerPosition() {
-        guard let position = playerManager.player?.playbackTime else {
-            return
-        }
-        playerPositionMutated(position: position)
     }
     
     // MARK: LyricsSourceDelegate
