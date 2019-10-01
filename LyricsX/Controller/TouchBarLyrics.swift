@@ -19,9 +19,9 @@
 //
 
 import Cocoa
+import DFRPrivate
 import LyricsCore
 import OpenCC
-import DFRPrivate
 
 @available(OSX 10.12.2, *)
 class TouchBarSystemModalController: NSObject, NSTouchBarDelegate {

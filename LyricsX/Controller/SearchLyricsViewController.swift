@@ -19,10 +19,10 @@
 //
 
 import Cocoa
+import CombineX
 import Crashlytics
 import LyricsService
 import MusicPlayer
-import CombineX
 
 class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     

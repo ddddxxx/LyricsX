@@ -19,11 +19,11 @@
 //
 
 import Cocoa
+import CombineX
 import GenericID
 import LyricsCore
 import MusicPlayer
 import OpenCC
-import CombineX
 
 class MenuBarLyrics: NSObject {
     

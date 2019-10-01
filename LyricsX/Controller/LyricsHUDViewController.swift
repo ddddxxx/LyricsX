@@ -19,10 +19,10 @@
 //
 
 import Cocoa
+import CombineX
 import Crashlytics
 import GenericID
 import MusicPlayer
-import CombineX
 
 class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsViewDelegate, DragNDropDelegate {
     

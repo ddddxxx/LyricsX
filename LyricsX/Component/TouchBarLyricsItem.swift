@@ -19,9 +19,9 @@
 //
 
 import AppKit
-import OpenCC
-import LyricsCore
 import CombineX
+import LyricsCore
+import OpenCC
 
 @available(OSX 10.12.2, *)
 class TouchBarLyricsItem: NSCustomTouchBarItem {

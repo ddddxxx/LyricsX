@@ -19,11 +19,11 @@
 //
 
 import AppKit
+import CombineX
 import Crashlytics
 import LyricsService
 import MusicPlayer
 import OpenCC
-import CombineX
 
 class AppController: NSObject {
     

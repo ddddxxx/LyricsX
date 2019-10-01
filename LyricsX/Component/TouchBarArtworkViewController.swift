@@ -19,8 +19,8 @@
 //
 
 import AppKit
-import MusicPlayer
 import CombineX
+import MusicPlayer
 
 class TouchBarArtworkViewController: NSViewController {
     
