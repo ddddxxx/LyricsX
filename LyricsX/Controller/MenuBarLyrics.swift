@@ -50,7 +50,9 @@ class MenuBarLyrics: NSObject {
         AppController.shared.$currentLyrics
             .combineLatest(AppController.shared.$currentLineIndex)
             .receive(on: DispatchQueue.global().cx)
-            .sink(receiveValue: self.handleLyricsDisplay)
+            .sink { [unowned self] lrc, idx in
+                self.handleLyricsDisplay(lyrics: lrc, index: idx)
+            }
             .store(in: &cancelBag)
         observeNotification(center: workspaceNC, name: NSWorkspace.didActivateApplicationNotification) { [unowned self] _ in self.updateStatusItem() }
         observeDefaults(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }

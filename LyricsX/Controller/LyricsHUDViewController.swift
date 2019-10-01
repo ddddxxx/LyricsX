@@ -74,11 +74,11 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         }
         
         AppController.shared.$currentLyrics
-            .sink { _ in
+            .sink { [unowned self] _ in
                 self.lyricsChanged()
             }.store(in: &cancelBag)
         AppController.shared.$currentLineIndex
-            .sink { _ in
+            .sink { [unowned self] _ in
                 self.displayLyrics()
             }.store(in: &cancelBag)
         

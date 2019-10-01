@@ -99,11 +99,14 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
                                       limit: 8,
                                       timeout: 10)
         searchRequest = req
-        searchCanceller = lyricsManager.lyricsPublisher(request: req).sink(receiveCompletion: { _ in
-            DispatchQueue.main.async {
-                self.progressIndicator.stopAnimation(nil)
-            }
-        }, receiveValue: self.lyricsReceived)
+        searchCanceller = lyricsManager.lyricsPublisher(request: req)
+            .sink(receiveCompletion: { [unowned self] _ in
+                DispatchQueue.main.async {
+                    self.progressIndicator.stopAnimation(nil)
+                }
+            }, receiveValue: { [unowned self] lyrics in
+                self.lyricsReceived(lyrics: lyrics)
+            })
         progressIndicator.startAnimation(nil)
         tableView.reloadData()
         Answers.logCustomEvent(withName: "Search Lyrics Manually")

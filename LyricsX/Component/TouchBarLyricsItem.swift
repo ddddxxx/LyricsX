@@ -47,7 +47,9 @@ class TouchBarLyricsItem: NSCustomTouchBarItem {
         customizationLabel = "Lyrics"
         AppController.shared.$currentLyrics
             .combineLatest(AppController.shared.$currentLineIndex)
-            .sink(receiveValue: self.handleLyricsDisplay)
+            .sink { [unowned self] lrc, idx in
+                self.handleLyricsDisplay(lyrics: lrc, index: idx)
+            }
             .store(in: &cancelBag)
     }
     

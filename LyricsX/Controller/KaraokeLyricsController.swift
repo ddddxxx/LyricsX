@@ -57,7 +57,7 @@ class KaraokeLyricsWindowController: NSWindowController {
             AppController.shared.$currentLyrics
                 .combineLatest(AppController.shared.$currentLineIndex)
                 .receive(on: DispatchQueue.global().cx)
-                .sink { _ in
+                .sink { [unowned self] _ in
                     self.handleLyricsDisplay()
                 }.store(in: &self.cancelBag)
             self.observeDefaults(keys: [.PreferBilingualLyrics, .DesktopLyricsOneLineMode]) { [unowned self] in
