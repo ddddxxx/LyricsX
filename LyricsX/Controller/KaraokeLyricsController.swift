@@ -55,7 +55,20 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
             AppController.shared.$currentLyrics
-                .combineLatest(AppController.shared.$currentLineIndex)
+                .receive(on: DispatchQueue.global().cx)
+                .sink { [unowned self] _ in
+                    self.handleLyricsDisplay()
+                }.store(in: &self.cancelBag)
+            AppController.shared.$currentLineIndex
+                .receive(on: DispatchQueue.global().cx)
+                .sink { [unowned self] _ in
+                    self.handleLyricsDisplay()
+                }.store(in: &self.cancelBag)
+            AppController.shared.playerManager.$player
+                .map {
+                    ($0?.$playbackState).map(AnyPublisher.init) ?? Just(.stopped).eraseToAnyPublisher()
+                }
+                .switchToLatest()
                 .receive(on: DispatchQueue.global().cx)
                 .sink { [unowned self] _ in
                     self.handleLyricsDisplay()
