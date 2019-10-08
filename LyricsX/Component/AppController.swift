@@ -72,6 +72,7 @@ class AppController: NSObject {
                 ($0?.$currentTrack).map(AnyPublisher.init) ?? Just(nil).eraseToAnyPublisher()
             }
             .switchToLatest()
+            .receive(on: DispatchQueue.global().cx)
             .sink { [unowned self] track in
                  self.currentTrackChanged(track: track)
             }
@@ -82,6 +83,7 @@ class AppController: NSObject {
                 ($0?.$playbackState).map(AnyPublisher.init) ?? Just(.stopped).eraseToAnyPublisher()
             }
             .switchToLatest()
+            .receive(on: DispatchQueue.global().cx)
             .sink { [unowned self] state in
                 self.scheduleCurrentLineCheck(playbackTime: state.time)
             }
