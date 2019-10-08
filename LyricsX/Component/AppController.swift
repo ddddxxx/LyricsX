@@ -24,6 +24,7 @@ import Crashlytics
 import LyricsService
 import MusicPlayer
 import OpenCC
+import Regex
 
 class AppController: NSObject {
     
@@ -125,7 +126,7 @@ class AppController: NSObject {
             overwrite || player.currentTrack?.lyrics?.isEmpty != false else {
             return
         }
-        var content = currentLyrics.lines.map { line -> String in
+        let content = currentLyrics.lines.map { line -> String in
             var content = line.content
             if let converter = ChineseConverter.shared {
                 content = converter.convert(content)
@@ -143,9 +144,9 @@ class AppController: NSObject {
             return content
         }.joined(separator: "\n")
         // swiftlint:disable:next force_try
-        let regex = try! Regex("\\n{3}")
-        _ = regex.replaceMatches(in: &content, withTemplate: "\n\n")
-        player.currentTrack?.setLyrics(content)
+        let regex = try! Regex(#"\n{3,}"#)
+        let replaced = content.replacingMatches(of: regex, with: "\n\n")
+        player.currentTrack?.setLyrics(replaced)
     }
     
     func currentTrackChanged(track: MusicTrack?) {

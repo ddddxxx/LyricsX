@@ -29,7 +29,6 @@
 		BB0BE9561F444C9E0068FF67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB0BE9581F444C9E0068FF67 /* Localizable.strings */; };
 		BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */; };
 		BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95C1F44508F0068FF67 /* Fabric.framework */; };
-		BB1A3185207B261500406E32 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1A3184207B261500406E32 /* Regex.swift */; };
 		BB1B2FFD20E8780A002F1AF8 /* CFExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */; };
 		BB1B300320E878AE002F1AF8 /* StdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B300220E878AE002F1AF8 /* StdExtension.swift */; };
 		BB1B300520E87CC9002F1AF8 /* KaraokeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B300420E87CC9002F1AF8 /* KaraokeLabel.swift */; };
@@ -66,7 +65,6 @@
 		BB50787622014C3900B695C3 /* PreferenceGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */; };
 		BB50787722014C3900B695C3 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE8FC741F6BEA6200122AFA /* Then.swift */; };
 		BB50787822014C3900B695C3 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34F7E51F21911700B7C484 /* Updater.swift */; };
-		BB50787922014C3900B695C3 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1A3184207B261500406E32 /* Regex.swift */; };
 		BB50787A22014C3900B695C3 /* TouchBarArtworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58640621F2B7500084D2C0 /* TouchBarArtworkViewController.swift */; };
 		BB50787B22014C3900B695C3 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35E1E499A6D002538A2 /* Global.swift */; };
 		BB50787C22014C3900B695C3 /* StdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B300220E878AE002F1AF8 /* StdExtension.swift */; };
@@ -207,7 +205,6 @@
 		BB0BE95A1F444CAA0068FF67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = LyricsX/Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		BB0BE95C1F44508F0068FF67 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = LyricsX/Frameworks/Fabric.framework; sourceTree = "<group>"; };
-		BB1A3184207B261500406E32 /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFExtension.swift; sourceTree = "<group>"; };
 		BB1B300220E878AE002F1AF8 /* StdExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StdExtension.swift; sourceTree = "<group>"; };
 		BB1B300420E87CC9002F1AF8 /* KaraokeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaraokeLabel.swift; sourceTree = "<group>"; };
@@ -439,7 +436,6 @@
 				BB1B300220E878AE002F1AF8 /* StdExtension.swift */,
 				BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */,
 				E9EBDA2421115A150019FDF9 /* Observation.swift */,
-				BB1A3184207B261500406E32 /* Regex.swift */,
 				BBE8FC741F6BEA6200122AFA /* Then.swift */,
 			);
 			path = Utility;
@@ -876,7 +872,6 @@
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
 				BBE8FC751F6BEA6200122AFA /* Then.swift in Sources */,
 				BB34F7E61F21911700B7C484 /* Updater.swift in Sources */,
-				BB1A3185207B261500406E32 /* Regex.swift in Sources */,
 				BB58640721F2B7500084D2C0 /* TouchBarArtworkViewController.swift in Sources */,
 				BBC1D35F1E499A6D002538A2 /* Global.swift in Sources */,
 				BB1B300320E878AE002F1AF8 /* StdExtension.swift in Sources */,
@@ -919,7 +914,6 @@
 				BB50787622014C3900B695C3 /* PreferenceGeneralViewController.swift in Sources */,
 				BB50787722014C3900B695C3 /* Then.swift in Sources */,
 				BB50787822014C3900B695C3 /* Updater.swift in Sources */,
-				BB50787922014C3900B695C3 /* Regex.swift in Sources */,
 				BB50787A22014C3900B695C3 /* TouchBarArtworkViewController.swift in Sources */,
 				BB50787B22014C3900B695C3 /* Global.swift in Sources */,
 				BB50787C22014C3900B695C3 /* StdExtension.swift in Sources */,

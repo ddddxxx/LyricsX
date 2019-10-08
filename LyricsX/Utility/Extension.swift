@@ -21,6 +21,7 @@
 import Cocoa
 import LyricsCore
 import MusicPlayer
+import Regex
 
 extension MusicPlayerName {
     
