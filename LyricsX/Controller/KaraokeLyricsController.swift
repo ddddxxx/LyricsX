@@ -25,6 +25,7 @@ import LyricsCore
 import MusicPlayer
 import OpenCC
 import SnapKit
+import SwiftCF
 
 class KaraokeLyricsWindowController: NSWindowController {
     

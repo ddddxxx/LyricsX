@@ -32,71 +32,11 @@ extension NSString {
 
 extension CFStringTokenizer {
     
-    struct Attribute: RawRepresentable {
-        
-        var rawValue: CFOptionFlags
-        
-        init(rawValue: CFOptionFlags) {
-            self.rawValue = rawValue
-        }
-        
-        static let latinTranscription = Attribute(rawValue: kCFStringTokenizerAttributeLatinTranscription)
-        static let language = Attribute(rawValue: kCFStringTokenizerAttributeLanguage)
-    }
-    
-    struct Unit: RawRepresentable {
-        
-        var rawValue: CFOptionFlags
-        
-        init(rawValue: CFOptionFlags) {
-            self.rawValue = rawValue
-        }
-        
-        static let word = Unit(rawValue: kCFStringTokenizerUnitWord)
-        static let sentence = Unit(rawValue: kCFStringTokenizerUnitSentence)
-        static let paragraph = Unit(rawValue: kCFStringTokenizerUnitParagraph)
-        static let lineBreak = Unit(rawValue: kCFStringTokenizerUnitLineBreak)
-        static let wordBoundary = Unit(rawValue: kCFStringTokenizerUnitWordBoundary)
-    }
-    
-    static func create(_ string: NSString, range: NSRange? = nil, unit: Unit = .wordBoundary, locale: NSLocale? = nil) -> CFStringTokenizer {
-        let cfStr = string as CFString
-        return CFStringTokenizerCreate(nil, cfStr, range?.asCF ?? cfStr.fullRange, unit.rawValue, locale as CFLocale?)
-    }
-    
-    func nextToken() -> CFStringTokenizerTokenType? {
-        let token = CFStringTokenizerAdvanceToNextToken(self)
-        if token.isEmpty { return nil }
-        return token
-    }
-    
-    func token(at index: CFIndex) -> CFStringTokenizerTokenType? {
-        let token = CFStringTokenizerGoToTokenAtIndex(self, index)
-        if token.isEmpty { return nil }
-        return token
-    }
-    
-    func currentTokenRange() -> NSRange {
-        return CFStringTokenizerGetCurrentTokenRange(self).asNS
-    }
-    
-    func currentTokenAttribute(_ attribute: Attribute) -> NSString? {
-        // swiftlint:disable:next force_cast
-        return CFStringTokenizerCopyCurrentTokenAttribute(self, attribute.rawValue) as! NSString?
-    }
-    
-    func currentSubTokens() -> [CFStringTokenizerTokenType] {
-        let arr = NSMutableArray()
-        CFStringTokenizerGetCurrentSubTokens(self, nil, 0, arr as CFMutableArray)
-        // swiftlint:disable:next force_cast
-        return arr as! [CFStringTokenizerTokenType]
-    }
-    
     func currentFuriganaAnnotation(in string: NSString) -> (NSString, NSRange)? {
         let range = currentTokenRange()
-        let tokenStr = string.substring(with: range)
+        let tokenStr = string.substring(with: range.asNS)
         guard tokenStr.unicodeScalars.contains(where: CharacterSet.kanji.contains),
-            let latin = currentTokenAttribute(.latinTranscription),
+            let latin = currentTokenAttribute(.latinTranscription)?.asNS,
             let hiragana = latin.applyingTransform(.latinToHiragana, reverse: false),
             let (rangeToAnnotate, rangeInAnnotation) = rangeOfUncommonContent(tokenStr, hiragana) else {
                 return nil
@@ -133,11 +73,4 @@ private func rangeOfUncommonContent(_ s1: String, _ s2: String) -> (Range<String
     let range1 = (l1...r1).relative(to: s1.indices)
     let range2 = (l2...r2).relative(to: s2.indices)
     return (range1, range2)
-}
-
-extension CFStringTokenizer: IteratorProtocol, Sequence {
-    
-    public func next() -> CFStringTokenizerTokenType? {
-        return nextToken()
-    }
 }
