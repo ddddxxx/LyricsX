@@ -6,7 +6,16 @@
         "repositoryURL": "https://github.com/cx-org/CombineX",
         "state": {
           "branch": "master",
-          "revision": "6239d172a1c900a2438d3fbec91b3999a5d6d9f2",
+          "revision": "2b8e5641c657375f52725bb848c743d8c94ce367",
+          "version": null
+        }
+      },
+      {
+        "package": "CXCompatible",
+        "repositoryURL": "https://github.com/cx-org/CXCompatible",
+        "state": {
+          "branch": "master",
+          "revision": "4096c2774f33e0820a2b2ce025819fba1fd94b33",
           "version": null
         }
       },
@@ -15,7 +24,7 @@
         "repositoryURL": "https://github.com/cx-org/CXFoundation",
         "state": {
           "branch": "master",
-          "revision": "0878bb1bdfacfd4f74fe6c0329efec1a245392cf",
+          "revision": "e46c844dcdfa37ae07a8c7a7d8dca31ccffb5643",
           "version": null
         }
       },
@@ -42,7 +51,7 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
         "state": {
           "branch": "master",
-          "revision": "01b2a17ee6075ba966e2357f9071190233e2806e",
+          "revision": "21e458ca5647262aaa6b3972657d8ca99f180de2",
           "version": null
         }
       },
@@ -51,7 +60,7 @@
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
           "branch": "combine",
-          "revision": "2221f686d23d112e0d219a5c40e88309b0fcf64e",
+          "revision": "e6fb8684035ab6b00733b6ebcce55ceaa1be4216",
           "version": null
         }
       },

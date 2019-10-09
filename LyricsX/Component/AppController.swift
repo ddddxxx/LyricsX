@@ -37,11 +37,11 @@ class AppController: NSObject {
     var currentLyrics: Lyrics? {
         willSet {
             willChangeValue(forKey: "lyricsOffset")
+            currentLineIndex = nil
         }
         didSet {
             didChangeValue(forKey: "lyricsOffset")
-            currentLineIndex = nil
-            scheduleCurrentLineCheck(playbackTime: playerManager.player?.playbackTime ?? 0)
+            scheduleCurrentLineCheck()
         }
     }
     
@@ -60,7 +60,7 @@ class AppController: NSObject {
         set {
             currentLyrics?.offset = newValue
             currentLyrics?.metadata.needsPersist = true
-            scheduleCurrentLineCheck(playbackTime: playerManager.player?.playbackTime ?? 0)
+            scheduleCurrentLineCheck()
         }
     }
     
@@ -68,42 +68,26 @@ class AppController: NSObject {
         super.init()
         playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
         
-        playerManager.$player
-            .map {
-                ($0?.$currentTrack).map(AnyPublisher.init) ?? Just(nil).eraseToAnyPublisher()
-            }
-            .switchToLatest()
-            .receive(on: DispatchQueue.global().cx)
-            .sink { [unowned self] track in
-                 self.currentTrackChanged(track: track)
-            }
-            .store(in: &cancelBag)
-        
-        playerManager.$player
-            .map {
-                ($0?.$playbackState).map(AnyPublisher.init) ?? Just(.stopped).eraseToAnyPublisher()
-            }
-            .switchToLatest()
-            .receive(on: DispatchQueue.global().cx)
-            .sink { [unowned self] state in
-                self.scheduleCurrentLineCheck(playbackTime: state.time)
-            }
-            .store(in: &cancelBag)
-            
-        playerManager.$player
-            .compactMap { $0?.$isRunning }
-            .switchToLatest()
-            .sink { isRunning in
-                if !isRunning, defaults[.LaunchAndQuitWithPlayer] {
+        defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: playerManager)
+            .sink { [unowned self] _ in
+                self.currentTrackChanged()
+            }.store(in: &cancelBag)
+        defaultNC.cx.publisher(for: MusicPlayerController.playbackStateDidChangeNotification, object: playerManager)
+            .sink { [unowned self] _ in
+                self.scheduleCurrentLineCheck()
+            }.store(in: &cancelBag)
+        defaultNC.cx.publisher(for: MusicPlayerController.runningStateDidChangeNotification, object: playerManager)
+            .sink { [unowned self] _ in
+                if self.playerManager.player?.isRunning == false, defaults[.LaunchAndQuitWithPlayer] {
                     NSApplication.shared.terminate(nil)
                 }
             }.store(in: &cancelBag)
     }
     
     var currentLineCheckSchedule: Cancellable?
-    func scheduleCurrentLineCheck(playbackTime: TimeInterval) {
+    func scheduleCurrentLineCheck() {
         currentLineCheckSchedule?.cancel()
-        guard let lyrics = currentLyrics else {
+        guard let lyrics = currentLyrics, let playbackTime = self.playerManager.player?.playbackTime else {
             return
         }
         
@@ -115,7 +99,7 @@ class AppController: NSObject {
             let dt = lyrics.lines[next].position - playbackTime - lyrics.adjustedTimeDelay
             let q = DispatchQueue.global().cx
             currentLineCheckSchedule = q.schedule(after: q.now.advanced(by: .seconds(dt)), interval: .seconds(42), tolerance: .milliseconds(20)) { [unowned self] in
-                self.scheduleCurrentLineCheck(playbackTime: self.playerManager.player?.playbackTime ?? 0)
+                self.scheduleCurrentLineCheck()
             }
         }
     }
@@ -149,14 +133,14 @@ class AppController: NSObject {
         player.currentTrack?.setLyrics(replaced)
     }
     
-    func currentTrackChanged(track: MusicTrack?) {
+    func currentTrackChanged() {
         if currentLyrics?.metadata.needsPersist == true {
             currentLyrics?.persist()
         }
         currentLyrics = nil
         currentLineIndex = nil
         searchCanceller?.cancel()
-        guard let track = track else {
+        guard let track = playerManager.player?.currentTrack else {
             return
         }
         // FIXME: deal with optional value
@@ -170,7 +154,7 @@ class AppController: NSObject {
         var candidateLyricsURL: [(URL, Bool, Bool)] = []  // (fileURL, isSecurityScoped, needsSearching)
         
         if defaults[.LoadLyricsBesideTrack] {
-            if let fileName = track.url?.deletingPathExtension() {
+            if let fileName = track.fileURL?.deletingPathExtension() {
                 candidateLyricsURL += [
                     (fileName.appendingPathExtension("lrcx"), false, false),
                     (fileName.appendingPathExtension("lrc"), false, false)

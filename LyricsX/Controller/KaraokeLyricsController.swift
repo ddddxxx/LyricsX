@@ -65,12 +65,7 @@ class KaraokeLyricsWindowController: NSWindowController {
                 .sink { [unowned self] _ in
                     self.handleLyricsDisplay()
                 }.store(in: &self.cancelBag)
-            AppController.shared.playerManager.$player
-                .map {
-                    ($0?.$playbackState).map(AnyPublisher.init) ?? Just(.stopped).eraseToAnyPublisher()
-                }
-                .switchToLatest()
-                .receive(on: DispatchQueue.global().cx)
+            defaultNC.cx.publisher(for: MusicPlayerController.playbackStateDidChangeNotification, object: AppController.shared.playerManager)
                 .sink { [unowned self] _ in
                     self.handleLyricsDisplay()
                 }.store(in: &self.cancelBag)
@@ -176,6 +171,9 @@ class KaraokeLyricsWindowController: NSWindowController {
                 let timeDelay = AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
                 upperTextField.setProgressAnimation(color: self.lyricsView.progressColor, progress: progress)
+                if AppController.shared.playerManager.player?.playbackState.isPlaying != true {
+                    upperTextField.pauseProgressAnimation()
+                }
             }
         }
     }

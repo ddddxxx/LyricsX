@@ -33,16 +33,11 @@ class TouchBarArtworkViewController: NSViewController {
     }
     
     override func viewDidLoad() {
-        AppController.shared.playerManager.$player
-            .map {
-                ($0?.$currentTrack).map(AnyPublisher.init) ?? Just(nil).eraseToAnyPublisher()
-            }
-            .switchToLatest()
-            .map {
-                $0?.artwork ?? AppController.shared.playerManager.player?.icon
-            }
-            .assign(to: \.image, on: artworkView)
-            .store(in: &cancelBag)
+        defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: AppController.shared.playerManager)
+            .sink { [unowned self] _ in
+                let player = AppController.shared.playerManager.player
+                self.artworkView.image = player?.currentTrack?.artwork ?? player?.icon
+            }.store(in: &cancelBag)
     }
 }
 
