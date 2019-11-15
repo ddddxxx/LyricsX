@@ -5,27 +5,18 @@
         "package": "CombineX",
         "repositoryURL": "https://github.com/cx-org/CombineX",
         "state": {
-          "branch": "master",
-          "revision": "2b8e5641c657375f52725bb848c743d8c94ce367",
-          "version": null
+          "branch": null,
+          "revision": "273b580b464f7d6f872cf5319c5785211443cf6f",
+          "version": "0.1.1"
         }
       },
       {
-        "package": "CXCompatible",
-        "repositoryURL": "https://github.com/cx-org/CXCompatible",
+        "package": "CRuntime",
+        "repositoryURL": "https://github.com/wickwirew/CRuntime.git",
         "state": {
-          "branch": "master",
-          "revision": "4096c2774f33e0820a2b2ce025819fba1fd94b33",
-          "version": null
-        }
-      },
-      {
-        "package": "CXFoundation",
-        "repositoryURL": "https://github.com/cx-org/CXFoundation",
-        "state": {
-          "branch": "master",
-          "revision": "e46c844dcdfa37ae07a8c7a7d8dca31ccffb5643",
-          "version": null
+          "branch": null,
+          "revision": "95f911318d8c885f6fc05e971471f94adfd39405",
+          "version": "2.1.2"
         }
       },
       {
@@ -42,26 +33,26 @@
         "repositoryURL": "https://github.com/1024jp/GzipSwift",
         "state": {
           "branch": null,
-          "revision": "7d428aa5ce561cb4338ce245293d852326a86dfe",
-          "version": "5.0.0"
+          "revision": "ba0b6cb51cc6202f896e469b87d2889a46b10d1b",
+          "version": "5.1.1"
         }
       },
       {
         "package": "LyricsKit",
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
         "state": {
-          "branch": "master",
-          "revision": "21e458ca5647262aaa6b3972657d8ca99f180de2",
-          "version": null
+          "branch": null,
+          "revision": "3df5d8c9a9af9246b785598d74c950493142ca0b",
+          "version": "0.8.0"
         }
       },
       {
         "package": "MusicPlayer",
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
-          "branch": "combine",
-          "revision": "e6fb8684035ab6b00733b6ebcce55ceaa1be4216",
-          "version": null
+          "branch": null,
+          "revision": "119cab4daf47ed9fed9d2d030e4ef2952328f0ea",
+          "version": "0.5.0"
         }
       },
       {
@@ -89,6 +80,15 @@
           "branch": null,
           "revision": "be99b43cbcd958ef54b8316ea1a0cf82e525ad54",
           "version": "0.1.0"
+        }
+      },
+      {
+        "package": "Runtime",
+        "repositoryURL": "https://github.com/wickwirew/Runtime.git",
+        "state": {
+          "branch": null,
+          "revision": "61c9776f47d2951bdc562486ad348e5e1ca2e180",
+          "version": "2.1.1"
         }
       },
       {
