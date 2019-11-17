@@ -50,13 +50,14 @@ class TouchBarSystemModalController: NSObject, NSTouchBarDelegate {
     }
     
     @objc func showInControlStrip() {
+        NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(false)
         systemTrayItem?.addToSystemTray()
         systemTrayItem?.setControlStripPresence(true)
-        NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(true)
     }
     
     @objc func removeFromControlStrip() {
         dismiss()
+        systemTrayItem?.setControlStripPresence(false)
         systemTrayItem?.removeFromSystemTray()
     }
     
@@ -92,14 +93,14 @@ class TouchBarLyrics: TouchBarSystemModalController {
         
         self.observeNotification(name: NSApplication.willBecomeActiveNotification) { [unowned self] _ in
             self.removeFromControlStrip()
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
                 NSApp.touchBar = self.touchBar
             }
         }
         
         self.observeNotification(name: NSApplication.didResignActiveNotification) { [unowned self] _ in
             NSApp.touchBar = nil
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                 self.showInControlStrip()
             }
         }
