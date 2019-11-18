@@ -82,6 +82,7 @@ class AppController: NSObject {
                     NSApplication.shared.terminate(nil)
                 }
             }.store(in: &cancelBag)
+        currentTrackChanged()
     }
     
     var currentLineCheckSchedule: Cancellable?
