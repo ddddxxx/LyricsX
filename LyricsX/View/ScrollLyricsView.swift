@@ -19,7 +19,7 @@
 //
 
 import Cocoa
-import LyricsProvider
+import LyricsCore
 import OpenCC
 
 protocol ScrollLyricsViewDelegate: class {

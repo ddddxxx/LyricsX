@@ -19,8 +19,9 @@
 //
 
 import Cocoa
-import LyricsProvider
+import LyricsCore
 import MusicPlayer
+import Regex
 
 extension MusicPlayerName {
     
@@ -30,6 +31,7 @@ extension MusicPlayerName {
         case 1: self = .spotify
         case 2: self = .vox
         case 3: self = .audirvana
+        case 4: self = .swinsian
         default: return nil
         }
     }
@@ -40,6 +42,7 @@ extension MusicPlayerName {
         case .spotify:  return #imageLiteral(resourceName: "spotify_icon")
         case .vox:      return #imageLiteral(resourceName: "vox_icon")
         case .audirvana: return #imageLiteral(resourceName: "audirvana_icon")
+        case .swinsian: return #imageLiteral(resourceName: "swinsian_icon")
         }
     }
 }

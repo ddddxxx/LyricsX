@@ -19,7 +19,7 @@
 //
 
 import Foundation
-import LyricsProvider
+import LyricsCore
 
 extension Lyrics.MetaData.Key {
     static var localURL = Lyrics.MetaData.Key("localURL")

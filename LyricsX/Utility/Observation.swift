@@ -90,9 +90,9 @@ extension NSObject {
     }
     
     func observeDefaults<T: DefaultConstructible>(_ defaults: UserDefaults = .standard,
-                                                    key: UserDefaults.DefaultsKeys.Key<T>,
-                                                    options: NSKeyValueObservingOptions = [],
-                                                    changeHandler: @escaping (UserDefaults, UserDefaults.ConstructedDefaultsObservedChange<T>) -> Void) {
+                                                  key: UserDefaults.DefaultsKeys.Key<T>,
+                                                  options: NSKeyValueObservingOptions = [],
+                                                  changeHandler: @escaping (UserDefaults, UserDefaults.ConstructedDefaultsObservedChange<T>) -> Void) {
         let token = defaults.observe(key, options: options, changeHandler: changeHandler)
         autoDestruction.add(token)
     }

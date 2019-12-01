@@ -48,7 +48,7 @@ class AboutViewController: NSViewController {
         
         let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "rtf")!
         if let credits = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil) {
-            credits.addAttribute(.foregroundColor, value:NSColor.labelColor, range: credits.fullRange)
+            credits.addAttribute(.foregroundColor, value: NSColor.labelColor, range: credits.fullRange)
             creditsTextView.textStorage?.setAttributedString(credits)
         }
         Answers.logCustomEvent(withName: "View About Page")

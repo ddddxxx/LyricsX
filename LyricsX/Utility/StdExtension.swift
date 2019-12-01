@@ -53,27 +53,6 @@ extension Strideable {
 
 // MARK: - Range
 
-extension CFRange {
-    
-    var asNS: NSRange {
-        return NSRange(location: location, length: length)
-    }
-}
-
-extension NSRange {
-    
-    var asCF: CFRange {
-        return CFRange(location: location, length: length)
-    }
-}
-
-extension CFString {
-    
-    var fullRange: CFRange {
-        return CFRange(location: 0, length: CFStringGetLength(self))
-    }
-}
-
 extension NSString {
     
     var fullRange: NSRange {

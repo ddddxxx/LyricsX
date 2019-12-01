@@ -19,17 +19,21 @@
 //
 
 import Cocoa
+import CombineX
 import GenericID
-import LyricsProvider
+import LyricsCore
 import MusicPlayer
 import OpenCC
 import SnapKit
+import SwiftCF
 
 class KaraokeLyricsWindowController: NSWindowController {
     
     static private let windowFrame = NSWindow.FrameAutosaveName("KaraokeWindow")
     
     private var lyricsView = KaraokeLyricsView(frame: .zero)
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     init() {
         let window = NSWindow(contentRect: .zero, styleMask: .borderless, backing: .buffered, defer: true)
@@ -51,13 +55,20 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.displayLrc("LyricsX")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
-            self.handleLyricsDisplay()
-            self.observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in
-                self.handleLyricsDisplay()
-            }
-            self.observeNotification(name: .currentLyricsChange) { [unowned self] _ in
-                self.handleLyricsDisplay()
-            }
+            AppController.shared.$currentLyrics
+                .receive(on: DispatchQueue.global().cx)
+                .sink { [unowned self] _ in
+                    self.handleLyricsDisplay()
+                }.store(in: &self.cancelBag)
+            AppController.shared.$currentLineIndex
+                .receive(on: DispatchQueue.global().cx)
+                .sink { [unowned self] _ in
+                    self.handleLyricsDisplay()
+                }.store(in: &self.cancelBag)
+            defaultNC.cx.publisher(for: MusicPlayerController.playbackStateDidChangeNotification, object: AppController.shared.playerManager)
+                .sink { [unowned self] _ in
+                    self.handleLyricsDisplay()
+                }.store(in: &self.cancelBag)
             self.observeDefaults(keys: [.PreferBilingualLyrics, .DesktopLyricsOneLineMode]) { [unowned self] in
                 self.handleLyricsDisplay()
             }
@@ -113,7 +124,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     @objc private func handleLyricsDisplay() {
         guard defaults[.DesktopLyricsEnabled],
-            !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
+            !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState.isPlaying == true,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
                 DispatchQueue.main.async {
@@ -156,10 +167,13 @@ class KaraokeLyricsWindowController: NSWindowController {
             self.lyricsView.displayLrc(firstLine, secondLine: secondLine)
             if let upperTextField = self.lyricsView.displayLine1,
                 let timetag = lrc.attachments.timetag,
-                let position = AppController.shared.playerManager.player?.playerPosition {
+                let position = AppController.shared.playerManager.player?.playbackTime {
                 let timeDelay = AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
                 upperTextField.setProgressAnimation(color: self.lyricsView.progressColor, progress: progress)
+                if AppController.shared.playerManager.player?.playbackState.isPlaying != true {
+                    upperTextField.pauseProgressAnimation()
+                }
             }
         }
     }

@@ -19,38 +19,39 @@
 //
 
 import AppKit
+import CombineX
 import Crashlytics
-import LyricsProvider
+import LyricsService
 import MusicPlayer
 import OpenCC
+import Regex
 
-class AppController: NSObject, MusicPlayerManagerDelegate {
+class AppController: NSObject {
     
     static let shared = AppController()
     
     let lyricsManager = LyricsProviderManager()
-    let playerManager = MusicPlayerManager()
+    let playerManager = MusicPlayerControllerManager()
     
+    @CombineX.Published
     var currentLyrics: Lyrics? {
         willSet {
             willChangeValue(forKey: "lyricsOffset")
+            currentLineIndex = nil
         }
         didSet {
-            currentLyrics?.filtrate()
-            currentLyrics?.recognizeLanguage()
             didChangeValue(forKey: "lyricsOffset")
-            currentLineIndex = nil
-            postNotification(name: .currentLyricsChange)
-            timer?.fireDate = Date()
+            scheduleCurrentLineCheck()
         }
     }
     
-    var searchRequest: LyricsSearchRequest?
-    var searchProgress: Progress?
-    
+    @CombineX.Published
     var currentLineIndex: Int?
     
-    var timer: Timer?
+    var searchRequest: LyricsSearchRequest?
+    var searchCanceller: Cancellable?
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     @objc dynamic var lyricsOffset: Int {
         get {
@@ -59,20 +60,49 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         set {
             currentLyrics?.offset = newValue
             currentLyrics?.metadata.needsPersist = true
-            timer?.fireDate = Date()
+            scheduleCurrentLineCheck()
         }
     }
     
     private override init() {
         super.init()
-        playerManager.delegate = self
         playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
         
-        timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updatePlayerPosition), userInfo: nil, repeats: true)
-        timer?.tolerance = 0.02
-        RunLoop.current.add(timer!, forMode: .common)
+        defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: playerManager)
+            .sink { [unowned self] _ in
+                self.currentTrackChanged()
+            }.store(in: &cancelBag)
+        defaultNC.cx.publisher(for: MusicPlayerController.playbackStateDidChangeNotification, object: playerManager)
+            .sink { [unowned self] _ in
+                self.scheduleCurrentLineCheck()
+            }.store(in: &cancelBag)
+        defaultNC.cx.publisher(for: MusicPlayerController.runningStateDidChangeNotification, object: playerManager)
+            .sink { [unowned self] _ in
+                if self.playerManager.player?.isRunning == false, defaults[.LaunchAndQuitWithPlayer] {
+                    NSApplication.shared.terminate(nil)
+                }
+            }.store(in: &cancelBag)
+        currentTrackChanged()
+    }
+    
+    var currentLineCheckSchedule: Cancellable?
+    func scheduleCurrentLineCheck() {
+        currentLineCheckSchedule?.cancel()
+        guard let lyrics = currentLyrics, let playbackTime = self.playerManager.player?.playbackTime else {
+            return
+        }
         
-        currentTrackChanged(track: playerManager.player?.currentTrack)
+        let (index, next) = lyrics[playbackTime + lyrics.adjustedTimeDelay]
+        if currentLineIndex != index {
+            currentLineIndex = index
+        }
+        if let next = next {
+            let dt = lyrics.lines[next].position - playbackTime - lyrics.adjustedTimeDelay
+            let q = DispatchQueue.global().cx
+            currentLineCheckSchedule = q.schedule(after: q.now.advanced(by: .seconds(dt)), interval: .seconds(42), tolerance: .milliseconds(20)) { [unowned self] in
+                self.scheduleCurrentLineCheck()
+            }
+        }
     }
     
     func writeToiTunes(overwrite: Bool) {
@@ -81,7 +111,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             overwrite || player.currentTrack?.lyrics?.isEmpty != false else {
             return
         }
-        var content = currentLyrics.lines.map { line -> String in
+        let content = currentLyrics.lines.map { line -> String in
             var content = line.content
             if let converter = ChineseConverter.shared {
                 content = converter.convert(content)
@@ -99,40 +129,19 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
             return content
         }.joined(separator: "\n")
         // swiftlint:disable:next force_try
-        let regex = try! Regex("\\n{3}")
-        _ = regex.replaceMatches(in: &content, withTemplate: "\n\n")
-        player.currentTrack?.setLyrics(content)
+        let regex = try! Regex(#"\n{3,}"#)
+        let replaced = content.replacingMatches(of: regex, with: "\n\n")
+        player.currentTrack?.setLyrics(replaced)
     }
     
-    // MARK: MusicPlayerManagerDelegate
-    
-    func runningStateChanged(isRunning: Bool) {
-        if !isRunning, defaults[.LaunchAndQuitWithPlayer] {
-            NSApplication.shared.terminate(nil)
-        }
-    }
-    
-    func currentPlayerChanged(player: MusicPlayer?) {
-        currentTrackChanged(track: player?.currentTrack)
-    }
-    
-    func playbackStateChanged(state: MusicPlaybackState) {
-        postNotification(name: .lyricsShouldDisplay)
-        if state == .playing {
-            timer?.fireDate = Date()
-        } else {
-            timer?.fireDate = .distantFuture
-        }
-    }
-    
-    func currentTrackChanged(track: MusicTrack?) {
-        postNotification(name: .currentTrackChange)
+    func currentTrackChanged() {
         if currentLyrics?.metadata.needsPersist == true {
             currentLyrics?.persist()
         }
         currentLyrics = nil
         currentLineIndex = nil
-        guard let track = track else {
+        searchCanceller?.cancel()
+        guard let track = playerManager.player?.currentTrack else {
             return
         }
         // FIXME: deal with optional value
@@ -146,7 +155,7 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         var candidateLyricsURL: [(URL, Bool, Bool)] = []  // (fileURL, isSecurityScoped, needsSearching)
         
         if defaults[.LoadLyricsBesideTrack] {
-            if let fileName = track.url?.deletingPathExtension() {
+            if let fileName = track.fileURL?.deletingPathExtension() {
                 candidateLyricsURL += [
                     (fileName.appendingPathExtension("lrcx"), false, false),
                     (fileName.appendingPathExtension("lrc"), false, false)
@@ -179,6 +188,8 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                 lyrics.metadata.localURL = url
                 lyrics.metadata.title = title
                 lyrics.metadata.artist = artist
+                lyrics.filtrate()
+                lyrics.recognizeLanguage()
                 currentLyrics = lyrics
                 Answers.logCustomEvent(withName: "Load Local Lyrics")
                 if needsSearching {
@@ -208,33 +219,15 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
                                       limit: 5,
                                       timeout: 10)
         searchRequest = req
-        searchProgress = lyricsManager.searchLyrics(request: req, using: self.lyricsReceived)
+        searchCanceller = lyricsManager.lyricsPublisher(request: req)
+            .sink(receiveCompletion: { [unowned self] _ in
+                if defaults[.WriteToiTunesAutomatically] {
+                    self.writeToiTunes(overwrite: true)
+                }
+            }, receiveValue: { [unowned self] lyrics in
+                self.lyricsReceived(lyrics: lyrics)
+            }).cancel(after: .seconds(10), scheduler: DispatchQueue.global().cx)
         Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
-    }
-    
-    func playerPositionMutated(position: TimeInterval) {
-        guard let lyrics = currentLyrics else {
-            postNotification(name: .lyricsShouldDisplay)
-            timer?.fireDate = .distantFuture
-            return
-        }
-        let (index, next) = lyrics[position + lyrics.adjustedTimeDelay]
-        if currentLineIndex != index {
-            currentLineIndex = index
-            postNotification(name: .lyricsShouldDisplay)
-        }
-        if let next = next {
-            timer?.fireDate = Date() + lyrics.lines[next].position - lyrics.adjustedTimeDelay - position
-        } else {
-            timer?.fireDate = .distantFuture
-        }
-    }
-    
-    @objc func updatePlayerPosition() {
-        guard let position = playerManager.player?.playerPosition else {
-            return
-        }
-        playerPositionMutated(position: position)
     }
     
     // MARK: LyricsSourceDelegate
@@ -250,13 +243,10 @@ class AppController: NSObject, MusicPlayerManagerDelegate {
         if let current = currentLyrics, current.quality >= lyrics.quality {
             return
         }
+        lyrics.filtrate()
+        lyrics.recognizeLanguage()
         lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
-
-        if searchProgress?.isFinished == true,
-            defaults[.WriteToiTunesAutomatically] {
-            writeToiTunes(overwrite: true)
-        }
     }
 }
 
@@ -281,6 +271,8 @@ extension AppController {
         }
         lrc.metadata.title = track.title
         lrc.metadata.artist = track.artist
+        lrc.filtrate()
+        lrc.recognizeLanguage()
         lrc.metadata.needsPersist = true
         currentLyrics = lrc
         if let index = defaults[.NoSearchingTrackIds].firstIndex(of: track.id) {

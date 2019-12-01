@@ -70,14 +70,6 @@ extension NSStoryboard.SceneIdentifier {
     static let LyricsHUDAccessory = NSStoryboard.SceneIdentifier("LyricsHUDAccessory")
 }
 
-// MARK: Notification Name
-
-extension Notification.Name {
-    static let lyricsShouldDisplay = Notification.Name("LyricsShouldDisplayNotification")
-    static let currentLyricsChange = Notification.Name("CurrentLyricsChangeNotification")
-    static let currentTrackChange = Notification.Name("CurrentTrackChangeNotification")
-}
-
 // MARK: - User Defaults
 
 extension UserDefaults.DefaultsKeys {

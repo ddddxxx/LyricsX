@@ -20,35 +20,32 @@
 
 import AppKit
 import MusicPlayer
-import SnapKit
 
 @available(OSX 10.12.2, *)
 class TouchBarPlaybackControlViewController: NSViewController {
     
     override func loadView() {
         let rewindImage = NSImage(named: NSImage.touchBarRewindTemplateName)!
-        let rewindButton = NSButton(image: rewindImage, target: self, action: #selector(rewindAction(_:)))
         let playPauseImage = NSImage(named: NSImage.touchBarPlayPauseTemplateName)!
-        let playPauseButton = NSButton(image: playPauseImage, target: self, action: #selector(playPauseAction(_:)))
         let fastForwardImage = NSImage(named: NSImage.touchBarFastForwardTemplateName)!
-        let fastForwardButton = NSButton(image: fastForwardImage, target: self, action: #selector(fastForwardAction(_:)))
-        view = NSView()
-        view.addSubview(rewindButton)
-        view.addSubview(playPauseButton)
-        view.addSubview(fastForwardButton)
-        rewindButton.snp.makeConstraints { make in
-            make.top.left.bottom.equalToSuperview()
-            make.width.equalTo(playPauseButton.snp.width)
-            make.width.equalTo(fastForwardButton.snp.width)
-            make.width.equalTo(50)
-        }
-        playPauseButton.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.left.equalTo(rewindButton.snp.right).offset(2)
-            make.right.equalTo(fastForwardButton.snp.left).offset(-2)
-        }
-        fastForwardButton.snp.makeConstraints { make in
-            make.top.right.bottom.equalToSuperview()
+        let seg = NSSegmentedControl()
+        seg.trackingMode = .momentary
+        seg.segmentCount = 3
+        seg.setImage(rewindImage, forSegment: 0)
+        seg.setImage(playPauseImage, forSegment: 1)
+        seg.setImage(fastForwardImage, forSegment: 2)
+        seg.target = self
+        seg.action = #selector(segmentAction)
+        
+        self.view = seg
+    }
+    
+    @IBAction func segmentAction(_ sender: NSSegmentedControl) {
+        switch sender.selectedSegment {
+        case 0: rewindAction(nil)
+        case 1: playPauseAction(nil)
+        case 2: fastForwardAction(nil)
+        default: break
         }
     }
     
@@ -56,8 +53,8 @@ class TouchBarPlaybackControlViewController: NSViewController {
         guard let player = AppController.shared.playerManager.player else {
             return
         }
-        if player.playerPosition > 5 {
-            player.playerPosition = 0
+        if player.playbackTime > 5 {
+            player.playbackTime = 0
         } else {
             player.skipToPreviousItem()
         }

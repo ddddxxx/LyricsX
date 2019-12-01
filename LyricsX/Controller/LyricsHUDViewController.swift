@@ -19,6 +19,7 @@
 //
 
 import Cocoa
+import CombineX
 import Crashlytics
 import GenericID
 import MusicPlayer
@@ -39,6 +40,8 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             }
         }
     }
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,8 +73,15 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             self.displayLyrics(animation: false)
         }
         
-        observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.displayLyrics() }
-        observeNotification(name: .currentLyricsChange) { [unowned self] _ in self.lyricsChanged() }
+        AppController.shared.$currentLyrics
+            .sink { [unowned self] _ in
+                self.lyricsChanged()
+            }.store(in: &cancelBag)
+        AppController.shared.$currentLineIndex
+            .sink { [unowned self] _ in
+                self.displayLyrics()
+            }.store(in: &cancelBag)
+        
         observeNotification(name: NSScrollView.willStartLiveScrollNotification,
                             object: lyricsScrollView,
                             queue: .main) { [unowned self] _ in self.isTracking = false }
@@ -93,11 +103,10 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             self.noLyricsLabel.isHidden = newLyrics != nil
             self.displayLyrics(animation: false)
         }
-        
     }
     
     private func displayLyrics(animation: Bool = true) {
-        guard var pos = AppController.shared.playerManager.player?.playerPosition else {
+        guard var pos = AppController.shared.playerManager.player?.playbackTime else {
             return
         }
         pos += AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
@@ -121,7 +130,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     
     func doubleClickLyricsLine(at position: TimeInterval) {
         let pos = position - (AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0)
-        AppController.shared.playerManager.player?.playerPosition = pos
+        AppController.shared.playerManager.player?.playbackTime = pos
         isTracking = true
         Answers.logCustomEvent(withName: "Seek to Lyrics Line")
     }

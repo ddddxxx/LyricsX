@@ -19,20 +19,19 @@
 //
 
 import Foundation
-import LyricsProvider
+import LyricsCore
 
 private extension NSCountedSet {
     
     var mostFrequentElement: Any? {
-        var element: Any? = nil
-        var count = 0
-        for e in self {
-            let c = self.count(for: e)
-            if c > count {
-                (element, count) = (e, c)
+        var result: (Any?, Int) = (nil, 0)
+        for element in self {
+            let count = self.count(for: element)
+            if count > result.1 {
+                result = (element, count)
             }
         }
-        return element
+        return result.0
     }
 }
 

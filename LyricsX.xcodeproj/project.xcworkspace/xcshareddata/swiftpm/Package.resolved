@@ -1,0 +1,124 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CombineX",
+        "repositoryURL": "https://github.com/cx-org/CombineX",
+        "state": {
+          "branch": null,
+          "revision": "273b580b464f7d6f872cf5319c5785211443cf6f",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "CRuntime",
+        "repositoryURL": "https://github.com/wickwirew/CRuntime.git",
+        "state": {
+          "branch": null,
+          "revision": "95f911318d8c885f6fc05e971471f94adfd39405",
+          "version": "2.1.2"
+        }
+      },
+      {
+        "package": "GenericID",
+        "repositoryURL": "https://github.com/ddddxxx/GenericID.git",
+        "state": {
+          "branch": null,
+          "revision": "42c61a3a266f61448800f237199ad39e6083060b",
+          "version": "0.5.0"
+        }
+      },
+      {
+        "package": "Gzip",
+        "repositoryURL": "https://github.com/1024jp/GzipSwift",
+        "state": {
+          "branch": null,
+          "revision": "ba0b6cb51cc6202f896e469b87d2889a46b10d1b",
+          "version": "5.1.1"
+        }
+      },
+      {
+        "package": "LyricsKit",
+        "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
+        "state": {
+          "branch": null,
+          "revision": "3df5d8c9a9af9246b785598d74c950493142ca0b",
+          "version": "0.8.0"
+        }
+      },
+      {
+        "package": "MusicPlayer",
+        "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
+        "state": {
+          "branch": null,
+          "revision": "119cab4daf47ed9fed9d2d030e4ef2952328f0ea",
+          "version": "0.5.0"
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
+          "version": "8.0.2"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
+          "version": "2.2.0"
+        }
+      },
+      {
+        "package": "Regex",
+        "repositoryURL": "https://github.com/ddddxxx/Regex",
+        "state": {
+          "branch": null,
+          "revision": "be99b43cbcd958ef54b8316ea1a0cf82e525ad54",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "Runtime",
+        "repositoryURL": "https://github.com/wickwirew/Runtime.git",
+        "state": {
+          "branch": null,
+          "revision": "61c9776f47d2951bdc562486ad348e5e1ca2e180",
+          "version": "2.1.1"
+        }
+      },
+      {
+        "package": "Semver",
+        "repositoryURL": "https://github.com/ddddxxx/Semver.git",
+        "state": {
+          "branch": null,
+          "revision": "b2b959129b6b281b66e9801d722351ce041ce1e6",
+          "version": "0.1.2"
+        }
+      },
+      {
+        "package": "SwiftCF",
+        "repositoryURL": "https://github.com/ddddxxx/SwiftCF.git",
+        "state": {
+          "branch": null,
+          "revision": "97d353849f530d6c3df47f5e429e021514edce2d",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "SwiftyOpenCC",
+        "repositoryURL": "https://github.com/ddddxxx/SwiftyOpenCC.git",
+        "state": {
+          "branch": null,
+          "revision": "64a4534c17480b15b87cfa114ffcc5aa26a2d35f",
+          "version": "1.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -19,36 +19,29 @@
 //
 
 import AppKit
+import CombineX
 import MusicPlayer
 
 class TouchBarArtworkViewController: NSViewController {
     
     let artworkView = NSImageView()
     
-    var observation: NSObjectProtocol?
+    private var cancelBag = Set<AnyCancellable>()
     
     override func loadView() {
         view = artworkView
     }
     
     override func viewDidLoad() {
-        reloadImage()
-        observeNotification(name: .currentTrackChange) { [unowned self] _ in
-            self.reloadImage()
-        }
-    }
-    
-    func reloadImage() {
-        guard let player = AppController.shared.playerManager.player else {
-            artworkView.image = nil
-            return
-        }
-        let image = player.currentTrack?.artwork ?? player.icon
-        artworkView.image = image?.scaled(to: NSSize(width: 28, height: 28))
+        defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: AppController.shared.playerManager)
+            .sink { [unowned self] _ in
+                let player = AppController.shared.playerManager.player
+                self.artworkView.image = player?.currentTrack?.artwork ?? player?.icon
+            }.store(in: &cancelBag)
     }
 }
 
-extension MusicPlayer {
+extension MusicPlayerController {
     
     var icon: NSImage? {
         switch self {

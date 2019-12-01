@@ -19,8 +19,9 @@
 //
 
 import Cocoa
+import CombineX
 import GenericID
-import LyricsProvider
+import LyricsCore
 import MusicPlayer
 import OpenCC
 
@@ -33,23 +34,35 @@ class MenuBarLyrics: NSObject {
     var buttonImage = #imageLiteral(resourceName: "status_bar_icon")
     var buttonlength: CGFloat = 30
     
-    private var screenLyrics = ""
+    private var screenLyrics = "" {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateStatusItem()
+            }
+        }
+    }
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     private override init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         super.init()
-        
-        observeNotification(name: .lyricsShouldDisplay) { [unowned self] _ in self.handleLyricsDisplay() }
+        AppController.shared.$currentLyrics
+            .combineLatest(AppController.shared.$currentLineIndex)
+            .receive(on: DispatchQueue.global().cx)
+            .sink { [unowned self] lrc, idx in
+                self.handleLyricsDisplay(lyrics: lrc, index: idx)
+            }
+            .store(in: &cancelBag)
         observeNotification(center: workspaceNC, name: NSWorkspace.didActivateApplicationNotification) { [unowned self] _ in self.updateStatusItem() }
         observeDefaults(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }
     }
     
-    @objc private func handleLyricsDisplay() {
-        guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState == .playing,
-            let lyrics = AppController.shared.currentLyrics,
-            let index = AppController.shared.currentLineIndex else {
+    private func handleLyricsDisplay(lyrics: Lyrics?, index: Int?) {
+        guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState.isPlaying == true,
+            let lyrics = lyrics,
+            let index = index else {
             screenLyrics = ""
-            updateStatusItem()
             return
         }
         var newScreenLyrics = lyrics.lines[index].content
@@ -60,7 +73,6 @@ class MenuBarLyrics: NSObject {
             return
         }
         screenLyrics = newScreenLyrics
-        updateStatusItem()
     }
     
     @objc private func updateStatusItem() {
