@@ -49,7 +49,7 @@ class AppController: NSObject {
     var currentLineIndex: Int?
     
     var searchRequest: LyricsSearchRequest?
-    var searchCanceller: AnyCancellable?
+    var searchCanceller: Cancellable?
     
     private var cancelBag = Set<AnyCancellable>()
     
@@ -226,7 +226,7 @@ class AppController: NSObject {
                 }
             }, receiveValue: { [unowned self] lyrics in
                 self.lyricsReceived(lyrics: lyrics)
-            })
+            }).cancel(after: .seconds(10), scheduler: DispatchQueue.global().cx)
         Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
     }
     

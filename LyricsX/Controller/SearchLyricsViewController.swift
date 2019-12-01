@@ -37,7 +37,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     
     let lyricsManager = LyricsProviderManager()
     var searchRequest: LyricsSearchRequest?
-    var searchCanceller: AnyCancellable?
+    var searchCanceller: Cancellable?
     var searchResult: [Lyrics] = []
     var progressObservation: NSKeyValueObservation?
     
@@ -106,7 +106,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
                 }
             }, receiveValue: { [unowned self] lyrics in
                 self.lyricsReceived(lyrics: lyrics)
-            })
+            }).cancel(after: .seconds(10), scheduler: DispatchQueue.global().cx)
         progressIndicator.startAnimation(nil)
         tableView.reloadData()
         Answers.logCustomEvent(withName: "Search Lyrics Manually")
