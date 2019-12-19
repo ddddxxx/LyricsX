@@ -8,22 +8,22 @@
 "3Bt-md-QNc.title" = "Paroles";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
-"5dp-p5-YmE.title" = "Mode une ligne";
+"5dp-p5-YmE.title" = "Mode ligne par ligne";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
 "6FU-j0-FTV.title" = "Chinois traditionnel";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "Écrire des paroles pour iTunes :";
+"6We-TB-Wfc.title" = "Écrire des paroles dans iTunes :";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "Automatiquement";
 
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
-"8JF-Og-z6E.title" = "Afficher";
+"8JF-Og-z6E.title" = "Affichage";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "Écrire des paroles pour iTunes :";
+"8Sx-vb-5pB.title" = "Écrire des paroles dans iTunes :";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "Police :";
@@ -158,19 +158,19 @@
 "slB-q7-1dB.title" = "Décalage global (ms) :";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "Draggable";
+"T7p-MT-Mrh.title" = "Déplaçable";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "Strict Search";
+"As7-rZ-u6c.title" = "Recherche stricte";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
-"zQK-i2-2Nc.title" = "Customize TouchBar";
+"zQK-i2-2Nc.title" = "Personnaliser la TouchBar";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "Search result match the exact search term";
+"rSD-qR-EXA.title" = "Le résultat de la recherche correspond au terme de recherche exact";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "Language (Requires Restart):";
+"WfA-pe-S5D.title" = "Langue (Redémarrage requis) :";
 
 /* Class = "NSButtonCell"; title = "Help translate LyricsX"; ObjectID = "oiH-T7-agJ"; */
-"oiH-T7-agJ.title" = "Help translate LyricsX";
+"oiH-T7-agJ.title" = "Aider à traduire LyricsX";
