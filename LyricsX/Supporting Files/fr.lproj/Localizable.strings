@@ -2,16 +2,16 @@
 "Download" = "Télécharger";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "Font Fallback: %@";
+"Font Fallback: %@" = "Police alternative : %@";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* window title */
-"Search Lyrics" = "Search Lyrics";
+"Search Lyrics" = "Rechercher les paroles";
 
 /* No comment provided by engineer. */
 "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "La Touch Bar n'est pas prise en charge dans la version Mac App Store. Veuillez télécharger la version GitHub.";
 
 /* alert title */
-"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
+"Unable to enable Touch Bar lyrics." = "Impossible d'afficher les paroles sur la Touch Bar.";
