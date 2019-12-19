@@ -17,7 +17,7 @@
 "GGU-uz-d9h.title" = "Activer les paroles karaoke";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
-"Gza-SX-MCH.ibShadowedToolTip" = "Au-dessus";
+"Gza-SX-MCH.ibShadowedToolTip" = "Toujours au premier plan";
 
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
 "HMU-fa-17B.headerCell.title" = "Artiste";
