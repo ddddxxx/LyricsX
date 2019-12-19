@@ -1,5 +1,5 @@
 /* title of download button on the update alert. Download new version of the app. */
-"Download" = "Download";
+"Download" = "Télécharger";
 
 /* No comment provided by engineer. */
 "Font Fallback: %@" = "Font Fallback: %@";
@@ -11,7 +11,7 @@
 "Search Lyrics" = "Search Lyrics";
 
 /* No comment provided by engineer. */
-"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub.";
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "La Touch Bar n'est pas prise en charge dans la version Mac App Store. Veuillez télécharger la version GitHub.";
 
 /* alert title */
 "Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
