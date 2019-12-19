@@ -110,7 +110,7 @@
 "kEd-lC-aAH.title" = "Activer le filtre de paroles";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
-"kP4-4q-ed9.title" = "Rechercher des paroles:";
+"kP4-4q-ed9.title" = "Rechercher des paroles :";
 
 /* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
 "lN1-gG-AVq.title" = "Filtre";
