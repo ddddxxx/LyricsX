@@ -59,10 +59,10 @@
 "NLl-9L-0gZ.title" = "Musique arrêtée";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
-"Txi-D9-jjB.title" = "Text:";
+"Txi-D9-jjB.title" = "Texte:";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
-"Uer-qJ-3T9.title" = "Background";
+"Uer-qJ-3T9.title" = "Arrière-plan";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
 "UfE-QU-Yhm.title" = "Hightlight:";
