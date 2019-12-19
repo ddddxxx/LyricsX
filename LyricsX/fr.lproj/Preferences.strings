@@ -68,31 +68,31 @@
 "UfE-QU-Yhm.title" = "Hightlight:";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "Reset";
+"XUF-aM-ZmS.title" = "Réinitialiser";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "Preferences";
+"aMb-zX-bzP.title" = "Préférences";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
-"aUg-eg-K5C.label" = "Karaoke";
+"aUg-eg-K5C.label" = "Karaoké";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "Disable lyrics when:";
+"bDS-Lb-m34.title" = "Désactiver les paroles quand :";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
 "bFk-1g-XeL.title" = "Lab";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "Combine menubar icon with menubar lyrics";
+"bbd-ra-rSF.title" = "Remplacer l'icône dans la barre de menu par les paroles";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "Decrease lyrics offset:";
+"bmk-rW-Uot.title" = "Diminuer le décalage des paroles :";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "Prefer bilingual lyrics";
+"cBB-zn-Hdh.title" = "Préférer les paroles bilingues";
 
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
-"d5d-dC-DK4.title" = "General";
+"d5d-dC-DK4.title" = "Général";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
 "g2u-8D-dln.title" = "Here are some experimental features that may not be stable enough, and may be removed in the future.";
