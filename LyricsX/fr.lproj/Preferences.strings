@@ -65,7 +65,7 @@
 "Uer-qJ-3T9.title" = "Arrière-plan";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
-"UfE-QU-Yhm.title" = "Hightlight:";
+"UfE-QU-Yhm.title" = "Progression :";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
 "XUF-aM-ZmS.title" = "Réinitialiser";
@@ -152,7 +152,7 @@
 "lOc-OP-AcU.title" = "Afficher/Masquer le mode karaoké :";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
-"XuN-vs-cgI.title" = "Progress";
+"XuN-vs-cgI.title" = "Progression";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
 "slB-q7-1dB.title" = "Décalage global (ms) :";
