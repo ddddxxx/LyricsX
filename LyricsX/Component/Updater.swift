@@ -28,23 +28,12 @@ var remoteVersion: Semver? {
     do {
         let data = try Data(contentsOf: url)
         let response = try JSONDecoder().decode(GitHubResponse.self, from: data)
-        var tag = response.tag_name
         guard !response.draft else { return nil }
-        if tag.hasPrefix("v") {
-            tag.removeFirst()
-        }
-        return Semver(tag)
+        return Semver(response.tag_name)
     } catch {
         log("failed to read remote varsion: \(error)")
         return nil
     }
-}
-
-var localVersion: Semver {
-    let info = Bundle.main.infoDictionary!
-    // swiftlint:disable:next force_cast
-    let shortVersion = info["CFBundleShortVersionString"] as! String
-    return Semver(shortVersion)!
 }
 
 #if IS_FOR_MAS
@@ -61,7 +50,7 @@ var localVersion: Semver {
             return
         }
         DispatchQueue.global().async {
-            let local = localVersion
+            let local = Bundle.main.semanticVersion!
             guard let remote = remoteVersion else {
                 return
             }
@@ -70,13 +59,6 @@ var localVersion: Semver {
     }
     
 #endif
-
-extension Semver {
-    
-    var isPrerelease: Bool {
-        return !prerelease.isEmpty
-    }
-}
 
 struct GitHubResponse: Decodable {
     // swiftlint:disable:next identifier_name

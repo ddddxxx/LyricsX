@@ -1382,7 +1382,7 @@
 			repositoryURL = "https://github.com/ddddxxx/Semver.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.1.2;
+				minimumVersion = 0.2.0;
 			};
 		};
 		BBB03F382331D8A800A3879E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */ = {
