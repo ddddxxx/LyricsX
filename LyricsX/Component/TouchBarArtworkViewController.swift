@@ -35,9 +35,20 @@ class TouchBarArtworkViewController: NSViewController {
     override func viewDidLoad() {
         defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: AppController.shared.playerManager)
             .sink { [unowned self] _ in
-                let player = AppController.shared.playerManager.player
-                self.artworkView.image = player?.currentTrack?.artwork ?? player?.icon
+                self.updateArtworkImage()
             }.store(in: &cancelBag)
+        updateArtworkImage()
+    }
+    
+    func updateArtworkImage() {
+        let player = AppController.shared.playerManager.player
+        if let image = player?.currentTrack?.artwork ?? player?.icon {
+            let size = CGSize(width: 30, height: 30)
+            self.artworkView.image = NSImage(size: size, flipped: false) { rect in
+                image.draw(in: rect)
+                return true
+            }
+        }
     }
 }
 
