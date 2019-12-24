@@ -74,10 +74,12 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         }
         
         AppController.shared.$currentLyrics
+            .receive(on: DispatchQueue.main.cx)
             .sink { [unowned self] _ in
                 self.lyricsChanged()
             }.store(in: &cancelBag)
         AppController.shared.$currentLineIndex
+            .receive(on: DispatchQueue.main.cx)
             .sink { [unowned self] _ in
                 self.displayLyrics()
             }.store(in: &cancelBag)
@@ -121,8 +123,6 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
                 context.timingFunction = .swiftOut
                 self.lyricsScrollView.scroll(position: pos)
             }
-        } else {
-            lyricsScrollView.scroll(position: pos)
         }
     }
     
@@ -144,7 +144,9 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     // MARK: NSWindowDelegate
     
     func windowDidResize(_ notification: Notification) {
-        displayLyrics(animation: false)
+        DispatchQueue.main.async {
+            self.displayLyrics(animation: false)
+        }
     }
     
     // MARK: DragNDropDelegate

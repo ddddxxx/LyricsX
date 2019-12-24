@@ -91,14 +91,16 @@ class TouchBarLyrics: TouchBarSystemModalController {
         
         lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
         
-        self.observeNotification(name: NSApplication.willBecomeActiveNotification) { [unowned self] _ in
+        self.observeNotification(name: NSApplication.willBecomeActiveNotification) { [weak self] _ in
+            guard let self = self else { return }
             self.removeFromControlStrip()
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
                 NSApp.touchBar = self.touchBar
             }
         }
         
-        self.observeNotification(name: NSApplication.didResignActiveNotification) { [unowned self] _ in
+        self.observeNotification(name: NSApplication.didResignActiveNotification) { [weak self] _ in
+            guard let self = self else { return }
             NSApp.touchBar = nil
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                 self.showInControlStrip()
