@@ -1179,7 +1179,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = "1.5.2-beta.1";
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1209,7 +1208,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = "1.5.2-beta.1";
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
