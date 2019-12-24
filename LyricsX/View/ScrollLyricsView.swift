@@ -41,15 +41,22 @@ class ScrollLyricsView: NSScrollView {
     
     @objc dynamic var textColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1) {
         didSet {
-            let range = textView.string.fullRange
-            textView.textStorage?.addAttribute(.foregroundColor, value: textColor, range: range)
-            highlightedRange.map { textView.textStorage?.addAttribute(.foregroundColor, value: highlightColor, range: $0) }
+            DispatchQueue.main.async {
+                let range = self.textView.string.fullRange
+                self.textView.textStorage?.addAttribute(.foregroundColor, value: self.textColor, range: range)
+                if let highlightedRange = self.highlightedRange {
+                    self.textView.textStorage?.addAttribute(.foregroundColor, value: self.highlightColor, range: highlightedRange)
+                }
+            }
         }
     }
     
     @objc dynamic var highlightColor = #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1) {
         didSet {
-            highlightedRange.map { textView.textStorage?.addAttribute(.foregroundColor, value: highlightColor, range: $0) }
+            guard let highlightedRange = self.highlightedRange else { return }
+            DispatchQueue.main.async {
+                self.textView.textStorage?.addAttribute(.foregroundColor, value: self.highlightColor, range: highlightedRange)
+            }
         }
     }
     
