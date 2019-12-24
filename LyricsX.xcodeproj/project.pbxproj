@@ -211,6 +211,14 @@
 		BB1B300220E878AE002F1AF8 /* StdExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StdExtension.swift; sourceTree = "<group>"; };
 		BB1B300420E87CC9002F1AF8 /* KaraokeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaraokeLabel.swift; sourceTree = "<group>"; };
 		BB1B631A1E8CD7CA004CC9E0 /* ScrollLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollLyricsView.swift; sourceTree = "<group>"; };
+		BB28973123B1F1D800C03D91 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		BB28973223B1F1D800C03D91 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Preferences.strings; sourceTree = "<group>"; };
+		BB28973423B1F22700C03D91 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB28973523B1F22B00C03D91 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB28973623B1F31000C03D91 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		BB28973723B1F31100C03D91 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Preferences.strings"; sourceTree = "<group>"; };
+		BB28973823B1F31900C03D91 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BB28973923B1F31D00C03D91 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BB335B112057BCE3003A69F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BB335B132057BD03003A69F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
 		BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
@@ -634,6 +642,8 @@
 				pl,
 				de,
 				fa,
+				fr,
+				"zh-Hant",
 			);
 			mainGroup = BB4141A11E458BA800A51775;
 			packageReferences = (
@@ -959,6 +969,8 @@
 				BB5C5531232B5D7200448FC0 /* pl */,
 				BB5C5532232B5D7500448FC0 /* de */,
 				BB5C5537232B5EAA00448FC0 /* fa */,
+				BB28973423B1F22700C03D91 /* fr */,
+				BB28973923B1F31D00C03D91 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -973,6 +985,8 @@
 				BBD2E35B22B780FC00410259 /* pl */,
 				BB5C552F232B5D1B00448FC0 /* de */,
 				BB5C5535232B5E6B00448FC0 /* fa */,
+				BB28973123B1F1D800C03D91 /* fr */,
+				BB28973623B1F31000C03D91 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -995,6 +1009,8 @@
 				BBD2E35C22B780FC00410259 /* pl */,
 				BB5C5530232B5D1B00448FC0 /* de */,
 				BB5C5536232B5E6B00448FC0 /* fa */,
+				BB28973223B1F1D800C03D91 /* fr */,
+				BB28973723B1F31100C03D91 /* zh-Hant */,
 			);
 			name = Preferences.storyboard;
 			sourceTree = "<group>";
@@ -1008,6 +1024,8 @@
 				BB5C5533232B5D7800448FC0 /* pl */,
 				BB5C5534232B5D7A00448FC0 /* de */,
 				BB5C5538232B5EAE00448FC0 /* fa */,
+				BB28973523B1F22B00C03D91 /* fr */,
+				BB28973823B1F31900C03D91 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

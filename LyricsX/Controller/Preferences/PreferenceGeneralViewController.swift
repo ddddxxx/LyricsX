@@ -66,10 +66,16 @@ class PreferenceGeneralViewController: NSViewController {
         }
         
         for lan in supportedLanguages {
-            let str = Locale(identifier: lan).localizedString(forLanguageCode: lan)!
-            languagePopUp.addItem(withTitle: str)
+            let localized: String
+            if let idx = lan.firstIndex(of: "-") {
+                let script = String(lan[idx...].dropFirst())
+                localized = Locale(identifier: lan).localizedString(forScriptCode: script)!
+            } else {
+                localized = Locale(identifier: lan).localizedString(forLanguageCode: lan)!
+            }
+            languagePopUp.addItem(withTitle: localized)
             if lan == defaults[.AppleLanguages].first {
-                languagePopUp.selectItem(withTitle: str)
+                languagePopUp.selectItem(withTitle: localized)
             }
         }
     }
@@ -143,7 +149,9 @@ class PreferenceGeneralViewController: NSViewController {
 let supportedLanguages = [
     "en",
     "zh-Hans",
+    "zh-Hant",
     "ja",
+    "fr",
     "pl",
     "de",
     "fa",
