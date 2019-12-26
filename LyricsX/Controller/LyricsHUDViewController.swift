@@ -123,6 +123,8 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
                 context.timingFunction = .swiftOut
                 self.lyricsScrollView.scroll(position: pos)
             }
+        } else {
+            lyricsScrollView.scroll(position: pos)
         }
     }
     
