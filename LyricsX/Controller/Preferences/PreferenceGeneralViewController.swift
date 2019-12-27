@@ -125,7 +125,6 @@ class PreferenceGeneralViewController: NSViewController {
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         defaults[.PreferredPlayerIndex] = sender.tag
-        AppController.shared.playerManager.preferredPlayerName = MusicPlayerName(index: sender.tag)
         
         if sender.tag < 0 {
             autoLaunchButton.isEnabled = false

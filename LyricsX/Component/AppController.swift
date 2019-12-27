@@ -31,10 +31,8 @@ class AppController: NSObject {
     static let shared = AppController()
     
     let lyricsManager = LyricsProviderManager()
-    let playerManager = MusicPlayerControllerManager()
     
-    @CombineX.Published
-    var currentLyrics: Lyrics? {
+    @Published var currentLyrics: Lyrics? {
         willSet {
             willChangeValue(forKey: "lyricsOffset")
             currentLineIndex = nil
@@ -45,8 +43,7 @@ class AppController: NSObject {
         }
     }
     
-    @CombineX.Published
-    var currentLineIndex: Int?
+    @Published var currentLineIndex: Int?
     
     var searchRequest: LyricsSearchRequest?
     var searchCanceller: Cancellable?
@@ -66,19 +63,21 @@ class AppController: NSObject {
     
     private override init() {
         super.init()
-        playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
-        
-        defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: playerManager)
+        selectedPlayer.currentTrackWillChange
+            .receive(on: DispatchQueue.global().cx)
             .sink { [unowned self] _ in
                 self.currentTrackChanged()
             }.store(in: &cancelBag)
-        defaultNC.cx.publisher(for: MusicPlayerController.playbackStateDidChangeNotification, object: playerManager)
+        selectedPlayer.playbackStateWillChange
+            .receive(on: DispatchQueue.global().cx)
             .sink { [unowned self] _ in
                 self.scheduleCurrentLineCheck()
             }.store(in: &cancelBag)
-        defaultNC.cx.publisher(for: MusicPlayerController.runningStateDidChangeNotification, object: playerManager)
-            .sink { [unowned self] _ in
-                if self.playerManager.player?.isRunning == false, defaults[.LaunchAndQuitWithPlayer] {
+        
+        defaultNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
+            .sink { n in
+                let bundleID = (n.userInfo![NSWorkspace.applicationUserInfoKey] as! NSRunningApplication).bundleIdentifier
+                if defaults[.LaunchAndQuitWithPlayer], (selectedPlayer.currentPlayer as? MusicPlayers.ScriptingBridged)?.playerBundleID == bundleID {
                     NSApplication.shared.terminate(nil)
                 }
             }.store(in: &cancelBag)
@@ -88,10 +87,10 @@ class AppController: NSObject {
     var currentLineCheckSchedule: Cancellable?
     func scheduleCurrentLineCheck() {
         currentLineCheckSchedule?.cancel()
-        guard let lyrics = currentLyrics, let playbackTime = self.playerManager.player?.playbackTime else {
+        guard let lyrics = currentLyrics else {
             return
         }
-        
+        let playbackTime = MusicPlayers.Selected.shared.playbackTime
         let (index, next) = lyrics[playbackTime + lyrics.adjustedTimeDelay]
         if currentLineIndex != index {
             currentLineIndex = index
@@ -106,9 +105,10 @@ class AppController: NSObject {
     }
     
     func writeToiTunes(overwrite: Bool) {
-        guard let player = playerManager.player as? iTunes,
+        guard selectedPlayer.name == .appleMusic,
             let currentLyrics = currentLyrics,
-            overwrite || player.currentTrack?.lyrics?.isEmpty != false else {
+            let sbTrack = selectedPlayer.currentTrack?.originalTrack,
+            overwrite || (sbTrack.value(forKey: "lyrics") as! String?)?.isEmpty != false else {
             return
         }
         let content = currentLyrics.lines.map { line -> String in
@@ -131,7 +131,7 @@ class AppController: NSObject {
         // swiftlint:disable:next force_try
         let regex = try! Regex(#"\n{3,}"#)
         let replaced = content.replacingMatches(of: regex, with: "\n\n")
-        player.currentTrack?.setLyrics(replaced)
+        sbTrack.setValue(replaced, forKey: "lyrics")
     }
     
     func currentTrackChanged() {
@@ -141,7 +141,7 @@ class AppController: NSObject {
         currentLyrics = nil
         currentLineIndex = nil
         searchCanceller?.cancel()
-        guard let track = playerManager.player?.currentTrack else {
+        guard let track = MusicPlayers.Selected.shared.currentTrack else {
             return
         }
         // FIXME: deal with optional value
@@ -261,7 +261,7 @@ extension AppController {
             let error = NSError(domain: lyricsXErrorDomain, code: 0, userInfo: errorInfo)
             throw error
         }
-        guard let track = playerManager.player?.currentTrack else {
+        guard let track = selectedPlayer.currentTrack else {
             let errorInfo = [
                 NSLocalizedDescriptionKey: "No music playing",
                 NSLocalizedRecoverySuggestionErrorKey: "Play a music and try again."

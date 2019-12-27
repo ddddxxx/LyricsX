@@ -142,11 +142,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         switch menuItem.action {
         case #selector(writeToiTunes(_:))?:
-            return AppController.shared.playerManager.player is iTunes && AppController.shared.currentLyrics != nil
+            return selectedPlayer.name == .appleMusic && AppController.shared.currentLyrics != nil
         case #selector(searchLyrics(_:))?:
-            let track = AppController.shared.playerManager.player?.currentTrack
-            let enabled = track != nil
-            return enabled
+            return selectedPlayer.currentTrack != nil
         default:
             return true
         }
@@ -207,7 +205,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     }
     
     @IBAction func wrongLyrics(_ sender: Any?) {
-        guard let track = AppController.shared.playerManager.player?.currentTrack else {
+        guard let track = selectedPlayer.currentTrack else {
             return
         }
         defaults[.NoSearchingTrackIds].append(track.id)
@@ -222,7 +220,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     }
     
     @IBAction func doNotSearchLyricsForThisAlbum(_ sender: Any?) {
-        guard let track = AppController.shared.playerManager.player?.currentTrack,
+        guard let track = selectedPlayer.currentTrack,
             let album = track.album else {
             return
         }

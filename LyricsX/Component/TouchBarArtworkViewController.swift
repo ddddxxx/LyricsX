@@ -33,7 +33,8 @@ class TouchBarArtworkViewController: NSViewController {
     }
     
     override func viewDidLoad() {
-        defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: AppController.shared.playerManager)
+        selectedPlayer.currentTrackWillChange
+            .receive(on: DispatchQueue.main.cx)
             .sink { [unowned self] _ in
                 self.updateArtworkImage()
             }.store(in: &cancelBag)
@@ -41,26 +42,15 @@ class TouchBarArtworkViewController: NSViewController {
     }
     
     func updateArtworkImage() {
-        let player = AppController.shared.playerManager.player
-        if let image = player?.currentTrack?.artwork ?? player?.icon {
+        if let image = selectedPlayer.currentTrack?.artwork ?? selectedPlayer.name?.icon {
             let size = CGSize(width: 30, height: 30)
             self.artworkView.image = NSImage(size: size, flipped: false) { rect in
                 image.draw(in: rect)
                 return true
             }
-        }
-    }
-}
-
-extension MusicPlayerController {
-    
-    var icon: NSImage? {
-        switch self {
-        case is iTunes: return #imageLiteral(resourceName: "iTunes_icon")
-        case is Spotify: return #imageLiteral(resourceName: "spotify_icon")
-        case is Vox: return #imageLiteral(resourceName: "vox_icon")
-        case is Audirvana: return #imageLiteral(resourceName: "audirvana_icon")
-        default: return nil
+        } else {
+            // TODO: Placeholder
+            self.artworkView.image = nil
         }
     }
 }

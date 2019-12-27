@@ -65,7 +65,8 @@ class KaraokeLyricsWindowController: NSWindowController {
                 .sink { [unowned self] _ in
                     self.handleLyricsDisplay()
                 }.store(in: &self.cancelBag)
-            defaultNC.cx.publisher(for: MusicPlayerController.playbackStateDidChangeNotification, object: AppController.shared.playerManager)
+            selectedPlayer.playbackStateWillChange
+                .receive(on: DispatchQueue.global().cx)
                 .sink { [unowned self] _ in
                     self.handleLyricsDisplay()
                 }.store(in: &self.cancelBag)
@@ -124,7 +125,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     @objc private func handleLyricsDisplay() {
         guard defaults[.DesktopLyricsEnabled],
-            !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState.isPlaying == true,
+            !defaults[.DisableLyricsWhenPaused] || selectedPlayer.playbackState.isPlaying,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
                 DispatchQueue.main.async {
@@ -166,12 +167,12 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.async {
             self.lyricsView.displayLrc(firstLine, secondLine: secondLine)
             if let upperTextField = self.lyricsView.displayLine1,
-                let timetag = lrc.attachments.timetag,
-                let position = AppController.shared.playerManager.player?.playbackTime {
+                let timetag = lrc.attachments.timetag {
+                let position = selectedPlayer.playbackTime
                 let timeDelay = AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
                 let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
                 upperTextField.setProgressAnimation(color: self.lyricsView.progressColor, progress: progress)
-                if AppController.shared.playerManager.player?.playbackState.isPlaying != true {
+                if !selectedPlayer.playbackState.isPlaying {
                     upperTextField.pauseProgressAnimation()
                 }
             }

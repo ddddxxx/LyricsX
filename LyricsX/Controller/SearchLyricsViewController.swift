@@ -63,7 +63,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     func reloadKeyword() {
-        guard let track = AppController.shared.playerManager.player?.currentTrack else {
+        guard let track = selectedPlayer.currentTrack else {
             searchCanceller?.cancel()
             searchResult = []
             searchArtist = ""
@@ -88,7 +88,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         artworkView.image = #imageLiteral(resourceName: "missing_artwork")
         lyricsPreviewTextView.string = " "
         
-        let track = AppController.shared.playerManager.player?.currentTrack
+        let track = selectedPlayer.currentTrack
         let duration = track?.duration ?? 0
         let title = track?.title ?? ""
         let artist = track?.artist ?? ""
@@ -117,7 +117,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         
-        if let track = AppController.shared.playerManager.player?.currentTrack {
+        if let track = selectedPlayer.currentTrack {
             if let index = defaults[.NoSearchingTrackIds].firstIndex(of: track.id) {
                 defaults[.NoSearchingTrackIds].remove(at: index)
             }

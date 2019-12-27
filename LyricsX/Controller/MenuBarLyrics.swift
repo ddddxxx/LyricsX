@@ -59,7 +59,7 @@ class MenuBarLyrics: NSObject {
     }
     
     private func handleLyricsDisplay(lyrics: Lyrics?, index: Int?) {
-        guard !defaults[.DisableLyricsWhenPaused] || AppController.shared.playerManager.player?.playbackState.isPlaying == true,
+        guard !defaults[.DisableLyricsWhenPaused] || selectedPlayer.playbackState.isPlaying,
             let lyrics = lyrics,
             let index = index else {
             screenLyrics = ""
