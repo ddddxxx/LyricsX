@@ -8,7 +8,7 @@
 "CWo-Qx-2Ut.title" = "Préférences...";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
-"EoO-ld-6Xv.title" = "Faites un don...";
+"EoO-ld-6Xv.title" = "Faire un don...";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
 "FMI-7E-tCo.title" = "Titre :";
@@ -44,7 +44,7 @@
 "aRw-yQ-GNX.title" = "Aucune paroles\n\nPas de glisser-et-déposer pour importer un fichier LRC";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
-"d5a-4n-6k8.ibShadowedToolTip" = "Synchroniser";
+"d5a-4n-6k8.ibShadowedToolTip" = "Synchronisation";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
 "eb9-fE-Lgq.title" = "Rechercher";
@@ -65,10 +65,10 @@
 "kyJ-kV-2Du.title" = "Afficher la fenêtre des paroles";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
-"l8J-1r-dIZ.title" = "Artiste:";
+"l8J-1r-dIZ.title" = "Artiste :";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "Si vous aimez utiliser LyricsX, et souhaitez m'acheter une tasse de café, ou même m'aider à garder ce logiciel actif, vous pouvez scanner le code QR ci-dessous pour faire un don généreux.";
+"o52-Z0-lue.title" = "Si vous aimez utiliser LyricsX et souhaitez m'offrir une tasse de café ainsi que m'aider à continuer le développement de ce logiciel, vous pouvez scanner le code QR ci-dessous et faire un don généreux.";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
 "DNi-vI-MTr.title" = "Monter dans Finder";
