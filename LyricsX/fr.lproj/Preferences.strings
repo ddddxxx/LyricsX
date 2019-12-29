@@ -50,22 +50,22 @@
 "JYR-Ed-Tax.title" = "Lecteur de musique préféré";
 
 /* Class = "NSButtonCell"; title = "Mouse passing by"; ObjectID = "LH4-YZ-Qvs"; */
-"LH4-YZ-Qvs.title" = "Le survol de la souris";
+"LH4-YZ-Qvs.title" = "Survol du curseur";
 
 /* Class = "NSTabViewItem"; label = "Window"; ObjectID = "LbQ-p9-Zti"; */
 "LbQ-p9-Zti.label" = "Fenêtre";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
-"NLl-9L-0gZ.title" = "Musique arrêtée";
+"NLl-9L-0gZ.title" = "Aucune musique jouée";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
-"Txi-D9-jjB.title" = "Texte:";
+"Txi-D9-jjB.title" = "Texte :";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
 "Uer-qJ-3T9.title" = "Arrière-plan";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
-"UfE-QU-Yhm.title" = "Progression :";
+"UfE-QU-Yhm.title" = "Surlignage :";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
 "XUF-aM-ZmS.title" = "Réinitialiser";
@@ -83,7 +83,7 @@
 "bFk-1g-XeL.title" = "Lab";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "Remplacer l'icône dans la barre de menu par les paroles";
+"bbd-ra-rSF.title" = "Combiner l'icône de la barre de menu et les paroles dans la barre de menu";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
 "bmk-rW-Uot.title" = "Diminuer le décalage des paroles :";
@@ -95,16 +95,16 @@
 "d5d-dC-DK4.title" = "Général";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "Voici quelques fonctionnalités expérimentales qui pourraient ne pas être assez stables et pourraient être supprimées à l'avenir.";
+"g2u-8D-dln.title" = "Voici quelques fonctionnalités expérimentales qui peuvent ne pas être suffisamment stables et être supprimées à l'avenir.";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
 "hsu-H9-9Bd.title" = "Ombre";
 
 /* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
-"iMD-Wy-Bm7.title" = "La prise d'une capture d'écran";
+"iMD-Wy-Bm7.title" = "Prise d'une capture d'écran";
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
-"jFb-kX-VbY.title" = "Avec la traduction";
+"jFb-kX-VbY.title" = "Avec traduction";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
 "kEd-lC-aAH.title" = "Activer le filtre de paroles";
@@ -116,13 +116,13 @@
 "lN1-gG-AVq.title" = "Filtre";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
-"mo2-3C-gLY.title" = "Augmenter le décalage des paroles:";
+"mo2-3C-gLY.title" = "Augmenter le décalage des paroles :";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
 "ppx-ob-WJc.title" = "Raccourci";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "Marquer comme de mauvaises paroles :";
+"uEb-Q5-cda.title" = "Marquer comme paroles incorrectes :";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
 "v63-4a-fPw.title" = "Lancement et arrêt automatique avec le lecteur de musique";
