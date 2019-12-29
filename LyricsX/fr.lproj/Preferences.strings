@@ -11,10 +11,10 @@
 "5dp-p5-YmE.title" = "Mode ligne par ligne";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
-"6FU-j0-FTV.title" = "Chinois traditionnel";
+"6FU-j0-FTV.title" = "Chinois Traditionnel";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "Écrire des paroles dans iTunes :";
+"6We-TB-Wfc.title" = "Écrire les paroles sur iTunes :";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "Automatiquement";
@@ -23,13 +23,13 @@
 "8JF-Og-z6E.title" = "Affichage";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "Écrire des paroles dans iTunes :";
+"8Sx-vb-5pB.title" = "Écrire les paroles sur iTunes :";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "Police :";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
-"AiM-vg-FvQ.title" = "Chinois simplifié";
+"AiM-vg-FvQ.title" = "Chinois Simplifié";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
 "Cmt-it-PXW.title" = "Police :";
@@ -44,7 +44,7 @@
 "IE7-IT-oPk.title" = "LyricsX (Par défaut)";
 
 /* Class = "NSTextFieldCell"; title = "Auto Chinese conversion:"; ObjectID = "JPB-ag-MN7"; */
-"JPB-ag-MN7.title" = "Conversion chinoise automatique :";
+"JPB-ag-MN7.title" = "Conversion automatique en Chinois :";
 
 /* Class = "NSBox"; title = "Preferred music player"; ObjectID = "JYR-Ed-Tax"; */
 "JYR-Ed-Tax.title" = "Lecteur de musique préféré";
