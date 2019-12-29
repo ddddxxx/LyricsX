@@ -137,25 +137,25 @@
 "h4G-Un-dtm.title" = "Mode vertical";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "Générer automatiquement les furigana pour les paroles japonaises";
+"ThQ-vA-Krb.title" = "Générer automatiquement les furigana pour les paroles en japonais";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "Afficher les paroles dans la Touch Bar";
+"gGL-LB-TXI.title" = "Activer les paroles dans la Touch Bar";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
 "TB9-Fk-WAX.title" = "Afficher la fenêtre des paroles :";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "Afficher/Masquer les paroles dans la barre de menu :";
+"XHQ-gX-urF.title" = "Afficher / Masquer les paroles dans la barre de menu :";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "Afficher/Masquer le mode karaoké :";
+"lOc-OP-AcU.title" = "Afficher / Masquer le mode karaoké :";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
 "XuN-vs-cgI.title" = "Progression";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "Décalage global (ms) :";
+"slB-q7-1dB.title" = "Décalage général (ms) :";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
 "T7p-MT-Mrh.title" = "Déplaçable";
