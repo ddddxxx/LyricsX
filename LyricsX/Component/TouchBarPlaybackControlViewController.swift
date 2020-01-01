@@ -18,7 +18,7 @@ class TouchBarPlaybackControlViewController: NSViewController {
     
     override func loadView() {
         let rewindImage = NSImage(named: NSImage.touchBarRewindTemplateName)!
-        let playPauseImage = NSImage(named: NSImage.touchBarPlayTemplateName)!
+        let playPauseImage = NSImage(named: NSImage.touchBarPlayPauseTemplateName)!
         let fastForwardImage = NSImage(named: NSImage.touchBarFastForwardTemplateName)!
         let seg = NSSegmentedControl()
         seg.trackingMode = .momentary
@@ -35,11 +35,16 @@ class TouchBarPlaybackControlViewController: NSViewController {
         selectedPlayer.playbackStateWillChange
             .receive(on: DispatchQueue.main.cx)
             .sink { [weak self] state in
-                let image = state.isPlaying
-                    ? NSImage(named: NSImage.touchBarPauseTemplateName)
-                    : NSImage(named: NSImage.touchBarPlayTemplateName)
-                self?.segmentedControl?.setImage(image, forSegment: 1)
+                self?.updatePlayPauseIcon(isPlaying: state.isPlaying)
             }.store(in: &cancelBag)
+        updatePlayPauseIcon(isPlaying: selectedPlayer.playbackState.isPlaying)
+    }
+    
+    func updatePlayPauseIcon(isPlaying: Bool) {
+        let image = isPlaying
+            ? NSImage(named: NSImage.touchBarPauseTemplateName)
+            : NSImage(named: NSImage.touchBarPlayTemplateName)
+        segmentedControl?.setImage(image, forSegment: 1)
     }
     
     @IBAction func segmentAction(_ sender: NSSegmentedControl) {
