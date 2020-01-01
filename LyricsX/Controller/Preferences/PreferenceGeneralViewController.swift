@@ -52,18 +52,19 @@ class PreferenceGeneralViewController: NSViewController {
             userPathMenuItem.isHidden = true
         }
         
-        for lan in supportedLanguages {
-            let localized: String
+        let localizedLan: [String] = localizations.map { lan in
             if let idx = lan.firstIndex(of: "-") {
-                let script = String(lan[idx...].dropFirst())
-                localized = Locale(identifier: lan).localizedString(forScriptCode: script)!
+                let script = lan[idx...].dropFirst()
+                return Locale(identifier: lan).localizedString(forScriptCode: String(script))!
             } else {
-                localized = Locale(identifier: lan).localizedString(forLanguageCode: lan)!
+                return Locale(identifier: lan).localizedString(forLanguageCode: lan)!
             }
-            languagePopUp.addItem(withTitle: localized)
-            if lan == defaults[.AppleLanguages].first {
-                languagePopUp.selectItem(withTitle: localized)
-            }
+        }
+        languagePopUp.addItems(withTitles: localizedLan)
+        
+        if let lan = defaults[.SelectedLanguage],
+            let idx = localizations.firstIndex(of: lan) {
+            languagePopUp.selectItem(at: idx + 2)
         }
     }
     
@@ -97,13 +98,15 @@ class PreferenceGeneralViewController: NSViewController {
         }
     }
     @IBAction func chooseLanguageAction(_ sender: NSPopUpButton) {
-        guard let item = sender.selectedItem else { return }
-        let idx = sender.index(of: item)
-        let code = supportedLanguages[idx]
-        var lans = defaults[.AppleLanguages]
-        lans.removeAll { $0 == code }
-        lans.insert(code, at: 0)
-        defaults[.AppleLanguages] = lans
+        let selectedIdx = sender.indexOfSelectedItem
+        if selectedIdx == 0 {
+            defaults.remove(.SelectedLanguage)
+            defaults.remove(.AppleLanguages)
+        } else {
+            let lan = localizations[selectedIdx - 2]
+            defaults[.SelectedLanguage] = lan
+            defaults[.AppleLanguages] = [lan]
+        }
     }
     
     @IBAction func helpTranslateAction(_ sender: NSButton) {
@@ -129,16 +132,6 @@ class PreferenceGeneralViewController: NSViewController {
             loadHomonymLrcButton.isEnabled = true
         }
     }
-    
 }
 
-let supportedLanguages = [
-    "en",
-    "zh-Hans",
-    "zh-Hant",
-    "ja",
-    "fr",
-    "pl",
-    "de",
-    "fa",
-]
+private let localizations = Bundle.main.localizations.filter { $0 != "Base" }.sorted()
