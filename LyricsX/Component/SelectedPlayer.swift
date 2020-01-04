@@ -49,6 +49,7 @@ extension MusicPlayers {
         private var scheduleCanceller: Cancellable?
         func scheduleManualUpdate() {
             scheduleCanceller?.cancel()
+            guard manualUpdateInterval > 0 else { return }
             let q = DispatchQueue.global().cx
             let i: CXWrappers.DispatchQueue.SchedulerTimeType.Stride = .seconds(manualUpdateInterval)
             scheduleCanceller = q.schedule(after: q.now.advanced(by: i), interval: i, tolerance: i * 0.1, options: nil) { [unowned self] in
