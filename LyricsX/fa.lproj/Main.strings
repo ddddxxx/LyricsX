@@ -1,11 +1,23 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
 "1xI-G4-Fsc.headerCell.title" = "منبع";
 
+/* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
+"aRw-yQ-GNX.title" = "ترانه ای پیدا نشد. فایل LRC رو به اینجا بکشید";
+
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
 "CW0-AL-Z6N.title" = "کمک مالی";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
 "CWo-Qx-2Ut.title" = "تنظیمات...";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
+"d5a-4n-6k8.ibShadowedToolTip" = "همگام سازی";
+
+/* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
+"DNi-vI-MTr.title" = "نمایش در مک بوک Finder";
+
+/* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
+"eb9-fE-Lgq.title" = "جستجو";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
 "EoO-ld-6Xv.title" = "کمک مالی...";
@@ -13,47 +25,29 @@
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
 "FMI-7E-tCo.title" = "عنوان:";
 
+/* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
+"fmS-zv-RcJ.title" = "متن ترانه اشتباه است";
+
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
 "GGU-uz-d9h.title" = "فعالسازی ترانه کاراکویه";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
 "Gza-SX-MCH.ibShadowedToolTip" = "همیشه در بالا";
 
+/* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
+"h6D-jz-GbI.title" = "جستجوی ترانه...";
+
+/* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
+"hgd-IJ-u14.title" = "غیرفعالسازی ترانه برای این آلبوم";
+
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
 "HMU-fa-17B.headerCell.title" = "خواننده";
 
+/* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
+"hxE-X4-sJh.title" = "ترانه ها";
+
 /* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
 "IFz-XQ-DHf.title" = "فاصله ترانه:";
-
-/* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
-"PdE-VG-JUC.title" = "درباره LyricsX";
-
-/* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "بررسی برای بروز رسانی...";
-
-/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "اعمال";
-
-/* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "خروج";
-
-/* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "فعالسازی ترانه در منو";
-
-/* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "ترانه ای پیدا نشد. فایل LRC رو به اینجا بکشید";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
-"d5a-4n-6k8.ibShadowedToolTip" = "همگام سازی";
-
-/* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
-"eb9-fE-Lgq.title" = "جستجو";
-
-/* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
-"fmS-zv-RcJ.title" = "متن ترانه اشتباه است";
-
-/* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
-"h6D-jz-GbI.title" = "جستجوی ترانه...";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
 "jWT-S5-YXM.headerCell.title" = "عنوان";
@@ -70,11 +64,17 @@
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
 "o52-Z0-lue.title" = "اگر از برنامه لذت بردید می توانید با اسکن کردن QR Code پایین به اندازه یک فنجان قهوه به توسعه دهنده کمک مالی کنید. اینجوری به برنامه نویس آن کمک می کنید که برنامه را به روز نگه داره و توسعه را ادامه بدهد.";
 
-/* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "نمایش در مک بوک Finder";
+/* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
+"PdE-VG-JUC.title" = "درباره LyricsX";
 
-/* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
-"hxE-X4-sJh.title" = "ترانه ها";
+/* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
+"Piu-i2-JjD.title" = "بررسی برای بروز رسانی...";
 
-/* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
-"hgd-IJ-u14.title" = "غیرفعالسازی ترانه برای این آلبوم";
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
+"RGl-MT-MQb.title" = "اعمال";
+
+/* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
+"RPR-IV-34T.title" = "خروج";
+
+/* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
+"Z7d-yp-uRx.title" = "فعالسازی ترانه در منو";
