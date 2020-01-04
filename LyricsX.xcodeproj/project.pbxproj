@@ -779,7 +779,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which bartycrouch > /dev/null; then\n    # Incrementally update all Storyboards/XIBs strings files\n    bartycrouch interfaces -p \"$PROJECT_DIR\" -b\n\n    # Add new keys to Localizable.strings files from NSLocalizedString in code\n    bartycrouch code -p \"$PROJECT_DIR/LyricsX\" -l \"$PROJECT_DIR/LyricsX\" -ks\n\n    # Trim leading newline of string file for Clowdin\n    find \"${PROJECT_DIR}/LyricsX\" -name '*.strings' ! -path '*/en.lproj/*' -print0 | xargs -0 -n 1 sed -i '' -e '/./,$!d'\nelse\n    echo \"warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch\"\nfi";
+			shellScript = "if which bartycrouch > /dev/null; then\n    # Incrementally update all strings files\n    bartycrouch update\n\n    # Trim leading newline of string file for Clowdin\n    find \"${PROJECT_DIR}/LyricsX\" -name '*.strings' ! -path '*/en.lproj/*' -print0 | xargs -0 -n 1 sed -i '' -e '/./,$!d'\nelse\n    echo \"warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch\"\nfi\n";
 		};
 		BB30651420878623008A9AC8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
