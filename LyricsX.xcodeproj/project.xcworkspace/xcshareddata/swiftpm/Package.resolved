@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
         "state": {
           "branch": null,
-          "revision": "3df5d8c9a9af9246b785598d74c950493142ca0b",
-          "version": "0.8.0"
+          "revision": "8e256a2385ce7dfa1c1d676a50629a560b479995",
+          "version": "0.8.1"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
           "branch": null,
-          "revision": "75e3fcb990f4e9fbdd15c718b8cac57e57e2ef44",
-          "version": "0.6.0"
+          "revision": "6050d79be23f24bac7d9a328cc4f61f6ec409ae3",
+          "version": "0.6.1"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/ddddxxx/Regex",
         "state": {
           "branch": null,
-          "revision": "be99b43cbcd958ef54b8316ea1a0cf82e525ad54",
-          "version": "0.1.0"
+          "revision": "739734521806e17a60ba8c439050ae7ada062551",
+          "version": "0.2.0"
         }
       },
       {
