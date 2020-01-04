@@ -1,11 +1,23 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
 "1xI-G4-Fsc.headerCell.title" = "Źródło";
 
+/* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
+"aRw-yQ-GNX.title" = "Brak tekstu\n\nPrzeciągnij tu plik LRC żeby zaimportować";
+
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
 "CW0-AL-Z6N.title" = "Wesprzyj nas";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
 "CWo-Qx-2Ut.title" = "Ustawienia...";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
+"d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
+
+/* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
+"DNi-vI-MTr.title" = "Pokaż w Finderze";
+
+/* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
+"eb9-fE-Lgq.title" = "Szukaj";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
 "EoO-ld-6Xv.title" = "Wesprzyj nas...";
@@ -13,47 +25,29 @@
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
 "FMI-7E-tCo.title" = "Tytuł:";
 
+/* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
+"fmS-zv-RcJ.title" = "Zły tekst";
+
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
 "GGU-uz-d9h.title" = "Tryb Karaoke";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
 "Gza-SX-MCH.ibShadowedToolTip" = "Zawsze na wierzchu";
 
+/* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
+"h6D-jz-GbI.title" = "Szukaj tekstu...";
+
+/* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
+"hgd-IJ-u14.title" = "Wyłącz tekst dla całego albumu";
+
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
 "HMU-fa-17B.headerCell.title" = "Wykonawca";
 
+/* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
+"hxE-X4-sJh.title" = "Tekst";
+
 /* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
 "IFz-XQ-DHf.title" = "Przesunięcie napisów:";
-
-/* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
-"PdE-VG-JUC.title" = "O LyricsX";
-
-/* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "Sprawdź dostępność aktualizacji...";
-
-/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "Zastosuj";
-
-/* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "Zamknij LyricsX";
-
-/* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "Włącz tekst w pasku menu";
-
-/* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "Brak tekstu\n\nPrzeciągnij tu plik LRC żeby zaimportować";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
-"d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
-
-/* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
-"eb9-fE-Lgq.title" = "Szukaj";
-
-/* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
-"fmS-zv-RcJ.title" = "Zły tekst";
-
-/* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
-"h6D-jz-GbI.title" = "Szukaj tekstu...";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
 "jWT-S5-YXM.headerCell.title" = "Tytuł";
@@ -70,11 +64,17 @@
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
 "o52-Z0-lue.title" = "Jeśli podoba Ci się LyricsX i chciałbyś mnie wesprzeć kubkiem kawy potrzebnym do pracy nad oprogramowaniem, możesz zeskanować poniższy kod QR i przesłać wsparcie.";
 
-/* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "Pokaż w Finderze";
+/* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
+"PdE-VG-JUC.title" = "O LyricsX";
 
-/* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
-"hxE-X4-sJh.title" = "Tekst";
+/* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
+"Piu-i2-JjD.title" = "Sprawdź dostępność aktualizacji...";
 
-/* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
-"hgd-IJ-u14.title" = "Wyłącz tekst dla całego albumu";
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
+"RGl-MT-MQb.title" = "Zastosuj";
+
+/* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
+"RPR-IV-34T.title" = "Zamknij LyricsX";
+
+/* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
+"Z7d-yp-uRx.title" = "Włącz tekst w pasku menu";
