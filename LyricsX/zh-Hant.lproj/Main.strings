@@ -29,7 +29,7 @@
 "fmS-zv-RcJ.title" = "目前歌詞有誤";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
-"GGU-uz-d9h.title" = "啟用卡拉OK歌詞";
+"GGU-uz-d9h.title" = "啟用動態歌詞";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
 "Gza-SX-MCH.ibShadowedToolTip" = "畫面置頂";

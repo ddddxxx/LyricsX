@@ -14,7 +14,7 @@
 "d5a-4n-6k8.ibShadowedToolTip" = "Synchronisieren";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "Im Explorer anzeigen";
+"DNi-vI-MTr.title" = "Im Finder anzeigen";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
 "eb9-fE-Lgq.title" = "Suchen";
@@ -62,13 +62,13 @@
 "l8J-1r-dIZ.title" = "Künstler:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "Wenn dir LyricsX gefällt, kannst du mir ja eine kleine Spende zukommen lassen, um meine Arbeit zu unterstützen. Dafür kannst du den QR-Code scannen.";
+"o52-Z0-lue.title" = "Falls dir LyricsX gefällt, und du mir einen Kaffee ausgeben möchtest sowie mir dabei helfen willst, diese Software am Laufen zu halten, kannst du dafür ja den untenstehenden QR-Code scannen, um mir eine freiwillige Spende zukommen zu lassen.";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "Über LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "Auf Updates prüfen...";
+"Piu-i2-JjD.title" = "Auf Aktualisierung prüfen …";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
 "RGl-MT-MQb.title" = "Übernehmen";
