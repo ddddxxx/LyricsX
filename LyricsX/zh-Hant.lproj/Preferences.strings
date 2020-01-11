@@ -17,7 +17,7 @@
 "6FU-j0-FTV.title" = "轉換為正體中文";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "將歌詞輸入 iTunes：";
+"6We-TB-Wfc.title" = "將歌詞寫入 iTunes 歌曲：";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "自動導入";
@@ -26,7 +26,7 @@
 "8JF-Og-z6E.title" = "顯示";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "將歌詞輸入 iTunes：";
+"8Sx-vb-5pB.title" = "將歌詞寫入 iTunes 歌曲：";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "字型：";
@@ -68,7 +68,7 @@
 "EDv-ax-0hI.title" = "讀取同名的歌詞檔案";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "這裡有一些實驗中的功能，這些功能不會那麼穩定，也有可能在日後被刪除。";
+"g2u-8D-dln.title" = "此處為一些不那麼穩定的實驗功能，日後亦可能被移除使用。";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
 "gGL-LB-TXI.title" = "啟用 Touch Bar 歌詞";
@@ -128,7 +128,7 @@
 "oiH-T7-agJ.title" = "協助翻譯 LyricsX";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
-"ppx-ob-WJc.title" = "快速鍵";
+"ppx-ob-WJc.title" = "快捷鍵";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
 "rSD-qR-EXA.title" = "搜尋結果需要完全符合關鍵字";
