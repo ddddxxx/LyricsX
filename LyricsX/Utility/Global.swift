@@ -137,6 +137,8 @@ extension UserDefaults.DefaultsKeys {
     static let LyricsFilterKeys = Key<[String]>("LyricsFilterKeys")
     
     // Lab
+    static let UseSystemWideNowPlaying = Key<Bool>("UseSystemWideNowPlaying")
+    
     static let WriteiTunesWithTranslation = Key<Bool>("WriteiTunesWithTranslation")
     static let WriteToiTunesAutomatically = Key<Bool>("WriteToiTunesAutomatically")
     

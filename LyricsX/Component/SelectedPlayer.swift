@@ -26,14 +26,24 @@ extension MusicPlayers {
         
         override init() {
             super.init()
+            selectPlayer()
             scheduleManualUpdate()
-            defaultsObservation = defaults.observe(.PreferredPlayerIndex, options: [.initial, .new]) { [weak self] _, change in
-                if change.newValue == -1 {
-                    let players = MusicPlayerName.scriptableCases.compactMap(MusicPlayers.Scriptable.init)
-                    self?.designatedPlayer = MusicPlayers.NowPlaying(players: players)
+            defaultsObservation = defaults.observe(keys: [.PreferredPlayerIndex, .UseSystemWideNowPlaying]) { [weak self] in
+                self?.selectPlayer()
+            }
+        }
+        
+        private func selectPlayer() {
+            let idx = defaults[.PreferredPlayerIndex]
+            if idx == -1 {
+                if defaults[.UseSystemWideNowPlaying] {
+                    designatedPlayer = MusicPlayers.SystemNowPlaying()
                 } else {
-                    self?.designatedPlayer = MusicPlayerName(index: change.newValue).flatMap(MusicPlayers.Scriptable.init)
+                    let players = MusicPlayerName.scriptableCases.compactMap(MusicPlayers.Scriptable.init)
+                    designatedPlayer = MusicPlayers.NowPlaying(players: players)
                 }
+            } else {
+                designatedPlayer = MusicPlayerName(index: idx).flatMap(MusicPlayers.Scriptable.init)
             }
         }
         
