@@ -59,9 +59,9 @@
         "package": "MusicPlayer",
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
-          "branch": null,
-          "revision": "f7f407bcf91a33fd84f2b275cc5ffb2802645703",
-          "version": "0.6.2"
+          "branch": "master",
+          "revision": "1cf27e3c56f1cd10a527ba7dea0fac9ac562b151",
+          "version": null
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/ddddxxx/Semver.git",
         "state": {
           "branch": null,
-          "revision": "0a4578227e85b8f3179a252828c65a0b912082f0",
-          "version": "0.2.0"
+          "revision": "6094e6f23a02b52b5d211fd114a4750c4f3ecef3",
+          "version": "0.2.1"
         }
       },
       {

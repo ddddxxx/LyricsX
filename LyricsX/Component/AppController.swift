@@ -65,7 +65,7 @@ class AppController: NSObject {
         defaultNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
             .sink { n in
                 let bundleID = (n.userInfo![NSWorkspace.applicationUserInfoKey] as! NSRunningApplication).bundleIdentifier
-                if defaults[.LaunchAndQuitWithPlayer], (selectedPlayer.currentPlayer as? MusicPlayers.ScriptingBridged)?.playerBundleID == bundleID {
+                if defaults[.LaunchAndQuitWithPlayer], (selectedPlayer.designatedPlayer as? MusicPlayers.Scriptable)?.playerBundleID == bundleID {
                     NSApplication.shared.terminate(nil)
                 }
             }.store(in: &cancelBag)
