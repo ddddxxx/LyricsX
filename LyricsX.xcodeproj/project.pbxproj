@@ -38,6 +38,8 @@
 		BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; };
 		BB34F4AA1EFFBCBC008B9E4B /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB34F7E61F21911700B7C484 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34F7E51F21911700B7C484 /* Updater.swift */; };
+		BB350ABE23D0613D00500146 /* CXExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = BB350ABD23D0613D00500146 /* CXExtensions */; };
+		BB350AC023D0614800500146 /* CXExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = BB350ABF23D0614800500146 /* CXExtensions */; };
 		BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4141AD1E458BA800A51775 /* AppDelegate.swift */; };
 		BB4141B21E458BA800A51775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B11E458BA800A51775 /* Assets.xcassets */; };
 		BB4141B51E458BA900A51775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4141B31E458BA900A51775 /* Main.storyboard */; };
@@ -137,8 +139,6 @@
 		BBC1D5911E4C80FC008869EC /* PreferenceDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D5901E4C80FC008869EC /* PreferenceDisplayViewController.swift */; };
 		BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7C5541E6AE28600E3EC4F /* PreferenceGeneralViewController.swift */; };
 		BBD03C371E9B2C7200EFB975 /* DragNDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */; };
-		BBDA7C1A2393B2220031A8FF /* DelayedAutoCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDA7C192393B2220031A8FF /* DelayedAutoCancellable.swift */; };
-		BBDA7C1B2393B2220031A8FF /* DelayedAutoCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDA7C192393B2220031A8FF /* DelayedAutoCancellable.swift */; };
 		BBE8FC751F6BEA6200122AFA /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE8FC741F6BEA6200122AFA /* Then.swift */; };
 		E91F76EB21211B8D00755698 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F76EA21211B8D00755698 /* PreferenceViewController.swift */; };
 		E97593E42150F47900D80616 /* Polyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97593E32150F47800D80616 /* Polyfill.swift */; };
@@ -278,7 +278,6 @@
 		BBD03C361E9B2C7200EFB975 /* DragNDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragNDropView.swift; sourceTree = "<group>"; };
 		BBD2E35B22B780FC00410259 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
 		BBD2E35C22B780FC00410259 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Preferences.strings; sourceTree = "<group>"; };
-		BBDA7C192393B2220031A8FF /* DelayedAutoCancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayedAutoCancellable.swift; sourceTree = "<group>"; };
 		BBE8FC741F6BEA6200122AFA /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		E914527F21539BD500BD2220 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E91F76EA21211B8D00755698 /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +310,7 @@
 				BB22681C234C9085008FAFED /* SwiftCF in Frameworks */,
 				BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */,
 				BBB03F3D2331DACD00A3879E /* LyricsKit in Frameworks */,
+				BB350ABE23D0613D00500146 /* CXExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +325,7 @@
 				BBB03F3F2331DBB000A3879E /* GenericID in Frameworks */,
 				BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */,
 				BB22681E234C908D008FAFED /* SwiftCF in Frameworks */,
+				BB350AC023D0614800500146 /* CXExtensions in Frameworks */,
 				BBB03F412331DBB000A3879E /* Semver in Frameworks */,
 				BB9C3D8523435A6300860698 /* MusicPlayer in Frameworks */,
 				BB50788F22014C3900B695C3 /* SnapKit.framework in Frameworks */,
@@ -450,7 +451,6 @@
 				BB1B300220E878AE002F1AF8 /* StdExtension.swift */,
 				BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */,
 				E9EBDA2421115A150019FDF9 /* Observation.swift */,
-				BBDA7C192393B2220031A8FF /* DelayedAutoCancellable.swift */,
 				BBE8FC741F6BEA6200122AFA /* Then.swift */,
 			);
 			path = Utility;
@@ -527,6 +527,7 @@
 				BBB03F3C2331DACD00A3879E /* LyricsKit */,
 				BB9C3D8223435A5700860698 /* MusicPlayer */,
 				BB22681B234C9085008FAFED /* SwiftCF */,
+				BB350ABD23D0613D00500146 /* CXExtensions */,
 			);
 			productName = LyricsX;
 			productReference = BB4141AA1E458BA800A51775 /* LyricsX.app */;
@@ -558,6 +559,7 @@
 				BBB03F442331DBB000A3879E /* LyricsKit */,
 				BB9C3D8423435A6300860698 /* MusicPlayer */,
 				BB22681D234C908D008FAFED /* SwiftCF */,
+				BB350ABF23D0614800500146 /* CXExtensions */,
 			);
 			productName = LyricsX;
 			productReference = BB5078AD22014C3900B695C3 /* LyricsX.app */;
@@ -657,6 +659,7 @@
 				BBB03F3B2331DACD00A3879E /* XCRemoteSwiftPackageReference "LyricsKit" */,
 				BB9C3D8123435A5700860698 /* XCRemoteSwiftPackageReference "MusicPlayer" */,
 				BB22681A234C9085008FAFED /* XCRemoteSwiftPackageReference "SwiftCF" */,
+				BB350ABC23D0613D00500146 /* XCRemoteSwiftPackageReference "CXExtensions" */,
 			);
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
 			projectDirPath = "";
@@ -885,7 +888,6 @@
 				E9EBDA2521115A150019FDF9 /* Observation.swift in Sources */,
 				BB5863F321EFFD9F0084D2C0 /* TouchBarLyricsItem.swift in Sources */,
 				BB1B2FFD20E8780A002F1AF8 /* CFExtension.swift in Sources */,
-				BBDA7C1A2393B2220031A8FF /* DelayedAutoCancellable.swift in Sources */,
 				BB4141AE1E458BA800A51775 /* AppDelegate.swift in Sources */,
 				BB458C63201C5F4500740C3B /* LyricsMetaData+Extension.swift in Sources */,
 				BBC7C5551E6AE28600E3EC4F /* PreferenceGeneralViewController.swift in Sources */,
@@ -929,7 +931,6 @@
 				BB50786F22014C3900B695C3 /* Observation.swift in Sources */,
 				BB50787022014C3900B695C3 /* TouchBarLyricsItem.swift in Sources */,
 				BB50787222014C3900B695C3 /* CFExtension.swift in Sources */,
-				BBDA7C1B2393B2220031A8FF /* DelayedAutoCancellable.swift in Sources */,
 				BB50787322014C3900B695C3 /* AppDelegate.swift in Sources */,
 				BB50787422014C3900B695C3 /* LyricsMetaData+Extension.swift in Sources */,
 				BB50787622014C3900B695C3 /* PreferenceGeneralViewController.swift in Sources */,
@@ -1383,6 +1384,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		BB350ABC23D0613D00500146 /* XCRemoteSwiftPackageReference "CXExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cx-org/CXExtensions";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
 		BB9C3D8123435A5700860698 /* XCRemoteSwiftPackageReference "MusicPlayer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ddddxxx/MusicPlayer";
@@ -1435,6 +1444,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB22681A234C9085008FAFED /* XCRemoteSwiftPackageReference "SwiftCF" */;
 			productName = SwiftCF;
+		};
+		BB350ABD23D0613D00500146 /* CXExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB350ABC23D0613D00500146 /* XCRemoteSwiftPackageReference "CXExtensions" */;
+			productName = CXExtensions;
+		};
+		BB350ABF23D0614800500146 /* CXExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB350ABC23D0613D00500146 /* XCRemoteSwiftPackageReference "CXExtensions" */;
+			productName = CXExtensions;
 		};
 		BB9C3D8223435A5700860698 /* MusicPlayer */ = {
 			isa = XCSwiftPackageProductDependency;

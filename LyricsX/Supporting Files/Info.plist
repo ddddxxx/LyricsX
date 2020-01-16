@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.5.2-beta.2</string>
 	<key>CFBundleVersion</key>
-	<string>2248</string>
+	<string>2252</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -43,7 +43,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>LX_BUILD_TIME</key>
-	<integer>1578131213</integer>
+	<integer>1579166531</integer>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -130,7 +130,7 @@
 	<key>NSAppleEventsUsageDescription</key>
 	<string>LyricsX needs to know what song you're currently playing, to show lyrics accordingly.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2017 Xander Deng. All rights reserved.</string>
+	<string>Copyright © 2017-2020 Xander Deng. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>

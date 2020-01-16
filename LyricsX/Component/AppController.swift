@@ -8,6 +8,7 @@
 import AppKit
 import CombineX
 import Crashlytics
+import CXExtensions
 import LyricsService
 import MusicPlayer
 import OpenCC

@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "CXExtensions",
+        "repositoryURL": "https://github.com/cx-org/CXExtensions",
+        "state": {
+          "branch": null,
+          "revision": "9288b4ab076d32277dc43c129ee8c5c2417d39da",
+          "version": "0.1.1"
+        }
+      },
+      {
         "package": "GenericID",
         "repositoryURL": "https://github.com/ddddxxx/GenericID.git",
         "state": {
