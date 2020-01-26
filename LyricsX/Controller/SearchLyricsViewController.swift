@@ -94,7 +94,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
                 }
             }, receiveValue: { [unowned self] lyrics in
                 self.lyricsReceived(lyrics: lyrics)
-            }).cancel(after: .seconds(10), scheduler: DispatchQueue.global().cx)
+            }).cancel(after: .seconds(10), scheduler: DispatchQueue.lyricsDisplay.cx)
         progressIndicator.startAnimation(nil)
         tableView.reloadData()
         Answers.logCustomEvent(withName: "Search Lyrics Manually")

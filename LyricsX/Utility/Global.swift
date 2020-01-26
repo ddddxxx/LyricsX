@@ -34,6 +34,10 @@ let selectedPlayer = MusicPlayers.Selected.shared
 let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
 let isFromMacAppStore = (try? Bundle.main.appStoreReceiptURL?.checkResourceIsReachable()) == true
 
+extension DispatchQueue {
+    static let lyricsDisplay = DispatchQueue(label: "LyricsDisplay")
+}
+
 extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
     static let swiftOut = CAMediaTimingFunction(controlPoints: 0.4, 0.0, 0.2, 1)

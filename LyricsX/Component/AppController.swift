@@ -52,12 +52,12 @@ class AppController: NSObject {
     private override init() {
         super.init()
         selectedPlayer.currentTrackWillChange
-            .receive(on: DispatchQueue.global().cx)
+            .receive(on: DispatchQueue.lyricsDisplay.cx)
             .sink { [unowned self] _ in
                 self.currentTrackChanged()
             }.store(in: &cancelBag)
         selectedPlayer.playbackStateWillChange
-            .receive(on: DispatchQueue.global().cx)
+            .receive(on: DispatchQueue.lyricsDisplay.cx)
             .sink { [unowned self] _ in
                 self.scheduleCurrentLineCheck()
             }.store(in: &cancelBag)
@@ -85,7 +85,7 @@ class AppController: NSObject {
         }
         if let next = next {
             let dt = lyrics.lines[next].position - playbackTime - lyrics.adjustedTimeDelay
-            let q = DispatchQueue.global().cx
+            let q = DispatchQueue.lyricsDisplay.cx
             currentLineCheckSchedule = q.schedule(after: q.now.advanced(by: .seconds(dt)), interval: .seconds(42), tolerance: .milliseconds(20)) { [unowned self] in
                 self.scheduleCurrentLineCheck()
             }
@@ -214,7 +214,7 @@ class AppController: NSObject {
                 }
             }, receiveValue: { [unowned self] lyrics in
                 self.lyricsReceived(lyrics: lyrics)
-            }).cancel(after: .seconds(10), scheduler: DispatchQueue.global().cx)
+            }).cancel(after: .seconds(10), scheduler: DispatchQueue.lyricsDisplay.cx)
         Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
     }
     
