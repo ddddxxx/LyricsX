@@ -1,21 +1,8 @@
 //
 //  BasicExtension.swift
 //
-//  This file is part of LyricsX
-//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
+//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
 //
 
 import Cocoa
@@ -27,7 +14,7 @@ extension MusicPlayerName {
     
     init?(index: Int) {
         switch index {
-        case 0: self = .itunes
+        case 0: self = .appleMusic
         case 1: self = .spotify
         case 2: self = .vox
         case 3: self = .audirvana
@@ -38,7 +25,7 @@ extension MusicPlayerName {
     
     var icon: NSImage {
         switch self {
-        case .itunes:   return #imageLiteral(resourceName: "iTunes_icon")
+        case .appleMusic:   return #imageLiteral(resourceName: "iTunes_icon")
         case .spotify:  return #imageLiteral(resourceName: "spotify_icon")
         case .vox:      return #imageLiteral(resourceName: "vox_icon")
         case .audirvana: return #imageLiteral(resourceName: "audirvana_icon")

@@ -1,21 +1,8 @@
 //
 //  AppDelegate.swift
 //
-//  This file is part of LyricsX
-//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
+//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
 //
 
 import Cocoa
@@ -142,11 +129,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         switch menuItem.action {
         case #selector(writeToiTunes(_:))?:
-            return AppController.shared.playerManager.player is iTunes && AppController.shared.currentLyrics != nil
+            return selectedPlayer.name == .appleMusic && AppController.shared.currentLyrics != nil
         case #selector(searchLyrics(_:))?:
-            let track = AppController.shared.playerManager.player?.currentTrack
-            let enabled = track != nil
-            return enabled
+            return selectedPlayer.currentTrack != nil
         default:
             return true
         }
@@ -207,7 +192,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     }
     
     @IBAction func wrongLyrics(_ sender: Any?) {
-        guard let track = AppController.shared.playerManager.player?.currentTrack else {
+        guard let track = selectedPlayer.currentTrack else {
             return
         }
         defaults[.NoSearchingTrackIds].append(track.id)
@@ -222,7 +207,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     }
     
     @IBAction func doNotSearchLyricsForThisAlbum(_ sender: Any?) {
-        guard let track = AppController.shared.playerManager.player?.currentTrack,
+        guard let track = selectedPlayer.currentTrack,
             let album = track.album else {
             return
         }

@@ -54,15 +54,28 @@ LyricsX is available on the Mac App Store.
 
 <img src="docs/img/preview_3.jpg" width="1280px">
 
-## Open Source Libraries
+## Credit
+
+#### Components
+
+- [LyricsKit](https://github.com/ddddxxx/LyricsKit)
+- [MusicPlayer](https://github.com/ddddxxx/MusicPlayer)
+
+#### Open Source Libraries
 
 - [SwiftyOpenCC](https://github.com/ddddxxx/SwiftyOpenCC)
 - [GenericID](https://github.com/ddddxxx/GenericID)
+- [SwiftCF](https://github.com/ddddxxx/SwiftCF)
+- [Regex](https://github.com/ddddxxx/Regex)
 - [Semver](https://github.com/ddddxxx/Semver)
+- [DFRPrivate](https://github.com/ddddxxx/DFRPrivate)
+- [CombineX](https://github.com/cx-org/CombineX)
 - [SnapKit](https://github.com/SnapKit/SnapKit)
+- [MASShortcut](https://github.com/shpakovski/MASShortcut)
+- [Sparkle](https://github.com/sparkle-project/Sparkle)
 - [Then](https://github.com/devxoul/Then)
 
-Special Thanks
+#### Special Thanks
 
 - [Lyrics Project](https://github.com/MichaelRow/Lyrics)
 

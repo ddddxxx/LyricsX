@@ -1,21 +1,8 @@
 //
 //  LyricsHUDViewController.swift
 //
-//  This file is part of LyricsX
-//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
+//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
 //
 
 import Cocoa
@@ -108,9 +95,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     }
     
     private func displayLyrics(animation: Bool = true) {
-        guard var pos = AppController.shared.playerManager.player?.playbackTime else {
-            return
-        }
+        var pos = selectedPlayer.playbackTime
         pos += AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
         lyricsScrollView.highlight(position: pos)
         guard isTracking else {
@@ -123,6 +108,8 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
                 context.timingFunction = .swiftOut
                 self.lyricsScrollView.scroll(position: pos)
             }
+        } else {
+            lyricsScrollView.scroll(position: pos)
         }
     }
     
@@ -130,7 +117,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
     
     func doubleClickLyricsLine(at position: TimeInterval) {
         let pos = position - (AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0)
-        AppController.shared.playerManager.player?.playbackTime = pos
+        selectedPlayer.playbackTime = pos
         isTracking = true
         Answers.logCustomEvent(withName: "Seek to Lyrics Line")
     }

@@ -1,26 +1,17 @@
 //
 //  GlobalConst.swift
 //
-//  This file is part of LyricsX
-//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
+//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
 //
 
 import Cocoa
 import GenericID
 import MusicPlayer
+import CombineX
+
+typealias ObservableObject = CombineX.ObservableObject
+typealias Published = CombineX.Published
 
 let fontNameFallbackCountMax = 1
 // 7 days. after this period of time since the app built, the app is not considered as "in review".
@@ -38,9 +29,14 @@ let defaults = UserDefaults.standard
 let groupDefaults = UserDefaults(suiteName: lyricsXGroupIdentifier)!
 let defaultNC = NotificationCenter.default
 let workspaceNC = NSWorkspace.shared.notificationCenter
+let selectedPlayer = MusicPlayers.Selected.shared
 
 let isInSandbox = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
 let isFromMacAppStore = (try? Bundle.main.appStoreReceiptURL?.checkResourceIsReachable()) == true
+
+extension DispatchQueue {
+    static let lyricsDisplay = DispatchQueue(label: "LyricsDisplay")
+}
 
 extension CAMediaTimingFunction {
     static let mystery = CAMediaTimingFunction(controlPoints: 0.2, 0.1, 0.2, 1)
@@ -90,6 +86,8 @@ extension UserDefaults.DefaultsKeys {
     static let LyricsSavingPathPopUpIndex = Key<Int>("LyricsSavingPathPopUpIndex")
     static let LyricsCustomSavingPathBookmark = Key<Data?>("LyricsCustomSavingPathBookmark")
     static let LoadLyricsBesideTrack = Key<Bool>("LoadLyricsBesideTrack")
+    
+    static let SelectedLanguage = Key<String?>("SelectedLanguage")
     
     static let StrictSearchEnabled = Key<Bool>("StrictSearchEnabled")
     static let PreferBilingualLyrics = Key<Bool>("PreferBilingualLyrics")
@@ -143,6 +141,8 @@ extension UserDefaults.DefaultsKeys {
     static let LyricsFilterKeys = Key<[String]>("LyricsFilterKeys")
     
     // Lab
+    static let UseSystemWideNowPlaying = Key<Bool>("UseSystemWideNowPlaying")
+    
     static let WriteiTunesWithTranslation = Key<Bool>("WriteiTunesWithTranslation")
     static let WriteToiTunesAutomatically = Key<Bool>("WriteToiTunesAutomatically")
     

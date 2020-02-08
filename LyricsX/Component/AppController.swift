@@ -1,26 +1,14 @@
 //
 //  AppController.swift
 //
-//  This file is part of LyricsX
-//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
+//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
 //
 
 import AppKit
 import CombineX
 import Crashlytics
+import CXExtensions
 import LyricsService
 import MusicPlayer
 import OpenCC
@@ -31,10 +19,8 @@ class AppController: NSObject {
     static let shared = AppController()
     
     let lyricsManager = LyricsProviderManager()
-    let playerManager = MusicPlayerControllerManager()
     
-    @CombineX.Published
-    var currentLyrics: Lyrics? {
+    @Published var currentLyrics: Lyrics? {
         willSet {
             willChangeValue(forKey: "lyricsOffset")
             currentLineIndex = nil
@@ -45,8 +31,7 @@ class AppController: NSObject {
         }
     }
     
-    @CombineX.Published
-    var currentLineIndex: Int?
+    @Published var currentLineIndex: Int?
     
     var searchRequest: LyricsSearchRequest?
     var searchCanceller: Cancellable?
@@ -66,19 +51,21 @@ class AppController: NSObject {
     
     private override init() {
         super.init()
-        playerManager.preferredPlayerName = MusicPlayerName(index: defaults[.PreferredPlayerIndex])
-        
-        defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: playerManager)
+        selectedPlayer.currentTrackWillChange
+            .receive(on: DispatchQueue.lyricsDisplay.cx)
             .sink { [unowned self] _ in
                 self.currentTrackChanged()
             }.store(in: &cancelBag)
-        defaultNC.cx.publisher(for: MusicPlayerController.playbackStateDidChangeNotification, object: playerManager)
+        selectedPlayer.playbackStateWillChange
+            .receive(on: DispatchQueue.lyricsDisplay.cx)
             .sink { [unowned self] _ in
                 self.scheduleCurrentLineCheck()
             }.store(in: &cancelBag)
-        defaultNC.cx.publisher(for: MusicPlayerController.runningStateDidChangeNotification, object: playerManager)
-            .sink { [unowned self] _ in
-                if self.playerManager.player?.isRunning == false, defaults[.LaunchAndQuitWithPlayer] {
+        
+        defaultNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
+            .sink { n in
+                let bundleID = (n.userInfo![NSWorkspace.applicationUserInfoKey] as! NSRunningApplication).bundleIdentifier
+                if defaults[.LaunchAndQuitWithPlayer], (selectedPlayer.designatedPlayer as? MusicPlayers.Scriptable)?.playerBundleID == bundleID {
                     NSApplication.shared.terminate(nil)
                 }
             }.store(in: &cancelBag)
@@ -88,17 +75,17 @@ class AppController: NSObject {
     var currentLineCheckSchedule: Cancellable?
     func scheduleCurrentLineCheck() {
         currentLineCheckSchedule?.cancel()
-        guard let lyrics = currentLyrics, let playbackTime = self.playerManager.player?.playbackTime else {
+        guard let lyrics = currentLyrics else {
             return
         }
-        
+        let playbackTime = MusicPlayers.Selected.shared.playbackTime
         let (index, next) = lyrics[playbackTime + lyrics.adjustedTimeDelay]
         if currentLineIndex != index {
             currentLineIndex = index
         }
         if let next = next {
             let dt = lyrics.lines[next].position - playbackTime - lyrics.adjustedTimeDelay
-            let q = DispatchQueue.global().cx
+            let q = DispatchQueue.lyricsDisplay.cx
             currentLineCheckSchedule = q.schedule(after: q.now.advanced(by: .seconds(dt)), interval: .seconds(42), tolerance: .milliseconds(20)) { [unowned self] in
                 self.scheduleCurrentLineCheck()
             }
@@ -106,9 +93,10 @@ class AppController: NSObject {
     }
     
     func writeToiTunes(overwrite: Bool) {
-        guard let player = playerManager.player as? iTunes,
+        guard selectedPlayer.name == .appleMusic,
             let currentLyrics = currentLyrics,
-            overwrite || player.currentTrack?.lyrics?.isEmpty != false else {
+            let sbTrack = selectedPlayer.currentTrack?.originalTrack,
+            overwrite || (sbTrack.value(forKey: "lyrics") as! String?)?.isEmpty != false else {
             return
         }
         let content = currentLyrics.lines.map { line -> String in
@@ -131,7 +119,7 @@ class AppController: NSObject {
         // swiftlint:disable:next force_try
         let regex = try! Regex(#"\n{3,}"#)
         let replaced = content.replacingMatches(of: regex, with: "\n\n")
-        player.currentTrack?.setLyrics(replaced)
+        sbTrack.setValue(replaced, forKey: "lyrics")
     }
     
     func currentTrackChanged() {
@@ -141,7 +129,7 @@ class AppController: NSObject {
         currentLyrics = nil
         currentLineIndex = nil
         searchCanceller?.cancel()
-        guard let track = playerManager.player?.currentTrack else {
+        guard let track = MusicPlayers.Selected.shared.currentTrack else {
             return
         }
         // FIXME: deal with optional value
@@ -226,7 +214,7 @@ class AppController: NSObject {
                 }
             }, receiveValue: { [unowned self] lyrics in
                 self.lyricsReceived(lyrics: lyrics)
-            }).cancel(after: .seconds(10), scheduler: DispatchQueue.global().cx)
+            }).cancel(after: .seconds(10), scheduler: DispatchQueue.lyricsDisplay.cx)
         Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
     }
     
@@ -261,7 +249,7 @@ extension AppController {
             let error = NSError(domain: lyricsXErrorDomain, code: 0, userInfo: errorInfo)
             throw error
         }
-        guard let track = playerManager.player?.currentTrack else {
+        guard let track = selectedPlayer.currentTrack else {
             let errorInfo = [
                 NSLocalizedDescriptionKey: "No music playing",
                 NSLocalizedRecoverySuggestionErrorKey: "Play a music and try again."

@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "CXExtensions",
+        "repositoryURL": "https://github.com/cx-org/CXExtensions",
+        "state": {
+          "branch": null,
+          "revision": "9288b4ab076d32277dc43c129ee8c5c2417d39da",
+          "version": "0.1.1"
+        }
+      },
+      {
         "package": "GenericID",
         "repositoryURL": "https://github.com/ddddxxx/GenericID.git",
         "state": {
@@ -42,17 +51,17 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
         "state": {
           "branch": null,
-          "revision": "3df5d8c9a9af9246b785598d74c950493142ca0b",
-          "version": "0.8.0"
+          "revision": "8e256a2385ce7dfa1c1d676a50629a560b479995",
+          "version": "0.8.1"
         }
       },
       {
         "package": "MusicPlayer",
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
-          "branch": null,
-          "revision": "119cab4daf47ed9fed9d2d030e4ef2952328f0ea",
-          "version": "0.5.0"
+          "branch": "master",
+          "revision": "1cf27e3c56f1cd10a527ba7dea0fac9ac562b151",
+          "version": null
         }
       },
       {
@@ -78,8 +87,8 @@
         "repositoryURL": "https://github.com/ddddxxx/Regex",
         "state": {
           "branch": null,
-          "revision": "be99b43cbcd958ef54b8316ea1a0cf82e525ad54",
-          "version": "0.1.0"
+          "revision": "739734521806e17a60ba8c439050ae7ada062551",
+          "version": "0.2.0"
         }
       },
       {
@@ -96,8 +105,8 @@
         "repositoryURL": "https://github.com/ddddxxx/Semver.git",
         "state": {
           "branch": null,
-          "revision": "0a4578227e85b8f3179a252828c65a0b912082f0",
-          "version": "0.2.0"
+          "revision": "6094e6f23a02b52b5d211fd114a4750c4f3ecef3",
+          "version": "0.2.1"
         }
       },
       {

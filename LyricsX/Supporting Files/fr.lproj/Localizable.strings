@@ -8,10 +8,10 @@
 "OK" = "OK";
 
 /* window title */
-"Search Lyrics" = "Rechercher les paroles";
+"Search Lyrics" = "Rechercher des paroles";
 
 /* No comment provided by engineer. */
-"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "La Touch Bar n'est pas prise en charge dans la version Mac App Store. Veuillez télécharger la version GitHub.";
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Les paroles sur la Touch Bar ne sont pas disponibles dans la version du Mac App Store. Veuillez télécharger la version sur GitHub.";
 
 /* alert title */
 "Unable to enable Touch Bar lyrics." = "Impossible d'afficher les paroles sur la Touch Bar.";

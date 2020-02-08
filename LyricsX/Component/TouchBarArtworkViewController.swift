@@ -1,21 +1,8 @@
 //
 //  TouchBarCurrentPlayingItem.swift
 //
-//  This file is part of LyricsX
-//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
+//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
 //
 
 import AppKit
@@ -33,7 +20,8 @@ class TouchBarArtworkViewController: NSViewController {
     }
     
     override func viewDidLoad() {
-        defaultNC.cx.publisher(for: MusicPlayerController.currentTrackDidChangeNotification, object: AppController.shared.playerManager)
+        selectedPlayer.currentTrackWillChange
+            .receive(on: DispatchQueue.main.cx)
             .sink { [unowned self] _ in
                 self.updateArtworkImage()
             }.store(in: &cancelBag)
@@ -41,26 +29,15 @@ class TouchBarArtworkViewController: NSViewController {
     }
     
     func updateArtworkImage() {
-        let player = AppController.shared.playerManager.player
-        if let image = player?.currentTrack?.artwork ?? player?.icon {
+        if let image = selectedPlayer.currentTrack?.artwork ?? selectedPlayer.name?.icon {
             let size = CGSize(width: 30, height: 30)
             self.artworkView.image = NSImage(size: size, flipped: false) { rect in
                 image.draw(in: rect)
                 return true
             }
-        }
-    }
-}
-
-extension MusicPlayerController {
-    
-    var icon: NSImage? {
-        switch self {
-        case is iTunes: return #imageLiteral(resourceName: "iTunes_icon")
-        case is Spotify: return #imageLiteral(resourceName: "spotify_icon")
-        case is Vox: return #imageLiteral(resourceName: "vox_icon")
-        case is Audirvana: return #imageLiteral(resourceName: "audirvana_icon")
-        default: return nil
+        } else {
+            // TODO: Placeholder
+            self.artworkView.image = nil
         }
     }
 }

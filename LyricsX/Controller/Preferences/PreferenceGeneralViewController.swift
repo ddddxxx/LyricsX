@@ -1,21 +1,8 @@
 //
 //  PreferenceGeneralViewController.swift
 //
-//  This file is part of LyricsX
-//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
+//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
 //
 
 import Cocoa
@@ -65,18 +52,19 @@ class PreferenceGeneralViewController: NSViewController {
             userPathMenuItem.isHidden = true
         }
         
-        for lan in supportedLanguages {
-            let localized: String
+        let localizedLan: [String] = localizations.map { lan in
             if let idx = lan.firstIndex(of: "-") {
-                let script = String(lan[idx...].dropFirst())
-                localized = Locale(identifier: lan).localizedString(forScriptCode: script)!
+                let script = lan[idx...].dropFirst()
+                return Locale(identifier: lan).localizedString(forScriptCode: String(script))!
             } else {
-                localized = Locale(identifier: lan).localizedString(forLanguageCode: lan)!
+                return Locale(identifier: lan).localizedString(forLanguageCode: lan)!
             }
-            languagePopUp.addItem(withTitle: localized)
-            if lan == defaults[.AppleLanguages].first {
-                languagePopUp.selectItem(withTitle: localized)
-            }
+        }
+        languagePopUp.addItems(withTitles: localizedLan)
+        
+        if let lan = defaults[.SelectedLanguage],
+            let idx = localizations.firstIndex(of: lan) {
+            languagePopUp.selectItem(at: idx + 2)
         }
     }
     
@@ -110,13 +98,15 @@ class PreferenceGeneralViewController: NSViewController {
         }
     }
     @IBAction func chooseLanguageAction(_ sender: NSPopUpButton) {
-        guard let item = sender.selectedItem else { return }
-        let idx = sender.index(of: item)
-        let code = supportedLanguages[idx]
-        var lans = defaults[.AppleLanguages]
-        lans.removeAll { $0 == code }
-        lans.insert(code, at: 0)
-        defaults[.AppleLanguages] = lans
+        let selectedIdx = sender.indexOfSelectedItem
+        if selectedIdx == 0 {
+            defaults.remove(.SelectedLanguage)
+            defaults.remove(.AppleLanguages)
+        } else {
+            let lan = localizations[selectedIdx - 2]
+            defaults[.SelectedLanguage] = lan
+            defaults[.AppleLanguages] = [lan]
+        }
     }
     
     @IBAction func helpTranslateAction(_ sender: NSButton) {
@@ -125,7 +115,6 @@ class PreferenceGeneralViewController: NSViewController {
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
         defaults[.PreferredPlayerIndex] = sender.tag
-        AppController.shared.playerManager.preferredPlayerName = MusicPlayerName(index: sender.tag)
         
         if sender.tag < 0 {
             autoLaunchButton.isEnabled = false
@@ -143,16 +132,6 @@ class PreferenceGeneralViewController: NSViewController {
             loadHomonymLrcButton.isEnabled = true
         }
     }
-    
 }
 
-let supportedLanguages = [
-    "en",
-    "zh-Hans",
-    "zh-Hant",
-    "ja",
-    "fr",
-    "pl",
-    "de",
-    "fa",
-]
+private let localizations = Bundle.main.localizations.filter { $0 != "Base" }.sorted()

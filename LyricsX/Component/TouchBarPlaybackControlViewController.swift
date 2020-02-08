@@ -1,28 +1,20 @@
 //
 //  TouchBarPlaybackControlItem.swift
 //
-//  This file is part of LyricsX
-//  Copyright (C) 2017 Xander Deng - https://github.com/ddddxxx/LyricsX
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
+//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
 //
 
 import AppKit
 import MusicPlayer
+import CombineX
 
 @available(OSX 10.12.2, *)
 class TouchBarPlaybackControlViewController: NSViewController {
+    
+    private weak var segmentedControl: NSSegmentedControl!
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     override func loadView() {
         let rewindImage = NSImage(named: NSImage.touchBarRewindTemplateName)!
@@ -38,6 +30,21 @@ class TouchBarPlaybackControlViewController: NSViewController {
         seg.action = #selector(segmentAction)
         
         self.view = seg
+        self.segmentedControl = seg
+        
+        selectedPlayer.playbackStateWillChange
+            .receive(on: DispatchQueue.main.cx)
+            .sink { [weak self] state in
+                self?.updatePlayPauseIcon(isPlaying: state.isPlaying)
+            }.store(in: &cancelBag)
+        updatePlayPauseIcon(isPlaying: selectedPlayer.playbackState.isPlaying)
+    }
+    
+    func updatePlayPauseIcon(isPlaying: Bool) {
+        let image = isPlaying
+            ? NSImage(named: NSImage.touchBarPauseTemplateName)
+            : NSImage(named: NSImage.touchBarPlayTemplateName)
+        segmentedControl?.setImage(image, forSegment: 1)
     }
     
     @IBAction func segmentAction(_ sender: NSSegmentedControl) {
@@ -50,21 +57,18 @@ class TouchBarPlaybackControlViewController: NSViewController {
     }
     
     @IBAction func rewindAction(_ sender: Any?) {
-        guard let player = AppController.shared.playerManager.player else {
-            return
-        }
-        if player.playbackTime > 5 {
-            player.playbackTime = 0
+        if selectedPlayer.playbackTime > 5 {
+            selectedPlayer.playbackTime = 0
         } else {
-            player.skipToPreviousItem()
+            selectedPlayer.skipToPreviousItem()
         }
     }
     
     @IBAction func playPauseAction(_ sender: Any?) {
-        AppController.shared.playerManager.player?.playPause()
+        selectedPlayer.playPause()
     }
     
     @IBAction func fastForwardAction(_ sender: Any?) {
-        AppController.shared.playerManager.player?.skipToNextItem()
+        selectedPlayer.skipToNextItem()
     }
 }
