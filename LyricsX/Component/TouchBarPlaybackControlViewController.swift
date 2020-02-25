@@ -34,14 +34,13 @@ class TouchBarPlaybackControlViewController: NSViewController {
         
         selectedPlayer.playbackStateWillChange
             .receive(on: DispatchQueue.main.cx)
-            .sink { [weak self] state in
-                self?.updatePlayPauseIcon(isPlaying: state.isPlaying)
-            }.store(in: &cancelBag)
-        updatePlayPauseIcon(isPlaying: selectedPlayer.playbackState.isPlaying)
+            .invoke(TouchBarPlaybackControlViewController.updatePlayPauseIcon, weaklyOn: self)
+            .store(in: &cancelBag)
+        updatePlayPauseIcon(state: selectedPlayer.playbackState)
     }
     
-    func updatePlayPauseIcon(isPlaying: Bool) {
-        let image = isPlaying
+    func updatePlayPauseIcon(state: PlaybackState) {
+        let image = state.isPlaying
             ? NSImage(named: NSImage.touchBarPauseTemplateName)
             : NSImage(named: NSImage.touchBarPlayTemplateName)
         segmentedControl?.setImage(image, forSegment: 1)

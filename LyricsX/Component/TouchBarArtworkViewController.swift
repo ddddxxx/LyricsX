@@ -21,10 +21,10 @@ class TouchBarArtworkViewController: NSViewController {
     
     override func viewDidLoad() {
         selectedPlayer.currentTrackWillChange
+            .signal()
             .receive(on: DispatchQueue.main.cx)
-            .sink { [unowned self] _ in
-                self.updateArtworkImage()
-            }.store(in: &cancelBag)
+            .invoke(TouchBarArtworkViewController.updateArtworkImage, weaklyOn: self)
+            .store(in: &cancelBag)
         updateArtworkImage()
     }
     

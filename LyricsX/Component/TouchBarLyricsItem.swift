@@ -35,15 +35,13 @@ class TouchBarLyricsItem: NSCustomTouchBarItem {
         AppController.shared.$currentLyrics
             .combineLatest(AppController.shared.$currentLineIndex)
             .receive(on: DispatchQueue.lyricsDisplay.cx)
-            .sink { [unowned self] lrc, idx in
-                self.handleLyricsDisplay(lyrics: lrc, index: idx)
-            }
+            .invoke(TouchBarLyricsItem.handleLyricsDisplay, weaklyOn: self)
             .store(in: &cancelBag)
     }
     
-    private func handleLyricsDisplay(lyrics: Lyrics?, index: Int?) {
-        guard let lyrics = lyrics,
-            let index = index else {
+    private func handleLyricsDisplay(event: (lyrics: Lyrics?, index: Int?)) {
+        guard let lyrics = event.lyrics,
+            let index = event.index else {
                 DispatchQueue.main.async {
                     self.lyricsTextField.stringValue = ""
                     self.lyricsTextField.removeProgressAnimation()

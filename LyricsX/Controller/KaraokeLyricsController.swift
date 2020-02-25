@@ -43,20 +43,20 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
             AppController.shared.$currentLyrics
+                .signal()
                 .receive(on: DispatchQueue.lyricsDisplay.cx)
-                .sink { [unowned self] _ in
-                    self.handleLyricsDisplay()
-                }.store(in: &self.cancelBag)
+                .invoke(KaraokeLyricsWindowController.handleLyricsDisplay, weaklyOn: self)
+                .store(in: &self.cancelBag)
             AppController.shared.$currentLineIndex
+                .signal()
                 .receive(on: DispatchQueue.lyricsDisplay.cx)
-                .sink { [unowned self] _ in
-                    self.handleLyricsDisplay()
-                }.store(in: &self.cancelBag)
+                .invoke(KaraokeLyricsWindowController.handleLyricsDisplay, weaklyOn: self)
+                .store(in: &self.cancelBag)
             selectedPlayer.playbackStateWillChange
+                .signal()
                 .receive(on: DispatchQueue.lyricsDisplay.cx)
-                .sink { [unowned self] _ in
-                    self.handleLyricsDisplay()
-                }.store(in: &self.cancelBag)
+                .invoke(KaraokeLyricsWindowController.handleLyricsDisplay, weaklyOn: self)
+                .store(in: &self.cancelBag)
             self.observeDefaults(keys: [.PreferBilingualLyrics, .DesktopLyricsOneLineMode]) { [unowned self] in
                 self.handleLyricsDisplay()
             }

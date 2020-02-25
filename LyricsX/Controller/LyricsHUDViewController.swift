@@ -61,10 +61,10 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         }
         
         AppController.shared.$currentLyrics
+            .signal()
             .receive(on: DispatchQueue.main.cx)
-            .sink { [unowned self] _ in
-                self.lyricsChanged()
-            }.store(in: &cancelBag)
+            .invoke(LyricsHUDViewController.lyricsChanged, weaklyOn: self)
+            .store(in: &cancelBag)
         AppController.shared.$currentLineIndex
             .receive(on: DispatchQueue.main.cx)
             .sink { [unowned self] _ in

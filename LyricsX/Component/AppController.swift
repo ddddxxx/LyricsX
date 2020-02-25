@@ -52,15 +52,15 @@ class AppController: NSObject {
     private override init() {
         super.init()
         selectedPlayer.currentTrackWillChange
+            .signal()
             .receive(on: DispatchQueue.lyricsDisplay.cx)
-            .sink { [unowned self] _ in
-                self.currentTrackChanged()
-            }.store(in: &cancelBag)
+            .invoke(AppController.currentTrackChanged, weaklyOn: self)
+            .store(in: &cancelBag)
         selectedPlayer.playbackStateWillChange
+            .signal()
             .receive(on: DispatchQueue.lyricsDisplay.cx)
-            .sink { [unowned self] _ in
-                self.scheduleCurrentLineCheck()
-            }.store(in: &cancelBag)
+            .invoke(AppController.scheduleCurrentLineCheck, weaklyOn: self)
+            .store(in: &cancelBag)
         
         defaultNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
             .sink { n in
