@@ -139,5 +139,29 @@
 	<true/>
 	<key>SUFeedURL</key>
 	<string>https://ddddxxx.github.io/LyricsX/appcast.xml</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.lyricsx.lrcx</string>
+			<key>UTTypeDescription</key>
+			<string>Lyrics File</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>lrcx</string>
+					<string>lrc</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>text/plain</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
