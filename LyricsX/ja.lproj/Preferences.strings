@@ -50,7 +50,7 @@
 "bDS-Lb-m34.title" = "歌詞を非表示:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
-"bFk-1g-XeL.title" = "実験室";
+"bFk-1g-XeL.title" = "ラボ";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
 "bmk-rW-Uot.title" = "歌詞のオフセットを減らす:";
