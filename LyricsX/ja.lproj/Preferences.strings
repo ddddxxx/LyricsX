@@ -131,7 +131,7 @@
 "ppx-ob-WJc.title" = "ショートカット";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "検索結果は正確な検索語と一致にする";
+"rSD-qR-EXA.title" = "キーワードと完全一致にする検索結果のみを表示する";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
 "slB-q7-1dB.title" = "グローバル オフセット (ミリ秒):";
