@@ -62,7 +62,7 @@
 "l8J-1r-dIZ.title" = "アーティスト:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "LyricsX が有用であり、あなたがアプリのメンテナンスをサポートしたいと考えている場合は、以下のQRコードをスキャンして私に寄付することができます。";
+"o52-Z0-lue.title" = "LyricsX が役に立てて、アプリのメンテナンスをサポートしたいと考えている場合は、下記のQRコードをスキャンして私に寄付することができます。";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "LyricsX について";
