@@ -5,7 +5,7 @@
 "0VO-JB-ubq.title" = "自動設定";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "次の規則を満たす歌詞行がフィルタリングされます。 「/ 」を使用して正規表現を有効にします。";
+"19E-DG-Q23.title" = "次の規則を満たす歌詞行が非表示にされます。 先頭に「/」をつけて正規表現にすることができます。";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
 "3Bt-md-QNc.title" = "歌詞";
@@ -50,7 +50,7 @@
 "bDS-Lb-m34.title" = "歌詞を非表示:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
-"bFk-1g-XeL.title" = "実験室";
+"bFk-1g-XeL.title" = "ラボ";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
 "bmk-rW-Uot.title" = "歌詞のオフセットを減らす:";
@@ -122,7 +122,7 @@
 "mo2-3C-gLY.title" = "歌詞のオフセットを増やす:";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
-"N08-TS-lqw.title" = "Auto";
+"N08-TS-lqw.title" = "自動";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "一時停止中";
@@ -134,7 +134,7 @@
 "ppx-ob-WJc.title" = "ショートカット";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "検索結果は正確な検索語と一致にする";
+"rSD-qR-EXA.title" = "キーワードと完全一致にする検索結果のみを表示する";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
 "slB-q7-1dB.title" = "グローバル オフセット (ミリ秒):";

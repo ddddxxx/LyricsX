@@ -2,7 +2,7 @@
 "1xI-G4-Fsc.headerCell.title" = "來源";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "沒有歌詞資訊\n\n請拖放來輸入 LRC 檔案";
+"aRw-yQ-GNX.title" = "沒有歌詞資訊\n請將 LRC 檔案拖曳匯入";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
 "CW0-AL-Z6N.title" = "贊助";
@@ -53,13 +53,13 @@
 "jWT-S5-YXM.headerCell.title" = "歌曲";
 
 /* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
-"kNl-ZO-aX6.title" = "將歌詞輸入 iTunes";
+"kNl-ZO-aX6.title" = "將歌詞寫入 iTunes 歌曲";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
 "kyJ-kV-2Du.title" = "顯示歌詞視窗";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
-"l8J-1r-dIZ.title" = "藝人：";
+"l8J-1r-dIZ.title" = "演唱人：";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
 "o52-Z0-lue.title" = "如果你 LyricsX 用得還算開心，願意請杯咖啡好讓我可以繼續維護這個軟體的話，你可以掃描下面的 QR code 來贊助我，感謝。";
@@ -74,7 +74,7 @@
 "RGl-MT-MQb.title" = "套用";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "結束 LyricsX";
+"RPR-IV-34T.title" = "關閉 LyricsX";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
 "Z7d-yp-uRx.title" = "啟用選單列歌詞";
