@@ -16,6 +16,7 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var preferSpotify: NSButton!
     @IBOutlet weak var preferVox: NSButton!
     @IBOutlet weak var preferAudirvana: NSButton!
+    @IBOutlet weak var preferSwinsian: NSButton!
     
     @IBOutlet weak var autoLaunchButton: NSButton!
     
@@ -40,6 +41,8 @@ class PreferenceGeneralViewController: NSViewController {
         case 3:
             preferAudirvana.state = .on
             loadHomonymLrcButton.isEnabled = false
+        case 4:
+            preferSwinsian.state = .on
         default:
             preferAuto.state = .on
             autoLaunchButton.isEnabled = false
@@ -124,7 +127,7 @@ class PreferenceGeneralViewController: NSViewController {
             autoLaunchButton.isEnabled = true
         }
         
-        if sender.tag == 1 || sender.tag == 3 {
+        if sender.tag == 1 || sender.tag == 3 || sender.tag == 4 {
             loadHomonymLrcButton.isEnabled = false
             loadHomonymLrcButton.state = .off
             defaults[.LoadLyricsBesideTrack] = false
