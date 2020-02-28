@@ -12,8 +12,7 @@ import GenericID
 import MASShortcut
 import MusicPlayer
 
-#if IS_FOR_MAS
-#else
+#if !IS_FOR_MAS
 import Sparkle
 #endif
 
@@ -73,8 +72,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         NSRunningApplication.runningApplications(withBundleIdentifier: lyricsXHelperIdentifier).forEach { $0.terminate() }
         
         let sharedKeys: [UserDefaults.DefaultsKeys] = [
-            .LaunchAndQuitWithPlayer,
-            .PreferredPlayerIndex,
+            .launchAndQuitWithPlayer,
+            .preferredPlayerIndex,
         ]
         sharedKeys.forEach {
             groupDefaults.bind(NSBindingName($0.key), withDefaultName: $0)
@@ -85,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         #else
         SUUpdater.shared()?.checkForUpdatesInBackground()
         if #available(OSX 10.12.2, *) {
-            observeDefaults(key: .TouchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
+            observeDefaults(key: .touchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
                 if change.newValue, self.touchBarLyrics == nil {
                     self._touchBarLyrics = TouchBarLyrics()
                 } else if !change.newValue, self.touchBarLyrics != nil {
@@ -100,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         if AppController.shared.currentLyrics?.metadata.needsPersist == true {
             AppController.shared.currentLyrics?.persist()
         }
-        if defaults[.LaunchAndQuitWithPlayer] {
+        if defaults[.launchAndQuitWithPlayer] {
             let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
             groupDefaults[.launchHelperTime] = Date()
             do {
@@ -114,14 +113,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     
     private func setupShortcuts() {
         let binder = MASShortcutBinder.shared()!
-        binder.bindBoolShortcut(.ShortcutToggleMenuBarLyrics, target: .MenuBarLyricsEnabled)
-        binder.bindBoolShortcut(.ShortcutToggleKaraokeLyrics, target: .DesktopLyricsEnabled)
-        binder.bindShortcut(.ShortcutShowLyricsWindow, to: #selector(showLyricsHUD))
-        binder.bindShortcut(.ShortcutOffsetIncrease, to: #selector(increaseOffset))
-        binder.bindShortcut(.ShortcutOffsetDecrease, to: #selector(decreaseOffset))
-        binder.bindShortcut(.ShortcutWriteToiTunes, to: #selector(writeToiTunes))
-        binder.bindShortcut(.ShortcutWrongLyrics, to: #selector(wrongLyrics))
-        binder.bindShortcut(.ShortcutSearchLyrics, to: #selector(searchLyrics))
+        binder.bindBoolShortcut(.shortcutToggleMenuBarLyrics, target: .menuBarLyricsEnabled)
+        binder.bindBoolShortcut(.shortcutToggleKaraokeLyrics, target: .desktopLyricsEnabled)
+        binder.bindShortcut(.shortcutShowLyricsWindow, to: #selector(showLyricsHUD))
+        binder.bindShortcut(.shortcutOffsetIncrease, to: #selector(increaseOffset))
+        binder.bindShortcut(.shortcutOffsetDecrease, to: #selector(decreaseOffset))
+        binder.bindShortcut(.shortcutWriteToiTunes, to: #selector(writeToiTunes))
+        binder.bindShortcut(.shortcutWrongLyrics, to: #selector(wrongLyrics))
+        binder.bindShortcut(.shortcutSearchLyrics, to: #selector(searchLyrics))
     }
     
     // MARK: - NSMenuDelegate
@@ -195,8 +194,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         guard let track = selectedPlayer.currentTrack else {
             return
         }
-        defaults[.NoSearchingTrackIds].append(track.id)
-        if defaults[.WriteToiTunesAutomatically] {
+        defaults[.noSearchingTrackIds].append(track.id)
+        if defaults[.writeToiTunesAutomatically] {
             track.setLyrics("")
         }
         if let url = AppController.shared.currentLyrics?.metadata.localURL {
@@ -211,8 +210,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
             let album = track.album else {
             return
         }
-        defaults[.NoSearchingAlbumNames].append(album)
-        if defaults[.WriteToiTunesAutomatically] {
+        defaults[.noSearchingAlbumNames].append(album)
+        if defaults[.writeToiTunesAutomatically] {
             track.setLyrics("")
         }
         if let url = AppController.shared.currentLyrics?.metadata.localURL {
@@ -231,16 +230,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
             defaults.register(defaults: dict)
         }
         defaults.register(defaults: [
-            .DesktopLyricsColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-            .DesktopLyricsProgressColor: #colorLiteral(red: 0.1985405816, green: 1, blue: 0.8664234302, alpha: 1),
-            .DesktopLyricsShadowColor: #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1),
-            .DesktopLyricsBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279),
-            .LyricsWindowTextColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1),
-            .LyricsWindowHighlightColor: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1),
-            .PreferBilingualLyrics: isZh,
-            .ChineseConversionIndex: isHant ? 2 : 0,
-            .DesktopLyricsXPositionFactor: 0.5,
-            .DesktopLyricsYPositionFactor: 0.9,
+            .desktopLyricsColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+            .desktopLyricsProgressColor: #colorLiteral(red: 0.1985405816, green: 1, blue: 0.8664234302, alpha: 1),
+            .desktopLyricsShadowColor: #colorLiteral(red: 0, green: 1, blue: 0.8333333333, alpha: 1),
+            .desktopLyricsBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6041579279),
+            .lyricsWindowTextColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1),
+            .lyricsWindowHighlightColor: #colorLiteral(red: 0.8866666667, green: 1, blue: 0.8, alpha: 1),
+            .preferBilingualLyrics: isZh,
+            .chineseConversionIndex: isHant ? 2 : 0,
+            .desktopLyricsXPositionFactor: 0.5,
+            .desktopLyricsYPositionFactor: 0.9,
             ])
     }
 }

@@ -28,15 +28,15 @@ extension MusicPlayers {
             super.init()
             selectPlayer()
             scheduleManualUpdate()
-            defaultsObservation = defaults.observe(keys: [.PreferredPlayerIndex, .UseSystemWideNowPlaying]) { [weak self] in
+            defaultsObservation = defaults.observe(keys: [.preferredPlayerIndex, .useSystemWideNowPlaying]) { [weak self] in
                 self?.selectPlayer()
             }
         }
         
         private func selectPlayer() {
-            let idx = defaults[.PreferredPlayerIndex]
+            let idx = defaults[.preferredPlayerIndex]
             if idx == -1 {
-                if defaults[.UseSystemWideNowPlaying] {
+                if defaults[.useSystemWideNowPlaying] {
                     designatedPlayer = MusicPlayers.SystemNowPlaying()
                 } else {
                     let players = MusicPlayerName.scriptableCases.compactMap(MusicPlayers.Scriptable.init)

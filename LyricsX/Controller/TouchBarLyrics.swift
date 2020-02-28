@@ -76,7 +76,7 @@ class TouchBarLyrics: TouchBarSystemModalController {
         systemTrayItem = NSCustomTouchBarItem(identifier: .systemTrayItem)
         systemTrayItem?.view = NSButton(image: #imageLiteral(resourceName: "status_bar_icon"), target: self, action: #selector(present))
         
-        lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .DesktopLyricsProgressColor)
+        lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .desktopLyricsProgressColor)
         
         self.observeNotification(name: NSApplication.willBecomeActiveNotification) { [weak self] _ in
             guard let self = self else { return }

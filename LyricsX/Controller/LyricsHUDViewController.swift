@@ -40,7 +40,7 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
             $0.delegate = self
         }
         // swiftlint:disable:next force_cast
-        let accessory = NSStoryboard.main!.instantiateController(withIdentifier: .LyricsHUDAccessory) as! NSTitlebarAccessoryViewController
+        let accessory = NSStoryboard.main!.instantiateController(withIdentifier: .lyricsHUDAccessory) as! NSTitlebarAccessoryViewController
         accessory.layoutAttribute = .right
         view.window?.addTitlebarAccessoryViewController(accessory)
         
@@ -48,12 +48,12 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         lyricsScrollView.delegate = self
         lyricsScrollView.setupTextContents(lyrics: AppController.shared.currentLyrics)
         
-        lyricsScrollView.bind(\.fontName, withDefaultName: .LyricsWindowFontName)
-        lyricsScrollView.bind(\.fontSize, withUnmatchedDefaultName: .LyricsWindowFontSize)
-        lyricsScrollView.bind(\.textColor, withDefaultName: .LyricsWindowTextColor)
-        lyricsScrollView.bind(\.highlightColor, withDefaultName: .LyricsWindowHighlightColor)
+        lyricsScrollView.bind(\.fontName, withDefaultName: .lyricsWindowFontName)
+        lyricsScrollView.bind(\.fontSize, withUnmatchedDefaultName: .lyricsWindowFontSize)
+        lyricsScrollView.bind(\.textColor, withDefaultName: .lyricsWindowTextColor)
+        lyricsScrollView.bind(\.highlightColor, withDefaultName: .lyricsWindowHighlightColor)
         
-        observeDefaults(key: .LyricsWindowFontSize, options: [.new, .initial]) { [unowned self] _, change in
+        observeDefaults(key: .lyricsWindowFontSize, options: [.new, .initial]) { [unowned self] _, change in
             let fontSize = CGFloat(change.newValue)
             self.lyricsScrollViewTopMargin.constant = fontSize
             self.lyricsScrollViewLeftMargin.constant = fontSize
