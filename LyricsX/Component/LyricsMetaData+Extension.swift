@@ -14,7 +14,6 @@ extension Lyrics.MetaData.Key {
     static var artist = Lyrics.MetaData.Key("artist")
     static var needsPersist = Lyrics.MetaData.Key("needsPersist")
     static var language = Lyrics.MetaData.Key("language")
-    static var translationLanguages = Lyrics.MetaData.Key("translationLanguages")
 }
 
 extension Lyrics.MetaData {
@@ -45,7 +44,16 @@ extension Lyrics.MetaData {
     }
     
     var translationLanguages: [String] {
-        get { return data[.translationLanguages] as? [String] ?? [] }
-        set { data[.translationLanguages] = newValue }
+        return attachmentTags.compactMap { $0.translationLanguageCode }
+    }
+}
+
+private extension LyricsLine.Attachments.Tag {
+    var translationLanguageCode: String? {
+        guard rawValue.hasPrefix("tr:") else {
+            return nil
+        }
+        let code = rawValue.dropFirst(3)
+        return code.isEmpty ? nil : String(code)
     }
 }

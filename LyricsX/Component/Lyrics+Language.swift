@@ -41,13 +41,15 @@ extension Lyrics {
         }
         if let transLan = translationLanguageSet.mostFrequentElement as! String? {
             let tag = LyricsLine.Attachments.Tag.translation(languageCode: transLan)
+            guard !metadata.attachmentTags.contains(tag) else {
+                return
+            }
             for idx in lines.indices {
                 if let trans = lines[idx].attachments[LyricsLine.Attachments.Tag.translation.rawValue] {
                     lines[idx].attachments[LyricsLine.Attachments.Tag.translation.rawValue] = nil
                     lines[idx].attachments.setTranslation(trans, languageCode: transLan)
                 }
             }
-            metadata.translationLanguages.append(transLan)
             metadata.attachmentTags.insert(tag)
         }
     }
