@@ -159,7 +159,9 @@
 					<string>lrc</string>
 				</array>
 				<key>public.mime-type</key>
-				<string>text/plain</string>
+				<array>
+					<string>text/plain</string>
+				</array>
 			</dict>
 		</dict>
 	</array>
