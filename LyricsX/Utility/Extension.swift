@@ -68,23 +68,23 @@ extension NSFont {
 extension UserDefaults {
     
     var desktopLyricsFont: NSFont {
-        return NSFont(name: self[.DesktopLyricsFontName],
-                      size: CGFloat(self[.DesktopLyricsFontSize]),
-                      fallback: self[.DesktopLyricsFontNameFallback])
-            ?? NSFont.systemFont(ofSize: CGFloat(self[.DesktopLyricsFontSize]))
+        return NSFont(name: self[.desktopLyricsFontName],
+                      size: CGFloat(self[.desktopLyricsFontSize]),
+                      fallback: self[.desktopLyricsFontNameFallback])
+            ?? NSFont.systemFont(ofSize: CGFloat(self[.desktopLyricsFontSize]))
     }
     
     var lyricsWindowFont: NSFont {
-        return NSFont(name: defaults[.LyricsWindowFontName],
-                      size: CGFloat(defaults[.LyricsWindowFontSize]))
-            ?? NSFont.labelFont(ofSize: CGFloat(defaults[.DesktopLyricsFontSize]))
+        return NSFont(name: defaults[.lyricsWindowFontName],
+                      size: CGFloat(defaults[.lyricsWindowFontSize]))
+            ?? NSFont.labelFont(ofSize: CGFloat(defaults[.desktopLyricsFontSize]))
     }
 }
 
 extension UserDefaults {
     
     func lyricsSavingPath() -> (URL, security: Bool) {
-        if self[.LyricsSavingPathPopUpIndex] != 0, let path = lyricsCustomSavingPath {
+        if self[.lyricsSavingPathPopUpIndex] != 0, let path = lyricsCustomSavingPath {
             return (path, true)
         } else {
             let userPath = String(cString: getpwuid(getuid()).pointee.pw_dir)
@@ -94,7 +94,7 @@ extension UserDefaults {
     
     var lyricsCustomSavingPath: URL? {
         get {
-            guard let data = self[.LyricsCustomSavingPathBookmark] else {
+            guard let data = self[.lyricsCustomSavingPathBookmark] else {
                 return nil
             }
             var bookmarkDataIsStale = false
@@ -112,7 +112,7 @@ extension UserDefaults {
             }
         }
         set {
-            self[.LyricsCustomSavingPathBookmark] = try? newValue?.bookmarkData(options: [.withSecurityScope])
+            self[.lyricsCustomSavingPathBookmark] = try? newValue?.bookmarkData(options: [.withSecurityScope])
         }
     }
     
@@ -182,7 +182,7 @@ private extension NSPredicate {
     
     private static var _lyricsPredicate: NSPredicate!
     
-    private static let observer = defaults.observe(.LyricsFilterKeys, options: [.new, .initial]) { _, change in
+    private static let observer = defaults.observe(.lyricsFilterKeys, options: [.new, .initial]) { _, change in
         let predicates = change.newValue.compactMap { (key: String) -> NSPredicate? in
             let isRegex = key.hasPrefix("/")
             let pattern = isRegex ? String(key.dropFirst()) : key
@@ -207,7 +207,7 @@ extension Lyrics {
 extension Lyrics {
     
     var adjustedOffset: Int {
-        return offset + defaults[.GlobalLyricsOffset]
+        return offset + defaults[.globalLyricsOffset]
     }
     
     var adjustedTimeDelay: TimeInterval {

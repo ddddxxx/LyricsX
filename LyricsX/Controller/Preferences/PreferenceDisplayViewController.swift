@@ -25,7 +25,7 @@ class PreferenceDisplayViewController: NSViewController, FontSelectTextFieldDele
     }
     
     func updateScreenFontFallback() {
-        guard let fallback = defaults[.DesktopLyricsFontNameFallback].first else {
+        guard let fallback = defaults[.desktopLyricsFontNameFallback].first else {
             fontFallbackLabel.isHidden = true
             removeFontFallbackButton.isHidden = true
             return
@@ -37,28 +37,28 @@ class PreferenceDisplayViewController: NSViewController, FontSelectTextFieldDele
     }
     
     @IBAction func removeFontFallbackAction(_ sender: Any) {
-        defaults[.DesktopLyricsFontNameFallback].removeAll()
+        defaults[.desktopLyricsFontNameFallback].removeAll()
         updateScreenFontFallback()
     }
     
     func fontChanged(from oldFont: NSFont, to newFont: NSFont, sender: FontSelectTextField) {
         if sender === karaokeFontSelectField {
-            defaults[.DesktopLyricsFontName] = newFont.fontName
-            defaults[.DesktopLyricsFontSize] = Int(newFont.pointSize)
+            defaults[.desktopLyricsFontName] = newFont.fontName
+            defaults[.desktopLyricsFontSize] = Int(newFont.pointSize)
             if (oldFont.familyName != nil && oldFont.familyName != newFont.familyName)
                 || oldFont.fontName != newFont.fontName {
                 // guarantee different font family of font fallback
-                var fallback = defaults[.DesktopLyricsFontNameFallback]
+                var fallback = defaults[.desktopLyricsFontNameFallback]
                 if let index = fallback.firstIndex(of: newFont.fontName) {
                     fallback.remove(at: index)
                 }
                 fallback.insert(oldFont.fontName, at: 0)
-                defaults[.DesktopLyricsFontNameFallback] = Array(fallback.prefix(fontNameFallbackCountMax))
+                defaults[.desktopLyricsFontNameFallback] = Array(fallback.prefix(fontNameFallbackCountMax))
                 updateScreenFontFallback()
             }
         } else if sender === hudFontSelectField {
-            defaults[.LyricsWindowFontName] = newFont.fontName
-            defaults[.LyricsWindowFontSize] = Int(newFont.pointSize)
+            defaults[.lyricsWindowFontName] = newFont.fontName
+            defaults[.lyricsWindowFontSize] = Int(newFont.pointSize)
         }
     }
 }

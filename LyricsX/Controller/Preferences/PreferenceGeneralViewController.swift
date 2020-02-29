@@ -16,6 +16,7 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var preferSpotify: NSButton!
     @IBOutlet weak var preferVox: NSButton!
     @IBOutlet weak var preferAudirvana: NSButton!
+    @IBOutlet weak var preferSwinsian: NSButton!
     
     @IBOutlet weak var autoLaunchButton: NSButton!
     
@@ -29,7 +30,7 @@ class PreferenceGeneralViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        switch defaults[.PreferredPlayerIndex] {
+        switch defaults[.preferredPlayerIndex] {
         case 0:
             preferiTunes.state = .on
         case 1:
@@ -40,6 +41,8 @@ class PreferenceGeneralViewController: NSViewController {
         case 3:
             preferAudirvana.state = .on
             loadHomonymLrcButton.isEnabled = false
+        case 4:
+            preferSwinsian.state = .on
         default:
             preferAuto.state = .on
             autoLaunchButton.isEnabled = false
@@ -62,7 +65,7 @@ class PreferenceGeneralViewController: NSViewController {
         }
         languagePopUp.addItems(withTitles: localizedLan)
         
-        if let lan = defaults[.SelectedLanguage],
+        if let lan = defaults[.selectedLanguage],
             let idx = localizations.firstIndex(of: lan) {
             languagePopUp.selectItem(at: idx + 2)
         }
@@ -100,12 +103,12 @@ class PreferenceGeneralViewController: NSViewController {
     @IBAction func chooseLanguageAction(_ sender: NSPopUpButton) {
         let selectedIdx = sender.indexOfSelectedItem
         if selectedIdx == 0 {
-            defaults.remove(.SelectedLanguage)
-            defaults.remove(.AppleLanguages)
+            defaults.remove(.selectedLanguage)
+            defaults.remove(.appleLanguages)
         } else {
             let lan = localizations[selectedIdx - 2]
-            defaults[.SelectedLanguage] = lan
-            defaults[.AppleLanguages] = [lan]
+            defaults[.selectedLanguage] = lan
+            defaults[.appleLanguages] = [lan]
         }
     }
     
@@ -114,20 +117,20 @@ class PreferenceGeneralViewController: NSViewController {
     }
     
     @IBAction func preferredPlayerAction(_ sender: NSButton) {
-        defaults[.PreferredPlayerIndex] = sender.tag
+        defaults[.preferredPlayerIndex] = sender.tag
         
         if sender.tag < 0 {
             autoLaunchButton.isEnabled = false
             autoLaunchButton.state = .off
-            defaults[.LaunchAndQuitWithPlayer] = false
+            defaults[.launchAndQuitWithPlayer] = false
         } else {
             autoLaunchButton.isEnabled = true
         }
         
-        if sender.tag == 1 || sender.tag == 3 {
+        if sender.tag == 1 || sender.tag == 3 || sender.tag == 4 {
             loadHomonymLrcButton.isEnabled = false
             loadHomonymLrcButton.state = .off
-            defaults[.LoadLyricsBesideTrack] = false
+            defaults[.loadLyricsBesideTrack] = false
         } else {
             loadHomonymLrcButton.isEnabled = true
         }

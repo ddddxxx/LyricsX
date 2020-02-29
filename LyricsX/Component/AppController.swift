@@ -52,20 +52,20 @@ class AppController: NSObject {
     private override init() {
         super.init()
         selectedPlayer.currentTrackWillChange
+            .signal()
             .receive(on: DispatchQueue.lyricsDisplay.cx)
-            .sink { [unowned self] _ in
-                self.currentTrackChanged()
-            }.store(in: &cancelBag)
+            .invoke(AppController.currentTrackChanged, weaklyOn: self)
+            .store(in: &cancelBag)
         selectedPlayer.playbackStateWillChange
+            .signal()
             .receive(on: DispatchQueue.lyricsDisplay.cx)
-            .sink { [unowned self] _ in
-                self.scheduleCurrentLineCheck()
-            }.store(in: &cancelBag)
+            .invoke(AppController.scheduleCurrentLineCheck, weaklyOn: self)
+            .store(in: &cancelBag)
         
         defaultNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
             .sink { n in
                 let bundleID = (n.userInfo![NSWorkspace.applicationUserInfoKey] as! NSRunningApplication).bundleIdentifier
-                if defaults[.LaunchAndQuitWithPlayer], (selectedPlayer.designatedPlayer as? MusicPlayers.Scriptable)?.playerBundleID == bundleID {
+                if defaults[.launchAndQuitWithPlayer], (selectedPlayer.designatedPlayer as? MusicPlayers.Scriptable)?.playerBundleID == bundleID {
                     NSApplication.shared.terminate(nil)
                 }
             }.store(in: &cancelBag)
@@ -104,7 +104,7 @@ class AppController: NSObject {
             if let converter = ChineseConverter.shared {
                 content = converter.convert(content)
             }
-            if defaults[.WriteiTunesWithTranslation] {
+            if defaults[.writeiTunesWithTranslation] {
                 // TODO: tagged translation
                 let code = currentLyrics.metadata.translationLanguages.first
                 if var translation = line.attachments.translation(languageCode: code) {
@@ -136,13 +136,13 @@ class AppController: NSObject {
         let title = track.title ?? ""
         let artist = track.artist ?? ""
         
-        guard !defaults[.NoSearchingTrackIds].contains(track.id) else {
+        guard !defaults[.noSearchingTrackIds].contains(track.id) else {
             return
         }
         
         var candidateLyricsURL: [(URL, Bool, Bool)] = []  // (fileURL, isSecurityScoped, needsSearching)
         
-        if defaults[.LoadLyricsBesideTrack] {
+        if defaults[.loadLyricsBesideTrack] {
             if let fileName = track.fileURL?.deletingPathExtension() {
                 candidateLyricsURL += [
                     (fileName.appendingPathExtension("lrcx"), false, false),
@@ -195,7 +195,7 @@ class AppController: NSObject {
             checkForMASReview()
         #endif
         
-        if let album = track.album, defaults[.NoSearchingAlbumNames].contains(album) {
+        if let album = track.album, defaults[.noSearchingAlbumNames].contains(album) {
             return
         }
         
@@ -209,7 +209,7 @@ class AppController: NSObject {
         searchRequest = req
         searchCanceller = lyricsManager.lyricsPublisher(request: req)
             .sink(receiveCompletion: { [unowned self] _ in
-                if defaults[.WriteToiTunesAutomatically] {
+                if defaults[.writeToiTunesAutomatically] {
                     self.writeToiTunes(overwrite: true)
                 }
             }, receiveValue: { [unowned self] lyrics in
@@ -225,7 +225,7 @@ class AppController: NSObject {
             lyrics.metadata.request == req else {
             return
         }
-        if defaults[.StrictSearchEnabled] && !lyrics.isMatched() {
+        if defaults[.strictSearchEnabled] && !lyrics.isMatched() {
             return
         }
         if let current = currentLyrics, current.quality >= lyrics.quality {
@@ -263,11 +263,11 @@ extension AppController {
         lrc.recognizeLanguage()
         lrc.metadata.needsPersist = true
         currentLyrics = lrc
-        if let index = defaults[.NoSearchingTrackIds].firstIndex(of: track.id) {
-            defaults[.NoSearchingTrackIds].remove(at: index)
+        if let index = defaults[.noSearchingTrackIds].firstIndex(of: track.id) {
+            defaults[.noSearchingTrackIds].remove(at: index)
         }
-        if let index = defaults[.NoSearchingAlbumNames].firstIndex(of: track.album ?? "") {
-            defaults[.NoSearchingAlbumNames].remove(at: index)
+        if let index = defaults[.noSearchingAlbumNames].firstIndex(of: track.album ?? "") {
+            defaults[.noSearchingAlbumNames].remove(at: index)
         }
     }
 }

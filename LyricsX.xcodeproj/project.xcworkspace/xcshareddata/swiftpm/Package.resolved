@@ -6,17 +6,8 @@
         "repositoryURL": "https://github.com/cx-org/CombineX",
         "state": {
           "branch": null,
-          "revision": "273b580b464f7d6f872cf5319c5785211443cf6f",
-          "version": "0.1.1"
-        }
-      },
-      {
-        "package": "CRuntime",
-        "repositoryURL": "https://github.com/wickwirew/CRuntime.git",
-        "state": {
-          "branch": null,
-          "revision": "95f911318d8c885f6fc05e971471f94adfd39405",
-          "version": "2.1.2"
+          "revision": "6bc3b53533711871cf0d96e50c2a2c733abb4d47",
+          "version": "0.2.0"
         }
       },
       {
@@ -24,8 +15,8 @@
         "repositoryURL": "https://github.com/cx-org/CXExtensions",
         "state": {
           "branch": null,
-          "revision": "9288b4ab076d32277dc43c129ee8c5c2417d39da",
-          "version": "0.1.1"
+          "revision": "384ff4dc35e719d187b1bbe424c644b303d05cda",
+          "version": "0.2.0"
         }
       },
       {
@@ -51,17 +42,17 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
         "state": {
           "branch": null,
-          "revision": "8e256a2385ce7dfa1c1d676a50629a560b479995",
-          "version": "0.8.1"
+          "revision": "e3c0acb3c70a4e97093e32685b3e63f52f061404",
+          "version": "0.8.2"
         }
       },
       {
         "package": "MusicPlayer",
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
-          "branch": "master",
-          "revision": "1cf27e3c56f1cd10a527ba7dea0fac9ac562b151",
-          "version": null
+          "branch": null,
+          "revision": "2c56ad6167ebf83dd5861249d6f4fec113e8145b",
+          "version": "0.6.5"
         }
       },
       {
@@ -89,15 +80,6 @@
           "branch": null,
           "revision": "739734521806e17a60ba8c439050ae7ada062551",
           "version": "0.2.0"
-        }
-      },
-      {
-        "package": "Runtime",
-        "repositoryURL": "https://github.com/wickwirew/Runtime.git",
-        "state": {
-          "branch": null,
-          "revision": "61c9776f47d2951bdc562486ad348e5e1ca2e180",
-          "version": "2.1.1"
         }
       },
       {

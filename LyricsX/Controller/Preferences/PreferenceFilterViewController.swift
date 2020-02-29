@@ -22,17 +22,17 @@ class PreferenceFilterViewController: NSViewController {
     }
     
     func loadFilter() {
-        directFilter = defaults[.LyricsFilterKeys].map {
+        directFilter = defaults[.lyricsFilterKeys].map {
             FilterKey(keyword: $0)
         }
     }
     
     func saveFilter() {
-        defaults[.LyricsFilterKeys] = directFilter.map { $0.keyword }
+        defaults[.lyricsFilterKeys] = directFilter.map { $0.keyword }
     }
     
     @IBAction func resetFilterKey(_ sender: Any) {
-        defaults.remove(.LyricsFilterKeys)
+        defaults.remove(.lyricsFilterKeys)
         loadFilter()
     }
     

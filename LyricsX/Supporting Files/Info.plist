@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5.2-beta.3</string>
+	<string>1.5.2-rc</string>
 	<key>CFBundleVersion</key>
-	<string>2257</string>
+	<string>2263</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -43,7 +43,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>LX_BUILD_TIME</key>
-	<integer>1581144923</integer>
+	<integer>1582947593</integer>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -139,5 +139,31 @@
 	<true/>
 	<key>SUFeedURL</key>
 	<string>https://ddddxxx.github.io/LyricsX/appcast.xml</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Lyrics File</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.lyricsx.lrcx</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>lrcx</string>
+					<string>lrc</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/plain</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

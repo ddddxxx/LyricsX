@@ -14,10 +14,10 @@
 "5dp-p5-YmE.title" = "單行模式";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
-"6FU-j0-FTV.title" = "轉換為正體中文";
+"6FU-j0-FTV.title" = "轉換為繁體中文";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "將歌詞輸入 iTunes：";
+"6We-TB-Wfc.title" = "將歌詞寫入 iTunes 歌曲：";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "自動導入";
@@ -26,7 +26,7 @@
 "8JF-Og-z6E.title" = "顯示";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "將歌詞輸入 iTunes：";
+"8Sx-vb-5pB.title" = "將歌詞寫入 iTunes 歌曲：";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "字型：";
@@ -68,10 +68,13 @@
 "EDv-ax-0hI.title" = "讀取同名的歌詞檔案";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "這裡有一些實驗中的功能，這些功能不會那麼穩定，也有可能在日後被刪除。";
+"g2u-8D-dln.title" = "此處為一些不那麼穩定的實驗功能，日後亦可能被移除使用。";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
 "gGL-LB-TXI.title" = "啟用 Touch Bar 歌詞";
+
+/* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
+"gin-P2-gb5.title" = "Use system wide now playing application";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "竪排模式";
@@ -119,7 +122,7 @@
 "mo2-3C-gLY.title" = "提前顯示歌詞：";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
-"N08-TS-lqw.title" = "Auto";
+"N08-TS-lqw.title" = "自動切換";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "未播放音樂時";
@@ -128,7 +131,7 @@
 "oiH-T7-agJ.title" = "協助翻譯 LyricsX";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
-"ppx-ob-WJc.title" = "快速鍵";
+"ppx-ob-WJc.title" = "快捷鍵";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
 "rSD-qR-EXA.title" = "搜尋結果需要完全符合關鍵字";
@@ -143,22 +146,22 @@
 "TB9-Fk-WAX.title" = "顯示歌詞視窗：";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "自動為日文歌詞生成日文注音";
+"ThQ-vA-Krb.title" = "日文歌詞自動附註振假名";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "文字：";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "標記為錯誤的歌詞：";
+"uEb-Q5-cda.title" = "標記歌詞錯誤";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
-"Uer-qJ-3T9.title" = "底色";
+"Uer-qJ-3T9.title" = "背景";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
 "UfE-QU-Yhm.title" = "強調：";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "跟隨播放器啟動及結束";
+"v63-4a-fPw.title" = "自動隨著音樂播放器開啟及關閉";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
 "WfA-pe-S5D.title" = "語言 (需要重新啟動)：";
@@ -167,7 +170,7 @@
 "XHQ-gX-urF.title" = "顯示 / 隱藏選單列歌詞";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "重置";
+"XUF-aM-ZmS.title" = "重設";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
 "XuN-vs-cgI.title" = "進度";

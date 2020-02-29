@@ -17,7 +17,7 @@ class PreferenceLabViewController: NSViewController {
             enableTouchBarLyricsButton.target = self
             enableTouchBarLyricsButton.action = #selector(mas_enableTouchBarLyricsAction)
         #else
-            enableTouchBarLyricsButton.bind(.value, withDefaultName: .TouchBarLyricsEnabled)
+            enableTouchBarLyricsButton.bind(.value, withDefaultName: .touchBarLyricsEnabled)
         #endif
     }
     

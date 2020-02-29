@@ -43,21 +43,21 @@ class KaraokeLyricsWindowController: NSWindowController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.lyricsView.displayLrc("")
             AppController.shared.$currentLyrics
+                .signal()
                 .receive(on: DispatchQueue.lyricsDisplay.cx)
-                .sink { [unowned self] _ in
-                    self.handleLyricsDisplay()
-                }.store(in: &self.cancelBag)
+                .invoke(KaraokeLyricsWindowController.handleLyricsDisplay, weaklyOn: self)
+                .store(in: &self.cancelBag)
             AppController.shared.$currentLineIndex
+                .signal()
                 .receive(on: DispatchQueue.lyricsDisplay.cx)
-                .sink { [unowned self] _ in
-                    self.handleLyricsDisplay()
-                }.store(in: &self.cancelBag)
+                .invoke(KaraokeLyricsWindowController.handleLyricsDisplay, weaklyOn: self)
+                .store(in: &self.cancelBag)
             selectedPlayer.playbackStateWillChange
+                .signal()
                 .receive(on: DispatchQueue.lyricsDisplay.cx)
-                .sink { [unowned self] _ in
-                    self.handleLyricsDisplay()
-                }.store(in: &self.cancelBag)
-            self.observeDefaults(keys: [.PreferBilingualLyrics, .DesktopLyricsOneLineMode]) { [unowned self] in
+                .invoke(KaraokeLyricsWindowController.handleLyricsDisplay, weaklyOn: self)
+                .store(in: &self.cancelBag)
+            self.observeDefaults(keys: [.preferBilingualLyrics, .desktopLyricsOneLineMode]) { [unowned self] in
                 self.handleLyricsDisplay()
             }
         }
@@ -68,29 +68,29 @@ class KaraokeLyricsWindowController: NSWindowController {
     }
     
     private func addObserver() {
-        lyricsView.bind(\.textColor, withDefaultName: .DesktopLyricsColor)
-        lyricsView.bind(\.progressColor, withDefaultName: .DesktopLyricsProgressColor)
-        lyricsView.bind(\.shadowColor, withDefaultName: .DesktopLyricsShadowColor)
-        lyricsView.bind(\.backgroundColor, withDefaultName: .DesktopLyricsBackgroundColor)
-        lyricsView.bind(\.isVertical, withDefaultName: .DesktopLyricsVerticalMode, options: [.nullPlaceholder: false])
-        lyricsView.bind(\.drawFurigana, withDefaultName: .DesktopLyricsEnableFurigana)
+        lyricsView.bind(\.textColor, withDefaultName: .desktopLyricsColor)
+        lyricsView.bind(\.progressColor, withDefaultName: .desktopLyricsProgressColor)
+        lyricsView.bind(\.shadowColor, withDefaultName: .desktopLyricsShadowColor)
+        lyricsView.bind(\.backgroundColor, withDefaultName: .desktopLyricsBackgroundColor)
+        lyricsView.bind(\.isVertical, withDefaultName: .desktopLyricsVerticalMode, options: [.nullPlaceholder: false])
+        lyricsView.bind(\.drawFurigana, withDefaultName: .desktopLyricsEnableFurigana)
         
         let negateOption = [NSBindingOption.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName]
-        window?.contentView?.bind(.hidden, withDefaultName: .DesktopLyricsEnabled, options: negateOption)
+        window?.contentView?.bind(.hidden, withDefaultName: .desktopLyricsEnabled, options: negateOption)
         
-        observeDefaults(key: .DisableLyricsWhenSreenShot, options: [.new, .initial]) { [unowned self] _, change in
+        observeDefaults(key: .disableLyricsWhenSreenShot, options: [.new, .initial]) { [unowned self] _, change in
             self.window?.sharingType = change.newValue ? .none : .readOnly
         }
         observeDefaults(keys: [
-            .HideLyricsWhenMousePassingBy,
-            .DesktopLyricsDraggable
+            .hideLyricsWhenMousePassingBy,
+            .desktopLyricsDraggable
         ], options: [.initial]) {
-            self.lyricsView.shouldHideWithMouse = defaults[.HideLyricsWhenMousePassingBy] && !defaults[.DesktopLyricsDraggable]
+            self.lyricsView.shouldHideWithMouse = defaults[.hideLyricsWhenMousePassingBy] && !defaults[.desktopLyricsDraggable]
         }
         observeDefaults(keys: [
-            .DesktopLyricsFontName,
-            .DesktopLyricsFontSize,
-            .DesktopLyricsFontNameFallback
+            .desktopLyricsFontName,
+            .desktopLyricsFontSize,
+            .desktopLyricsFontNameFallback
         ], options: [.initial]) { [unowned self] in
             self.lyricsView.font = defaults.desktopLyricsFont
         }
@@ -111,8 +111,8 @@ class KaraokeLyricsWindowController: NSWindowController {
     }
     
     @objc private func handleLyricsDisplay() {
-        guard defaults[.DesktopLyricsEnabled],
-            !defaults[.DisableLyricsWhenPaused] || selectedPlayer.playbackState.isPlaying,
+        guard defaults[.desktopLyricsEnabled],
+            !defaults[.disableLyricsWhenPaused] || selectedPlayer.playbackState.isPlaying,
             let lyrics = AppController.shared.currentLyrics,
             let index = AppController.shared.currentLineIndex else {
                 DispatchQueue.main.async {
@@ -129,9 +129,9 @@ class KaraokeLyricsWindowController: NSWindowController {
         var firstLine = lrc.content
         var secondLine: String
         var secondLineIsTranslation = false
-        if defaults[.DesktopLyricsOneLineMode] {
+        if defaults[.desktopLyricsOneLineMode] {
             secondLine = ""
-        } else if defaults[.PreferBilingualLyrics],
+        } else if defaults[.preferBilingualLyrics],
             let translation = lrc.attachments.translation(languageCode: languageCode) {
             secondLine = translation
             secondLineIsTranslation = true
@@ -168,8 +168,8 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private func makeConstraints() {
         lyricsView.snp.remakeConstraints { make in
-            make.centerX.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsXPositionFactor] * 2).priority(.low)
-            make.centerY.equalToSuperview().safeMultipliedBy(defaults[.DesktopLyricsYPositionFactor] * 2).priority(.low)
+            make.centerX.equalToSuperview().safeMultipliedBy(defaults[.desktopLyricsXPositionFactor] * 2).priority(.low)
+            make.centerY.equalToSuperview().safeMultipliedBy(defaults[.desktopLyricsYPositionFactor] * 2).priority(.low)
             make.leading.greaterThanOrEqualToSuperview()
             make.trailing.lessThanOrEqualToSuperview()
             make.top.greaterThanOrEqualToSuperview()
@@ -187,7 +187,7 @@ class KaraokeLyricsWindowController: NSWindowController {
     }
     
     override func mouseDragged(with event: NSEvent) {
-        guard defaults[.DesktopLyricsDraggable],
+        guard defaults[.desktopLyricsDraggable],
             let vecToCenter = vecToCenter,
             let window = window else {
             return
@@ -210,8 +210,8 @@ class KaraokeLyricsWindowController: NSWindowController {
         if abs(center.y - bounds.height / 2) < 8 {
             yFactor = 0.5
         }
-        defaults[.DesktopLyricsXPositionFactor] = xFactor
-        defaults[.DesktopLyricsYPositionFactor] = yFactor
+        defaults[.desktopLyricsXPositionFactor] = xFactor
+        defaults[.desktopLyricsYPositionFactor] = yFactor
         makeConstraints()
         window.layoutIfNeeded()
     }

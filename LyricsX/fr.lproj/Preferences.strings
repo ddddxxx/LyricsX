@@ -73,6 +73,9 @@
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
 "gGL-LB-TXI.title" = "Activer les paroles dans la Touch Bar";
 
+/* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
+"gin-P2-gb5.title" = "Use system wide now playing application";
+
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "Mode vertical";
 
@@ -119,7 +122,7 @@
 "mo2-3C-gLY.title" = "Augmenter le décalage des paroles :";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
-"N08-TS-lqw.title" = "Auto";
+"N08-TS-lqw.title" = "Automatique";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "Aucune musique jouée";

@@ -37,18 +37,16 @@ class MenuBarLyrics: NSObject {
         AppController.shared.$currentLyrics
             .combineLatest(AppController.shared.$currentLineIndex)
             .receive(on: DispatchQueue.lyricsDisplay.cx)
-            .sink { [unowned self] lrc, idx in
-                self.handleLyricsDisplay(lyrics: lrc, index: idx)
-            }
+            .invoke(MenuBarLyrics.handleLyricsDisplay, weaklyOn: self)
             .store(in: &cancelBag)
         observeNotification(center: workspaceNC, name: NSWorkspace.didActivateApplicationNotification) { [unowned self] _ in self.updateStatusItem() }
-        observeDefaults(keys: [.MenuBarLyricsEnabled, .CombinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }
+        observeDefaults(keys: [.menuBarLyricsEnabled, .combinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }
     }
     
-    private func handleLyricsDisplay(lyrics: Lyrics?, index: Int?) {
-        guard !defaults[.DisableLyricsWhenPaused] || selectedPlayer.playbackState.isPlaying,
-            let lyrics = lyrics,
-            let index = index else {
+    private func handleLyricsDisplay(event: (lyrics: Lyrics?, index: Int?)) {
+        guard !defaults[.disableLyricsWhenPaused] || selectedPlayer.playbackState.isPlaying,
+            let lyrics = event.lyrics,
+            let index = event.index else {
             screenLyrics = ""
             return
         }
@@ -63,13 +61,13 @@ class MenuBarLyrics: NSObject {
     }
     
     @objc private func updateStatusItem() {
-        guard defaults[.MenuBarLyricsEnabled], !screenLyrics.isEmpty else {
+        guard defaults[.menuBarLyricsEnabled], !screenLyrics.isEmpty else {
             setImageStatusItem()
             lyricsItem = nil
             return
         }
         
-        if defaults[.CombinedMenubarLyrics] {
+        if defaults[.combinedMenubarLyrics] {
             updateCombinedStatusLyrics()
         } else {
             updateSeparateStatusLyrics()

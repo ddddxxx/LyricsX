@@ -106,17 +106,17 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
         
         if let track = selectedPlayer.currentTrack {
-            if let index = defaults[.NoSearchingTrackIds].firstIndex(of: track.id) {
-                defaults[.NoSearchingTrackIds].remove(at: index)
+            if let index = defaults[.noSearchingTrackIds].firstIndex(of: track.id) {
+                defaults[.noSearchingTrackIds].remove(at: index)
             }
-            if let index = defaults[.NoSearchingAlbumNames].firstIndex(of: track.album ?? "") {
-                defaults[.NoSearchingAlbumNames].remove(at: index)
+            if let index = defaults[.noSearchingAlbumNames].firstIndex(of: track.album ?? "") {
+                defaults[.noSearchingAlbumNames].remove(at: index)
             }
         }
         
         let lrc = searchResult[index]
         AppController.shared.currentLyrics = lrc
-        if defaults[.WriteToiTunesAutomatically] {
+        if defaults[.writeToiTunesAutomatically] {
             AppController.shared.writeToiTunes(overwrite: true)
         }
         Answers.logCustomEvent(withName: "Choose Search Result", customAttributes: ["index": index])

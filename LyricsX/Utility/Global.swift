@@ -62,98 +62,98 @@ extension NSUserInterfaceItemIdentifier {
 }
 
 extension NSStoryboard.SceneIdentifier {
-    static let DesktopLyricsWindow = NSStoryboard.SceneIdentifier("DesktopLyricsWindow")
-    static let LyricsHUDAccessory = NSStoryboard.SceneIdentifier("LyricsHUDAccessory")
+    static let desktopLyricsWindow = NSStoryboard.SceneIdentifier("DesktopLyricsWindow")
+    static let lyricsHUDAccessory = NSStoryboard.SceneIdentifier("LyricsHUDAccessory")
 }
 
 // MARK: - User Defaults
 
 extension UserDefaults.DefaultsKeys {
     
-    static let NotifiedUpdateVersion = Key<String?>("NotifiedUpdateVersion")
-    static let NoSearchingTrackIds = Key<[String]>("NoSearchingTrackIds")
-    static let NoSearchingAlbumNames = Key<[String]>("NoSearchingAlbumNames")
+    static let notifiedUpdateVersion = Key<String?>("NotifiedUpdateVersion")
+    static let noSearchingTrackIds = Key<[String]>("NoSearchingTrackIds")
+    static let noSearchingAlbumNames = Key<[String]>("NoSearchingAlbumNames")
     
     // Menu
-    static let DesktopLyricsEnabled = Key<Bool>("DesktopLyricsEnabled")
-    static let MenuBarLyricsEnabled = Key<Bool>("MenuBarLyricsEnabled")
-    static let TouchBarLyricsEnabled = Key<Bool>("TouchBarLyricsEnabled")
+    static let desktopLyricsEnabled = Key<Bool>("DesktopLyricsEnabled")
+    static let menuBarLyricsEnabled = Key<Bool>("MenuBarLyricsEnabled")
+    static let touchBarLyricsEnabled = Key<Bool>("TouchBarLyricsEnabled")
     
     // General
-    static let PreferredPlayerIndex = Key<Int>("PreferredPlayerIndex")
-    static let LaunchAndQuitWithPlayer = Key<Bool>("LaunchAndQuitWithPlayer")
+    static let preferredPlayerIndex = Key<Int>("PreferredPlayerIndex")
+    static let launchAndQuitWithPlayer = Key<Bool>("LaunchAndQuitWithPlayer")
     
-    static let LyricsSavingPathPopUpIndex = Key<Int>("LyricsSavingPathPopUpIndex")
-    static let LyricsCustomSavingPathBookmark = Key<Data?>("LyricsCustomSavingPathBookmark")
-    static let LoadLyricsBesideTrack = Key<Bool>("LoadLyricsBesideTrack")
+    static let lyricsSavingPathPopUpIndex = Key<Int>("LyricsSavingPathPopUpIndex")
+    static let lyricsCustomSavingPathBookmark = Key<Data?>("LyricsCustomSavingPathBookmark")
+    static let loadLyricsBesideTrack = Key<Bool>("LoadLyricsBesideTrack")
     
-    static let SelectedLanguage = Key<String?>("SelectedLanguage")
+    static let selectedLanguage = Key<String?>("SelectedLanguage")
     
-    static let StrictSearchEnabled = Key<Bool>("StrictSearchEnabled")
-    static let PreferBilingualLyrics = Key<Bool>("PreferBilingualLyrics")
-    static let ChineseConversionIndex = Key<Int>("ChineseConversionIndex")
+    static let strictSearchEnabled = Key<Bool>("StrictSearchEnabled")
+    static let preferBilingualLyrics = Key<Bool>("PreferBilingualLyrics")
+    static let chineseConversionIndex = Key<Int>("ChineseConversionIndex")
     
-    static let CombinedMenubarLyrics = Key<Bool>("CombinedMenubarLyrics")
+    static let combinedMenubarLyrics = Key<Bool>("CombinedMenubarLyrics")
     
-    static let HideLyricsWhenMousePassingBy = Key<Bool>("HideLyricsWhenMousePassingBy")
-    static let DisableLyricsWhenPaused = Key<Bool>("DisableLyricsWhenPaused")
-    static let DisableLyricsWhenSreenShot = Key<Bool>("DisableLyricsWhenSreenShot")
+    static let hideLyricsWhenMousePassingBy = Key<Bool>("HideLyricsWhenMousePassingBy")
+    static let disableLyricsWhenPaused = Key<Bool>("DisableLyricsWhenPaused")
+    static let disableLyricsWhenSreenShot = Key<Bool>("DisableLyricsWhenSreenShot")
     
     // Display
-    static let DesktopLyricsOneLineMode = Key<Bool>("DesktopLyricsOneLineMode")
-    static let DesktopLyricsVerticalMode = Key<Bool>("DesktopLyricsVerticalMode")
-    static let DesktopLyricsDraggable = Key<Bool>("DesktopLyricsDraggable")
+    static let desktopLyricsOneLineMode = Key<Bool>("DesktopLyricsOneLineMode")
+    static let desktopLyricsVerticalMode = Key<Bool>("DesktopLyricsVerticalMode")
+    static let desktopLyricsDraggable = Key<Bool>("DesktopLyricsDraggable")
     
-    static let DesktopLyricsXPositionFactor = Key<CGFloat>("DesktopLyricsXPositionFactor")
-    static let DesktopLyricsYPositionFactor = Key<CGFloat>("DesktopLyricsYPositionFactor")
+    static let desktopLyricsXPositionFactor = Key<CGFloat>("DesktopLyricsXPositionFactor")
+    static let desktopLyricsYPositionFactor = Key<CGFloat>("DesktopLyricsYPositionFactor")
     
-    static let DesktopLyricsEnableFurigana = Key<Bool>("DesktopLyricsEnableFurigana")
+    static let desktopLyricsEnableFurigana = Key<Bool>("DesktopLyricsEnableFurigana")
     
-    static let DesktopLyricsFontName = Key<String>("DesktopLyricsFontName")
-    static let DesktopLyricsFontSize = Key<Int>("DesktopLyricsFontSize")
-    static let DesktopLyricsFontNameFallback = Key<[String]>("DesktopLyricsFontNameFallback")
+    static let desktopLyricsFontName = Key<String>("DesktopLyricsFontName")
+    static let desktopLyricsFontSize = Key<Int>("DesktopLyricsFontSize")
+    static let desktopLyricsFontNameFallback = Key<[String]>("DesktopLyricsFontNameFallback")
     
-    static let DesktopLyricsColor = Key<NSColor>("DesktopLyricsColor", transformer: .keyedArchive)
-    static let DesktopLyricsProgressColor = Key<NSColor>("DesktopLyricsProgressColor", transformer: .keyedArchive)
-    static let DesktopLyricsShadowColor = Key<NSColor>("DesktopLyricsShadowColor", transformer: .keyedArchive)
-    static let DesktopLyricsBackgroundColor = Key<NSColor>("DesktopLyricsBackgroundColor", transformer: .keyedArchive)
+    static let desktopLyricsColor = Key<NSColor>("DesktopLyricsColor", transformer: .keyedArchive)
+    static let desktopLyricsProgressColor = Key<NSColor>("DesktopLyricsProgressColor", transformer: .keyedArchive)
+    static let desktopLyricsShadowColor = Key<NSColor>("DesktopLyricsShadowColor", transformer: .keyedArchive)
+    static let desktopLyricsBackgroundColor = Key<NSColor>("DesktopLyricsBackgroundColor", transformer: .keyedArchive)
     
-    static let LyricsWindowFontName = Key<String>("LyricsWindowFontName")
-    static let LyricsWindowFontSize = Key<Int>("LyricsWindowFontSize")
-    static let LyricsWindowFontNameFallback = Key<[String]>("LyricsWindowFontNameFallback")
+    static let lyricsWindowFontName = Key<String>("LyricsWindowFontName")
+    static let lyricsWindowFontSize = Key<Int>("LyricsWindowFontSize")
+    static let lyricsWindowFontNameFallback = Key<[String]>("LyricsWindowFontNameFallback")
     
-    static let LyricsWindowTextColor = Key<NSColor>("LyricsWindowTextColor", transformer: .keyedArchive)
-    static let LyricsWindowHighlightColor = Key<NSColor>("LyricsWindowHighlightColor", transformer: .keyedArchive)
+    static let lyricsWindowTextColor = Key<NSColor>("LyricsWindowTextColor", transformer: .keyedArchive)
+    static let lyricsWindowHighlightColor = Key<NSColor>("LyricsWindowHighlightColor", transformer: .keyedArchive)
     
     // Shortcut
-    static let ShortcutToggleMenuBarLyrics = Key<String>("ShortcutToggleMenuBarLyrics")
-    static let ShortcutToggleKaraokeLyrics = Key<String>("ShortcutToggleKaraokeLyrics")
-    static let ShortcutShowLyricsWindow = Key<String>("ShortcutShowLyricsWindow")
-    static let ShortcutOffsetIncrease = Key<String>("ShortcutOffsetIncrease")
-    static let ShortcutOffsetDecrease = Key<String>("ShortcutOffsetDecrease")
-    static let ShortcutWriteToiTunes = Key<String>("ShortcutWriteToiTunes")
-    static let ShortcutSearchLyrics = Key<String>("ShortcutSearchLyrics")
-    static let ShortcutWrongLyrics = Key<String>("ShortcutWrongLyrics")
+    static let shortcutToggleMenuBarLyrics = Key<String>("ShortcutToggleMenuBarLyrics")
+    static let shortcutToggleKaraokeLyrics = Key<String>("ShortcutToggleKaraokeLyrics")
+    static let shortcutShowLyricsWindow = Key<String>("ShortcutShowLyricsWindow")
+    static let shortcutOffsetIncrease = Key<String>("ShortcutOffsetIncrease")
+    static let shortcutOffsetDecrease = Key<String>("ShortcutOffsetDecrease")
+    static let shortcutWriteToiTunes = Key<String>("ShortcutWriteToiTunes")
+    static let shortcutSearchLyrics = Key<String>("ShortcutSearchLyrics")
+    static let shortcutWrongLyrics = Key<String>("ShortcutWrongLyrics")
     
     // Filter
-    static let LyricsFilterEnabled = Key<Bool>("LyricsFilterEnabled")
-    static let LyricsSmartFilterEnabled = Key<Bool>("LyricsSmartFilterEnabled")
-    static let LyricsFilterKeys = Key<[String]>("LyricsFilterKeys")
+    static let lyricsFilterEnabled = Key<Bool>("LyricsFilterEnabled")
+    static let lyricsSmartFilterEnabled = Key<Bool>("LyricsSmartFilterEnabled")
+    static let lyricsFilterKeys = Key<[String]>("LyricsFilterKeys")
     
     // Lab
-    static let UseSystemWideNowPlaying = Key<Bool>("UseSystemWideNowPlaying")
+    static let useSystemWideNowPlaying = Key<Bool>("UseSystemWideNowPlaying")
     
-    static let WriteiTunesWithTranslation = Key<Bool>("WriteiTunesWithTranslation")
-    static let WriteToiTunesAutomatically = Key<Bool>("WriteToiTunesAutomatically")
+    static let writeiTunesWithTranslation = Key<Bool>("WriteiTunesWithTranslation")
+    static let writeToiTunesAutomatically = Key<Bool>("WriteToiTunesAutomatically")
     
-    static let GlobalLyricsOffset = Key<Int>("GlobalLyricsOffset")
+    static let globalLyricsOffset = Key<Int>("GlobalLyricsOffset")
     
     //
     static let isInMASReview = Key<Bool?>("isInMASReview")
     
     static let launchHelperTime = Key<Date?>("launchHelperTime")
     
-    static let AppleLanguages = Key<[String]>("AppleLanguages")
+    static let appleLanguages = Key<[String]>("AppleLanguages")
 }
 
 extension CGFloat: DefaultConstructible {}
