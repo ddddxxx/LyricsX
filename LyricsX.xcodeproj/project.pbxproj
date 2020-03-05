@@ -1395,7 +1395,7 @@
 			repositoryURL = "https://github.com/cx-org/CXExtensions";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.0;
+				minimumVersion = 0.2.1;
 			};
 		};
 		BB9C3D8123435A5700860698 /* XCRemoteSwiftPackageReference "MusicPlayer" */ = {
@@ -1403,7 +1403,7 @@
 			repositoryURL = "https://github.com/ddddxxx/MusicPlayer";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.6.5;
+				minimumVersion = 0.6.6;
 			};
 		};
 		BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */ = {
