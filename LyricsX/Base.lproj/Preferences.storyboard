@@ -295,6 +295,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="5xx-Ht-pau" firstAttribute="top" secondItem="r1e-Ln-LSb" secondAttribute="top" id="0Fe-gL-MER"/>
+                                        <constraint firstItem="5xx-Ht-pau" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r1e-Ln-LSb" secondAttribute="leading" constant="8" id="1Gi-OJ-Aoz"/>
                                         <constraint firstAttribute="bottom" secondItem="5xx-Ht-pau" secondAttribute="bottom" id="MtA-FF-p49"/>
                                         <constraint firstItem="5xx-Ht-pau" firstAttribute="centerX" secondItem="r1e-Ln-LSb" secondAttribute="centerX" id="PDG-4t-SNq"/>
                                     </constraints>

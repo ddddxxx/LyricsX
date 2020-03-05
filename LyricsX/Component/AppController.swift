@@ -129,7 +129,7 @@ class AppController: NSObject {
         currentLyrics = nil
         currentLineIndex = nil
         searchCanceller?.cancel()
-        guard let track = MusicPlayers.Selected.shared.currentTrack else {
+        guard let track = selectedPlayer.currentTrack else {
             return
         }
         // FIXME: deal with optional value
