@@ -94,7 +94,7 @@ class KaraokeLabel: NSTextField {
         }
         layoutSubtreeIfNeeded()
         let progression: CTFrameProgression = isVertical ? .rightToLeft : .topToBottom
-        let frameAttr: [CTFrame.AttributeKey: Any] = [.progression: progression]
+        let frameAttr: [CTFrame.AttributeKey: Any] = [.progression: progression.rawValue as NSNumber]
         let framesetter = CTFramesetter.create(attributedString: attrString)
         let (suggestSize, fitRange) = framesetter.suggestFrameSize(constraints: bounds.size, frameAttributes: frameAttr)
         let path = CGPath(rect: CGRect(origin: .zero, size: suggestSize), transform: nil)
@@ -105,7 +105,7 @@ class KaraokeLabel: NSTextField {
     
     override var intrinsicContentSize: NSSize {
         let progression: CTFrameProgression = isVertical ? .rightToLeft : .topToBottom
-        let frameAttr: [CTFrame.AttributeKey: Any] = [.progression: progression]
+        let frameAttr: [CTFrame.AttributeKey: Any] = [.progression: progression.rawValue as NSNumber]
         let framesetter = CTFramesetter.create(attributedString: attrString)
         let constraints = CGSize(width: CGFloat.infinity, height: .infinity)
         return framesetter.suggestFrameSize(constraints: constraints, frameAttributes: frameAttr).size
