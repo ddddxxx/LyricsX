@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/cx-org/CXExtensions",
         "state": {
           "branch": null,
-          "revision": "384ff4dc35e719d187b1bbe424c644b303d05cda",
-          "version": "0.2.0"
+          "revision": "8bb587d419d34c0e5224f5e173a12337904d7e5c",
+          "version": "0.2.1"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
           "branch": null,
-          "revision": "2c56ad6167ebf83dd5861249d6f4fec113e8145b",
-          "version": "0.6.5"
+          "revision": "071683a5aa023300262764c266affa2062cad9bd",
+          "version": "0.6.7"
         }
       },
       {
@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/ddddxxx/SwiftCF.git",
         "state": {
           "branch": null,
-          "revision": "97d353849f530d6c3df47f5e429e021514edce2d",
-          "version": "0.1.0"
+          "revision": "1d0af3a0a2fce803e8f51a033847cf3c70e4e8ad",
+          "version": "0.1.1"
         }
       },
       {
