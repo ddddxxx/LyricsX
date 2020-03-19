@@ -208,13 +208,14 @@ class AppController: NSObject {
                                       timeout: 10)
         searchRequest = req
         searchCanceller = lyricsManager.lyricsPublisher(request: req)
+            .timeout(.seconds(10), scheduler: DispatchQueue.lyricsDisplay.cx)
             .sink(receiveCompletion: { [unowned self] _ in
                 if defaults[.writeToiTunesAutomatically] {
                     self.writeToiTunes(overwrite: true)
                 }
             }, receiveValue: { [unowned self] lyrics in
                 self.lyricsReceived(lyrics: lyrics)
-            }).cancel(after: .seconds(10), scheduler: DispatchQueue.lyricsDisplay.cx)
+            })
         Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
     }
     
