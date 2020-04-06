@@ -43,7 +43,7 @@ class FontSelectTextField: NSTextField, NSWindowDelegate {
         addSubview(btn)
         btn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(1)
-            make.bottom.right.equalToSuperview().offset(-1)
+            make.bottom.trailing.equalToSuperview().offset(-1)
         }
     }
     
