@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "启用触控栏歌词";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "使用系统正在播放的应用";
+"gin-P2-gb5.title" = "开启系统的 “正在播放”功能";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "竖排模式";
