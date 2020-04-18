@@ -8,11 +8,7 @@
 
 LyricsX is a plugin for iTunes, Spotify and Vox, which auto search and download lyrics for the current playing from Internet, and displays them in the desktop and menubar.
 
-## LyricsX for iOS
-
-LyricsX for iOS is in beta stage.
-
-[Install via TestFlight](https://testflight.apple.com/join/pjjhQLZJ), and join the [Telegram group](https://telegram.me/LyricsXApp).
+[LyricsX for iOS](https://github.com/ddddxxx/LyricsX-iOS) is in early development.
 
 ## Installation
 
