@@ -26,6 +26,7 @@
 		<string>com.coppertino.Vox</string>
 		<string>com.audirvana.Audirvana-Plus</string>
 		<string>com.audirvana.Audirvana</string>
+		<string>com.swinsian.Swinsian</string>
 		<string>ddddxxx.LyricsXHelper</string>
 	</array>
 	<key>com.apple.security.scripting-targets</key>
