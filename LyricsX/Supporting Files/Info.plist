@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5.2</string>
+	<string>1.5.3</string>
 	<key>CFBundleVersion</key>
-	<string>2271</string>
+	<string>2272</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -128,7 +128,7 @@
 		</dict>
 	</dict>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>LyricsX needs to know what song you&apos;re currently playing, to show lyrics accordingly.</string>
+	<string>LyricsX needs to know what song you're currently playing, to show lyrics accordingly.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2017-2020 Xander Deng. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
