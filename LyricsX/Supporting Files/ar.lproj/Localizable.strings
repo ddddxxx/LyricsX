@@ -1,0 +1,17 @@
+/* title of download button on the update alert. Download new version of the app. */
+"Download" = "تنزيل";
+
+/* No comment provided by engineer. */
+"Font Fallback: %@" = "الخط البديل: %@";
+
+/* No comment provided by engineer. */
+"OK" = "حسناً";
+
+/* window title */
+"Search Lyrics" = "البحث عن كلمات الأغاني";
+
+/* No comment provided by engineer. */
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "ظهور الكلمات على شريط اللمس غير مدعومة في إصدار البرنامج المتوفر في متجر تطبيقات Mac. الرجاء التحميل على GitHub.";
+
+/* alert title */
+"Unable to enable Touch Bar lyrics." = "غير قادر على تمكين كلمات شريط اللمس.";

@@ -1,5 +1,5 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "歌詞ファイルの保存先:";
+"0M7-ao-0jb.title" = "歌詞ファイルの保存先：";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
 "0VO-JB-ubq.title" = "自動設定";
@@ -17,7 +17,7 @@
 "6FU-j0-FTV.title" = "繁体字中国語に変換";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "iTunesに書き込む:";
+"6We-TB-Wfc.title" = "iTunesに書き込む：";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "自動的に書き込み";
@@ -26,7 +26,7 @@
 "8JF-Og-z6E.title" = "表示";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "iTunesに書き込む:";
+"8Sx-vb-5pB.title" = "iTunesに書き込む：";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "フォント:";
@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "タッチバー歌詞を有効にする";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "Use system wide now playing application";
+"gin-P2-gb5.title" = "システム全体の「再生中」アプリを利用する";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "垂直モード";
@@ -146,7 +146,7 @@
 "TB9-Fk-WAX.title" = "歌詞ウィンドウを表示:";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "日本語歌詞のふりがなを自動的に生成します";
+"ThQ-vA-Krb.title" = "日本語歌詞のふりがなを自動的に生成する";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "テキスト:";
@@ -164,7 +164,7 @@
 "v63-4a-fPw.title" = "プレーヤーの状態に応じて自動起動・終了";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "言語 (再起動が必要):";
+"WfA-pe-S5D.title" = "言語（再起動が必要）：";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
 "XHQ-gX-urF.title" = "メニューバー歌詞を表示/非表示:";

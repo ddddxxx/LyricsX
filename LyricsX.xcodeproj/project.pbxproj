@@ -282,6 +282,10 @@
 		BBD2E35C22B780FC00410259 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Preferences.strings; sourceTree = "<group>"; };
 		BBE2A79724041E36004A7E93 /* CombineExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExtension.swift; sourceTree = "<group>"; };
 		BBE8FC741F6BEA6200122AFA /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
+		BBF3CB6724233121000C6AB9 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		BBF3CB6824233121000C6AB9 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Preferences.strings; sourceTree = "<group>"; };
+		BBF3CB6A2423313B000C6AB9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		BBF3CB6B2423313B000C6AB9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Preferences.strings; sourceTree = "<group>"; };
 		E914527F21539BD500BD2220 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E91F76EA21211B8D00755698 /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		E97593E32150F47800D80616 /* Polyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polyfill.swift; sourceTree = "<group>"; };
@@ -654,6 +658,8 @@
 				fa,
 				fr,
 				"zh-Hant",
+				ar,
+				es,
 			);
 			mainGroup = BB4141A11E458BA800A51775;
 			packageReferences = (
@@ -1000,6 +1006,8 @@
 				BB5C5535232B5E6B00448FC0 /* fa */,
 				BB28973123B1F1D800C03D91 /* fr */,
 				BB28973623B1F31000C03D91 /* zh-Hant */,
+				BBF3CB6724233121000C6AB9 /* ar */,
+				BBF3CB6A2423313B000C6AB9 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1024,6 +1032,8 @@
 				BB5C5536232B5E6B00448FC0 /* fa */,
 				BB28973223B1F1D800C03D91 /* fr */,
 				BB28973723B1F31100C03D91 /* zh-Hant */,
+				BBF3CB6824233121000C6AB9 /* ar */,
+				BBF3CB6B2423313B000C6AB9 /* es */,
 			);
 			name = Preferences.storyboard;
 			sourceTree = "<group>";
@@ -1105,7 +1115,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
@@ -1158,7 +1168,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1191,7 +1201,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1220,7 +1229,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1249,7 +1257,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PRODUCT_NAME = LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1280,7 +1287,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsX;
 				PRODUCT_NAME = LyricsX;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1303,7 +1309,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsXHelper;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1324,7 +1329,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = ddddxxx.LyricsXHelper;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

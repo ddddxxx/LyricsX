@@ -65,17 +65,17 @@
             <objects>
                 <viewController title="General" id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
-                        <rect key="frame" x="0.0" y="0.0" width="564" height="473"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="473"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="Preferred music player" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
-                                <rect key="frame" x="17" y="337" width="530" height="112"/>
+                                <rect key="frame" x="17" y="337" width="566" height="112"/>
                                 <view key="contentView" id="r1e-Ln-LSb">
-                                    <rect key="frame" x="3" y="3" width="524" height="94"/>
+                                    <rect key="frame" x="3" y="3" width="560" height="94"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="5xx-Ht-pau">
-                                            <rect key="frame" x="20" y="0.0" width="484" height="94"/>
+                                            <rect key="frame" x="38" y="0.0" width="484" height="94"/>
                                             <subviews>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="f2X-id-RV9" userLabel="Auto icon">
                                                     <rect key="frame" x="16" y="34" width="52" height="52"/>
@@ -302,7 +302,7 @@
                                 </view>
                             </box>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mfr-Al-Vu9">
-                                <rect key="frame" x="216" y="309" width="243" height="18"/>
+                                <rect key="frame" x="234" y="309" width="243" height="18"/>
                                 <buttonCell key="cell" type="check" title="Auto launch &amp; quit with music player" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="v63-4a-fPw">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -317,7 +317,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
-                                <rect key="frame" x="87" y="277" width="117" height="16"/>
+                                <rect key="frame" x="105" y="277" width="117" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Lyrics saving path:" id="0M7-ao-0jb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -325,7 +325,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ydZ-SE-AM3">
-                                <rect key="frame" x="216" y="271" width="165" height="25"/>
+                                <rect key="frame" x="234" y="271" width="165" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="2c0-ba-y6d"/>
                                 </constraints>
@@ -359,10 +359,10 @@
                                 </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="UQR-mH-y4R">
-                                <rect key="frame" x="20" y="147" width="524" height="5"/>
+                                <rect key="frame" x="20" y="147" width="560" height="5"/>
                             </box>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wwb-0H-xk7">
-                                <rect key="frame" x="216" y="63" width="149" height="18"/>
+                                <rect key="frame" x="234" y="63" width="149" height="18"/>
                                 <buttonCell key="cell" type="check" title="Prefer bilingual lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cBB-zn-Hdh">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -372,7 +372,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wpE-cM-ds1">
-                                <rect key="frame" x="46" y="31" width="158" height="16"/>
+                                <rect key="frame" x="64" y="31" width="158" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Auto Chinese conversion:" id="JPB-ag-MN7">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -380,7 +380,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uoA-YU-YZk" userLabel="Convert">
-                                <rect key="frame" x="216" y="25" width="165" height="25"/>
+                                <rect key="frame" x="234" y="25" width="165" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Rhn-QL-XGy"/>
                                 </constraints>
@@ -400,7 +400,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-OU-NWP">
-                                <rect key="frame" x="216" y="250" width="193" height="18"/>
+                                <rect key="frame" x="234" y="250" width="193" height="18"/>
                                 <buttonCell key="cell" type="check" title="Load lyrics beside music file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="EDv-ax-0hI">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -414,7 +414,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="HqA-iJ-lec">
-                                <rect key="frame" x="388" y="276" width="21" height="18"/>
+                                <rect key="frame" x="406" y="276" width="21" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="21" id="NcW-r5-bQr"/>
                                     <constraint firstAttribute="height" constant="18" id="hHA-Y3-yS5"/>
@@ -428,7 +428,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xmp-V1-Dn6">
-                                <rect key="frame" x="218" y="166" width="100" height="21"/>
+                                <rect key="frame" x="236" y="166" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="hNM-LB-4P5"/>
                                 </constraints>
@@ -447,7 +447,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g0L-A1-o0L">
-                                <rect key="frame" x="87" y="169" width="117" height="16"/>
+                                <rect key="frame" x="105" y="169" width="117" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Global offset (ms):" id="slB-q7-1dB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -455,7 +455,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tAC-g5-B2n">
-                                <rect key="frame" x="216" y="117" width="101" height="18"/>
+                                <rect key="frame" x="234" y="117" width="101" height="18"/>
                                 <buttonCell key="cell" type="check" title="Strict Search" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="As7-rZ-u6c">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -469,7 +469,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Yv-tb-pyE">
-                                <rect key="frame" x="234" y="95" width="261" height="16"/>
+                                <rect key="frame" x="252" y="95" width="261" height="16"/>
                                 <textFieldCell key="cell" title="Search result match the exact search term" id="rSD-qR-EXA">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -477,7 +477,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zpw-kR-OfG">
-                                <rect key="frame" x="216" y="212" width="125" height="25"/>
+                                <rect key="frame" x="234" y="212" width="125" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="B0W-dB-GPu"/>
                                 </constraints>
@@ -498,7 +498,7 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UXR-cB-aCr">
-                                <rect key="frame" x="22" y="218" width="182" height="16"/>
+                                <rect key="frame" x="40" y="218" width="182" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Language (Requires Restart):" id="WfA-pe-S5D">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -506,7 +506,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5rg-ki-Dg5">
-                                <rect key="frame" x="218" y="195" width="137" height="16"/>
+                                <rect key="frame" x="236" y="195" width="137" height="16"/>
                                 <buttonCell key="cell" type="bevel" title="Help translate LyricsX" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="oiH-T7-agJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -559,6 +559,7 @@
                             <constraint firstItem="wwb-0H-xk7" firstAttribute="leading" secondItem="ydZ-SE-AM3" secondAttribute="leading" id="u0h-UR-jmK"/>
                             <constraint firstItem="xmp-V1-Dn6" firstAttribute="leading" secondItem="g0L-A1-o0L" secondAttribute="trailing" constant="16" id="uVx-oL-nu9"/>
                             <constraint firstItem="wpE-cM-ds1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="20" id="vED-yu-Qv5"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Yv-tb-pyE" secondAttribute="trailing" constant="20" id="vdO-Q4-Dp8"/>
                             <constraint firstAttribute="trailing" secondItem="JYR-Ed-Tax" secondAttribute="trailing" constant="20" id="xXs-qV-Iz7"/>
                             <constraint firstItem="UXR-cB-aCr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ium-Ya-ZzT" secondAttribute="leading" constant="24" id="yTz-22-2Qt"/>
                             <constraint firstItem="ydZ-SE-AM3" firstAttribute="top" secondItem="mfr-Al-Vu9" secondAttribute="bottom" constant="16" id="z0E-ny-nlG"/>
@@ -1170,9 +1171,9 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Wl2-0l-Mvk" customClass="MASShortcutView">
-                                <rect key="frame" x="308" y="247" width="120" height="19"/>
+                                <rect key="frame" x="308" y="247" width="160" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="aeH-Wb-3PE"/>
+                                    <constraint firstAttribute="width" constant="160" id="aeH-Wb-3PE"/>
                                     <constraint firstAttribute="height" constant="19" id="qpD-zO-7uX"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1196,10 +1197,9 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="r6F-LJ-R46" customClass="MASShortcutView">
-                                <rect key="frame" x="308" y="183" width="120" height="19"/>
+                                <rect key="frame" x="308" y="183" width="160" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="L2I-57-We6"/>
-                                    <constraint firstAttribute="width" constant="120" id="tTb-WG-Vk9"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutShowLyricsWindow"/>
@@ -1214,9 +1214,8 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="xRx-86-gVx" customClass="MASShortcutView">
-                                <rect key="frame" x="308" y="151" width="120" height="19"/>
+                                <rect key="frame" x="308" y="151" width="160" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="IMs-tc-Ug3"/>
                                     <constraint firstAttribute="height" constant="19" id="m70-Qr-7Hx"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1232,9 +1231,8 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="92Q-NC-T3a" customClass="MASShortcutView">
-                                <rect key="frame" x="308" y="119" width="120" height="19"/>
+                                <rect key="frame" x="308" y="119" width="160" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="Ual-Pp-5ip"/>
                                     <constraint firstAttribute="height" constant="19" id="uTu-hP-tC1"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1250,10 +1248,9 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZhS-BF-7UN" customClass="MASShortcutView">
-                                <rect key="frame" x="308" y="87" width="120" height="19"/>
+                                <rect key="frame" x="308" y="87" width="160" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="Zoc-wc-dp9"/>
-                                    <constraint firstAttribute="width" constant="120" id="qNN-Qz-KrM"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutWriteToiTunes"/>
@@ -1268,9 +1265,8 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="l4G-ES-LlU" customClass="MASShortcutView">
-                                <rect key="frame" x="308" y="23" width="120" height="19"/>
+                                <rect key="frame" x="308" y="23" width="160" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="8Vz-YA-8cs"/>
                                     <constraint firstAttribute="height" constant="19" id="iDp-hN-IeG"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1289,9 +1285,8 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Axy-WJ-CRv" customClass="MASShortcutView">
-                                <rect key="frame" x="308" y="55" width="120" height="19"/>
+                                <rect key="frame" x="308" y="55" width="160" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="lZA-iT-VA9"/>
                                     <constraint firstAttribute="height" constant="19" id="o2Q-Sw-xx7"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1300,10 +1295,9 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="TbU-as-K5K" customClass="MASShortcutView">
-                                <rect key="frame" x="308" y="215" width="120" height="19"/>
+                                <rect key="frame" x="308" y="215" width="160" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="Lcm-Zd-hA8"/>
-                                    <constraint firstAttribute="width" constant="120" id="aR6-Uv-Nqi"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="associatedUserDefaultsKey" value="ShortcutToggleKaraokeLyrics"/>
@@ -1332,9 +1326,13 @@
                             <constraint firstItem="8LH-Ws-6CC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="O46-kw-Kty"/>
                             <constraint firstAttribute="bottom" secondItem="Kmn-Mi-l4p" secondAttribute="bottom" constant="24" id="PMl-xq-0wi"/>
                             <constraint firstItem="rZM-vL-ukW" firstAttribute="top" secondItem="BAG-Gf-bbI" secondAttribute="bottom" constant="16" id="QJT-Qv-Z7k"/>
+                            <constraint firstItem="l4G-ES-LlU" firstAttribute="width" secondItem="Wl2-0l-Mvk" secondAttribute="width" id="U5d-GT-25P"/>
+                            <constraint firstItem="r6F-LJ-R46" firstAttribute="width" secondItem="Wl2-0l-Mvk" secondAttribute="width" id="Zsd-Xv-K4u"/>
+                            <constraint firstItem="Axy-WJ-CRv" firstAttribute="width" secondItem="Wl2-0l-Mvk" secondAttribute="width" id="aQN-0f-Ly1"/>
                             <constraint firstItem="rZM-vL-ukW" firstAttribute="trailing" secondItem="XuJ-N7-23c" secondAttribute="trailing" id="bAM-be-Myv"/>
                             <constraint firstItem="xRx-86-gVx" firstAttribute="centerY" secondItem="rZM-vL-ukW" secondAttribute="centerY" id="dzF-pI-dlc"/>
                             <constraint firstItem="Wl2-0l-Mvk" firstAttribute="centerY" secondItem="fHF-oJ-2oH" secondAttribute="centerY" id="emF-hd-V2U"/>
+                            <constraint firstItem="xRx-86-gVx" firstAttribute="width" secondItem="Wl2-0l-Mvk" secondAttribute="width" id="ff9-Ur-ieI"/>
                             <constraint firstItem="Paz-vU-k0Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="g56-W5-tJK"/>
                             <constraint firstItem="Kmn-Mi-l4p" firstAttribute="top" secondItem="Paz-vU-k0Z" secondAttribute="bottom" priority="750" constant="16" id="gqg-Vu-mu0"/>
                             <constraint firstItem="ZhS-BF-7UN" firstAttribute="centerY" secondItem="Paz-vU-k0Z" secondAttribute="centerY" id="hnp-DF-O2a"/>
@@ -1346,11 +1344,14 @@
                             <constraint firstItem="8LH-Ws-6CC" firstAttribute="trailing" secondItem="rZM-vL-ukW" secondAttribute="trailing" id="nmc-gD-W7K"/>
                             <constraint firstItem="rZM-vL-ukW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yOR-wI-2Wv" secondAttribute="leading" constant="20" id="o18-76-aw6"/>
                             <constraint firstItem="rZM-vL-ukW" firstAttribute="trailing" secondItem="fHF-oJ-2oH" secondAttribute="trailing" id="p9z-fR-3w3"/>
+                            <constraint firstItem="92Q-NC-T3a" firstAttribute="width" secondItem="Wl2-0l-Mvk" secondAttribute="width" id="pDa-RQ-CtR"/>
                             <constraint firstItem="r6F-LJ-R46" firstAttribute="leading" secondItem="BAG-Gf-bbI" secondAttribute="trailing" constant="8" id="pRh-9u-zpr"/>
+                            <constraint firstItem="TbU-as-K5K" firstAttribute="width" secondItem="Wl2-0l-Mvk" secondAttribute="width" id="qmt-pR-hq1"/>
                             <constraint firstItem="Paz-vU-k0Z" firstAttribute="top" secondItem="8LH-Ws-6CC" secondAttribute="bottom" constant="16" id="sVE-M2-NRt"/>
                             <constraint firstItem="TbU-as-K5K" firstAttribute="leading" secondItem="XuJ-N7-23c" secondAttribute="trailing" constant="8" id="vEl-gs-1nc"/>
                             <constraint firstItem="rZM-vL-ukW" firstAttribute="trailing" secondItem="yOR-wI-2Wv" secondAttribute="centerX" id="vop-eU-AJO"/>
                             <constraint firstItem="Axy-WJ-CRv" firstAttribute="centerY" secondItem="Uyz-8q-0bL" secondAttribute="centerY" id="w6h-zl-0u2"/>
+                            <constraint firstItem="ZhS-BF-7UN" firstAttribute="width" secondItem="Wl2-0l-Mvk" secondAttribute="width" id="xSG-gp-COd"/>
                             <constraint firstItem="xRx-86-gVx" firstAttribute="leading" secondItem="rZM-vL-ukW" secondAttribute="trailing" constant="8" id="zQi-Ou-E9R"/>
                             <constraint firstItem="8LH-Ws-6CC" firstAttribute="top" secondItem="rZM-vL-ukW" secondAttribute="bottom" constant="16" id="za1-YD-BRY"/>
                         </constraints>
@@ -1414,7 +1415,7 @@
                                     <binding destination="MQW-nm-dXS" name="value" keyPath="values.CombinedMenubarLyrics" id="P5p-VX-SXH"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-fs-CDd">
+                            <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-fs-CDd">
                                 <rect key="frame" x="234" y="163" width="333" height="18"/>
                                 <buttonCell key="cell" type="check" title="Automatically generate furigana for Japanese lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ThQ-vA-Krb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1454,7 +1455,7 @@
                                     </binding>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BIz-Ld-Wfi">
+                            <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BIz-Ld-Wfi">
                                 <rect key="frame" x="234" y="193" width="270" height="18"/>
                                 <buttonCell key="cell" type="check" title="Use system wide now playing application" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gin-P2-gb5">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
