@@ -1,17 +1,17 @@
 /* title of download button on the update alert. Download new version of the app. */
-"Download" = "Download";
+"Download" = "Preuzmi";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "Font Fallback: %@";
+"Font Fallback: %@" = "Zamjenski Font";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* window title */
-"Search Lyrics" = "Search Lyrics";
+"Search Lyrics" = "Potraži stihove";
 
 /* No comment provided by engineer. */
-"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub.";
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar Lyrics nije podržana u verziji na Mac App Store. Molimo preuzmite na GitHub.";
 
 /* alert title */
-"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
+"Unable to enable Touch Bar lyrics." = "Nije moguće uključiti Touch Bar Lyrics.";
