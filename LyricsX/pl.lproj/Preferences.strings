@@ -38,7 +38,7 @@
 "aMb-zX-bzP.title" = "Ustawienia";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "Strict Search";
+"As7-rZ-u6c.title" = "Dokładne wyszukiwanie";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
 "aUg-eg-K5C.label" = "Karaoke";
@@ -122,7 +122,7 @@
 "mo2-3C-gLY.title" = "Zwiększ opóźnienie tekstów:";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
-"N08-TS-lqw.title" = "Auto";
+"N08-TS-lqw.title" = "Automatyczne";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "Muzyka nie gra";
