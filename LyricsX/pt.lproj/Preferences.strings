@@ -44,16 +44,16 @@
 "aUg-eg-K5C.label" = "Karaoke";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "Combine menubar icon with menubar lyrics";
+"bbd-ra-rSF.title" = "Combine ícones de menu com letras de menu";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "Disable lyrics when:";
+"bDS-Lb-m34.title" = "Desabilitar letras quando:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
 "bFk-1g-XeL.title" = "Laboratório";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "Atrasar letras:";
+"bmk-rW-Uot.title" = "Atrasar tempo de letras:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
 "cBB-zn-Hdh.title" = "Preferir letras bilíngues";
@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "Habilitar letras na Touch Bar";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "Use system wide now playing application";
+"gin-P2-gb5.title" = "Usar todo o sistema em execução do aplicativo";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "Modo vertical";
@@ -110,16 +110,16 @@
 "LbQ-p9-Zti.label" = "Janela";
 
 /* Class = "NSButtonCell"; title = "Mouse passing by"; ObjectID = "LH4-YZ-Qvs"; */
-"LH4-YZ-Qvs.title" = "Mouse passing by";
+"LH4-YZ-Qvs.title" = "Passagem de mouse";
 
 /* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
 "lN1-gG-AVq.title" = "Filtro";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "Show / Hide karaoke lyrics:";
+"lOc-OP-AcU.title" = "Mostrar / Ocultar letras do karaokê:";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
-"mo2-3C-gLY.title" = "Increase lyrics offset:";
+"mo2-3C-gLY.title" = "Adiantar tempo de letras:";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
 "N08-TS-lqw.title" = "Automático";
@@ -134,34 +134,34 @@
 "ppx-ob-WJc.title" = "Atalho";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "Search result match the exact search term";
+"rSD-qR-EXA.title" = "Resultado da pesquisa corresponde ao termo exato da pesquisa";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "Global offset (ms):";
+"slB-q7-1dB.title" = "Tempo de atraso global (ms):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "Draggable";
+"T7p-MT-Mrh.title" = "Arrastável";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
 "TB9-Fk-WAX.title" = "Mostrar janela de letras:";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
+"ThQ-vA-Krb.title" = "Gerar automaticamente furigana para letras Japonesas";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "Texto :";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "Mark as wrong lyrics:";
+"uEb-Q5-cda.title" = "Marcar como letra incorreta:";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
-"Uer-qJ-3T9.title" = "Background";
+"Uer-qJ-3T9.title" = "Plano de fundo";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
 "UfE-QU-Yhm.title" = "Destaque:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "Auto launch & quit with music player";
+"v63-4a-fPw.title" = "Abrir e fechar automaticamente com o reprodutor de música";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
 "WfA-pe-S5D.title" = "Idioma (Requer Reinicialização):";
@@ -176,7 +176,7 @@
 "XuN-vs-cgI.title" = "Progresso";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "No Conversion";
+"zhB-kd-WWG.title" = "Sem Conversão";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
 "zQK-i2-2Nc.title" = "Personalizar TouchBar";
