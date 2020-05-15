@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "Activar letras en la Touch Bar";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "Use system wide now playing application";
+"gin-P2-gb5.title" = "Usar ampliamente el sistema cuando la aplicación esta reproduciéndose";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "Modo vertical";

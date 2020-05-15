@@ -1,80 +1,80 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
-"1xI-G4-Fsc.headerCell.title" = "Fonte";
+"1xI-G4-Fsc.headerCell.title" = "Izvor";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "Sem letras\n\nArraste e solte para importar o arquivo LRC";
+"aRw-yQ-GNX.title" = "Nema stihova\nPovuci i ispusti da uvezeš LRC file";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
-"CW0-AL-Z6N.title" = "Fazer doação";
+"CW0-AL-Z6N.title" = "Doniraj";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
-"CWo-Qx-2Ut.title" = "Preferências...";
+"CWo-Qx-2Ut.title" = "Postavke...";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
-"d5a-4n-6k8.ibShadowedToolTip" = "Sincronizar";
+"d5a-4n-6k8.ibShadowedToolTip" = "Sinkroniziraj";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "Exibir No Finder";
+"DNi-vI-MTr.title" = "Prikaži u Finder-u";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
-"eb9-fE-Lgq.title" = "Pesquisar";
+"eb9-fE-Lgq.title" = "Pretraži";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
-"EoO-ld-6Xv.title" = "Fazer doação...";
+"EoO-ld-6Xv.title" = "Doniraj...";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
-"FMI-7E-tCo.title" = "Título :";
+"FMI-7E-tCo.title" = "Naslov:";
 
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
-"fmS-zv-RcJ.title" = "Letras Erradas";
+"fmS-zv-RcJ.title" = "Krivi stihovi";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
-"GGU-uz-d9h.title" = "Habilitar Letras de Karaokê";
+"GGU-uz-d9h.title" = "Omogući stihove za Karaoke";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
-"Gza-SX-MCH.ibShadowedToolTip" = "Sempre no topo";
+"Gza-SX-MCH.ibShadowedToolTip" = "Uvijek na vrhu";
 
 /* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
-"h6D-jz-GbI.title" = "Pesquisar Letras...";
+"h6D-jz-GbI.title" = "Potraži stihove...";
 
 /* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
-"hgd-IJ-u14.title" = "Desabilitar Letras para Todo o Álbum";
+"hgd-IJ-u14.title" = "Onemogući stihove za cijeli album";
 
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
-"HMU-fa-17B.headerCell.title" = "Artista";
+"HMU-fa-17B.headerCell.title" = "Umjetnik";
 
 /* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
-"hxE-X4-sJh.title" = "Letras";
+"hxE-X4-sJh.title" = "Stihovi";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
-"IFz-XQ-DHf.title" = "Atraso das Letras:";
+"IFz-XQ-DHf.title" = "Ostupanje stihova:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
-"jWT-S5-YXM.headerCell.title" = "Título";
+"jWT-S5-YXM.headerCell.title" = "Naslov";
 
 /* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
-"kNl-ZO-aX6.title" = "Gravar no iTunes";
+"kNl-ZO-aX6.title" = "Zapiši u iTunes";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
-"kyJ-kV-2Du.title" = "Mostrar Janela de Letras";
+"kyJ-kV-2Du.title" = "Prikaži Lyrics prozor";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
-"l8J-1r-dIZ.title" = "Artista :";
+"l8J-1r-dIZ.title" = "Umjetnik:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "Se você gosta de usar LyricsX e gostaria de me comprar uma xícara de café, além de me ajudar a manter este software em andamento, você pode digitalizar o código QR abaixo para fazer uma doação generosa.";
+"o52-Z0-lue.title" = "Ako Vam LyricsX pruža zadovoljstvo i ako me želiti počastiti kavom, kao i pomoći mi da održavam ovaj program, možete skenirati QR koda niže kako biste uplatili.";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
-"PdE-VG-JUC.title" = "Sobre LyricsX";
+"PdE-VG-JUC.title" = "O LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "Verificar Por Atualizações...";
+"Piu-i2-JjD.title" = "Provjeri ima li ažuriranja...";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "Aplicar";
+"RGl-MT-MQb.title" = "Primjeni";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "Sair do Lyrics%s";
+"RPR-IV-34T.title" = "O LyricsX";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "Habilitar a Barra de Menu Letras";
+"Z7d-yp-uRx.title" = "Omogući Lyrics ikonu u traci izbornika";

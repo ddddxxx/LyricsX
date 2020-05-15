@@ -1,8 +1,8 @@
 /* title of download button on the update alert. Download new version of the app. */
-"Download" = "Download";
+"Download" = "Laden";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "Schriftart-Fallback: %@";
+"Font Fallback: %@" = "Standardschriftart: %@";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
