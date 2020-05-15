@@ -14,6 +14,7 @@ class PreferenceLabViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         #if IS_FOR_MAS
+            enableTouchBarLyricsButton.state = .off
             enableTouchBarLyricsButton.target = self
             enableTouchBarLyricsButton.action = #selector(mas_enableTouchBarLyricsAction)
         #else
