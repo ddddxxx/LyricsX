@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "터치 바 가사 사용";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "시스템의 현재 재생 중 기능을 사용";
+"gin-P2-gb5.title" = "시스템 전체에서 현재 재생중인 응용 프로그램 사용";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "세로 모드";
