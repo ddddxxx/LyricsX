@@ -1,8 +1,8 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "Lyrics saving path:";
+"0M7-ao-0jb.title" = "가사를 저장할 경로:";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
-"0VO-JB-ubq.title" = "Auto";
+"0VO-JB-ubq.title" = "자동";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
 "19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";
@@ -29,7 +29,7 @@
 "8Sx-vb-5pB.title" = "Write lyrics to iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "Font:";
+"992-tg-edx.title" = "폰트:";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
 "AiM-vg-FvQ.title" = "Simplified Chinese";
@@ -113,7 +113,7 @@
 "LH4-YZ-Qvs.title" = "Mouse passing by";
 
 /* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
-"lN1-gG-AVq.title" = "Filter";
+"lN1-gG-AVq.title" = "필터";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
 "lOc-OP-AcU.title" = "Show / Hide karaoke lyrics:";
