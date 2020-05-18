@@ -35,22 +35,22 @@
 "AiM-vg-FvQ.title" = "Simplified Chinese";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "Preferences";
+"aMb-zX-bzP.title" = "환경설정";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
 "As7-rZ-u6c.title" = "Strict Search";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
-"aUg-eg-K5C.label" = "Karaoke";
+"aUg-eg-K5C.label" = "노래방";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
 "bbd-ra-rSF.title" = "Combine menubar icon with menubar lyrics";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "Disable lyrics when:";
+"bDS-Lb-m34.title" = "가사를 비활성화 할 때:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
-"bFk-1g-XeL.title" = "Lab";
+"bFk-1g-XeL.title" = "실험실";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
 "bmk-rW-Uot.title" = "Decrease lyrics offset:";
