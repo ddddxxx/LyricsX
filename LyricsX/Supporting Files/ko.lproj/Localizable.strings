@@ -2,7 +2,7 @@
 "Download" = "다운로드";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "Font Fallback: %@";
+"Font Fallback: %@" = "대체 폰트: %@";
 
 /* No comment provided by engineer. */
 "OK" = "예";
@@ -14,4 +14,4 @@
 "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "터치바 가사 기능은 App Store 버전에서는 지원되지 않습니다. GitHub에서 받아 사용해주세요.";
 
 /* alert title */
-"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
+"Unable to enable Touch Bar lyrics." = "터치바 가사를 사용 할 수 없습니다";
