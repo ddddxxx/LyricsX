@@ -164,19 +164,19 @@
 "v63-4a-fPw.title" = "음악 플레이어와 함께 켜고 끄기";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "Language (Requires Restart):";
+"WfA-pe-S5D.title" = "언어 (재시작 필요):";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "Show / Hide menu bar lyrics:";
+"XHQ-gX-urF.title" = "메뉴 막대 가사 표시 / 숨기기";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "Reset";
+"XUF-aM-ZmS.title" = "재설정";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
-"XuN-vs-cgI.title" = "Progress";
+"XuN-vs-cgI.title" = "진행도";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "No Conversion";
+"zhB-kd-WWG.title" = "변환 없음";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
-"zQK-i2-2Nc.title" = "Customize TouchBar";
+"zQK-i2-2Nc.title" = "터치바 사용자설정";
