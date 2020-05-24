@@ -122,7 +122,7 @@
 "mo2-3C-gLY.title" = "Songtext-Abstand erhöhen:";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
-"N08-TS-lqw.title" = "Auto";
+"N08-TS-lqw.title" = "Automatisch";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "Musik spielt nicht";
