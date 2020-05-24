@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "TouchBar-Songtexte aktivieren";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "Use system wide now playing application";
+"gin-P2-gb5.title" = "Verwenden Sie die systemweite, jetzt spielende Anwendung";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "Vertikaler Modus";
