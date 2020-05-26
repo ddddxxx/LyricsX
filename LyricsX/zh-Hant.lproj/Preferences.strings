@@ -68,13 +68,13 @@
 "EDv-ax-0hI.title" = "讀取同名的歌詞檔案";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "此處為一些不那麼穩定的實驗功能，日後亦可能被移除使用。";
+"g2u-8D-dln.title" = "此處為一些實驗性的功能，日後也有可能因不使用而被移除。";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
 "gGL-LB-TXI.title" = "啟用 Touch Bar 歌詞";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "使用系統現正在播放的程式";
+"gin-P2-gb5.title" = "使用系統現在正在播放的程式";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "竪排模式";
