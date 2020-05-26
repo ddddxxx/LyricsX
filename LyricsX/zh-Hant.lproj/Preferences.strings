@@ -17,7 +17,7 @@
 "6FU-j0-FTV.title" = "轉換為繁體中文";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "將歌詞寫入 iTunes 歌曲：";
+"6We-TB-Wfc.title" = "將歌詞輸入 iTunes：";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "自動導入";
@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "啟用 Touch Bar 歌詞";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "Use system wide now playing application";
+"gin-P2-gb5.title" = "使用系統現正在播放的程式";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "竪排模式";
@@ -170,7 +170,7 @@
 "XHQ-gX-urF.title" = "顯示 / 隱藏選單列歌詞";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "重設";
+"XUF-aM-ZmS.title" = "重置";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
 "XuN-vs-cgI.title" = "進度";
