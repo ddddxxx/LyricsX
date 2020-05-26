@@ -146,7 +146,7 @@
 "TB9-Fk-WAX.title" = "顯示歌詞視窗：";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "日文歌詞自動附註振假名";
+"ThQ-vA-Krb.title" = "自動生成日文振假名";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "文字：";
