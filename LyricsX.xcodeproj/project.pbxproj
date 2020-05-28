@@ -1407,7 +1407,7 @@
 			repositoryURL = "https://github.com/ddddxxx/MusicPlayer";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.6.7;
+				minimumVersion = 0.6.10;
 			};
 		};
 		BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */ = {
