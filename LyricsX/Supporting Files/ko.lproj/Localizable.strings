@@ -1,17 +1,17 @@
 /* title of download button on the update alert. Download new version of the app. */
-"Download" = "Download";
+"Download" = "다운로드";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "Font Fallback: %@";
+"Font Fallback: %@" = "대체 폰트: %@";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "예";
 
 /* window title */
-"Search Lyrics" = "Search Lyrics";
+"Search Lyrics" = "가사 검색";
 
 /* No comment provided by engineer. */
-"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub.";
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "터치바 가사 기능은 App Store 버전에서는 지원되지 않습니다. GitHub에서 받아 사용해주세요.";
 
 /* alert title */
-"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
+"Unable to enable Touch Bar lyrics." = "터치바 가사를 사용 할 수 없습니다";

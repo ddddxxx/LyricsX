@@ -17,7 +17,7 @@
 "6FU-j0-FTV.title" = "轉換為繁體中文";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "將歌詞寫入 iTunes 歌曲：";
+"6We-TB-Wfc.title" = "將歌詞輸入 iTunes：";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "自動導入";
@@ -68,13 +68,13 @@
 "EDv-ax-0hI.title" = "讀取同名的歌詞檔案";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "此處為一些不那麼穩定的實驗功能，日後亦可能被移除使用。";
+"g2u-8D-dln.title" = "此處為一些實驗性的功能，日後也有可能因不使用而被移除。";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
 "gGL-LB-TXI.title" = "啟用 Touch Bar 歌詞";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "Use system wide now playing application";
+"gin-P2-gb5.title" = "使用系統現在正在播放的程式";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "竪排模式";
@@ -146,7 +146,7 @@
 "TB9-Fk-WAX.title" = "顯示歌詞視窗：";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "日文歌詞自動附註振假名";
+"ThQ-vA-Krb.title" = "自動生成日文振假名";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "文字：";
@@ -170,7 +170,7 @@
 "XHQ-gX-urF.title" = "顯示 / 隱藏選單列歌詞";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "重設";
+"XUF-aM-ZmS.title" = "重置";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
 "XuN-vs-cgI.title" = "進度";
