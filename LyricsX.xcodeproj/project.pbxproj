@@ -265,6 +265,18 @@
 		BB6139781FCCFAC800CBD808 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.strings"; sourceTree = "<group>"; };
 		BB63C24B226AFCE7008CFFBB /* Dictionary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dictionary; sourceTree = "<group>"; };
 		BB63C24E22774B47008CFFBB /* TouchBarPlaybackControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarPlaybackControlViewController.swift; sourceTree = "<group>"; };
+		BB71941C247FCDB3003F1D1B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		BB71941D247FCDB3003F1D1B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Preferences.strings; sourceTree = "<group>"; };
+		BB71941F247FCDF0003F1D1B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB719420247FCDF2003F1D1B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB719421247FCDF5003F1D1B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB719422247FCDFA003F1D1B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB719423247FCDFC003F1D1B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB719424247FCDFF003F1D1B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB719425247FCE5D003F1D1B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
+		BB719426247FCE5D003F1D1B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Preferences.strings; sourceTree = "<group>"; };
+		BB719427247FCE7A003F1D1B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB719428247FCE80003F1D1B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB72784920996DE900231C63 /* PreferenceLabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceLabViewController.swift; sourceTree = "<group>"; };
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
 		BB89089D21ED69410078F522 /* Lyrics+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lyrics+Language.swift"; sourceTree = "<group>"; };
@@ -660,6 +672,8 @@
 				"zh-Hant",
 				ar,
 				es,
+				ko,
+				pt,
 			);
 			mainGroup = BB4141A11E458BA800A51775;
 			packageReferences = (
@@ -990,6 +1004,10 @@
 				BB5C5537232B5EAA00448FC0 /* fa */,
 				BB28973423B1F22700C03D91 /* fr */,
 				BB28973923B1F31D00C03D91 /* zh-Hant */,
+				BB71941F247FCDF0003F1D1B /* ar */,
+				BB719420247FCDF2003F1D1B /* ko */,
+				BB719421247FCDF5003F1D1B /* es */,
+				BB719428247FCE80003F1D1B /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1008,6 +1026,8 @@
 				BB28973623B1F31000C03D91 /* zh-Hant */,
 				BBF3CB6724233121000C6AB9 /* ar */,
 				BBF3CB6A2423313B000C6AB9 /* es */,
+				BB71941C247FCDB3003F1D1B /* ko */,
+				BB719425247FCE5D003F1D1B /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1034,6 +1054,8 @@
 				BB28973723B1F31100C03D91 /* zh-Hant */,
 				BBF3CB6824233121000C6AB9 /* ar */,
 				BBF3CB6B2423313B000C6AB9 /* es */,
+				BB71941D247FCDB3003F1D1B /* ko */,
+				BB719426247FCE5D003F1D1B /* pt */,
 			);
 			name = Preferences.storyboard;
 			sourceTree = "<group>";
@@ -1049,6 +1071,10 @@
 				BB5C5538232B5EAE00448FC0 /* fa */,
 				BB28973523B1F22B00C03D91 /* fr */,
 				BB28973823B1F31900C03D91 /* zh-Hant */,
+				BB719422247FCDFA003F1D1B /* ar */,
+				BB719423247FCDFC003F1D1B /* ko */,
+				BB719424247FCDFF003F1D1B /* es */,
+				BB719427247FCE7A003F1D1B /* pt */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1407,7 +1433,7 @@
 			repositoryURL = "https://github.com/ddddxxx/MusicPlayer";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.6.7;
+				minimumVersion = 0.6.10;
 			};
 		};
 		BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */ = {

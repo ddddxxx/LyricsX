@@ -1,0 +1,19 @@
+name: update-gh-pages
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+      - run: |
+          git config user.name  "CI"
+          git config user.email "ci@github.com"
+          git commit -m "update" --allow-empty
+          git push

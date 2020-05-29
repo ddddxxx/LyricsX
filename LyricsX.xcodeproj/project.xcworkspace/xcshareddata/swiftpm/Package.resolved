@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/cx-org/CXExtensions",
         "state": {
           "branch": null,
-          "revision": "8bb587d419d34c0e5224f5e173a12337904d7e5c",
-          "version": "0.2.1"
+          "revision": "3a777360ef0ec92342a2ed82fe748a78efead181",
+          "version": "0.2.2"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
         "state": {
           "branch": null,
-          "revision": "e3c0acb3c70a4e97093e32685b3e63f52f061404",
-          "version": "0.8.2"
+          "revision": "8e21b64eb46c27e7e57a516566351a9027bd02e3",
+          "version": "0.8.3"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
           "branch": null,
-          "revision": "186c409bd42c13d7829f11c109da567a5726b1c1",
-          "version": "0.6.9"
+          "revision": "5820941b38c8cfd0440a8bb82ba360ef895305a1",
+          "version": "0.6.10"
         }
       },
       {
