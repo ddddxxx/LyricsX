@@ -152,6 +152,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         lyricsHUD = controller
     }
     
+    @IBAction func aboutLyricsXAction(_ sender: Any) {
+        if #available(OSX 10.13, *) {
+            let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            #if IS_FOR_MAS
+                let channel = "App Store"
+            #else
+                let channel = "GitHub"
+            #endif
+            let versionString = "\(channel) Version \(version)"
+            NSApp.orderFrontStandardAboutPanel(options: [.applicationVersion: versionString])
+        } else {
+            NSApp.orderFrontStandardAboutPanel(sender)
+        }
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
     @IBAction func checkUpdateAction(_ sender: Any) {
         #if IS_FOR_MAS
         assert(false, "should not be there")
