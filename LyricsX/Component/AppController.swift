@@ -62,7 +62,7 @@ class AppController: NSObject {
             .invoke(AppController.scheduleCurrentLineCheck, weaklyOn: self)
             .store(in: &cancelBag)
         
-        defaultNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
+        workspaceNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
             .sink { n in
                 let bundleID = (n.userInfo![NSWorkspace.applicationUserInfoKey] as! NSRunningApplication).bundleIdentifier
                 if defaults[.launchAndQuitWithPlayer], (selectedPlayer.designatedPlayer as? MusicPlayers.Scriptable)?.playerBundleID == bundleID {
