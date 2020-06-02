@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>com.apple.developer.icloud-container-identifiers</key>
+	<array>
+		<string>iCloud.ddddxxx.LyricsX</string>
+	</array>
+	<key>com.apple.developer.icloud-services</key>
+	<array>
+		<string>CloudDocuments</string>
+	</array>
+	<key>com.apple.developer.ubiquity-container-identifiers</key>
+	<array>
+		<string>iCloud.ddddxxx.LyricsX</string>
+	</array>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
 	<key>com.apple.security.application-groups</key>
@@ -18,17 +30,6 @@
 	<true/>
 	<key>com.apple.security.network.client</key>
 	<true/>
-	<key>com.apple.security.temporary-exception.apple-events</key>
-	<array>
-		<string>com.apple.iTunes</string>
-		<string>com.apple.Music</string>
-		<string>com.spotify.client</string>
-		<string>com.coppertino.Vox</string>
-		<string>com.audirvana.Audirvana-Plus</string>
-		<string>com.audirvana.Audirvana</string>
-		<string>com.swinsian.Swinsian</string>
-		<string>ddddxxx.LyricsXHelper</string>
-	</array>
 	<key>com.apple.security.scripting-targets</key>
 	<dict>
 		<key>com.apple.iTunes</key>
@@ -42,5 +43,16 @@
 			<string>com.spotify.library</string>
 		</array>
 	</dict>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.apple.iTunes</string>
+		<string>com.apple.Music</string>
+		<string>com.spotify.client</string>
+		<string>com.coppertino.Vox</string>
+		<string>com.audirvana.Audirvana-Plus</string>
+		<string>com.audirvana.Audirvana</string>
+		<string>com.swinsian.Swinsian</string>
+		<string>ddddxxx.LyricsXHelper</string>
+	</array>
 </dict>
 </plist>
