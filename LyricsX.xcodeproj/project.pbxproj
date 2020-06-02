@@ -26,8 +26,6 @@
 		BB0A3AE122803B1D006C2E52 /* TouchBarPlaybackControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63C24E22774B47008CFFBB /* TouchBarPlaybackControlViewController.swift */; };
 		BB0B296A1E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */; };
 		BB0BE9561F444C9E0068FF67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB0BE9581F444C9E0068FF67 /* Localizable.strings */; };
-		BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */; };
-		BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95C1F44508F0068FF67 /* Fabric.framework */; };
 		BB1B2FFD20E8780A002F1AF8 /* CFExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */; };
 		BB1B300320E878AE002F1AF8 /* StdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B300220E878AE002F1AF8 /* StdExtension.swift */; };
 		BB1B300520E87CC9002F1AF8 /* KaraokeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B300420E87CC9002F1AF8 /* KaraokeLabel.swift */; };
@@ -80,8 +78,6 @@
 		BB50788622014C3900B695C3 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1D35A1E485BA7002538A2 /* AppController.swift */; };
 		BB50788722014C3900B695C3 /* PreferenceFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */; };
 		BB50788822014C3900B695C3 /* Lyrics+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB89089D21ED69410078F522 /* Lyrics+Language.swift */; };
-		BB50788A22014C3900B695C3 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */; };
-		BB50788B22014C3900B695C3 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0BE95C1F44508F0068FF67 /* Fabric.framework */; };
 		BB50788D22014C3900B695C3 /* DFRPrivate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58640221F2A8570084D2C0 /* DFRPrivate.framework */; };
 		BB50788F22014C3900B695C3 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4141C61E46CDD200A51775 /* SnapKit.framework */; };
 		BB50789122014C3900B695C3 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */; };
@@ -105,6 +101,12 @@
 		BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */; };
 		BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0811E82971400598D4F /* UserDefaults.plist */; };
 		BB58B0891E82CA9B00598D4F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
+		BB58D8B824862D2F0047E3C6 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B524862D2F0047E3C6 /* AppCenter.framework */; };
+		BB58D8B924862D2F0047E3C6 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B524862D2F0047E3C6 /* AppCenter.framework */; };
+		BB58D8BA24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */; };
+		BB58D8BB24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */; };
+		BB58D8BC24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */; };
+		BB58D8BD24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */; };
 		BB5D4B2D2094A1D700844D9F /* FontSelectTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D4B2C2094A1D700844D9F /* FontSelectTextField.swift */; };
 		BB60F3041E889A1B00BA1FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60F3031E889A1B00BA1FD2 /* AppDelegate.swift */; };
 		BB60F3061E889A1B00BA1FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB60F3051E889A1B00BA1FD2 /* Assets.xcassets */; };
@@ -241,6 +243,9 @@
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoActivateWindowController.swift; sourceTree = "<group>"; };
 		BB58B0811E82971400598D4F /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		BB58B0881E82CA9B00598D4F /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		BB58D8B524862D2F0047E3C6 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = Carthage/Build/Mac/AppCenter.framework; sourceTree = "<group>"; };
+		BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = Carthage/Build/Mac/AppCenterCrashes.framework; sourceTree = "<group>"; };
+		BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = Carthage/Build/Mac/AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		BB5C552F232B5D1B00448FC0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		BB5C5530232B5D1B00448FC0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Preferences.strings; sourceTree = "<group>"; };
 		BB5C5531232B5D7200448FC0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -315,15 +320,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5078AF22014CAA00B695C3 /* Sparkle.framework in Frameworks */,
-				BB0BE95D1F44508F0068FF67 /* Crashlytics.framework in Frameworks */,
-				BB0BE95E1F44508F0068FF67 /* Fabric.framework in Frameworks */,
+				BB58D8B824862D2F0047E3C6 /* AppCenter.framework in Frameworks */,
 				BB58640421F2A85A0084D2C0 /* DFRPrivate.framework in Frameworks */,
 				BB9C3D8323435A5700860698 /* MusicPlayer in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */,
 				BBB03F30232FB40400A3879E /* Semver in Frameworks */,
+				BB58D8BA24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
 				BB22681C234C9085008FAFED /* SwiftCF in Frameworks */,
+				BB58D8BC24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */,
 				BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */,
 				BBB03F3D2331DACD00A3879E /* LyricsKit in Frameworks */,
 				BB350ABE23D0613D00500146 /* CXExtensions in Frameworks */,
@@ -335,12 +341,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB03F432331DBB000A3879E /* OpenCC in Frameworks */,
-				BB50788A22014C3900B695C3 /* Crashlytics.framework in Frameworks */,
-				BB50788B22014C3900B695C3 /* Fabric.framework in Frameworks */,
 				BB50788D22014C3900B695C3 /* DFRPrivate.framework in Frameworks */,
+				BB58D8BD24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */,
 				BBB03F3F2331DBB000A3879E /* GenericID in Frameworks */,
 				BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */,
 				BB22681E234C908D008FAFED /* SwiftCF in Frameworks */,
+				BB58D8BB24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */,
+				BB58D8B924862D2F0047E3C6 /* AppCenter.framework in Frameworks */,
 				BB350AC023D0614800500146 /* CXExtensions in Frameworks */,
 				BBB03F412331DBB000A3879E /* Semver in Frameworks */,
 				BB9C3D8523435A6300860698 /* MusicPlayer in Frameworks */,
@@ -432,6 +439,9 @@
 		BB7EC7B31E4ECFC400A0AC3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB58D8B524862D2F0047E3C6 /* AppCenter.framework */,
+				BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */,
+				BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */,
 				BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */,
 				BB58640221F2A8570084D2C0 /* DFRPrivate.framework */,
 				BB0BE95C1F44508F0068FF67 /* Fabric.framework */,
@@ -527,7 +537,7 @@
 				BB4141CA1E46CDD700A51775 /* Embed Frameworks */,
 				BB60F3111E889FC000BA1FD2 /* Copy Helper */,
 				BB0A3AE2228058B3006C2E52 /* Sign Sparkle */,
-				BB9163341F36371700E4E01C /* Fabric Script */,
+				BB9163341F36371700E4E01C /* Upload dSYM */,
 				BB0BE9531F444BE20068FF67 /* Update Localization */,
 				BBC1D5811E4AFE64008869EC /* Bump Build */,
 			);
@@ -559,7 +569,7 @@
 				BB50789422014C3900B695C3 /* Resources */,
 				BB50789C22014C3900B695C3 /* Embed Frameworks */,
 				BB5078A522014C3900B695C3 /* Copy Helper */,
-				BB5078A722014C3900B695C3 /* Fabric Script */,
+				BB5078A722014C3900B695C3 /* Upload dSYM */,
 				BB5078A822014C3900B695C3 /* Update Localization */,
 				BB5078A922014C3900B695C3 /* Bump Build */,
 			);
@@ -817,19 +827,20 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		BB5078A722014C3900B695C3 /* Fabric Script */ = {
+		BB5078A722014C3900B695C3 /* Upload dSYM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 			);
-			name = "Fabric Script";
+			name = "Upload dSYM";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "releaseConfig=\"Release\"\n\nif [ \"$releaseConfig\" = \"${CONFIGURATION}\" ]; then\necho \"Running Crashlytics\"\n    ./LyricsX/Frameworks/Fabric.framework/run b6f597788b967cd9a94ea2a85f54c27909939b87 899ee2667b9979f88a8bf30432bc74cad27133acaf3e13498bc4849cd82e135a\nfi\n";
+			shellScript = "appcenter crashes upload-symbols --symbol \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
 		};
 		BB5078A822014C3900B695C3 /* Update Localization */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -859,19 +870,20 @@
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
-		BB9163341F36371700E4E01C /* Fabric Script */ = {
+		BB9163341F36371700E4E01C /* Upload dSYM */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 			);
-			name = "Fabric Script";
+			name = "Upload dSYM";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "releaseConfig=\"Release\"\n\nif [ \"$releaseConfig\" = \"${CONFIGURATION}\" ]; then\necho \"Running Crashlytics\"\n    ./LyricsX/Frameworks/Fabric.framework/run b6f597788b967cd9a94ea2a85f54c27909939b87 899ee2667b9979f88a8bf30432bc74cad27133acaf3e13498bc4849cd82e135a\nfi\n";
+			shellScript = "appcenter crashes upload-symbols --symbol \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
 		};
 		BBC1D5811E4AFE64008869EC /* Bump Build */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1214,7 +1226,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/LyricsX/Frameworks",
 				);
 				INFOPLIST_FILE = "LyricsX/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1242,7 +1253,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/LyricsX/Frameworks",
 				);
 				INFOPLIST_FILE = "LyricsX/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1270,7 +1280,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/LyricsX/Frameworks",
 				);
 				INFOPLIST_FILE = "LyricsX/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1300,7 +1309,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/LyricsX/Frameworks",
 				);
 				INFOPLIST_FILE = "LyricsX/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

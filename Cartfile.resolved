@@ -1,4 +1,5 @@
 github "SnapKit/SnapKit" "5.0.0"
-github "ddddxxx/DFRPrivate" "v1.0.1"
+github "ddddxxx/DFRPrivate" "v1.0.2"
+github "microsoft/appcenter-sdk-apple" "3.2.0"
 github "shpakovski/MASShortcut" "2.4.0"
-github "sparkle-project/Sparkle" "1.21.3"
+github "sparkle-project/Sparkle" "v1.23.0"

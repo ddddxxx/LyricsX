@@ -7,7 +7,6 @@
 
 import Cocoa
 import CombineX
-import Crashlytics
 import GenericID
 import MusicPlayer
 
@@ -74,8 +73,6 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         observeNotification(name: NSScrollView.willStartLiveScrollNotification,
                             object: lyricsScrollView,
                             queue: .main) { [unowned self] _ in self.isTracking = false }
-        
-        Answers.logCustomEvent(withName: "Show Lyrics Window")
     }
     
     override func viewWillAppear() {
@@ -119,7 +116,6 @@ class LyricsHUDViewController: NSViewController, NSWindowDelegate, ScrollLyricsV
         let pos = position - (AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0)
         selectedPlayer.playbackTime = pos
         isTracking = true
-        Answers.logCustomEvent(withName: "Seek to Lyrics Line")
     }
     
     func scrollWheelDidStartScroll() {

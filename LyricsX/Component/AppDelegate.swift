@@ -6,11 +6,12 @@
 //
 
 import Cocoa
-import Crashlytics
-import Fabric
 import GenericID
 import MASShortcut
 import MusicPlayer
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 #if !IS_FOR_MAS
 import Sparkle
@@ -47,7 +48,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         #if RELEASE
-            Fabric.with([Crashlytics.self])
+            MSAppCenter.start("36777a05-06fd-422e-9375-a934b3c835a5", withServices:[
+                MSAnalytics.self,
+                MSCrashes.self
+            ])
         #endif
         
         let controller = AppController.shared

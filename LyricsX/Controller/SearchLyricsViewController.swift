@@ -7,7 +7,6 @@
 
 import Cocoa
 import CombineX
-import Crashlytics
 import CXExtensions
 import LyricsService
 import MusicPlayer
@@ -97,7 +96,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             }).cancel(after: .seconds(10), scheduler: DispatchQueue.lyricsDisplay.cx)
         progressIndicator.startAnimation(nil)
         tableView.reloadData()
-        Answers.logCustomEvent(withName: "Search Lyrics Manually")
     }
     
     @IBAction func useLyricsAction(_ sender: Any) {
@@ -119,7 +117,6 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         if defaults[.writeToiTunesAutomatically] {
             AppController.shared.writeToiTunes(overwrite: true)
         }
-        Answers.logCustomEvent(withName: "Choose Search Result", customAttributes: ["index": index])
     }
     
     // MARK: - LyricsSourceDelegate

@@ -7,7 +7,6 @@
 
 import AppKit
 import CombineX
-import Crashlytics
 import CXExtensions
 import LyricsService
 import MusicPlayer
@@ -179,7 +178,6 @@ class AppController: NSObject {
                 lyrics.filtrate()
                 lyrics.recognizeLanguage()
                 currentLyrics = lyrics
-                Answers.logCustomEvent(withName: "Load Local Lyrics")
                 if needsSearching {
                     break
                 } else {
@@ -216,7 +214,6 @@ class AppController: NSObject {
             }, receiveValue: { [unowned self] lyrics in
                 self.lyricsReceived(lyrics: lyrics)
             })
-        Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
     }
     
     // MARK: LyricsSourceDelegate
