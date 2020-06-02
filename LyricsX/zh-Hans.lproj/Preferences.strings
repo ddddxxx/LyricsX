@@ -5,7 +5,7 @@
 "0VO-JB-ubq.title" = "自动选择";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression.";
+"19E-DG-Q23.title" = "匹配以下规则的歌词行将被忽略。使用“/”开始使用正则表达式。";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
 "3Bt-md-QNc.title" = "歌词";
