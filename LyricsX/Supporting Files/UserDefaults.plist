@@ -63,5 +63,7 @@
 	</array>
 	<key>GlobalLyricsOffset</key>
 	<integer>0</integer>
+	<key>NSApplicationCrashOnExceptions</key>
+	<true/>
 </dict>
 </plist>
