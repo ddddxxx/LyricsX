@@ -28,14 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
     
-    var desktopLyrics: KaraokeLyricsWindowController?
-    
-    var _touchBarLyrics: Any?
-    
-    @available(OSX 10.12.2, *)
-    var touchBarLyrics: TouchBarLyrics? {
-        return self._touchBarLyrics as! TouchBarLyrics?
-    }
+    var karaokeLyricsWC: KaraokeLyricsWindowController?
     
     lazy var searchLyricsWC: NSWindowController = {
         // swiftlint:disable:next force_cast
@@ -56,10 +49,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         
         let controller = AppController.shared
         
-        desktopLyrics = KaraokeLyricsWindowController()
-        desktopLyrics?.showWindow(nil)
+        karaokeLyricsWC = KaraokeLyricsWindowController()
+        karaokeLyricsWC?.showWindow(nil)
         
-        MenuBarLyrics.shared.statusItem.menu = statusBarMenu
+        MenuBarLyricsController.shared.statusItem.menu = statusBarMenu
         statusBarMenu.delegate = self
         
         lyricsOffsetStepper.bind(.value,
@@ -88,11 +81,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         #else
         SUUpdater.shared()?.checkForUpdatesInBackground()
         if #available(OSX 10.12.2, *) {
-            observeDefaults(key: .touchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
-                if change.newValue, self.touchBarLyrics == nil {
-                    self._touchBarLyrics = TouchBarLyrics()
-                } else if !change.newValue, self.touchBarLyrics != nil {
-                    self._touchBarLyrics = nil
+            observeDefaults(key: .touchBarLyricsEnabled, options: [.new, .initial]) { _, change in
+                if change.newValue, TouchBarLyricsController.shared == nil {
+                    TouchBarLyricsController.shared = TouchBarLyricsController()
+                } else if !change.newValue, TouchBarLyricsController.shared != nil {
+                    TouchBarLyricsController.shared = nil
                 }
             }
         }

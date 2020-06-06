@@ -64,7 +64,7 @@ LyricsX is available on the Mac App Store.
 - [SwiftCF](https://github.com/ddddxxx/SwiftCF)
 - [Regex](https://github.com/ddddxxx/Regex)
 - [Semver](https://github.com/ddddxxx/Semver)
-- [DFRPrivate](https://github.com/ddddxxx/DFRPrivate)
+- [TouchBarHelper](https://github.com/ddddxxx/TouchBarHelper)
 - [CombineX](https://github.com/cx-org/CombineX)
 - [SnapKit](https://github.com/SnapKit/SnapKit)
 - [MASShortcut](https://github.com/shpakovski/MASShortcut)

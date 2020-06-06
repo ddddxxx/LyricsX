@@ -7,14 +7,16 @@
 
 import Cocoa
 import CombineX
+import CXExtensions
+import CXFoundation
 import GenericID
 import LyricsCore
 import MusicPlayer
 import OpenCC
 
-class MenuBarLyrics: NSObject {
+class MenuBarLyricsController {
     
-    static let shared = MenuBarLyrics()
+    static let shared = MenuBarLyricsController()
     
     let statusItem: NSStatusItem
     var lyricsItem: NSStatusItem?
@@ -30,17 +32,22 @@ class MenuBarLyrics: NSObject {
     }
     
     private var cancelBag = Set<AnyCancellable>()
+    private var observation: DefaultsObservation?
     
-    private override init() {
+    private init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        super.init()
         AppController.shared.$currentLyrics
             .combineLatest(AppController.shared.$currentLineIndex)
             .receive(on: DispatchQueue.lyricsDisplay.cx)
-            .invoke(MenuBarLyrics.handleLyricsDisplay, weaklyOn: self)
+            .invoke(MenuBarLyricsController.handleLyricsDisplay, weaklyOn: self)
             .store(in: &cancelBag)
-        observeNotification(center: workspaceNC, name: NSWorkspace.didActivateApplicationNotification) { [unowned self] _ in self.updateStatusItem() }
-        observeDefaults(keys: [.menuBarLyricsEnabled, .combinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }
+        workspaceNC.cx
+            .publisher(for: NSWorkspace.didActivateApplicationNotification)
+            .signal()
+            .invoke(MenuBarLyricsController.updateStatusItem, weaklyOn: self)
+            .store(in: &cancelBag)
+        observation = defaults.observe(keys: [.menuBarLyricsEnabled, .combinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem()
+        }
     }
     
     private func handleLyricsDisplay(event: (lyrics: Lyrics?, index: Int?)) {

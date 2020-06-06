@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
           "branch": null,
-          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
-          "version": "2.2.0"
+          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
+          "version": "2.2.1"
         }
       },
       {
@@ -107,6 +107,15 @@
           "branch": null,
           "revision": "64a4534c17480b15b87cfa114ffcc5aa26a2d35f",
           "version": "1.0.1"
+        }
+      },
+      {
+        "package": "TouchBarHelper",
+        "repositoryURL": "https://github.com/ddddxxx/TouchBarHelper",
+        "state": {
+          "branch": null,
+          "revision": "003d41193ac1c6ab9cc570a1923587298014bf1d",
+          "version": "1.0.0"
         }
       }
     ]

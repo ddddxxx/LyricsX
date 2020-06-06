@@ -6,65 +6,14 @@
 //
 
 import Cocoa
-import DFRPrivate
 import LyricsCore
+import TouchBarHelper
 import OpenCC
 
 @available(OSX 10.12.2, *)
-class TouchBarSystemModalController: NSObject, NSTouchBarDelegate {
+class TouchBarLyricsController: TouchBarSystemModalController {
     
-    var touchBar: NSTouchBar?
-    var systemTrayItem: NSCustomTouchBarItem?
-    
-    override init() {
-        super.init()
-        loadTouchBar()
-        touchBar?.delegate = self
-        touchBarDidLoad()
-        showInControlStrip()
-    }
-    
-    /// customization point
-    func loadTouchBar() {
-        if touchBar == nil {
-            touchBar = NSTouchBar()
-        }
-    }
-    
-    /// customization point
-    func touchBarDidLoad() {
-        
-    }
-    
-    @objc func showInControlStrip() {
-        NSTouchBar.setSystemModalShowsCloseBoxWhenFrontMost(false)
-        systemTrayItem?.addToSystemTray()
-        systemTrayItem?.setControlStripPresence(true)
-    }
-    
-    @objc func removeFromControlStrip() {
-        dismiss()
-        systemTrayItem?.setControlStripPresence(false)
-        systemTrayItem?.removeFromSystemTray()
-    }
-    
-    @objc func present() {
-        if let touchBar = self.touchBar, let systemTrayItem = self.systemTrayItem {
-            touchBar.presentAsSystemModal(for: systemTrayItem)
-        }
-    }
-    
-    @objc func minimize() {
-        touchBar?.minimizeSystemModal()
-    }
-    
-    @objc func dismiss() {
-        touchBar?.dismissSystemModal()
-    }
-}
-
-@available(OSX 10.12.2, *)
-class TouchBarLyrics: TouchBarSystemModalController {
+    static var shared: TouchBarLyricsController?
     
     private var lyricsItem = TouchBarLyricsItem(identifier: .lyrics)
     
