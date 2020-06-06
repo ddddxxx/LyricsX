@@ -58,7 +58,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>LX_BUILD_TIME</key>
-	<integer>1591434393</integer>
+	<integer>1591434541</integer>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
