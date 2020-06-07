@@ -27,7 +27,7 @@ class TouchBarLyricsController: TouchBarSystemModalController {
         
         lyricsItem.bind(\.progressColor, withUnmatchedDefaultName: .desktopLyricsProgressColor)
         
-        self.observeNotification(name: NSApplication.willBecomeActiveNotification) { [weak self] _ in
+        observeNotification(name: NSApplication.willBecomeActiveNotification) { [weak self] _ in
             guard let self = self else { return }
             self.removeFromControlStrip()
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
@@ -35,7 +35,7 @@ class TouchBarLyricsController: TouchBarSystemModalController {
             }
         }
         
-        self.observeNotification(name: NSApplication.didResignActiveNotification) { [weak self] _ in
+        observeNotification(name: NSApplication.didResignActiveNotification) { [weak self] _ in
             guard let self = self else { return }
             NSApp.touchBar = nil
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {

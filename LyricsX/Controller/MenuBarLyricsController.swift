@@ -32,7 +32,6 @@ class MenuBarLyricsController {
     }
     
     private var cancelBag = Set<AnyCancellable>()
-    private var observation: DefaultsObservation?
     
     private init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -46,8 +45,10 @@ class MenuBarLyricsController {
             .signal()
             .invoke(MenuBarLyricsController.updateStatusItem, weaklyOn: self)
             .store(in: &cancelBag)
-        observation = defaults.observe(keys: [.menuBarLyricsEnabled, .combinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem()
-        }
+        defaults.publisher(for: [.menuBarLyricsEnabled, .combinedMenubarLyrics])
+            .prepend()
+            .invoke(MenuBarLyricsController.updateStatusItem, weaklyOn: self)
+            .store(in: &cancelBag)
     }
     
     private func handleLyricsDisplay(event: (lyrics: Lyrics?, index: Int?)) {

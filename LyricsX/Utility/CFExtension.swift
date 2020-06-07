@@ -6,14 +6,14 @@
 //
 
 import Foundation
+import SwiftCF
 
 // MARK: - CFStringTokenizer
 
 extension NSString {
     
     var dominantLanguage: String? {
-        let cfStr = self as CFString
-        return CFStringTokenizerCopyBestStringLanguage(cfStr, cfStr.fullRange) as String?
+        return CFStringTokenizer.bestLanguage(for: .from(self))?.asSwift
     }
 }
 
