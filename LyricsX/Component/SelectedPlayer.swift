@@ -8,7 +8,7 @@
 import Foundation
 import MusicPlayer
 import GenericID
-import CombineX
+import CXShim
 
 extension MusicPlayers {
     

@@ -6,8 +6,8 @@
 //
 
 import Cocoa
-import CombineX
 import CXExtensions
+import CXShim
 import LyricsService
 import MusicPlayer
 

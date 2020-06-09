@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		BB003EFF248F89A700860FF7 /* CXShim in Frameworks */ = {isa = PBXBuildFile; productRef = BB003EFE248F89A700860FF7 /* CXShim */; };
+		BB003F01248F89B700860FF7 /* CXShim in Frameworks */ = {isa = PBXBuildFile; productRef = BB003F00248F89B700860FF7 /* CXShim */; };
 		BB03C8891FDF6FC000FBE0DA /* ChineseConverter+Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB03C8881FDF6FC000FBE0DA /* ChineseConverter+Singleton.swift */; };
 		BB063B2E1E8A93C900A25C3E /* KaraokeLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB063B2D1E8A93C900A25C3E /* KaraokeLyricsView.swift */; };
 		BB0A3AE122803B1D006C2E52 /* TouchBarPlaybackControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63C24E22774B47008CFFBB /* TouchBarPlaybackControlViewController.swift */; };
@@ -325,6 +327,7 @@
 				BB9C3D8323435A5700860698 /* MusicPlayer in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */,
+				BB003EFF248F89A700860FF7 /* CXShim in Frameworks */,
 				BBB03F30232FB40400A3879E /* Semver in Frameworks */,
 				BB58D8BA24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
@@ -343,6 +346,7 @@
 			files = (
 				BBB03F432331DBB000A3879E /* OpenCC in Frameworks */,
 				BB6C75EA248B908F00804AEB /* TouchBarHelper in Frameworks */,
+				BB003F01248F89B700860FF7 /* CXShim in Frameworks */,
 				BB58D8BD24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */,
 				BBB03F3F2331DBB000A3879E /* GenericID in Frameworks */,
 				BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */,
@@ -557,6 +561,7 @@
 				BB22681B234C9085008FAFED /* SwiftCF */,
 				BB350ABD23D0613D00500146 /* CXExtensions */,
 				BB6C75E7248B908500804AEB /* TouchBarHelper */,
+				BB003EFE248F89A700860FF7 /* CXShim */,
 			);
 			productName = LyricsX;
 			productReference = BB4141AA1E458BA800A51775 /* LyricsX.app */;
@@ -590,6 +595,7 @@
 				BB22681D234C908D008FAFED /* SwiftCF */,
 				BB350ABF23D0614800500146 /* CXExtensions */,
 				BB6C75E9248B908F00804AEB /* TouchBarHelper */,
+				BB003F00248F89B700860FF7 /* CXShim */,
 			);
 			productName = LyricsX;
 			productReference = BB5078AD22014C3900B695C3 /* LyricsX.app */;
@@ -695,6 +701,7 @@
 				BB22681A234C9085008FAFED /* XCRemoteSwiftPackageReference "SwiftCF" */,
 				BB350ABC23D0613D00500146 /* XCRemoteSwiftPackageReference "CXExtensions" */,
 				BB6C75E6248B908500804AEB /* XCRemoteSwiftPackageReference "TouchBarHelper" */,
+				BB003EFD248F89A700860FF7 /* XCRemoteSwiftPackageReference "CombineX" */,
 			);
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
 			projectDirPath = "";
@@ -1423,6 +1430,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BB003EFD248F89A700860FF7 /* XCRemoteSwiftPackageReference "CombineX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cx-org/CombineX";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 		BB22681A234C9085008FAFED /* XCRemoteSwiftPackageReference "SwiftCF" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ddddxxx/SwiftCF.git";
@@ -1490,6 +1505,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BB003EFE248F89A700860FF7 /* CXShim */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB003EFD248F89A700860FF7 /* XCRemoteSwiftPackageReference "CombineX" */;
+			productName = CXShim;
+		};
+		BB003F00248F89B700860FF7 /* CXShim */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB003EFD248F89A700860FF7 /* XCRemoteSwiftPackageReference "CombineX" */;
+			productName = CXShim;
+		};
 		BB22681B234C9085008FAFED /* SwiftCF */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB22681A234C9085008FAFED /* XCRemoteSwiftPackageReference "SwiftCF" */;

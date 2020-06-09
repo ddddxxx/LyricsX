@@ -6,7 +6,7 @@
 //
 
 import AppKit
-import CombineX
+import CXShim
 import CXExtensions
 import LyricsService
 import MusicPlayer

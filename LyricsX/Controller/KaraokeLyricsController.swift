@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import CombineX
+import CXShim
 import GenericID
 import LyricsCore
 import MusicPlayer
