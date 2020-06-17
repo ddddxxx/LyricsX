@@ -1435,7 +1435,7 @@
 			repositoryURL = "https://github.com/cx-org/CombineX";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.0;
+				minimumVersion = 0.2.1;
 			};
 		};
 		BB22681A234C9085008FAFED /* XCRemoteSwiftPackageReference "SwiftCF" */ = {

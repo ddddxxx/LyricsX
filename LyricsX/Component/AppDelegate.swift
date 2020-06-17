@@ -41,10 +41,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         #if RELEASE
-            MSAppCenter.start("36777a05-06fd-422e-9375-a934b3c835a5", withServices:[
-                MSAnalytics.self,
-                MSCrashes.self
-            ])
+        MSAppCenter.start("36777a05-06fd-422e-9375-a934b3c835a5", withServices:[
+            MSAnalytics.self,
+            MSCrashes.self
+        ])
         #endif
         
         let controller = AppController.shared
@@ -97,7 +97,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
             AppController.shared.currentLyrics?.persist()
         }
         if defaults[.launchAndQuitWithPlayer] {
-            let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
+            let url = Bundle.main.bundleURL
+                .appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
             groupDefaults[.launchHelperTime] = Date()
             do {
                 try NSWorkspace.shared.launchApplication(at: url, configuration: [:])
