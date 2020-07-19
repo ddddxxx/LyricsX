@@ -12,6 +12,7 @@ import GenericID
 import LyricsCore
 import MusicPlayer
 import OpenCC
+import SwiftCF
 
 class MenuBarLyricsController {
     
@@ -137,32 +138,12 @@ private extension NSStatusItem {
         }
         let carbonPoint = CGPoint(x: point.x, y: screen.frame.height - point.y - 1)
         
-        guard let element = AXUIElement.copyAt(position: carbonPoint) else {
+        guard let element = try? AXUIElement.systemWide().element(at: carbonPoint),
+            let pid = try? element.pid() else {
             return false
         }
         
-        return getpid() == element.pid
-    }
-}
-
-private extension AXUIElement {
-    
-    static func copyAt(position: NSPoint) -> AXUIElement? {
-        var element: AXUIElement?
-        let error = AXUIElementCopyElementAtPosition(AXUIElementCreateSystemWide(), Float(position.x), Float(position.y), &element)
-        guard error == .success else {
-            return nil
-        }
-        return element
-    }
-    
-    var pid: pid_t? {
-        var pid: pid_t = 0
-        let error = AXUIElementGetPid(self, &pid)
-        guard error == .success else {
-            return nil
-        }
-        return pid
+        return getpid() == pid
     }
 }
 
