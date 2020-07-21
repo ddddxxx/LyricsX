@@ -3,6 +3,7 @@
 [![release](https://img.shields.io/github/release/ddddxxx/LyricsX.svg)](https://github.com/ddddxxx/LyricsX/releases)
 [![Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://telegram.me/LyricsXTestFlight)
 [![codebeat badge](https://codebeat.co/badges/d4ea2fbf-89a0-4490-875f-857a1568ec16)](https://codebeat.co/projects/github-com-ddddxxx-lyricsx-master)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fddddxxx%2FLyricsX.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fddddxxx%2FLyricsX?ref=badge_shield)
 
 <img src="docs/img/icon.png" width="128px">
 
@@ -79,3 +80,7 @@ LyricsX is available on the Mac App Store.
 ## ⚠️ Disclaimer
 
 All lyrics are property and copyright of their owners.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fddddxxx%2FLyricsX.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fddddxxx%2FLyricsX?ref=badge_large)
