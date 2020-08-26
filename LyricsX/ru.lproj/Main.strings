@@ -2,7 +2,7 @@
 "1xI-G4-Fsc.headerCell.title" = "Источник";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "No Lyrics\n\nDrag & Drop to import LRC file";
+"aRw-yQ-GNX.title" = "Нет текста\n\nПеретащите для импорта LRC файла";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
 "CW0-AL-Z6N.title" = "Пожертвовать";
@@ -26,28 +26,28 @@
 "FMI-7E-tCo.title" = "Название:";
 
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
-"fmS-zv-RcJ.title" = "Wrong Lyrics";
+"fmS-zv-RcJ.title" = "Неверный текст";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
-"GGU-uz-d9h.title" = "Enable Karaoke Lyrics";
+"GGU-uz-d9h.title" = "Включить караоке текст";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
 "Gza-SX-MCH.ibShadowedToolTip" = "Поверх всех окон";
 
 /* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
-"h6D-jz-GbI.title" = "Search Lyrics...";
+"h6D-jz-GbI.title" = "Искать текст...";
 
 /* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
-"hgd-IJ-u14.title" = "Disable Lyrics for Entire Album";
+"hgd-IJ-u14.title" = "Отключить тексты для всего альбома";
 
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
 "HMU-fa-17B.headerCell.title" = "Исполнитель";
 
 /* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
-"hxE-X4-sJh.title" = "Lyrics";
+"hxE-X4-sJh.title" = "Текст";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
-"IFz-XQ-DHf.title" = "Lyrics Offset:";
+"IFz-XQ-DHf.title" = "Смещение текста:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
 "jWT-S5-YXM.headerCell.title" = "Название";
@@ -56,7 +56,7 @@
 "kNl-ZO-aX6.title" = "Записать в iTunes";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
-"kyJ-kV-2Du.title" = "Show Lyrics Window";
+"kyJ-kV-2Du.title" = "Показать окно с текстом";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
 "l8J-1r-dIZ.title" = "Исполнитель:";
@@ -77,4 +77,4 @@
 "RPR-IV-34T.title" = "Выйти из LyricsX";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "Enable Menu Bar Lyrics";
+"Z7d-yp-uRx.title" = "Включить текст в панели меню";
