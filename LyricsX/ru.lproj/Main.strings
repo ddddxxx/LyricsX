@@ -11,7 +11,7 @@
 "CWo-Qx-2Ut.title" = "Настройки...";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
-"d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
+"d5a-4n-6k8.ibShadowedToolTip" = "Синхронизировать";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
 "DNi-vI-MTr.title" = "Показать в Finder";
