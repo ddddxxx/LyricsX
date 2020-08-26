@@ -134,7 +134,7 @@
 "ppx-ob-WJc.title" = "Сочетания клавиш";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "Search result match the exact search term";
+"rSD-qR-EXA.title" = "Результаты поиска соответствуют точному запросу";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
 "slB-q7-1dB.title" = "Глобальное смещение (мс):";
@@ -161,7 +161,7 @@
 "UfE-QU-Yhm.title" = "Выделение:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "Auto launch & quit with music player";
+"v63-4a-fPw.title" = "Автозапуск и выход вместе с музыкальным плеером";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
 "WfA-pe-S5D.title" = "Язык (требуется перезапуск):";
