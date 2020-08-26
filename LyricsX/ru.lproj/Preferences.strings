@@ -56,7 +56,7 @@
 "bmk-rW-Uot.title" = "Decrease lyrics offset:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "Prefer bilingual lyrics";
+"cBB-zn-Hdh.title" = "Предпочитать двуязычные тексты";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
 "Cmt-it-PXW.title" = "Шрифт:";
@@ -176,7 +176,7 @@
 "XuN-vs-cgI.title" = "Прогресс";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "No Conversion";
+"zhB-kd-WWG.title" = "Без преобразования";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
 "zQK-i2-2Nc.title" = "Customize TouchBar";
