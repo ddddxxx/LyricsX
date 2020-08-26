@@ -71,10 +71,10 @@
 "g2u-8D-dln.title" = "Здесь находятся некоторые экспериментальные функции, которые могут быть недостаточно стабильными, и могут быть удалены в будущем.";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "Enable Touch Bar lyrics";
+"gGL-LB-TXI.title" = "Включить текст в Touch Bar";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "Use system wide now playing application";
+"gin-P2-gb5.title" = "Использовать общесистемный проигрыватель";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "Вертикальный режим";
@@ -95,7 +95,7 @@
 "jFb-kX-VbY.title" = "С переводом";
 
 /* Class = "NSTextFieldCell"; title = "Auto Chinese conversion:"; ObjectID = "JPB-ag-MN7"; */
-"JPB-ag-MN7.title" = "Auto Chinese conversion:";
+"JPB-ag-MN7.title" = "Автопреобразование китайского:";
 
 /* Class = "NSBox"; title = "Preferred music player"; ObjectID = "JYR-Ed-Tax"; */
 "JYR-Ed-Tax.title" = "Предпочитаемый музыкальный проигрыватель";
@@ -122,7 +122,7 @@
 "mo2-3C-gLY.title" = "Увеличить задержку текста:";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
-"N08-TS-lqw.title" = "Auto";
+"N08-TS-lqw.title" = "Авто";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
 "NLl-9L-0gZ.title" = "Музыка не воспроизводится";
@@ -137,13 +137,13 @@
 "rSD-qR-EXA.title" = "Search result match the exact search term";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "Global offset (ms):";
+"slB-q7-1dB.title" = "Глобальное смещение (мс):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "Draggable";
+"T7p-MT-Mrh.title" = "Перетаскиваемый";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
-"TB9-Fk-WAX.title" = "Show lyrics window:";
+"TB9-Fk-WAX.title" = "Показать окно с текстом:";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
 "ThQ-vA-Krb.title" = "Автоматически генерировать фуригану для японских текстов";
