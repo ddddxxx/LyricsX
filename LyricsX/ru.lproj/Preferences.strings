@@ -23,7 +23,7 @@
 "7Ax-7T-26K.title" = "Автоматически";
 
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
-"8JF-Og-z6E.title" = "Display";
+"8JF-Og-z6E.title" = "Отображение";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
 "8Sx-vb-5pB.title" = "Write lyrics to iTunes:";
@@ -38,7 +38,7 @@
 "aMb-zX-bzP.title" = "Настройки";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "Strict Search";
+"As7-rZ-u6c.title" = "Строгий поиск";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
 "aUg-eg-K5C.label" = "Караоке";
@@ -68,7 +68,7 @@
 "EDv-ax-0hI.title" = "Load lyrics beside music file";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "Here are some experimental features that may not be stable enough, and may be removed in the future.";
+"g2u-8D-dln.title" = "Здесь находятся некоторые экспериментальные функции, которые могут быть недостаточно стабильными, и могут быть удалены в будущем.";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
 "gGL-LB-TXI.title" = "Enable Touch Bar lyrics";
@@ -146,7 +146,7 @@
 "TB9-Fk-WAX.title" = "Show lyrics window:";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
+"ThQ-vA-Krb.title" = "Автоматически генерировать фуригану для японских текстов";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "Текст:";
