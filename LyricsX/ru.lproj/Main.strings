@@ -1,11 +1,11 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
-"1xI-G4-Fsc.headerCell.title" = "Source";
+"1xI-G4-Fsc.headerCell.title" = "Источник";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
 "aRw-yQ-GNX.title" = "No Lyrics\n\nDrag & Drop to import LRC file";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
-"CW0-AL-Z6N.title" = "Donate";
+"CW0-AL-Z6N.title" = "Пожертвовать";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
 "CWo-Qx-2Ut.title" = "Настройки...";
@@ -20,10 +20,10 @@
 "eb9-fE-Lgq.title" = "Поиск";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
-"EoO-ld-6Xv.title" = "Donate...";
+"EoO-ld-6Xv.title" = "Пожертвовать...";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
-"FMI-7E-tCo.title" = "Title:";
+"FMI-7E-tCo.title" = "Название:";
 
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
 "fmS-zv-RcJ.title" = "Wrong Lyrics";
@@ -50,7 +50,7 @@
 "IFz-XQ-DHf.title" = "Lyrics Offset:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
-"jWT-S5-YXM.headerCell.title" = "Title";
+"jWT-S5-YXM.headerCell.title" = "Название";
 
 /* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
 "kNl-ZO-aX6.title" = "Записать в iTunes";
@@ -59,16 +59,16 @@
 "kyJ-kV-2Du.title" = "Show Lyrics Window";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
-"l8J-1r-dIZ.title" = "Artist:";
+"l8J-1r-dIZ.title" = "Исполнитель:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.";
+"o52-Z0-lue.title" = "Если вам нравится LyricsX, и вы хотели бы купить мне чашечку кофе, а также помочь продолжить работу над этой программой, вы можете отсканировать QR-код ниже, чтобы сделать великодушное пожертвование.";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "О LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "Check For Update...";
+"Piu-i2-JjD.title" = "Проверить обновление...";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
 "RGl-MT-MQb.title" = "Применить";
