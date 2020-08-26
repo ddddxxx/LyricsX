@@ -8,16 +8,16 @@
 "CW0-AL-Z6N.title" = "Donate";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
-"CWo-Qx-2Ut.title" = "Preferences...";
+"CWo-Qx-2Ut.title" = "Настройки...";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
 "d5a-4n-6k8.ibShadowedToolTip" = "Synchronism";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "Show In Finder";
+"DNi-vI-MTr.title" = "Показать в Finder";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
-"eb9-fE-Lgq.title" = "Search";
+"eb9-fE-Lgq.title" = "Поиск";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
 "EoO-ld-6Xv.title" = "Donate...";
@@ -32,7 +32,7 @@
 "GGU-uz-d9h.title" = "Enable Karaoke Lyrics";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
-"Gza-SX-MCH.ibShadowedToolTip" = "Always on top";
+"Gza-SX-MCH.ibShadowedToolTip" = "Поверх всех окон";
 
 /* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
 "h6D-jz-GbI.title" = "Search Lyrics...";
@@ -41,7 +41,7 @@
 "hgd-IJ-u14.title" = "Disable Lyrics for Entire Album";
 
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
-"HMU-fa-17B.headerCell.title" = "Artist";
+"HMU-fa-17B.headerCell.title" = "Исполнитель";
 
 /* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
 "hxE-X4-sJh.title" = "Lyrics";
@@ -53,7 +53,7 @@
 "jWT-S5-YXM.headerCell.title" = "Title";
 
 /* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
-"kNl-ZO-aX6.title" = "Write to iTunes";
+"kNl-ZO-aX6.title" = "Записать в iTunes";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
 "kyJ-kV-2Du.title" = "Show Lyrics Window";
@@ -65,16 +65,16 @@
 "o52-Z0-lue.title" = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
-"PdE-VG-JUC.title" = "About LyricsX";
+"PdE-VG-JUC.title" = "О LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
 "Piu-i2-JjD.title" = "Check For Update...";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "Apply";
+"RGl-MT-MQb.title" = "Применить";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "Quit LyricsX";
+"RPR-IV-34T.title" = "Выйти из LyricsX";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
 "Z7d-yp-uRx.title" = "Enable Menu Bar Lyrics";
