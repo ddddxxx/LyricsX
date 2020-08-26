@@ -1,8 +1,8 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "Lyrics saving path:";
+"0M7-ao-0jb.title" = "Путь для сохранения текстов:";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
-"0VO-JB-ubq.title" = "Auto";
+"0VO-JB-ubq.title" = "Авто";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
 "19E-DG-Q23.title" = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression.";
@@ -29,19 +29,19 @@
 "8Sx-vb-5pB.title" = "Write lyrics to iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "Font:";
+"992-tg-edx.title" = "Шрифт:";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
 "AiM-vg-FvQ.title" = "Simplified Chinese";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "Preferences";
+"aMb-zX-bzP.title" = "Настройки";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
 "As7-rZ-u6c.title" = "Strict Search";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
-"aUg-eg-K5C.label" = "Karaoke";
+"aUg-eg-K5C.label" = "Караоке";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
 "bbd-ra-rSF.title" = "Combine menubar icon with menubar lyrics";
