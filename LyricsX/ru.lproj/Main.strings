@@ -5,7 +5,7 @@
 "aRw-yQ-GNX.title" = "Нет текста\n\nПеретащите для импорта LRC файла";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
-"CW0-AL-Z6N.title" = "Пожертвовать";
+"CW0-AL-Z6N.title" = "Поддержать";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
 "CWo-Qx-2Ut.title" = "Настройки...";
@@ -20,7 +20,7 @@
 "eb9-fE-Lgq.title" = "Поиск";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
-"EoO-ld-6Xv.title" = "Пожертвовать...";
+"EoO-ld-6Xv.title" = "Поддержать...";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
 "FMI-7E-tCo.title" = "Название:";
