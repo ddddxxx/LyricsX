@@ -1,41 +1,41 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "Lyrics saving path:";
+"0M7-ao-0jb.title" = "Шлях для збереження текстів:";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
-"0VO-JB-ubq.title" = "Auto";
+"0VO-JB-ubq.title" = "Авто";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression.";
+"19E-DG-Q23.title" = "Рядки текстів, що відповідають наступним правилам, будуть проігноровані. Використовуйте \"/\", щоб почати регулярний вираз.";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
-"3Bt-md-QNc.title" = "Lyrics";
+"3Bt-md-QNc.title" = "Текст";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
-"5dp-p5-YmE.title" = "One line mode";
+"5dp-p5-YmE.title" = "Режим в один рядок";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
-"6FU-j0-FTV.title" = "Traditional Chinese";
+"6FU-j0-FTV.title" = "Традиційна китайська";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "Write lyrics to iTunes:";
+"6We-TB-Wfc.title" = "Запис тексту в iTunes:";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
-"7Ax-7T-26K.title" = "Automatically";
+"7Ax-7T-26K.title" = "Автоматично";
 
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
-"8JF-Og-z6E.title" = "Display";
+"8JF-Og-z6E.title" = "Відображення";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "Write lyrics to iTunes:";
+"8Sx-vb-5pB.title" = "Запис тексту в iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "Font:";
+"992-tg-edx.title" = "Шрифт:";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
-"AiM-vg-FvQ.title" = "Simplified Chinese";
+"AiM-vg-FvQ.title" = "Спрощена китайська";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "Preferences";
+"aMb-zX-bzP.title" = "Налаштування";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
 "As7-rZ-u6c.title" = "Strict Search";
