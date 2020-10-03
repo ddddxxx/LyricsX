@@ -7,7 +7,7 @@
 
 import AppKit
 import MusicPlayer
-import CombineX
+import CXShim
 
 @available(OSX 10.12.2, *)
 class TouchBarPlaybackControlViewController: NSViewController {

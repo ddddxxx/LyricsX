@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/cx-org/CombineX",
         "state": {
           "branch": null,
-          "revision": "6bc3b53533711871cf0d96e50c2a2c733abb4d47",
-          "version": "0.2.0"
+          "revision": "9ce154b155643ec8939d84cb6ae00c331ff3eca0",
+          "version": "0.2.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/ddddxxx/GenericID.git",
         "state": {
           "branch": null,
-          "revision": "42c61a3a266f61448800f237199ad39e6083060b",
-          "version": "0.5.0"
+          "revision": "3f6f529365c04a833f983a835a3fadc1c987ddc5",
+          "version": "0.5.1"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
           "branch": null,
-          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
-          "version": "2.2.0"
+          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
+          "version": "2.2.1"
         }
       },
       {
@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/ddddxxx/SwiftCF.git",
         "state": {
           "branch": null,
-          "revision": "1d0af3a0a2fce803e8f51a033847cf3c70e4e8ad",
-          "version": "0.1.1"
+          "revision": "efb0309d747cc0d0c288859cbb637947860e4a2e",
+          "version": "0.1.3"
         }
       },
       {
@@ -107,6 +107,15 @@
           "branch": null,
           "revision": "64a4534c17480b15b87cfa114ffcc5aa26a2d35f",
           "version": "1.0.1"
+        }
+      },
+      {
+        "package": "TouchBarHelper",
+        "repositoryURL": "https://github.com/ddddxxx/TouchBarHelper",
+        "state": {
+          "branch": null,
+          "revision": "003d41193ac1c6ab9cc570a1923587298014bf1d",
+          "version": "0.1.0"
         }
       }
     ]

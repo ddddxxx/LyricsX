@@ -76,10 +76,10 @@ class KaraokeLabel: NSTextField {
             }
             guard shouldDrawFurigana else { continue }
             if let (furigana, range) = tokenizer.currentFuriganaAnnotation(in: string) {
-                var attr: [CFAttributedString.Key: Any] = [.rubySizeFactor: 0.5]
-                attr[.foregroundColor] = textColor
+                var attr: [CFAttributedString.Key: Any] = [.ctRubySizeFactor: 0.5]
+                attr[.ctForegroundColor] = textColor
                 let annotation = CTRubyAnnotation.create(furigana, attributes: attr)
-                attrString.addAttribute(.rubyAnnotation, value: annotation, range: range)
+                attrString.addAttribute(.ctRubyAnnotation, value: annotation, range: range)
             }
         }
         textColor?.do { attrString.addAttributes([.foregroundColor: $0], range: attrString.fullRange) }
@@ -168,7 +168,7 @@ class KaraokeLabel: NSTextField {
         progressLayer.mask = mask
 
         guard let index = progress.firstIndex(where: { $0.0 > 0 }) else { return }
-        var map = progress.map { ($0.0, line.offset(charIndex: $0.1)) }
+        var map = progress.map { ($0.0, line.offset(charIndex: $0.1).primary) }
         if index > 0 {
             let progress = map[index - 1].1 + CGFloat(map[index - 1].0) * (map[index].1 - map[index - 1].1) / CGFloat(map[index].0 - map[index - 1].0)
             map.replaceSubrange(..<index, with: [(0, progress)])
@@ -209,6 +209,8 @@ class KaraokeLabel: NSTextField {
     }
 }
 
+import CoreText
+
 extension CFAttributedString.Key {
-    static let rubyAnnotation = kCTRubyAnnotationAttributeName as CFAttributedString.Key
+    static let ctForegroundColor = kCTForegroundColorAttributeName as CFAttributedString.Key
 }

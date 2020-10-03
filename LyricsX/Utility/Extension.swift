@@ -121,8 +121,8 @@ extension UserDefaults {
 extension Lyrics {
     
     var fileName: String? {
-        guard let title = metadata.title?.replacingOccurrences(of: "/", with: "&"),
-            let artist = metadata.artist?.replacingOccurrences(of: "/", with: "&") else {
+        guard let title = metadata.title?.replacingOccurrences(of: "/", with: ":"),
+            let artist = metadata.artist?.replacingOccurrences(of: "/", with: ":") else {
             return nil
         }
         return "\(title) - \(artist).lrcx"

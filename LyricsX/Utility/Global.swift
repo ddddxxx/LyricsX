@@ -6,9 +6,9 @@
 //
 
 import Cocoa
+import CXShim
 import GenericID
 import MusicPlayer
-import CombineX
 
 typealias ObservableObject = CombineX.ObservableObject
 typealias Published = CombineX.Published

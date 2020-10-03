@@ -1,182 +1,182 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "مسیر ذخیره سازی ترانه ها:";
+"0M7-ao-0jb.title" = "Шлях для збереження текстів:";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
-"0VO-JB-ubq.title" = "خودکار";
+"0VO-JB-ubq.title" = "Авто";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";
+"19E-DG-Q23.title" = "Рядки текстів, що відповідають наступним правилам, будуть проігноровані. Використовуйте \"/\", щоб почати регулярний вираз.";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
-"3Bt-md-QNc.title" = "ترانه ها";
+"3Bt-md-QNc.title" = "Текст";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
-"5dp-p5-YmE.title" = "نمایش در یک خط";
+"5dp-p5-YmE.title" = "Режим в один рядок";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
-"6FU-j0-FTV.title" = "زبانی چینی سنتی";
+"6FU-j0-FTV.title" = "Традиційна китайська";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "نوشتن ترانه در آیتیونز:";
+"6We-TB-Wfc.title" = "Запис тексту в iTunes:";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
-"7Ax-7T-26K.title" = "به صورت خودکار";
+"7Ax-7T-26K.title" = "Автоматично";
 
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
-"8JF-Og-z6E.title" = "نمایش";
+"8JF-Og-z6E.title" = "Відображення";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "نوشتن ترانه ها در آیتیونز:";
+"8Sx-vb-5pB.title" = "Запис тексту в iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "فونت:";
+"992-tg-edx.title" = "Шрифт:";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
-"AiM-vg-FvQ.title" = "زبانی چینی ساده";
+"AiM-vg-FvQ.title" = "Спрощена китайська";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "تنظیمات";
+"aMb-zX-bzP.title" = "Налаштування";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "جستجوی دقیق";
+"As7-rZ-u6c.title" = "Строгий пошук";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
-"aUg-eg-K5C.label" = "کاراکویه";
+"aUg-eg-K5C.label" = "Караоке";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "تلفیق آیکون منو با ترانه منو";
+"bbd-ra-rSF.title" = "Об'єднати піктограму меню з текстом пісні";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "غیرفعال سازی نمایش متن هنگامی که:";
+"bDS-Lb-m34.title" = "Вимкнути тексти, коли:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
-"bFk-1g-XeL.title" = "آزمایشگاه";
+"bFk-1g-XeL.title" = "Лабораторія";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "کم کردن فاصله متن ترانه:";
+"bmk-rW-Uot.title" = "Зменшити затримку тексту:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "نمایش متن ترانه دو زبانه (در صورت وجود)";
+"cBB-zn-Hdh.title" = "Віддавати перевагу двомовним текстам";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
-"Cmt-it-PXW.title" = "فونت:";
+"Cmt-it-PXW.title" = "Шрифт:";
 
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
-"d5d-dC-DK4.title" = "عمومی";
+"d5d-dC-DK4.title" = "Основні";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
-"EDv-ax-0hI.title" = "بارگذاری ترانه کنار فایل موزیک";
+"EDv-ax-0hI.title" = "Завантажувати текст поруч із музичним файлом";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "در اینجا تعدادی از قابلیت‌های آزمایشی قرار دارند که ممکن است به اندازه کافی پایدار نباشند و یا در آینده حذف شوند.";
+"g2u-8D-dln.title" = "Ось декілька експериментальних функцій, які можуть бути недостатньо стабільними, і також можуть бути усунені в майбутньому.";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "فعال‌سازی متن ترانه در Touch Bar";
+"gGL-LB-TXI.title" = "Увімкнути текст у Touch Bar";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "استفاده از قابلیت داخلی سیستم";
+"gin-P2-gb5.title" = "Використовувати загальносистемний програвач";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
-"h4G-Un-dtm.title" = "حالت عمودی";
+"h4G-Un-dtm.title" = "Вертикальний режим";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
-"hsu-H9-9Bd.title" = "سایه";
+"hsu-H9-9Bd.title" = "Тінь";
 
 /* Class = "NSMenuItem"; title = "Other..."; ObjectID = "HvN-Ou-h1t"; */
-"HvN-Ou-h1t.title" = "سایر...";
+"HvN-Ou-h1t.title" = "Інший...";
 
 /* Class = "NSMenuItem"; title = "LyricsX (Default)"; ObjectID = "IE7-IT-oPk"; */
-"IE7-IT-oPk.title" = "LyricsX (پیش فرض)";
+"IE7-IT-oPk.title" = "LyricsX (за замовчуванням)";
 
 /* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
-"iMD-Wy-Bm7.title" = "گرفتن عکس از صفحه";
+"iMD-Wy-Bm7.title" = "Робиться знімок екрану";
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
-"jFb-kX-VbY.title" = "با ترجمه";
+"jFb-kX-VbY.title" = "З перекладом";
 
 /* Class = "NSTextFieldCell"; title = "Auto Chinese conversion:"; ObjectID = "JPB-ag-MN7"; */
-"JPB-ag-MN7.title" = "تبدیل خودکار به زبانی چینی:";
+"JPB-ag-MN7.title" = "Автоперетворення китайської:";
 
 /* Class = "NSBox"; title = "Preferred music player"; ObjectID = "JYR-Ed-Tax"; */
-"JYR-Ed-Tax.title" = "موزیک پلیر درخواه";
+"JYR-Ed-Tax.title" = "Бажаний музичний програвач";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
-"kEd-lC-aAH.title" = "فعالسازی فیلتر بر روی ترانه ها";
+"kEd-lC-aAH.title" = "Увімкнути фільтр текстів";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
-"kP4-4q-ed9.title" = "جستجوی ترانه:";
+"kP4-4q-ed9.title" = "Шукати текст:";
 
 /* Class = "NSTabViewItem"; label = "Window"; ObjectID = "LbQ-p9-Zti"; */
-"LbQ-p9-Zti.label" = "پنجره";
+"LbQ-p9-Zti.label" = "Вікно";
 
 /* Class = "NSButtonCell"; title = "Mouse passing by"; ObjectID = "LH4-YZ-Qvs"; */
-"LH4-YZ-Qvs.title" = "گذر موس از";
+"LH4-YZ-Qvs.title" = "При наведенні миші";
 
 /* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
-"lN1-gG-AVq.title" = "فیلتر";
+"lN1-gG-AVq.title" = "Фільтр";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "نمایش/پنهان متن ترانه به صورت Karaoke:";
+"lOc-OP-AcU.title" = "Показати/приховати текст караоке:";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
-"mo2-3C-gLY.title" = "افزایش فاصله متن ترانه:";
+"mo2-3C-gLY.title" = "Збільшити затримку тексту:";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
-"N08-TS-lqw.title" = "خودکار";
+"N08-TS-lqw.title" = "Авто";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
-"NLl-9L-0gZ.title" = "موسیقی ای در حال پخش نیست";
+"NLl-9L-0gZ.title" = "Музика не відтворюється";
 
 /* Class = "NSButtonCell"; title = "Help translate LyricsX"; ObjectID = "oiH-T7-agJ"; */
-"oiH-T7-agJ.title" = "کمک به ترجمه LyricsX";
+"oiH-T7-agJ.title" = "Допоможіть перекласти LyricsX";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
-"ppx-ob-WJc.title" = "میانبر";
+"ppx-ob-WJc.title" = "Гарячі клавіші";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "Search result match the exact search term";
+"rSD-qR-EXA.title" = "Результати пошуку відповідають точному запиту";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "Global offset (ms):";
+"slB-q7-1dB.title" = "Глобальний зсув (мс):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "Draggable";
+"T7p-MT-Mrh.title" = "Перетягуємий";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
-"TB9-Fk-WAX.title" = "Show lyrics window:";
+"TB9-Fk-WAX.title" = "Показати вікно з текстом:";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
+"ThQ-vA-Krb.title" = "Автоматично створювати фурігану для японських текстів";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
-"Txi-D9-jjB.title" = "متن:";
+"Txi-D9-jjB.title" = "Текст:";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "انتخاب به عنوان متن اشتباه:";
+"uEb-Q5-cda.title" = "Позначити як неправильний текст:";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
-"Uer-qJ-3T9.title" = "پس زمینه";
+"Uer-qJ-3T9.title" = "Фон";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
-"UfE-QU-Yhm.title" = "Hightlight:";
+"UfE-QU-Yhm.title" = "Виділення:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "باز و بسته شدن خودکار همراه با آهنگ";
+"v63-4a-fPw.title" = "Автоматичний запуск та вихід разом з музичним плеєром";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "Language (Requires Restart):";
+"WfA-pe-S5D.title" = "Мова (потрібний перезапуск):";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "Show / Hide menu bar lyrics:";
+"XHQ-gX-urF.title" = "Показати/приховати текст у рядку меню:";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "ریست";
+"XUF-aM-ZmS.title" = "Скинути";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
-"XuN-vs-cgI.title" = "پیشرفت";
+"XuN-vs-cgI.title" = "Прогрес";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "No Conversion";
+"zhB-kd-WWG.title" = "Без перетворення";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
-"zQK-i2-2Nc.title" = "Customize TouchBar";
+"zQK-i2-2Nc.title" = "Налаштування Touch Bar";

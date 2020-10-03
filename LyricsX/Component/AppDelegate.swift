@@ -6,11 +6,12 @@
 //
 
 import Cocoa
-import Crashlytics
-import Fabric
 import GenericID
 import MASShortcut
 import MusicPlayer
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 #if !IS_FOR_MAS
 import Sparkle
@@ -27,14 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
     
-    var desktopLyrics: KaraokeLyricsWindowController?
-    
-    var _touchBarLyrics: Any?
-    
-    @available(OSX 10.12.2, *)
-    var touchBarLyrics: TouchBarLyrics? {
-        return self._touchBarLyrics as! TouchBarLyrics?
-    }
+    var karaokeLyricsWC: KaraokeLyricsWindowController?
     
     lazy var searchLyricsWC: NSWindowController = {
         // swiftlint:disable:next force_cast
@@ -47,15 +41,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         #if RELEASE
-            Fabric.with([Crashlytics.self])
+        MSAppCenter.start("36777a05-06fd-422e-9375-a934b3c835a5", withServices:[
+            MSAnalytics.self,
+            MSCrashes.self
+        ])
         #endif
         
         let controller = AppController.shared
         
-        desktopLyrics = KaraokeLyricsWindowController()
-        desktopLyrics?.showWindow(nil)
+        karaokeLyricsWC = KaraokeLyricsWindowController()
+        karaokeLyricsWC?.showWindow(nil)
         
-        MenuBarLyrics.shared.statusItem.menu = statusBarMenu
+        MenuBarLyricsController.shared.statusItem.menu = statusBarMenu
         statusBarMenu.delegate = self
         
         lyricsOffsetStepper.bind(.value,
@@ -84,11 +81,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         #else
         SUUpdater.shared()?.checkForUpdatesInBackground()
         if #available(OSX 10.12.2, *) {
-            observeDefaults(key: .touchBarLyricsEnabled, options: [.new, .initial]) { [unowned self] _, change in
-                if change.newValue, self.touchBarLyrics == nil {
-                    self._touchBarLyrics = TouchBarLyrics()
-                } else if !change.newValue, self.touchBarLyrics != nil {
-                    self._touchBarLyrics = nil
+            observeDefaults(key: .touchBarLyricsEnabled, options: [.new, .initial]) { _, change in
+                if change.newValue, TouchBarLyricsController.shared == nil {
+                    TouchBarLyricsController.shared = TouchBarLyricsController()
+                } else if !change.newValue, TouchBarLyricsController.shared != nil {
+                    TouchBarLyricsController.shared = nil
                 }
             }
         }
@@ -100,7 +97,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
             AppController.shared.currentLyrics?.persist()
         }
         if defaults[.launchAndQuitWithPlayer] {
-            let url = Bundle.main.bundleURL.appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
+            let url = Bundle.main.bundleURL
+                .appendingPathComponent("Contents/Library/LoginItems/LyricsXHelper.app")
             groupDefaults[.launchHelperTime] = Date()
             do {
                 try NSWorkspace.shared.launchApplication(at: url, configuration: [:])
@@ -150,6 +148,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         controller.showWindow(nil)
         NSApp.activate(ignoringOtherApps: true)
         lyricsHUD = controller
+    }
+    
+    @IBAction func aboutLyricsXAction(_ sender: Any) {
+        if #available(OSX 10.13, *) {
+            let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            #if IS_FOR_MAS
+                let channel = "App Store"
+            #else
+                let channel = "GitHub"
+            #endif
+            let versionString = "\(channel) Version \(version)"
+            NSApp.orderFrontStandardAboutPanel(options: [.applicationVersion: versionString])
+        } else {
+            NSApp.orderFrontStandardAboutPanel(sender)
+        }
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     @IBAction func checkUpdateAction(_ sender: Any) {

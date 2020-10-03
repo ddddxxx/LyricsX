@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -33,7 +33,7 @@
                                     <attributedString key="userComments">
                                         <fragment content="#bc-ignore!">
                                             <attributes>
-                                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                <font key="NSFont" metaFont="message" size="11"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -42,7 +42,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="#bc-ignore!">
                                         <attributes>
-                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                            <font key="NSFont" metaFont="message" size="11"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -56,7 +56,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -69,7 +69,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -83,7 +83,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -96,7 +96,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -109,7 +109,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -123,7 +123,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -136,7 +136,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -149,7 +149,7 @@
                                     <attributedString key="userComments">
                                         <fragment content="#bc-ignore!">
                                             <attributes>
-                                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                <font key="NSFont" metaFont="message" size="11"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -158,7 +158,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="#bc-ignore!">
                                         <attributes>
-                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                            <font key="NSFont" metaFont="message" size="11"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -172,7 +172,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -185,7 +185,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -199,7 +199,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -212,7 +212,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -225,7 +225,7 @@
                                     <attributedString key="userComments">
                                         <fragment content="#bc-ignore!">
                                             <attributes>
-                                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                <font key="NSFont" metaFont="message" size="11"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -234,7 +234,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="#bc-ignore!">
                                         <attributes>
-                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                            <font key="NSFont" metaFont="message" size="11"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -244,7 +244,7 @@
                         <attributedString key="userComments">
                             <fragment content="#bc-ignore!">
                                 <attributes>
-                                    <font key="NSFont" metaFont="controlContent" size="11"/>
+                                    <font key="NSFont" metaFont="message" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -295,7 +295,7 @@
                             <attributedString key="userComments">
                                 <fragment content="#bc-ignore!">
                                     <attributes>
-                                        <font key="NSFont" metaFont="controlContent" size="11"/>
+                                        <font key="NSFont" metaFont="message" size="11"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
@@ -345,7 +345,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="#bc-ignore!">
                                         <attributes>
-                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                            <font key="NSFont" metaFont="message" size="11"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -362,7 +362,7 @@
                         <menuItem title="About LyricsX" tag="400" id="PdE-VG-JUC">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <segue destination="UhY-od-Efn" kind="show" id="uwp-dc-lIT"/>
+                                <action selector="aboutLyricsXAction:" target="Ady-hI-5gd" id="lXd-fE-0si"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Check For Update..." tag="401" id="Piu-i2-JjD">
@@ -417,7 +417,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="#bc-ignore!">
                                         <attributes>
-                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                            <font key="NSFont" metaFont="message" size="11"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -434,13 +434,13 @@
                                     <real key="minimum" value="-10000"/>
                                     <real key="maximum" value="10000"/>
                                 </numberFormatter>
-                                <font key="font" metaFont="controlContent" size="11"/>
+                                <font key="font" metaFont="message" size="11"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <attributedString key="userComments">
                                     <fragment content="#bc-ignore!">
                                         <attributes>
-                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                            <font key="NSFont" metaFont="message" size="11"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -649,7 +649,7 @@ IA
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AYj-Hi-KJT">
                                         <rect key="frame" x="14" y="5" width="31" height="14"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title:" id="FMI-7E-tCo">
-                                            <font key="font" metaFont="controlContent" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -660,7 +660,7 @@ IA
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="513-43-6tC"/>
                                         </constraints>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" drawsBackground="YES" id="h9L-DM-6OQ">
-                                            <font key="font" metaFont="controlContent" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -676,7 +676,7 @@ IA
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GVe-a1-Feu">
                                         <rect key="frame" x="261" y="5" width="37" height="14"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Artist:" id="l8J-1r-dIZ">
-                                            <font key="font" metaFont="controlContent" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -684,7 +684,7 @@ IA
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1eb-gg-tTU">
                                         <rect key="frame" x="304" y="3" width="191" height="19"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" drawsBackground="YES" id="q3k-EA-zCa">
-                                            <font key="font" metaFont="controlContent" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -701,7 +701,7 @@ IA
                                         <rect key="frame" x="535" y="2" width="49" height="19"/>
                                         <buttonCell key="cell" type="roundTextured" title="Search" bezelStyle="texturedRounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="eb9-fE-Lgq">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="controlContent" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="searchAction:" target="hFt-BA-jFS" id="LsO-O6-hwU"/>
@@ -750,7 +750,6 @@ IA
                                                     <tableColumns>
                                                         <tableColumn identifier="SearchResult.TableColumn.Title" editable="NO" width="226.5" minWidth="40" maxWidth="1000" id="jWT-S5-YXM">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Title">
-                                                                <font key="font" metaFont="controlContent" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -761,7 +760,7 @@ IA
                                                                 <attributedString key="userComments">
                                                                     <fragment content="#bc-ignore!">
                                                                         <attributes>
-                                                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                                            <font key="NSFont" metaFont="message" size="11"/>
                                                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                         </attributes>
                                                                     </fragment>
@@ -771,7 +770,6 @@ IA
                                                         </tableColumn>
                                                         <tableColumn identifier="SearchResult.TableColumn.Artist" editable="NO" width="96.5" minWidth="40" maxWidth="1000" id="HMU-fa-17B">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Artist">
-                                                                <font key="font" metaFont="controlContent" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -782,7 +780,7 @@ IA
                                                                 <attributedString key="userComments">
                                                                     <fragment content="#bc-ignore!">
                                                                         <attributes>
-                                                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                                            <font key="NSFont" metaFont="message" size="11"/>
                                                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                         </attributes>
                                                                     </fragment>
@@ -792,7 +790,6 @@ IA
                                                         </tableColumn>
                                                         <tableColumn identifier="SearchResult.TableColumn.Source" editable="NO" width="67" minWidth="10" maxWidth="3.4028234663852886e+38" id="1xI-G4-Fsc">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Source">
-                                                                <font key="font" metaFont="controlContent" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </tableHeaderCell>
@@ -803,7 +800,7 @@ IA
                                                                 <attributedString key="userComments">
                                                                     <fragment content="#bc-ignore!">
                                                                         <attributes>
-                                                                            <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                                            <font key="NSFont" metaFont="message" size="11"/>
                                                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                         </attributes>
                                                                     </fragment>
@@ -912,7 +909,7 @@ IA
                                         <rect key="frame" x="542" y="2" width="42" height="19"/>
                                         <buttonCell key="cell" type="roundTextured" title="Apply" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RGl-MT-MQb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="controlContent" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="useLyricsAction:" target="hFt-BA-jFS" id="rXV-dP-PRF"/>
@@ -967,159 +964,6 @@ IA
             </objects>
             <point key="canvasLocation" x="667" y="1073"/>
         </scene>
-        <!--About Window Controller-->
-        <scene sceneID="Hdl-QT-VuU">
-            <objects>
-                <windowController showSeguePresentationStyle="single" id="UhY-od-Efn" userLabel="About Window Controller" customClass="AutoActivateWindowController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="About" animationBehavior="default" id="eoF-WG-hma">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="512" y="320" width="300" height="314"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
-                        <connections>
-                            <outlet property="delegate" destination="UhY-od-Efn" id="QfJ-y2-X3g"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="O7l-PK-pmn" kind="relationship" relationship="window.shadowedContentViewController" id="yhu-XA-I4F"/>
-                    </connections>
-                </windowController>
-                <customObject id="IIS-Wj-YKx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-372" y="1024"/>
-        </scene>
-        <!--About View Controller-->
-        <scene sceneID="gP2-Kp-Zmc">
-            <objects>
-                <viewController showSeguePresentationStyle="single" id="O7l-PK-pmn" userLabel="About View Controller" customClass="AboutViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="2sC-HC-E3f">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="313"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jrv-2U-Mj2">
-                                <rect key="frame" x="118" y="239" width="64" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="fMu-rP-Qra"/>
-                                    <constraint firstAttribute="height" constant="64" id="uVm-FO-Rhf"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="m3j-Wq-MJb"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p25-E0-ITV">
-                                <rect key="frame" x="114" y="212" width="72" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="AppName" id="m4c-y5-n5Z">
-                                    <font key="font" metaFont="systemBold" size="14"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    <attributedString key="userComments">
-                                        <fragment content="#bc-ignore!">
-                                            <attributes>
-                                                <font key="NSFont" metaFont="controlContent" size="11"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bfW-sb-oUW">
-                                <rect key="frame" x="130" y="191" width="40" height="13"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="Version" id="tMS-HS-dqi">
-                                    <font key="font" metaFont="system" size="10"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    <attributedString key="userComments">
-                                        <fragment content="#bc-ignore!">
-                                            <attributes>
-                                                <font key="NSFont" metaFont="controlContent" size="11"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </textFieldCell>
-                            </textField>
-                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="SY5-cn-UXd">
-                                <rect key="frame" x="0.0" y="180" width="300" height="5"/>
-                            </box>
-                            <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="5X9-bS-DKD">
-                                <rect key="frame" x="0.0" y="42" width="300" height="140"/>
-                                <clipView key="contentView" drawsBackground="NO" id="XIB-fT-5rI">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="140"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="soi-av-CRR">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="140"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="300" height="140"/>
-                                            <size key="maxSize" width="463" height="10000000"/>
-                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        </textView>
-                                    </subviews>
-                                </clipView>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="50M-CA-dlO"/>
-                                </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="IqI-vO-eog">
-                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="8L8-Ts-4ej">
-                                    <rect key="frame" x="284" y="0.0" width="16" height="140"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="wZy-gJ-1Qi">
-                                <rect key="frame" x="0.0" y="39" width="300" height="5"/>
-                            </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nYn-MG-f7p">
-                                <rect key="frame" x="56" y="20" width="188" height="13"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="Copyright © 2017-2020 Xander Deng." id="0X5-3L-Uzo">
-                                    <font key="font" metaFont="system" size="10"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    <attributedString key="userComments">
-                                        <fragment content="#bc-ignore!">
-                                            <attributes>
-                                                <font key="NSFont" metaFont="controlContent" size="11"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="bfW-sb-oUW" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="3c2-en-3UP"/>
-                            <constraint firstItem="nYn-MG-f7p" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="4YD-Do-apd"/>
-                            <constraint firstItem="5X9-bS-DKD" firstAttribute="top" secondItem="SY5-cn-UXd" secondAttribute="bottom" id="DjV-KL-v7h"/>
-                            <constraint firstItem="nYn-MG-f7p" firstAttribute="top" secondItem="wZy-gJ-1Qi" secondAttribute="bottom" constant="8" id="DpT-0p-Ebs"/>
-                            <constraint firstItem="wZy-gJ-1Qi" firstAttribute="top" secondItem="5X9-bS-DKD" secondAttribute="bottom" id="Jbd-bP-lNF"/>
-                            <constraint firstItem="5X9-bS-DKD" firstAttribute="leading" secondItem="2sC-HC-E3f" secondAttribute="leading" id="Lb6-TN-T0d"/>
-                            <constraint firstItem="SY5-cn-UXd" firstAttribute="leading" secondItem="2sC-HC-E3f" secondAttribute="leading" id="MWH-3r-XaE"/>
-                            <constraint firstItem="p25-E0-ITV" firstAttribute="top" secondItem="jrv-2U-Mj2" secondAttribute="bottom" constant="10" id="NIt-bR-VQ1"/>
-                            <constraint firstItem="SY5-cn-UXd" firstAttribute="top" secondItem="bfW-sb-oUW" secondAttribute="bottom" constant="8" id="Qvp-0f-xzA"/>
-                            <constraint firstItem="jrv-2U-Mj2" firstAttribute="top" secondItem="2sC-HC-E3f" secondAttribute="top" constant="10" id="SYZ-ME-WZD"/>
-                            <constraint firstItem="jrv-2U-Mj2" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="Wer-o3-WNB"/>
-                            <constraint firstAttribute="trailing" secondItem="5X9-bS-DKD" secondAttribute="trailing" id="YOa-Sc-OlQ"/>
-                            <constraint firstItem="wZy-gJ-1Qi" firstAttribute="leading" secondItem="2sC-HC-E3f" secondAttribute="leading" id="c0L-h7-KCA"/>
-                            <constraint firstItem="p25-E0-ITV" firstAttribute="centerX" secondItem="2sC-HC-E3f" secondAttribute="centerX" id="gAw-ro-cJt"/>
-                            <constraint firstAttribute="trailing" secondItem="wZy-gJ-1Qi" secondAttribute="trailing" id="h76-Ny-cCD"/>
-                            <constraint firstItem="bfW-sb-oUW" firstAttribute="top" secondItem="p25-E0-ITV" secondAttribute="bottom" constant="8" id="wEv-vu-Ov6"/>
-                            <constraint firstAttribute="bottom" secondItem="nYn-MG-f7p" secondAttribute="bottom" constant="20" id="ybC-3u-UGU"/>
-                            <constraint firstAttribute="trailing" secondItem="SY5-cn-UXd" secondAttribute="trailing" id="zFd-VJ-5dL"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="appName" destination="p25-E0-ITV" id="xl8-oD-AQ0"/>
-                        <outlet property="appVersion" destination="bfW-sb-oUW" id="feN-Ke-oNm"/>
-                        <outlet property="copyright" destination="nYn-MG-f7p" id="TLa-ev-moF"/>
-                        <outlet property="creditsTextView" destination="soi-av-CRR" id="jhB-er-ly6"/>
-                    </connections>
-                </viewController>
-                <customObject id="PnP-sS-v9c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="75" y="1024"/>
-        </scene>
         <!--Donate Window Controller-->
         <scene sceneID="ttD-5N-HU8">
             <objects>
@@ -1139,12 +983,12 @@ IA
                 </windowController>
                 <customObject id="fDl-4Y-pyj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-372" y="1471"/>
+            <point key="canvasLocation" x="-390" y="1072"/>
         </scene>
         <!--Donate View Controller-->
         <scene sceneID="Xh3-eq-XhM">
             <objects>
-                <viewController id="cxf-WZ-T1I" userLabel="Donate View Controller" sceneMemberID="viewController">
+                <viewController id="cxf-WZ-T1I" userLabel="Donate View Controller" customClass="DonateViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Btv-Tm-tpH">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="248"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1164,6 +1008,13 @@ IA
                                     <constraint firstAttribute="width" constant="100" id="hKN-7P-DeX"/>
                                     <constraint firstAttribute="height" constant="100" id="yvo-74-KHB"/>
                                 </constraints>
+                                <gestureRecognizers>
+                                    <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="10" id="PKn-Ur-dmP">
+                                        <connections>
+                                            <action selector="showDebugPanelAction:" target="cxf-WZ-T1I" id="L5e-XM-MLo"/>
+                                        </connections>
+                                    </clickGestureRecognizer>
+                                </gestureRecognizers>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="donate_alipay" id="xyA-hb-xlw"/>
                             </imageView>
                         </subviews>
@@ -1176,14 +1027,69 @@ IA
                             <constraint firstAttribute="bottom" secondItem="urv-5s-cvf" secondAttribute="bottom" constant="24" id="wlD-4n-4eZ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="BtN-IJ-KMu" kind="show" identifier="ShowDebugPanel" id="af7-Oe-ieD"/>
+                    </connections>
                 </viewController>
                 <customObject id="r7B-B4-Qpg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1471"/>
+            <point key="canvasLocation" x="57" y="1072"/>
+        </scene>
+        <!--Debug Window Controller-->
+        <scene sceneID="LGx-zh-JH9">
+            <objects>
+                <windowController id="BtN-IJ-KMu" userLabel="Debug Window Controller" sceneMemberID="viewController">
+                    <window key="window" title="Debug" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="O0D-VF-KGQ">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="300" height="300"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <attributedString key="userComments">
+                            <fragment content="#bc-ignore!"/>
+                        </attributedString>
+                        <connections>
+                            <outlet property="delegate" destination="BtN-IJ-KMu" id="5wF-Ph-PRS"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Tdh-hU-EMd" kind="relationship" relationship="window.shadowedContentViewController" id="se7-iQ-zmV"/>
+                    </connections>
+                </windowController>
+                <customObject id="l6u-wz-68y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-390" y="1519"/>
+        </scene>
+        <!--Debug View Controller-->
+        <scene sceneID="ud8-yX-ZNb">
+            <objects>
+                <viewController id="Tdh-hU-EMd" userLabel="Debug View Controller" customClass="DebugViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="nbK-Wo-bAH">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8E-WT-ncp">
+                                <rect key="frame" x="113" y="233" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Crash" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fdG-90-G7K">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <attributedString key="userComments">
+                                        <fragment content="#bc-ignore!"/>
+                                    </attributedString>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="crashActioin:" target="Tdh-hU-EMd" id="Y0q-x3-FVu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="1f4-AH-ebX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="57" y="1519"/>
         </scene>
     </scenes>
     <resources>
-        <image name="NSApplicationIcon" width="32" height="32"/>
         <image name="donate_alipay" width="100" height="100"/>
         <image name="hud_button_lock_off" width="11" height="11"/>
         <image name="hud_button_lock_on" width="11" height="11"/>

@@ -34,10 +34,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         wsnc.addObserver(self, selector: #selector(checkTargetApplication), name: NSWorkspace.didLaunchApplicationNotification, object: nil)
         wsnc.addObserver(self, selector: #selector(checkTargetApplication), name: NSWorkspace.didTerminateApplicationNotification, object: nil)
         
-//        wsnc.addObserver(forName: NSWorkspace.didLaunchApplicationNotification, object: nil, queue: nil) { n in
-//            let bundleID = n.userInfo?["NSApplicationBundleIdentifier"] as? String
-//        }
-        
         checkTargetApplication()
     }
     
@@ -72,7 +68,8 @@ let playerBundleIdentifiers = [
     ["com.apple.Music", "com.apple.iTunes"],
     ["com.spotify.client"],
     ["com.coppertino.Vox"],
-    ["com.audirvana.Audirvana", "com.audirvana.Audirvana-Plus"]
+    ["com.audirvana.Audirvana", "com.audirvana.Audirvana-Plus"],
+    ["com.swinsian.Swinsian"],
 ]
 
 let groupDefaults = UserDefaults(suiteName: "3665V726AE.group.ddddxxx.LyricsX")!

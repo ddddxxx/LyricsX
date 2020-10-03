@@ -6,15 +6,17 @@
 //
 
 import Cocoa
-import CombineX
+import CXExtensions
+import CXShim
 import GenericID
 import LyricsCore
 import MusicPlayer
 import OpenCC
+import SwiftCF
 
-class MenuBarLyrics: NSObject {
+class MenuBarLyricsController {
     
-    static let shared = MenuBarLyrics()
+    static let shared = MenuBarLyricsController()
     
     let statusItem: NSStatusItem
     var lyricsItem: NSStatusItem?
@@ -31,16 +33,22 @@ class MenuBarLyrics: NSObject {
     
     private var cancelBag = Set<AnyCancellable>()
     
-    private override init() {
+    private init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        super.init()
         AppController.shared.$currentLyrics
             .combineLatest(AppController.shared.$currentLineIndex)
             .receive(on: DispatchQueue.lyricsDisplay.cx)
-            .invoke(MenuBarLyrics.handleLyricsDisplay, weaklyOn: self)
+            .invoke(MenuBarLyricsController.handleLyricsDisplay, weaklyOn: self)
             .store(in: &cancelBag)
-        observeNotification(center: workspaceNC, name: NSWorkspace.didActivateApplicationNotification) { [unowned self] _ in self.updateStatusItem() }
-        observeDefaults(keys: [.menuBarLyricsEnabled, .combinedMenubarLyrics], options: [.initial]) { [unowned self] in self.updateStatusItem() }
+        workspaceNC.cx
+            .publisher(for: NSWorkspace.didActivateApplicationNotification)
+            .signal()
+            .invoke(MenuBarLyricsController.updateStatusItem, weaklyOn: self)
+            .store(in: &cancelBag)
+        defaults.publisher(for: [.menuBarLyricsEnabled, .combinedMenubarLyrics])
+            .prepend()
+            .invoke(MenuBarLyricsController.updateStatusItem, weaklyOn: self)
+            .store(in: &cancelBag)
     }
     
     private func handleLyricsDisplay(event: (lyrics: Lyrics?, index: Int?)) {
@@ -130,32 +138,12 @@ private extension NSStatusItem {
         }
         let carbonPoint = CGPoint(x: point.x, y: screen.frame.height - point.y - 1)
         
-        guard let element = AXUIElement.copyAt(position: carbonPoint) else {
+        guard let element = try? AXUIElement.systemWide().element(at: carbonPoint),
+            let pid = try? element.pid() else {
             return false
         }
         
-        return getpid() == element.pid
-    }
-}
-
-private extension AXUIElement {
-    
-    static func copyAt(position: NSPoint) -> AXUIElement? {
-        var element: AXUIElement?
-        let error = AXUIElementCopyElementAtPosition(AXUIElementCreateSystemWide(), Float(position.x), Float(position.y), &element)
-        guard error == .success else {
-            return nil
-        }
-        return element
-    }
-    
-    var pid: pid_t? {
-        var pid: pid_t = 0
-        let error = AXUIElementGetPid(self, &pid)
-        guard error == .success else {
-            return nil
-        }
-        return pid
+        return getpid() == pid
     }
 }
 

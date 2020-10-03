@@ -6,8 +6,7 @@
 //
 
 import AppKit
-import CombineX
-import Crashlytics
+import CXShim
 import CXExtensions
 import LyricsService
 import MusicPlayer
@@ -62,7 +61,7 @@ class AppController: NSObject {
             .invoke(AppController.scheduleCurrentLineCheck, weaklyOn: self)
             .store(in: &cancelBag)
         
-        defaultNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
+        workspaceNC.cx.publisher(for: NSWorkspace.didTerminateApplicationNotification, object: nil)
             .sink { n in
                 let bundleID = (n.userInfo![NSWorkspace.applicationUserInfoKey] as! NSRunningApplication).bundleIdentifier
                 if defaults[.launchAndQuitWithPlayer], (selectedPlayer.designatedPlayer as? MusicPlayers.Scriptable)?.playerBundleID == bundleID {
@@ -179,7 +178,6 @@ class AppController: NSObject {
                 lyrics.filtrate()
                 lyrics.recognizeLanguage()
                 currentLyrics = lyrics
-                Answers.logCustomEvent(withName: "Load Local Lyrics")
                 if needsSearching {
                     break
                 } else {
@@ -216,7 +214,6 @@ class AppController: NSObject {
             }, receiveValue: { [unowned self] lyrics in
                 self.lyricsReceived(lyrics: lyrics)
             })
-        Answers.logCustomEvent(withName: "Search Lyrics Automatically", customAttributes: ["override": currentLyrics == nil ? 0 : 1])
     }
     
     // MARK: LyricsSourceDelegate

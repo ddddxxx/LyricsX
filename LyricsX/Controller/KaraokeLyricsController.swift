@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import CombineX
+import CXShim
 import GenericID
 import LyricsCore
 import MusicPlayer
@@ -57,9 +57,10 @@ class KaraokeLyricsWindowController: NSWindowController {
                 .receive(on: DispatchQueue.lyricsDisplay.cx)
                 .invoke(KaraokeLyricsWindowController.handleLyricsDisplay, weaklyOn: self)
                 .store(in: &self.cancelBag)
-            self.observeDefaults(keys: [.preferBilingualLyrics, .desktopLyricsOneLineMode]) { [unowned self] in
-                self.handleLyricsDisplay()
-            }
+            defaults.publisher(for: [.preferBilingualLyrics, .desktopLyricsOneLineMode])
+                .prepend()
+                .invoke(KaraokeLyricsWindowController.handleLyricsDisplay, weaklyOn: self)
+                .store(in: &self.cancelBag)
         }
     }
     
