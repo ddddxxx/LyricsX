@@ -210,8 +210,6 @@
 		BB0B29691E7FBA2D00B1D6C9 /* PreferenceFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceFilterViewController.swift; sourceTree = "<group>"; };
 		BB0BE9591F444CA00068FF67 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BB0BE95A1F444CAA0068FF67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = LyricsX/Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
-		BB0BE95C1F44508F0068FF67 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = LyricsX/Frameworks/Fabric.framework; sourceTree = "<group>"; };
 		BB1B2FFC20E8780A002F1AF8 /* CFExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFExtension.swift; sourceTree = "<group>"; };
 		BB1B300220E878AE002F1AF8 /* StdExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StdExtension.swift; sourceTree = "<group>"; };
 		BB1B300420E87CC9002F1AF8 /* KaraokeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaraokeLabel.swift; sourceTree = "<group>"; };
@@ -455,8 +453,6 @@
 				BB58D8B524862D2F0047E3C6 /* AppCenter.framework */,
 				BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */,
 				BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */,
-				BB0BE95B1F44508F0068FF67 /* Crashlytics.framework */,
-				BB0BE95C1F44508F0068FF67 /* Fabric.framework */,
 				BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
 				E914527F21539BD500BD2220 /* Sparkle.framework */,
