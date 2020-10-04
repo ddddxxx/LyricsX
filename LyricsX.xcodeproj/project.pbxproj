@@ -1491,7 +1491,7 @@
 			repositoryURL = "https://github.com/ddddxxx/GenericID.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.5.1;
+				minimumVersion = 0.5.2;
 			};
 		};
 		BBB03F2E232FB40400A3879E /* XCRemoteSwiftPackageReference "Semver" */ = {
