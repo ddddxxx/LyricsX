@@ -25,21 +25,16 @@ private extension NSCountedSet {
 extension Lyrics {
     
     func recognizeLanguage() {
-        let lyricsLanguageSet = NSCountedSet()
-        let translationLanguageSet = NSCountedSet()
+        var lyricsContent = ""
+        var translationContent = ""
         for line in lines {
-            if let lan = (line.content as NSString).dominantLanguage {
-                lyricsLanguageSet.add(lan)
-            }
-            if let trans = line.attachments.translation(),
-                let transLan = (trans as NSString).dominantLanguage {
-                translationLanguageSet.add(transLan)
+            lyricsContent += line.content
+            if let trans = line.attachments.translation() {
+                translationContent += trans
             }
         }
-        if let lan = lyricsLanguageSet.mostFrequentElement as! String? {
-            metadata.language = lan
-        }
-        if let transLan = translationLanguageSet.mostFrequentElement as! String? {
+        metadata.language = (lyricsContent as NSString).dominantLanguage
+        if let transLan = (translationContent as NSString).dominantLanguage {
             let tag = LyricsLine.Attachments.Tag.translation(languageCode: transLan)
             guard !metadata.attachmentTags.contains(tag) else {
                 return
