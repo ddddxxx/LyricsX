@@ -56,7 +56,7 @@
 "bmk-rW-Uot.title" = "歌詞のオフセットを減らす:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "二か国語の歌詞を優先する";
+"cBB-zn-Hdh.title" = "バイリンガルの歌詞を優先する";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
 "Cmt-it-PXW.title" = "フォント:";
