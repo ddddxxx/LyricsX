@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "タッチバー歌詞を有効にする";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "システム全体の「再生中」アプリを利用する";
+"gin-P2-gb5.title" = "システムで「再生中」のアプリを利用する";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "垂直モード";
