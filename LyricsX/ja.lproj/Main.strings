@@ -53,7 +53,7 @@
 "jWT-S5-YXM.headerCell.title" = "タイトル";
 
 /* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
-"kNl-ZO-aX6.title" = "iTunesに書き込む";
+"kNl-ZO-aX6.title" = "Musicに書き込む";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
 "kyJ-kV-2Du.title" = "歌詞ウィンドウを表示";
