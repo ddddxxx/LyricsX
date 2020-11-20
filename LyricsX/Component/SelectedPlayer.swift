@@ -18,6 +18,8 @@ extension MusicPlayers {
         
         private var defaultsObservation: DefaultsObservation?
         
+        private var manualUpdateObservation: AnyCancellable?
+        
         var manualUpdateInterval: TimeInterval = 1.0 {
             didSet {
                 scheduleManualUpdate()
@@ -30,6 +32,13 @@ extension MusicPlayers {
             scheduleManualUpdate()
             defaultsObservation = defaults.observe(keys: [.preferredPlayerIndex, .useSystemWideNowPlaying]) { [weak self] in
                 self?.selectPlayer()
+            }
+            manualUpdateObservation = playbackStateWillChange.sink { [weak self] state in
+                if state.isPlaying {
+                    self?.scheduleManualUpdate()
+                } else {
+                    self?.scheduleCanceller?.cancel()
+                }
             }
         }
         
