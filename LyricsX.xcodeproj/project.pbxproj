@@ -99,12 +99,6 @@
 		BB58B07F1E82901800598D4F /* AutoActivateWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */; };
 		BB58B0821E82971400598D4F /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0811E82971400598D4F /* UserDefaults.plist */; };
 		BB58B0891E82CA9B00598D4F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BB58B0881E82CA9B00598D4F /* Credits.rtf */; };
-		BB58D8B824862D2F0047E3C6 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B524862D2F0047E3C6 /* AppCenter.framework */; };
-		BB58D8B924862D2F0047E3C6 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B524862D2F0047E3C6 /* AppCenter.framework */; };
-		BB58D8BA24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */; };
-		BB58D8BB24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */; };
-		BB58D8BC24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */; };
-		BB58D8BD24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */; };
 		BB58D8BF248636900047E3C6 /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58D8BE248636900047E3C6 /* DonateViewController.swift */; };
 		BB58D8C0248636900047E3C6 /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58D8BE248636900047E3C6 /* DonateViewController.swift */; };
 		BB58D8C2248638950047E3C6 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58D8C1248638950047E3C6 /* DebugViewController.swift */; };
@@ -128,6 +122,10 @@
 		BB9BCEBA1E843157001BC54B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BCEB91E843157001BC54B /* Extension.swift */; };
 		BB9C3D8323435A5700860698 /* MusicPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = BB9C3D8223435A5700860698 /* MusicPlayer */; };
 		BB9C3D8523435A6300860698 /* MusicPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = BB9C3D8423435A6300860698 /* MusicPlayer */; };
+		BBA82EFB256AB1490076831F /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = BBA82EFA256AB1490076831F /* AppCenterCrashes */; };
+		BBA82EFD256AB1490076831F /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BBA82EFC256AB1490076831F /* AppCenterAnalytics */; };
+		BBA82F03256AB29F0076831F /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BBA82F02256AB29F0076831F /* AppCenterAnalytics */; };
+		BBA82F05256AB29F0076831F /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = BBA82F04256AB29F0076831F /* AppCenterCrashes */; };
 		BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F2C232FB3AF00A3879E /* GenericID */; };
 		BBB03F30232FB40400A3879E /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F2F232FB40400A3879E /* Semver */; };
 		BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = BBB03F392331D8A800A3879E /* OpenCC */; };
@@ -242,9 +240,6 @@
 		BB58B07E1E82901800598D4F /* AutoActivateWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoActivateWindowController.swift; sourceTree = "<group>"; };
 		BB58B0811E82971400598D4F /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		BB58B0881E82CA9B00598D4F /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		BB58D8B524862D2F0047E3C6 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = Carthage/Build/Mac/AppCenter.framework; sourceTree = "<group>"; };
-		BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = Carthage/Build/Mac/AppCenterCrashes.framework; sourceTree = "<group>"; };
-		BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = Carthage/Build/Mac/AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		BB58D8BE248636900047E3C6 /* DonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateViewController.swift; sourceTree = "<group>"; };
 		BB58D8C1248638950047E3C6 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		BB5C552F232B5D1B00448FC0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -329,17 +324,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5078AF22014CAA00B695C3 /* Sparkle.framework in Frameworks */,
-				BB58D8B824862D2F0047E3C6 /* AppCenter.framework in Frameworks */,
 				BB9C3D8323435A5700860698 /* MusicPlayer in Frameworks */,
 				BB4141C81E46CDD700A51775 /* SnapKit.framework in Frameworks */,
 				BBB03F3A2331D8A800A3879E /* OpenCC in Frameworks */,
 				BB003EFF248F89A700860FF7 /* CXShim in Frameworks */,
 				BBB03F30232FB40400A3879E /* Semver in Frameworks */,
-				BB58D8BA24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */,
 				BB34F4A91EFFBCBC008B9E4B /* MASShortcut.framework in Frameworks */,
 				BB22681C234C9085008FAFED /* SwiftCF in Frameworks */,
 				BB6C75E8248B908500804AEB /* TouchBarHelper in Frameworks */,
-				BB58D8BC24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */,
+				BBA82EFB256AB1490076831F /* AppCenterCrashes in Frameworks */,
+				BBA82EFD256AB1490076831F /* AppCenterAnalytics in Frameworks */,
 				BBB03F2D232FB3AF00A3879E /* GenericID in Frameworks */,
 				BBB03F3D2331DACD00A3879E /* LyricsKit in Frameworks */,
 				BB350ABE23D0613D00500146 /* CXExtensions in Frameworks */,
@@ -353,13 +347,12 @@
 				BBB03F432331DBB000A3879E /* OpenCC in Frameworks */,
 				BB6C75EA248B908F00804AEB /* TouchBarHelper in Frameworks */,
 				BB003F01248F89B700860FF7 /* CXShim in Frameworks */,
-				BB58D8BD24862D2F0047E3C6 /* AppCenterAnalytics.framework in Frameworks */,
 				BBB03F3F2331DBB000A3879E /* GenericID in Frameworks */,
 				BBB03F452331DBB000A3879E /* LyricsKit in Frameworks */,
 				BB22681E234C908D008FAFED /* SwiftCF in Frameworks */,
-				BB58D8BB24862D2F0047E3C6 /* AppCenterCrashes.framework in Frameworks */,
-				BB58D8B924862D2F0047E3C6 /* AppCenter.framework in Frameworks */,
+				BBA82F03256AB29F0076831F /* AppCenterAnalytics in Frameworks */,
 				BB350AC023D0614800500146 /* CXExtensions in Frameworks */,
+				BBA82F05256AB29F0076831F /* AppCenterCrashes in Frameworks */,
 				BBB03F412331DBB000A3879E /* Semver in Frameworks */,
 				BB9C3D8523435A6300860698 /* MusicPlayer in Frameworks */,
 				BB50788F22014C3900B695C3 /* SnapKit.framework in Frameworks */,
@@ -450,9 +443,6 @@
 		BB7EC7B31E4ECFC400A0AC3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BB58D8B524862D2F0047E3C6 /* AppCenter.framework */,
-				BB58D8B724862D2F0047E3C6 /* AppCenterAnalytics.framework */,
-				BB58D8B624862D2F0047E3C6 /* AppCenterCrashes.framework */,
 				BB34F4A81EFFBCBC008B9E4B /* MASShortcut.framework */,
 				BB4141C61E46CDD200A51775 /* SnapKit.framework */,
 				E914527F21539BD500BD2220 /* Sparkle.framework */,
@@ -566,6 +556,8 @@
 				BB350ABD23D0613D00500146 /* CXExtensions */,
 				BB6C75E7248B908500804AEB /* TouchBarHelper */,
 				BB003EFE248F89A700860FF7 /* CXShim */,
+				BBA82EFA256AB1490076831F /* AppCenterCrashes */,
+				BBA82EFC256AB1490076831F /* AppCenterAnalytics */,
 			);
 			productName = LyricsX;
 			productReference = BB4141AA1E458BA800A51775 /* LyricsX.app */;
@@ -600,6 +592,8 @@
 				BB350ABF23D0614800500146 /* CXExtensions */,
 				BB6C75E9248B908F00804AEB /* TouchBarHelper */,
 				BB003F00248F89B700860FF7 /* CXShim */,
+				BBA82F02256AB29F0076831F /* AppCenterAnalytics */,
+				BBA82F04256AB29F0076831F /* AppCenterCrashes */,
 			);
 			productName = LyricsX;
 			productReference = BB5078AD22014C3900B695C3 /* LyricsX.app */;
@@ -708,6 +702,7 @@
 				BB350ABC23D0613D00500146 /* XCRemoteSwiftPackageReference "CXExtensions" */,
 				BB6C75E6248B908500804AEB /* XCRemoteSwiftPackageReference "TouchBarHelper" */,
 				BB003EFD248F89A700860FF7 /* XCRemoteSwiftPackageReference "CombineX" */,
+				BBA82EF9256AB1490076831F /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 			);
 			productRefGroup = BB4141AB1E458BA800A51775 /* Products */;
 			projectDirPath = "";
@@ -1472,6 +1467,14 @@
 				kind = branch;
 			};
 		};
+		BBA82EF9256AB1490076831F /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ddddxxx/GenericID.git";
@@ -1556,6 +1559,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB9C3D8123435A5700860698 /* XCRemoteSwiftPackageReference "MusicPlayer" */;
 			productName = MusicPlayer;
+		};
+		BBA82EFA256AB1490076831F /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBA82EF9256AB1490076831F /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+		BBA82EFC256AB1490076831F /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBA82EF9256AB1490076831F /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		BBA82F02256AB29F0076831F /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBA82EF9256AB1490076831F /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		BBA82F04256AB29F0076831F /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBA82EF9256AB1490076831F /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
 		};
 		BBB03F2C232FB3AF00A3879E /* GenericID */ = {
 			isa = XCSwiftPackageProductDependency;

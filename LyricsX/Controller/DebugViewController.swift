@@ -11,6 +11,6 @@ import AppCenterCrashes
 class DebugViewController: NSViewController {
     
     @IBAction func crashActioin(_ sender: Any) {
-        MSCrashes.generateTestCrash()
+        Crashes.generateTestCrash()
     }
 }
