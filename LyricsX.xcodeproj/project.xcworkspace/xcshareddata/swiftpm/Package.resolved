@@ -50,9 +50,9 @@
         "package": "MusicPlayer",
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
-          "branch": null,
-          "revision": "5820941b38c8cfd0440a8bb82ba360ef895305a1",
-          "version": "0.6.10"
+          "branch": "master",
+          "revision": "b55702c8a3a095c73e41a0036f91f2aee4415abc",
+          "version": null
         }
       },
       {

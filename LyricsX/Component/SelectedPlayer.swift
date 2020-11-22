@@ -12,7 +12,7 @@ import CXShim
 
 extension MusicPlayers {
     
-    final class Selected: Delegate {
+    final class Selected: Agent {
         
         static let shared = MusicPlayers.Selected()
         
@@ -46,7 +46,7 @@ extension MusicPlayers {
             let idx = defaults[.preferredPlayerIndex]
             if idx == -1 {
                 if defaults[.useSystemWideNowPlaying] {
-                    designatedPlayer = MusicPlayers.SystemNowPlaying()
+                    designatedPlayer = MusicPlayers.SystemMedia()
                 } else {
                     let players = MusicPlayerName.scriptableCases.compactMap(MusicPlayers.Scriptable.init)
                     designatedPlayer = MusicPlayers.NowPlaying(players: players)
