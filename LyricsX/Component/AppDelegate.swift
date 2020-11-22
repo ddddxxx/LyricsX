@@ -14,6 +14,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 
 #if !IS_FOR_MAS
+// FIXME: hardcoded Sparkle revision
 import Sparkle
 #endif
 

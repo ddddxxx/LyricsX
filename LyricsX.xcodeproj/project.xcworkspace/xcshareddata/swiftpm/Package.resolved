@@ -110,6 +110,15 @@
         }
       },
       {
+        "package": "Sparkle",
+        "repositoryURL": "https://github.com/sparkle-project/Sparkle",
+        "state": {
+          "branch": null,
+          "revision": "891afd44c7075e699924ed9b81d8dc94a5111dfd",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftCF",
         "repositoryURL": "https://github.com/ddddxxx/SwiftCF.git",
         "state": {
