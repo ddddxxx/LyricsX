@@ -1,8 +1,10 @@
 //
 //  AppDelegate.swift
+//  LyricsX - https://github.com/ddddxxx/LyricsX
 //
-//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
-//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
 
 import Cocoa
@@ -14,6 +16,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 
 #if !IS_FOR_MAS
+// FIXME: hardcoded Sparkle revision
 import Sparkle
 #endif
 
@@ -41,9 +44,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerUserDefaults()
         #if RELEASE
-        MSAppCenter.start("36777a05-06fd-422e-9375-a934b3c835a5", withServices:[
-            MSAnalytics.self,
-            MSCrashes.self
+        AppCenter.start(withAppSecret: "36777a05-06fd-422e-9375-a934b3c835a5", services:[
+            Analytics.self,
+            Crashes.self
         ])
         #endif
         

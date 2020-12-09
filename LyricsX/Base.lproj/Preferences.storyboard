@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -65,11 +65,11 @@
             <objects>
                 <viewController title="General" id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="473"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="Preferred music player" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
-                                <rect key="frame" x="17" y="337" width="566" height="112"/>
+                                <rect key="frame" x="17" y="342" width="566" height="112"/>
                                 <view key="contentView" id="r1e-Ln-LSb">
                                     <rect key="frame" x="3" y="3" width="560" height="94"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,7 +92,7 @@
                                                     </connections>
                                                 </button>
                                                 <button tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GAh-L4-fgK">
-                                                    <rect key="frame" x="17" y="8" width="51" height="18"/>
+                                                    <rect key="frame" x="14" y="8" width="55" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="qpD-Cy-Yj0"/>
                                                     </constraints>
@@ -115,7 +115,7 @@
                                                     </connections>
                                                 </button>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="6Bj-Lj-AqF" userLabel="Prefer iTunes">
-                                                    <rect key="frame" x="92" y="8" width="62" height="18"/>
+                                                    <rect key="frame" x="88" y="8" width="66" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="iTunes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cRD-iF-2qo">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -151,7 +151,7 @@
                                                     </connections>
                                                 </button>
                                                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wb5-Rf-75m">
-                                                    <rect key="frame" x="170" y="8" width="66" height="18"/>
+                                                    <rect key="frame" x="166" y="8" width="70" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="Spotify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jhm-dK-4Y3">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -179,7 +179,7 @@
                                                     </connections>
                                                 </button>
                                                 <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="RSg-dR-tCT">
-                                                    <rect key="frame" x="260" y="8" width="45" height="18"/>
+                                                    <rect key="frame" x="257" y="8" width="49" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="Vox" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oTS-3z-Tz7">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -207,7 +207,7 @@
                                                     </connections>
                                                 </button>
                                                 <button tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="9Pq-VD-9xN" userLabel="Prefer Audirvana">
-                                                    <rect key="frame" x="321" y="8" width="83" height="18"/>
+                                                    <rect key="frame" x="318" y="8" width="87" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="Audirvana" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="m2S-vK-wBN">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -235,7 +235,7 @@
                                                     </connections>
                                                 </button>
                                                 <button tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="VwG-Ue-ZKi" userLabel="Prefer Swinsian">
-                                                    <rect key="frame" x="405" y="8" width="76" height="18"/>
+                                                    <rect key="frame" x="401" y="8" width="80" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="Swinsian" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Vyb-yN-EFY">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -302,7 +302,7 @@
                                 </view>
                             </box>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mfr-Al-Vu9">
-                                <rect key="frame" x="234" y="309" width="243" height="18"/>
+                                <rect key="frame" x="234" y="313" width="246" height="18"/>
                                 <buttonCell key="cell" type="check" title="Auto launch &amp; quit with music player" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="v63-4a-fPw">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -317,7 +317,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
-                                <rect key="frame" x="105" y="277" width="117" height="16"/>
+                                <rect key="frame" x="105" y="280" width="117" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Lyrics saving path:" id="0M7-ao-0jb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -325,7 +325,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ydZ-SE-AM3">
-                                <rect key="frame" x="234" y="271" width="165" height="25"/>
+                                <rect key="frame" x="233" y="274" width="167" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="2c0-ba-y6d"/>
                                 </constraints>
@@ -359,10 +359,10 @@
                                 </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="UQR-mH-y4R">
-                                <rect key="frame" x="20" y="147" width="560" height="5"/>
+                                <rect key="frame" x="20" y="150" width="560" height="5"/>
                             </box>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wwb-0H-xk7">
-                                <rect key="frame" x="234" y="63" width="149" height="18"/>
+                                <rect key="frame" x="234" y="63" width="153" height="18"/>
                                 <buttonCell key="cell" type="check" title="Prefer bilingual lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cBB-zn-Hdh">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -372,7 +372,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wpE-cM-ds1">
-                                <rect key="frame" x="64" y="31" width="158" height="16"/>
+                                <rect key="frame" x="64" y="30" width="158" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Auto Chinese conversion:" id="JPB-ag-MN7">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -380,7 +380,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uoA-YU-YZk" userLabel="Convert">
-                                <rect key="frame" x="234" y="25" width="165" height="25"/>
+                                <rect key="frame" x="233" y="24" width="167" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Rhn-QL-XGy"/>
                                 </constraints>
@@ -400,7 +400,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-OU-NWP">
-                                <rect key="frame" x="234" y="250" width="193" height="18"/>
+                                <rect key="frame" x="234" y="253" width="197" height="18"/>
                                 <buttonCell key="cell" type="check" title="Load lyrics beside music file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="EDv-ax-0hI">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -414,7 +414,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="HqA-iJ-lec">
-                                <rect key="frame" x="406" y="276" width="21" height="18"/>
+                                <rect key="frame" x="406" y="279" width="21" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="21" id="NcW-r5-bQr"/>
                                     <constraint firstAttribute="height" constant="18" id="hHA-Y3-yS5"/>
@@ -428,7 +428,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xmp-V1-Dn6">
-                                <rect key="frame" x="236" y="166" width="100" height="21"/>
+                                <rect key="frame" x="236" y="169" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="hNM-LB-4P5"/>
                                 </constraints>
@@ -447,7 +447,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g0L-A1-o0L">
-                                <rect key="frame" x="105" y="169" width="117" height="16"/>
+                                <rect key="frame" x="105" y="172" width="117" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Global offset (ms):" id="slB-q7-1dB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -455,7 +455,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tAC-g5-B2n">
-                                <rect key="frame" x="234" y="117" width="101" height="18"/>
+                                <rect key="frame" x="234" y="119" width="105" height="18"/>
                                 <buttonCell key="cell" type="check" title="Strict Search" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="As7-rZ-u6c">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -469,7 +469,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Yv-tb-pyE">
-                                <rect key="frame" x="252" y="95" width="261" height="16"/>
+                                <rect key="frame" x="252" y="96" width="261" height="16"/>
                                 <textFieldCell key="cell" title="Search result match the exact search term" id="rSD-qR-EXA">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -477,7 +477,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zpw-kR-OfG">
-                                <rect key="frame" x="234" y="212" width="125" height="25"/>
+                                <rect key="frame" x="233" y="214" width="127" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="B0W-dB-GPu"/>
                                 </constraints>
@@ -498,7 +498,7 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UXR-cB-aCr">
-                                <rect key="frame" x="40" y="218" width="182" height="16"/>
+                                <rect key="frame" x="41" y="220" width="181" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Language (Requires Restart):" id="WfA-pe-S5D">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -506,7 +506,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5rg-ki-Dg5">
-                                <rect key="frame" x="236" y="195" width="137" height="16"/>
+                                <rect key="frame" x="236" y="198" width="137" height="16"/>
                                 <buttonCell key="cell" type="bevel" title="Help translate LyricsX" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="oiH-T7-agJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -590,20 +590,20 @@
             <objects>
                 <viewController title="Display" id="8JF-Og-z6E" userLabel="Display" customClass="PreferenceDisplayViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y71-zj-nPg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="386"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="398"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="S24-qh-mZa">
-                                <rect key="frame" x="13" y="14" width="574" height="358"/>
+                                <rect key="frame" x="13" y="14" width="574" height="370"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Karaoke" identifier="1" id="aUg-eg-K5C">
                                         <view key="view" id="mfE-32-ATy">
-                                            <rect key="frame" x="10" y="33" width="554" height="312"/>
+                                            <rect key="frame" x="10" y="33" width="554" height="324"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4Ap-BM-I98">
-                                                    <rect key="frame" x="235" y="246" width="110" height="18"/>
+                                                    <rect key="frame" x="235" y="255" width="114" height="18"/>
                                                     <buttonCell key="cell" type="check" title="One line mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5dp-p5-YmE">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -613,7 +613,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="PpS-fa-1AL">
-                                                    <rect key="frame" x="235" y="224" width="106" height="18"/>
+                                                    <rect key="frame" x="235" y="231" width="110" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Vertical mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="h4G-Un-dtm">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -659,7 +659,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MzB-OZ-nJE">
-                                                    <rect key="frame" x="419" y="77" width="10" height="10"/>
+                                                    <rect key="frame" x="419" y="75" width="10" height="13.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="Jaj-ac-utp"/>
                                                         <constraint firstAttribute="width" secondItem="MzB-OZ-nJE" secondAttribute="height" multiplier="1:1" id="odr-aj-kbU"/>
@@ -778,7 +778,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="We2-F1-tgh">
-                                                    <rect key="frame" x="235" y="276" width="85" height="18"/>
+                                                    <rect key="frame" x="235" y="287" width="89" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Draggable" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="T7p-MT-Mrh">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -788,7 +788,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JSf-5H-P7U">
-                                                    <rect key="frame" x="98" y="195" width="125" height="16"/>
+                                                    <rect key="frame" x="98" y="200" width="125" height="16"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Disable lyrics when:" id="bDS-Lb-m34">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -796,7 +796,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KcA-ys-XDa">
-                                                    <rect key="frame" x="235" y="172" width="142" height="18"/>
+                                                    <rect key="frame" x="235" y="175" width="146" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Music is not playing" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="NLl-9L-0gZ">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -806,7 +806,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="xa7-h7-OHj">
-                                                    <rect key="frame" x="235" y="150" width="144" height="18"/>
+                                                    <rect key="frame" x="235" y="151" width="148" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Taking a screenshot" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iMD-Wy-Bm7">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -816,7 +816,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IfW-hs-fv9">
-                                                    <rect key="frame" x="235" y="194" width="132" height="18"/>
+                                                    <rect key="frame" x="235" y="199" width="136" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Mouse passing by" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LH4-YZ-Qvs">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -999,7 +999,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="XfX-or-1LJ">
-                                <rect key="frame" x="18" y="368" width="130" height="18"/>
+                                <rect key="frame" x="18" y="369" width="134" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="if5-rI-BfC"/>
                                 </constraints>
@@ -1024,7 +1024,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="555" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
+                                                <tableColumn width="546" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Keyword">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1086,7 +1086,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="arP-Ki-dUV">
-                                <rect key="frame" x="511" y="13" width="75" height="32"/>
+                                <rect key="frame" x="518" y="13" width="69" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XUF-aM-ZmS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1110,7 +1110,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="12H-lM-uSV">
-                                <rect key="frame" x="18" y="348" width="470" height="14"/>
+                                <rect key="frame" x="18" y="348" width="471" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Lyrics lines matching following rules will be ignored. Use &quot;/&quot; to start a regular expression." id="19E-DG-Q23">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -1180,7 +1180,7 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XuJ-N7-23c">
-                                <rect key="frame" x="134" y="216" width="168" height="16"/>
+                                <rect key="frame" x="135" y="216" width="167" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Show / Hide karaoke lyrics:" id="lOc-OP-AcU">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1365,11 +1365,11 @@
             <objects>
                 <viewController title="Lab" id="bFk-1g-XeL" userLabel="Lab" customClass="PreferenceLabViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="uY5-7S-zG1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="285"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="296"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Tvk-yf-w4p">
-                                <rect key="frame" x="234" y="52" width="104" height="18"/>
+                                <rect key="frame" x="234" y="55" width="108" height="18"/>
                                 <buttonCell key="cell" type="check" title="Automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7Ax-7T-26K">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1379,7 +1379,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IKY-aR-ZdS">
-                                <rect key="frame" x="234" y="74" width="118" height="18"/>
+                                <rect key="frame" x="234" y="79" width="122" height="18"/>
                                 <buttonCell key="cell" type="check" title="With translation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="jFb-kX-VbY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1389,7 +1389,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z5r-WZ-ZnL">
-                                <rect key="frame" x="87" y="75" width="135" height="16"/>
+                                <rect key="frame" x="87" y="80" width="135" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Write lyrics to iTunes:" id="8Sx-vb-5pB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1397,7 +1397,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-7c-IhI">
-                                <rect key="frame" x="76" y="229" width="449" height="32"/>
+                                <rect key="frame" x="76" y="240" width="449" height="32"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Here are some experimental features that may not be stable enough, and may be removed in the future." id="g2u-8D-dln">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1405,7 +1405,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-Tg-5JV">
-                                <rect key="frame" x="234" y="22" width="284" height="18"/>
+                                <rect key="frame" x="234" y="23" width="288" height="18"/>
                                 <buttonCell key="cell" type="check" title="Combine menubar icon with menubar lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bbd-ra-rSF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1415,7 +1415,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-fs-CDd">
-                                <rect key="frame" x="234" y="163" width="333" height="18"/>
+                                <rect key="frame" x="234" y="171" width="337" height="18"/>
                                 <buttonCell key="cell" type="check" title="Automatically generate furigana for Japanese lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ThQ-vA-Krb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1429,14 +1429,14 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QO9-t0-epx">
-                                <rect key="frame" x="234" y="133" width="163" height="18"/>
+                                <rect key="frame" x="234" y="139" width="167" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Touch Bar lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gGL-LB-TXI">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O5b-RV-0T6">
-                                <rect key="frame" x="250" y="99" width="165" height="32"/>
+                                <rect key="frame" x="249" y="105" width="159" height="32"/>
                                 <buttonCell key="cell" type="push" title="Customize TouchBar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zQK-i2-2Nc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1455,7 +1455,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BIz-Ld-Wfi">
-                                <rect key="frame" x="234" y="193" width="270" height="18"/>
+                                <rect key="frame" x="234" y="203" width="274" height="18"/>
                                 <buttonCell key="cell" type="check" title="Use system wide now playing application" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gin-P2-gb5">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1509,11 +1509,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
         <image name="NSFontPanel" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
-        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+        <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
         <image name="audirvana_icon" width="64" height="64"/>
         <image name="folder" width="21" height="18"/>
         <image name="iTunes_icon" width="64" height="64"/>

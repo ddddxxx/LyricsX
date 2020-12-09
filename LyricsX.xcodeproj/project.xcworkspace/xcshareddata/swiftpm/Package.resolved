@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "App Center",
+        "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple",
+        "state": {
+          "branch": null,
+          "revision": "79d99eaff599d1b38adf81884fe220c75fd38867",
+          "version": "4.0.0"
+        }
+      },
+      {
         "package": "CombineX",
         "repositoryURL": "https://github.com/cx-org/CombineX",
         "state": {
           "branch": null,
-          "revision": "9ce154b155643ec8939d84cb6ae00c331ff3eca0",
-          "version": "0.2.1"
+          "revision": "96cd76ccddac5d0493ebd91d69f1e6e9ccb58f5f",
+          "version": "0.3.0"
         }
       },
       {
@@ -15,8 +24,8 @@
         "repositoryURL": "https://github.com/cx-org/CXExtensions",
         "state": {
           "branch": null,
-          "revision": "3a777360ef0ec92342a2ed82fe748a78efead181",
-          "version": "0.2.2"
+          "revision": "6843af94bfaedfe90df1435c1a6c83cc3366a62b",
+          "version": "0.3.0"
         }
       },
       {
@@ -24,8 +33,8 @@
         "repositoryURL": "https://github.com/ddddxxx/GenericID.git",
         "state": {
           "branch": null,
-          "revision": "bc250e7ad745f1917ce1950558c4ea537f4ec4c8",
-          "version": "0.5.2"
+          "revision": "31594c0f73306bb338316d7beec505e9b8b40dc1",
+          "version": "0.6.0"
         }
       },
       {
@@ -42,8 +51,8 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
         "state": {
           "branch": null,
-          "revision": "8e21b64eb46c27e7e57a516566351a9027bd02e3",
-          "version": "0.8.3"
+          "revision": "18e01e4d8a3685fe4403a06f295c3c8ae9d5655c",
+          "version": "0.9.0"
         }
       },
       {
@@ -51,26 +60,17 @@
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
           "branch": null,
-          "revision": "5820941b38c8cfd0440a8bb82ba360ef895305a1",
-          "version": "0.6.10"
+          "revision": "e652b184bc91b003dfc34cce88aaaf20b33fb33a",
+          "version": "0.7.0"
         }
       },
       {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "package": "PLCrashReporter",
+        "repositoryURL": "https://github.com/microsoft/plcrashreporter.git",
         "state": {
           "branch": null,
-          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
-          "version": "8.0.2"
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/Quick/Quick.git",
-        "state": {
-          "branch": null,
-          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
-          "version": "2.2.1"
+          "revision": "de6b8f9db4b2a0aa859a5507550a70548e4da936",
+          "version": "1.8.1"
         }
       },
       {
@@ -89,6 +89,15 @@
           "branch": null,
           "revision": "6094e6f23a02b52b5d211fd114a4750c4f3ecef3",
           "version": "0.2.1"
+        }
+      },
+      {
+        "package": "Sparkle",
+        "repositoryURL": "https://github.com/sparkle-project/Sparkle",
+        "state": {
+          "branch": null,
+          "revision": "891afd44c7075e699924ed9b81d8dc94a5111dfd",
+          "version": null
         }
       },
       {

@@ -1,8 +1,10 @@
 //
 //  SearchLyricsViewController.swift
+//  LyricsX - https://github.com/ddddxxx/LyricsX
 //
-//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
-//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
 
 import Cocoa
@@ -22,7 +24,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
     }
     
-    let lyricsManager = LyricsProviderManager()
+    let lyricsManager = LyricsProviders.Group()
     var searchRequest: LyricsSearchRequest?
     var searchCanceller: Cancellable?
     var searchResult: [Lyrics] = []
@@ -155,7 +157,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         case .searchResultColumnArtist:
             return searchResult[row].idTags[.artist] ?? "[lacking]"
         case .searchResultColumnSource:
-            return searchResult[row].metadata.source?.rawValue ?? "[lacking]"
+            return searchResult[row].metadata.service?.rawValue ?? "[lacking]"
         default:
             return nil
         }

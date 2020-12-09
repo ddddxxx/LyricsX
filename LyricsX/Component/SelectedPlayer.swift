@@ -1,8 +1,10 @@
 //
 //  AppController.swift
+//  LyricsX - https://github.com/ddddxxx/LyricsX
 //
-//  This file is part of LyricsX - https://github.com/ddddxxx/LyricsX
-//  Copyright (C) 2017  Xander Deng. Licensed under GPLv3.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
 
 import Foundation
@@ -12,11 +14,13 @@ import CXShim
 
 extension MusicPlayers {
     
-    final class Selected: Delegate {
+    final class Selected: Agent {
         
         static let shared = MusicPlayers.Selected()
         
         private var defaultsObservation: DefaultsObservation?
+        
+        private var manualUpdateObservation: AnyCancellable?
         
         var manualUpdateInterval: TimeInterval = 1.0 {
             didSet {
@@ -31,13 +35,20 @@ extension MusicPlayers {
             defaultsObservation = defaults.observe(keys: [.preferredPlayerIndex, .useSystemWideNowPlaying]) { [weak self] in
                 self?.selectPlayer()
             }
+            manualUpdateObservation = playbackStateWillChange.sink { [weak self] state in
+                if state.isPlaying {
+                    self?.scheduleManualUpdate()
+                } else {
+                    self?.scheduleCanceller?.cancel()
+                }
+            }
         }
         
         private func selectPlayer() {
             let idx = defaults[.preferredPlayerIndex]
             if idx == -1 {
                 if defaults[.useSystemWideNowPlaying] {
-                    designatedPlayer = MusicPlayers.SystemNowPlaying()
+                    designatedPlayer = MusicPlayers.SystemMedia()
                 } else {
                     let players = MusicPlayerName.scriptableCases.compactMap(MusicPlayers.Scriptable.init)
                     designatedPlayer = MusicPlayers.NowPlaying(players: players)
