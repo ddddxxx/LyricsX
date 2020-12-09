@@ -17,7 +17,7 @@ class AppController: NSObject {
     
     static let shared = AppController()
     
-    let lyricsManager = LyricsProviderManager()
+    let lyricsManager = LyricsProviders.Group()
     
     @Published var currentLyrics: Lyrics? {
         willSet {

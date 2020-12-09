@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/cx-org/CombineX",
         "state": {
           "branch": null,
-          "revision": "9ce154b155643ec8939d84cb6ae00c331ff3eca0",
-          "version": "0.2.1"
+          "revision": "96cd76ccddac5d0493ebd91d69f1e6e9ccb58f5f",
+          "version": "0.3.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/cx-org/CXExtensions",
         "state": {
           "branch": null,
-          "revision": "3a777360ef0ec92342a2ed82fe748a78efead181",
-          "version": "0.2.2"
+          "revision": "6843af94bfaedfe90df1435c1a6c83cc3366a62b",
+          "version": "0.3.0"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/ddddxxx/GenericID.git",
         "state": {
           "branch": null,
-          "revision": "bc250e7ad745f1917ce1950558c4ea537f4ec4c8",
-          "version": "0.5.2"
+          "revision": "31594c0f73306bb338316d7beec505e9b8b40dc1",
+          "version": "0.6.0"
         }
       },
       {
@@ -51,26 +51,17 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
         "state": {
           "branch": null,
-          "revision": "8e21b64eb46c27e7e57a516566351a9027bd02e3",
-          "version": "0.8.3"
+          "revision": "18e01e4d8a3685fe4403a06f295c3c8ae9d5655c",
+          "version": "0.9.0"
         }
       },
       {
         "package": "MusicPlayer",
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
-          "branch": "master",
-          "revision": "b55702c8a3a095c73e41a0036f91f2aee4415abc",
-          "version": null
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble.git",
-        "state": {
           "branch": null,
-          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
-          "version": "8.0.2"
+          "revision": "e652b184bc91b003dfc34cce88aaaf20b33fb33a",
+          "version": "0.7.0"
         }
       },
       {
@@ -80,15 +71,6 @@
           "branch": null,
           "revision": "de6b8f9db4b2a0aa859a5507550a70548e4da936",
           "version": "1.8.1"
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/Quick/Quick.git",
-        "state": {
-          "branch": null,
-          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
-          "version": "2.2.1"
         }
       },
       {

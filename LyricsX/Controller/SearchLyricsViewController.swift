@@ -22,7 +22,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         }
     }
     
-    let lyricsManager = LyricsProviderManager()
+    let lyricsManager = LyricsProviders.Group()
     var searchRequest: LyricsSearchRequest?
     var searchCanceller: Cancellable?
     var searchResult: [Lyrics] = []
@@ -155,7 +155,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         case .searchResultColumnArtist:
             return searchResult[row].idTags[.artist] ?? "[lacking]"
         case .searchResultColumnSource:
-            return searchResult[row].metadata.source?.rawValue ?? "[lacking]"
+            return searchResult[row].metadata.service?.rawValue ?? "[lacking]"
         default:
             return nil
         }

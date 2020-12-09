@@ -40,8 +40,8 @@ extension Lyrics {
                 return
             }
             for idx in lines.indices {
-                if let trans = lines[idx].attachments[LyricsLine.Attachments.Tag.translation.rawValue] {
-                    lines[idx].attachments[LyricsLine.Attachments.Tag.translation.rawValue] = nil
+                if let trans = lines[idx].attachments.translation() {
+                    lines[idx].attachments[.translation] = nil
                     lines[idx].attachments.setTranslation(trans, languageCode: transLan)
                 }
             }
