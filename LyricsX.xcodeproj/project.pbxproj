@@ -1430,7 +1430,7 @@
 			repositoryURL = "https://github.com/cx-org/CombineX";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.3.0;
 			};
 		};
 		BB22681A234C9085008FAFED /* XCRemoteSwiftPackageReference "SwiftCF" */ = {
@@ -1446,7 +1446,7 @@
 			repositoryURL = "https://github.com/cx-org/CXExtensions";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.3.0;
 			};
 		};
 		BB6C75E6248B908500804AEB /* XCRemoteSwiftPackageReference "TouchBarHelper" */ = {
@@ -1461,8 +1461,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ddddxxx/MusicPlayer";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
 			};
 		};
 		BBA82EF9256AB1490076831F /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
@@ -1486,7 +1486,7 @@
 			repositoryURL = "https://github.com/ddddxxx/GenericID.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.5.2;
+				minimumVersion = 0.6.0;
 			};
 		};
 		BBB03F2E232FB40400A3879E /* XCRemoteSwiftPackageReference "Semver" */ = {
@@ -1510,7 +1510,7 @@
 			repositoryURL = "https://github.com/ddddxxx/LyricsKit.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.8.2;
+				minimumVersion = 0.9.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
