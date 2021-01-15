@@ -11,7 +11,7 @@
 "Search Lyrics" = "Cari Lirik";
 
 /* No comment provided by engineer. */
-"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Versi App Store Mac tidak menduduk lirik Batang Sentuh (Touch Bar). Silakan unduh di GitHub.";
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Versi App Store Mac tidak mendukung lirik Batang Sentuh (Touch Bar). Silakan unduh di GitHub.";
 
 /* alert title */
 "Unable to enable Touch Bar lyrics." = "Tidak bisa menghidupkan lirik Batang Sentuh (Touch Bar).";
