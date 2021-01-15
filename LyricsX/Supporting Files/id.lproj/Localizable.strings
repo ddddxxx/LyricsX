@@ -1,17 +1,17 @@
 /* title of download button on the update alert. Download new version of the app. */
-"Download" = "Download";
+"Download" = "Unduh";
 
 /* No comment provided by engineer. */
-"Font Fallback: %@" = "Font Fallback: %@";
+"Font Fallback: %@" = "Fon Sandaran (fallback): %@";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "Baik";
 
 /* window title */
-"Search Lyrics" = "Search Lyrics";
+"Search Lyrics" = "Cari Lirik";
 
 /* No comment provided by engineer. */
-"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub.";
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Versi App Store Mac tidak menduduk lirik Batang Sentuh (Touch Bar). Silakan unduh di GitHub.";
 
 /* alert title */
-"Unable to enable Touch Bar lyrics." = "Unable to enable Touch Bar lyrics.";
+"Unable to enable Touch Bar lyrics." = "Tidak bisa menghidupkan lirik Batang Sentuh (Touch Bar).";
