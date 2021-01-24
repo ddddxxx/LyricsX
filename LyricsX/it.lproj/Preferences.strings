@@ -1,92 +1,92 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "Lyrics saving path:";
+"0M7-ao-0jb.title" = "Percorso per il salvataggio del testo:";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
-"0VO-JB-ubq.title" = "Auto";
+"0VO-JB-ubq.title" = "Automatico";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression.";
+"19E-DG-Q23.title" = "Le righe di testo che corrispondono alle seguenti regole verranno ignorate. Usa \"/\" per avviare un'espressione regolare.";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
-"3Bt-md-QNc.title" = "Lyrics";
+"3Bt-md-QNc.title" = "Testo";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
-"5dp-p5-YmE.title" = "One line mode";
+"5dp-p5-YmE.title" = "Modalità a singola riga";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
-"6FU-j0-FTV.title" = "Traditional Chinese";
+"6FU-j0-FTV.title" = "Cinese tradizionale";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "Write lyrics to iTunes:";
+"6We-TB-Wfc.title" = "Scrivi il testo su iTunes:";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
-"7Ax-7T-26K.title" = "Automatically";
+"7Ax-7T-26K.title" = "Automaticamente";
 
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
-"8JF-Og-z6E.title" = "Display";
+"8JF-Og-z6E.title" = "Visualizzazione";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "Write lyrics to iTunes:";
+"8Sx-vb-5pB.title" = "Scrivi il testo su iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "Font:";
+"992-tg-edx.title" = "Carattere:";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
-"AiM-vg-FvQ.title" = "Simplified Chinese";
+"AiM-vg-FvQ.title" = "Cinese semplificato";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "Preferences";
+"aMb-zX-bzP.title" = "Preferenze";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "Strict Search";
+"As7-rZ-u6c.title" = "Ricerca esatta";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
 "aUg-eg-K5C.label" = "Karaoke";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "Combine menubar icon with menubar lyrics";
+"bbd-ra-rSF.title" = "Combina l'icona della barra dei menu con il testo della barra dei menu";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "Disable lyrics when:";
+"bDS-Lb-m34.title" = "Disabilita il testo quando:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
 "bFk-1g-XeL.title" = "Lab";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "Decrease lyrics offset:";
+"bmk-rW-Uot.title" = "Riduci lo scostamento del testo:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "Prefer bilingual lyrics";
+"cBB-zn-Hdh.title" = "Preferisci testi bilingue";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
-"Cmt-it-PXW.title" = "Font:";
+"Cmt-it-PXW.title" = "Carattere:";
 
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
-"d5d-dC-DK4.title" = "General";
+"d5d-dC-DK4.title" = "Generale";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
-"EDv-ax-0hI.title" = "Load lyrics beside music file";
+"EDv-ax-0hI.title" = "Carica il testo accanto al file musicale";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "Here are some experimental features that may not be stable enough, and may be removed in the future.";
+"g2u-8D-dln.title" = "Ecco alcune caratteristiche sperimentali che potrebbero non essere sufficientemente stabili e potrebbero essere rimosse in futuro.";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "Enable Touch Bar lyrics";
+"gGL-LB-TXI.title" = "Mostra il testo nella barra del menu";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
 "gin-P2-gb5.title" = "Use system wide now playing application";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
-"h4G-Un-dtm.title" = "Vertical mode";
+"h4G-Un-dtm.title" = "Modalità verticale";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
-"hsu-H9-9Bd.title" = "Shadow";
+"hsu-H9-9Bd.title" = "Ombreggiatura";
 
 /* Class = "NSMenuItem"; title = "Other..."; ObjectID = "HvN-Ou-h1t"; */
-"HvN-Ou-h1t.title" = "Other...";
+"HvN-Ou-h1t.title" = "Altro...";
 
 /* Class = "NSMenuItem"; title = "LyricsX (Default)"; ObjectID = "IE7-IT-oPk"; */
-"IE7-IT-oPk.title" = "LyricsX (Default)";
+"IE7-IT-oPk.title" = "LyricsX (predefinito)";
 
 /* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
 "iMD-Wy-Bm7.title" = "Taking a screenshot";
