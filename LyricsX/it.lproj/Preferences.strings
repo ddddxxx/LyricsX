@@ -11,13 +11,13 @@
 "3Bt-md-QNc.title" = "Testo";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
-"5dp-p5-YmE.title" = "Modalità a singola riga";
+"5dp-p5-YmE.title" = "Modalità a riga singola";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
 "6FU-j0-FTV.title" = "Cinese tradizionale";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "Scrivi il testo su iTunes:";
+"6We-TB-Wfc.title" = "Scrivi il testo in iTunes:";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "Automaticamente";
@@ -26,7 +26,7 @@
 "8JF-Og-z6E.title" = "Visualizzazione";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "Scrivi il testo su iTunes:";
+"8Sx-vb-5pB.title" = "Scrivi il testo in iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
 "992-tg-edx.title" = "Carattere:";
@@ -56,7 +56,7 @@
 "bmk-rW-Uot.title" = "Riduci lo scostamento del testo:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "Preferisci testi bilingue";
+"cBB-zn-Hdh.title" = "Preferisci testo bilingue";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
 "Cmt-it-PXW.title" = "Carattere:";
@@ -104,7 +104,7 @@
 "kEd-lC-aAH.title" = "Abilita il filtro dei testi";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
-"kP4-4q-ed9.title" = "Cerca testi:";
+"kP4-4q-ed9.title" = "Cerca testo:";
 
 /* Class = "NSTabViewItem"; label = "Window"; ObjectID = "LbQ-p9-Zti"; */
 "LbQ-p9-Zti.label" = "Finestra";
