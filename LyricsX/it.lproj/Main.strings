@@ -47,7 +47,7 @@
 "hxE-X4-sJh.title" = "Testo";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
-"IFz-XQ-DHf.title" = "Lyrics Offset:";
+"IFz-XQ-DHf.title" = "Scostamento del testo:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
 "jWT-S5-YXM.headerCell.title" = "Titolo";
@@ -62,7 +62,7 @@
 "l8J-1r-dIZ.title" = "Artista:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.";
+"o52-Z0-lue.title" = "Se ti piace usare LyricsX e desideri comprarmi una tazza di caffè e, nello stesso tempo, aiutarmi a sviluppare questo software, puoi eseguire la scansione del codice QR qui sotto per fare una generosa donazione.";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "A proposito di LyricsX";
@@ -71,7 +71,7 @@
 "Piu-i2-JjD.title" = "Verifica aggiornamenti...";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "Apply";
+"RGl-MT-MQb.title" = "Applicare";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
 "RPR-IV-34T.title" = "Esci da LyricsX";
