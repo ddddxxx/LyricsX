@@ -108,7 +108,8 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private func updateWindowFrame(toScreen: NSScreen? = nil, animate: Bool) {
         let screen = toScreen ?? window?.screen ?? NSScreen.screens[0]
-        let frame = screen.isFullScreen ? screen.frame : screen.visibleFrame
+        let fullScreen = screen.isFullScreen || defaults.bool(forKey: "DesktopLyricsIgnoreSafeArea")
+        let frame = fullScreen ? screen.frame : screen.visibleFrame
         window?.setFrame(frame, display: false, animate: animate)
         window?.saveFrame(usingName: KaraokeLyricsWindowController.windowFrame)
     }
