@@ -29,7 +29,7 @@
 "fmS-zv-RcJ.title" = "Verkeerde songtekst";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
-"GGU-uz-d9h.title" = "Schakel karaoke songteksten in";
+"GGU-uz-d9h.title" = "Schakel karaoke-songteksten in";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
 "Gza-SX-MCH.ibShadowedToolTip" = "Altijd op de voorgrond";
@@ -71,10 +71,10 @@
 "Piu-i2-JjD.title" = "Controleren op updates...";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "Apply";
+"RGl-MT-MQb.title" = "Toepassen";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "Quit LyricsX";
+"RPR-IV-34T.title" = "LyricsX afsluiten";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "Enable Menu Bar Lyrics";
+"Z7d-yp-uRx.title" = "Schakel menubalk-songteksten in";
