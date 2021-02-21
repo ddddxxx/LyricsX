@@ -153,8 +153,8 @@ class AppController: NSObject {
             }
         }
         let (url, security) = defaults.lyricsSavingPath()
-        let titleForReading = title.replacingOccurrences(of: "/", with: "&")
-        let artistForReading = artist.replacingOccurrences(of: "/", with: "&")
+        let titleForReading = title.replacingOccurrences(of: "/", with: ":")
+        let artistForReading = artist.replacingOccurrences(of: "/", with: ":")
         let fileName = url.appendingPathComponent("\(titleForReading) - \(artistForReading)")
         candidateLyricsURL += [
             (fileName.appendingPathExtension("lrcx"), security, false),
