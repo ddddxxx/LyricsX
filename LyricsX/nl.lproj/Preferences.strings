@@ -1,182 +1,182 @@
 /* Class = "NSTextFieldCell"; title = "Lyrics saving path:"; ObjectID = "0M7-ao-0jb"; */
-"0M7-ao-0jb.title" = "歌詞ファイルの保存先：";
+"0M7-ao-0jb.title" = "Opslaglocatie songteksten:";
 
 /* Class = "NSButtonCell"; title = "Auto"; ObjectID = "0VO-JB-ubq"; */
-"0VO-JB-ubq.title" = "自動設定";
+"0VO-JB-ubq.title" = "Automatisch";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "次の規則を満たす歌詞行が非表示にされます。 先頭に「/」をつけて正規表現にすることができます。";
+"19E-DG-Q23.title" = "Songtekst regels die aan de volgende regels voldoen worden genegeerd. Gebruik \"/\" om een reguliere expressie te starten.";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
-"3Bt-md-QNc.title" = "歌詞";
+"3Bt-md-QNc.title" = "Songteksten";
 
 /* Class = "NSButtonCell"; title = "One line mode"; ObjectID = "5dp-p5-YmE"; */
-"5dp-p5-YmE.title" = "一行モード";
+"5dp-p5-YmE.title" = "Enkele regel-modus";
 
 /* Class = "NSMenuItem"; title = "Traditional Chinese"; ObjectID = "6FU-j0-FTV"; */
-"6FU-j0-FTV.title" = "繁体字中国語に変換";
+"6FU-j0-FTV.title" = "Traditioneel Chinees";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "iTunesに書き込む：";
+"6We-TB-Wfc.title" = "Schijf songteksten voor iTunes:";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
-"7Ax-7T-26K.title" = "自動的に書き込み";
+"7Ax-7T-26K.title" = "Automatisch";
 
 /* Class = "NSViewController"; title = "Display"; ObjectID = "8JF-Og-z6E"; */
-"8JF-Og-z6E.title" = "表示";
+"8JF-Og-z6E.title" = "Weergave";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "8Sx-vb-5pB"; */
-"8Sx-vb-5pB.title" = "iTunesに書き込む：";
+"8Sx-vb-5pB.title" = "Schijf songteksten naar iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "フォント:";
+"992-tg-edx.title" = "Lettertype:";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
-"AiM-vg-FvQ.title" = "簡体字中国語に変換";
+"AiM-vg-FvQ.title" = "Vereenvoudigd Chinees";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "aMb-zX-bzP"; */
-"aMb-zX-bzP.title" = "環境設定";
+"aMb-zX-bzP.title" = "Instellingen";
 
 /* Class = "NSButtonCell"; title = "Strict Search"; ObjectID = "As7-rZ-u6c"; */
-"As7-rZ-u6c.title" = "厳密な検索";
+"As7-rZ-u6c.title" = "Strikt zoeken";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
-"aUg-eg-K5C.label" = "カラオケ";
+"aUg-eg-K5C.label" = "Karaoke";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
-"bbd-ra-rSF.title" = "メニューバーのアイコンと歌詞を結合する";
+"bbd-ra-rSF.title" = "Combineer icoon in de menubalk met songteksten in de menubalk";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "歌詞を非表示:";
+"bDS-Lb-m34.title" = "Songteksten uitschakelen wanneer:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
-"bFk-1g-XeL.title" = "ラボ";
+"bFk-1g-XeL.title" = "Lab";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "歌詞のオフセットを減らす:";
+"bmk-rW-Uot.title" = "Verminder songtekst compensatie:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "バイリンガルの歌詞を優先する";
+"cBB-zn-Hdh.title" = "Liever tweetalige songteksten";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
-"Cmt-it-PXW.title" = "フォント:";
+"Cmt-it-PXW.title" = "Lettertype:";
 
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
-"d5d-dC-DK4.title" = "一般";
+"d5d-dC-DK4.title" = "Algemeen";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
-"EDv-ax-0hI.title" = "同じ名前の歌詞を読み込む";
+"EDv-ax-0hI.title" = "Laad songteksten naast muziek bestand";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
-"g2u-8D-dln.title" = "ここにいくつかの実験的な機能があります、これらの機能は十分に安定しておらず、今後削除される可能性があります。";
+"g2u-8D-dln.title" = "Hier zijn enkele experimentele functies die mogelijk niet stabiel genoeg zijn en in de toekomst verwijderd zouden kunnen worden.";
 
 /* Class = "NSButtonCell"; title = "Enable Touch Bar lyrics"; ObjectID = "gGL-LB-TXI"; */
-"gGL-LB-TXI.title" = "タッチバー歌詞を有効にする";
+"gGL-LB-TXI.title" = "Schakel Touch Bar songteksten in";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "システムで「再生中」のアプリを利用する";
+"gin-P2-gb5.title" = "Gebruik de systeem-brede nu afgespeelde applicatie";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
-"h4G-Un-dtm.title" = "垂直モード";
+"h4G-Un-dtm.title" = "Verticale modus";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
-"hsu-H9-9Bd.title" = "影";
+"hsu-H9-9Bd.title" = "Schaduw";
 
 /* Class = "NSMenuItem"; title = "Other..."; ObjectID = "HvN-Ou-h1t"; */
-"HvN-Ou-h1t.title" = "その他...";
+"HvN-Ou-h1t.title" = "Overige...";
 
 /* Class = "NSMenuItem"; title = "LyricsX (Default)"; ObjectID = "IE7-IT-oPk"; */
-"IE7-IT-oPk.title" = "LyricsX (既定値)";
+"IE7-IT-oPk.title" = "LyricsX (standaard)";
 
 /* Class = "NSButtonCell"; title = "Taking a screenshot"; ObjectID = "iMD-Wy-Bm7"; */
-"iMD-Wy-Bm7.title" = "スクリーンショットを撮る";
+"iMD-Wy-Bm7.title" = "Schermafbeelding maken";
 
 /* Class = "NSButtonCell"; title = "With translation"; ObjectID = "jFb-kX-VbY"; */
-"jFb-kX-VbY.title" = "翻訳付き";
+"jFb-kX-VbY.title" = "Met vertaling";
 
 /* Class = "NSTextFieldCell"; title = "Auto Chinese conversion:"; ObjectID = "JPB-ag-MN7"; */
-"JPB-ag-MN7.title" = "自動中国語変換:";
+"JPB-ag-MN7.title" = "Automatische Chinese conversie:";
 
 /* Class = "NSBox"; title = "Preferred music player"; ObjectID = "JYR-Ed-Tax"; */
-"JYR-Ed-Tax.title" = "デフォルトプレーヤー";
+"JYR-Ed-Tax.title" = "Favoriete muziekspeler";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
-"kEd-lC-aAH.title" = "歌詞フィルタを有効にする";
+"kEd-lC-aAH.title" = "Schakel songtekst filter in";
 
 /* Class = "NSTextFieldCell"; title = "Search lyrics:"; ObjectID = "kP4-4q-ed9"; */
-"kP4-4q-ed9.title" = "歌詞を検索:";
+"kP4-4q-ed9.title" = "Songteksten zoeken:";
 
 /* Class = "NSTabViewItem"; label = "Window"; ObjectID = "LbQ-p9-Zti"; */
-"LbQ-p9-Zti.label" = "ウィンドウ";
+"LbQ-p9-Zti.label" = "Venster";
 
 /* Class = "NSButtonCell"; title = "Mouse passing by"; ObjectID = "LH4-YZ-Qvs"; */
-"LH4-YZ-Qvs.title" = "マウスが通過する時";
+"LH4-YZ-Qvs.title" = "Muis passeerd door";
 
 /* Class = "NSViewController"; title = "Filter"; ObjectID = "lN1-gG-AVq"; */
-"lN1-gG-AVq.title" = "フィルタ";
+"lN1-gG-AVq.title" = "Filter";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "カラオケ歌詞を表示/非表示:";
+"lOc-OP-AcU.title" = "Toon / verberg karaoke songteksten:";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
-"mo2-3C-gLY.title" = "歌詞のオフセットを増やす:";
+"mo2-3C-gLY.title" = "Verhoog songtekst compensatie:";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
-"N08-TS-lqw.title" = "自動";
+"N08-TS-lqw.title" = "Automatisch";
 
 /* Class = "NSButtonCell"; title = "Music is not playing"; ObjectID = "NLl-9L-0gZ"; */
-"NLl-9L-0gZ.title" = "一時停止中";
+"NLl-9L-0gZ.title" = "Muziek wordt niet afgespeeld";
 
 /* Class = "NSButtonCell"; title = "Help translate LyricsX"; ObjectID = "oiH-T7-agJ"; */
-"oiH-T7-agJ.title" = "LyricsXの翻訳に協力する";
+"oiH-T7-agJ.title" = "Help LyricsX vertalen";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
-"ppx-ob-WJc.title" = "ショートカット";
+"ppx-ob-WJc.title" = "Sneltoetsen";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "キーワードと完全一致にする検索結果のみを表示する";
+"rSD-qR-EXA.title" = "Zoekresultaten komen overheen met de exacte zoekterm";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "グローバル オフセット (ミリ秒):";
+"slB-q7-1dB.title" = "Globale compensatie (ms):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "ドラッグを有効にする";
+"T7p-MT-Mrh.title" = "Versleepbaar";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
-"TB9-Fk-WAX.title" = "歌詞ウィンドウを表示:";
+"TB9-Fk-WAX.title" = "Toon songtekst venster:";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "日本語歌詞のふりがなを自動的に生成する";
+"ThQ-vA-Krb.title" = "Automatisch furigana genereren voor Japanse songteksten";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
-"Txi-D9-jjB.title" = "テキスト:";
+"Txi-D9-jjB.title" = "Tekst: ";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "間違った歌詞としてマークする:";
+"uEb-Q5-cda.title" = "Markeer als verkeerde songtekst:";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
-"Uer-qJ-3T9.title" = "背景";
+"Uer-qJ-3T9.title" = "Achtergrond";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
-"UfE-QU-Yhm.title" = "ハイライト:";
+"UfE-QU-Yhm.title" = "Hoogtepunt:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "プレーヤーの状態に応じて自動起動・終了";
+"v63-4a-fPw.title" = "Automatisch opstarten & afsluiten met de muziekspeler";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "言語（再起動が必要）：";
+"WfA-pe-S5D.title" = "Taal (vereist herstart):";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "メニューバー歌詞を表示/非表示:";
+"XHQ-gX-urF.title" = "Toon / verberg songteksten in de menubalk:";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "リセット";
+"XUF-aM-ZmS.title" = "Herstellen";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
-"XuN-vs-cgI.title" = "進行状況";
+"XuN-vs-cgI.title" = "Voortgang";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "変換しない";
+"zhB-kd-WWG.title" = "Geen conversie";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
-"zQK-i2-2Nc.title" = "TouchBarをカスタマイズ";
+"zQK-i2-2Nc.title" = "TouchBar aanpassen";

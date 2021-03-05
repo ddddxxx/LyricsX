@@ -1,80 +1,80 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
-"1xI-G4-Fsc.headerCell.title" = "参照元";
+"1xI-G4-Fsc.headerCell.title" = "Fonte";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
-"aRw-yQ-GNX.title" = "歌詞なし\n\nドラッグ＆ドロップでLRCファイルをインポート";
+"aRw-yQ-GNX.title" = "Nessun testo\nTrascina e rilascia per importare il file LRC";
 
 /* Class = "NSWindow"; title = "Donate"; ObjectID = "CW0-AL-Z6N"; */
-"CW0-AL-Z6N.title" = "寄付";
+"CW0-AL-Z6N.title" = "Effettua una donazione";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "CWo-Qx-2Ut"; */
-"CWo-Qx-2Ut.title" = "環境設定...";
+"CWo-Qx-2Ut.title" = "Preferenze...";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Synchronism"; ObjectID = "d5a-4n-6k8"; */
-"d5a-4n-6k8.ibShadowedToolTip" = "同期";
+"d5a-4n-6k8.ibShadowedToolTip" = "Sincronizzazione";
 
 /* Class = "NSMenuItem"; title = "Show In Finder"; ObjectID = "DNi-vI-MTr"; */
-"DNi-vI-MTr.title" = "Finder で表示";
+"DNi-vI-MTr.title" = "Mostra nel Finder";
 
 /* Class = "NSButtonCell"; title = "Search"; ObjectID = "eb9-fE-Lgq"; */
-"eb9-fE-Lgq.title" = "検索";
+"eb9-fE-Lgq.title" = "Cerca";
 
 /* Class = "NSMenuItem"; title = "Donate..."; ObjectID = "EoO-ld-6Xv"; */
-"EoO-ld-6Xv.title" = "寄付...";
+"EoO-ld-6Xv.title" = "Fa una donazione...";
 
 /* Class = "NSTextFieldCell"; title = "Title:"; ObjectID = "FMI-7E-tCo"; */
-"FMI-7E-tCo.title" = "タイトル:";
+"FMI-7E-tCo.title" = "Titolo:";
 
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
-"fmS-zv-RcJ.title" = "間違った歌詞";
+"fmS-zv-RcJ.title" = "Testo errato";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
-"GGU-uz-d9h.title" = "カラオケ歌詞を有効にする";
+"GGU-uz-d9h.title" = "Abilita il testo per il karaoke";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
-"Gza-SX-MCH.ibShadowedToolTip" = "常に最前面";
+"Gza-SX-MCH.ibShadowedToolTip" = "Tieni in primo piano";
 
 /* Class = "NSMenuItem"; title = "Search Lyrics..."; ObjectID = "h6D-jz-GbI"; */
-"h6D-jz-GbI.title" = "歌詞を検索...";
+"h6D-jz-GbI.title" = "Cerca testo...";
 
 /* Class = "NSMenuItem"; title = "Disable Lyrics for Entire Album"; ObjectID = "hgd-IJ-u14"; */
-"hgd-IJ-u14.title" = "アルバム全体の歌詞を無効にする";
+"hgd-IJ-u14.title" = "Non mostrare i testi per l'intero album";
 
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "HMU-fa-17B"; */
-"HMU-fa-17B.headerCell.title" = "アーティスト";
+"HMU-fa-17B.headerCell.title" = "Artista";
 
 /* Class = "NSMenuItem"; title = "Lyrics"; ObjectID = "hxE-X4-sJh"; */
-"hxE-X4-sJh.title" = "歌詞";
+"hxE-X4-sJh.title" = "Testo";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics Offset:"; ObjectID = "IFz-XQ-DHf"; */
-"IFz-XQ-DHf.title" = "歌詞のオフセット:";
+"IFz-XQ-DHf.title" = "Scostamento del testo:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "jWT-S5-YXM"; */
-"jWT-S5-YXM.headerCell.title" = "タイトル";
+"jWT-S5-YXM.headerCell.title" = "Titolo";
 
 /* Class = "NSMenuItem"; title = "Write to iTunes"; ObjectID = "kNl-ZO-aX6"; */
-"kNl-ZO-aX6.title" = "Musicに書き込む";
+"kNl-ZO-aX6.title" = "Scrivi su iTunes";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
-"kyJ-kV-2Du.title" = "歌詞ウィンドウを表示";
+"kyJ-kV-2Du.title" = "Mostra la finestra con il testo";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
-"l8J-1r-dIZ.title" = "アーティスト:";
+"l8J-1r-dIZ.title" = "Artista:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "LyricsX が役に立てて、アプリのメンテナンスをサポートしたいと考えている場合は、下記のQRコードをスキャンして私に寄付することができます。";
+"o52-Z0-lue.title" = "Se ti piace usare LyricsX e desideri comprarmi una tazza di caffè e, nello stesso tempo, aiutarmi a sviluppare questo software, puoi eseguire la scansione del codice QR qui sotto per fare una generosa donazione.";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
-"PdE-VG-JUC.title" = "LyricsX について";
+"PdE-VG-JUC.title" = "A proposito di LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "アップデートの確認...";
+"Piu-i2-JjD.title" = "Verifica aggiornamenti...";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "適用";
+"RGl-MT-MQb.title" = "Applicare";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "LyricsX を終了";
+"RPR-IV-34T.title" = "Esci da LyricsX";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "メニューバー歌詞を有効にする";
+"Z7d-yp-uRx.title" = "Mostra il testo nella barra del menu";
