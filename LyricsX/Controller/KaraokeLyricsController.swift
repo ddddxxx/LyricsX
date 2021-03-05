@@ -174,10 +174,11 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.snp.remakeConstraints { make in
             make.centerX.equalToSuperview().safeMultipliedBy(defaults[.desktopLyricsXPositionFactor] * 2).priority(.low)
             make.centerY.equalToSuperview().safeMultipliedBy(defaults[.desktopLyricsYPositionFactor] * 2).priority(.low)
-            make.leading.greaterThanOrEqualToSuperview()
-            make.trailing.lessThanOrEqualToSuperview()
-            make.top.greaterThanOrEqualToSuperview()
-            make.bottom.lessThanOrEqualToSuperview()
+            
+            make.leading.greaterThanOrEqualToSuperview().priority(.keepWindowSize)
+            make.trailing.lessThanOrEqualToSuperview().priority(.keepWindowSize)
+            make.top.greaterThanOrEqualToSuperview().priority(.keepWindowSize)
+            make.bottom.lessThanOrEqualToSuperview().priority(.keepWindowSize)
         }
     }
     
@@ -250,4 +251,10 @@ private extension ConstraintMakerEditable {
         }
         return multipliedBy(factor)
     }
+}
+
+extension ConstraintPriority {
+    
+    static let windowSizeStayPut = ConstraintPriority(NSLayoutConstraint.Priority.windowSizeStayPut.rawValue)
+    static let keepWindowSize = ConstraintPriority.windowSizeStayPut.advanced(by: -1)
 }
