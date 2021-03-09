@@ -277,6 +277,18 @@
 		BB7EC7B11E4E018C00A0AC3F /* LyricsHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricsHUDViewController.swift; sourceTree = "<group>"; };
 		BB89089D21ED69410078F522 /* Lyrics+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lyrics+Language.swift"; sourceTree = "<group>"; };
 		BB947DFA23B4C60000C43BF2 /* SelectedPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPlayer.swift; sourceTree = "<group>"; };
+		BB99F39125F21E2A00374642 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
+		BB99F39225F21E4700374642 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Preferences.strings; sourceTree = "<group>"; };
+		BB99F39325F21E5700374642 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB99F39425F21E6400374642 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB99F39525F21E8100374642 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
+		BB99F39625F21E9300374642 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Preferences.strings; sourceTree = "<group>"; };
+		BB99F39725F21E9900374642 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB99F39825F21E9D00374642 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB99F39925F21EBD00374642 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
+		BB99F39A25F21EC500374642 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Preferences.strings; sourceTree = "<group>"; };
+		BB99F39B25F21ECB00374642 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB99F39C25F21ED000374642 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BB9BCEB81E84120D001BC54B /* LyricsX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyricsX.entitlements; sourceTree = "<group>"; };
 		BB9BCEB91E843157001BC54B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		BBB9AAE21E57EE880078F91A /* SearchLyricsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLyricsViewController.swift; sourceTree = "<group>"; };
@@ -687,6 +699,9 @@
 				pt,
 				ru,
 				uk,
+				nl,
+				it,
+				id,
 			);
 			mainGroup = BB4141A11E458BA800A51775;
 			packageReferences = (
@@ -1031,6 +1046,9 @@
 				BB719428247FCE80003F1D1B /* pt */,
 				BBE23FD925285FF100AAA2D6 /* ru */,
 				BBE23FDD2528602C00AAA2D6 /* uk */,
+				BB99F39325F21E5700374642 /* nl */,
+				BB99F39725F21E9900374642 /* it */,
+				BB99F39B25F21ECB00374642 /* id */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1053,6 +1071,9 @@
 				BB719425247FCE5D003F1D1B /* pt */,
 				BBE23FD725285FB200AAA2D6 /* ru */,
 				BBE23FDB2528600A00AAA2D6 /* uk */,
+				BB99F39125F21E2A00374642 /* nl */,
+				BB99F39525F21E8100374642 /* it */,
+				BB99F39925F21EBD00374642 /* id */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1083,6 +1104,9 @@
 				BB719426247FCE5D003F1D1B /* pt */,
 				BBE23FD825285FB200AAA2D6 /* ru */,
 				BBE23FDC2528602800AAA2D6 /* uk */,
+				BB99F39225F21E4700374642 /* nl */,
+				BB99F39625F21E9300374642 /* it */,
+				BB99F39A25F21EC500374642 /* id */,
 			);
 			name = Preferences.storyboard;
 			sourceTree = "<group>";
@@ -1104,6 +1128,9 @@
 				BB719427247FCE7A003F1D1B /* pt */,
 				BBE23FDA25285FF600AAA2D6 /* ru */,
 				BBE23FDE2528603000AAA2D6 /* uk */,
+				BB99F39425F21E6400374642 /* nl */,
+				BB99F39825F21E9D00374642 /* it */,
+				BB99F39C25F21ED000374642 /* id */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1477,8 +1504,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
 			requirement = {
-				kind = revision;
-				revision = 891afd44c7075e699924ed9b81d8dc94a5111dfd;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.26.0;
 			};
 		};
 		BBB03F2B232FB3AF00A3879E /* XCRemoteSwiftPackageReference "GenericID" */ = {

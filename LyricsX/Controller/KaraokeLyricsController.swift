@@ -108,7 +108,8 @@ class KaraokeLyricsWindowController: NSWindowController {
     
     private func updateWindowFrame(toScreen: NSScreen? = nil, animate: Bool) {
         let screen = toScreen ?? window?.screen ?? NSScreen.screens[0]
-        let frame = screen.isFullScreen ? screen.frame : screen.visibleFrame
+        let fullScreen = screen.isFullScreen || defaults.bool(forKey: "DesktopLyricsIgnoreSafeArea")
+        let frame = fullScreen ? screen.frame : screen.visibleFrame
         window?.setFrame(frame, display: false, animate: animate)
         window?.saveFrame(usingName: KaraokeLyricsWindowController.windowFrame)
     }
@@ -173,10 +174,11 @@ class KaraokeLyricsWindowController: NSWindowController {
         lyricsView.snp.remakeConstraints { make in
             make.centerX.equalToSuperview().safeMultipliedBy(defaults[.desktopLyricsXPositionFactor] * 2).priority(.low)
             make.centerY.equalToSuperview().safeMultipliedBy(defaults[.desktopLyricsYPositionFactor] * 2).priority(.low)
-            make.leading.greaterThanOrEqualToSuperview()
-            make.trailing.lessThanOrEqualToSuperview()
-            make.top.greaterThanOrEqualToSuperview()
-            make.bottom.lessThanOrEqualToSuperview()
+            
+            make.leading.greaterThanOrEqualToSuperview().priority(.keepWindowSize)
+            make.trailing.lessThanOrEqualToSuperview().priority(.keepWindowSize)
+            make.top.greaterThanOrEqualToSuperview().priority(.keepWindowSize)
+            make.bottom.lessThanOrEqualToSuperview().priority(.keepWindowSize)
         }
     }
     
@@ -249,4 +251,10 @@ private extension ConstraintMakerEditable {
         }
         return multipliedBy(factor)
     }
+}
+
+extension ConstraintPriority {
+    
+    static let windowSizeStayPut = ConstraintPriority(NSLayoutConstraint.Priority.windowSizeStayPut.rawValue)
+    static let keepWindowSize = ConstraintPriority.windowSizeStayPut.advanced(by: -1)
 }

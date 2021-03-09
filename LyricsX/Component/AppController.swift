@@ -79,12 +79,13 @@ class AppController: NSObject {
         guard let lyrics = currentLyrics else {
             return
         }
-        let playbackTime = MusicPlayers.Selected.shared.playbackTime
+        let playbackState = MusicPlayers.Selected.shared.playbackState
+        let playbackTime = playbackState.time
         let (index, next) = lyrics[playbackTime + lyrics.adjustedTimeDelay]
         if currentLineIndex != index {
             currentLineIndex = index
         }
-        if let next = next {
+        if let next = next, playbackState.isPlaying {
             let dt = lyrics.lines[next].position - playbackTime - lyrics.adjustedTimeDelay
             let q = DispatchQueue.lyricsDisplay.cx
             currentLineCheckSchedule = q.schedule(after: q.now.advanced(by: .seconds(dt)), interval: .seconds(42), tolerance: .milliseconds(20)) { [unowned self] in
@@ -152,8 +153,8 @@ class AppController: NSObject {
             }
         }
         let (url, security) = defaults.lyricsSavingPath()
-        let titleForReading = title.replacingOccurrences(of: "/", with: "&")
-        let artistForReading = artist.replacingOccurrences(of: "/", with: "&")
+        let titleForReading = title.replacingOccurrences(of: "/", with: ":")
+        let artistForReading = artist.replacingOccurrences(of: "/", with: ":")
         let fileName = url.appendingPathComponent("\(titleForReading) - \(artistForReading)")
         candidateLyricsURL += [
             (fileName.appendingPathExtension("lrcx"), security, false),

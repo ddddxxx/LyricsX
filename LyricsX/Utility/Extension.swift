@@ -188,7 +188,7 @@ private extension NSPredicate {
         let predicates = change.newValue.compactMap { (key: String) -> NSPredicate? in
             let isRegex = key.hasPrefix("/")
             let pattern = isRegex ? String(key.dropFirst()) : key
-            let options: NSRegularExpression.Options = isRegex ? [.ignoreMetacharacters] : []
+            let options: NSRegularExpression.Options = isRegex ? [] : [.ignoreMetacharacters]
             guard let regex = try? Regex(pattern, options: options) else { return nil }
             return NSPredicate { object, _ in
                 guard let object = object as? LyricsLine else { return false }

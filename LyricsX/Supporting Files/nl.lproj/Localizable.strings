@@ -1,0 +1,17 @@
+/* title of download button on the update alert. Download new version of the app. */
+"Download" = "Downloaden";
+
+/* No comment provided by engineer. */
+"Font Fallback: %@" = "Reserve lettertype: %@";
+
+/* No comment provided by engineer. */
+"OK" = "Oké";
+
+/* window title */
+"Search Lyrics" = "Songteksten zoeken";
+
+/* No comment provided by engineer. */
+"Touch Bar lyrics is not supported in Mac App Store Version. Please download on GitHub." = "Touch Bar songteksten worden niet ondersteund in de Mac App Store versie. Download a.u.b op GitHub.";
+
+/* alert title */
+"Unable to enable Touch Bar lyrics." = "Kan Touch Bar songteksten niet inschakelen.";
