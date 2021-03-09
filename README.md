@@ -1,7 +1,7 @@
 # LyricsX
 
 [![release](https://img.shields.io/github/release/ddddxxx/LyricsX.svg)](https://github.com/ddddxxx/LyricsX/releases)
-[![Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://telegram.me/LyricsXTestFlight)
+[![Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://telegram.me/LyricsXApp)
 [![codebeat badge](https://codebeat.co/badges/d4ea2fbf-89a0-4490-875f-857a1568ec16)](https://codebeat.co/projects/github-com-ddddxxx-lyricsx-master)
 
 <img src="docs/img/icon.png" width="128px">
