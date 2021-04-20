@@ -26,7 +26,7 @@
 "FMI-7E-tCo.title" = "Judul:";
 
 /* Class = "NSMenuItem"; title = "Wrong Lyrics"; ObjectID = "fmS-zv-RcJ"; */
-"fmS-zv-RcJ.title" = "Salah Lirik";
+"fmS-zv-RcJ.title" = "Lirik salah";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
 "GGU-uz-d9h.title" = "Hidupkan Lirik Karaoke";
@@ -56,13 +56,13 @@
 "kNl-ZO-aX6.title" = "Tulis ke iTunes";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
-"kyJ-kV-2Du.title" = "Tampilkan Lirik Jendela";
+"kyJ-kV-2Du.title" = "Tampilkan Jendela Lirik";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
 "l8J-1r-dIZ.title" = "Artis:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "Jika kamu menyukai LyricsX dan berkenan mentraktir saya secangkir kopi, juga membantu saya untuk tetap meningkatkan perangkat lunak ini, kamu bisa memindai kode QR di bawah ini untuk memberikan donasi.";
+"o52-Z0-lue.title" = "Jika kamu menyukai LyricsX dan berkenan mentraktir saya secangkir kopi, juga membantu saya untuk tetap meningkatkan aplikasi ini, kamu bisa memindai kode QR di bawah ini untuk memberikan donasi.";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "Tentang LyricsX";
