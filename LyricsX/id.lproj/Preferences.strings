@@ -5,7 +5,7 @@
 "0VO-JB-ubq.title" = "Otomatis";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Baris lirik yang cocok dengan aturan-aturan berikut akan diabaikan. Gunakan \"/\" untuk memulai ekspresi reguler (RegEx).";
+"19E-DG-Q23.title" = "Baris lirik yang cocok dengan aturan-aturan berikut akan diabaikan. Gunakan \"/\" untuk memulai ekspresi reguler.";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
 "3Bt-md-QNc.title" = "Lirik";
@@ -29,7 +29,7 @@
 "8Sx-vb-5pB.title" = "Tulis lirik ke iTunes:";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "992-tg-edx"; */
-"992-tg-edx.title" = "Fon:";
+"992-tg-edx.title" = "Jenis huruf:";
 
 /* Class = "NSMenuItem"; title = "Simplified Chinese"; ObjectID = "AiM-vg-FvQ"; */
 "AiM-vg-FvQ.title" = "Tiongkok (Aksara Sederhana)";
@@ -59,7 +59,7 @@
 "cBB-zn-Hdh.title" = "Lebih suka lirik dwibahasa";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
-"Cmt-it-PXW.title" = "Fon:";
+"Cmt-it-PXW.title" = "Jenis huruf:";
 
 /* Class = "NSViewController"; title = "General"; ObjectID = "d5d-dC-DK4"; */
 "d5d-dC-DK4.title" = "Umum";
