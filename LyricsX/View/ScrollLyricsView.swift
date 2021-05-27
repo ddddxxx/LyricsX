@@ -11,7 +11,7 @@ import Cocoa
 import LyricsCore
 import OpenCC
 
-protocol ScrollLyricsViewDelegate: class {
+protocol ScrollLyricsViewDelegate: AnyObject {
     func doubleClickLyricsLine(at position: TimeInterval)
     func scrollWheelDidStartScroll()
     func scrollWheelDidEndScroll()
@@ -75,7 +75,7 @@ class ScrollLyricsView: NSScrollView {
         
         for line in enabledLrc {
             var lineStr = line.content
-            if var trans = line.attachments.translation(languageCode: languageCode), defaults[.preferBilingualLyrics],
+            if var trans = line.attachments[.translation(languageCode: languageCode)], defaults[.preferBilingualLyrics],
                 languageCode?.hasPrefix("zh") == true {
                 if let converter = ChineseConverter.shared {
                     trans = converter.convert(trans)

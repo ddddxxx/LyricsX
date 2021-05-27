@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "App Center",
+        "package": "AppCenter",
         "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple",
         "state": {
           "branch": null,
-          "revision": "79d99eaff599d1b38adf81884fe220c75fd38867",
-          "version": "4.0.0"
+          "revision": "013bffe628b49433d7bc334146a4ed8c507c0e32",
+          "version": "4.1.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/cx-org/CombineX",
         "state": {
           "branch": null,
-          "revision": "96cd76ccddac5d0493ebd91d69f1e6e9ccb58f5f",
-          "version": "0.3.0"
+          "revision": "b9afefe14653f02a80a9f5aa546859e99073d0c8",
+          "version": "0.3.1"
         }
       },
       {
@@ -30,7 +30,7 @@
       },
       {
         "package": "GenericID",
-        "repositoryURL": "https://github.com/ddddxxx/GenericID.git",
+        "repositoryURL": "https://github.com/ddddxxx/GenericID",
         "state": {
           "branch": null,
           "revision": "31594c0f73306bb338316d7beec505e9b8b40dc1",
@@ -48,11 +48,11 @@
       },
       {
         "package": "LyricsKit",
-        "repositoryURL": "https://github.com/ddddxxx/LyricsKit.git",
+        "repositoryURL": "https://github.com/ddddxxx/LyricsKit",
         "state": {
           "branch": null,
-          "revision": "18e01e4d8a3685fe4403a06f295c3c8ae9d5655c",
-          "version": "0.9.0"
+          "revision": "1f8a3b3f40ff8b040d18fc8b402561bb3effed6c",
+          "version": "0.10.0"
         }
       },
       {
@@ -60,13 +60,13 @@
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
           "branch": null,
-          "revision": "e652b184bc91b003dfc34cce88aaaf20b33fb33a",
-          "version": "0.7.0"
+          "revision": "06e040a3403c0fb84da1da17be5b3279d9d5156f",
+          "version": "0.7.2"
         }
       },
       {
         "package": "PLCrashReporter",
-        "repositoryURL": "https://github.com/microsoft/plcrashreporter.git",
+        "repositoryURL": "https://github.com/microsoft/PLCrashReporter.git",
         "state": {
           "branch": null,
           "revision": "de6b8f9db4b2a0aa859a5507550a70548e4da936",
@@ -78,13 +78,13 @@
         "repositoryURL": "https://github.com/ddddxxx/Regex",
         "state": {
           "branch": null,
-          "revision": "739734521806e17a60ba8c439050ae7ada062551",
-          "version": "0.2.0"
+          "revision": "df530c4955725c04190a88e09b9756ae5b0b8e95",
+          "version": "1.0.0"
         }
       },
       {
         "package": "Semver",
-        "repositoryURL": "https://github.com/ddddxxx/Semver.git",
+        "repositoryURL": "https://github.com/ddddxxx/Semver",
         "state": {
           "branch": null,
           "revision": "6094e6f23a02b52b5d211fd114a4750c4f3ecef3",
@@ -96,26 +96,26 @@
         "repositoryURL": "https://github.com/sparkle-project/Sparkle",
         "state": {
           "branch": null,
-          "revision": "891afd44c7075e699924ed9b81d8dc94a5111dfd",
-          "version": null
+          "revision": "c0933a516b420806e9216e71bd13ba76c54f0de6",
+          "version": "1.26.0"
         }
       },
       {
         "package": "SwiftCF",
-        "repositoryURL": "https://github.com/ddddxxx/SwiftCF.git",
+        "repositoryURL": "https://github.com/ddddxxx/SwiftCF",
         "state": {
           "branch": null,
-          "revision": "de40c892f92eaf043ac795ed1a04e2a9ecea0d9c",
-          "version": "0.1.4"
+          "revision": "72775c4b4dfceba8f6f43820d50f9286dc97160d",
+          "version": "0.2.1"
         }
       },
       {
         "package": "SwiftyOpenCC",
-        "repositoryURL": "https://github.com/ddddxxx/SwiftyOpenCC.git",
+        "repositoryURL": "https://github.com/ddddxxx/SwiftyOpenCC",
         "state": {
-          "branch": null,
-          "revision": "64a4534c17480b15b87cfa114ffcc5aa26a2d35f",
-          "version": "1.0.1"
+          "branch": "v2.0.0-beta",
+          "revision": "1d8105a0f7199c90af722bff62728050c858e777",
+          "version": null
         }
       },
       {

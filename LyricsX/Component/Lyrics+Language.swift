@@ -43,8 +43,8 @@ extension Lyrics {
             }
             for idx in lines.indices {
                 if let trans = lines[idx].attachments.translation() {
-                    lines[idx].attachments[.translation] = nil
-                    lines[idx].attachments.setTranslation(trans, languageCode: transLan)
+                    lines[idx].attachments[.translation()] = nil
+                    lines[idx].attachments[.translation(languageCode: transLan)] = trans
                 }
             }
             metadata.attachmentTags.insert(tag)

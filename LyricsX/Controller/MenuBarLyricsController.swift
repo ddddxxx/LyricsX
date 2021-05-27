@@ -15,6 +15,7 @@ import LyricsCore
 import MusicPlayer
 import OpenCC
 import SwiftCF
+import AccessibilityExt
 
 class MenuBarLyricsController {
     

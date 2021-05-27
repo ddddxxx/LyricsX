@@ -9,6 +9,8 @@
 
 import Cocoa
 import SwiftCF
+import CoreGraphicsExt
+import CoreTextExt
 
 class KaraokeLabel: NSTextField {
     
@@ -81,7 +83,7 @@ class KaraokeLabel: NSTextField {
                 var attr: [CFAttributedString.Key: Any] = [.ctRubySizeFactor: 0.5]
                 attr[.ctForegroundColor] = textColor
                 let annotation = CTRubyAnnotation.create(furigana, attributes: attr)
-                attrString.addAttribute(.ctRubyAnnotation, value: annotation, range: range)
+                attrString.addAttribute(.cf(.ctRubyAnnotation), value: annotation, range: range)
             }
         }
         textColor?.do { attrString.addAttributes([.foregroundColor: $0], range: attrString.fullRange) }
@@ -209,10 +211,4 @@ class KaraokeLabel: NSTextField {
         progressLayer.frame = .zero
         CATransaction.commit()
     }
-}
-
-import CoreText
-
-extension CFAttributedString.Key {
-    static let ctForegroundColor = kCTForegroundColorAttributeName as CFAttributedString.Key
 }

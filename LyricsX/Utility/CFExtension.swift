@@ -15,7 +15,7 @@ import SwiftCF
 extension NSString {
     
     var dominantLanguage: String? {
-        return CFStringTokenizer.bestLanguage(for: .from(self))?.asSwift
+        return CFStringTokenizer.bestLanguage(for: .from(self))?.asSwift()
     }
 }
 
@@ -25,7 +25,7 @@ extension CFStringTokenizer {
         let range = currentTokenRange()
         let tokenStr = string.substring(with: range.asNS)
         guard tokenStr.unicodeScalars.contains(where: CharacterSet.kanji.contains),
-            let latin = currentTokenAttribute(.latinTranscription)?.asNS,
+            let latin = currentTokenAttribute(.latinTranscription)?.asNS(),
             let hiragana = latin.applyingTransform(.latinToHiragana, reverse: false),
             let (rangeToAnnotate, rangeInAnnotation) = rangeOfUncommonContent(tokenStr, hiragana) else {
                 return nil

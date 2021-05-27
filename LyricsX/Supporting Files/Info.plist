@@ -34,7 +34,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.6.0</string>
 	<key>CFBundleVersion</key>
-	<string>2337</string>
+	<string>2339</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -58,7 +58,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>LX_BUILD_TIME</key>
-	<integer>1614931047</integer>
+	<integer>1622118345</integer>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>

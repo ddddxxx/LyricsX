@@ -10,7 +10,7 @@
 import Cocoa
 import SnapKit
 
-protocol FontSelectTextFieldDelegate: class {
+protocol FontSelectTextFieldDelegate: AnyObject {
     
     func fontChanged(from oldFont: NSFont, to newFont: NSFont, sender: FontSelectTextField)
 }
