@@ -70,7 +70,7 @@ let playerBundleIdentifiers = [
     ["com.apple.Music", "com.apple.iTunes"],
     ["com.spotify.client"],
     ["com.coppertino.Vox"],
-    ["com.audirvana.Audirvana", "com.audirvana.Audirvana-Plus"],
+    ["com.audirvana.Audirvana-Studio", "com.audirvana.Audirvana", "com.audirvana.Audirvana-Plus"],
     ["com.swinsian.Swinsian"],
 ]
 
