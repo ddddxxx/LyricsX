@@ -20,8 +20,8 @@ extension ChineseConverter {
     
     private static let observer = defaults.observe(.chineseConversionIndex, options: [.new, .initial]) { _, change in
         switch change.newValue {
-        case 1: ChineseConverter._shared = try! ChineseConverter(option: [.simplify])
-        case 2: ChineseConverter._shared = try! ChineseConverter(option: [.traditionalize])
+        case 1: ChineseConverter._shared = try! ChineseConverter(options: [.simplify])
+        case 2: ChineseConverter._shared = try! ChineseConverter(options: [.traditionalize])
         case 0, _: ChineseConverter._shared = nil
         }
     }

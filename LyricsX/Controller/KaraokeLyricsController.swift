@@ -15,6 +15,7 @@ import MusicPlayer
 import OpenCC
 import SnapKit
 import SwiftCF
+import CoreGraphicsExt
 
 class KaraokeLyricsWindowController: NSWindowController {
     
@@ -136,7 +137,7 @@ class KaraokeLyricsWindowController: NSWindowController {
         if defaults[.desktopLyricsOneLineMode] {
             secondLine = ""
         } else if defaults[.preferBilingualLyrics],
-            let translation = lrc.attachments.translation(languageCode: languageCode) {
+            let translation = lrc.attachments[.translation(languageCode: languageCode)] {
             secondLine = translation
             secondLineIsTranslation = true
         } else {

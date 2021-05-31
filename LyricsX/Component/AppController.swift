@@ -109,7 +109,7 @@ class AppController: NSObject {
             if defaults[.writeiTunesWithTranslation] {
                 // TODO: tagged translation
                 let code = currentLyrics.metadata.translationLanguages.first
-                if var translation = line.attachments.translation(languageCode: code) {
+                if var translation = line.attachments[.translation(languageCode: code)] {
                     if let converter = ChineseConverter.shared {
                         translation = converter.convert(translation)
                     }
@@ -119,7 +119,7 @@ class AppController: NSObject {
             return content
         }.joined(separator: "\n")
         // swiftlint:disable:next force_try
-        let regex = try! Regex(#"\n{3,}"#)
+        let regex = Regex(#"\n{3,}"#)
         let replaced = content.replacingMatches(of: regex, with: "\n\n")
         sbTrack.setValue(replaced, forKey: "lyrics")
     }

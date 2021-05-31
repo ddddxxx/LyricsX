@@ -1,6 +1,6 @@
 # LyricsX
 
-[![release](https://img.shields.io/github/release/ddddxxx/LyricsX.svg)](https://github.com/ddddxxx/LyricsX/releases)
+[![Crowdin](https://badges.crowdin.net/lyricsx/localized.svg)](https://crowdin.com/project/lyricsx)
 [![Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://telegram.me/LyricsXApp)
 [![codebeat badge](https://codebeat.co/badges/d4ea2fbf-89a0-4490-875f-857a1568ec16)](https://codebeat.co/projects/github-com-ddddxxx-lyricsx-master)
 

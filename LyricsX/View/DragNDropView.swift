@@ -9,7 +9,7 @@
 
 import Cocoa
 
-protocol DragNDropDelegate: class {
+protocol DragNDropDelegate: AnyObject {
     func dragFinished(content: String)
 }
 
