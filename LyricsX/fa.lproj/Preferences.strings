@@ -5,7 +5,7 @@
 "0VO-JB-ubq.title" = "خودکار";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics lines matching following rules will be ignored. Use \"/\" to start a regular expression."; ObjectID = "19E-DG-Q23"; */
-"19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.";
+"19E-DG-Q23.title" = "Lyrics lines maching following rules will be ignored. Use \"/\" to start a regular expression.\nبخش هایی از ترانه که از قانون مشخص شده در ادامه پیروی می کنند نشان داده نخواهند شد.\nبرای شروع به نوشتن عبارات باقاعده “RegX” از «/» استفاده کنید.";
 
 /* Class = "NSTextFieldCell"; title = "Lyrics"; ObjectID = "3Bt-md-QNc"; */
 "3Bt-md-QNc.title" = "ترانه ها";
@@ -41,7 +41,7 @@
 "As7-rZ-u6c.title" = "جستجوی دقیق";
 
 /* Class = "NSTabViewItem"; label = "Karaoke"; ObjectID = "aUg-eg-K5C"; */
-"aUg-eg-K5C.label" = "کاراکویه";
+"aUg-eg-K5C.label" = "کارائوکه";
 
 /* Class = "NSButtonCell"; title = "Combine menubar icon with menubar lyrics"; ObjectID = "bbd-ra-rSF"; */
 "bbd-ra-rSF.title" = "تلفیق آیکون منو با ترانه منو";
@@ -116,7 +116,7 @@
 "lN1-gG-AVq.title" = "فیلتر";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "نمایش/پنهان متن ترانه به صورت Karaoke:";
+"lOc-OP-AcU.title" = "نمایش/پنهان متن ترانه به صورت کارائوکه:";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
 "mo2-3C-gLY.title" = "افزایش فاصله متن ترانه:";
@@ -134,19 +134,19 @@
 "ppx-ob-WJc.title" = "میانبر";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "Search result match the exact search term";
+"rSD-qR-EXA.title" = "نتیجه جستجو دقیقا با عبارت جستجو شده برابر است";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "Global offset (ms):";
+"slB-q7-1dB.title" = "تاخیر سراسری ( میلی ثانیه):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "Draggable";
+"T7p-MT-Mrh.title" = "قابل تکان دادن";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
-"TB9-Fk-WAX.title" = "Show lyrics window:";
+"TB9-Fk-WAX.title" = "نمایش پنجره متن ترانه:";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
+"ThQ-vA-Krb.title" = "تولید خودکار “furigana” برای متن ترانه های ژاپنی";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
 "Txi-D9-jjB.title" = "متن:";
@@ -158,16 +158,16 @@
 "Uer-qJ-3T9.title" = "پس زمینه";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
-"UfE-QU-Yhm.title" = "Hightlight:";
+"UfE-QU-Yhm.title" = "برجسته ها:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
 "v63-4a-fPw.title" = "باز و بسته شدن خودکار همراه با آهنگ";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "Language (Requires Restart):";
+"WfA-pe-S5D.title" = "زبان ( نیازمند باز راه اندازی):";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "Show / Hide menu bar lyrics:";
+"XHQ-gX-urF.title" = "نمایش / پنهان کردن ترانه در نوار ابزار:";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
 "XUF-aM-ZmS.title" = "ریست";
@@ -176,7 +176,7 @@
 "XuN-vs-cgI.title" = "پیشرفت";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "No Conversion";
+"zhB-kd-WWG.title" = "بدون تبدیل";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
-"zQK-i2-2Nc.title" = "Customize TouchBar";
+"zQK-i2-2Nc.title" = "شخصی سازی تاچ بار";
