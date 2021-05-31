@@ -6,15 +6,25 @@
 
 <img src="docs/img/icon.png" width="128px">
 
-LyricsX is a plugin for iTunes, Spotify and Vox, which auto search and download lyrics for the current playing from Internet, and displays them in the desktop and menubar.
+Ultimate lyrics app for macOS.
 
 [LyricsX for iOS](https://github.com/ddddxxx/LyricsX-iOS) and [lyricsx-cli for Linux](https://github.com/ddddxxx/lyricsx-cli) is in early development.
 
 ## Installation
 
-LyricsX is available on the Mac App Store.
+### Homebrew
+
+```
+$ brew install lyricsx
+```
+
+### Mac App Store
 
 [![download on the Mac App Store](docs/img/MAS_badge.svg)](https://itunes.apple.com/us/app/lyricsx/id1254743014?mt=12)
+
+### Manual
+
+Download from [releases](https://github.com/ddddxxx/LyricsX/releases).
 
 ### Requirements
 
@@ -22,23 +32,14 @@ LyricsX is available on the Mac App Store.
 
 ## Features
 
-- Work perfectly with iTunes, Spotify and Vox.
-- Automatically search & download live lyrics.
+- Work perfectly with your favorite music players. [List of supported players](https://github.com/ddddxxx/MusicPlayer#supported-players)
+- Automatically search & download live lyrics from various lyrics sources. [List of supported sources](https://github.com/ddddxxx/LyricsKit#supported-sources)
 - Display lyrics on desktop and menubar. you can customize font, color and position.
 - Adjust lyrics offset on status menu.
 - Navigate the song with lyrics - Double click a line to jump to specific position.
 - Drag & Drop to import/export lyrics file.
 - Auto launch & quit with music player.
 - Automatic conversion between Traditional Chinese and Simplified Chinese.
-
-### Lyrics Sources
-
-- 163 Music
-- QQ Music
-- Kugou Music
-- Xiami Music
-- TTPod
-- Gecimi
 
 ## Screenshot
 
