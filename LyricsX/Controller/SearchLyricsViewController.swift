@@ -79,14 +79,7 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
         
         let track = selectedPlayer.currentTrack
         let duration = track?.duration ?? 0
-        let title = track?.title ?? ""
-        let artist = track?.artist ?? ""
-        let req = LyricsSearchRequest(searchTerm: .info(title: searchTitle, artist: searchArtist),
-                                      title: title,
-                                      artist: artist,
-                                      duration: duration,
-                                      limit: 8,
-                                      timeout: 10)
+        let req = LyricsSearchRequest(searchTerm: .info(title: searchTitle, artist: searchArtist), duration: duration, limit: 8)
         searchRequest = req
         searchCanceller = lyricsManager.lyricsPublisher(request: req)
             .sink(receiveCompletion: { [unowned self] _ in
@@ -105,16 +98,18 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
             return
         }
         
-        if let track = selectedPlayer.currentTrack {
-            if let index = defaults[.noSearchingTrackIds].firstIndex(of: track.id) {
-                defaults[.noSearchingTrackIds].remove(at: index)
-            }
-            if let index = defaults[.noSearchingAlbumNames].firstIndex(of: track.album ?? "") {
-                defaults[.noSearchingAlbumNames].remove(at: index)
-            }
+        guard let track = selectedPlayer.currentTrack else {
+            return
+        }
+        if let index = defaults[.noSearchingTrackIds].firstIndex(of: track.id) {
+            defaults[.noSearchingTrackIds].remove(at: index)
+        }
+        if let index = defaults[.noSearchingAlbumNames].firstIndex(of: track.album ?? "") {
+            defaults[.noSearchingAlbumNames].remove(at: index)
         }
         
         let lrc = searchResult[index]
+        lrc.associateWithTrack(track)
         AppController.shared.currentLyrics = lrc
         if defaults[.writeToiTunesAutomatically] {
             AppController.shared.writeToiTunes(overwrite: true)

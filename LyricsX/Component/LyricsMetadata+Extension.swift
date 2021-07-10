@@ -1,5 +1,5 @@
 //
-//  LyricsMetaData+Extension.swift
+//  LyricsMetadata+Extension.swift
 //  LyricsX - https://github.com/ddddxxx/LyricsX
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -10,15 +10,15 @@
 import Foundation
 import LyricsCore
 
-extension Lyrics.MetaData.Key {
-    static var localURL = Lyrics.MetaData.Key("localURL")
-    static var title = Lyrics.MetaData.Key("title")
-    static var artist = Lyrics.MetaData.Key("artist")
-    static var needsPersist = Lyrics.MetaData.Key("needsPersist")
-    static var language = Lyrics.MetaData.Key("language")
+extension Lyrics.Metadata.Key {
+    static var localURL = Lyrics.Metadata.Key("localURL")
+    static var title = Lyrics.Metadata.Key("title")
+    static var artist = Lyrics.Metadata.Key("artist")
+    static var needsPersist = Lyrics.Metadata.Key("needsPersist")
+    static var language = Lyrics.Metadata.Key("language")
 }
 
-extension Lyrics.MetaData {
+extension Lyrics.Metadata {
     
     var localURL: URL? {
         get { return data[.localURL] as? URL }
@@ -26,12 +26,12 @@ extension Lyrics.MetaData {
     }
     
     var title: String? {
-        get { return request?.title ?? data[.title] as? String }
+        get { return data[.title] as? String }
         set { data[.title] = newValue }
     }
     
     var artist: String? {
-        get { return request?.artist ?? data[.artist] as? String }
+        get { return data[.artist] as? String }
         set { data[.artist] = newValue }
     }
     
