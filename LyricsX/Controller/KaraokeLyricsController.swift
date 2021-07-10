@@ -162,7 +162,7 @@ class KaraokeLyricsWindowController: NSWindowController {
                 let timetag = lrc.attachments.timetag {
                 let position = selectedPlayer.playbackTime
                 let timeDelay = AppController.shared.currentLyrics?.adjustedTimeDelay ?? 0
-                let progress = timetag.tags.map { ($0.timeTag + lrc.position - timeDelay - position, $0.index) }
+                let progress = timetag.tags.map { ($0.time + lrc.position - timeDelay - position, $0.index) }
                 upperTextField.setProgressAnimation(color: self.lyricsView.progressColor, progress: progress)
                 if !selectedPlayer.playbackState.isPlaying {
                     upperTextField.pauseProgressAnimation()

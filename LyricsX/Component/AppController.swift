@@ -201,12 +201,7 @@ class AppController: NSObject {
         }
         
         let duration = track.duration ?? 0
-        let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist),
-                                      title: title,
-                                      artist: artist,
-                                      duration: duration,
-                                      limit: 5,
-                                      timeout: 10)
+        let req = LyricsSearchRequest(searchTerm: .info(title: title, artist: artist), duration: duration, limit: 5)
         searchRequest = req
         searchCanceller = lyricsManager.lyricsPublisher(request: req)
             .timeout(.seconds(10), scheduler: DispatchQueue.lyricsDisplay.cx)
@@ -223,7 +218,8 @@ class AppController: NSObject {
     
     func lyricsReceived(lyrics: Lyrics) {
         guard let req = searchRequest,
-            lyrics.metadata.request == req else {
+            lyrics.metadata.request == req,
+            let track = selectedPlayer.currentTrack else {
             return
         }
         if defaults[.strictSearchEnabled] && !lyrics.isMatched() {
@@ -232,6 +228,7 @@ class AppController: NSObject {
         if let current = currentLyrics, current.quality >= lyrics.quality {
             return
         }
+        lyrics.associateWithTrack(track)
         lyrics.filtrate()
         lyrics.recognizeLanguage()
         lyrics.metadata.needsPersist = true

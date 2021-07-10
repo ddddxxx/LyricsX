@@ -122,6 +122,11 @@ extension UserDefaults {
 
 extension Lyrics {
     
+    func associateWithTrack(_ track: MusicTrack) {
+        metadata.title = track.title
+        metadata.artist = track.artist
+    }
+    
     var fileName: String? {
         guard let title = metadata.title?.replacingOccurrences(of: "/", with: ":"),
             let artist = metadata.artist?.replacingOccurrences(of: "/", with: ":") else {
@@ -129,10 +134,6 @@ extension Lyrics {
         }
         return "\(title) - \(artist).lrcx"
     }
-    
-}
-
-extension Lyrics {
     
     func persist() {
         let (url, security) = defaults.lyricsSavingPath()

@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/cx-org/CombineX",
         "state": {
           "branch": null,
-          "revision": "b9afefe14653f02a80a9f5aa546859e99073d0c8",
-          "version": "0.3.1"
+          "revision": "98096c6b2a51481cb6e4bae8da0a808d8cab09a1",
+          "version": "0.4.0"
         }
       },
       {
@@ -24,8 +24,26 @@
         "repositoryURL": "https://github.com/cx-org/CXExtensions",
         "state": {
           "branch": null,
-          "revision": "6843af94bfaedfe90df1435c1a6c83cc3366a62b",
-          "version": "0.3.0"
+          "revision": "4790ecd6a6c0e796d776a28a820b552f7e8f6abd",
+          "version": "0.4.0"
+        }
+      },
+      {
+        "package": "CXShim",
+        "repositoryURL": "https://github.com/cx-org/CXShim",
+        "state": {
+          "branch": null,
+          "revision": "82fecc246c7ca9f0ac1656b8199b7956e64d68f3",
+          "version": "0.4.0"
+        }
+      },
+      {
+        "package": "CXTest",
+        "repositoryURL": "https://github.com/cx-org/CXTest",
+        "state": {
+          "branch": null,
+          "revision": "929ce7cbd3005bc9356ae826bb65ee2611379b17",
+          "version": "0.4.0"
         }
       },
       {
@@ -33,8 +51,8 @@
         "repositoryURL": "https://github.com/ddddxxx/GenericID",
         "state": {
           "branch": null,
-          "revision": "31594c0f73306bb338316d7beec505e9b8b40dc1",
-          "version": "0.6.0"
+          "revision": "c6da97cd19899174cde6a14c7a46c794cd5d9cf8",
+          "version": "0.7.0"
         }
       },
       {
@@ -51,8 +69,8 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit",
         "state": {
           "branch": null,
-          "revision": "1f8a3b3f40ff8b040d18fc8b402561bb3effed6c",
-          "version": "0.10.0"
+          "revision": "5506ee497ca689ed1686655ebb11e8ee29cc24cb",
+          "version": "0.11.0"
         }
       },
       {
@@ -60,8 +78,8 @@
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
           "branch": null,
-          "revision": "34d5e23c5e1b4932124c83dd58d2be590fcf2b9f",
-          "version": "0.7.3"
+          "revision": "50904bac7aec79c5842f2ec3d1a1d858496dd6fe",
+          "version": "0.8.2"
         }
       },
       {
@@ -78,8 +96,8 @@
         "repositoryURL": "https://github.com/ddddxxx/Regex",
         "state": {
           "branch": null,
-          "revision": "df530c4955725c04190a88e09b9756ae5b0b8e95",
-          "version": "1.0.0"
+          "revision": "c0ad0a7e9a48989d9688c2b524a1e69b6293b733",
+          "version": "1.0.1"
         }
       },
       {
@@ -98,6 +116,15 @@
           "branch": null,
           "revision": "c0933a516b420806e9216e71bd13ba76c54f0de6",
           "version": "1.26.0"
+        }
+      },
+      {
+        "package": "swift-atomics",
+        "repositoryURL": "https://github.com/apple/swift-atomics.git",
+        "state": {
+          "branch": null,
+          "revision": "3e95ba32cd1b4c877f6163e8eea54afc4e63bf9f",
+          "version": "0.0.3"
         }
       },
       {
