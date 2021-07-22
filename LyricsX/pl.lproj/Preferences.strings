@@ -74,7 +74,7 @@
 "gGL-LB-TXI.title" = "Włącz tekst na Touch Bar";
 
 /* Class = "NSButtonCell"; title = "Use system wide now playing application"; ObjectID = "gin-P2-gb5"; */
-"gin-P2-gb5.title" = "Use system wide now playing application";
+"gin-P2-gb5.title" = "Użyj domyślnej szerokości używając aplikacji";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
 "h4G-Un-dtm.title" = "Tryb pionowy";
@@ -134,7 +134,7 @@
 "ppx-ob-WJc.title" = "Skrót";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "Szukaj rezultatów pasujących dokładnie do szukanego wyrażenia";
+"rSD-qR-EXA.title" = "Wyniki wyszukiwania pasują dokładnie do wyszukiwanego wyrażenia";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
 "slB-q7-1dB.title" = "Przesunięcie całości (ms):";
