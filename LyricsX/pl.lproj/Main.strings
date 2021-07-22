@@ -29,7 +29,7 @@
 "fmS-zv-RcJ.title" = "Zły tekst";
 
 /* Class = "NSMenuItem"; title = "Enable Karaoke Lyrics"; ObjectID = "GGU-uz-d9h"; */
-"GGU-uz-d9h.title" = "Tryb Karaoke";
+"GGU-uz-d9h.title" = "Włącz tryb karaoke";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Always on top"; ObjectID = "Gza-SX-MCH"; */
 "Gza-SX-MCH.ibShadowedToolTip" = "Zawsze na wierzchu";
