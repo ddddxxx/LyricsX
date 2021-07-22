@@ -134,7 +134,7 @@
 "ppx-ob-WJc.title" = "Skrót";
 
 /* Class = "NSTextFieldCell"; title = "Search result match the exact search term"; ObjectID = "rSD-qR-EXA"; */
-"rSD-qR-EXA.title" = "Search result match the exact search term";
+"rSD-qR-EXA.title" = "Szukaj rezultatów pasujących dokładnie do szukanego wyrażenia";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
 "slB-q7-1dB.title" = "Przesunięcie całości (ms):";
