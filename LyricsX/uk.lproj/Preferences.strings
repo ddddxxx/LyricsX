@@ -140,7 +140,7 @@
 "slB-q7-1dB.title" = "Глобальний зсув (мс):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
-"T7p-MT-Mrh.title" = "Перетягуємий";
+"T7p-MT-Mrh.title" = "Можна перетягнути";
 
 /* Class = "NSTextFieldCell"; title = "Show lyrics window:"; ObjectID = "TB9-Fk-WAX"; */
 "TB9-Fk-WAX.title" = "Показати вікно з текстом:";
