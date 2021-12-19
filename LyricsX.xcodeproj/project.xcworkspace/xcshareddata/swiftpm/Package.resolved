@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple",
         "state": {
           "branch": null,
-          "revision": "013bffe628b49433d7bc334146a4ed8c507c0e32",
-          "version": "4.1.1"
+          "revision": "16d6ed7c3550870ac42f95a0fdccc7235450b863",
+          "version": "4.4.0"
         }
       },
       {
@@ -69,8 +69,17 @@
         "repositoryURL": "https://github.com/ddddxxx/LyricsKit",
         "state": {
           "branch": null,
-          "revision": "5506ee497ca689ed1686655ebb11e8ee29cc24cb",
-          "version": "0.11.0"
+          "revision": "fc3469ac12bab9595d9feb675f1123b61019e53c",
+          "version": "0.11.2"
+        }
+      },
+      {
+        "package": "MASShortcut",
+        "repositoryURL": "https://github.com/shpakovski/MASShortcut",
+        "state": {
+          "branch": null,
+          "revision": "b38e38f892e34588039987661fe610d10368f7d5",
+          "version": null
         }
       },
       {
@@ -78,8 +87,8 @@
         "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
         "state": {
           "branch": null,
-          "revision": "50904bac7aec79c5842f2ec3d1a1d858496dd6fe",
-          "version": "0.8.2"
+          "revision": "6eee88b4800bba1cc03b2a233fe858ccca7c9862",
+          "version": "0.8.3"
         }
       },
       {
@@ -87,8 +96,8 @@
         "repositoryURL": "https://github.com/microsoft/PLCrashReporter.git",
         "state": {
           "branch": null,
-          "revision": "de6b8f9db4b2a0aa859a5507550a70548e4da936",
-          "version": "1.8.1"
+          "revision": "6b27393cad517c067dceea85fadf050e70c4ceaa",
+          "version": "1.10.1"
         }
       },
       {
@@ -110,12 +119,21 @@
         }
       },
       {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit",
+        "state": {
+          "branch": null,
+          "revision": "dfe862da48f7b527309151d8b5f221f657fc7d50",
+          "version": null
+        }
+      },
+      {
         "package": "Sparkle",
         "repositoryURL": "https://github.com/sparkle-project/Sparkle",
         "state": {
           "branch": null,
-          "revision": "c0933a516b420806e9216e71bd13ba76c54f0de6",
-          "version": "1.26.0"
+          "revision": "7918c1c8fc68baa37917eeaa67286b077ad5e393",
+          "version": "1.27.1"
         }
       },
       {
