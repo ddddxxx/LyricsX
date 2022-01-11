@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dJj-XH-edl">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -65,17 +65,17 @@
             <objects>
                 <viewController title="General" id="d5d-dC-DK4" userLabel="General" customClass="PreferenceGeneralViewController" customModule="LyricsX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ium-Ya-ZzT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="478"/>
+                        <rect key="frame" x="0.0" y="0.0" width="618" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="Preferred music player" translatesAutoresizingMaskIntoConstraints="NO" id="JYR-Ed-Tax">
-                                <rect key="frame" x="17" y="342" width="566" height="112"/>
+                                <rect key="frame" x="17" y="342" width="584" height="112"/>
                                 <view key="contentView" id="r1e-Ln-LSb">
-                                    <rect key="frame" x="3" y="3" width="560" height="94"/>
+                                    <rect key="frame" x="3" y="3" width="578" height="94"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="5xx-Ht-pau">
-                                            <rect key="frame" x="38" y="0.0" width="484" height="94"/>
+                                            <rect key="frame" x="8" y="0.0" width="562" height="94"/>
                                             <subviews>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="f2X-id-RV9" userLabel="Auto icon">
                                                     <rect key="frame" x="16" y="34" width="52" height="52"/>
@@ -252,35 +252,69 @@
                                                         <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="HZ0-1g-8dn"/>
                                                     </connections>
                                                 </button>
+                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="TUU-Wm-eyl" userLabel="IINA icon">
+                                                    <rect key="frame" x="494" y="34" width="52" height="52"/>
+                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="iina_icon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Jfx-85-FOO">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="performClick:" target="xc6-rv-aKz" id="bjN-VG-fVb"/>
+                                                    </connections>
+                                                </button>
+                                                <button tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="xc6-rv-aKz" userLabel="Prefer Iina">
+                                                    <rect key="frame" x="493" y="8" width="52" height="18"/>
+                                                    <buttonCell key="cell" type="radio" title="IINA" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="q4e-wk-9cE">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="message" size="11"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="preferredPlayerAction:" target="d5d-dC-DK4" id="kca-62-Rbg"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="VwG-Ue-ZKi" firstAttribute="centerY" secondItem="GAh-L4-fgK" secondAttribute="centerY" id="1eh-Sa-hS2"/>
                                                 <constraint firstItem="cbk-Ic-gb7" firstAttribute="height" secondItem="f2X-id-RV9" secondAttribute="height" id="27K-Vg-jdc"/>
+                                                <constraint firstItem="TUU-Wm-eyl" firstAttribute="width" secondItem="f2X-id-RV9" secondAttribute="width" id="2sf-XX-TtT"/>
                                                 <constraint firstItem="6Bj-Lj-AqF" firstAttribute="centerX" secondItem="iIP-cu-YIV" secondAttribute="centerX" id="4ZW-2E-Hsq"/>
                                                 <constraint firstItem="RSg-dR-tCT" firstAttribute="centerX" secondItem="lc1-kb-SxJ" secondAttribute="centerX" id="5uV-y5-vTo"/>
                                                 <constraint firstItem="cbk-Ic-gb7" firstAttribute="width" secondItem="f2X-id-RV9" secondAttribute="width" id="6DU-W1-VCx"/>
                                                 <constraint firstItem="Wb5-Rf-75m" firstAttribute="centerX" secondItem="LQF-xP-dc8" secondAttribute="centerX" id="6NR-Ft-jyN"/>
                                                 <constraint firstItem="VwG-Ue-ZKi" firstAttribute="centerX" secondItem="cbk-Ic-gb7" secondAttribute="centerX" id="6cD-9t-ZoM"/>
                                                 <constraint firstItem="cbk-Ic-gb7" firstAttribute="centerY" secondItem="f2X-id-RV9" secondAttribute="centerY" id="6mx-OH-oAC"/>
+                                                <constraint firstItem="TUU-Wm-eyl" firstAttribute="height" secondItem="f2X-id-RV9" secondAttribute="height" id="7Pk-3R-XE7"/>
                                                 <constraint firstAttribute="bottom" secondItem="GAh-L4-fgK" secondAttribute="bottom" constant="9" id="CrB-UI-mud"/>
                                                 <constraint firstItem="lc1-kb-SxJ" firstAttribute="leading" secondItem="LQF-xP-dc8" secondAttribute="trailing" constant="28" id="E0p-Fq-yoN"/>
                                                 <constraint firstItem="9Pq-VD-9xN" firstAttribute="centerX" secondItem="kO5-RO-5MT" secondAttribute="centerX" id="GjR-9l-nDO"/>
                                                 <constraint firstItem="6Bj-Lj-AqF" firstAttribute="centerY" secondItem="GAh-L4-fgK" secondAttribute="centerY" id="Ijw-0s-TlZ"/>
                                                 <constraint firstItem="LQF-xP-dc8" firstAttribute="centerY" secondItem="f2X-id-RV9" secondAttribute="centerY" id="JmM-g4-L7d"/>
                                                 <constraint firstItem="lc1-kb-SxJ" firstAttribute="width" secondItem="f2X-id-RV9" secondAttribute="width" id="KBe-B9-yeg"/>
-                                                <constraint firstAttribute="trailing" secondItem="cbk-Ic-gb7" secondAttribute="trailing" constant="16" id="KyG-2L-Nth"/>
+                                                <constraint firstItem="TUU-Wm-eyl" firstAttribute="leading" secondItem="cbk-Ic-gb7" secondAttribute="trailing" constant="26" id="KyG-2L-Nth"/>
                                                 <constraint firstItem="lc1-kb-SxJ" firstAttribute="centerY" secondItem="f2X-id-RV9" secondAttribute="centerY" id="MfJ-Dg-dMe"/>
                                                 <constraint firstItem="kO5-RO-5MT" firstAttribute="centerY" secondItem="f2X-id-RV9" secondAttribute="centerY" id="QZB-hw-65c"/>
                                                 <constraint firstItem="kO5-RO-5MT" firstAttribute="leading" secondItem="lc1-kb-SxJ" secondAttribute="trailing" constant="28" id="Tcx-Jy-bFH"/>
                                                 <constraint firstItem="LQF-xP-dc8" firstAttribute="height" secondItem="f2X-id-RV9" secondAttribute="height" id="Tvi-aU-FRh"/>
+                                                <constraint firstAttribute="trailing" secondItem="TUU-Wm-eyl" secondAttribute="trailing" constant="16" id="Uoa-fz-EpE"/>
+                                                <constraint firstItem="xc6-rv-aKz" firstAttribute="centerX" secondItem="TUU-Wm-eyl" secondAttribute="centerX" id="WMJ-qu-rJ9"/>
                                                 <constraint firstItem="f2X-id-RV9" firstAttribute="leading" secondItem="5xx-Ht-pau" secondAttribute="leading" constant="16" id="a7Y-tG-khm"/>
                                                 <constraint firstItem="iIP-cu-YIV" firstAttribute="centerY" secondItem="f2X-id-RV9" secondAttribute="centerY" id="agI-KF-Ye4"/>
+                                                <constraint firstItem="xc6-rv-aKz" firstAttribute="centerY" secondItem="GAh-L4-fgK" secondAttribute="centerY" id="ajq-2x-S0f"/>
                                                 <constraint firstItem="LQF-xP-dc8" firstAttribute="leading" secondItem="iIP-cu-YIV" secondAttribute="trailing" constant="28" id="b26-um-lf3"/>
                                                 <constraint firstItem="GAh-L4-fgK" firstAttribute="centerX" secondItem="f2X-id-RV9" secondAttribute="centerX" id="bWa-9g-Gqu"/>
                                                 <constraint firstItem="iIP-cu-YIV" firstAttribute="leading" secondItem="f2X-id-RV9" secondAttribute="trailing" constant="28" id="bzs-Yr-Emy"/>
                                                 <constraint firstItem="kO5-RO-5MT" firstAttribute="height" secondItem="f2X-id-RV9" secondAttribute="height" id="cid-Qu-Xhs"/>
                                                 <constraint firstItem="f2X-id-RV9" firstAttribute="top" secondItem="5xx-Ht-pau" secondAttribute="top" constant="8" id="ehJ-ES-htd"/>
                                                 <constraint firstItem="kO5-RO-5MT" firstAttribute="width" secondItem="f2X-id-RV9" secondAttribute="width" id="ey3-5d-czP"/>
+                                                <constraint firstItem="TUU-Wm-eyl" firstAttribute="centerY" secondItem="f2X-id-RV9" secondAttribute="centerY" id="iJ8-XC-EOy"/>
                                                 <constraint firstItem="RSg-dR-tCT" firstAttribute="centerY" secondItem="GAh-L4-fgK" secondAttribute="centerY" id="jPb-Vb-aDO"/>
                                                 <constraint firstItem="iIP-cu-YIV" firstAttribute="height" secondItem="f2X-id-RV9" secondAttribute="height" id="nyZ-eK-P7Y"/>
                                                 <constraint firstItem="lc1-kb-SxJ" firstAttribute="height" secondItem="f2X-id-RV9" secondAttribute="height" id="pZs-e1-fnQ"/>
@@ -302,7 +336,7 @@
                                 </view>
                             </box>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mfr-Al-Vu9">
-                                <rect key="frame" x="234" y="313" width="246" height="18"/>
+                                <rect key="frame" x="243" y="313" width="246" height="18"/>
                                 <buttonCell key="cell" type="check" title="Auto launch &amp; quit with music player" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="v63-4a-fPw">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -317,7 +351,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="you-yu-77c">
-                                <rect key="frame" x="105" y="280" width="117" height="16"/>
+                                <rect key="frame" x="114" y="280" width="117" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Lyrics saving path:" id="0M7-ao-0jb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -325,7 +359,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ydZ-SE-AM3">
-                                <rect key="frame" x="233" y="274" width="167" height="25"/>
+                                <rect key="frame" x="242" y="274" width="167" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="2c0-ba-y6d"/>
                                 </constraints>
@@ -359,10 +393,10 @@
                                 </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="UQR-mH-y4R">
-                                <rect key="frame" x="20" y="150" width="560" height="5"/>
+                                <rect key="frame" x="20" y="150" width="578" height="5"/>
                             </box>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wwb-0H-xk7">
-                                <rect key="frame" x="234" y="63" width="153" height="18"/>
+                                <rect key="frame" x="243" y="63" width="153" height="18"/>
                                 <buttonCell key="cell" type="check" title="Prefer bilingual lyrics" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cBB-zn-Hdh">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -372,7 +406,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wpE-cM-ds1">
-                                <rect key="frame" x="64" y="30" width="158" height="16"/>
+                                <rect key="frame" x="73" y="30" width="158" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Auto Chinese conversion:" id="JPB-ag-MN7">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -380,7 +414,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uoA-YU-YZk" userLabel="Convert">
-                                <rect key="frame" x="233" y="24" width="167" height="25"/>
+                                <rect key="frame" x="242" y="24" width="167" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Rhn-QL-XGy"/>
                                 </constraints>
@@ -400,7 +434,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-OU-NWP">
-                                <rect key="frame" x="234" y="253" width="197" height="18"/>
+                                <rect key="frame" x="243" y="253" width="197" height="18"/>
                                 <buttonCell key="cell" type="check" title="Load lyrics beside music file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="EDv-ax-0hI">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -414,7 +448,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="HqA-iJ-lec">
-                                <rect key="frame" x="406" y="279" width="21" height="18"/>
+                                <rect key="frame" x="415" y="279" width="21" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="21" id="NcW-r5-bQr"/>
                                     <constraint firstAttribute="height" constant="18" id="hHA-Y3-yS5"/>
@@ -428,7 +462,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xmp-V1-Dn6">
-                                <rect key="frame" x="236" y="169" width="100" height="21"/>
+                                <rect key="frame" x="245" y="169" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="hNM-LB-4P5"/>
                                 </constraints>
@@ -447,7 +481,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g0L-A1-o0L">
-                                <rect key="frame" x="105" y="172" width="117" height="16"/>
+                                <rect key="frame" x="114" y="172" width="117" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Global offset (ms):" id="slB-q7-1dB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -455,7 +489,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tAC-g5-B2n">
-                                <rect key="frame" x="234" y="119" width="105" height="18"/>
+                                <rect key="frame" x="243" y="119" width="105" height="18"/>
                                 <buttonCell key="cell" type="check" title="Strict Search" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="As7-rZ-u6c">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -469,7 +503,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Yv-tb-pyE">
-                                <rect key="frame" x="252" y="96" width="261" height="16"/>
+                                <rect key="frame" x="261" y="96" width="261" height="16"/>
                                 <textFieldCell key="cell" title="Search result match the exact search term" id="rSD-qR-EXA">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -477,7 +511,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zpw-kR-OfG">
-                                <rect key="frame" x="233" y="214" width="127" height="25"/>
+                                <rect key="frame" x="242" y="214" width="127" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="B0W-dB-GPu"/>
                                 </constraints>
@@ -498,7 +532,7 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UXR-cB-aCr">
-                                <rect key="frame" x="41" y="220" width="181" height="16"/>
+                                <rect key="frame" x="50" y="220" width="181" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Language (Requires Restart):" id="WfA-pe-S5D">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -506,7 +540,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5rg-ki-Dg5">
-                                <rect key="frame" x="236" y="198" width="137" height="16"/>
+                                <rect key="frame" x="245" y="198" width="137" height="16"/>
                                 <buttonCell key="cell" type="bevel" title="Help translate LyricsX" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="oiH-T7-agJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -572,6 +606,7 @@
                         <outlet property="loadHomonymLrcButton" destination="uiE-OU-NWP" id="7XP-6g-pVL"/>
                         <outlet property="preferAudirvana" destination="9Pq-VD-9xN" id="Trl-UP-HaB"/>
                         <outlet property="preferAuto" destination="GAh-L4-fgK" id="QSc-xP-6L7"/>
+                        <outlet property="preferIina" destination="xc6-rv-aKz" id="KCh-mz-NXA"/>
                         <outlet property="preferSpotify" destination="Wb5-Rf-75m" id="fOa-Pt-HZD"/>
                         <outlet property="preferSwinsian" destination="VwG-Ue-ZKi" id="WDG-hf-wMD"/>
                         <outlet property="preferVox" destination="RSg-dR-tCT" id="0FN-E8-vpj"/>
@@ -583,7 +618,7 @@
                 <customObject id="Mto-FK-DPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="hHn-Lo-CwP"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="-409.5"/>
+            <point key="canvasLocation" x="1969" y="-410"/>
         </scene>
         <!--Display-->
         <scene sceneID="CdB-uN-rfE">
@@ -1024,7 +1059,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="546" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
+                                                <tableColumn width="517" minWidth="40" maxWidth="1000" id="QdM-iA-Hjj">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Keyword">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1145,6 +1180,7 @@
                     <declaredKeys>
                         <string>keyword</string>
                     </declaredKeys>
+                    <classReference key="objectClass" className="FilterKey"/>
                     <connections>
                         <binding destination="lN1-gG-AVq" name="contentArray" keyPath="self.directFilter" id="CcN-gz-8cd"/>
                     </connections>
@@ -1517,6 +1553,7 @@
         <image name="audirvana_icon" width="64" height="64"/>
         <image name="folder" width="21" height="18"/>
         <image name="iTunes_icon" width="64" height="64"/>
+        <image name="iina_icon" width="64" height="64"/>
         <image name="now_playing_icon" width="64" height="64"/>
         <image name="spotify_icon" width="64" height="64"/>
         <image name="swinsian_icon" width="64" height="64"/>

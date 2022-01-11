@@ -19,7 +19,8 @@ class PreferenceGeneralViewController: NSViewController {
     @IBOutlet weak var preferVox: NSButton!
     @IBOutlet weak var preferAudirvana: NSButton!
     @IBOutlet weak var preferSwinsian: NSButton!
-    
+    @IBOutlet weak var preferIina: NSButton!
+
     @IBOutlet weak var autoLaunchButton: NSButton!
     
     @IBOutlet weak var savingPathPopUp: NSPopUpButton!
@@ -45,6 +46,8 @@ class PreferenceGeneralViewController: NSViewController {
             loadHomonymLrcButton.isEnabled = false
         case 4:
             preferSwinsian.state = .on
+        case 5:
+            preferIina.state = .on
         default:
             preferAuto.state = .on
             autoLaunchButton.isEnabled = false
