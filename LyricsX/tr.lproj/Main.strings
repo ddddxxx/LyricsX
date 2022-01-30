@@ -62,7 +62,7 @@
 "l8J-1r-dIZ.title" = "Sanatçı:";
 
 /* Class = "NSTextFieldCell"; title = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation."; ObjectID = "o52-Z0-lue"; */
-"o52-Z0-lue.title" = "If you enjoy using LyricsX, and would like to buy me a cup of coffee, as well as help me keep this software going, you can scan QR code below to make a generous donation.";
+"o52-Z0-lue.title" = "Eğer LyricsX kullanmak hoşunuza gidiyorsa ve bana bir kahve ikramında bulunmak isteyip bu yazılım sürdürülebilir olmasını istiyorsanız, aşağıdaki QR kodu okutup cömert bir bağışta bulunabilirsiniz.";
 
 /* Class = "NSMenuItem"; title = "About LyricsX"; ObjectID = "PdE-VG-JUC"; */
 "PdE-VG-JUC.title" = "LyricsX Hakkında";
@@ -77,4 +77,4 @@
 "RPR-IV-34T.title" = "LyricsX'ten Çık";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
-"Z7d-yp-uRx.title" = "Enable Menu Bar Lyrics";
+"Z7d-yp-uRx.title" = "Menü Çubuğunda Sözleri Etkinleştir";
