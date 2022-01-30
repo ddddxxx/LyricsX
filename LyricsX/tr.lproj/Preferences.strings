@@ -17,7 +17,7 @@
 "6FU-j0-FTV.title" = "Geleneksel Çince";
 
 /* Class = "NSTextFieldCell"; title = "Write lyrics to iTunes:"; ObjectID = "6We-TB-Wfc"; */
-"6We-TB-Wfc.title" = "Write lyrics to iTunes:";
+"6We-TB-Wfc.title" = "iTunes'a şarkı sözlerini yaz:";
 
 /* Class = "NSButtonCell"; title = "Automatically"; ObjectID = "7Ax-7T-26K"; */
 "7Ax-7T-26K.title" = "Otomatik olarak";
@@ -47,16 +47,16 @@
 "bbd-ra-rSF.title" = "Combine menubar icon with menubar lyrics";
 
 /* Class = "NSTextFieldCell"; title = "Disable lyrics when:"; ObjectID = "bDS-Lb-m34"; */
-"bDS-Lb-m34.title" = "Disable lyrics when:";
+"bDS-Lb-m34.title" = "Şarkı sözlerini şu vakit devre dışı bırak:";
 
 /* Class = "NSViewController"; title = "Lab"; ObjectID = "bFk-1g-XeL"; */
 "bFk-1g-XeL.title" = "Lab";
 
 /* Class = "NSTextFieldCell"; title = "Decrease lyrics offset:"; ObjectID = "bmk-rW-Uot"; */
-"bmk-rW-Uot.title" = "Decrease lyrics offset:";
+"bmk-rW-Uot.title" = "Şarkı sözleri oynatım payını azalt:";
 
 /* Class = "NSButtonCell"; title = "Prefer bilingual lyrics"; ObjectID = "cBB-zn-Hdh"; */
-"cBB-zn-Hdh.title" = "Prefer bilingual lyrics";
+"cBB-zn-Hdh.title" = "Çift dil şarkı sözlerini tercih et";
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Cmt-it-PXW"; */
 "Cmt-it-PXW.title" = "Yazı Tipi:";
@@ -65,7 +65,7 @@
 "d5d-dC-DK4.title" = "Genel";
 
 /* Class = "NSButtonCell"; title = "Load lyrics beside music file"; ObjectID = "EDv-ax-0hI"; */
-"EDv-ax-0hI.title" = "Load lyrics beside music file";
+"EDv-ax-0hI.title" = "Müzik dosyasıyla aynı konumdaki şarkı sözlerini yükle";
 
 /* Class = "NSTextFieldCell"; title = "Here are some experimental features that may not be stable enough, and may be removed in the future."; ObjectID = "g2u-8D-dln"; */
 "g2u-8D-dln.title" = "Here are some experimental features that may not be stable enough, and may be removed in the future.";
@@ -77,7 +77,7 @@
 "gin-P2-gb5.title" = "Use system wide now playing application";
 
 /* Class = "NSButtonCell"; title = "Vertical mode"; ObjectID = "h4G-Un-dtm"; */
-"h4G-Un-dtm.title" = "Vertical mode";
+"h4G-Un-dtm.title" = "Dikey mod";
 
 /* Class = "NSTextFieldCell"; title = "Shadow"; ObjectID = "hsu-H9-9Bd"; */
 "hsu-H9-9Bd.title" = "Gölge";
@@ -98,7 +98,7 @@
 "JPB-ag-MN7.title" = "Otomatik Çince Dönüştürme:";
 
 /* Class = "NSBox"; title = "Preferred music player"; ObjectID = "JYR-Ed-Tax"; */
-"JYR-Ed-Tax.title" = "Preferred music player";
+"JYR-Ed-Tax.title" = "Tercih edilen müzik oynatıcısı";
 
 /* Class = "NSButtonCell"; title = "Enable lyrics filter"; ObjectID = "kEd-lC-aAH"; */
 "kEd-lC-aAH.title" = "Şarkı sözü filtresini etkinleştir";
@@ -116,10 +116,10 @@
 "lN1-gG-AVq.title" = "Filtre";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide karaoke lyrics:"; ObjectID = "lOc-OP-AcU"; */
-"lOc-OP-AcU.title" = "Show / Hide karaoke lyrics:";
+"lOc-OP-AcU.title" = "Karaoke şarkı sözlerini göster/gizle:";
 
 /* Class = "NSTextFieldCell"; title = "Increase lyrics offset:"; ObjectID = "mo2-3C-gLY"; */
-"mo2-3C-gLY.title" = "Increase lyrics offset:";
+"mo2-3C-gLY.title" = "Şarkı sözleri oynatım payını arttır:";
 
 /* Class = "NSMenuItem"; title = "Auto"; ObjectID = "N08-TS-lqw"; */
 "N08-TS-lqw.title" = "Otomatik";
@@ -128,7 +128,7 @@
 "NLl-9L-0gZ.title" = "Müzik çalınmıyor";
 
 /* Class = "NSButtonCell"; title = "Help translate LyricsX"; ObjectID = "oiH-T7-agJ"; */
-"oiH-T7-agJ.title" = "Help translate LyricsX";
+"oiH-T7-agJ.title" = "LyrcisX çevirisi için yardım et";
 
 /* Class = "NSViewController"; title = "Shortcut"; ObjectID = "ppx-ob-WJc"; */
 "ppx-ob-WJc.title" = "Kısayol";
@@ -137,7 +137,7 @@
 "rSD-qR-EXA.title" = "Search result match the exact search term";
 
 /* Class = "NSTextFieldCell"; title = "Global offset (ms):"; ObjectID = "slB-q7-1dB"; */
-"slB-q7-1dB.title" = "Global offset (ms):";
+"slB-q7-1dB.title" = "Genel oynatım payı (ms):";
 
 /* Class = "NSButtonCell"; title = "Draggable"; ObjectID = "T7p-MT-Mrh"; */
 "T7p-MT-Mrh.title" = "Sürüklenebilir";
@@ -146,37 +146,37 @@
 "TB9-Fk-WAX.title" = "Şarkı sözleri penceresini göster:";
 
 /* Class = "NSButtonCell"; title = "Automatically generate furigana for Japanese lyrics"; ObjectID = "ThQ-vA-Krb"; */
-"ThQ-vA-Krb.title" = "Automatically generate furigana for Japanese lyrics";
+"ThQ-vA-Krb.title" = "Japonca çeviri için otomatik olarak furigana oluştur";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
-"Txi-D9-jjB.title" = "Text:";
+"Txi-D9-jjB.title" = "Metin:";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "Mark as wrong lyrics:";
+"uEb-Q5-cda.title" = "Şarkı sözünü hatalı olarak işaretle:";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
-"Uer-qJ-3T9.title" = "Background";
+"Uer-qJ-3T9.title" = "Arka plan";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
-"UfE-QU-Yhm.title" = "Hightlight:";
+"UfE-QU-Yhm.title" = "Vurgula:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
 "v63-4a-fPw.title" = "Auto launch & quit with music player";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "Language (Requires Restart):";
+"WfA-pe-S5D.title" = "Dil (Yeniden Başlatma Gerektirir):";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "Show / Hide menu bar lyrics:";
+"XHQ-gX-urF.title" = "Menu bar şarkı sözlerini göster/gizle:";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "Reset";
+"XUF-aM-ZmS.title" = "Sıfırla";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
-"XuN-vs-cgI.title" = "Progress";
+"XuN-vs-cgI.title" = "Süreç";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "No Conversion";
+"zhB-kd-WWG.title" = "Dönüşüm Yok";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
-"zQK-i2-2Nc.title" = "Customize TouchBar";
+"zQK-i2-2Nc.title" = "TouchBar'ı Özelleştir";
