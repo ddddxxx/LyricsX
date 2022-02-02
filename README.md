@@ -15,7 +15,7 @@ Ultimate lyrics app for macOS.
 ### Homebrew
 
 ```
-$ brew install lyricsx
+$ brew install --cask lyricsx
 ```
 
 ### Mac App Store
