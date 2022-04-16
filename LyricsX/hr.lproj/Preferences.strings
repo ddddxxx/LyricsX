@@ -149,34 +149,34 @@
 "ThQ-vA-Krb.title" = "Automatski generiraj furigana za stihove na Japanskom";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "Txi-D9-jjB"; */
-"Txi-D9-jjB.title" = "Text:";
+"Txi-D9-jjB.title" = "Tekst:";
 
 /* Class = "NSTextFieldCell"; title = "Mark as wrong lyrics:"; ObjectID = "uEb-Q5-cda"; */
-"uEb-Q5-cda.title" = "Mark as wrong lyrics:";
+"uEb-Q5-cda.title" = "Označi kao krivi stihovi:";
 
 /* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "Uer-qJ-3T9"; */
-"Uer-qJ-3T9.title" = "Background";
+"Uer-qJ-3T9.title" = "Pozadina";
 
 /* Class = "NSTextFieldCell"; title = "Hightlight:"; ObjectID = "UfE-QU-Yhm"; */
-"UfE-QU-Yhm.title" = "Hightlight:";
+"UfE-QU-Yhm.title" = "Istaknuti:";
 
 /* Class = "NSButtonCell"; title = "Auto launch & quit with music player"; ObjectID = "v63-4a-fPw"; */
-"v63-4a-fPw.title" = "Auto launch & quit with music player";
+"v63-4a-fPw.title" = "Samopokreni i zatvori sa glazbenom aplikacijom";
 
 /* Class = "NSTextFieldCell"; title = "Language (Requires Restart):"; ObjectID = "WfA-pe-S5D"; */
-"WfA-pe-S5D.title" = "Language (Requires Restart):";
+"WfA-pe-S5D.title" = "Jezik (zahtjeva ponovno pokretanje):";
 
 /* Class = "NSTextFieldCell"; title = "Show / Hide menu bar lyrics:"; ObjectID = "XHQ-gX-urF"; */
-"XHQ-gX-urF.title" = "Show / Hide menu bar lyrics:";
+"XHQ-gX-urF.title" = "Prikaži / Sakrij karaoke stihove:";
 
 /* Class = "NSButtonCell"; title = "Reset"; ObjectID = "XUF-aM-ZmS"; */
-"XUF-aM-ZmS.title" = "Reset";
+"XUF-aM-ZmS.title" = "Ponovno pokreni";
 
 /* Class = "NSTextFieldCell"; title = "Progress"; ObjectID = "XuN-vs-cgI"; */
-"XuN-vs-cgI.title" = "Progress";
+"XuN-vs-cgI.title" = "Tijek";
 
 /* Class = "NSMenuItem"; title = "No Conversion"; ObjectID = "zhB-kd-WWG"; */
-"zhB-kd-WWG.title" = "No Conversion";
+"zhB-kd-WWG.title" = "Bez pretvorbe";
 
 /* Class = "NSButtonCell"; title = "Customize TouchBar"; ObjectID = "zQK-i2-2Nc"; */
-"zQK-i2-2Nc.title" = "Customize TouchBar";
+"zQK-i2-2Nc.title" = "Prilagodi dodirnu traku";
