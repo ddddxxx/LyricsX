@@ -1464,7 +1464,7 @@
 			repositoryURL = "https://github.com/ddddxxx/MusicPlayer";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.8.2;
+				minimumVersion = 0.8.3;
 			};
 		};
 		BBA82EF9256AB1490076831F /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
@@ -1472,7 +1472,7 @@
 			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 4.4.2;
 			};
 		};
 		BBA82F08256AB8620076831F /* XCRemoteSwiftPackageReference "Sparkle" */ = {
@@ -1512,7 +1512,7 @@
 			repositoryURL = "https://github.com/ddddxxx/LyricsKit";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.11.0;
+				minimumVersion = 0.11.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

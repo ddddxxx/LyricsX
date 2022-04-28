@@ -1,4 +1,2 @@
 github "SnapKit/SnapKit" "5.0.0"
-github "microsoft/appcenter-sdk-apple" "3.2.0"
 github "shpakovski/MASShortcut" "2.4.0"
-github "sparkle-project/Sparkle" "v1.23.0"

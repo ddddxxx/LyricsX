@@ -1,160 +1,158 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "AppCenter",
-        "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple",
-        "state": {
-          "branch": null,
-          "revision": "013bffe628b49433d7bc334146a4ed8c507c0e32",
-          "version": "4.1.1"
-        }
-      },
-      {
-        "package": "CombineX",
-        "repositoryURL": "https://github.com/cx-org/CombineX",
-        "state": {
-          "branch": null,
-          "revision": "98096c6b2a51481cb6e4bae8da0a808d8cab09a1",
-          "version": "0.4.0"
-        }
-      },
-      {
-        "package": "CXExtensions",
-        "repositoryURL": "https://github.com/cx-org/CXExtensions",
-        "state": {
-          "branch": null,
-          "revision": "4790ecd6a6c0e796d776a28a820b552f7e8f6abd",
-          "version": "0.4.0"
-        }
-      },
-      {
-        "package": "CXShim",
-        "repositoryURL": "https://github.com/cx-org/CXShim",
-        "state": {
-          "branch": null,
-          "revision": "82fecc246c7ca9f0ac1656b8199b7956e64d68f3",
-          "version": "0.4.0"
-        }
-      },
-      {
-        "package": "CXTest",
-        "repositoryURL": "https://github.com/cx-org/CXTest",
-        "state": {
-          "branch": null,
-          "revision": "929ce7cbd3005bc9356ae826bb65ee2611379b17",
-          "version": "0.4.0"
-        }
-      },
-      {
-        "package": "GenericID",
-        "repositoryURL": "https://github.com/ddddxxx/GenericID",
-        "state": {
-          "branch": null,
-          "revision": "c6da97cd19899174cde6a14c7a46c794cd5d9cf8",
-          "version": "0.7.0"
-        }
-      },
-      {
-        "package": "Gzip",
-        "repositoryURL": "https://github.com/1024jp/GzipSwift",
-        "state": {
-          "branch": null,
-          "revision": "ba0b6cb51cc6202f896e469b87d2889a46b10d1b",
-          "version": "5.1.1"
-        }
-      },
-      {
-        "package": "LyricsKit",
-        "repositoryURL": "https://github.com/ddddxxx/LyricsKit",
-        "state": {
-          "branch": null,
-          "revision": "5506ee497ca689ed1686655ebb11e8ee29cc24cb",
-          "version": "0.11.0"
-        }
-      },
-      {
-        "package": "MusicPlayer",
-        "repositoryURL": "https://github.com/ddddxxx/MusicPlayer",
-        "state": {
-          "branch": null,
-          "revision": "50904bac7aec79c5842f2ec3d1a1d858496dd6fe",
-          "version": "0.8.2"
-        }
-      },
-      {
-        "package": "PLCrashReporter",
-        "repositoryURL": "https://github.com/microsoft/PLCrashReporter.git",
-        "state": {
-          "branch": null,
-          "revision": "de6b8f9db4b2a0aa859a5507550a70548e4da936",
-          "version": "1.8.1"
-        }
-      },
-      {
-        "package": "Regex",
-        "repositoryURL": "https://github.com/ddddxxx/Regex",
-        "state": {
-          "branch": null,
-          "revision": "c0ad0a7e9a48989d9688c2b524a1e69b6293b733",
-          "version": "1.0.1"
-        }
-      },
-      {
-        "package": "Semver",
-        "repositoryURL": "https://github.com/ddddxxx/Semver",
-        "state": {
-          "branch": null,
-          "revision": "6094e6f23a02b52b5d211fd114a4750c4f3ecef3",
-          "version": "0.2.1"
-        }
-      },
-      {
-        "package": "Sparkle",
-        "repositoryURL": "https://github.com/sparkle-project/Sparkle",
-        "state": {
-          "branch": null,
-          "revision": "c0933a516b420806e9216e71bd13ba76c54f0de6",
-          "version": "1.26.0"
-        }
-      },
-      {
-        "package": "swift-atomics",
-        "repositoryURL": "https://github.com/apple/swift-atomics.git",
-        "state": {
-          "branch": null,
-          "revision": "3e95ba32cd1b4c877f6163e8eea54afc4e63bf9f",
-          "version": "0.0.3"
-        }
-      },
-      {
-        "package": "SwiftCF",
-        "repositoryURL": "https://github.com/ddddxxx/SwiftCF",
-        "state": {
-          "branch": null,
-          "revision": "72775c4b4dfceba8f6f43820d50f9286dc97160d",
-          "version": "0.2.1"
-        }
-      },
-      {
-        "package": "SwiftyOpenCC",
-        "repositoryURL": "https://github.com/ddddxxx/SwiftyOpenCC",
-        "state": {
-          "branch": "v2.0.0-beta",
-          "revision": "1d8105a0f7199c90af722bff62728050c858e777",
-          "version": null
-        }
-      },
-      {
-        "package": "TouchBarHelper",
-        "repositoryURL": "https://github.com/ddddxxx/TouchBarHelper",
-        "state": {
-          "branch": null,
-          "revision": "003d41193ac1c6ab9cc570a1923587298014bf1d",
-          "version": "0.1.0"
-        }
+  "pins" : [
+    {
+      "identity" : "appcenter-sdk-apple",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/appcenter-sdk-apple",
+      "state" : {
+        "revision" : "8354a50fe01a7e54e196d3b5493b5ab53dd5866a",
+        "version" : "4.4.2"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "combinex",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cx-org/CombineX",
+      "state" : {
+        "revision" : "98096c6b2a51481cb6e4bae8da0a808d8cab09a1",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "cxextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cx-org/CXExtensions",
+      "state" : {
+        "revision" : "4790ecd6a6c0e796d776a28a820b552f7e8f6abd",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "cxshim",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cx-org/CXShim",
+      "state" : {
+        "revision" : "82fecc246c7ca9f0ac1656b8199b7956e64d68f3",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "cxtest",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cx-org/CXTest",
+      "state" : {
+        "revision" : "929ce7cbd3005bc9356ae826bb65ee2611379b17",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "genericid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ddddxxx/GenericID",
+      "state" : {
+        "revision" : "c6da97cd19899174cde6a14c7a46c794cd5d9cf8",
+        "version" : "0.7.0"
+      }
+    },
+    {
+      "identity" : "gzipswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/1024jp/GzipSwift",
+      "state" : {
+        "revision" : "ba0b6cb51cc6202f896e469b87d2889a46b10d1b",
+        "version" : "5.1.1"
+      }
+    },
+    {
+      "identity" : "lyricskit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ddddxxx/LyricsKit",
+      "state" : {
+        "revision" : "675a696588eaddf3e5661080c223102acdf8f404",
+        "version" : "0.11.3"
+      }
+    },
+    {
+      "identity" : "musicplayer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ddddxxx/MusicPlayer",
+      "state" : {
+        "revision" : "6eee88b4800bba1cc03b2a233fe858ccca7c9862",
+        "version" : "0.8.3"
+      }
+    },
+    {
+      "identity" : "plcrashreporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/PLCrashReporter.git",
+      "state" : {
+        "revision" : "6b27393cad517c067dceea85fadf050e70c4ceaa",
+        "version" : "1.10.1"
+      }
+    },
+    {
+      "identity" : "regex",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ddddxxx/Regex",
+      "state" : {
+        "revision" : "c0ad0a7e9a48989d9688c2b524a1e69b6293b733",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "semver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ddddxxx/Semver",
+      "state" : {
+        "revision" : "6094e6f23a02b52b5d211fd114a4750c4f3ecef3",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "sparkle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sparkle-project/Sparkle",
+      "state" : {
+        "revision" : "c0933a516b420806e9216e71bd13ba76c54f0de6",
+        "version" : "1.26.0"
+      }
+    },
+    {
+      "identity" : "swift-atomics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-atomics.git",
+      "state" : {
+        "revision" : "3e95ba32cd1b4c877f6163e8eea54afc4e63bf9f",
+        "version" : "0.0.3"
+      }
+    },
+    {
+      "identity" : "swiftcf",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ddddxxx/SwiftCF",
+      "state" : {
+        "revision" : "72775c4b4dfceba8f6f43820d50f9286dc97160d",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "swiftyopencc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ddddxxx/SwiftyOpenCC",
+      "state" : {
+        "branch" : "v2.0.0-beta",
+        "revision" : "1d8105a0f7199c90af722bff62728050c858e777"
+      }
+    },
+    {
+      "identity" : "touchbarhelper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ddddxxx/TouchBarHelper",
+      "state" : {
+        "revision" : "003d41193ac1c6ab9cc570a1923587298014bf1d",
+        "version" : "0.1.0"
+      }
+    }
+  ],
+  "version" : 2
 }
