@@ -41,6 +41,10 @@ Download from [releases](https://github.com/ddddxxx/LyricsX/releases).
 - Auto launch & quit with music player.
 - Automatic conversion between Traditional Chinese and Simplified Chinese.
 
+### Lyrics Editor
+
+LyricsX use custom lyrics file format "LRCX" which support word time tag, multi-language translation and more. Currently there's no official LRCX editor. You can use [Lrcx_Creator](https://github.com/Doublefire-Chen/Lrcx_Creator) for now (see [#544](https://github.com/ddddxxx/LyricsX/issues/544), thanks to [@Doublefire-Chen](https://github.com/Doublefire-Chen)). Or use normal LRC editor, as LRCX is compatible with LRC.
+
 ## Screenshot
 
 <img src="docs/img/desktop_lyrics.gif" width="480px">
