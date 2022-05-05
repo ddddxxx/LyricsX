@@ -21,6 +21,7 @@ extension MusicPlayerName {
         case 2: self = .vox
         case 3: self = .audirvana
         case 4: self = .swinsian
+        case 5: self = .iina
         default: return nil
         }
     }
@@ -32,6 +33,7 @@ extension MusicPlayerName {
         case .vox:      return #imageLiteral(resourceName: "vox_icon")
         case .audirvana: return #imageLiteral(resourceName: "audirvana_icon")
         case .swinsian: return #imageLiteral(resourceName: "swinsian_icon")
+        case .iina: return #imageLiteral(resourceName: "iina_icon")
         }
     }
 }
