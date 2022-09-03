@@ -26,6 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         return NSApplication.shared.delegate as? AppDelegate
     }
     
+    @IBOutlet weak var lyricsOffsetView: NSView!
     @IBOutlet weak var lyricsOffsetTextField: NSTextField!
     @IBOutlet weak var lyricsOffsetStepper: NSStepper!
     @IBOutlet weak var statusBarMenu: NSMenu!
@@ -138,6 +139,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.item(withTag: 202)?.isEnabled = AppController.shared.currentLyrics != nil
+    }
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        if #available(macOS 10.16, *) {
+            let menuHasOnState = statusBarMenu.items.filter { menuItem in
+                return menuItem.state == .on
+            }.count > 0
+
+            let lyricsOffsetConstraint = lyricsOffsetView.constraints.first(where: {$0.identifier == "lyricsOffsetConstraint"})
+            
+            lyricsOffsetConstraint?.constant = 14
+            if menuHasOnState {
+                lyricsOffsetConstraint?.constant += 10
+            }
+        }
     }
     
     // MARK: - Menubar Action
