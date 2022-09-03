@@ -258,6 +258,7 @@
                     <connections>
                         <outlet property="lyricsOffsetStepper" destination="FwA-Sj-odc" id="Wpt-Xo-ryF"/>
                         <outlet property="lyricsOffsetTextField" destination="BE8-Ux-QD2" id="U25-Zx-LxS"/>
+                        <outlet property="lyricsOffsetView" destination="LV9-pp-2tz" id="XY6-hn-HAX"/>
                         <outlet property="statusBarMenu" destination="OCV-Y8-x1C" id="zHx-WQ-Hu4"/>
                     </connections>
                 </customObject>
@@ -451,7 +452,7 @@
                     <constraints>
                         <constraint firstItem="DG2-8b-vTy" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="5gA-e2-0RM"/>
                         <constraint firstItem="BE8-Ux-QD2" firstAttribute="leading" secondItem="DG2-8b-vTy" secondAttribute="trailing" constant="8" id="66I-Ch-hG0"/>
-                        <constraint firstItem="DG2-8b-vTy" firstAttribute="leading" secondItem="LV9-pp-2tz" secondAttribute="leading" constant="21" id="826-cy-w1T"/>
+                        <constraint firstItem="DG2-8b-vTy" firstAttribute="leading" secondItem="LV9-pp-2tz" secondAttribute="leading" constant="21" identifier="lyricsOffsetConstraint" id="826-cy-w1T"/>
                         <constraint firstItem="FwA-Sj-odc" firstAttribute="leading" secondItem="BE8-Ux-QD2" secondAttribute="trailing" constant="5" id="9G1-eA-c8X"/>
                         <constraint firstItem="BE8-Ux-QD2" firstAttribute="top" secondItem="LV9-pp-2tz" secondAttribute="top" constant="2" id="Jw4-sr-Qu8"/>
                         <constraint firstItem="0ii-PC-ZCl" firstAttribute="centerY" secondItem="LV9-pp-2tz" secondAttribute="centerY" id="Yhp-74-yJR"/>
