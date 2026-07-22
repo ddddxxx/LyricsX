@@ -1,5 +1,5 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "1xI-G4-Fsc"; */
-"1xI-G4-Fsc.headerCell.title" = "المصدر";
+"1xI-G4-Fsc.headerCell.title" = "مصدر";
 
 /* Class = "NSTextFieldCell"; title = "No Lyrics\n\nDrag & Drop to import LRC file"; ObjectID = "aRw-yQ-GNX"; */
 "aRw-yQ-GNX.title" = "لا توجد كلمات\n\nاسحب وإسقط لاستيراد ملف LRC";
@@ -56,7 +56,7 @@
 "kNl-ZO-aX6.title" = "الكتابة إلى iTunes";
 
 /* Class = "NSMenuItem"; title = "Show Lyrics Window"; ObjectID = "kyJ-kV-2Du"; */
-"kyJ-kV-2Du.title" = "إظهار نافذة الكلمات";
+"kyJ-kV-2Du.title" = "إظهار كلمات الأغاني ويندو";
 
 /* Class = "NSTextFieldCell"; title = "Artist:"; ObjectID = "l8J-1r-dIZ"; */
 "l8J-1r-dIZ.title" = "الفنان:";
@@ -68,13 +68,13 @@
 "PdE-VG-JUC.title" = "حول برنامج LyricsX";
 
 /* Class = "NSMenuItem"; title = "Check For Update..."; ObjectID = "Piu-i2-JjD"; */
-"Piu-i2-JjD.title" = "التحقق من وجود تحديثات...";
+"Piu-i2-JjD.title" = "التحقق من وجود تحديث...";
 
 /* Class = "NSButtonCell"; title = "Apply"; ObjectID = "RGl-MT-MQb"; */
-"RGl-MT-MQb.title" = "تطبيق التغييرات";
+"RGl-MT-MQb.title" = "Apply";
 
 /* Class = "NSMenuItem"; title = "Quit LyricsX"; ObjectID = "RPR-IV-34T"; */
-"RPR-IV-34T.title" = "الخروج من البرنامج";
+"RPR-IV-34T.title" = "الخروج من الكلمات";
 
 /* Class = "NSMenuItem"; title = "Enable Menu Bar Lyrics"; ObjectID = "Z7d-yp-uRx"; */
 "Z7d-yp-uRx.title" = "تمكين ظهور الكلمات في شريط القائمة";

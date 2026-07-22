@@ -1,5 +1,5 @@
 /* title of download button on the update alert. Download new version of the app. */
-"Download" = "다운로드";
+"Download" = "내려받기";
 
 /* No comment provided by engineer. */
 "Font Fallback: %@" = "대체 폰트: %@";
